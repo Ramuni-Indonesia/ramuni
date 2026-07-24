@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const catalog: Record<string, { name: string; introduction: string; question: string }> = {
+  'stok-inventori': { name: 'Stok & Inventori', introduction: 'Panduan untuk membaca pergerakan stok bersama ritme penjualan agar risiko kosong, kelebihan barang, dan kebutuhan pemeriksaan terlihat lebih awal.', question: 'Barang mana yang perlu diperiksa hari ini?' },
+  'keuangan-umkm': { name: 'Keuangan UMKM', introduction: 'Panduan dasar untuk memahami arus kas, biaya, dan perubahan keuangan dengan bahasa yang lebih ringan dan batas yang jelas.', question: 'Mengapa kas berubah dan apa yang perlu diperiksa?' },
+  'ai-untuk-umkm': { name: 'AI untuk UMKM', introduction: 'Panduan aman untuk memakai AI sebagai pendamping membaca konteks bisnis tanpa menyerahkan keputusan penting kepada sistem otomatis.', question: 'Kapan hasil AI perlu diperiksa manusia?' },
+};
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  const slugs = [...new Set(posts.map((post) => post.data.categorySlug))];
+  return slugs.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.categorySlug === slug) } }));
+}
+
+const { slug } = Astro.params;
+const { posts } = Astro.props;
+const meta = catalog[slug || ''] || { name: posts[0]?.data.category || 'Kategori Blog', introduction: 'Kumpulan artikel praktis dari Blog RAMUNI.', question: 'Apa yang ingin Anda pahami lebih dulu?' };
+const sortedPosts = [...posts].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const isThin = sortedPosts.length < 3;
+const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
+const categoryUrl = new URL(`/blog/kategori/${slug}/`, Astro.site || Astro.url.origin).toString();
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: meta.name, description: meta.introduction, url: categoryUrl },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
+    { '@type': 'ListItem', position: 3, name: meta.name, item: categoryUrl },
+  ] },
+];
+---
+<BaseLayout title={`${meta.name} | Blog RAMUNI`} description={meta.introduction} noindex={isThin} schema={schema}>
+  <header class="category-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>{meta.name}</span></nav><p class="eyebrow">Kategori Blog</p><h1>{meta.name}</h1><p class="lede">{meta.introduction}</p><p class="category-question">Mulai dari: {meta.question}</p>{isThin && <p class="taxonomy-status">Kategori ini masih tipis dan belum ditampilkan di mesin pencari sampai memiliki sedikitnya tiga artikel berkualitas.</p>}</div></header>
+  <section class="section surface"><div class="container blog-index-layout"><div class="blog-section-lead"><p class="section-kicker">Mulai dari sini</p><h2>Artikel dalam kategori ini.</h2><p>Urutan disusun dari artikel yang paling baru diperbarui.</p></div><div class="reading-list">{sortedPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}`}><span>{post.data.category}</span><div><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>
+  <section class="section blog-close-stage"><div class="container blog-close"><div><p class="section-kicker">Jelajahi topik lain</p><h2>Masalah bisnis jarang berdiri sendiri.</h2><p>Lihat kategori lain untuk melengkapi konteks penjualan, stok, keuangan, dan AI.</p></div><a class="button button--secondary" href="/blog">Kembali ke Blog</a></div></section>
+</BaseLayout>

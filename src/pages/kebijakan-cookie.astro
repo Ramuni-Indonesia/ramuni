@@ -1,0 +1,5 @@
+---
+import ContentPage from '../components/ContentPage.astro';
+const items=[{title:'Cookie esensial',text:'Dipakai untuk fungsi dasar website dan keamanan.'},{title:'Analytics',text:'Hanya aktif setelah consent dan tidak boleh membawa PII.'},{title:'Advertising',text:'Pixel iklan wajib consent-gated dan diuji agar tidak menerima data sensitif.'},{title:'Ubah pilihan',text:'Mekanisme preference center disiapkan saat consent manager final dipilih.'}];
+---
+<ContentPage title="Kebijakan Cookie" description="Kebijakan cookie RAMUNI untuk kategori esensial, analytics, advertising, dan pilihan pengguna." items={items} noindex={true} />

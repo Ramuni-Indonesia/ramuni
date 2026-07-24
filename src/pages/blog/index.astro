@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const featured = posts.find((post) => post.data.featured) || posts[0];
+const latest = posts.filter((post) => post.id !== featured?.id);
+const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
+
+const categoryCatalog = [
+  { slug: 'penjualan-omzet', name: 'Penjualan & Omzet', description: 'Baca pola transaksi, produk terlaris, dan waktu ramai tanpa laporan yang rumit.', question: 'Produk mana yang mendorong omzet minggu ini?' },
+  { slug: 'stok-inventori', name: 'Stok & Inventori', description: 'Pahami stok bergerak dan risiko kosong sebelum terlambat.', question: 'Barang mana yang perlu dicek hari ini?' },
+  { slug: 'keuangan-umkm', name: 'Keuangan UMKM', description: 'Baca arus kas, biaya, dan margin dengan bahasa yang lebih ringan.', question: 'Mengapa kas terasa turun?' },
+  { slug: 'pelanggan-crm', name: 'Pelanggan & CRM', description: 'Kenali pelanggan yang kembali belanja dan yang mulai pasif.', question: 'Siapa yang belum kembali belanja?' },
+  { slug: 'operasional-bisnis', name: 'Operasional Bisnis', description: 'Rapikan cara melihat aktivitas harian, laporan, dan keputusan tim.', question: 'Pekerjaan mana yang sering berulang?' },
+  { slug: 'ai-untuk-umkm', name: 'AI untuk UMKM', description: 'Pakai AI sebagai pendamping baca konteks, bukan pengganti keputusan.', question: 'Kapan hasil AI perlu dicek manusia?' },
+  { slug: 'strategi-per-industri', name: 'Strategi per Industri', description: 'Temukan pertanyaan yang relevan untuk ritme usaha yang berbeda.', question: 'Apa sinyal penting di jenis usaha saya?' },
+  { slug: 'panduan-ramuni', name: 'Panduan RAMUNI', description: 'Pelajari konsep RAMUNI dengan status fitur yang jelas.', question: 'Apa yang sudah tersedia dan apa yang belum?' },
+];
+
+const categories = categoryCatalog
+  .map((category) => ({ ...category, count: posts.filter((post) => post.data.categorySlug === category.slug).length }))
+  .filter((category) => category.count > 0);
+
+const problems = [
+  { label: 'Stok sering meleset', question: 'Barang mana yang perlu perhatian sebelum habis?', slug: 'stok-inventori' },
+  { label: 'Kas terasa tidak jelas', question: 'Uang masuk dan keluar berubah karena apa?', slug: 'keuangan-umkm' },
+  { label: 'AI untuk usaha', question: 'Apa yang boleh dibantu AI, dan apa yang tetap harus dicek manusia?', slug: 'ai-untuk-umkm' },
+];
+
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, dan AI untuk UMKM.' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+    { '@type': 'ListItem', position: 2, name: 'Blog RAMUNI', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
+  ] },
+];
+---
+<BaseLayout title="Blog RAMUNI" description="Panduan praktis untuk memahami penjualan, stok, keuangan, pelanggan, dan penggunaan AI yang aman untuk UMKM." schema={schema}>
+  <section class="blog-hero">
+    <div class="container blog-hero-grid">
+      <div class="reveal is-visible">
+        <p class="eyebrow">Blog RAMUNI</p>
+        <h1>Panduan praktis untuk keputusan usaha sehari-hari.</h1>
+        <p class="lede">Baca stok, kas, penjualan, pelanggan, dan AI dengan contoh yang dekat dengan pekerjaan harian.</p>
+      </div>
+      <form class="blog-search reveal is-visible" action="/blog/cari" method="get" role="search">
+        <label for="blog-query">Cari jawaban praktis</label>
+        <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Contoh: arus kas, stok, pelanggan" /><button type="submit">Cari</button></div>
+        <small>Jangan masukkan nama pelanggan, transaksi, atau data usaha sensitif.</small>
+      </form>
+    </div>
+  </section>
+
+  {featured && <section class="section surface" aria-labelledby="featured-heading">
+    <div class="container featured-story reveal">
+      <div class="featured-copy">
+        <p class="section-kicker">Contoh artikel</p>
+        <span class="blog-category-label">{featured.data.category}</span>
+        <h2 id="featured-heading"><a href={`/blog/${featured.id}`}>{featured.data.title}</a></h2>
+        <p>{featured.data.dek}</p>
+        <ul class="featured-takeaways">{featured.data.takeaways.slice(0, 3).map((item) => <li>{item}</li>)}</ul>
+        <div class="featured-meta"><span>{featured.data.authorName}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span><span>{featured.data.readingTime}</span></div>
+      </div>
+      <div class="featured-visual"><img src={featured.data.cover} width="1080" height="1350" alt={featured.data.coverAlt} fetchpriority="high" /></div>
+    </div>
+  </section>}
+
+  <section class="section blog-problem-stage" aria-labelledby="problem-heading">
+    <div class="container blog-problem-layout">
+      <div class="blog-section-lead reveal"><h2 id="problem-heading">Pertanyaan bisnis yang dekat dengan keseharian.</h2><p>Pilih masalah yang ingin Anda pahami lebih dulu.</p></div>
+      <div class="blog-question-deck" aria-label="Pilih pertanyaan bisnis">
+        {problems.map((problem, index) => <a class="blog-question-card reveal" href={`/blog/kategori/${problem.slug}`} style={`--i:${index}`}><span>0{index + 1}</span><strong>{problem.question}</strong><small>{problem.label}</small></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" aria-labelledby="category-heading">
+    <div class="container blog-index-layout">
+      <div class="blog-section-lead reveal"><h2 id="category-heading">Pilih topik yang ingin dirapikan.</h2><p>Kategori tanpa artikel yang sudah diterbitkan tidak ditampilkan.</p></div>
+      <div class="category-index">
+        {categories.map((category) => <a class="category-index-row reveal" href={`/blog/kategori/${category.slug}`}><div><h3>{category.name}</h3><p>{category.description}</p></div><div><span>{category.question}</span><small>{category.count} artikel</small></div></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="latest-heading">
+    <div class="container blog-index-layout">
+      <div class="blog-section-lead reveal"><h2 id="latest-heading">Artikel untuk dibaca berikutnya.</h2><p>Pilih satu langkah yang paling dekat dengan masalah Anda.</p></div>
+      <div class="editorial-cards">
+        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1080" height="1350" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.authorName}</span><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section editorial-trust-stage" aria-labelledby="trust-heading">
+    <div class="container editorial-trust-layout">
+      <div class="reveal"><p class="section-kicker">Kepercayaan editorial</p><h2 id="trust-heading">Bagaimana artikel RAMUNI dibuat.</h2><p>Artikel membantu pemilik usaha memahami konteks, bukan menggantikan keputusan bisnis. Topik sensitif harus ditinjau sebelum dipublikasikan.</p></div>
+      <nav class="editorial-policy-links" aria-label="Kebijakan editorial blog">
+        <a href="/blog/kebijakan-editorial">Kebijakan editorial</a>
+        <a href="/blog/metodologi-fact-check">Metodologi fact-check</a>
+        <a href="/blog/kebijakan-sumber">Kebijakan sumber</a>
+        <a href="/blog/kebijakan-pembaruan">Kebijakan pembaruan</a>
+        <a href="/blog/koreksi">Koreksi</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section blog-close-stage"><div class="container blog-close reveal"><div><h2>Punya satu angka usaha yang membingungkan?</h2><p>Lihat contoh cara RAMUNI mengubah catatan menjadi pertanyaan yang bisa ditindaklanjuti.</p></div><div class="button-row"><a class="button button--primary" href="/demo">Lihat Demo</a><a class="button button--secondary" href="/early-access">Daftar Early Access</a></div></div></section>
+</BaseLayout>

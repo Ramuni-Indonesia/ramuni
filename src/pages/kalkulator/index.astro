@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const tools=[['laba-usaha','Laba usaha','Pendapatan dikurangi biaya pada periode yang sama.'],['hpp','HPP sederhana','Biaya yang berkaitan dengan barang yang tersedia untuk dijual.'],['reorder-stok','Titik reorder','Perkiraan kapan stok perlu diperiksa untuk pemesanan berikutnya.']];
+---
+<BaseLayout title="Kalkulator Bisnis RAMUNI" description="Kalkulator laba, HPP, dan reorder stok dengan formula, asumsi, dan batas yang terlihat.">
+  <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Kalkulator</span></nav><p class="eyebrow">Kalkulator</p><h1>Hitung. Baca artinya. Periksa asumsi.</h1><p class="lede">Perhitungan dilakukan langsung di perangkat Anda.</p></div></section>
+  <section class="section surface"><div class="container calculator-list">{tools.map(([slug,title,text],i)=><a class="calculator-row reveal" href={`/kalkulator/${slug}`}><span>0{i+1}</span><div><h2>{title}</h2><p>{text}</p></div><b>Gunakan</b></a>)}</div></section>
+</BaseLayout>

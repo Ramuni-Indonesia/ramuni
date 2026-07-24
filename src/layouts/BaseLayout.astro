@@ -1,0 +1,120 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ConsentManager from '../components/ConsentManager.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  canonical?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.png',
+  imageAlt = 'RAMUNI, AI Business Companion untuk UMKM Indonesia',
+  imageWidth = 1200,
+  imageHeight = 630,
+  canonical = Astro.url.pathname,
+  noindex = false,
+  schema,
+  ogType = 'website',
+  pageType,
+} = Astro.props;
+const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toString();
+const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
+const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
+const pathname = new URL(absoluteCanonical).pathname;
+const inferredPageType = pageType
+  || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
+  || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)
+  || (/^\/(sumber-daya|panduan|template|kalkulator|kamus-bisnis)\/?$/.test(pathname) ? 'CollectionPage' : undefined)
+  || 'WebPage';
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': inferredPageType,
+  '@id': absoluteCanonical,
+  url: absoluteCanonical,
+  name: fullTitle,
+  description,
+  inLanguage: 'id-ID',
+};
+const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const structuredData = noindex ? suppliedSchema : [webPageSchema, ...suppliedSchema];
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F4F0E7" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
+    <link rel="canonical" href={absoluteCanonical} />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/fonts/PlusJakartaSans-ExtraBold.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="RAMUNI" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={absoluteCanonical} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:width" content={String(imageWidth)} />
+    <meta property="og:image:height" content={String(imageHeight)} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <title>{fullTitle}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    {structuredData.length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Lewati ke konten</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <ConsentManager />
+    <script>
+      const nodes = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          }
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+        nodes.forEach((node) => observer.observe(node));
+      } else {
+        nodes.forEach((node) => node.classList.add('is-visible'));
+      }
+
+      const activeNodes = document.querySelectorAll('[data-observe-active]');
+      if ('IntersectionObserver' in window && activeNodes.length) {
+        const activeObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => entry.target.toggleAttribute('data-active', entry.isIntersecting));
+        }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
+        activeNodes.forEach((node) => activeObserver.observe(node));
+      }
+
+    </script>
+  </body>
+</html>

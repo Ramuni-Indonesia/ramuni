@@ -1,0 +1,10 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+const items=[
+  {title:'Informasi yang membantu',text:'Sertakan URL artikel, bagian yang perlu diperiksa, alasan, dan sumber pendukung bila tersedia.'},
+  {title:'Jaga data sensitif',text:'Jangan kirim nama pelanggan, transaksi, kredensial, atau data usaha rahasia dalam laporan koreksi.'},
+  {title:'Proses pemeriksaan',text:'Tim akan memeriksa konteks, sumber, dan dampak sebelum melakukan klarifikasi atau perubahan.'},
+  {title:'Cara perubahan ditampilkan',text:'Koreksi faktual dan revisi material dicatat pada riwayat pembaruan artikel.'},
+];
+---
+<ContentPage eyebrow="Kepercayaan Editorial" title="Koreksi Artikel RAMUNI" description="Cara melaporkan bagian artikel yang perlu diperiksa tanpa mengirim data pelanggan atau informasi sensitif." items={items} ctaLabel="Hubungi RAMUNI" ctaHref="/kontak" />

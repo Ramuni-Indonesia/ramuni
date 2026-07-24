@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { releaseGates } from '../../config/release';
+export function getStaticPaths(){
+const guides={
+  'membaca-stok-harian':{title:'Membaca Stok Harian',outcome:'Menemukan stok yang perlu diperiksa sebelum jam ramai.',steps:['Pilih produk yang bergerak cepat','Bandingkan sisa stok dengan penjualan','Periksa pergerakan dan selisih','Catat keputusan berikutnya']},
+  'memahami-arus-kas':{title:'Memahami Arus Kas',outcome:'Membaca arah uang masuk dan keluar dalam satu periode.',steps:['Tentukan periode','Kelompokkan uang masuk','Kelompokkan uang keluar','Periksa perubahan yang tidak biasa']},
+  'menilai-insight-ai':{title:'Menilai Insight AI',outcome:'Memeriksa jawaban AI sebelum menjadikannya dasar keputusan.',steps:['Baca kesimpulan','Periksa periode','Telusuri bukti','Nilai batas dan tindakan']},
+};
+return Object.entries(guides).map(([slug,guide])=>({params:{slug},props:{guide}}));
+}
+const {guide}=Astro.props;
+---
+<BaseLayout title={`${guide.title} | Panduan RAMUNI`} description={`${guide.outcome} Panduan dummy RAMUNI dengan langkah praktis dan batas yang jelas.`} noindex={!releaseGates.resourcePagesIndexable}>
+  <article class="guide-article"><header class="container guide-header"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/panduan">Panduan</a><span>/</span><span>{guide.title}</span></nav><p class="eyebrow">Panduan dummy</p><h1>{guide.title}</h1><p class="lede">{guide.outcome}</p><div class="article-meta"><span>Tim Editorial RAMUNI</span><span>Belum ditinjau final</span><span>5 menit</span></div></header><section class="section surface"><div class="container guide-body"><aside><strong>Hasil yang dituju</strong><p>{guide.outcome}</p><small>Gunakan data sintetis. Jangan masukkan data sensitif.</small></aside><ol>{guide.steps.map((step,i)=><li class="reveal"><span>0{i+1}</span><div><h2>{step}</h2><p>Periksa informasi yang tersedia, lalu catat konteks yang masih perlu dikonfirmasi.</p></div></li>)}</ol></div></section></article>
+</BaseLayout>

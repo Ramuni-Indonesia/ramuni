@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resources } from '../data/site';
+---
+<BaseLayout title="Sumber Daya Bisnis untuk UMKM" description="Panduan, template, kalkulator, dan kamus bisnis RAMUNI untuk membantu UMKM memahami angka dan keputusan sehari-hari.">
+  <section class="resource-hero"><div class="container"><p class="eyebrow">Sumber Daya</p><h1>Baca seperlunya. Pakai saat dibutuhkan.</h1><p class="lede">Pilih cara belajar yang paling dekat dengan pekerjaan Anda hari ini.</p></div></section>
+  <section class="section surface"><div class="container resource-index">{resources.map((item, i) => <a class="resource-entry reveal" href={item.href}><span>0{i + 1}</span><h2>{item.title}</h2><p>{item.text}</p><b>Buka</b></a>)}</div></section>
+  <section class="section"><div class="container resource-path"><div class="reveal"><h2>Mulai dari masalah bisnis.</h2><p>Jangan mulai dari istilah. Mulai dari pertanyaan yang ingin dijawab.</p></div><div class="resource-questions">{['Kenapa omzet berubah?', 'Stok mana yang perlu dicek?', 'Kas bergerak ke mana?', 'Apa arti HPP?', 'Kapan pelanggan kembali?'].map((text) => <a href="/blog">{text}</a>)}</div></div></section>
+</BaseLayout>

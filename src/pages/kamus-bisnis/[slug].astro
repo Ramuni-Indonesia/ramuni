@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { releaseGates } from '../../config/release';
+export function getStaticPaths(){
+const terms={
+  'arus-kas':{title:'Arus Kas',definition:'Pergerakan uang masuk dan keluar pada suatu periode.',why:'Membantu melihat apakah usaha memiliki uang yang cukup untuk menjalankan kegiatan hariannya.',example:'Penjualan bisa naik, tetapi arus kas tetap turun bila pembayaran belum diterima.'},
+  'hpp':{title:'Harga Pokok Penjualan',definition:'Biaya yang berkaitan dengan barang yang terjual.',why:'Membantu membaca laba kotor dengan definisi biaya yang konsisten.',example:'Harga beli barang, biaya masuk tertentu, dan perubahan stok dapat memengaruhi HPP.'},
+  'omzet':{title:'Omzet',definition:'Nilai penjualan sebelum dikurangi biaya.',why:'Menunjukkan aktivitas penjualan, tetapi belum menjelaskan laba atau kas.',example:'Omzet Rp10 juta tidak berarti laba Rp10 juta karena biaya belum dikurangi.'},
+  'stok-pengaman':{title:'Stok Pengaman',definition:'Cadangan stok untuk membantu menghadapi ketidakpastian permintaan atau pasokan.',why:'Membantu mencegah kekosongan, tetapi jumlahnya perlu disesuaikan dengan pola usaha.',example:'Produk cepat bergerak mungkin membutuhkan cadangan berbeda dari barang lambat.'},
+};
+return Object.entries(terms).map(([slug,term])=>({params:{slug},props:{term}}));
+}
+const {term}=Astro.props;
+---
+<BaseLayout title={`${term.title}: Arti dan Contoh`} description={`${term.definition} Pelajari arti, alasan penting, dan contoh sederhana untuk UMKM.`} noindex={!releaseGates.resourcePagesIndexable}>
+  <article class="glossary-article"><header class="container glossary-header"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis">Kamus Bisnis</a><span>/</span><span>{term.title}</span></nav><p class="eyebrow">Kamus Bisnis</p><h1>{term.title}</h1><p class="glossary-definition">{term.definition}</p></header><section class="section surface"><div class="container glossary-body"><div><span>Kenapa penting</span><h2>{term.why}</h2></div><div><span>Contoh sederhana</span><p>{term.example}</p><small>Contoh bersifat edukasi umum dan bukan saran profesional.</small></div></div></section></article>
+</BaseLayout>

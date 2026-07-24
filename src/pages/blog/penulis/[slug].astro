@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  const authors = [...new Set(posts.map((post) => post.data.authorSlug))];
+  return authors.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.authorSlug === slug) } }));
+}
+
+const { posts } = Astro.props;
+const authorName = posts[0]?.data.authorName || 'Tim Editorial RAMUNI';
+const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', mainEntity: { '@type': 'Organization', name: authorName, description: 'Tim editorial yang menyusun artikel edukasi RAMUNI.' } };
+---
+<BaseLayout title={`${authorName} | Blog RAMUNI`} description="Profil Tim Editorial RAMUNI dan artikel yang disusun untuk membantu UMKM membaca konteks bisnis." noindex={true} schema={schema}>
+  <header class="author-hero"><div class="container author-profile"><div class="author-mark"><img src="/brand/ramuni-mark-color.webp" width="160" height="160" alt="RAMUNI" /></div><div><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Penulis</span></nav><p class="eyebrow">Profil Editorial</p><h1>{authorName}</h1><p class="lede">Tim yang menyusun panduan praktis untuk membantu UMKM membaca penjualan, stok, keuangan, pelanggan, dan penggunaan AI dengan batas yang jelas.</p><p class="taxonomy-status">Profil tim ini tidak menyatakan kredensial individual. Profil tetap noindex sampai struktur penulis dan bukti editorial final tersedia.</p></div></div></header>
+  <section class="section surface"><div class="container blog-index-layout"><div class="blog-section-lead"><p class="section-kicker">Artikel</p><h2>Ditulis oleh tim ini.</h2><p>Setiap artikel dummy tetap menampilkan status review secara jujur.</p></div><div class="reading-list">{posts.map((post) => <a class="reading-row" href={`/blog/${post.id}`}><span>{post.data.category}</span><div><h3>{post.data.title}</h3><p>{post.data.dek}</p></div><small>{post.data.readingTime}</small></a>)}</div></div></section>
+  <section class="section editorial-trust-stage"><div class="container editorial-trust-layout"><div><p class="section-kicker">Akuntabilitas</p><h2>Cara kerja editorial kami.</h2><p>Artikel final harus melewati pemeriksaan sumber, status produk, dan review topik sensitif sebelum dipublikasikan.</p></div><nav class="editorial-policy-links" aria-label="Kebijakan editorial"><a href="/blog/kebijakan-editorial">Kebijakan editorial</a><a href="/blog/metodologi-fact-check">Metodologi fact-check</a><a href="/blog/kebijakan-sumber">Kebijakan sumber</a></nav></div></section>
+</BaseLayout>

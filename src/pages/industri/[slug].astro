@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { industries, products, resources, roles, solutions } from '../../data/site';
+import { releaseGates } from '../../config/release';
+
+type IndustryBrief = {
+  fit: string[];
+  boundaries: string[];
+  workflow: string[];
+  pains: string[];
+  dataNeeds: string[];
+  modules: string[];
+  questions: string[];
+  scenario: string;
+  onboarding: string[];
+  privacy: string;
+  roleSlugs: string[];
+  solutionSlugs: string[];
+  resourceHrefs: string[];
+  exampleMetrics: { label: string; value: string; note: string }[];
+};
+
+const industryBriefs: Record<string, IndustryBrief> = {
+  retail: {
+    fit: ['Toko dengan banyak SKU aktif', 'Pemilik yang perlu memantau stok cepat bergerak', 'Tim kasir dan admin yang berbagi catatan'],
+    boundaries: ['Tidak menyiratkan multi-gudang lanjutan', 'Tidak menjanjikan POS enterprise lengkap', 'Integrasi perangkat mengikuti status rilis'],
+    workflow: ['Cek stok kritis sebelum toko ramai', 'Catat penjualan dan koreksi dengan jejak', 'Bandingkan produk laris dengan saldo stok', 'Tentukan restock atau pemeriksaan fisik'],
+    pains: ['Produk laris habis tanpa peringatan', 'Barang lambat menumpuk', 'Selisih catatan kasir dan stok sulit ditelusuri'],
+    dataNeeds: ['Katalog produk dan SKU', 'Transaksi penjualan', 'Saldo dan pergerakan stok', 'Batas stok minimum'],
+    modules: ['Katalog Produk', 'Penjualan', 'Inventori', 'Dashboard Bisnis'],
+    questions: ['Produk mana yang hampir habis tetapi tetap laris?', 'Kategori apa yang turun minggu ini?', 'Stok mana yang perlu dicek ulang?'],
+    scenario: 'Sore hari, pemilik melihat kopi susu tinggal sedikit sementara penjualan meningkat. RAMUNI membantu memisahkan sinyal laris dari stok yang perlu diperiksa.',
+    onboarding: ['Rapikan nama produk', 'Tentukan unit dan kategori', 'Isi stok awal dengan tanggal pemeriksaan'],
+    privacy: 'Jangan masukkan data pelanggan ke demo atau formulir publik.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
+    solutionSlugs: ['kelola-stok', 'naikkan-omzet'],
+    resourceHrefs: ['/panduan', '/kalkulator'],
+    exampleMetrics: [
+      { label: 'Stok contoh saat diperiksa', value: '8 unit', note: 'Di bawah batas contoh 10 unit.' },
+      { label: 'Penjualan contoh hari ini', value: '12 unit', note: 'Dipakai untuk membaca kecepatan stok, bukan proyeksi.' },
+      { label: 'Selisih yang perlu dicek', value: '2 unit', note: 'Memicu pemeriksaan catatan dan stok fisik.' },
+    ],
+  },
+  fnb: {
+    fit: ['Usaha makanan/minuman dengan menu aktif', 'Pemilik yang memantau jam ramai', 'Tim yang perlu melihat bahan dan penjualan bersama'],
+    boundaries: ['Biaya per resep mengikuti status fitur', 'Tidak menggantikan SOP dapur', 'Bahan terbuang dan rincian bahan mengikuti data yang disiapkan'],
+    workflow: ['Lihat menu yang berubah performanya', 'Cek bahan atau stok yang perlu perhatian', 'Bandingkan jam ramai dan biaya', 'Tentukan pembelian atau evaluasi menu'],
+    pains: ['Menu ramai tetapi margin belum jelas', 'Bahan habis saat jam puncak', 'Waste tidak masuk konteks laporan'],
+    dataNeeds: ['Daftar menu', 'Penjualan per waktu', 'Stok bahan atau item utama', 'Pengeluaran bahan'],
+    modules: ['Penjualan', 'Inventori', 'Keuangan', 'Laporan & Insight'],
+    questions: ['Menu apa yang turun minggu ini?', 'Bahan apa yang perlu disiapkan sebelum jam ramai?', 'Biaya mana yang naik bersamaan dengan penjualan?'],
+    scenario: 'Menjelang sore, tim melihat satu menu menurun selama tiga hari. RAMUNI membantu mengecek waktu penjualan, stok pendukung, dan biaya terkait.',
+    onboarding: ['Pisahkan menu aktif dan arsip', 'Tentukan item stok utama', 'Catat biaya bahan dalam kategori konsisten'],
+    privacy: 'Demo dan contoh F&B memakai data sintetis. Jangan memasukkan data pelanggan atau transaksi sensitif ke formulir publik.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
+    solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
+    resourceHrefs: ['/panduan', '/kalkulator'],
+    exampleMetrics: [
+      { label: 'Pesanan menu contoh', value: '18 porsi', note: 'Dicatat pada periode makan siang.' },
+      { label: 'Stok bahan contoh', value: '11 porsi', note: 'Menunjukkan kebutuhan pemeriksaan sebelum jam ramai.' },
+      { label: 'Biaya bahan contoh', value: 'Rp270 ribu', note: 'Dibaca bersama penjualan pada periode yang sama.' },
+    ],
+  },
+  distributor: {
+    fit: ['Usaha dengan pesanan berulang', 'Produk bergerak dalam volume lebih besar', 'Pemilik yang memantau kas, pesanan ulang, dan stok'],
+    boundaries: ['Kontrol pemasok, pesanan pembelian, dan kredit mengikuti status fitur', 'Piutang lanjutan mengikuti cakupan rilis', 'Integrasi akuntansi hanya bila sudah terverifikasi'],
+    workflow: ['Pantau pesanan dan produk bergerak', 'Cek pelanggan yang biasanya memesan ulang', 'Bandingkan stok dengan permintaan', 'Tinjau dampak ke kas'],
+    pains: ['Produk cepat keluar tetapi pembelian terlambat', 'Pelanggan rutin tidak terpantau', 'Kas terasa ketat saat order besar berjalan'],
+    dataNeeds: ['Produk dan kategori', 'Riwayat penjualan pelanggan', 'Pergerakan stok', 'Status pembayaran operasional'],
+    modules: ['Penjualan', 'Inventori', 'Pelanggan', 'Keuangan'],
+    questions: ['Pelanggan mana yang biasanya memesan ulang?', 'Produk mana yang memengaruhi kas minggu ini?', 'Stok apa yang perlu dijaga untuk pembeli rutin?'],
+    scenario: 'Saat menyiapkan pengiriman, pemilik melihat pelanggan rutin belum memesan ulang. RAMUNI membantu membaca riwayat dan produk yang biasanya dibeli.',
+    onboarding: ['Konsistenkan nama pelanggan', 'Kelompokkan produk utama', 'Siapkan status pembayaran sederhana'],
+    privacy: 'Riwayat pelanggan harus dibatasi sesuai akses dan tidak dipakai untuk pesan otomatis tanpa persetujuan.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
+    solutionSlugs: ['pahami-pelanggan', 'pantau-laba-dan-arus-kas'],
+    resourceHrefs: ['/panduan', '/kamus-bisnis'],
+    exampleMetrics: [
+      { label: 'Pesanan aktif contoh', value: '14 pesanan', note: 'Enam di antaranya menunggu pemeriksaan pembayaran.' },
+      { label: 'Stok produk utama', value: '32 karton', note: 'Dibandingkan dengan pesanan yang sudah tercatat.' },
+      { label: 'Pelanggan ulang contoh', value: '4 akun', note: 'Hanya menjadi daftar tinjauan, tanpa pesan otomatis.' },
+    ],
+  },
+  'reseller-online': {
+    fit: ['Reseller dengan beberapa kanal catatan', 'Produk dan margin sering berubah', 'Pemilik yang perlu melihat produk bernilai tinggi'],
+    boundaries: ['Koneksi marketplace langsung hanya ditampilkan setelah rilis', 'Tidak otomatis menjalankan kampanye', 'Data kanal perlu dibawa melalui metode yang tersedia'],
+    workflow: ['Gabungkan catatan penjualan', 'Bandingkan margin per produk', 'Cek pelanggan yang kembali', 'Tentukan produk yang perlu didorong atau dihentikan'],
+    pains: ['Produk ramai belum tentu margin baik', 'Catatan kanal tersebar', 'Pelanggan berulang sulit dikenali'],
+    dataNeeds: ['Produk dan harga', 'HPP atau biaya terkait', 'Transaksi per kanal bila tersedia', 'Riwayat pelanggan yang sesuai izin'],
+    modules: ['Katalog Produk', 'Penjualan', 'Pelanggan', 'Integrasi Data'],
+    questions: ['Produk mana yang menghasilkan margin terbaik?', 'Kanal mana yang perlu diperiksa manual?', 'Pelanggan mana yang kembali membeli?'],
+    scenario: 'Setelah kampanye kecil, produk terlihat ramai tetapi margin tidak sekuat perkiraan. RAMUNI membantu memeriksa harga, biaya, dan riwayat penjualan.',
+    onboarding: ['Samakan kode produk antar kanal', 'Isi HPP yang diketahui', 'Tandai sumber catatan tanpa memasukkan data pribadi ke demo atau formulir publik'],
+    privacy: 'Klaim integrasi dan penggunaan data kanal hanya boleh aktif setelah dukungan operasionalnya jelas.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko'],
+    solutionSlugs: ['naikkan-omzet', 'pahami-pelanggan'],
+    resourceHrefs: ['/kalkulator', '/template'],
+    exampleMetrics: [
+      { label: 'Penjualan produk contoh', value: '24 unit', note: 'Gabungan catatan dari kanal yang sudah dimasukkan.' },
+      { label: 'Harga jual contoh', value: 'Rp85 ribu', note: 'Dibandingkan dengan HPP yang diketahui.' },
+      { label: 'HPP contoh', value: 'Rp58 ribu', note: 'Belum memasukkan biaya kanal yang datanya belum tersedia.' },
+    ],
+  },
+  jasa: {
+    fit: ['Usaha jasa dengan pendapatan per layanan', 'Pemilik yang memantau biaya dan pelanggan', 'Tim yang perlu melihat layanan mana yang konsisten'],
+    boundaries: ['RAMUNI bukan alat pengelolaan proyek lengkap', 'Pencatatan waktu dan perencanaan tenaga kerja mengikuti status fitur', 'Konteks proyek hanya sejauh data operasional tersedia'],
+    workflow: ['Catat pendapatan layanan', 'Kelompokkan biaya', 'Lihat pelanggan atau layanan berulang', 'Tentukan layanan yang perlu diprioritaskan'],
+    pains: ['Pendapatan terlihat naik tetapi biaya ikut naik', 'Layanan laris belum tentu sehat', 'Konteks pelanggan tersebar'],
+    dataNeeds: ['Jenis layanan', 'Pendapatan', 'Pengeluaran', 'Pelanggan atau sumber pesanan bila sesuai izin'],
+    modules: ['Keuangan', 'Pelanggan', 'Dashboard Bisnis', 'Laporan & Insight'],
+    questions: ['Layanan mana yang paling konsisten menghasilkan pendapatan?', 'Biaya apa yang naik bersama pekerjaan?', 'Pelanggan mana yang perlu ditindaklanjuti secara aman?'],
+    scenario: 'Akhir minggu, pemilik melihat satu layanan sering dipesan tetapi biaya pendukung ikut naik. RAMUNI membantu membaca pendapatan dan pengeluaran bersama.',
+    onboarding: ['Kelompokkan layanan', 'Pisahkan biaya utama', 'Tentukan periode laporan yang konsisten'],
+    privacy: 'Informasi pelanggan tidak boleh masuk URL, formulir publik, atau catatan yang dapat dilihat umum.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
+    solutionSlugs: ['pantau-laba-dan-arus-kas', 'pahami-pelanggan'],
+    resourceHrefs: ['/kalkulator', '/kamus-bisnis'],
+    exampleMetrics: [
+      { label: 'Pendapatan layanan contoh', value: 'Rp4,8 juta', note: 'Nilai sintetis untuk satu periode mingguan.' },
+      { label: 'Biaya pendukung contoh', value: 'Rp1,6 juta', note: 'Dikelompokkan pada periode yang sama.' },
+      { label: 'Pesanan berulang contoh', value: '3 pesanan', note: 'Ditinjau tanpa mengirim tindak lanjut otomatis.' },
+    ],
+  },
+  'manufaktur-kecil': {
+    fit: ['Usaha yang memantau bahan dan barang jadi', 'Pemilik yang melihat produksi sederhana dan penjualan bersama', 'Tim yang perlu tahu stok mana perlu perhatian'],
+    boundaries: ['Perencanaan produksi dan daftar bahan lengkap mengikuti status fitur', 'Tidak otomatis membuat rencana produksi', 'Biaya produksi rinci mengikuti status fitur'],
+    workflow: ['Cek barang jadi dan bahan utama', 'Pantau penjualan produk', 'Lihat biaya atau pengeluaran terkait', 'Tentukan pemeriksaan stok atau produksi berikutnya'],
+    pains: ['Bahan terlihat cukup tetapi barang jadi menipis', 'Biaya produksi tidak terbaca bersama penjualan', 'Keputusan dibuat dari ingatan'],
+    dataNeeds: ['Produk jadi', 'Bahan atau item stok utama', 'Transaksi penjualan', 'Pengeluaran produksi sederhana'],
+    modules: ['Inventori', 'Penjualan', 'Keuangan', 'Dashboard Bisnis'],
+    questions: ['Produk mana yang membutuhkan perhatian stok?', 'Bahan apa yang perlu dicek sebelum produksi?', 'Biaya apa yang berubah minggu ini?'],
+    scenario: 'Sebelum produksi berikutnya, pemilik melihat barang jadi tertentu menipis. RAMUNI membantu mengecek penjualan, stok, dan biaya terkait tanpa menjanjikan perencanaan produksi lengkap.',
+    onboarding: ['Pisahkan bahan dan barang jadi', 'Tentukan unit stok', 'Catat biaya utama secara konsisten'],
+    privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau demo website.',
+    roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
+    solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
+    resourceHrefs: ['/panduan', '/template'],
+    exampleMetrics: [
+      { label: 'Barang jadi contoh', value: '26 unit', note: 'Saldo sintetis sebelum jadwal produksi berikutnya.' },
+      { label: 'Penjualan contoh', value: '19 unit', note: 'Dicatat untuk periode tujuh hari.' },
+      { label: 'Bahan utama contoh', value: '42 kg', note: 'Perlu dibandingkan dengan kebutuhan produksi secara manual.' },
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props;
+const brief = industryBriefs[industry.slug];
+const industryHeadings: Record<string, { hero: string; fit: string; workflow: string; signals: string; modules: string }> = {
+  retail: { hero: 'Jangan tunggu rak kosong untuk mengecek stok.', fit: 'Toko ramai butuh catatan produk yang tetap rapi.', workflow: 'Mulai pagi dari stok kritis dan produk yang sedang laris.', signals: 'Bedakan produk laris, stok lambat, dan selisih catatan.', modules: 'Penjualan dan inventori dibaca dalam satu alur.' },
+  fnb: { hero: 'Baca menu laris bersama bahan dan jam ramai.', fit: 'Menu, bahan, dan biaya perlu bertemu di periode yang sama.', workflow: 'Siapkan bahan sebelum jam ramai, bukan setelah menu habis.', signals: 'Lihat menu, bahan, waktu, dan biaya sebagai satu cerita.', modules: 'Hubungkan penjualan menu dengan stok serta biaya.' },
+  distributor: { hero: 'Pesanan besar belum tentu membuat kas longgar.', fit: 'Pesanan ulang, stok, dan pembayaran perlu dibaca bersama.', workflow: 'Mulai dari pesanan aktif dan pelanggan yang biasa membeli ulang.', signals: 'Temukan produk yang bergerak dan pembayaran yang tertunda.', modules: 'Jaga pesanan, pelanggan, stok, dan kas tetap terhubung.' },
+  'reseller-online': { hero: 'Produk ramai belum tentu memberi margin sehat.', fit: 'Catatan beberapa kanal perlu memakai kode produk yang sama.', workflow: 'Satukan penjualan sebelum membandingkan produk dan margin.', signals: 'Pisahkan produk ramai, produk untung, dan kanal yang perlu dicek.', modules: 'Katalog yang rapi membuat perbandingan kanal lebih masuk akal.' },
+  jasa: { hero: 'Layanan laris perlu dibaca bersama biaya pengerjaan.', fit: 'Pendapatan per layanan baru berarti setelah biayanya terlihat.', workflow: 'Tutup minggu dengan pendapatan dan biaya per layanan.', signals: 'Lihat layanan berulang, biaya naik, dan pelanggan yang kembali.', modules: 'Keuangan dan pelanggan menjelaskan kesehatan setiap layanan.' },
+  'manufaktur-kecil': { hero: 'Pisahkan bahan menipis dari barang jadi yang laku.', fit: 'Bahan, barang jadi, penjualan, dan biaya perlu satu urutan.', workflow: 'Cek bahan utama sebelum menentukan produksi berikutnya.', signals: 'Baca stok bahan, barang jadi, biaya, dan penjualan bersama.', modules: 'Inventori dan penjualan memberi dasar sebelum produksi.' },
+};
+const headings = industryHeadings[industry.slug];
+const supportingProducts = products.filter((product) => brief.modules.includes(product.title));
+const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug));
+const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
+const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
+---
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Concept Preview RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
+  <div class="container audience-breadcrumb"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/industri">Industri</a><span>/</span><span>{industry.title}</span></nav></div>
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat Demo" primaryHref="/demo" secondaryLabel="Semua Industri" secondaryHref="/industri" />
+
+  <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal">
+        <h2 id="fit-title">{headings.fit}</h2>
+        <p class="lede">Gunakan halaman ini untuk menilai kecocokan alur. Fitur final mengikuti hasil pengujian RAMUNI.</p>
+      </div>
+      <div class="audience-boundary-ledger reveal">
+        <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
+        <div><strong>Batas saat ini</strong><ul>{brief.boundaries.map((item) => <li>{item}</li>)}</ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="alur-harian" aria-labelledby="daily-title">
+    <div class="container audience-day">
+      <div class="audience-section-heading reveal"><h2 id="daily-title">{headings.workflow}</h2></div>
+      <ol class="audience-timeline industry-timeline">{brief.workflow.map((step, index) => <li class="reveal" data-observe-active><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section surface" id="sinyal" aria-labelledby="signals-title">
+    <div class="container audience-dashboard">
+      <div class="audience-section-heading reveal"><h2 id="signals-title">{headings.signals}</h2></div>
+      <div class="audience-signal-board reveal">
+        <div><strong>Masalah sehari-hari</strong>{brief.pains.map((pain) => <p>{pain}</p>)}</div>
+        <div><strong>Data yang dibutuhkan</strong>{brief.dataNeeds.map((need) => <p>{need}</p>)}</div>
+        <div><strong>Contoh pertanyaan AI</strong>{brief.questions.map((question) => <p>{question}</p>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skenario" aria-labelledby="scenario-title">
+    <div class="container audience-scenario reveal"><h2 id="scenario-title">Satu hari dalam konteks {industry.title}.</h2><p>{brief.scenario}</p></div>
+  </section>
+
+  <section class="section surface" id="metrik-contoh" aria-labelledby="metrics-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><p class="eyebrow">Data sintetis</p><h2 id="metrics-title">Angka contoh untuk membaca skenario, bukan hasil pelanggan.</h2><p class="lede">Nilai ini hanya memperlihatkan hubungan antarcatatan. RAMUNI tidak mengklaim hasil usaha dari angka berikut.</p></div>
+      <dl class="audience-permission-ledger reveal">{brief.exampleMetrics.map((metric) => <div><dt>{metric.label}</dt><dd><strong>{metric.value}</strong><span>{metric.note}</span></dd></div>)}</dl>
+    </div>
+  </section>
+
+  <section class="section" id="modul-peran" aria-labelledby="modules-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="modules-title">{headings.modules}</h2><p class="lede">Mulai dari catatan yang paling sering dipakai tim.</p></div>
+      <div class="audience-module-list">{supportingProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug}><strong>{product.title}</strong><span>{product.safety}</span></a>)}</div>
+    </div>
+    <div class="container audience-related reveal"><strong>Peran yang biasanya terlibat</strong><div>{relevantRoles.map((role) => <a href={'/untuk/' + role.slug}>{role.title}</a>)}</div></div>
+    <nav class="container audience-related reveal" aria-label={`Tautan lanjutan untuk ${industry.title}`}>
+      <strong>Lanjutkan dari kebutuhan usaha</strong>
+      <div>{relatedSolutions.map((solution) => <a href={'/solusi/' + solution.slug}>{solution.title}</a>)}</div>
+      <strong>Sumber daya terkait</strong>
+      <div>{relatedResources.map((resource) => <a href={resource.href}>{resource.title}</a>)}</div>
+    </nav>
+  </section>
+
+  <section class="section" id="onboarding" aria-labelledby="onboarding-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="onboarding-title">Siapkan data yang paling dekat dengan pekerjaan harian.</h2></div>
+      <ol class="audience-ledger">{brief.onboarding.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{index === 0 ? 'Mulai dari data yang paling sering dipakai tim.' : 'Gunakan definisi sederhana agar mudah dicek ulang.'}</p></div></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section surface" id="privasi-faq" aria-labelledby="privacy-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Batas data tetap dijaga.</h2><p class="lede">{brief.privacy}</p></div>
+      <div class="faq-list reveal">
+        <details><summary>Apakah RAMUNI sudah punya paket khusus {industry.title}?</summary><p>Belum tentu. Halaman ini masih berupa gambaran awal, bukan paket industri yang sudah tersedia.</p></details>
+        <details><summary>Apakah saya perlu mengirim data bisnis untuk demo?</summary><p>Tidak. Demo publik memakai data sintetis dan formulir tidak boleh menerima data pelanggan atau transaksi sensitif.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cta" aria-labelledby="cta-title">
+    <div class="container audience-closing reveal"><div><h2 id="cta-title">Cocokkan kebutuhan usaha {industry.title} dengan alur RAMUNI.</h2><p>Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi.</p></div><a class="button button--primary" href="/demo">Konsultasikan Kebutuhan</a></div>
+  </section>
+</BaseLayout>

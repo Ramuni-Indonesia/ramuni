@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { industries, products, solutions } from '../../data/site';
+import { solutionNarratives } from '../../data/pageNarratives';
+import { releaseGates } from '../../config/release';
+
+export function getStaticPaths() {
+  return solutions.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+}
+
+const { solution } = Astro.props;
+const narrative = solutionNarratives[solution.slug];
+const productByTitle = new Map(products.map((product) => [product.title, product]));
+const industryBySlug = new Map(industries.map((industry) => [industry.slug, industry]));
+const supportingModules = solution.modules.map((module, index) => ({
+  module,
+  note: solution.moduleNotes[index],
+  product: productByTitle.get(module),
+}));
+const industryExamples = narrative.industryExamples.filter((example) => industryBySlug.has(example.slug));
+---
+<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.summary} noindex={!releaseGates.claimPagesIndexable}>
+  <section class="solution-detail-hero">
+    <div class="container solution-detail-hero__layout">
+      <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi', href: '/solusi' }, { label: solution.title }]} /><p class="section-kicker">Solusi RAMUNI</p><h1>{solution.title}</h1></div>
+      <div><p class="lede">{solution.summary}</p><p class="solution-detail-hero__outcome">{solution.outcome}</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
+    </div>
+  </section>
+
+  <section class="section surface symptom-section" aria-labelledby="symptom-title">
+    <div class="container symptom-section__layout">
+      <header><h2 id="symptom-title">{narrative.symptomHeading}</h2><p>Cocokkan dengan catatan usaha Anda sebelum menarik kesimpulan.</p></header>
+      <ul>{solution.symptoms.map((symptom, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section impact-section" aria-labelledby="impact-title">
+    <div class="container"><h2 id="impact-title">{narrative.comparisonHeading}</h2><div class="impact-section__rail reveal">{narrative.impact.map(([title, text], index) => <article style={`--i:${index}`}><span>{title}</span><p>{text}</p></article>)}</div></div>
+  </section>
+
+  <section class="section surface manual-gap" aria-labelledby="manual-gap-title">
+    <div class="container manual-gap__layout">
+      <div><h2 id="manual-gap-title">{narrative.beforeTitle}</h2><p>{narrative.beforeText}</p></div>
+      <div><h2>{narrative.afterTitle}</h2><p>{narrative.afterText}</p></div>
+    </div>
+  </section>
+
+  <section class="section solution-module-flow" aria-labelledby="module-flow-title">
+    <div class="container solution-module-flow__layout">
+      <header><h2 id="module-flow-title">{narrative.moduleHeading}</h2></header>
+      <div class="solution-module-flow__list">{supportingModules.map(({ module, note }, index) => <div class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><strong>{module}</strong><p>{note}</p></div>)}</div>
+    </div>
+  </section>
+
+  <section class="section surface solution-evidence" aria-labelledby="solution-evidence-title">
+    <div class="container solution-evidence__layout">
+      <div><span>Contoh data sintetis</span><h2 id="solution-evidence-title">{narrative.evidenceHeading}</h2></div>
+      <div><p class="solution-evidence__label">Hasil yang dituju</p><strong>{solution.outcome}</strong><dl><div><dt>Periksa</dt><dd>Periode dan sumber data</dd></div><div><dt>Bandingkan</dt><dd>Sinyal dengan aktivitas terkait</dd></div><div><dt>Putuskan</dt><dd>{solution.nextAction}</dd></div></dl></div>
+    </div>
+  </section>
+
+  <section class="section action-receipt"><div class="container action-receipt__layout"><div><h2>{narrative.receiptTitle}</h2></div><div><strong>{solution.nextAction}</strong><p>{narrative.receiptText}</p></div></div></section>
+
+  <section class="section surface" id="modul-terkait" aria-labelledby="related-modules-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="related-modules-title">Modul yang terlibat tidak berdiri sendiri.</h2><p class="lede">Setiap modul di bawah mengarah ke halaman produk yang sesuai, agar batas kemampuan dan cara kerjanya bisa diperiksa.</p></div>
+      <div class="audience-module-list">
+        {supportingModules.map(({ module, note, product }) => product ? <a class="audience-module-row reveal" href={`/produk/${product.slug}`}><strong>{module}</strong><span>{note}</span></a> : <div class="audience-module-row reveal"><strong>{module}</strong><span>{note}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contoh-industri" aria-labelledby="industry-examples-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="industry-examples-title">{narrative.industryHeading}</h2><p class="lede">Contoh ini memakai skenario sintetis. Kecocokan akhir tetap mengikuti data dan batas rilis RAMUNI.</p></div>
+      <div class="audience-module-list">
+        {industryExamples.map((example) => <a class="audience-module-row reveal" href={`/industri/${example.slug}`}><strong>{example.title}</strong><span>{example.example}</span></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" id="implementasi" aria-labelledby="implementation-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="implementation-title">{narrative.onboardingHeading}</h2><p class="lede">Mulai dari data yang ada, cek batasnya, lalu perluas setelah tim nyaman.</p></div>
+      <ol class="audience-ledger">
+        {narrative.onboarding.map(([title, text], index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{title}</strong><p>{text}</p></div></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section detail-faq"><div class="container detail-faq__layout"><h2>Pertanyaan sebelum memulai.</h2><div class="faq-list"><details><summary>Apakah solusi ini menjamin hasil bisnis?</summary><p>Tidak. RAMUNI membantu menelusuri pola dan bukti, bukan menjanjikan hasil tertentu.</p></details><details><summary>Data apa yang perlu disiapkan?</summary><p>Kebutuhan data bergantung pada masalah dan modul. Demo publik hanya memakai data sintetis.</p></details><details><summary>Apakah RAMUNI mengambil tindakan otomatis?</summary><p>Tidak pada versi awal. AI hanya membaca dan menjelaskan, sedangkan pengguna tetap memegang kendali.</p></details></div></div></section>
+
+  <section class="section solution-detail-close"><div class="container solution-detail-close__layout"><h2>{narrative.closing}</h2><div class="button-row"><a class="button button--primary" href="/demo">Jadwalkan Demo</a><a class="button button--secondary" href="/solusi">Lihat Semua Solusi</a></div></div></section>
+</BaseLayout>

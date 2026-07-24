@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { releaseGates } from '../config/release';
+import PageHero from '../components/PageHero.astro';
+
+const principles = [
+  ['Minimalkan data', 'Kumpulkan hanya data yang diperlukan untuk tujuan yang jelas.'],
+  ['Batasi akses', 'Setiap peran melihat konteks sesuai kewenangannya.'],
+  ['Jaga jejak', 'Koreksi, persetujuan, dan perubahan penting perlu dapat diperiksa.'],
+  ['Nyatakan status', 'Kontrol dipublikasikan hanya setelah implementasi dan bukti tersedia.'],
+];
+
+const trustStatus = [
+  ['AI hanya membaca pada versi awal', 'Arah produk saat ini', 'Tidak menjalankan tindakan bisnis berisiko secara otomatis.'],
+  ['Pemisahan data dan akses peran', 'Wajib diverifikasi saat sistem siap', 'Detail teknis akan dipublikasikan setelah pengujian operasional.'],
+  ['Enkripsi dan cadangan data', 'Belum diklaim publik', 'Metode, cakupan, masa simpan, dan uji pemulihan menunggu bukti.'],
+  ['Sertifikasi keamanan', 'Tidak ada klaim saat ini', 'RAMUNI tidak menampilkan badge sertifikasi tanpa verifikasi.'],
+];
+---
+<BaseLayout title="Keamanan RAMUNI" description="Batas keamanan, privasi, AI, akses, dan status kontrol RAMUNI yang disampaikan tanpa klaim berlebihan." noindex={!releaseGates.securityPageIndexable}>
+  <PageHero eyebrow="Keamanan" title="Kepercayaan dimulai dari batas yang bisa diperiksa." description="RAMUNI menjelaskan apa yang berlaku sekarang, apa yang masih harus diverifikasi, dan siapa yang tetap memegang keputusan." primaryLabel="Bahas Kebutuhan Keamanan" primaryHref="/kontak" secondaryLabel="Baca Privasi" secondaryHref="/privasi" />
+
+  <section class="section surface trust-page__principles" id="prinsip" aria-labelledby="principles-title">
+    <div class="container trust-page__split">
+      <div class="trust-page__heading reveal"><p class="eyebrow">Prinsip keamanan</p><h2 id="principles-title">Kontrol harus mengikuti risiko nyata.</h2><p>Keamanan bukan daftar badge. Setiap kontrol perlu cakupan, pemilik, bukti, dan tanggal verifikasi.</p></div>
+      <ol class="trust-page__ledger">{principles.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item[0]}</strong><p>{item[1]}</p></div></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section dark-surface trust-page__boundary" id="batas-data" aria-labelledby="boundary-title">
+    <div class="container">
+      <div class="trust-page__heading reveal"><h2 id="boundary-title">Data bergerak melalui jalur yang diketahui.</h2></div>
+      <ol class="trust-page__flow">
+        <li class="reveal"><span>01</span><strong>Input</strong><p>Data masuk melalui metode yang tersedia dan tujuan yang dijelaskan.</p></li>
+        <li class="reveal"><span>02</span><strong>Akses</strong><p>Identitas, sesi, dan peran membatasi siapa yang dapat melihat atau mengubah.</p></li>
+        <li class="reveal"><span>03</span><strong>Insight</strong><p>Jawaban AI mengikuti data yang diizinkan dan hanya bersifat penjelasan pada versi awal.</p></li>
+        <li class="reveal"><span>04</span><strong>Tindakan</strong><p>Persetujuan manusia dibutuhkan sebelum tindakan berisiko.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section trust-page__ai" id="ai" aria-labelledby="ai-title">
+    <div class="container trust-page__split">
+      <div class="trust-page__heading reveal"><p class="eyebrow">Penggunaan AI</p><h2 id="ai-title">Batas AI harus terlihat sebelum data diproses.</h2><p>RAMUNI tidak mengklaim data bebas pelatihan, tanpa penyimpanan, berlokasi di Indonesia, atau memiliki perlindungan kontrak tertentu sebelum bukti penyedia dan legal tersedia.</p></div>
+      <dl class="trust-page__definition reveal">
+        <div><dt>Data minimum</dt><dd>Hanya konteks yang diperlukan untuk pertanyaan yang diizinkan.</dd></div>
+        <div><dt>Penyedia dan masa simpan</dt><dd>Disampaikan setelah konfigurasi produksi dan perjanjian dipastikan.</dd></div>
+        <div><dt>Kontrol manusia</dt><dd>Jawaban menjadi bahan pertimbangan, bukan keputusan otomatis.</dd></div>
+        <div><dt>Penghapusan</dt><dd>Mekanisme mengikuti kebijakan retensi dan implementasi produk yang terverifikasi.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section surface trust-page__status" id="status-kontrol" aria-labelledby="controls-title">
+    <div class="container">
+      <div class="trust-page__heading reveal"><h2 id="controls-title">Tidak semua kontrol boleh diklaim sebelum diuji.</h2></div>
+      <div class="trust-page__status-list">{trustStatus.map((item) => <article class="reveal"><strong>{item[0]}</strong><span>{item[1]}</span><p>{item[2]}</p></article>)}</div>
+    </div>
+  </section>
+
+  <section class="section trust-page__incident" id="insiden" aria-labelledby="incident-title">
+    <div class="container trust-page__split">
+      <div class="trust-page__heading reveal"><h2 id="incident-title">Komunikasi dimulai dari verifikasi.</h2><p>Detail publik tidak menampilkan data pribadi, kata sandi, rincian sistem, atau informasi yang memperbesar risiko.</p></div>
+      <ol class="trust-page__timeline">
+        <li class="reveal"><span>Deteksi</span><p>Validasi sinyal dan cakupan dampak.</p></li>
+        <li class="reveal"><span>Kendalikan</span><p>Batasi dampak dan jaga bukti operasional.</p></li>
+        <li class="reveal"><span>Pulihkan</span><p>Uji layanan sebelum menyatakan kondisi normal.</p></li>
+        <li class="reveal"><span>Pelajari</span><p>Catat tindak lanjut tanpa membuka data sensitif.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface trust-page__faq" id="faq" aria-labelledby="security-faq-title">
+    <div class="container trust-page__split">
+      <div class="trust-page__heading reveal"><p class="eyebrow">FAQ keamanan</p><h2 id="security-faq-title">Tanyakan bukti, bukan asumsi.</h2></div>
+      <div class="faq-list reveal">
+        <details><summary>Apakah RAMUNI sudah memiliki sertifikasi keamanan?</summary><p>Belum ada sertifikasi yang diklaim pada halaman ini. Status hanya akan dipublikasikan setelah bukti dan cakupannya disetujui.</p></details>
+        <details><summary>Apakah demo publik memakai data bisnis saya?</summary><p>Tidak. Demo publik memakai data sintetis dan formulir tidak boleh menerima data pelanggan atau transaksi sensitif.</p></details>
+        <details><summary>Bagaimana melaporkan masalah keamanan?</summary><p><code>security.txt</code> saat ini mengarah ke kanal kontak umum RAMUNI. Kontak keamanan khusus akan ditambahkan setelah pemilik dan alur responsnya disetujui.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section trust-page__close"><div class="container trust-page__closing reveal"><div><h2>Butuh jawaban untuk evaluasi keamanan?</h2><p>Sampaikan kontrol, bukti, dan cakupan yang perlu Anda periksa tanpa mengirim rahasia melalui formulir publik.</p></div><a class="button button--primary" href="/kontak">Hubungi RAMUNI</a></div></section>
+</BaseLayout>

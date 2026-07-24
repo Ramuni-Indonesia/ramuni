@@ -1,0 +1,1 @@
+SVG, PNG, and WebP are transparent. JPEG cannot store transparency, so color and mono JPEG use Warm Rice; white JPEG uses Ink Navy.

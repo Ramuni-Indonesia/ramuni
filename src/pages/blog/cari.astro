@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('blog')).filter((post) => !post.data.draft).map((post) => ({
+  title: post.data.title,
+  dek: post.data.dek,
+  category: post.data.category,
+  tags: post.data.tags,
+  author: post.data.authorName,
+  href: `/blog/${post.id}`,
+  readingTime: post.data.readingTime,
+}));
+---
+<BaseLayout title="Cari Artikel | Blog RAMUNI" description="Cari artikel praktis di Blog RAMUNI." noindex={true}>
+  <header class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Cari</span></nav><p class="eyebrow">Pencarian Blog</p><h1>Cari jawaban praktis.</h1><form class="blog-search search-page-form" action="/blog/cari" method="get" role="search"><label for="search-query">Topik yang ingin dipahami</label><div class="search-line"><input id="search-query" name="q" type="search" placeholder="Contoh: arus kas, stok, pelanggan" /><button type="submit">Cari</button></div><small>Jangan masukkan nama pelanggan, transaksi, atau data usaha sensitif.</small></form></div></header>
+  <section class="section surface"><div class="container search-results-shell"><div><p class="section-kicker">Hasil pencarian</p><h2 id="search-summary" aria-live="polite">Masukkan topik untuk mulai mencari.</h2></div><div id="search-results" class="reading-list"><p class="blog-empty">Anda juga dapat mulai dari kategori Stok & Inventori, Keuangan UMKM, atau AI untuk UMKM.</p></div></div></section>
+  <script is:inline define:vars={{ articles }}>
+    const query = new URLSearchParams(window.location.search).get('q')?.trim() || '';
+    const input = document.querySelector('#search-query');
+    const summary = document.querySelector('#search-summary');
+    const results = document.querySelector('#search-results');
+    if (input instanceof HTMLInputElement) input.value = query;
+    if (summary && results && query) {
+      const normalized = query.toLocaleLowerCase('id-ID');
+      const matches = articles.filter((article) => [article.title, article.dek, article.category, article.author, ...article.tags].join(' ').toLocaleLowerCase('id-ID').includes(normalized));
+      summary.textContent = matches.length ? `${matches.length} artikel untuk “${query}”` : `Belum ada artikel untuk “${query}”`;
+      results.replaceChildren();
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.className = 'blog-empty';
+        empty.textContent = 'Coba istilah yang lebih umum atau kembali ke kategori utama.';
+        results.append(empty);
+      } else {
+        for (const article of matches) {
+          const link = document.createElement('a');
+          link.className = 'reading-row';
+          link.href = article.href;
+          const category = document.createElement('span');
+          category.textContent = article.category;
+          const body = document.createElement('div');
+          const title = document.createElement('h3');
+          title.textContent = article.title;
+          const dek = document.createElement('p');
+          dek.textContent = article.dek;
+          body.append(title, dek);
+          const time = document.createElement('small');
+          time.textContent = article.readingTime;
+          link.append(category, body, time);
+          results.append(link);
+        }
+      }
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { roles } from '../../data/site';
+
+const visibility = [
+  { area: 'Ringkasan bisnis', owner: 'Penuh', admin: 'Operasional', cashier: 'Transaksi sendiri', supervisor: 'Operasional' },
+  { area: 'Koreksi data', owner: 'Sesuai kebijakan', admin: 'Sesuai cakupan', cashier: 'Minta bantuan', supervisor: 'Tinjau' },
+  { area: 'Persetujuan dan ekspor', owner: 'Atur dan setujui', admin: 'Jika diizinkan', cashier: 'Tidak tersedia', supervisor: 'Sesuai kebijakan' },
+  { area: 'Tagihan', owner: 'Kelola', admin: 'Tidak tersedia', cashier: 'Tidak tersedia', supervisor: 'Tidak tersedia' },
+];
+---
+<BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat bagaimana pemilik usaha, admin toko, kasir, dan supervisor memakai satu sumber pemahaman dengan akses yang berbeda.">
+  <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman. Tanggung jawab tetap jelas." description="Setiap peran melihat konteks yang dibutuhkan untuk bekerja tanpa membuka akses yang tidak relevan." primaryLabel="Pilih Peran Anda" primaryHref="#daftar-peran" secondaryLabel="Lihat Demo" secondaryHref="/demo" />
+
+  <section class="section dark-surface audience-selector" id="daftar-peran" aria-labelledby="role-selector-title">
+    <div class="container">
+      <div class="audience-section-heading reveal"><p class="eyebrow">Pilih peran</p><h2 id="role-selector-title">Mulai dari keputusan yang perlu dibuat hari ini.</h2><p class="lede">Akses AI, laporan, dan data mengikuti tanggung jawab, bukan sekadar jabatan.</p></div>
+      <div class="audience-rail">
+        {roles.map((role, index) => <a class="audience-rail__row reveal" href={'/untuk/' + role.slug}><span class="audience-rail__index">{String(index + 1).padStart(2, '0')}</span><strong>{role.title}</strong><p>{role.summary}</p><span class="audience-rail__action">Buka peran</span></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="responsibility-title">Tampilan pertama mengikuti pekerjaan utama.</h2><p class="lede">RAMUNI tidak menampilkan semua hal kepada semua orang. Prioritas dimulai dari tugas dan keputusan setiap peran.</p></div>
+      <div class="audience-role-map">
+        {roles.map((role) => <article class="audience-role-map__row reveal"><div><strong>{role.title}</strong><p>{role.priorities[0]}</p></div><ul>{role.responsibilities.map((item) => <li>{item}</li>)}</ul></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="izin" aria-labelledby="permission-title">
+    <div class="container">
+      <div class="audience-section-heading reveal"><h2 id="permission-title">Konteks dibagi. Kendali tidak dilepas.</h2></div>
+      <div class="audience-comparison reveal" role="region" aria-label="Perbandingan visibilitas peran" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Area</th><th scope="col">Pemilik</th><th scope="col">Admin</th><th scope="col">Kasir</th><th scope="col">Supervisor</th></tr></thead>
+          <tbody>{visibility.map((row) => <tr><th scope="row">{row.area}</th><td>{row.owner}</td><td>{row.admin}</td><td>{row.cashier}</td><td>{row.supervisor}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" id="kolaborasi" aria-labelledby="collaboration-title">
+    <div class="container audience-day">
+      <div class="audience-section-heading reveal"><h2 id="collaboration-title">Masalah bergerak ke orang yang tepat.</h2><p class="lede">Setiap langkah meninggalkan konteks agar koreksi dan persetujuan tidak bergantung pada ingatan.</p></div>
+      <ol class="audience-timeline">
+        <li class="reveal"><span>01</span><p>Kasir atau admin mencatat aktivitas yang diizinkan.</p></li>
+        <li class="reveal"><span>02</span><p>Supervisor melihat pengecualian dan meninjau konteks.</p></li>
+        <li class="reveal"><span>03</span><p>Pemilik mengambil keputusan atau memberi persetujuan.</p></li>
+        <li class="reveal"><span>04</span><p>Tim melihat status tindak lanjut dari sumber yang sama.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="batas-ai" aria-labelledby="ai-boundary-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><p class="eyebrow">Batas AI</p><h2 id="ai-boundary-title">AI membantu membaca, bukan mengambil alih.</h2><p class="lede">Pada versi awal, AI hanya membaca dan menjelaskan. Jawaban mengikuti data dan izin peran yang sedang aktif.</p></div>
+      <ol class="audience-ledger">
+        <li class="reveal"><span>01</span><div><strong>Data sesuai akses</strong><p>Pengguna tidak melihat data di luar kewenangannya.</p></div></li>
+        <li class="reveal"><span>02</span><div><strong>Konteks dapat ditelusuri</strong><p>Jawaban kembali ke periode dan sumber pendukung.</p></div></li>
+        <li class="reveal"><span>03</span><div><strong>Keputusan tetap manusia</strong><p>Aksi berisiko tidak dijalankan otomatis.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface" id="cta" aria-labelledby="role-cta-title">
+    <div class="container audience-closing reveal"><div><h2 id="role-cta-title">Lihat RAMUNI dari tanggung jawab tim Anda.</h2><p>Mulai dari satu peran, lalu pastikan kolaborasi dan batas aksesnya tetap jelas.</p></div><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
+  </section>
+</BaseLayout>

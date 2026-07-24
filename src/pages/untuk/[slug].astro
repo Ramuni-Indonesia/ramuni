@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { industries, products, roles } from '../../data/site';
+import { releaseGates } from '../../config/release';
+
+const roleContext: Record<string, {
+  workflow: string[];
+  permissions: { action: string; status: string }[];
+  alerts: string[];
+  questions: string[];
+  collaboration: string[];
+  collaborationNotes: string[];
+  success: string[];
+  industrySlugs: string[];
+  headings: { responsibility: string; priorities: string; workflow: string; permissions: string; collaboration: string; success: string; related: string; closing: string };
+}> = {
+  'pemilik-usaha': {
+    workflow: ['Baca ringkasan lintas modul', 'Telusuri perubahan yang paling penting', 'Tinjau permintaan atau pengecualian tim', 'Tentukan keputusan dan penanggung jawab'],
+    permissions: [{ action: 'Lihat data', status: 'Lintas modul sesuai akun' }, { action: 'Buat dan edit', status: 'Sesuai kebijakan' }, { action: 'Setujui', status: 'Tersedia' }, { action: 'Ekspor', status: 'Sesuai status fitur' }, { action: 'Tagihan', status: 'Kelola' }],
+    alerts: ['Perubahan omzet atau kas', 'Stok yang perlu pemeriksaan', 'Masalah operasional yang belum selesai'],
+    questions: ['Apa yang perlu saya perhatikan hari ini?', 'Mengapa kas berubah dibanding periode lalu?', 'Masalah mana yang belum ditindaklanjuti?'],
+    collaboration: ['Memberi batas akses', 'Menerima konteks dari supervisor', 'Menetapkan keputusan dan penanggung jawab'],
+    collaborationNotes: ['Pastikan setiap peran hanya melihat data yang dibutuhkan.', 'Baca masalah bersama bukti yang sudah dikumpulkan.', 'Tentukan siapa yang menindaklanjuti.'],
+    success: ['Ringkasan tiba tepat waktu', 'Definisi angka konsisten', 'Tindak lanjut memiliki pemilik'],
+    industrySlugs: ['retail', 'distributor', 'jasa'],
+    headings: { responsibility: 'Tahu mana yang membutuhkan keputusan hari ini.', priorities: 'Ringkasan pertama menjawab tiga pertanyaan pemilik.', workflow: 'Mulai dari perubahan, lalu tetapkan orang yang menindaklanjuti.', permissions: 'Kendali akun tetap berada pada pemilik.', collaboration: 'Keputusan sampai ke tim tanpa kehilangan alasan.', success: 'Hari kerja lebih jelas ketika setiap tindak lanjut punya pemilik.', related: 'Pilih modul dan contoh usaha yang paling dekat.', closing: 'Lihat ringkasan pemilik usaha dengan data sintetis.' },
+  },
+  'admin-toko': {
+    workflow: ['Cek tugas data yang belum lengkap', 'Rapikan produk, pelanggan, transaksi, atau biaya', 'Koreksi sesuai akses dengan jejak', 'Teruskan pengecualian yang perlu persetujuan'],
+    permissions: [{ action: 'Lihat data', status: 'Operasional sesuai cakupan' }, { action: 'Buat dan edit', status: 'Tersedia sesuai akses' }, { action: 'Setujui', status: 'Mengikuti pemilik' }, { action: 'Ekspor', status: 'Jika diizinkan' }, { action: 'Tagihan', status: 'Tidak tersedia' }],
+    alerts: ['Data wajib belum lengkap', 'Impor atau sinkronisasi perlu perhatian', 'Koreksi menunggu persetujuan'],
+    questions: ['Data apa yang belum lengkap?', 'Transaksi mana yang perlu diperiksa ulang?', 'Produk mana yang tidak punya unit konsisten?'],
+    collaboration: ['Menjaga data operasional', 'Meminta persetujuan saat diperlukan', 'Memberi konteks kepada supervisor dan pemilik'],
+    collaborationNotes: ['Rapikan data yang paling sering dipakai tim.', 'Kirim koreksi beserta catatannya.', 'Jelaskan masalah tanpa menghilangkan riwayat perubahan.'],
+    success: ['Duplikasi berkurang', 'Koreksi memiliki jejak', 'Tugas data selesai tepat waktu'],
+    industrySlugs: ['retail', 'fnb', 'reseller-online'],
+    headings: { responsibility: 'Data rapi sebelum masuk laporan.', priorities: 'Tugas yang belum lengkap muncul lebih dulu.', workflow: 'Rapikan, koreksi, lalu teruskan yang butuh persetujuan.', permissions: 'Admin bekerja luas tanpa mengambil alih keputusan pemilik.', collaboration: 'Koreksi bergerak bersama catatannya.', success: 'Pekerjaan admin selesai saat tim memakai data yang sama.', related: 'Buka modul yang paling sering dirawat admin.', closing: 'Lihat contoh alur admin tanpa memakai data usaha asli.' },
+  },
+  kasir: {
+    workflow: ['Mulai transaksi yang diizinkan', 'Periksa item dan status pembayaran', 'Selesaikan transaksi', 'Gunakan panduan pemulihan jika alur gagal'],
+    permissions: [{ action: 'Lihat data', status: 'Transaksi yang relevan' }, { action: 'Buat dan edit', status: 'Transaksi aktif sesuai izin' }, { action: 'Setujui', status: 'Tidak tersedia' }, { action: 'Ekspor', status: 'Tidak tersedia' }, { action: 'Tagihan', status: 'Tidak tersedia' }],
+    alerts: ['Pembayaran belum jelas', 'Transaksi gagal disimpan', 'Perlu bantuan admin atau supervisor'],
+    questions: ['Apa langkah pemulihan transaksi ini?', 'Apakah pembayaran sudah tercatat?', 'Siapa yang perlu membantu koreksi?'],
+    collaboration: ['Mencatat transaksi', 'Meneruskan masalah dengan konteks', 'Mengikuti koreksi dari admin atau supervisor'],
+    collaborationNotes: ['Pastikan item dan pembayaran tercatat dengan jelas.', 'Teruskan transaksi gagal tanpa mengulang input.', 'Ikuti koreksi yang sudah disetujui.'],
+    success: ['Transaksi selesai tanpa duplikasi', 'Status pembayaran jelas', 'Masalah cepat diteruskan'],
+    industrySlugs: ['retail', 'fnb', 'reseller-online'],
+    headings: { responsibility: 'Transaksi selesai tanpa input ulang.', priorities: 'Layar kasir fokus pada transaksi yang sedang dikerjakan.', workflow: 'Selesaikan transaksi. Jika gagal, teruskan tanpa mengulang dari awal.', permissions: 'Kasir melihat yang dibutuhkan untuk melayani pembeli.', collaboration: 'Masalah sampai ke admin bersama detail transaksi.', success: 'Kasir berhasil ketika pembayaran jelas dan antrean tetap bergerak.', related: 'Lihat modul yang mendukung alur transaksi harian.', closing: 'Lihat contoh transaksi dan jalur pemulihannya.' },
+  },
+  supervisor: {
+    workflow: ['Baca daftar pengecualian', 'Bandingkan periode dan aktivitas tim', 'Tinjau konteks masalah', 'Teruskan keputusan yang memerlukan pemilik'],
+    permissions: [{ action: 'Lihat data', status: 'Operasional lintas tim' }, { action: 'Buat dan edit', status: 'Sesuai kebijakan' }, { action: 'Setujui', status: 'Terbatas sesuai akses' }, { action: 'Ekspor', status: 'Jika diizinkan' }, { action: 'Tagihan', status: 'Tidak tersedia' }],
+    alerts: ['Masalah operasional', 'Laporan periode belum selesai', 'Tindak lanjut tim melewati waktu'],
+    questions: ['Masalah mana yang berulang?', 'Tim mana yang perlu konteks tambahan?', 'Apa yang harus dibawa ke pemilik?'],
+    collaboration: ['Meninjau pekerjaan tim', 'Menghubungkan masalah dengan bukti', 'Meneruskan keputusan kepada pemilik'],
+    collaborationNotes: ['Periksa pekerjaan yang belum selesai.', 'Bawa masalah dan bukti ke pemilik.', 'Catat keputusan agar tim menerima arah yang sama.'],
+    success: ['Pengecualian terlihat lebih cepat', 'Tindak lanjut tidak hilang', 'Laporan memakai definisi yang sama'],
+    industrySlugs: ['retail', 'distributor', 'manufaktur-kecil'],
+    headings: { responsibility: 'Masalah berulang terlihat sebelum menumpuk.', priorities: 'Pengecualian datang lebih dulu daripada aktivitas normal.', workflow: 'Tinjau masalah, kumpulkan alasan, lalu eskalasi bila perlu.', permissions: 'Supervisor meninjau operasi tanpa mengelola tagihan.', collaboration: 'Pemilik menerima masalah yang sudah disertai dasar.', success: 'Supervisor berhasil saat masalah tidak hilang di pergantian tim.', related: 'Pilih modul dan industri dengan banyak koordinasi tim.', closing: 'Lihat contoh alur supervisor dari masalah sampai tindak lanjut.' },
+  },
+};
+
+export function getStaticPaths() {
+  return roles.map((role) => ({ params: { slug: role.slug }, props: { role } }));
+}
+
+const { role } = Astro.props;
+const context = roleContext[role.slug];
+const relevantProducts = products.filter((product) => product.roles.includes(role.title)).slice(0, 4);
+const relatedIndustries = industries.filter((industry) => context.industrySlugs.includes(industry.slug));
+const roleHelpLinks: Record<string, { label: string; href: string }[]> = {
+  'pemilik-usaha': [
+    { label: 'Atur batas akses tim', href: '/keamanan' },
+    { label: 'Siapkan pertanyaan untuk demo', href: '/panduan' },
+  ],
+  'admin-toko': [
+    { label: 'Panduan merapikan data awal', href: '/panduan' },
+    { label: 'Hubungi dukungan untuk kendala impor', href: '/kontak' },
+  ],
+  kasir: [
+    { label: 'Cari langkah pemulihan transaksi', href: '/bantuan' },
+    { label: 'Minta akses melalui Pemilik Usaha', href: '/untuk/pemilik-usaha' },
+  ],
+  supervisor: [
+    { label: 'Panduan membaca tindak lanjut tim', href: '/panduan' },
+    { label: 'Periksa status layanan', href: '/status' },
+  ],
+};
+const closingLinks = role.slug === 'kasir'
+  ? [
+      { label: 'Buka Pusat Bantuan', href: '/bantuan', className: 'button button--primary' },
+      { label: 'Lihat Peran Pemilik', href: '/untuk/pemilik-usaha', className: 'button button--secondary' },
+    ]
+  : [{ label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' }];
+---
+<BaseLayout title={'RAMUNI untuk ' + role.title} description={role.summary} noindex={!releaseGates.claimPagesIndexable}>
+  <div class="container audience-breadcrumb"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/untuk">Untuk Tim</a><span>/</span><span>{role.title}</span></nav></div>
+  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk" />
+
+  <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal">
+        <p class="eyebrow">Tanggung jawab harian</p>
+        <h2 id="responsibility-title">{context.headings.responsibility}</h2>
+      </div>
+      <ol class="audience-ledger">{role.responsibilities.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{role.friction[index]}</p></div></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section" id="layar-pertama" aria-labelledby="priorities-title">
+    <div class="container audience-dashboard">
+      <div class="audience-section-heading reveal"><h2 id="priorities-title">{context.headings.priorities}</h2><p class="lede">Informasi lain tetap dapat dibuka saat dibutuhkan.</p></div>
+      <div class="audience-priority-board reveal">{role.priorities.map((priority, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{priority}</strong></div>)}</div>
+    </div>
+  </section>
+
+  <section class="section dark-surface" id="alur-utama" aria-labelledby="workflow-title">
+    <div class="container audience-day">
+      <div class="audience-section-heading reveal"><h2 id="workflow-title">{context.headings.workflow}</h2></div>
+      <ol class="audience-timeline audience-timeline--inverse role-timeline">{context.workflow.map((step, index) => <li class="reveal" data-observe-active><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section surface" id="izin" aria-labelledby="permission-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="permission-title">{context.headings.permissions}</h2><p class="lede">Contoh pembagian akses: {role.permissions}</p></div>
+      <dl class="audience-permission-ledger reveal">{context.permissions.map((item) => <div><dt>{item.action}</dt><dd>{item.status}</dd></div>)}</dl>
+    </div>
+  </section>
+
+  <section class="section" id="alert-dan-ai" aria-labelledby="alerts-title">
+    <div class="container audience-signal-board">
+      <div class="reveal"><strong id="alerts-title">Peringatan yang relevan</strong>{context.alerts.map((alert) => <p>{alert}</p>)}</div>
+      <div class="reveal"><strong>Pertanyaan AI</strong>{context.questions.map((question) => <p>{question}</p>)}</div>
+      <div class="reveal"><strong>Batas AI</strong><p>Pada versi awal, AI hanya membaca dan menjelaskan.</p><p>Jawaban mengikuti data dan izin peran.</p><p>Tindakan berisiko tetap memerlukan manusia.</p></div>
+    </div>
+  </section>
+
+  <section class="section surface" id="kolaborasi" aria-labelledby="collaboration-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="collaboration-title">{context.headings.collaboration}</h2></div>
+      <ol class="audience-ledger">{context.collaboration.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{context.collaborationNotes[index]}</p></div></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section" id="indikator" aria-labelledby="success-title">
+    <div class="container audience-scenario reveal"><h2 id="success-title">{context.headings.success}</h2><ul>{context.success.map((item) => <li>{item}</li>)}</ul></div>
+  </section>
+
+  <section class="section surface" id="terkait" aria-labelledby="related-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><h2 id="related-title">{context.headings.related}</h2></div>
+      <div>
+        <div class="audience-module-list">{relevantProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}</div>
+        <div class="audience-related reveal"><strong>Konteks industri</strong><div>{relatedIndustries.map((industry) => <a href={'/industri/' + industry.slug}>{industry.title}</a>)}</div></div>
+        <div class="audience-related reveal"><strong>Panduan untuk {role.title}</strong><div>{roleHelpLinks[role.slug].map((link) => <a href={link.href}>{link.label}</a>)}</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal"><p class="eyebrow">FAQ</p><h2 id="faq-title">Pertanyaan tentang akses {role.title}.</h2></div>
+      <div class="faq-list reveal">
+        <details><summary>Apakah {role.title} melihat semua data bisnis?</summary><p>Tidak. Visibilitas mengikuti akses yang diberikan dan kebutuhan pekerjaan.</p></details>
+        <details><summary>Apakah AI dapat menjalankan tindakan atas nama peran ini?</summary><p>Tidak pada MVP. AI membantu membaca konteks dan tidak menjalankan aksi bisnis otomatis.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" id="cta" aria-labelledby="role-cta-title">
+    <div class="container audience-closing reveal"><div><h2 id="role-cta-title">{context.headings.closing}</h2><p>Gunakan data sintetis untuk menilai alur tanpa membagikan data bisnis sensitif.</p></div><div class="button-row">{closingLinks.map((link) => <a class={link.className} href={link.href}>{link.label}</a>)}</div></div>
+  </section>
+</BaseLayout>

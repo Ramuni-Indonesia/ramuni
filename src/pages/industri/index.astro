@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { industries, products } from '../../data/site';
+
+const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string }> = {
+  retail: { rhythm: 'Transaksi cepat sepanjang hari', stock: 'Banyak SKU dengan laju berbeda', customer: 'Pembelian langsung dan berulang', finance: 'Omzet, margin, dan kas harian' },
+  fnb: { rhythm: 'Puncak pesanan mengikuti jam makan', stock: 'Bahan bergerak dan berisiko terbuang', customer: 'Pesanan berulang berdasarkan menu', finance: 'Penjualan, biaya bahan, dan waste' },
+  distributor: { rhythm: 'Pesanan lebih besar dan bertahap', stock: 'Pergerakan barang dalam volume tinggi', customer: 'Pembeli berulang dan tempo berbeda', finance: 'Kas dan piutang perlu konteks' },
+  'reseller-online': { rhythm: 'Pesanan datang dari beberapa kanal', stock: 'Produk cepat berubah mengikuti tren', customer: 'Riwayat pembelian tersebar', finance: 'Margin per produk dan kanal' },
+  jasa: { rhythm: 'Pendapatan mengikuti layanan dan periode', stock: 'Bukan perhatian utama', customer: 'Hubungan dan kebutuhan berulang', finance: 'Pendapatan, biaya, dan kas layanan' },
+  'manufaktur-kecil': { rhythm: 'Produksi dan penjualan saling memengaruhi', stock: 'Bahan dan barang jadi perlu dilihat terpisah', customer: 'Pesanan mengikuti kapasitas', finance: 'Biaya produksi dan arus kas' },
+};
+
+const sharedModules = products.filter((product) => ['Dashboard Bisnis', 'Laporan & Insight', 'Asisten AI'].includes(product.title));
+---
+<BaseLayout title="RAMUNI untuk Berbagai Industri" description="Bandingkan ritme operasional usaha retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil sebelum memilih konteks RAMUNI.">
+  <PageHero eyebrow="Industri" title="Konteks usaha berubah. Cara membacanya juga harus tepat." description="RAMUNI memakai produk yang sama, lalu menyesuaikan pertanyaan, contoh, dan alur kerja dengan ritme setiap industri." primaryLabel="Pilih Industri Anda" primaryHref="#daftar-industri" secondaryLabel="Konsultasikan Kebutuhan" secondaryHref="/demo" />
+
+  <section class="section dark-surface audience-selector" id="daftar-industri" aria-labelledby="industry-selector-title">
+    <div class="container">
+      <div class="audience-section-heading reveal">
+        <p class="eyebrow">Pilih konteks</p>
+        <h2 id="industry-selector-title">Mulai dari pertanyaan yang paling dekat.</h2>
+        <p class="lede">Halaman industri bersifat Concept Preview sampai cakupan fitur dan dukungan implementasinya diverifikasi.</p>
+      </div>
+      <div class="audience-rail">
+        {industries.map((industry, index) => (
+          <a class="audience-rail__row reveal" href={`/industri/${industry.slug}`}>
+            <span class="audience-rail__index">{String(index + 1).padStart(2, '0')}</span>
+            <strong>{industry.title}</strong>
+            <p>{industry.question}</p>
+            <span class="audience-rail__action">Buka konteks</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface" id="perbandingan" aria-labelledby="comparison-title">
+    <div class="container">
+      <div class="audience-section-heading reveal">
+        <h2 id="comparison-title">Sinyal yang sama dapat berarti hal yang berbeda.</h2>
+      </div>
+      <div class="audience-comparison reveal" role="region" aria-label="Perbandingan konteks industri" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Industri</th><th scope="col">Transaksi</th><th scope="col">Stok</th><th scope="col">Pelanggan</th><th scope="col">Keuangan</th></tr></thead>
+          <tbody>
+            {industries.map((industry) => {
+              const profile = industryProfiles[industry.slug];
+              return <tr><th scope="row"><a href={`/industri/${industry.slug}`}>{industry.title}</a></th><td>{profile.rhythm}</td><td>{profile.stock}</td><td>{profile.customer}</td><td>{profile.finance}</td></tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="masalah-bersama" aria-labelledby="shared-problems-title">
+    <div class="container audience-split">
+      <div class="audience-section-heading reveal">
+        <h2 id="shared-problems-title">Perhatian berbeda, fondasinya tetap sama.</h2>
+        <p class="lede">Catatan harus konsisten, definisi angka harus jelas, dan setiap insight harus bisa ditelusuri.</p>
+      </div>
+      <ol class="audience-ledger">
+        <li class="reveal"><span>01</span><div><strong>Data tersebar</strong><p>Tim melihat potongan informasi yang berbeda ketika perlu mengambil keputusan.</p></div></li>
+        <li class="reveal"><span>02</span><div><strong>Masalah terlihat terlambat</strong><p>Perubahan baru terasa setelah memengaruhi stok, kas, atau pelayanan.</p></div></li>
+        <li class="reveal"><span>03</span><div><strong>Tindak lanjut tanpa konteks</strong><p>Langkah berikutnya dipilih tanpa melihat periode dan bukti pendukung.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface" id="modul-bersama" aria-labelledby="shared-modules-title">
+    <div class="container audience-module-field">
+      <div class="audience-section-heading reveal">
+        <h2 id="shared-modules-title">Satu fondasi, banyak cara membaca bisnis.</h2>
+        <p class="lede">Modul tidak berubah menjadi produk terpisah untuk setiap industri. Konteks, contoh, dan prioritasnya yang disesuaikan.</p>
+      </div>
+      <div class="audience-module-list">
+        {sharedModules.map((product) => <a class="audience-module-row reveal" href={`/produk/${product.slug}`}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kecocokan" aria-labelledby="fit-title">
+    <div class="container audience-closing reveal">
+      <div><h2 id="fit-title">Tidak perlu memilih berdasarkan klaim yang belum terbukti.</h2><p>Gunakan halaman industri sebagai panduan awal, lalu konfirmasi kebutuhan, cara menyiapkan data, dan batas fitur yang benar-benar tersedia.</p></div>
+      <a class="button button--primary" href="/demo">Konsultasikan Kebutuhan</a>
+    </div>
+  </section>
+</BaseLayout>

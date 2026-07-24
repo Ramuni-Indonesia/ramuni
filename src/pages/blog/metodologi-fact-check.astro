@@ -1,0 +1,10 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+const items=[
+  {title:'Klaim yang diperiksa',text:'Statistik, formula, aturan, status fitur, keamanan, privasi, dan pernyataan sensitif memerlukan verifikasi.'},
+  {title:'Urutan sumber',text:'Utamakan regulasi, standar, dokumentasi resmi, data primer, dan publikasi dengan metodologi yang terlihat.'},
+  {title:'Arti ditinjau',text:'Label ditinjau hanya tampil ketika reviewer yang sesuai menyetujui revisi yang sama dengan versi publik.'},
+  {title:'Perubahan material',text:'Edit yang mengubah makna, formula, atau klaim membatalkan review sebelumnya sampai ditinjau ulang.'},
+];
+---
+<ContentPage eyebrow="Kepercayaan Editorial" title="Metodologi Fact-check RAMUNI" description="Cara RAMUNI memeriksa klaim, sumber, contoh, dan status review sebelum artikel dipublikasikan." items={items} ctaLabel="Lihat Kebijakan Sumber" ctaHref="/blog/kebijakan-sumber" />

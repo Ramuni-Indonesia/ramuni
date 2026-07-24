@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { releaseGates } from '../../config/release';
+---
+<BaseLayout title="Template Bisnis RAMUNI" description="Template bisnis RAMUNI untuk membantu UMKM menyiapkan catatan stok, arus kas, dan evaluasi mingguan." noindex={!releaseGates.resourcePagesIndexable}>
+  <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Template</span></nav><p class="eyebrow">Template</p><h1>Format kerja yang menjelaskan cara pakainya.</h1><p class="lede">File unduhan belum dibuka. Struktur dan versi akan ditampilkan setelah aset lolos review.</p></div></section>
+  <section class="section surface"><div class="container template-ledger">{[['Stok harian','Catat saldo, gerak barang, dan keputusan restock.'],['Arus kas mingguan','Pisahkan pemasukan, pengeluaran, dan perubahan penting.'],['Review bisnis','Bawa tiga insight utama ke evaluasi mingguan.']].map(([title,text],i)=><div class="template-row reveal"><span>0{i+1}</span><h2>{title}</h2><p>{text}</p><b>Belum tersedia untuk publik</b></div>)}</div></section>
+</BaseLayout>

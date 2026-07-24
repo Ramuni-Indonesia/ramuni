@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { products, solutions } from '../../data/site';
+
+const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
+const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
+const ecosystem = products.find((product) => product.slug === 'integrasi');
+---
+<BaseLayout title="Produk RAMUNI" description="Jelajahi modul RAMUNI untuk memahami penjualan, stok, keuangan, pelanggan, dan kondisi bisnis dalam satu alur.">
+  <section class="catalog-hero">
+    <div class="container catalog-hero__layout">
+      <div class="reveal is-visible">
+        <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk' }]} />
+        <p class="section-kicker">Produk RAMUNI</p>
+        <h1>Satu sistem untuk membaca bisnis dengan lebih jelas.</h1>
+      </div>
+      <div class="catalog-hero__aside reveal is-visible">
+        <p>Mulai dari catatan operasional. RAMUNI membantu menyusun perhitungan, insight, dan langkah yang tetap berada dalam kendali manusia.</p>
+        <div class="button-row">
+          <a class="button button--primary" href="/early-access">Daftar Early Access</a>
+          <a class="button button--secondary" href="/demo">Lihat Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface product-system" aria-labelledby="product-system-title">
+    <div class="container">
+      <p class="section-kicker">Cara kerja sistem</p>
+      <h2 id="product-system-title">Dari catatan sampai keputusan.</h2>
+      <div class="product-system__rail reveal">
+        <article><span>Data bisnis</span><p>Produk, transaksi, stok, biaya, dan pelanggan.</p></article>
+        <article><span>Perhitungan</span><p>Definisi metrik dan periode yang konsisten.</p></article>
+        <article><span>Insight</span><p>Hal yang perlu perhatian ditampilkan lebih dulu.</p></article>
+        <article><span>Keputusan</span><p>Pengguna memeriksa bukti sebelum bertindak.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-catalog" aria-labelledby="product-catalog-title">
+    <div class="container product-catalog__layout">
+      <header class="product-catalog__intro">
+        <p class="section-kicker">Keluarga produk</p>
+        <h2 id="product-catalog-title">Pilih dari pertanyaan yang ingin dijawab.</h2>
+        <p>Setiap halaman menunjukkan batas kemampuan. Status rilis tetap menjadi sumber kebenaran.</p>
+      </header>
+      <div class="product-families">
+        <section class="product-family" aria-labelledby="family-intelligence">
+          <h3 id="family-intelligence">Insight dan laporan</h3>
+          {intelligence.map((product, index) => (
+            <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
+              <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+              <span><strong>{product.title}</strong><small>{product.question}</small></span>
+              <span class="availability-label">Preview terkontrol</span>
+            </a>
+          ))}
+        </section>
+        <section class="product-family" aria-labelledby="family-operations">
+          <h3 id="family-operations">Operasional</h3>
+          {operations.map((product, index) => (
+            <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
+              <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+              <span><strong>{product.title}</strong><small>{product.question}</small></span>
+              <span class="availability-label">Sesuai bukti rilis</span>
+            </a>
+          ))}
+        </section>
+        {ecosystem && (
+          <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
+            <h3 id="family-ecosystem">Jalur data</h3>
+            <a class="product-row" href={`/produk/${ecosystem.slug}`}>
+              <span class="product-row__index">01</span>
+              <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
+              <span class="availability-label">Status per metode</span>
+            </a>
+          </section>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface outcome-index" aria-labelledby="outcome-index-title">
+    <div class="container outcome-index__layout">
+      <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modul yang dibutuhkan?</h2></div>
+      <div class="outcome-index__list">
+        {solutions.map((solution) => <a href={`/solusi/${solution.slug}`}><span>{solution.title}</span><small>{solution.summary}</small></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-close">
+    <div class="container product-close__layout">
+      <div><p class="section-kicker">Batas yang jelas</p><h2>Fitur hanya ditampilkan sesuai status yang dapat dibuktikan.</h2></div>
+      <div><p>Klaim produk, integrasi, dan keamanan tidak mendahului bukti rilis. Kami dapat membantu memilih titik awal yang paling relevan.</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const guides=[['membaca-stok-harian','Membaca stok harian','Hubungkan sisa stok dengan kecepatan penjualan.'],['memahami-arus-kas','Memahami arus kas','Pisahkan uang masuk, uang keluar, dan waktu terjadinya.'],['menilai-insight-ai','Menilai insight AI','Periksa periode, bukti, dan batas kesimpulan sebelum bertindak.']];
+---
+<BaseLayout title="Panduan Bisnis Praktis" description="Panduan praktis RAMUNI untuk membaca stok, arus kas, penjualan, dan insight AI dengan langkah yang jelas.">
+  <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Panduan</span></nav><p class="eyebrow">Panduan</p><h1>Satu masalah. Satu alur yang jelas.</h1><p class="lede">Panduan dummy ini menyiapkan struktur sebelum CMS dan review final tersedia.</p></div></section>
+  <section class="section surface"><div class="container guide-list">{guides.map(([slug,title,text],i)=><a class="guide-row reveal" href={`/panduan/${slug}`}><span>0{i+1}</span><div><h2>{title}</h2><p>{text}</p></div><b>Baca panduan</b></a>)}</div></section>
+</BaseLayout>

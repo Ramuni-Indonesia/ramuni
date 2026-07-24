@@ -1,0 +1,10 @@
+---
+import ContentPage from '../../components/ContentPage.astro';
+const items=[
+  {title:'Pemicu pembaruan',text:'Perubahan regulasi, produk, harga, keamanan, sumber, atau temuan faktual dapat memicu pemeriksaan ulang.'},
+  {title:'Topik sensitif',text:'Keuangan, keamanan, privasi, AI, dan produk memerlukan jadwal review yang lebih sering.'},
+  {title:'Tanggal pembaruan',text:'Tanggal diubah hanya ketika ada perubahan materi yang berguna bagi pembaca, bukan untuk terlihat baru.'},
+  {title:'Arsip dan penggabungan',text:'Artikel lama dapat diperbarui, digabung, dialihkan, atau diarsipkan dengan alasan yang dapat ditelusuri.'},
+];
+---
+<ContentPage eyebrow="Kepercayaan Editorial" title="Kebijakan Pembaruan RAMUNI" description="Aturan pembaruan, peninjauan ulang, pengarsipan, dan pencatatan perubahan artikel RAMUNI." items={items} ctaLabel="Laporkan Koreksi" ctaHref="/blog/koreksi" />

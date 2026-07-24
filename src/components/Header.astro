@@ -1,0 +1,82 @@
+---
+import { launchCta, products, resources, solutions } from '../data/site';
+const path = Astro.url.pathname;
+const isHome = path === '/';
+const current = (prefix: string) => path === prefix || path.startsWith(`${prefix}/`);
+---
+<header class="site-header">
+  {isHome && <div class="announcement"><div class="container"><span>Program early access RAMUNI sedang dibuka.</span><a href="/early-access">Lihat detail</a></div></div>}
+  <div class="container nav-shell">
+    <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color.webp" width="560" height="140" alt="RAMUNI" /></a>
+    <nav class="desktop-nav" aria-label="Navigasi utama">
+      <details class="nav-group" data-nav-group>
+        <summary aria-current={current('/produk') ? 'page' : undefined}>Produk</summary>
+        <div class="mega-menu mega-menu--products">
+          <div class="mega-lead"><span>Produk RAMUNI</span><strong>Satu sistem untuk membaca bisnis.</strong><a href="/produk">Lihat semua produk</a></div>
+          <div class="mega-links">{products.map((product) => <a href={`/produk/${product.slug}`}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}</div>
+        </div>
+      </details>
+      <details class="nav-group" data-nav-group>
+        <summary aria-current={current('/solusi') || current('/untuk') || current('/industri') ? 'page' : undefined}>Solusi</summary>
+        <div class="mega-menu mega-menu--solutions">
+          <div class="mega-lead"><span>Mulai dari masalah</span><strong>Pilih konteks yang paling dekat.</strong><div class="mega-hubs"><a href="/solusi">Semua solusi</a><a href="/untuk">Untuk tim</a><a href="/industri">Per industri</a></div></div>
+          <div class="mega-links">{solutions.map((solution) => <a href={`/solusi/${solution.slug}`}><strong>{solution.title}</strong><span>{solution.summary}</span></a>)}</div>
+        </div>
+      </details>
+      <a href="/harga" aria-current={current('/harga') ? 'page' : undefined}>Harga</a>
+      <details class="nav-group" data-nav-group>
+        <summary aria-current={current('/blog') || current('/sumber-daya') || resources.some((item) => current(item.href)) ? 'page' : undefined}>Sumber Daya</summary>
+        <div class="mega-menu mega-menu--resources"><div class="mega-lead"><span>Belajar praktis</span><strong>Baca, hitung, dan pahami istilah.</strong><a href="/sumber-daya">Buka pusat sumber daya</a></div><div class="mega-links mega-links--compact"><a href="/blog"><strong>Blog</strong><span>Panduan membaca bisnis.</span></a>{resources.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</div></div>
+      </details>
+      <a href="/tentang" aria-current={current('/tentang') ? 'page' : undefined}>Tentang</a>
+      <a href="/masuk">Masuk</a>
+      <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
+    </nav>
+    <details class="mobile-menu" data-mobile-menu>
+      <summary>Menu</summary>
+      <div class="mobile-panel">
+        <nav aria-label="Navigasi seluler">
+          <details><summary>Produk</summary><div>{products.map((product) => <a href={`/produk/${product.slug}`}>{product.title}</a>)}<a href="/produk">Semua produk</a></div></details>
+          <details><summary>Solusi</summary><div>{solutions.map((solution) => <a href={`/solusi/${solution.slug}`}>{solution.title}</a>)}<a href="/untuk">Untuk tim</a><a href="/industri">Per industri</a></div></details>
+          <a href="/harga">Harga</a>
+          <details><summary>Sumber Daya</summary><div><a href="/blog">Blog</a>{resources.map((item) => <a href={item.href}>{item.title}</a>)}</div></details>
+          <a href="/tentang">Tentang</a><a href="/kontak">Kontak</a><a href="/kebijakan-cookie">Pengaturan cookie</a><a href="/masuk">Masuk</a>
+        </nav>
+        <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
+      </div>
+    </details>
+  </div>
+</header>
+<script>
+  const groups = [...document.querySelectorAll('[data-nav-group]')];
+  const mobile = document.querySelector('[data-mobile-menu]');
+  groups.forEach((group) => {
+    if (!(group instanceof HTMLDetailsElement)) return;
+    group.addEventListener('toggle', () => {
+      if (group.open) groups.filter((item) => item !== group).forEach((item) => item.removeAttribute('open'));
+    });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      groups.forEach((group) => group.removeAttribute('open'));
+      if (mobile instanceof HTMLDetailsElement && mobile.open) {
+        mobile.removeAttribute('open');
+        document.body.classList.remove('menu-open');
+        const trigger = mobile.querySelector(':scope > summary');
+        if (trigger instanceof HTMLElement) trigger.focus();
+      }
+    }
+  });
+  if (mobile instanceof HTMLDetailsElement) {
+    mobile.addEventListener('toggle', () => document.body.classList.toggle('menu-open', mobile.open));
+    mobile.addEventListener('keydown', (event) => {
+      if (event.key !== 'Tab' || !mobile.open) return;
+      const focusable = [...mobile.querySelectorAll('summary, a[href], button:not([disabled])')].filter((node) => node instanceof HTMLElement && node.offsetParent !== null);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!(first instanceof HTMLElement) || !(last instanceof HTMLElement)) return;
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+  }
+</script>

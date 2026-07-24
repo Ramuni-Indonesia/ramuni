@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { solutions } from '../data/site';
+---
+<BaseLayout title="Solusi Bisnis RAMUNI" description="Mulai dari masalah penjualan, stok, laba, pelanggan, atau laporan dan lihat bagaimana RAMUNI membantu menyusun konteksnya.">
+  <section class="solution-hub-hero">
+    <div class="container solution-hub-hero__layout">
+      <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi' }]} /><p class="section-kicker">Solusi bisnis</p><h1>Mulai dari masalah yang perlu dipahami.</h1></div>
+      <div><p class="lede">RAMUNI menghubungkan sinyal operasional dengan pertanyaan yang lebih terarah. Tidak ada janji hasil tanpa bukti.</p><a class="button button--primary" href="/demo">Konsultasikan Kebutuhan</a></div>
+    </div>
+  </section>
+
+  <section class="section surface solution-directory" aria-labelledby="solution-directory-title">
+    <div class="container solution-directory__layout">
+      <header><p class="section-kicker">Pilih konteks</p><h2 id="solution-directory-title">Masalah berbeda membutuhkan pemeriksaan berbeda.</h2><p>Setiap solusi menunjukkan gejala, modul terkait, dan langkah yang tetap dikendalikan pengguna.</p></header>
+      <div class="solution-directory__list">
+        {solutions.map((solution, index) => <a class="solution-directory__row reveal" style={`--i:${index}`} href={`/solusi/${solution.slug}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{solution.title}</strong><p>{solution.summary}</p><small>Lihat alur</small></a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section solution-principle" aria-labelledby="solution-principle-title">
+    <div class="container"><p class="section-kicker">Cara RAMUNI membantu</p><h2 id="solution-principle-title">Baca sinyal. Periksa bukti. Tentukan langkah.</h2><div class="solution-principle__rail"><article><strong>Kenali gejala</strong><p>Mulai dari perubahan yang terlihat di operasional.</p></article><article><strong>Hubungkan konteks</strong><p>Satukan modul dan periode yang relevan.</p></article><article><strong>Periksa dasar</strong><p>Telusuri angka sebelum menerima kesimpulan.</p></article><article><strong>Tetap memegang kendali</strong><p>Pengguna memutuskan tindakan berikutnya.</p></article></div></div>
+  </section>
+
+  <section class="section surface solution-hub-close"><div class="container solution-hub-close__layout"><div><p class="section-kicker">Butuh arah awal</p><h2>Bahas masalah bisnis tanpa membagikan data sensitif.</h2></div><div><p>Demo menggunakan contoh data sintetis. Tim dapat membantu memetakan area yang perlu dirapikan lebih dulu.</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div></div></section>
+</BaseLayout>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const components = [
+  ['Website marketing', 'Belum terhubung ke monitor publik', 'Halaman statis tersedia untuk QA lokal, bukan bukti uptime produksi.'],
+  ['Aplikasi produk', 'Status tidak dipublikasikan di sini', 'Runtime produk dikelola terpisah dan perlu sumber operasional terverifikasi.'],
+  ['API dan background jobs', 'Status tidak tersedia', 'Tidak ada feed health publik yang dapat dirujuk.'],
+  ['Notifikasi dan integrasi', 'Mengikuti status rilis', 'Tidak diasumsikan aktif sebelum dukungan operasionalnya terbukti.'],
+];
+---
+<BaseLayout title="Status RAMUNI" description="Placeholder status RAMUNI tanpa klaim operasional statis. Feed layanan, insiden, dan maintenance menunggu sumber terverifikasi." noindex={true}>
+  <PageHero eyebrow="Status" title="Status harus datang dari data operasional." description="RAMUNI belum menghubungkan halaman ini ke monitor atau status provider yang terverifikasi. Karena itu, kami tidak menampilkan klaim “semua sistem normal”." primaryLabel="Hubungi Dukungan" primaryHref="/kontak" secondaryLabel="Baca Keamanan" secondaryHref="/keamanan" />
+
+  <section class="section status-page__overall" id="status-saat-ini" aria-labelledby="overall-title">
+    <div class="container status-page__overall-layout">
+      <div class="status-page__heading reveal"><p class="eyebrow">Status saat ini</p><h2 id="overall-title">Belum dapat ditentukan dari halaman publik.</h2><p>Tidak ada telemetry, health endpoint, atau provider status yang terhubung ke template ini.</p></div>
+      <div class="status-page__stamp reveal" role="status"><span>STATUS FEED</span><strong>Belum terhubung</strong><p>Gunakan kanal dukungan untuk konfirmasi operasional sampai feed tervalidasi tersedia.</p></div>
+    </div>
+  </section>
+
+  <section class="section surface status-page__components" id="komponen" aria-labelledby="components-title">
+    <div class="container">
+      <div class="status-page__heading reveal"><h2 id="components-title">Tidak ada indikator hijau tanpa sumber bukti.</h2></div>
+      <div class="status-page__component-list">{components.map((component) => <article class="reveal"><strong>{component[0]}</strong><span>{component[1]}</span><p>{component[2]}</p></article>)}</div>
+    </div>
+  </section>
+
+  <section class="section dark-surface status-page__incidents" id="insiden" aria-labelledby="incidents-title">
+    <div class="container status-page__split">
+      <div class="status-page__heading reveal"><p class="eyebrow">Insiden aktif</p><h2 id="incidents-title">Belum ada feed insiden publik.</h2><p>Kondisi kosong tidak berarti tidak ada insiden. Informasi harus berasal dari proses respons yang terverifikasi.</p></div>
+      <div class="status-page__empty-state reveal"><span>Belum tersedia</span><strong>Riwayat insiden dan dampak menunggu integrasi operasional.</strong><p>Jika terjadi gangguan, komunikasi tidak boleh membuka PII, kredensial, stack trace, atau detail eksploitasi.</p></div>
+    </div>
+  </section>
+
+  <section class="section status-page__maintenance" id="maintenance" aria-labelledby="maintenance-title">
+    <div class="container status-page__split">
+      <div class="status-page__heading reveal"><h2 id="maintenance-title">Belum ada jadwal publik.</h2></div>
+      <ol class="status-page__process">
+        <li class="reveal"><span>01</span><div><strong>Konfirmasi cakupan</strong><p>Tentukan layanan, waktu, dan dampak pengguna.</p></div></li>
+        <li class="reveal"><span>02</span><div><strong>Publikasikan jadwal</strong><p>Tampilkan zona waktu dan kanal pembaruan.</p></div></li>
+        <li class="reveal"><span>03</span><div><strong>Verifikasi pemulihan</strong><p>Uji layanan sebelum menutup maintenance.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface status-page__history" id="riwayat" aria-labelledby="history-title">
+    <div class="container status-page__split">
+      <div class="status-page__heading reveal"><h2 id="history-title">Belum ada catatan status yang dapat dipublikasikan.</h2><p>Riwayat memerlukan timestamp, cakupan dampak, pembaruan, dan resolusi yang dapat diverifikasi.</p></div>
+      <div class="status-page__history-rule reveal"><strong>Langganan pembaruan belum tersedia.</strong><p>Kami tidak meminta email atau nomor WhatsApp sampai operasi notifikasi, consent, dan unsubscribe siap.</p></div>
+    </div>
+  </section>
+
+  <section class="section status-page__close"><div class="container status-page__closing reveal"><div><h2>Gunakan kanal dukungan dengan informasi minimum.</h2><p>Jangan kirim password, token, data pelanggan, atau transaksi sensitif.</p></div><div class="button-row"><a class="button button--primary" href="/kontak">Hubungi Dukungan</a><a class="button button--secondary" href="/bantuan">Pusat Bantuan</a></div></div></section>
+</BaseLayout>
