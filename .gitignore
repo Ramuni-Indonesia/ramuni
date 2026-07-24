@@ -12,6 +12,7 @@ output/
 tmp/
 *.zip
 RAMUNI-Product-Developer-Handover-v2.0-2026-07-25/
+apps/
 playwright-report*/
 playwright.catalog-real.config.ts
 e2e/catalog-real.spec.ts

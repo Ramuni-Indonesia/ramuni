@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ConsentManager from '../components/ConsentManager.astro';
+import { releaseGates } from '../config/release';
 import '../styles/global.css';
 
 interface Props {
@@ -50,7 +51,8 @@ const webPageSchema = {
   inLanguage: 'id-ID',
 };
 const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
-const structuredData = noindex ? suppliedSchema : [webPageSchema, ...suppliedSchema];
+const effectiveNoindex = noindex || !releaseGates.siteIndexable;
+const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...suppliedSchema];
 ---
 <!doctype html>
 <html lang="id">
@@ -59,7 +61,7 @@ const structuredData = noindex ? suppliedSchema : [webPageSchema, ...suppliedSch
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F4F0E7" />
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow'} />
+    <meta name="robots" content={effectiveNoindex ? 'noindex,follow' : 'index,follow'} />
     <link rel="canonical" href={absoluteCanonical} />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

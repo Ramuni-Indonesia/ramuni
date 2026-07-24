@@ -12,8 +12,7 @@ Folder `docs/` sekarang dikhususkan untuk dokumen marketing website, money-site,
 
 ## Final brand source
 
-- Immutable archive: [RAMUNI_Final_Lipat_Arah_Brand_Kit.zip](../dist/RAMUNI_Final_Lipat_Arah_Brand_Kit.zip).
-- Working assets: [brand/RAMUNI](../brand/RAMUNI/).
+- Repository implementation source: [brand/RAMUNI](../brand/RAMUNI/). Astro's `dist/` directory is disposable build output and does not store the original delivery ZIP.
 - Detailed guideline: [RAMUNI-BRAND-GUIDELINES.md](../brand/RAMUNI/RAMUNI-BRAND-GUIDELINES.md).
 - Asset manifest: [ASSET-MANIFEST.csv](../brand/RAMUNI/exports/ASSET-MANIFEST.csv).
 

@@ -17,7 +17,7 @@ Brief ini tidak berdiri sendiri. Social Media Executive, copywriter, designer, d
 - [Asset Manifest](../brand/RAMUNI/exports/ASSET-MANIFEST.csv) — daftar variant, ukuran, format, dan transparency.
 - [Final Brand Contact Sheet](../brand/RAMUNI/previews/ramuni-final-contact-sheet.png) — preview seluruh sistem identitas.
 - [Working Brand Assets](../brand/RAMUNI/) — folder kerja resmi untuk produksi.
-- [Final Immutable Brand Archive](../dist/RAMUNI_Final_Lipat_Arah_Brand_Kit.zip) — arsip delivery final; jangan dimodifikasi.
+- Folder `dist/` hanya output build Astro dan tidak menyimpan ZIP delivery asli.
 
 Visual layout, komposisi carousel, dan detail ilustrasi masih dapat dikembangkan, tetapi **logo, warna, font, dan brand rules sudah final**. Agent tidak boleh membuat logo, palet, font, atau identitas visual alternatif.
 

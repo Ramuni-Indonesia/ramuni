@@ -30,8 +30,7 @@ Untuk developer/agent website marketing, blog, CMS, SEO, lead funnel, dan analyt
 
 Brand RAMUNI sudah final dan bukan lagi placeholder visual. Arah yang disetujui adalah **Lipat Arah**, 25 July 2026.
 
-- Immutable delivery archive: [RAMUNI_Final_Lipat_Arah_Brand_Kit.zip](../dist/RAMUNI_Final_Lipat_Arah_Brand_Kit.zip).
-- Working implementation assets: [brand/RAMUNI](../brand/RAMUNI/).
+- Repository implementation source: [brand/RAMUNI](../brand/RAMUNI/). The original delivery ZIP is not stored under Astro's disposable `dist/` build directory.
 - Brand authority and developer contract: [13-final-brand-implementation-brief.md](13-final-brand-implementation-brief.md).
 - Detailed guideline: [RAMUNI-BRAND-GUIDELINES.md](../brand/RAMUNI/RAMUNI-BRAND-GUIDELINES.md).
 - Asset selection authority: [ASSET-MANIFEST.csv](../brand/RAMUNI/exports/ASSET-MANIFEST.csv).

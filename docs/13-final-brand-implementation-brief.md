@@ -3,12 +3,11 @@
 **Status:** Final and approved  
 **Direction:** Lipat Arah  
 **Approval date:** 25 July 2026  
-**Archive source:** [RAMUNI_Final_Lipat_Arah_Brand_Kit.zip](../dist/RAMUNI_Final_Lipat_Arah_Brand_Kit.zip)  
 **Working asset source:** [brand/RAMUNI](../brand/RAMUNI/)  
 **Brand guidelines:** [RAMUNI-BRAND-GUIDELINES.md](../brand/RAMUNI/RAMUNI-BRAND-GUIDELINES.md)  
 **Asset manifest:** [ASSET-MANIFEST.csv](../brand/RAMUNI/exports/ASSET-MANIFEST.csv)
 
-This document converts the approved RAMUNI brand kit into an implementation contract for the marketing website, blog, CMS, help center, product handoff, social media, email, and paid advertising. The ZIP is the immutable delivery archive. The extracted `brand/RAMUNI` directory is the implementation source.
+This document converts the approved RAMUNI brand kit into an implementation contract for the marketing website, blog, CMS, help center, product handoff, social media, email, and paid advertising. The extracted `brand/RAMUNI` directory is the repository implementation source. The original delivery ZIP is not stored under Astro's disposable `dist/` build directory.
 
 ## 1. Brand idea
 
@@ -217,7 +216,6 @@ Design-system implementation must expose semantic tokens so later palette adjust
 
 ## 10. Developer acceptance checklist
 
-- [ ] The ZIP archive remains unchanged as the final delivery source.
 - [ ] Working assets come from `brand/RAMUNI`.
 - [ ] Header, footer, mobile, favicon, manifest, OG, email, and ad placements use approved variants.
 - [ ] Color tokens exactly match the five approved hex values.

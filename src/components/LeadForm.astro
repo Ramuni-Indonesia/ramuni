@@ -18,11 +18,60 @@ const consentVersion = '2026-07-25';
   <div class="field"><label for={`${kind}-need`}>Konteks singkat</label><textarea id={`${kind}-need`} name="need" disabled={!enabled} aria-describedby={`${kind}-privacy`}></textarea><small id={`${kind}-privacy`}>Jangan masukkan data pelanggan, transaksi, atau informasi sensitif.</small></div>
   <label class="consent-field"><input type="checkbox" name="consent" value="yes" required disabled={!enabled} /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi">kebijakan privasi</a>.</span></label>
   <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value={consentVersion} />
+  <input type="hidden" name="firstTouchAttribution" data-attribution-field="first" />
+  <input type="hidden" name="lastTouchAttribution" data-attribution-field="last" />
   {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Formulir belum menerima kiriman.</strong><p>Formulir resmi belum tersedia. Gunakan halaman kontak untuk melihat kanal yang sudah aktif.</p></div>}
 </form>
 {enabled && <script>
+  const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id'];
+  const storageKey = 'ramuni-attribution-v1';
+  const cleanValue = (value: string) => value.replace(/[\u0000-\u001f\u007f<>]/g, '').slice(0, 180);
+  const readStoredAttribution = () => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      if (!stored || typeof stored !== 'object') return null;
+      const cleanTouch = (touch: unknown) => {
+        if (!touch || typeof touch !== 'object') return null;
+        const source = touch as Record<string, unknown>;
+        const cleaned: Record<string, string> = {};
+        [...attributionKeys, 'landingPath', 'capturedAt'].forEach((key) => {
+          if (typeof source[key] === 'string') cleaned[key] = cleanValue(source[key]);
+        });
+        return Object.keys(cleaned).length ? cleaned : null;
+      };
+      return { first: cleanTouch(stored.first), last: cleanTouch(stored.last) };
+    } catch { return null; }
+  };
+  const writeStoredAttribution = (value: unknown) => {
+    try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Attribution still applies to this page view. */ }
+  };
+  const collectAttribution = () => {
+    const params = new URLSearchParams(window.location.search);
+    const touch: Record<string, string> = {};
+    attributionKeys.forEach((key) => {
+      const value = params.get(key);
+      if (value) touch[key] = cleanValue(value);
+    });
+    if (!Object.keys(touch).length) return null;
+    return {
+      ...touch,
+      landingPath: window.location.pathname,
+      capturedAt: new Date().toISOString(),
+    };
+  };
+  const currentTouch = collectAttribution();
+  const storedAttribution = readStoredAttribution();
+  const attribution = {
+    first: storedAttribution?.first || currentTouch,
+    last: currentTouch || storedAttribution?.last || null,
+  };
+  if (currentTouch || storedAttribution) writeStoredAttribution(attribution);
   document.querySelectorAll('[data-lead-form][data-enabled="true"]').forEach((form) => {
     if (!(form instanceof HTMLFormElement)) return;
+    const firstField = form.querySelector('[data-attribution-field="first"]');
+    const lastField = form.querySelector('[data-attribution-field="last"]');
+    if (firstField instanceof HTMLInputElement && attribution.first) firstField.value = JSON.stringify(attribution.first);
+    if (lastField instanceof HTMLInputElement && attribution.last) lastField.value = JSON.stringify(attribution.last);
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const button = form.querySelector('button[type="submit"]');
@@ -36,6 +85,13 @@ const consentVersion = '2026-07-25';
         const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error('request_failed');
         const kind = form.dataset.leadForm;
+        window.dispatchEvent(new CustomEvent('ramuni:lead:accepted', {
+          detail: {
+            leadType: kind,
+            attributionPresent: Boolean(attribution.first || attribution.last),
+            acceptedAt: new Date().toISOString(),
+          },
+        }));
         window.location.assign(`/terima-kasih/${kind === 'contact' ? 'kontak' : kind}`);
       } catch {
         if (status) status.textContent = 'Kiriman belum berhasil. Periksa koneksi lalu coba lagi.';

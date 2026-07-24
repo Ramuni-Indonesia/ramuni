@@ -50,15 +50,70 @@ const current = (prefix: string) => path === prefix || path.startsWith(`${prefix
 <script>
   const groups = [...document.querySelectorAll('[data-nav-group]')];
   const mobile = document.querySelector('[data-mobile-menu]');
+  const desktopNav = document.querySelector('.desktop-nav');
+  const desktopItems = desktopNav
+    ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
+    : [];
+  const desktopIndex = (node: Element | null) => desktopItems.findIndex((item) => item === node);
+  const closeDesktopGroups = () => groups.forEach((group) => group.removeAttribute('open'));
   groups.forEach((group) => {
     if (!(group instanceof HTMLDetailsElement)) return;
     group.addEventListener('toggle', () => {
       if (group.open) groups.filter((item) => item !== group).forEach((item) => item.removeAttribute('open'));
     });
   });
+  if (desktopNav instanceof HTMLElement) {
+    desktopNav.addEventListener('keydown', (event) => {
+      const currentIndex = desktopIndex(document.activeElement);
+      const focused = document.activeElement;
+      const activeMenu = focused instanceof HTMLElement ? focused.closest('.mega-menu') : null;
+      const focusItem = (index: number) => {
+        const item = desktopItems.at((index + desktopItems.length) % desktopItems.length);
+        if (item instanceof HTMLElement) item.focus();
+      };
+      if (activeMenu instanceof HTMLElement && focused instanceof HTMLElement && focused.matches('a')) {
+        const menuLinks = [...activeMenu.querySelectorAll('a')].filter((link): link is HTMLAnchorElement => link instanceof HTMLAnchorElement);
+        const menuIndex = menuLinks.indexOf(focused as HTMLAnchorElement);
+        if (['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End'].includes(event.key)) {
+          event.preventDefault();
+          const targetIndex = event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? menuLinks.length - 1
+              : menuIndex + (event.key === 'ArrowDown' || event.key === 'ArrowRight' ? 1 : -1);
+          menuLinks.at((targetIndex + menuLinks.length) % menuLinks.length)?.focus();
+        }
+      }
+      if (currentIndex >= 0 && (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Home' || event.key === 'End')) {
+        event.preventDefault();
+        if (event.key === 'Home') focusItem(0);
+        else if (event.key === 'End') focusItem(desktopItems.length - 1);
+        else focusItem(currentIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+      if (document.activeElement instanceof HTMLElement && document.activeElement.matches('.nav-group > summary')) {
+        const parent = document.activeElement.parentElement;
+        if (event.key === 'ArrowDown' && parent instanceof HTMLDetailsElement) {
+          event.preventDefault();
+          parent.open = true;
+          const firstLink = parent.querySelector('.mega-menu a');
+          if (firstLink instanceof HTMLElement) firstLink.focus();
+        }
+        if (event.key === 'ArrowUp' && parent instanceof HTMLDetailsElement) {
+          event.preventDefault();
+          parent.open = false;
+        }
+      }
+      if (event.key === 'Escape' && desktopNav.contains(document.activeElement)) {
+        const openGroup = groups.find((group) => group instanceof HTMLDetailsElement && group.open);
+        closeDesktopGroups();
+        const trigger = openGroup?.querySelector(':scope > summary');
+        if (trigger instanceof HTMLElement) trigger.focus();
+      }
+    });
+  }
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      groups.forEach((group) => group.removeAttribute('open'));
+      closeDesktopGroups();
       if (mobile instanceof HTMLDetailsElement && mobile.open) {
         mobile.removeAttribute('open');
         document.body.classList.remove('menu-open');

@@ -1,6 +1,12 @@
+import { resolvePublicEnvironment } from './public-environment.mjs';
+
+const publicEnvironment = resolvePublicEnvironment(import.meta.env);
+
 export const releaseGates = {
-  claimPagesIndexable: import.meta.env.PUBLIC_CLAIM_PAGES_APPROVED === 'true',
-  securityPageIndexable: import.meta.env.PUBLIC_SECURITY_REVIEW_APPROVED === 'true',
-  calculatorPagesIndexable: import.meta.env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true',
-  resourcePagesIndexable: import.meta.env.PUBLIC_RESOURCE_REVIEW_APPROVED === 'true',
+  environment: publicEnvironment.name,
+  siteIndexable: publicEnvironment.indexingEnabled,
+  claimPagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_CLAIM_PAGES_APPROVED === 'true',
+  securityPageIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_SECURITY_REVIEW_APPROVED === 'true',
+  calculatorPagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true',
+  resourcePagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_RESOURCE_REVIEW_APPROVED === 'true',
 } as const;

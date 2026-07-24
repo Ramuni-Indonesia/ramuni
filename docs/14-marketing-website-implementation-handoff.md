@@ -32,7 +32,7 @@ Brand direction: Lipat Arah
 - Solution detail pages now link related modules to product routes and include industry examples plus implementation expectations for each solution.
 - Role and industry pages now use role-specific support paths, Kasir avoids the demo funnel, industry-role mapping is not hard-coded, and industry pages include related solutions/resources plus synthetic example metrics.
 - Dummy guide details, glossary details, and the unavailable template hub are gated by `PUBLIC_RESOURCE_REVIEW_APPROVED`; they render as `noindex,follow` and stay out of the sitemap until substantive review is approved.
-- RAMUNI editorial PNG covers now have WebP derivatives used by the site while the PNG files remain source-of-truth assets.
+- RAMUNI editorial covers are shipped as WebP only. The duplicate PNG deploy copies were removed; the supplied Instagram launch archive remains the recoverable design source outside Astro's disposable `dist/` output.
 
 ## Form endpoint contract
 
@@ -43,7 +43,9 @@ Lead forms are fail-closed.
 - When configured, the browser sends `POST` with `FormData` and requests JSON.
 - Non-2xx responses stay on the form and show an inline error. They do not redirect to a success page.
 - Successful responses redirect to the matching typed thank-you route.
-- The payload includes lead type and consent version. Free text warns users not to enter customer, transaction, or sensitive data.
+- The payload includes lead type, consent version, and privacy-safe first-touch/last-touch attribution for whitelisted UTM parameters and common click IDs. The attribution fields do not copy names, email, business notes, or raw query strings.
+- After server acceptance, the client dispatches `ramuni:lead:accepted` with lead type, attribution presence, and acceptance time only. Measurement integrations must not fire lead conversions on CTA click, form submit, validation failure, or network failure.
+- Free text warns users not to enter customer, transaction, or sensitive data.
 - The production endpoint must still enforce validation, origin and CSRF controls, rate limiting, idempotency, encrypted storage, consent recording, PII-safe logs, and server-confirmed conversion deduplication.
 
 ## Current verification evidence
@@ -51,8 +53,8 @@ Lead forms are fail-closed.
 - The current `dist` inventory contains 79 HTML pages.
 - Earlier baseline Lighthouse evidence remains under `output/qa/`: Performance 97, Accessibility 100, Best Practices 96, and SEO 100 on the local mobile production preview.
 - `npm run check` on 25 July 2026 05:34 WIB: 63 files, 0 errors, 0 warnings, 0 hints.
-- `npm run build` on 25 July 2026 05:34 WIB: 79 pages generated successfully and sitemap-index.xml created.
-- `npm run audit` on 25 July 2026 05:34 WIB: all 79 HTML files pass metadata, static accessibility, content markers, JSON-LD, internal links, sitemap/noindex, and robots checks.
+- Explicit production build on 25 July 2026 05:58 WIB: 79 pages generated successfully and `sitemap-index.xml` created.
+- `npm run audit` on 25 July 2026 05:58 WIB: all 79 HTML files pass metadata, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, and robots checks.
 - `npm audit --audit-level=high` on 25 July 2026: 0 known vulnerabilities.
 - Built asset snapshot: shared layout CSS is 95,851 bytes uncompressed, product detail scoped CSS is 5,114 bytes, and the page JavaScript bundle is 2,488 bytes uncompressed.
 - Earlier Best Practices image-ratio feedback was addressed, logo intrinsic dimensions now match the 4:1 assets, and font delivery uses WOFF2.

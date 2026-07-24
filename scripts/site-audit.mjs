@@ -34,13 +34,28 @@ const TITLE_MIN = 10;
 const TITLE_MAX = 65;
 const DESCRIPTION_MIN = 50;
 const DESCRIPTION_MAX = 180;
-const DASH_MARKER = /[\u2013\u2014]|\u00e2\u20ac[\u201c\u201d]/;
+const DASH_MARKER = /[\u2013\u2014\u00c2\u00e2]/;
 const AI_MARKERS = [
   /\bas an ai language model\b/i,
   /\bsebagai (?:sebuah )?model (?:bahasa )?ai\b/i,
   /\b(?:written|generated) by chatgpt\b/i,
   /\blorem ipsum\b/i,
 ];
+const PLACEHOLDER_RESOURCE_ROUTES = new Set([
+  '/panduan/membaca-stok-harian',
+  '/panduan/memahami-arus-kas',
+  '/panduan/menilai-insight-ai',
+  '/kamus-bisnis/arus-kas',
+  '/kamus-bisnis/hpp',
+  '/kamus-bisnis/omzet',
+  '/kamus-bisnis/stok-pengaman',
+  '/template',
+]);
+const DUMMY_BLOG_ROUTES = new Set([
+  '/blog/ai-business-companion-umkm',
+  '/blog/arus-kas-umkm-ringan',
+  '/blog/panduan-membaca-stok-harian',
+]);
 
 function routeFor(file) {
   const rel = relative(root, file).split(sep).join('/');
@@ -60,6 +75,36 @@ function hasTypedSchema(value, inheritedContext = false) {
   const hasContext = inheritedContext || '@context' in value;
   if ('@type' in value && hasContext) return true;
   return Array.isArray(value['@graph']) && value['@graph'].some((entry) => hasTypedSchema(entry, hasContext));
+}
+function topLevelSchemaEntities(value) {
+  if (Array.isArray(value)) return value.flatMap(topLevelSchemaEntities);
+  if (!value || typeof value !== 'object') return [];
+  const entities = value['@type'] ? [value] : [];
+  if (Array.isArray(value['@graph'])) entities.push(...value['@graph'].flatMap(topLevelSchemaEntities));
+  return entities;
+}
+function schemaTypes(page) {
+  return new Set(page.schemaEntities.flatMap((entity) => {
+    const type = entity['@type'];
+    return Array.isArray(type) ? type : [type];
+  }).filter((type) => typeof type === 'string'));
+}
+function schemaEntity(page, type) {
+  return page.schemaEntities.find((entity) => {
+    const value = entity['@type'];
+    return value === type || (Array.isArray(value) && value.includes(type));
+  });
+}
+function requireSchemaTypes(route, page, expected) {
+  const types = schemaTypes(page);
+  for (const type of expected) if (!types.has(type)) failures.push(`${route}: missing ${type} schema`);
+}
+function equivalentUrl(left, right) {
+  try {
+    const a = new URL(left);
+    const b = new URL(right);
+    return a.origin === b.origin && normalizeRoute(a.pathname) === normalizeRoute(b.pathname) && a.search === b.search && a.hash === b.hash;
+  } catch { return false; }
 }
 function registerUnique(map, value, route, label) {
   if (!value) return;
@@ -180,11 +225,13 @@ for (const file of htmlFiles) {
   for (const [label, pass] of checks) if (!pass) failures.push(`${route}: ${label}`);
   auditAccessibility(html, route);
   let hasValidJsonLd = false;
+  const schemaEntities = [];
   for (const json of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
     try {
       const parsed = JSON.parse(json[1]);
       if (hasTypedSchema(parsed)) hasValidJsonLd = true;
       else failures.push(`${route}: JSON-LD has no typed schema entity`);
+      schemaEntities.push(...topLevelSchemaEntities(parsed));
     } catch { failures.push(`${route}: invalid JSON-LD`); }
   }
   if (!noindex) {
@@ -194,7 +241,73 @@ for (const file of htmlFiles) {
     registerUnique(titles, title, route, 'title');
     registerUnique(descriptions, description, route, 'description');
   }
-  pages.set(route, { file, html, noindex, canonical, canonicalUrl });
+  pages.set(route, { file, html, noindex, canonical, canonicalUrl, schemaEntities });
+}
+
+function expectedPageType(route) {
+  if (route === '/tentang') return 'AboutPage';
+  if (route === '/kontak') return 'ContactPage';
+  if (/^\/(sumber-daya|panduan|template|kalkulator|kamus-bisnis)$/.test(route)) return 'CollectionPage';
+  return 'WebPage';
+}
+
+for (const [route, page] of pages) {
+  if (!page.noindex) requireSchemaTypes(route, page, [expectedPageType(route)]);
+  if (route === '/') requireSchemaTypes(route, page, ['Organization', 'WebSite', 'SoftwareApplication', 'FAQPage']);
+  if (/^\/(produk|solusi)$/.test(route)) requireSchemaTypes(route, page, ['BreadcrumbList']);
+  if (/^\/(produk|solusi)\/[^/]+$/.test(route)) requireSchemaTypes(route, page, ['BreadcrumbList']);
+  if (route === '/blog') requireSchemaTypes(route, page, ['CollectionPage', 'BreadcrumbList']);
+  if (/^\/blog\/kategori\/[^/]+$/.test(route)) requireSchemaTypes(route, page, ['CollectionPage', 'BreadcrumbList']);
+  if (/^\/blog\/penulis\/[^/]+$/.test(route)) {
+    requireSchemaTypes(route, page, ['ProfilePage']);
+    const profile = schemaEntity(page, 'ProfilePage');
+    if (profile?.mainEntity?.['@type'] !== 'Organization') failures.push(`${route}: ProfilePage mainEntity must be an Organization`);
+  }
+  if (route === '/harga') requireSchemaTypes(route, page, ['SoftwareApplication', 'BreadcrumbList']);
+  if (/^\/kalkulator\/[^/]+$/.test(route)) requireSchemaTypes(route, page, ['WebApplication', 'BreadcrumbList']);
+  if (DUMMY_BLOG_ROUTES.has(route)) requireSchemaTypes(route, page, ['BlogPosting', 'BreadcrumbList']);
+
+  const posting = schemaEntity(page, 'BlogPosting');
+  if (posting) {
+    if (!equivalentUrl(posting.mainEntityOfPage?.['@id'], page.canonical)) failures.push(`${route}: BlogPosting mainEntityOfPage must match canonical`);
+    const published = Date.parse(posting.datePublished);
+    const modified = Date.parse(posting.dateModified);
+    if (!Number.isFinite(published) || !Number.isFinite(modified)) failures.push(`${route}: BlogPosting dates must be valid`);
+    else if (modified < published) failures.push(`${route}: BlogPosting dateModified precedes datePublished`);
+  }
+
+  for (const type of ['WebApplication', 'CollectionPage']) {
+    const entity = schemaEntity(page, type);
+    if (entity && !equivalentUrl(entity.url, page.canonical)) failures.push(`${route}: ${type} url must match canonical`);
+  }
+
+  const breadcrumb = schemaEntity(page, 'BreadcrumbList');
+  if (breadcrumb) {
+    const items = Array.isArray(breadcrumb.itemListElement) ? breadcrumb.itemListElement : [];
+    if (!items.length) failures.push(`${route}: BreadcrumbList requires itemListElement`);
+    items.forEach((item, index) => {
+      if (item?.['@type'] !== 'ListItem' || item.position !== index + 1) failures.push(`${route}: BreadcrumbList positions must be sequential from 1`);
+    });
+    const firstItem = items[0]?.item;
+    if (!firstItem || !equivalentUrl(firstItem, page.canonicalUrl?.origin || '')) failures.push(`${route}: BreadcrumbList must start at the site root`);
+    const lastItem = items.at(-1)?.item;
+    if (lastItem && !equivalentUrl(lastItem, page.canonical)) failures.push(`${route}: BreadcrumbList last item must match canonical`);
+  }
+
+  const faq = schemaEntity(page, 'FAQPage');
+  if (faq) {
+    const questions = Array.isArray(faq.mainEntity) ? faq.mainEntity : [];
+    if (!questions.length || questions.some((question) => question?.['@type'] !== 'Question' || !question.name || question.acceptedAnswer?.['@type'] !== 'Answer' || !question.acceptedAnswer?.text)) {
+      failures.push(`${route}: FAQPage requires complete Question and acceptedAnswer entities`);
+    }
+  }
+
+  const website = schemaEntity(page, 'WebSite');
+  if (website) {
+    const organization = schemaEntity(page, 'Organization');
+    if (!organization?.['@id'] || website.publisher?.['@id'] !== organization['@id']) failures.push(`${route}: WebSite publisher must reference the Organization`);
+    if (!equivalentUrl(website.url, page.canonicalUrl?.origin || '')) failures.push(`${route}: WebSite url must match the site origin`);
+  }
 }
 
 const ignoredPrefixes = ['/api/', '/admin/', '/preview/'];
@@ -225,6 +338,13 @@ for (const [route, page] of pages) {
   if (!page.noindex && !sitemapUrls.has(normalizeRoute(route))) failures.push(`${route}: indexable canonical page missing from sitemap`);
 }
 
+for (const route of [...PLACEHOLDER_RESOURCE_ROUTES, ...DUMMY_BLOG_ROUTES]) {
+  const page = pages.get(route);
+  if (!page) failures.push(`${route}: expected placeholder route is missing`);
+  else if (!page.noindex) failures.push(`${route}: placeholder or dummy content must remain noindex`);
+  if (sitemapUrls.has(route)) failures.push(`${route}: placeholder or dummy content must be excluded from sitemap`);
+}
+
 const robotsPath = join(root, 'robots.txt');
 try {
   const robots = await readFile(robotsPath, 'utf8');
@@ -243,4 +363,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Audited ${htmlFiles.length} HTML files: metadata, static accessibility, content markers, JSON-LD, internal links, sitemap/noindex, and robots all passed.`);
+console.log(`Audited ${htmlFiles.length} HTML files: metadata, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, and robots all passed.`);

@@ -12,13 +12,19 @@ jobs:
   static-quality:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PUBLIC_DEPLOY_ENV: production
+      PUBLIC_INDEXING_ENABLED: 'true'
+      PUBLIC_SITE_URL: https://ramuni.id
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      # The explicit WASI fallback packages declare cpu=wasm32; --force keeps
+      # the locked local WASI path installable on standard x64 CI runners.
+      - run: npm ci --force
       - run: npm run check
       - run: npm run build
       - run: npm run audit

@@ -15,6 +15,15 @@ npm run audit
 
 Copy `.env.example` to the deployment environment and set only approved values. Do not commit credentials or private endpoints.
 
+Indexing is fail-closed. `PUBLIC_DEPLOY_ENV` accepts `local`, `preview`, `staging`, or `production`; an unknown or missing value resolves to `local`. Local, preview, and staging builds always emit `noindex,follow` and no sitemap URLs. A production release becomes indexable only when both settings are explicit:
+
+```dotenv
+PUBLIC_DEPLOY_ENV=production
+PUBLIC_INDEXING_ENABLED=true
+```
+
+The page-level claim, security, calculator, and resource approval gates still apply after the production gate opens. CI sets the production environment explicitly so the static audit exercises the intended release candidate rather than an all-noindex preview build.
+
 ## Architecture
 
 - `src/layouts`: global document shell, metadata, JSON-LD, header, and footer.
@@ -22,6 +31,7 @@ Copy `.env.example` to the deployment environment and set only approved values. 
 - `src/data`: launch CTA, navigation, product, and industry data.
 - `src/data/pageNarratives.ts`: section-specific product and solution narratives that prevent template filler.
 - `src/config/release.ts`: evidence-gated indexability policy.
+- `src/config/public-environment.mjs`: shared fail-closed environment resolver used by page metadata and sitemap generation.
 - `src/content/blog`: dummy Markdown articles, ready to migrate to a CMS adapter later.
 - `src/pages`: static P0 marketing, product, industry, blog, legal, and system routes.
 - `src/styles`: brand tokens, responsive layout, and reduced-motion-safe interactions.
@@ -45,9 +55,10 @@ Reference patterns used as direction, not copied assets: Linear for precise reve
 - Set `PUBLIC_SITE_URL` to the final production origin if it differs from `https://ramuni.id`.
 - Review the built-in consent wording, then connect its `ramuni:consent` event to approved GTM/Consent Mode, GA4, and ad pixels only after PII tests pass.
 - Keep preview details noindex by default. Set `PUBLIC_CLAIM_PAGES_APPROVED=true`, `PUBLIC_SECURITY_REVIEW_APPROVED=true`, or `PUBLIC_CALCULATOR_REVIEW_APPROVED=true` only after the matching owner signs off.
+- Set `PUBLIC_DEPLOY_ENV=production` and `PUBLIC_INDEXING_ENABLED=true` only in an approved public release. Preview and staging cannot become indexable through page-level approval flags.
 - CMS is intentionally deferred. Blog content is local dummy content for template validation.
 - Run a deployed Lighthouse test on the final CDN because TTF caching, compression, and edge headers depend on the hosting platform.
 
 ## Brand sources
 
-Do not replace or modify the approved logo files. Working sources remain under `brand/RAMUNI`; the final archive under `dist/` is immutable.
+Do not replace or modify the approved logo files. The repository implementation source is `brand/RAMUNI`. Astro owns `dist/` as disposable build output, so no canonical source archive is stored there.

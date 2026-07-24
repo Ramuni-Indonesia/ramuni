@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { loadEnv } from 'vite';
+import { resolvePublicEnvironment } from './src/config/public-environment.mjs';
 
 const mode = process.env.NODE_ENV || 'production';
 const env = loadEnv(mode, process.cwd(), '');
 const site = env.PUBLIC_SITE_URL || 'https://ramuni.id';
+const publicEnvironment = resolvePublicEnvironment(env);
 const claimPagesApproved = env.PUBLIC_CLAIM_PAGES_APPROVED === 'true';
 const securityReviewApproved = env.PUBLIC_SECURITY_REVIEW_APPROVED === 'true';
 const calculatorReviewApproved = env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true';
@@ -24,7 +26,7 @@ export default defineConfig({
   site,
   output: 'static',
   integrations: [sitemap({
-    filter: (page) => ![
+    filter: (page) => publicEnvironment.indexingEnabled && ![
       '/terima-kasih', '/masuk', '/maintenance', '/404', '/500',
       '/blog/cari', '/blog/tag', '/blog/kategori', '/blog/penulis', '/blog/reviewer', '/privasi', '/syarat-penggunaan',
       '/kebijakan-cookie', '/pemrosesan-data', '/status', '/bantuan',
