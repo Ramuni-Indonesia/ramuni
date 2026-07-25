@@ -4,6 +4,7 @@ import ProductDomainVisual from '../../components/product/ProductDomainVisual.as
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
+import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { productDetails } from '../../data/productDetails';
 import { releaseGates } from '../../config/release';
 import '../../styles/product-detail.css';
@@ -92,7 +93,7 @@ const structuredData = [
       <div class="container pd-hero__layout">
         <div class="pd-hero__copy reveal is-visible">
           <div class="pd-hero__meta">
-            <span class="pd-product-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="pd-product-glyph" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
             <span class="pd-status-label">Simulasi tersedia</span>
           </div>
           <h1 id="product-title">{product.title}</h1>

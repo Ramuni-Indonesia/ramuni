@@ -1574,6 +1574,228 @@
   color: var(--white);
 }
 
+/*
+ * Product layout choreography
+ *
+ * `detail.layout` is a narrative choice, not a colour theme. These desktop
+ * compositions give each product family a different reading rhythm while the
+ * shared mobile layout below remains predictable and accessible.
+ */
+@media (min-width: 961px) {
+  /* Signals: a compact priority rail beside a fixed question. */
+  .pd-page[data-layout='signals'] .pd-problem__layout {
+    grid-template-columns: minmax(330px, 0.88fr) minmax(0, 1.12fr);
+    align-items: start;
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem h2 {
+    max-width: 11ch;
+    font-size: clamp(2rem, 3.2vw, 3.6rem);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem header {
+    position: sticky;
+    top: 104px;
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem ol {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem li:nth-child(n) {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr);
+    min-height: 0;
+    margin: 0;
+    padding: 25px 20px;
+    align-items: center;
+    border: 0;
+    border-bottom: 1px solid var(--ink-10);
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem li:nth-child(2) {
+    padding-block: 34px;
+    background: var(--yellow-18);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem li:nth-child(3) {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem li:nth-child(3) span {
+    color: var(--yellow);
+  }
+
+  .pd-page[data-layout='signals'] .pd-problem .evidence-flow {
+    grid-column: 1 / -1;
+  }
+
+  /* Ledger: scan the problem statements like an operational record. */
+  .pd-page[data-layout='ledger'] .pd-problem__layout {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    align-items: end;
+  }
+
+  .pd-page[data-layout='ledger'] .pd-problem ol {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pd-page[data-layout='ledger'] .pd-problem li:nth-child(n) {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    min-height: 0;
+    margin: 0;
+    padding: 22px 24px;
+    align-items: center;
+    background: var(--rice);
+    color: var(--ink);
+  }
+
+  .pd-page[data-layout='ledger'] .pd-problem li:nth-child(2) {
+    margin-left: 42px;
+    background: var(--yellow);
+  }
+
+  .pd-page[data-layout='ledger'] .pd-problem li:nth-child(3) {
+    margin-left: 84px;
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .pd-page[data-layout='ledger'] .pd-problem .evidence-flow {
+    grid-column: 1 / -1;
+  }
+
+  /* Flow: the four steps read as a route, not four matching feature cards. */
+  .pd-page[data-layout='flow'] .pd-workflow__layout {
+    grid-template-columns: minmax(240px, 0.58fr) minmax(0, 1.42fr);
+    align-items: start;
+  }
+
+  .pd-page[data-layout='flow'] .pd-workflow header {
+    position: sticky;
+    top: 104px;
+  }
+
+  .pd-page[data-layout='flow'] .pd-workflow__steps {
+    grid-template-columns: 1fr;
+    border: 0;
+    border-top: 1px solid var(--ink);
+  }
+
+  .pd-page[data-layout='flow'] .pd-workflow__steps li:nth-child(n) {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 22px;
+    min-height: 0;
+    margin: 0;
+    padding: 25px 0;
+    align-items: start;
+    border: 0;
+    border-bottom: 1px solid var(--ink-10);
+    background: transparent;
+  }
+
+  .pd-page[data-layout='flow'] .pd-workflow__steps li:nth-child(2),
+  .pd-page[data-layout='flow'] .pd-workflow__steps li:nth-child(4) {
+    padding-left: clamp(30px, 5vw, 76px);
+  }
+
+  .pd-page[data-layout='flow'] .pd-workflow__steps li div {
+    margin-top: 5px;
+  }
+
+  /* Balance: hold the explanation and result on opposing sides. */
+  .pd-page[data-layout='balance'] .pd-example-embedded {
+    grid-template-columns: minmax(240px, 0.72fr) minmax(0, 1.28fr);
+    align-items: center;
+  }
+
+  .pd-page[data-layout='balance'] .pd-example__receipt {
+    transform: translateY(34px);
+    box-shadow: -12px 12px 0 var(--yellow);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 14px;
+    border-top: 0;
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit:nth-child(n) {
+    display: flex;
+    grid-column: span 5;
+    grid-row: auto;
+    min-height: 255px;
+    flex-direction: column;
+    padding: 26px;
+    border: 1px solid var(--ink);
+    background: var(--white);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit:nth-child(2) {
+    grid-column: span 7;
+    margin-top: 48px;
+    background: var(--yellow-18);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit:nth-child(3) {
+    grid-column: 3 / span 7;
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit:nth-child(3) p {
+    color: rgb(255 255 255 / 0.7);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit:nth-child(3) strong {
+    border-top-color: rgb(255 255 255 / 0.2);
+    color: var(--yellow);
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit > span {
+    grid-row: auto;
+  }
+
+  .pd-page[data-layout='balance'] .pd-benefit strong {
+    margin-top: auto;
+  }
+
+  /* Evidence: make the example the dominant proof before the benefits. */
+  .pd-page[data-layout='evidence'] .pd-example-embedded {
+    grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+    align-items: stretch;
+  }
+
+  .pd-page[data-layout='evidence'] .pd-example__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pd-page[data-layout='evidence'] .pd-example__receipt dl {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-page[data-layout='evidence'] .pd-example__receipt dl div {
+    min-height: 0;
+    padding-block: 18px;
+    border-right: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.18);
+  }
+
+  .pd-page[data-layout='evidence'] .pd-example__receipt dl div:last-child {
+    border-bottom: 0;
+  }
+}
+
 @media (hover: hover) {
   .pd-role-track a,
   .pd-industry-spread a,

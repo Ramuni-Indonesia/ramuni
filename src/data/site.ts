@@ -128,7 +128,6 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       cta: 'Buka solusi',
     },
   },
-  { label: 'Harga', href: '/harga' },
   {
     label: 'Sumber Daya',
     href: '/sumber-daya',
@@ -187,7 +186,6 @@ export const footerNavigation: FooterNavigationGroup[] = [
       { label: 'Inventori', href: '/produk/inventori' },
       { label: 'Keuangan', href: '/produk/keuangan' },
       { label: 'Semua Produk', href: '/produk' },
-      { label: 'Harga', href: '/harga' },
     ],
   },
   {

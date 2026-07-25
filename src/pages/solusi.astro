@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { industries, solutions } from '../data/site';
+import { capabilityIconAttributes } from '../data/capabilityIcons';
 import '../styles/other-pages-refinement.css';
 
 const painClusters = [
@@ -62,7 +63,7 @@ const solutionFaq = [
         <div class="solution-stories">
           {solutions.map((solution, index) => (
             <a class="solution-story reveal" data-solution-card={solution.slug} style={`--i:${index}`} href={`/solusi/${solution.slug}`}>
-              <span class="solution-story__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="solution-story__mark" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><i></i><i></i><i></i></span>
               <div><h3>{solution.title}</h3><p>{solution.symptoms[0]}</p></div>
               <dl><div><dt>Jika dibiarkan</dt><dd>Keputusan mengandalkan asumsi atau catatan yang terlambat.</dd></div><div><dt>Arah yang dicari</dt><dd>{solution.outcome}</dd></div></dl>
               <strong>Lihat alur</strong>
@@ -80,7 +81,7 @@ const solutionFaq = [
       <div class="container solution-combinations__layout">
         <header><p class="section-kicker">Modul bekerja bersama</p><h2 id="solution-combinations-title">Tidak ada satu modul untuk semua masalah.</h2></header>
         <div class="combination-lines">
-          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="combination-glyph" aria-hidden="true"><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
+          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="combination-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
         </div>
       </div>
     </section>

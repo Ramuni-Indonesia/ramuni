@@ -5,6 +5,7 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import ProductPulseLab from '../../components/product/ProductPulseLab.astro';
 import RamuniMark3D from '../../components/product/RamuniMark3D.astro';
 import { products, roles, solutions } from '../../data/site';
+import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import '../../styles/other-pages-refinement.css';
 import '../../styles/decision-labs.css';
 
@@ -80,7 +81,7 @@ const productFaq = [
             <h3 id="family-intelligence">Insight dan laporan</h3>
             {intelligence.map((product, index) => (
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}`}>
-                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
                 <span class="availability-label">Dalam pengembangan</span>
               </a>
@@ -90,7 +91,7 @@ const productFaq = [
             <h3 id="family-operations">Operasional</h3>
             {operations.map((product, index) => (
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}`}>
-                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
                 <span class="availability-label">Siap dipetakan</span>
               </a>
@@ -100,7 +101,7 @@ const productFaq = [
             <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
               <h3 id="family-ecosystem">Jalur data</h3>
               <a class="product-row" data-product-card={ecosystem.slug} href={`/produk/${ecosystem.slug}`}>
-                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', ecosystem.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
                 <span class="availability-label">Cek per metode</span>
               </a>
@@ -129,7 +130,7 @@ const productFaq = [
       <div class="container outcome-index__layout">
         <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modulnya?</h2></div>
         <div class="outcome-index__list">
-          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="outcome-glyph" aria-hidden="true"><b></b><b></b><b></b></i><span>{solution.title}</span><small>{solution.summary}</small></a>)}
+          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="outcome-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><span>{solution.title}</span><small>{solution.summary}</small></a>)}
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { solutionDetails, type SolutionDetail } from '../../data/solutionDetails';
+import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
 
@@ -34,7 +35,7 @@ const faqSchema = {
       <div class="container sd-hero__layout">
         <div class="sd-hero__copy reveal is-visible">
           <div class="sd-hero__meta">
-            <span class="sd-solution-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="sd-solution-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><i></i><i></i><i></i></span>
             <p class="section-kicker">{solution.eyebrow}</p>
           </div>
           <h1 id="solution-title">{solution.heroTitle}</h1>
