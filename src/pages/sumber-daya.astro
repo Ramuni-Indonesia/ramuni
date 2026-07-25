@@ -2,11 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../components/blog/StoryMicroVisual.astro';
+import { releaseGates } from '../config/release';
 import '../styles/resource-hub.css';
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
 const featuredPost = posts.find((post) => post.data.featured) || posts[0];
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const resourceFormats = [
@@ -80,7 +82,7 @@ const schema = [
               <ol>{mode.steps.map((step, stepIndex) => <li><b>{String(stepIndex + 1).padStart(2, '0')}</b><strong>{step}</strong></li>)}</ol>
             </section>)}
           </div>
-          <div class="resource-navigator__orbit" aria-hidden="true"><i></i><b></b></div>
+          <div class="resource-navigator__orbit" aria-hidden="true"><i></i><b></b><img src={mascotSrc} width="720" height="720" alt="" decoding="async" /></div>
         </div>
       </div>
     </header>

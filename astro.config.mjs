@@ -27,7 +27,7 @@ export default defineConfig({
   output: 'static',
   integrations: [sitemap({
     filter: (page) => publicEnvironment.indexingEnabled && ![
-      '/demo', '/terima-kasih', '/masuk', '/maintenance', '/404', '/500',
+      '/demo', '/early-access', '/terima-kasih', '/masuk', '/maintenance', '/404', '/500',
       '/blog/cari', '/blog/tag', '/blog/kategori', '/blog/reviewer', '/privasi', '/syarat-penggunaan',
       '/kebijakan-cookie', '/pemrosesan-data', '/status', '/bantuan',
       '/blog/ai-business-companion-umkm', '/blog/arus-kas-umkm-ringan', '/blog/panduan-membaca-stok-harian',

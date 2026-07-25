@@ -31,7 +31,7 @@ related:
 ctaType: "demo"
 featured: false
 draft: false
-noindex: false
+noindex: true
 ---
 
 AI Business Companion adalah pendamping untuk membaca catatan bisnis, menyusun pertanyaan, dan menunjukkan angka yang mendukung jawaban. Ia bukan pengganti pemilik usaha, akuntan, atau orang yang memahami kondisi lapangan.

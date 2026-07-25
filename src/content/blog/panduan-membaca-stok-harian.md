@@ -31,7 +31,7 @@ related:
 ctaType: "demo"
 featured: true
 draft: false
-noindex: false
+noindex: true
 ---
 
 Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” perlu dibandingkan dengan laju penjualan dan waktu ramai. Periksa juga waktu yang dibutuhkan untuk menyiapkan barang pengganti.

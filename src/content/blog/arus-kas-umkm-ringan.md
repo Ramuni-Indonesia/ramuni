@@ -31,7 +31,7 @@ related:
 ctaType: "early-access"
 featured: false
 draft: false
-noindex: false
+noindex: true
 ---
 
 Arus kas sering terasa rumit karena omzet, laba, saldo rekening, dan tagihan dibaca sebagai satu angka. Padahal masing-masing menjawab pertanyaan berbeda.

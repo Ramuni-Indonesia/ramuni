@@ -6,6 +6,12 @@
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-ramuni-mark-3d]').forEach((host) => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+    if (reducedMotion || saveData) {
+      host.dataset.modelState = 'fallback';
+      return;
+    }
     let requested = false;
     const loadModel = async () => {
       if (requested) return;
