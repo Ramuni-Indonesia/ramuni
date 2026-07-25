@@ -129,7 +129,7 @@
 }
 
 .lead-dialog {
-  width: min(980px, calc(100% - 32px));
+  width: min(920px, calc(100% - 32px));
   max-height: calc(100dvh - 32px);
   border: 0;
   padding: 0;
@@ -146,7 +146,7 @@
 .lead-dialog__layout {
   display: grid;
   grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
-  min-height: min(650px, calc(100dvh - 32px));
+  min-height: min(570px, calc(100dvh - 32px));
 }
 
 .lead-dialog__intro {
@@ -192,6 +192,7 @@
   align-content: center;
   padding: clamp(28px, 5vw, 58px);
   overflow: auto;
+  min-width: 0;
 }
 
 .lead-dialog__form .lead-form {
@@ -359,7 +360,7 @@
   }
 
   .lead-dialog__intro {
-    min-height: 260px;
+    min-height: 220px;
   }
 
   .lead-dialog__form {
@@ -376,6 +377,7 @@
   .lead-dialog {
     width: calc(100% - 16px);
     max-height: calc(100dvh - 16px);
+    border-radius: 18px;
   }
 
   .lead-dialog__intro,
@@ -387,6 +389,7 @@
 
   .lead-dialog__intro h2 {
     padding-right: 54px;
+    font-size: clamp(1.9rem, 10vw, 2.7rem);
   }
 
   .early-access-form-page,

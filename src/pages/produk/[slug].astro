@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
 import { products } from '../../data/site';
 import { productDetails } from '../../data/productDetails';
@@ -87,22 +86,16 @@ const structuredData = [
   pageType="WebPage"
 >
   <article class="pd-page" data-layout={detail.layout} data-product={product.slug}>
-    <div class="pd-breadcrumb-block" data-section-id="product-breadcrumb" data-analytics-id="product_breadcrumb">
-      <div class="container">
-        <Breadcrumbs items={breadcrumbItems} />
-      </div>
-    </div>
-
     <section id="product-outcome" class="pd-hero" data-section-id="product-outcome" data-analytics-id="product_outcome_hero" aria-labelledby="product-title">
       <div class="container pd-hero__layout">
         <div class="pd-hero__copy reveal is-visible">
-          <span class="pd-status-label">Early Access</span>
+          <span class="pd-status-label">Simulasi tersedia</span>
           <h1 id="product-title">{product.title}</h1>
           <p class="pd-hero__audience">{detail.audience}</p>
           <p class="pd-hero__lead">{detail.heroLead}</p>
           <div class="button-row">
-            <a class="button button--primary" href="/early-access">Daftar Early Access</a>
-            <a class="button button--secondary" href="/demo">Lihat Demo</a>
+            <a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a>
+            <a class="button button--secondary" href="/early-access">Ajukan Akses Coba</a>
           </div>
         </div>
         <ProductDomainVisual slug={product.slug} title={product.title} question={detail.question} />
@@ -249,7 +242,7 @@ const structuredData = [
           <a href={detail.solution.href}><small>Solusi terkait</small><strong>{detail.solution.title}</strong><span>{detail.solution.text}</span></a>
           <a href={detail.resource.href}><small>Materi edukasi</small><strong>{detail.resource.title}</strong><span>{detail.resource.text}</span></a>
           <a href={detail.help.href}><small>Panduan dan bantuan</small><strong>{detail.help.title}</strong><span>{detail.help.text}</span></a>
-          <div class="pd-related__quick"><a href="/harga">Lihat Harga</a><a href="/demo">Lihat Demo</a></div>
+          <div class="pd-related__quick"><a href="/harga">Lihat Harga</a><a href="/tour-produk-gratis">Coba Simulasi</a></div>
         </div>
       </div>
     </section>
@@ -266,7 +259,7 @@ const structuredData = [
     <section id="product-next-step" class="pd-close" data-section-id="product-next-step" data-analytics-id="product_final_cta" aria-labelledby="product-next-step-title">
       <div class="container pd-close__layout">
         <div><span>Langkah berikutnya</span><h2 id="product-next-step-title">{detail.closing}</h2><p>{detail.outcome}</p></div>
-        <div class="button-row"><a class="button button--primary" href="/early-access">Daftar Early Access</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div>
+        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div>
       </div>
     </section>
   </article>

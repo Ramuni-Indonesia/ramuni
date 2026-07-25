@@ -2,7 +2,7 @@
 import '../styles/forms-conversion.css';
 interface Props { kind?: 'early-access' | 'demo' | 'contact'; }
 const { kind = 'early-access' } = Astro.props;
-const labels = { 'early-access': 'Daftar Early Access', demo: 'Minta Demo', contact: 'Kirim pesan' };
+const labels = { 'early-access': 'Ajukan Akses Coba', demo: 'Jadwalkan Demo', contact: 'Kirim pesan' };
 const isEarlyAccess = kind === 'early-access';
 const isContact = kind === 'contact';
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;

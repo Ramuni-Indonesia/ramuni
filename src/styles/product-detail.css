@@ -29,11 +29,6 @@
   margin-top: 0;
 }
 
-.pd-breadcrumb-block {
-  padding-top: 24px;
-  background: var(--rice);
-}
-
 .pd-hero,
 .pd-problem,
 .pd-example,
@@ -50,7 +45,7 @@
 }
 
 .pd-hero {
-  padding-top: clamp(48px, 6vw, 82px);
+  padding-top: clamp(42px, 5vw, 72px);
 }
 
 .pd-hero__layout {

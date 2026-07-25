@@ -200,3 +200,10 @@
 @media(prefers-reduced-motion:reduce){
   .home-decision-demo .decision-window{transform:none!important}
 }
+/* Contain decorative motion without clipping real content at tablet widths. */
+.home-hero,.dashboard-stage--editorial,.report-stage{max-width:100%;contain:paint}
+.workflow-focus,.signal-spread,.signal-story,.signal-story__frame,.report-signals,.report-signal{min-width:0;max-width:100%}
+.signal-story__frame{overflow:clip}
+.direction-fold span,.report-signals::before{pointer-events:none;contain:paint}
+@media(max-width:960px){.signal-spread{grid-template-columns:1fr}.signal-spread__notes{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:0}}
+@media(max-width:740px){.signal-spread__notes{grid-template-columns:1fr}}

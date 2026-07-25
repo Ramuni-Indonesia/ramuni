@@ -18,6 +18,7 @@ interface Props {
   schema?: Record<string, unknown> | Record<string, unknown>[];
   ogType?: 'website' | 'article';
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  keywords?: string | string[];
 }
 
 const {
@@ -32,10 +33,12 @@ const {
   schema,
   ogType = 'website',
   pageType,
+  keywords = ['RAMUNI', 'AI Business Companion', 'UMKM Indonesia', 'stok usaha', 'penjualan UMKM', 'arus kas usaha'],
 } = Astro.props;
 const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toString();
 const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
+const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
 const leadPromptExcluded = /^\/(?:kontak|demo|early-access|harga|masuk|terima-kasih|privasi|pemrosesan-data|syarat-penggunaan|kebijakan-cookie|keamanan|status|maintenance|404|500)(?:\/|$)/.test(pathname);
 const inferredPageType = pageType
@@ -63,8 +66,11 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F4F0E7" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywordContent} />
     <meta name="robots" content={effectiveNoindex ? 'noindex,follow' : 'index,follow'} />
     <link rel="canonical" href={absoluteCanonical} />
+    <link rel="alternate" hreflang="id-ID" href={absoluteCanonical} />
+    <link rel="alternate" hreflang="x-default" href={absoluteCanonical} />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -86,6 +92,7 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
     <meta name="twitter:image" content={absoluteImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
     <title>{fullTitle}</title>
+    {pathname !== '/' && <style is:inline>.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px)!important}.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:clamp(42px,5vw,72px) 0 clamp(58px,7vw,96px)!important}@media(max-width:740px){.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero,.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:38px 0 56px!important}}</style>}
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredData.length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>

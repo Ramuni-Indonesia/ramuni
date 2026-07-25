@@ -3,7 +3,7 @@
 .sd-page h2{font-size:clamp(2.05rem,4vw,4.15rem);max-width:15ch}
 .sd-page h3{letter-spacing:-.035em}
 
-.sd-hero{padding-block:clamp(58px,8vw,112px);overflow:hidden;background:var(--rice)}
+.sd-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px);overflow:hidden;background:var(--rice)}
 .sd-hero__layout{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(42px,7vw,94px);align-items:center}
 .sd-hero__copy .lede{margin-top:24px}.sd-hero__action{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-top:32px}.sd-hero__action p{color:var(--ink-72);font-size:.82rem;line-height:1.55;max-width:34ch}
 .sd-hero__visual{min-width:0}.sd-page--ledger .sd-hero__layout{grid-template-columns:.88fr 1.12fr}.sd-page--bridge .sd-hero__copy,.sd-page--timeline .sd-hero__copy{order:2}.sd-page--bridge .sd-hero__visual,.sd-page--timeline .sd-hero__visual{order:1}.sd-page--editorial .sd-hero__layout{grid-template-columns:1.18fr .82fr;align-items:end}

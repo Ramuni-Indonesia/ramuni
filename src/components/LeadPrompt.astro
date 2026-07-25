@@ -6,10 +6,10 @@ import '../styles/forms-conversion.css';
   <div class="lead-dialog__layout">
     <div class="lead-dialog__intro">
       <button class="lead-dialog__close" type="button" data-lead-close aria-label="Tutup formulir">Tutup</button>
-      <p class="section-kicker">Daftar Early Access</p>
-      <h2 id="lead-dialog-title">Masalah apa yang ingin Anda pahami lebih dulu?</h2>
-      <p>Isi data dasar dan pilih satu kebutuhan utama. Jangan sertakan data pelanggan atau transaksi.</p>
-      <a href="/demo">Ingin melihat alurnya dulu? Lihat demo.</a>
+      <p class="section-kicker">Coba RAMUNI</p>
+      <h2 id="lead-dialog-title">Mulai dari satu masalah usaha.</h2>
+      <p>Pilih hal yang ingin Anda lihat. Kami tunjukkan alurnya dengan data contoh, tanpa meminta data sensitif.</p>
+      <a href="/tour-produk-gratis">Belum ingin mengisi formulir? Coba simulasi gratis.</a>
     </div>
     <div class="lead-dialog__form"><LeadForm kind="early-access" /></div>
   </div>
@@ -17,7 +17,7 @@ import '../styles/forms-conversion.css';
 
 <script>
   const dialog = document.querySelector('[data-lead-dialog]');
-  document.querySelectorAll('a[href="/early-access"], [data-lead-open]').forEach((trigger) => {
+  document.querySelectorAll('[data-lead-open]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
       if (!(dialog instanceof HTMLDialogElement)) return;
       event.preventDefault();

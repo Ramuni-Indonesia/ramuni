@@ -1,6 +1,6 @@
 export const launchCta = {
-  label: 'Daftar Early Access',
-  href: '/early-access',
+  label: 'Coba Simulasi Gratis',
+  href: '/tour-produk-gratis',
 };
 
 export interface NavigationLink {
@@ -74,7 +74,6 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
         ],
       },
     ],
-    actions: [launchCta, { label: 'Lihat Demo', href: '/demo' }],
     featured: {
       eyebrow: 'Mulai di sini',
       title: 'Belum tahu modul yang dibutuhkan?',
@@ -97,7 +96,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
           { label: 'Kelola Stok', href: '/solusi/kelola-stok', description: 'Prioritaskan stok yang perlu diperiksa.' },
           { label: 'Pantau Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas', description: 'Baca omzet, biaya, laba, dan kas bersama.' },
           { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan', description: 'Lihat pola pembelian tanpa tindak lanjut otomatis.' },
-          { label: 'Laporan Otomatis', href: '/solusi/laporan-bisnis-otomatis', description: 'Rapikan rekap dengan definisi yang sama.' },
+          { label: 'Laporan Bisnis', href: '/solusi/laporan-bisnis-otomatis', description: 'Rapikan rekap dengan periode dan rumus yang sama.' },
         ],
       },
       {
@@ -135,7 +134,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     href: '/sumber-daya',
     eyebrow: 'Belajar praktis',
     title: 'Baca, hitung, dan pahami istilah.',
-    description: 'Materi edukasi tetap dipisahkan dari klaim fitur yang belum tersedia.',
+    description: 'Panduan praktis untuk membantu Anda membaca angka usaha.',
     columns: [
       {
         label: 'Baca',
@@ -148,7 +147,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'Pakai',
         links: [
-          { label: 'Template', href: '/template', description: 'Format kerja setelah aset disetujui.' },
+          { label: 'Template', href: '/template', description: 'Template sederhana untuk pekerjaan rutin usaha.' },
           { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha', description: 'Hitung laba edukatif di browser.' },
           { label: 'Kalkulator HPP', href: '/kalkulator/hpp', description: 'Periksa biaya barang terjual.' },
           { label: 'Kalkulator Reorder Stok', href: '/kalkulator/reorder-stok', description: 'Tentukan titik cek stok berikutnya.' },
@@ -157,9 +156,9 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'Bantuan',
         links: [
-          { label: 'Bantuan', href: '/bantuan', description: 'Struktur bantuan produk yang terverifikasi.' },
-          { label: 'Keamanan', href: '/keamanan', description: 'Baca batas data, AI, dan kontrol.' },
-          { label: 'Status', href: '/status', description: 'Status publik berbasis bukti operasional.' },
+          { label: 'Bantuan', href: '/bantuan', description: 'Cari jawaban penggunaan RAMUNI.' },
+          { label: 'Keamanan', href: '/keamanan', description: 'Pelajari cara RAMUNI menjaga data dan akses.' },
+          { label: 'Status', href: '/status', description: 'Lihat kondisi layanan RAMUNI.' },
         ],
       },
     ],
@@ -228,9 +227,9 @@ export const footerNavigation: FooterNavigationGroup[] = [
     label: 'Akun',
     links: [
       { label: 'Masuk', href: '/masuk' },
-      { label: 'Daftar', href: '/early-access' },
-      { label: 'Coba Gratis', href: '/early-access' },
-      { label: 'Minta Demo', href: '/demo' },
+      { label: 'Coba Simulasi Gratis', href: '/tour-produk-gratis' },
+      { label: 'Ajukan Akses Coba', href: '/early-access' },
+      { label: 'Lihat Demo', href: '/demo' },
     ],
   },
   {
@@ -380,7 +379,7 @@ export const products: Product[] = [
   {
     slug: 'laporan-insight',
     title: 'Laporan & Insight',
-    summary: 'Tutup hari dan minggu dengan ringkasan periode yang konsisten serta mudah ditelusuri.',
+    summary: 'Tutup hari dan minggu dengan ringkasan yang memakai periode dan rumus yang sama.',
     outcome: 'Tim memakai definisi angka yang sama saat mengevaluasi bisnis.',
     question: 'Bagaimana saya menutup hari dan minggu?',
     situations: ['Rekap mingguan memakan waktu', 'Angka berubah karena rumus berbeda', 'Tindak lanjut rapat tidak tercatat'],
@@ -397,7 +396,7 @@ export const products: Product[] = [
   {
     slug: 'integrasi',
     title: 'Integrasi Data',
-    summary: 'Masukkan data lewat CSV atau metode lain yang memang sudah aktif untuk akun Anda.',
+    summary: 'Mulai dari impor CSV, lalu lihat status data sebelum dipakai.',
     outcome: 'Mulai dari metode input yang benar-benar tersedia untuk usaha Anda.',
     question: 'Dari mana data dapat masuk?',
     situations: ['Data berada di aplikasi berbeda', 'Format impor belum konsisten', 'Ketersediaan konektor sering disalahartikan'],
@@ -426,10 +425,10 @@ export interface Solution {
 }
 
 export const solutions: Solution[] = [
-  { slug: 'naikkan-omzet', title: 'Memahami Perubahan Omzet', summary: 'Telusuri pola penjualan sebelum menentukan langkah pertumbuhan.', symptoms: ['Omzet berubah tanpa penyebab jelas', 'Produk atau hari lemah sulit ditemukan', 'Peluang penjualan hilang tidak tercatat'], modules: ['Penjualan', 'Dashboard Bisnis', 'Asisten AI', 'Pelanggan'], outcome: 'Menemukan pola dan pertanyaan lanjutan tanpa menjanjikan kenaikan omzet.', nextAction: 'Periksa produk, waktu, dan segmen yang berubah sebelum mengubah promosi.', comparison: 'Bandingkan produk, hari, dan pelanggan yang berubah.', moduleNotes: ['Menunjukkan transaksi dan produk yang berubah.', 'Membawa perubahan utama ke satu ringkasan.', 'Membantu menelusuri pertanyaan berikutnya.', 'Menunjukkan pola pembelian yang tersedia.'] },
-  { slug: 'kelola-stok', title: 'Kelola Stok Lebih Terarah', summary: 'Hubungkan saldo stok, pergerakan, dan pola penjualan untuk menentukan prioritas.', symptoms: ['Produk laris habis mendadak', 'Barang lambat bergerak menumpuk', 'Selisih stok tidak memiliki jejak'], modules: ['Inventori', 'Penjualan', 'Laporan & Insight'], outcome: 'Memprioritaskan pemeriksaan dan isi ulang stok berdasarkan bukti.', nextAction: 'Tinjau riwayat stok dan kecepatan penjualan sebelum membuat pesanan.', comparison: 'Bandingkan barang cepat laku dengan sisa stok.', moduleNotes: ['Menunjukkan saldo dan riwayat perubahan stok.', 'Memberi konteks kecepatan produk terjual.', 'Merangkum barang yang perlu diperiksa.'] },
+  { slug: 'naikkan-omzet', title: 'Memahami Perubahan Omzet', summary: 'Telusuri pola penjualan sebelum menentukan langkah pertumbuhan.', symptoms: ['Omzet berubah tanpa penyebab jelas', 'Produk atau hari lemah sulit ditemukan', 'Peluang penjualan hilang tidak tercatat'], modules: ['Penjualan', 'Dashboard Bisnis', 'Asisten AI', 'Pelanggan'], outcome: 'Temukan produk, waktu, atau pelanggan yang paling memengaruhi perubahan omzet.', nextAction: 'Periksa produk, waktu, dan segmen yang berubah sebelum mengubah promosi.', comparison: 'Bandingkan produk, hari, dan pelanggan yang berubah.', moduleNotes: ['Menunjukkan transaksi dan produk yang berubah.', 'Membawa perubahan utama ke satu ringkasan.', 'Membantu menelusuri pertanyaan berikutnya.', 'Menunjukkan pola pembelian yang tersedia.'] },
+  { slug: 'kelola-stok', title: 'Kelola Stok Lebih Terarah', summary: 'Hubungkan saldo stok, pergerakan, dan pola penjualan untuk menentukan prioritas.', symptoms: ['Produk laris habis mendadak', 'Barang lambat bergerak menumpuk', 'Selisih stok tidak memiliki jejak'], modules: ['Inventori', 'Penjualan', 'Laporan & Insight'], outcome: 'Tahu barang mana yang perlu dicek dan diisi ulang lebih dulu.', nextAction: 'Tinjau riwayat stok dan kecepatan penjualan sebelum membuat pesanan.', comparison: 'Bandingkan barang cepat laku dengan sisa stok.', moduleNotes: ['Menunjukkan saldo dan riwayat perubahan stok.', 'Memberi konteks kecepatan produk terjual.', 'Merangkum barang yang perlu diperiksa.'] },
   { slug: 'pantau-laba-dan-arus-kas', title: 'Pantau Laba dan Arus Kas', summary: 'Baca omzet, biaya, laba, dan kas sebagai rangkaian yang saling berkaitan.', symptoms: ['Omzet tinggi tetapi kas menipis', 'Biaya utama tidak terkelompok', 'Definisi laba belum konsisten'], modules: ['Keuangan', 'Penjualan', 'Dashboard Bisnis'], outcome: 'Memahami definisi, biaya, dan pergerakan periode secara lebih jelas.', nextAction: 'Validasi transaksi dan kelompok biaya sebelum mengambil keputusan keuangan.', comparison: 'Pisahkan omzet, biaya, laba, dan kas sebelum menyimpulkan.', moduleNotes: ['Mengelompokkan uang masuk, biaya, laba, dan kas.', 'Menunjukkan transaksi yang membentuk omzet.', 'Membandingkan perubahan pada periode yang sama.'] },
-  { slug: 'pahami-pelanggan', title: 'Pahami Pelanggan', summary: 'Satukan riwayat pembelian untuk melihat perilaku berulang tanpa melanggar privasi.', symptoms: ['Riwayat pelanggan tersebar', 'Pembeli berulang tidak dikenali', 'Tindak lanjut belum berbasis persetujuan'], modules: ['Pelanggan', 'Penjualan', 'Asisten AI'], outcome: 'Mengenali pola dan kelompok pelanggan tanpa pesan otomatis.', nextAction: 'Periksa persetujuan dan konteks pelanggan sebelum menindaklanjuti.', comparison: 'Lihat pola pembelian ulang tanpa mengirim pesan otomatis.', moduleNotes: ['Menyusun riwayat dan pola pembelian yang tersedia.', 'Menghubungkan pelanggan dengan transaksi.', 'Membantu membaca konteks tanpa menjalankan tindakan.'] },
+  { slug: 'pahami-pelanggan', title: 'Pahami Pelanggan', summary: 'Satukan riwayat pembelian untuk melihat siapa yang kembali dan produk apa yang mereka pilih.', symptoms: ['Riwayat pelanggan tersebar', 'Pembeli berulang tidak dikenali', 'Tindak lanjut belum berbasis persetujuan'], modules: ['Pelanggan', 'Penjualan', 'Asisten AI'], outcome: 'Lihat pembelian terakhir dan pola pembelian ulang sebelum tim menindaklanjuti.', nextAction: 'Periksa persetujuan dan konteks pelanggan sebelum menindaklanjuti.', comparison: 'Lihat pola pembelian ulang tanpa mengirim pesan otomatis.', moduleNotes: ['Menyusun riwayat dan pola pembelian yang tersedia.', 'Menghubungkan pelanggan dengan transaksi.', 'Membantu membaca konteks tanpa menjalankan tindakan.'] },
   { slug: 'laporan-bisnis-otomatis', title: 'Rapikan Laporan Bisnis', summary: 'Gunakan satu definisi metrik untuk ringkasan harian dan mingguan yang konsisten.', symptoms: ['Rekap mingguan disusun ulang', 'Angka berbeda antar tim', 'Laporan datang setelah keputusan dibuat'], modules: ['Laporan & Insight', 'Dashboard Bisnis'], outcome: 'Membuat ringkasan periode yang konsisten dari sumber yang sama.', nextAction: 'Sepakati periode dan definisi metrik sebelum membandingkan hasil.', comparison: 'Gunakan periode dan rumus yang sama di setiap rekap.', moduleNotes: ['Menyusun ringkasan harian dan mingguan.', 'Menampilkan perubahan utama sebelum detail.'] },
 ];
 

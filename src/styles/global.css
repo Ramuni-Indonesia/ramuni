@@ -282,3 +282,9 @@ h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.04;letter-spacing:-.045em}h1{font-siz
 }
 
 .decision-window__title{display:block;font-size:clamp(1.25rem,2.2vw,1.85rem);line-height:1.18;letter-spacing:-.04em;max-width:18ch}
+
+/* Live-readiness pass: tighter heroes, cleaner breadcrumbs, and safer mobile wrapping. */
+.breadcrumbs{display:none}
+.audience-breadcrumb{display:none}
+.consent-banner>div{min-width:0}.consent-banner p{overflow-wrap:anywhere}
+@media(max-width:740px){.consent-banner{padding:16px;bottom:12px}}
