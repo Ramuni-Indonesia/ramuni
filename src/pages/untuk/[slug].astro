@@ -12,6 +12,8 @@ const roleContext: Record<string, {
   collaboration: string[];
   collaborationNotes: string[];
   success: string[];
+  aiBoundary: string[];
+  faq: { question: string; answer: string }[];
   industrySlugs: string[];
   headings: { responsibility: string; priorities: string; workflow: string; permissions: string; collaboration: string; success: string; related: string; closing: string };
 }> = {
@@ -23,6 +25,11 @@ const roleContext: Record<string, {
     collaboration: ['Memberi batas akses', 'Menerima konteks dari supervisor', 'Menetapkan keputusan dan penanggung jawab'],
     collaborationNotes: ['Pastikan setiap peran hanya melihat data yang dibutuhkan.', 'Baca masalah bersama bukti yang sudah dikumpulkan.', 'Tentukan siapa yang menindaklanjuti.'],
     success: ['Ringkasan tiba tepat waktu', 'Definisi angka konsisten', 'Tindak lanjut memiliki pemilik'],
+    aiBoundary: ['AI merangkum, bukan menyetujui keputusan.', 'Perubahan akses dan tagihan tetap dilakukan pemilik.', 'Setiap saran perlu ditelusuri ke angka pendukung.'],
+    faq: [
+      { question: 'Apakah pemilik dapat melihat semua aktivitas tim?', answer: 'Hanya aktivitas yang tersedia dalam cakupan akun dan jejak yang sudah diterapkan.' },
+      { question: 'Apakah AI dapat menyetujui perubahan penting?', answer: 'Tidak. Persetujuan akses, tagihan, harga, dan tindakan berisiko tetap berada pada manusia.' },
+    ],
     industrySlugs: ['retail', 'distributor', 'jasa'],
     headings: { responsibility: 'Tahu mana yang membutuhkan keputusan hari ini.', priorities: 'Ringkasan pertama menjawab tiga pertanyaan pemilik.', workflow: 'Mulai dari perubahan, lalu tetapkan orang yang menindaklanjuti.', permissions: 'Kendali akun tetap berada pada pemilik.', collaboration: 'Keputusan sampai ke tim tanpa kehilangan alasan.', success: 'Hari kerja lebih jelas ketika setiap tindak lanjut punya pemilik.', related: 'Pilih modul dan contoh usaha yang paling dekat.', closing: 'Lihat ringkasan pemilik usaha dengan data sintetis.' },
   },
@@ -34,6 +41,11 @@ const roleContext: Record<string, {
     collaboration: ['Menjaga data operasional', 'Meminta persetujuan saat diperlukan', 'Memberi konteks kepada supervisor dan pemilik'],
     collaborationNotes: ['Rapikan data yang paling sering dipakai tim.', 'Kirim koreksi beserta catatannya.', 'Jelaskan masalah tanpa menghilangkan riwayat perubahan.'],
     success: ['Duplikasi berkurang', 'Koreksi memiliki jejak', 'Tugas data selesai tepat waktu'],
+    aiBoundary: ['AI menunjukkan data yang perlu dicek ulang.', 'Koreksi tetap mengikuti izin dan jejak perubahan.', 'Masalah akses diteruskan ke pemilik atau supervisor.'],
+    faq: [
+      { question: 'Apakah admin boleh mengubah semua data?', answer: 'Tidak. Jenis perubahan mengikuti izin, dan koreksi penting perlu jejak atau persetujuan.' },
+      { question: 'Apa yang dilakukan saat impor tidak cocok?', answer: 'Hentikan proses, periksa pemetaan kolom, lalu teruskan masalah tanpa menimpa data yang benar.' },
+    ],
     industrySlugs: ['retail', 'fnb', 'reseller-online'],
     headings: { responsibility: 'Data rapi sebelum masuk laporan.', priorities: 'Tugas yang belum lengkap muncul lebih dulu.', workflow: 'Rapikan, koreksi, lalu teruskan yang butuh persetujuan.', permissions: 'Admin bekerja luas tanpa mengambil alih keputusan pemilik.', collaboration: 'Koreksi bergerak bersama catatannya.', success: 'Pekerjaan admin selesai saat tim memakai data yang sama.', related: 'Buka modul yang paling sering dirawat admin.', closing: 'Lihat contoh alur admin tanpa memakai data usaha asli.' },
   },
@@ -45,6 +57,11 @@ const roleContext: Record<string, {
     collaboration: ['Mencatat transaksi', 'Meneruskan masalah dengan konteks', 'Mengikuti koreksi dari admin atau supervisor'],
     collaborationNotes: ['Pastikan item dan pembayaran tercatat dengan jelas.', 'Teruskan transaksi gagal tanpa mengulang input.', 'Ikuti koreksi yang sudah disetujui.'],
     success: ['Transaksi selesai tanpa duplikasi', 'Status pembayaran jelas', 'Masalah cepat diteruskan'],
+    aiBoundary: ['AI tidak mengubah pembayaran atau transaksi.', 'Transaksi gagal tidak boleh dikirim ulang tanpa pemeriksaan.', 'Koreksi diteruskan ke admin atau supervisor.'],
+    faq: [
+      { question: 'Apa yang dilakukan jika transaksi gagal disimpan?', answer: 'Jangan mengulang pembayaran. Simpan konteks kegagalan dan minta admin atau supervisor memeriksa statusnya.' },
+      { question: 'Apakah kasir dapat mengubah transaksi selesai?', answer: 'Tidak secara bebas. Koreksi mengikuti izin dan jalur persetujuan yang tersedia.' },
+    ],
     industrySlugs: ['retail', 'fnb', 'reseller-online'],
     headings: { responsibility: 'Transaksi selesai tanpa input ulang.', priorities: 'Layar kasir fokus pada transaksi yang sedang dikerjakan.', workflow: 'Selesaikan transaksi. Jika gagal, teruskan tanpa mengulang dari awal.', permissions: 'Kasir melihat yang dibutuhkan untuk melayani pembeli.', collaboration: 'Masalah sampai ke admin bersama detail transaksi.', success: 'Kasir berhasil ketika pembayaran jelas dan antrean tetap bergerak.', related: 'Lihat modul yang mendukung alur transaksi harian.', closing: 'Lihat contoh transaksi dan jalur pemulihannya.' },
   },
@@ -56,6 +73,11 @@ const roleContext: Record<string, {
     collaboration: ['Meninjau pekerjaan tim', 'Menghubungkan masalah dengan bukti', 'Meneruskan keputusan kepada pemilik'],
     collaborationNotes: ['Periksa pekerjaan yang belum selesai.', 'Bawa masalah dan bukti ke pemilik.', 'Catat keputusan agar tim menerima arah yang sama.'],
     success: ['Pengecualian terlihat lebih cepat', 'Tindak lanjut tidak hilang', 'Laporan memakai definisi yang sama'],
+    aiBoundary: ['AI membantu mengelompokkan masalah berulang.', 'Eskalasi tetap dibuat supervisor berdasarkan bukti.', 'Keputusan pemilik tidak digantikan oleh ringkasan AI.'],
+    faq: [
+      { question: 'Masalah apa yang perlu diteruskan ke pemilik?', answer: 'Teruskan masalah yang berdampak pada uang, akses, kebijakan, atau keputusan di luar izin supervisor.' },
+      { question: 'Apakah supervisor dapat melihat semua data akun?', answer: 'Tidak otomatis. Cakupan tampilan mengikuti kebutuhan kerja dan akses yang diberikan.' },
+    ],
     industrySlugs: ['retail', 'distributor', 'manufaktur-kecil'],
     headings: { responsibility: 'Masalah berulang terlihat sebelum menumpuk.', priorities: 'Pengecualian datang lebih dulu daripada aktivitas normal.', workflow: 'Tinjau masalah, kumpulkan alasan, lalu eskalasi bila perlu.', permissions: 'Supervisor meninjau operasi tanpa mengelola tagihan.', collaboration: 'Pemilik menerima masalah yang sudah disertai dasar.', success: 'Supervisor berhasil saat masalah tidak hilang di pergantian tim.', related: 'Pilih modul dan industri dengan banyak koordinasi tim.', closing: 'Lihat contoh alur supervisor dari masalah sampai tindak lanjut.' },
   },
@@ -133,7 +155,7 @@ const closingLinks = role.slug === 'kasir'
     <div class="container audience-signal-board">
       <div class="reveal"><strong id="alerts-title">Peringatan yang relevan</strong>{context.alerts.map((alert) => <p>{alert}</p>)}</div>
       <div class="reveal"><strong>Pertanyaan AI</strong>{context.questions.map((question) => <p>{question}</p>)}</div>
-      <div class="reveal"><strong>Batas AI</strong><p>Pada versi awal, AI hanya membaca dan menjelaskan.</p><p>Jawaban mengikuti data dan izin peran.</p><p>Tindakan berisiko tetap memerlukan manusia.</p></div>
+      <div class="reveal"><strong>Batas AI untuk {role.title}</strong>{context.aiBoundary.map((item) => <p>{item}</p>)}</div>
     </div>
   </section>
 
@@ -163,8 +185,7 @@ const closingLinks = role.slug === 'kasir'
     <div class="container audience-split">
       <div class="audience-section-heading reveal"><p class="eyebrow">FAQ</p><h2 id="faq-title">Pertanyaan tentang akses {role.title}.</h2></div>
       <div class="faq-list reveal">
-        <details><summary>Apakah {role.title} melihat semua data bisnis?</summary><p>Tidak. Visibilitas mengikuti akses yang diberikan dan kebutuhan pekerjaan.</p></details>
-        <details><summary>Apakah AI dapat menjalankan tindakan atas nama peran ini?</summary><p>Tidak pada MVP. AI membantu membaca konteks dan tidak menjalankan aksi bisnis otomatis.</p></details>
+        {context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
       </div>
     </div>
   </section>

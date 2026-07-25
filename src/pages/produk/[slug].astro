@@ -1,13 +1,166 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { industries, products } from '../../data/site';
+import { products } from '../../data/site';
 import { productNarratives } from '../../data/pageNarratives';
 import { releaseGates } from '../../config/release';
 
 export function getStaticPaths() { return products.map((product) => ({ params: { slug: product.slug }, props: { product } })); }
 const { product } = Astro.props;
 const narrative = productNarratives[product.slug];
+type UseCase = { title: string; text: string; href: string };
+type FaqItem = { question: string; answer: string };
+
+const productContext: Record<string, { roles: UseCase[]; industries: UseCase[]; faq: FaqItem[] }> = {
+  'asisten-ai': {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Menanyakan perubahan utama, lalu membuka angka yang menjadi dasarnya.', href: '/untuk/pemilik-usaha' },
+      { title: 'Supervisor', text: 'Meringkas masalah operasional sebelum meneruskannya kepada pemilik.', href: '/untuk/supervisor' },
+      { title: 'Admin Toko', text: 'Memeriksa data yang belum lengkap ketika jawaban belum cukup kuat.', href: '/untuk/admin-toko' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Menelusuri stok, produk laris, dan jam transaksi dari pertanyaan harian.', href: '/industri/retail' },
+      { title: 'F&B', text: 'Membaca perubahan menu bersama bahan dan waktu penjualan.', href: '/industri/fnb' },
+      { title: 'Distributor', text: 'Memeriksa pesanan ulang, stok, dan pembayaran tanpa mengirim tindakan otomatis.', href: '/industri/distributor' },
+    ],
+    faq: [
+      { question: 'Data apa yang dipakai untuk menjawab?', answer: 'Jawaban mengikuti periode, modul, dan catatan yang sedang dibuka. Data yang belum lengkap harus disebutkan.' },
+      { question: 'Apakah Asisten AI dapat mengubah data?', answer: 'Tidak pada versi awal. Asisten hanya membaca dan menjelaskan; perubahan tetap dilakukan pengguna sesuai akses.' },
+      { question: 'Apa yang perlu diperiksa sebelum memakai jawaban?', answer: 'Periksa periode, waktu pembaruan, sumber angka, dan bagian yang masih perlu dicek manusia.' },
+    ],
+  },
+  'dashboard-bisnis': {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Melihat perubahan penjualan, stok, dan kas sebelum membuka rinciannya.', href: '/untuk/pemilik-usaha' },
+      { title: 'Supervisor', text: 'Membawa pengecualian dan tindak lanjut yang belum selesai ke rapat.', href: '/untuk/supervisor' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Memantau produk laris, stok kritis, dan omzet pada periode yang sama.', href: '/industri/retail' },
+      { title: 'F&B', text: 'Membaca menu, jam ramai, bahan, dan biaya dalam satu ringkasan.', href: '/industri/fnb' },
+      { title: 'Jasa', text: 'Membandingkan pendapatan layanan dengan biaya yang terkait.', href: '/industri/jasa' },
+    ],
+    faq: [
+      { question: 'Seberapa baru angka yang tampil?', answer: 'Setiap ringkasan perlu menyebut waktu pembaruan. Angka lama tidak ditampilkan seolah-olah masih terkini.' },
+      { question: 'Apakah semua orang melihat dashboard yang sama?', answer: 'Tidak. Ringkasan dan detail mengikuti tugas serta akses setiap peran.' },
+      { question: 'Bisakah angka ringkasan ditelusuri?', answer: 'Arah produknya adalah membuka metrik, periode, dan catatan pendukung dari setiap sorotan.' },
+    ],
+  },
+  'katalog-produk': {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Menetapkan aturan nama, kategori, unit, harga, dan HPP yang dipakai tim.', href: '/untuk/pemilik-usaha' },
+      { title: 'Admin Toko', text: 'Merapikan produk ganda dan mengarsipkan item lama tanpa menghapus riwayat.', href: '/untuk/admin-toko' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Menjaga SKU dan satuan tetap sama dari rak sampai laporan.', href: '/industri/retail' },
+      { title: 'Distributor', text: 'Membedakan produk dan unit penjualan sebelum membaca stok volume besar.', href: '/industri/distributor' },
+      { title: 'Reseller Online', text: 'Menyamakan kode produk yang dicatat dari beberapa kanal.', href: '/industri/reseller-online' },
+    ],
+    faq: [
+      { question: 'Bagaimana menangani produk yang namanya ganda?', answer: 'Pilih satu identitas utama, samakan SKU dan unit, lalu arsipkan duplikat tanpa menghapus riwayat transaksi.' },
+      { question: 'Apakah varian dan bundel sudah termasuk?', answer: 'Belum tentu. Barcode, varian, bundel, lot, dan serial mengikuti status fitur yang sudah diuji.' },
+      { question: 'Siapa yang boleh mengubah harga atau HPP?', answer: 'Perubahan mengikuti pembagian akses akun dan perlu meninggalkan jejak yang dapat diperiksa.' },
+    ],
+  },
+  penjualan: {
+    roles: [
+      { title: 'Kasir', text: 'Mencatat item, nilai, waktu, dan status pembayaran pada transaksi aktif.', href: '/untuk/kasir' },
+      { title: 'Admin Toko', text: 'Memeriksa transaksi terlambat, ganda, atau belum lengkap.', href: '/untuk/admin-toko' },
+      { title: 'Pemilik Usaha', text: 'Membaca produk dan waktu yang membentuk perubahan omzet.', href: '/untuk/pemilik-usaha' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Membandingkan produk dan jam transaksi pada hari yang setara.', href: '/industri/retail' },
+      { title: 'F&B', text: 'Melihat menu yang berubah sebelum menilai promosi atau bahan.', href: '/industri/fnb' },
+      { title: 'Reseller Online', text: 'Menyatukan catatan kanal yang tersedia sebelum membandingkan produk.', href: '/industri/reseller-online' },
+    ],
+    faq: [
+      { question: 'Apa beda transaksi dan pembayaran?', answer: 'Transaksi mencatat penjualan; status pembayaran menunjukkan apakah uangnya sudah diterima atau masih perlu diperiksa.' },
+      { question: 'Bagaimana menangani transaksi yang gagal tersimpan?', answer: 'Jangan mengulang tanpa pemeriksaan. Catat statusnya dan teruskan ke admin atau supervisor agar tidak terjadi duplikasi.' },
+      { question: 'Apakah RAMUNI menjalankan promosi dari data penjualan?', answer: 'Tidak. Pola penjualan menjadi bahan pemeriksaan; keputusan promosi tetap dibuat pengguna.' },
+    ],
+  },
+  inventori: {
+    roles: [
+      { title: 'Admin Toko', text: 'Mencatat barang masuk, keluar, dan koreksi beserta alasannya.', href: '/untuk/admin-toko' },
+      { title: 'Supervisor', text: 'Menangani selisih dan stok kritis yang perlu tindak lanjut.', href: '/untuk/supervisor' },
+      { title: 'Pemilik Usaha', text: 'Menilai kebutuhan isi ulang dari saldo, laju keluar, dan waktu tunggu.', href: '/untuk/pemilik-usaha' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Mendahulukan SKU laris yang mendekati batas minimum.', href: '/industri/retail' },
+      { title: 'F&B', text: 'Mengecek bahan utama sebelum jam ramai berdasarkan unit yang konsisten.', href: '/industri/fnb' },
+      { title: 'Distributor', text: 'Membandingkan stok volume besar dengan pesanan yang sudah tercatat.', href: '/industri/distributor' },
+    ],
+    faq: [
+      { question: 'Apakah stok minimum berarti harus langsung membeli?', answer: 'Tidak. Batas minimum menandai barang untuk diperiksa bersama saldo fisik, laju keluar, dan waktu isi ulang.' },
+      { question: 'Bagaimana jika saldo sistem berbeda dari stok fisik?', answer: 'Catat jumlah fisik, selisih, waktu cek, dan alasan koreksi agar perubahan dapat ditelusuri.' },
+      { question: 'Apakah RAMUNI membuat pesanan pembelian otomatis?', answer: 'Tidak. RAMUNI tidak menjanjikan pengadaan otomatis; pengguna tetap menentukan tindakan.' },
+    ],
+  },
+  keuangan: {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Membaca omzet, biaya, laba, dan kas tanpa mencampur definisinya.', href: '/untuk/pemilik-usaha' },
+      { title: 'Supervisor', text: 'Membandingkan periode dengan rumus yang sama sebelum membahas perubahan.', href: '/untuk/supervisor' },
+      { title: 'Admin Toko', text: 'Menjaga kategori pemasukan dan pengeluaran tetap konsisten.', href: '/untuk/admin-toko' },
+    ],
+    industries: [
+      { title: 'Jasa', text: 'Membaca pendapatan layanan bersama biaya pengerjaannya.', href: '/industri/jasa' },
+      { title: 'Distributor', text: 'Memisahkan nilai pesanan dari pembayaran yang sudah masuk.', href: '/industri/distributor' },
+      { title: 'Manufaktur Kecil', text: 'Membandingkan biaya utama dengan penjualan pada periode yang sama.', href: '/industri/manufaktur-kecil' },
+    ],
+    faq: [
+      { question: 'Apa beda omzet, laba, dan kas?', answer: 'Omzet adalah nilai penjualan, laba mengikuti rumus biaya, dan kas menunjukkan uang yang tersedia pada waktu tertentu.' },
+      { question: 'Apakah informasi ini menggantikan akuntan?', answer: 'Tidak. Ringkasan bersifat operasional dan bukan nasihat pajak atau akuntansi profesional.' },
+      { question: 'Mengapa periode harus sama?', answer: 'Periode yang setara mencegah transaksi dan biaya dari rentang berbeda dibaca sebagai satu perubahan.' },
+    ],
+  },
+  pelanggan: {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Melihat pola pembelian berulang tanpa mengambil alih pilihan pelanggan.', href: '/untuk/pemilik-usaha' },
+      { title: 'Admin Toko', text: 'Menjaga identitas, riwayat, dan dasar izin tetap rapi.', href: '/untuk/admin-toko' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Membaca riwayat pembelian yang memang tersedia dan diizinkan.', href: '/industri/retail' },
+      { title: 'Jasa', text: 'Melihat layanan yang pernah dipakai sebelum tindak lanjut manusia.', href: '/industri/jasa' },
+      { title: 'Reseller Online', text: 'Menghubungkan riwayat kanal tanpa menyatukan identitas secara sembarang.', href: '/industri/reseller-online' },
+    ],
+    faq: [
+      { question: 'Apakah RAMUNI mengirim pesan otomatis?', answer: 'Tidak pada versi awal. Tindak lanjut dilakukan manusia setelah memeriksa izin dan konteks pelanggan.' },
+      { question: 'Data pelanggan apa yang perlu disimpan?', answer: 'Gunakan hanya data yang dibutuhkan, memiliki dasar izin, dan sesuai akses pekerjaan.' },
+      { question: 'Bagaimana jika satu pelanggan tercatat beberapa kali?', answer: 'Samakan pengenal secara hati-hati dan jangan menggabungkan identitas tanpa dasar yang jelas.' },
+    ],
+  },
+  'laporan-insight': {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Membaca perubahan, alasan, dan pemilik tindak lanjut dalam satu ringkasan.', href: '/untuk/pemilik-usaha' },
+      { title: 'Supervisor', text: 'Menyiapkan laporan dengan periode dan definisi yang disepakati.', href: '/untuk/supervisor' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Merangkum penjualan, stok kritis, dan koreksi yang perlu dicek.', href: '/industri/retail' },
+      { title: 'F&B', text: 'Membawa perubahan menu, bahan, dan biaya ke evaluasi periode.', href: '/industri/fnb' },
+      { title: 'Distributor', text: 'Menghubungkan pergerakan produk, pesanan ulang, dan pembayaran.', href: '/industri/distributor' },
+    ],
+    faq: [
+      { question: 'Kapan laporan dianggap siap dibahas?', answer: 'Saat periode, rumus, sumber, perubahan utama, dan penanggung jawab tindak lanjut sudah jelas.' },
+      { question: 'Apakah laporan dikirim otomatis?', answer: 'Kanal notifikasi dan pengiriman mengikuti status fitur. Jangan menganggapnya aktif sebelum tersedia.' },
+      { question: 'Bagaimana jika angka berbeda antar laporan?', answer: 'Periksa batas periode, definisi metrik, dan waktu pembaruan sebelum memilih angka acuan.' },
+    ],
+  },
+  integrasi: {
+    roles: [
+      { title: 'Pemilik Usaha', text: 'Menentukan sumber data yang boleh dipakai dan tingkat aksesnya.', href: '/untuk/pemilik-usaha' },
+      { title: 'Admin Toko', text: 'Menyiapkan format, menjalankan impor, dan memeriksa baris yang gagal.', href: '/untuk/admin-toko' },
+    ],
+    industries: [
+      { title: 'Retail', text: 'Memulai dari katalog dan transaksi yang dapat diekspor dengan rapi.', href: '/industri/retail' },
+      { title: 'Distributor', text: 'Memeriksa format produk, pelanggan, dan pembayaran sebelum impor.', href: '/industri/distributor' },
+      { title: 'Reseller Online', text: 'Membawa catatan kanal melalui metode yang memang sudah tersedia.', href: '/industri/reseller-online' },
+    ],
+    faq: [
+      { question: 'Metode data apa yang tersedia?', answer: 'CSV menjadi jalur awal. Metode lain hanya ditampilkan setelah diuji dan aktif untuk akun terkait.' },
+      { question: 'Apa yang terjadi jika sebagian baris gagal?', answer: 'Impor perlu menunjukkan baris bermasalah dan alasannya agar admin dapat memperbaiki lalu mencoba kembali.' },
+      { question: 'Apakah semua koneksi berjalan langsung?', answer: 'Tidak. Status harus membedakan proses manual, terjadwal, langsung, terbatas, dan belum tersedia.' },
+    ],
+  },
+};
 const relatedProductSlugs: Record<string, string[]> = {
   'asisten-ai': ['dashboard-bisnis', 'laporan-insight', 'integrasi'],
   'dashboard-bisnis': ['asisten-ai', 'laporan-insight', 'keuangan'],
@@ -34,18 +187,25 @@ const relatedProducts = (relatedProductSlugs[product.slug] || []).flatMap((slug)
   const related = products.find((entry) => entry.slug === slug);
   return related ? [related] : [];
 });
-const matchingIndustries = product.industries.flatMap((title) => {
-  const industry = industries.find((entry) => entry.title.toLocaleLowerCase('id-ID') === title.toLocaleLowerCase('id-ID'));
-  return industry ? [industry] : [];
-});
 const education = educationByProduct[product.slug];
+const context = productContext[product.slug];
+const productUrl = new URL(`/produk/${product.slug}/`, Astro.site || Astro.url.origin).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: `${product.title} RAMUNI`,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: productUrl,
+  description: product.summary,
+};
 ---
-<BaseLayout title={`${product.title} RAMUNI`} description={product.summary} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={`${product.title} RAMUNI`} description={product.summary} noindex={!releaseGates.claimPagesIndexable} schema={schema}>
   <section class="detail-hero">
     <div class="container detail-hero__layout">
       <div class="detail-hero__copy reveal is-visible">
         <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk', href: '/produk' }, { label: product.title }]} />
-        <span class="availability-label">Concept Preview</span>
+        <span class="availability-label">Pratinjau konsep</span>
         <h1>{product.title}</h1>
         <p class="lede">{product.summary}</p>
         <div class="button-row"><a class="button button--primary" href="/early-access">Daftar Early Access</a><a class="button button--secondary" href="/demo">Lihat Demo</a></div>
@@ -105,8 +265,8 @@ const education = educationByProduct[product.slug];
 
   <section class="section surface relevance-section">
     <div class="container relevance-section__layout">
-      <div><h2>{narrative.roleHeading}</h2><div class="relevance-list">{product.roles.map((role) => <span>{role}</span>)}</div></div>
-      <div><h2>{narrative.industryHeading}</h2><div class="relevance-list">{matchingIndustries.map((industry) => <a href={`/industri/${industry.slug}`}>{industry.title}</a>)}</div></div>
+      <div><h2>{narrative.roleHeading}</h2><div class="context-list">{context.roles.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</div></div>
+      <div><h2>{narrative.industryHeading}</h2><div class="context-list">{context.industries.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</div></div>
     </div>
   </section>
 
@@ -141,7 +301,7 @@ const education = educationByProduct[product.slug];
   </section>
 
   <section class="section surface detail-faq">
-    <div class="container detail-faq__layout"><h2>Pertanyaan tentang {product.title}.</h2><div class="faq-list"><details><summary>Apakah semua kemampuan sudah tersedia?</summary><p>Tidak selalu. Status ditampilkan sesuai bukti rilis dan dapat berbeda pada setiap kelompok fitur.</p></details><details><summary>Apakah hasil dapat langsung dijalankan?</summary><p>Insight adalah bahan keputusan. Pengguna tetap memeriksa bukti dan menentukan tindakan.</p></details><details><summary>Bagaimana cara melihat kecocokannya?</summary><p>Gunakan demo dengan data sintetis atau daftar early access untuk membahas kebutuhan awal.</p></details></div></div>
+    <div class="container detail-faq__layout"><h2>Pertanyaan tentang {product.title}.</h2><div class="faq-list">{context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div>
   </section>
 
   <section class="section product-detail-close"><div class="container product-detail-close__layout"><h2>{narrative.closing}</h2><div class="button-row"><a class="button button--primary" href="/early-access">Daftar Early Access</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div></div></section>
@@ -244,6 +404,27 @@ const education = educationByProduct[product.slug];
     background: var(--rice);
   }
 
+  .context-list {
+    display: grid;
+    margin-top: 30px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .context-list > a {
+    display: grid;
+    gap: 7px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ink-10);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .context-list > a span {
+    color: var(--ink-72);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
   .related-learning__layout {
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
@@ -308,6 +489,15 @@ const education = educationByProduct[product.slug];
   }
 
   @media (hover: hover) {
+    .context-list > a {
+      transition: padding 180ms ease, background-color 180ms ease;
+    }
+
+    .context-list > a:hover {
+      padding-inline: 12px;
+      background: var(--white);
+    }
+
     .related-module-list > a {
       transition: padding 180ms ease, background-color 180ms ease;
     }
@@ -342,6 +532,7 @@ const education = educationByProduct[product.slug];
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .context-list > a,
     .related-module-list > a {
       transition: none;
     }

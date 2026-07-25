@@ -1,8 +1,12 @@
 # Analytics Event Dictionary
 
-Status: specification only. The site does not currently load GTM, GA4, Google Ads, Meta Pixel, or another analytics SDK.
+Status: client-side consent and lead-acceptance signals are implemented. Vendor analytics and conversion delivery remain specification only; the site does not currently load GTM, GA4, Google Ads, Meta Pixel, or another analytics SDK.
 
 The consent component stores a first-party choice and dispatches `ramuni:consent`. This event is not yet mapped to Google Consent Mode v2 or any vendor tag.
+
+Enabled lead forms capture an allowlisted set of UTM parameters and advertising click IDs. The browser retains the first recorded touch and updates the last touch when a later attributed visit occurs. Both records are sanitized, limited in length, serialized into hidden form fields, and sent only with the lead submission. The receiving service must still validate these values before storage or use.
+
+After the configured lead endpoint returns a successful HTTP response, the form dispatches `ramuni:lead:accepted` with `leadType`, `attributionPresent`, and `acceptedAt`, then redirects to the matching thank-you page. This browser event contains no submitted form values. It is an integration signal, not proof of durable server storage and not yet mapped to a vendor conversion event.
 
 ## Event contract
 
@@ -27,7 +31,7 @@ The consent component stores a first-party choice and dispatches `ramuni:consent
 
 Never send name, email, phone, WhatsApp number, business name, message or textarea content, tenant or customer IDs, transaction values, financial records, or other business data to the data layer, analytics, pixels, URLs, or third-party error logs.
 
-Attribution keys such as UTM values and click IDs require server-side validation and storage with the lead. They are not currently implemented by the static site.
+Implemented attribution keys are `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `utm_id`, `gclid`, `gbraid`, `wbraid`, `fbclid`, `msclkid`, `ttclid`, and `li_fat_id`. The static site records first-touch and last-touch values plus landing path and capture time. The lead service must validate, normalize, retain, and delete these values under the same approved controls as the lead.
 
 ## Activation blockers
 

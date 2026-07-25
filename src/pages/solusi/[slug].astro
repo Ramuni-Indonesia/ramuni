@@ -11,6 +11,49 @@ export function getStaticPaths() {
 
 const { solution } = Astro.props;
 const narrative = solutionNarratives[solution.slug];
+type SolutionFaq = { question: string; answer: string };
+const solutionContext: Record<string, { faq: SolutionFaq[]; closingText: string }> = {
+  'naikkan-omzet': {
+    faq: [
+      { question: 'Apakah RAMUNI menjamin omzet naik?', answer: 'Tidak. RAMUNI membantu menemukan produk, waktu, dan pelanggan yang berubah agar keputusan tidak dimulai dari dugaan.' },
+      { question: 'Data apa yang perlu dibandingkan?', answer: 'Mulai dari transaksi, produk, waktu penjualan, dan periode yang setara. Tambahkan konteks pelanggan hanya jika datanya tersedia dan boleh dipakai.' },
+      { question: 'Apakah promosi menjadi langkah pertama?', answer: 'Belum tentu. Periksa stok, perubahan produk, waktu transaksi, dan data yang hilang sebelum mengubah promosi.' },
+    ],
+    closingText: 'Bawa dua periode yang setara dan satu perubahan omzet yang ingin ditelusuri.',
+  },
+  'kelola-stok': {
+    faq: [
+      { question: 'Apakah stok minimum berarti harus langsung restock?', answer: 'Tidak. Batas minimum menandai barang untuk diperiksa bersama saldo fisik, laju keluar, dan waktu isi ulang.' },
+      { question: 'Data apa yang perlu disiapkan?', answer: 'Siapkan identitas produk, unit, saldo awal bertanggal, serta riwayat barang masuk, keluar, dan koreksi.' },
+      { question: 'Bagaimana jika catatan berbeda dari stok fisik?', answer: 'Catat selisih dan alasannya terlebih dahulu. Jangan menutup perbedaan hanya dengan mengganti saldo.' },
+    ],
+    closingText: 'Mulai dari lima sampai sepuluh barang yang paling sering keluar atau paling sulit diisi ulang.',
+  },
+  'pantau-laba-dan-arus-kas': {
+    faq: [
+      { question: 'Apa beda omzet, laba, dan kas?', answer: 'Omzet adalah nilai penjualan, laba mengikuti rumus biaya, sedangkan kas menunjukkan uang yang tersedia pada waktu tertentu.' },
+      { question: 'Mengapa periode laporan harus sama?', answer: 'Transaksi, biaya, dan pembayaran dari rentang berbeda dapat membuat perubahan terlihat lebih besar atau lebih kecil dari keadaan sebenarnya.' },
+      { question: 'Apakah ringkasan ini menggantikan akuntan?', answer: 'Tidak. RAMUNI membantu membaca catatan operasional dan bukan pengganti nasihat pajak atau akuntansi profesional.' },
+    ],
+    closingText: 'Siapkan satu periode, kelompok biaya utama, dan status pembayaran yang sudah diperiksa.',
+  },
+  'pahami-pelanggan': {
+    faq: [
+      { question: 'Apakah RAMUNI menghubungi pelanggan otomatis?', answer: 'Tidak pada versi awal. Tim tetap memeriksa izin, memilih kanal, dan menentukan tindak lanjut.' },
+      { question: 'Riwayat apa yang boleh dipakai?', answer: 'Gunakan hanya riwayat yang dibutuhkan, memiliki dasar izin, dan dapat dilihat oleh peran terkait.' },
+      { question: 'Bagaimana menangani data pelanggan yang ganda?', answer: 'Gunakan pengenal yang konsisten, tetapi jangan menggabungkan dua identitas tanpa dasar yang dapat diperiksa.' },
+    ],
+    closingText: 'Mulai dari riwayat yang rapi dan satu pertanyaan pelanggan yang memang perlu dijawab.',
+  },
+  'laporan-bisnis-otomatis': {
+    faq: [
+      { question: 'Apa yang perlu disepakati sebelum laporan dibuat?', answer: 'Tentukan nama metrik, rumus, sumber, periode, jadwal tutup, dan orang yang menindaklanjuti.' },
+      { question: 'Apakah laporan langsung dikirim otomatis?', answer: 'Kanal pengiriman mengikuti status fitur. Ringkasan perlu diuji terhadap sumber asal sebelum menjadi kebiasaan tim.' },
+      { question: 'Bagaimana jika angka antar tim berbeda?', answer: 'Periksa definisi metrik, batas periode, dan waktu pembaruan sebelum membahas hasilnya.' },
+    ],
+    closingText: 'Pilih satu laporan yang paling sering terlambat, lalu samakan aturan penyusunannya.',
+  },
+};
 const productByTitle = new Map(products.map((product) => [product.title, product]));
 const industryBySlug = new Map(industries.map((industry) => [industry.slug, industry]));
 const supportingModules = solution.modules.map((module, index) => ({
@@ -19,6 +62,7 @@ const supportingModules = solution.modules.map((module, index) => ({
   product: productByTitle.get(module),
 }));
 const industryExamples = narrative.industryExamples.filter((example) => industryBySlug.has(example.slug));
+const context = solutionContext[solution.slug];
 ---
 <BaseLayout title={`${solution.title} | RAMUNI`} description={solution.summary} noindex={!releaseGates.claimPagesIndexable}>
   <section class="solution-detail-hero">
@@ -89,7 +133,15 @@ const industryExamples = narrative.industryExamples.filter((example) => industry
     </div>
   </section>
 
-  <section class="section detail-faq"><div class="container detail-faq__layout"><h2>Pertanyaan sebelum memulai.</h2><div class="faq-list"><details><summary>Apakah solusi ini menjamin hasil bisnis?</summary><p>Tidak. RAMUNI membantu menelusuri pola dan bukti, bukan menjanjikan hasil tertentu.</p></details><details><summary>Data apa yang perlu disiapkan?</summary><p>Kebutuhan data bergantung pada masalah dan modul. Demo publik hanya memakai data sintetis.</p></details><details><summary>Apakah RAMUNI mengambil tindakan otomatis?</summary><p>Tidak pada versi awal. AI hanya membaca dan menjelaskan, sedangkan pengguna tetap memegang kendali.</p></details></div></div></section>
+  <section class="section detail-faq"><div class="container detail-faq__layout"><h2>Pertanyaan sebelum memulai.</h2><div class="faq-list">{context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
 
-  <section class="section solution-detail-close"><div class="container solution-detail-close__layout"><h2>{narrative.closing}</h2><div class="button-row"><a class="button button--primary" href="/demo">Jadwalkan Demo</a><a class="button button--secondary" href="/solusi">Lihat Semua Solusi</a></div></div></section>
+  <section class="section solution-detail-close"><div class="container solution-detail-close__layout"><div><h2>{narrative.closing}</h2><p class="solution-detail-close__text">{context.closingText}</p></div><div class="button-row"><a class="button button--primary" href="/demo">Jadwalkan Demo</a><a class="button button--secondary" href="/solusi">Lihat Semua Solusi</a></div></div></section>
 </BaseLayout>
+
+<style>
+  .solution-detail-close__text {
+    max-width: 52ch;
+    margin-top: 16px;
+    color: var(--ink-72);
+  }
+</style>

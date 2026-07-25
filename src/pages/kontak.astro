@@ -1,8 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/LeadForm.astro';
+const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteOrigin}/#organization`,
+  name: 'RAMUNI',
+  url: siteOrigin,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    availableLanguage: ['id'],
+    url: `${siteOrigin}/kontak/`,
+  },
+};
 ---
-<BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk demo, dukungan produk, kemitraan, privasi, atau keamanan melalui jalur yang sesuai.">
+<BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk demo, dukungan produk, kemitraan, privasi, atau keamanan melalui jalur yang sesuai." schema={schema}>
   <header class="contact-hero"><div class="container contact-hero-layout"><div class="reveal is-visible"><h1>Kirim pesan ke jalur yang paling aman.</h1><p class="lede">Ceritakan kebutuhan bisnisnya secara ringkas. Untuk data pelanggan, kredensial, atau laporan keamanan, tunggu kanal khusus yang sesuai.</p></div><div class="contact-principle reveal is-visible"><span>Prinsip utama</span><strong>Konteks cukup. Rahasia jangan.</strong><p>Nama pelanggan, transaksi, token, password, dan rincian kerentanan tidak boleh masuk formulir umum.</p></div></div></header>
 
   <section class="section surface" aria-labelledby="contact-paths"><div class="container contact-path-layout"><div class="contact-sticky"><p class="section-kicker">Jalur kontak</p><h2 id="contact-paths">Pilih tujuan sebelum menulis pesan.</h2><p>Beberapa kanal masih disiapkan. Sampai kanal resmi tampil, kami tidak mengalihkan pesan sensitif ke inbox umum.</p></div><div class="contact-path-list">

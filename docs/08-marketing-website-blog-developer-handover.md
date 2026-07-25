@@ -12,7 +12,7 @@ Referensi utama:
 - [05-marketing-blog-plan.md](05-marketing-blog-plan.md)
 - [06-product-manual-plan.md](06-product-manual-plan.md)
 - [13-final-brand-implementation-brief.md](13-final-brand-implementation-brief.md) — source of truth logo, warna, font, favicon, aset, dan aturan penerapan brand final.
-- [10-marketing-pages-blog-content-brief.md](10-marketing-pages-blog-content-brief.md) â€” source of truth detail section, navbar, blog/editorial, resource, help, dan paid landing page.
+- [10-marketing-pages-blog-content-brief.md](10-marketing-pages-blog-content-brief.md) - source of truth detail section, navbar, blog/editorial, resource, help, dan paid landing page.
 
 ## Tujuan dan guardrails
 
@@ -160,30 +160,30 @@ Breadcrumb wajib pada product, solution, industry, role, blog, guide, template, 
 
 ```text
 Homepage (/)
-â”œâ”€â”€ Produk (/produk)
-â”‚   â”œâ”€â”€ Asisten AI (/produk/asisten-ai)
-â”‚   â”œâ”€â”€ Dashboard (/produk/dashboard-bisnis)
-â”‚   â”œâ”€â”€ Penjualan (/produk/penjualan)
-â”‚   â”œâ”€â”€ Inventori (/produk/inventori)
-â”‚   â”œâ”€â”€ Keuangan (/produk/keuangan)
-â”‚   â”œâ”€â”€ Pelanggan (/produk/pelanggan)
-â”‚   â”œâ”€â”€ Laporan (/produk/laporan-insight)
-â”‚   â””â”€â”€ Integrasi (/produk/integrasi)
-â”œâ”€â”€ Solusi (/solusi/*)
-â”œâ”€â”€ Industri (/industri/*)
-â”œâ”€â”€ Untuk (/untuk/*)
-â”œâ”€â”€ Harga (/harga)
-â”œâ”€â”€ Demo (/demo)
-â”œâ”€â”€ Early Access canonical (/early-access)
-â”œâ”€â”€ Ads LP temporary noindex (/lp/[campaign-slug])
-â”œâ”€â”€ Keamanan (/keamanan)
-â”œâ”€â”€ Tentang (/tentang)
-â”œâ”€â”€ Kontak (/kontak)
-â”œâ”€â”€ Blog (/blog, /blog/kategori/[slug], /blog/[slug])
-â”œâ”€â”€ Resources (/panduan/[slug], /template/[slug], /kalkulator/[slug], /kamus-bisnis/[slug])
-â”œâ”€â”€ Legal/Support (/bantuan, /status, /privasi, /syarat-penggunaan, /kebijakan-cookie, /pemrosesan-data)
-â”œâ”€â”€ Thank-you noindex (/terima-kasih/*)
-â””â”€â”€ System noindex (/404, /500, /maintenance)
+- Produk (/produk)
+  - Asisten AI (/produk/asisten-ai)
+  - Dashboard (/produk/dashboard-bisnis)
+  - Penjualan (/produk/penjualan)
+  - Inventori (/produk/inventori)
+  - Keuangan (/produk/keuangan)
+  - Pelanggan (/produk/pelanggan)
+  - Laporan (/produk/laporan-insight)
+  - Integrasi (/produk/integrasi)
+- Solusi (/solusi/*)
+- Industri (/industri/*)
+- Untuk (/untuk/*)
+- Harga (/harga)
+- Demo (/demo)
+- Early Access canonical (/early-access)
+- Ads LP temporary noindex (/lp/[campaign-slug])
+- Keamanan (/keamanan)
+- Tentang (/tentang)
+- Kontak (/kontak)
+- Blog (/blog, /blog/kategori/[slug], /blog/[slug])
+- Resources (/panduan/[slug], /template/[slug], /kalkulator/[slug], /kamus-bisnis/[slug])
+- Legal/Support (/bantuan, /status, /privasi, /syarat-penggunaan, /kebijakan-cookie, /pemrosesan-data)
+- Thank-you noindex (/terima-kasih/*)
+- System noindex (/404, /500, /maintenance)
 ```
 
 ### Route tambahan yang wajib masuk URL map
@@ -359,7 +359,7 @@ Before launch:
 - Set owners using least privilege and link GSC to GA4.
 - Create Bing Webmaster Tools property and submit/import sitemap.
 
-After launch, review indexing, CWV, queries, pages, CTR, average position, 404s, and redirects weekly. Use GSC evidence after 4-8 weeks to refresh titles, metadata, internal links, and contentâ€”not assumptions.
+After launch, review indexing, CWV, queries, pages, CTR, average position, 404s, and redirects weekly. Use GSC evidence after 4-8 weeks to refresh titles, metadata, internal links, and content, not assumptions.
 
 Developer evidence: verified property, sitemap fetched successfully, robots accessible, key URLs indexable, PageSpeed/CWV baseline, and schema validation results.
 

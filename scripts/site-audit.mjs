@@ -2,8 +2,10 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
 const sourceRoot = fileURLToPath(new URL('../src/', import.meta.url));
+const docsRoot = fileURLToPath(new URL('../docs/', import.meta.url));
 const files = [];
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -24,6 +26,17 @@ async function walkSource(dir) {
 }
 await walkSource(sourceRoot);
 
+const documentationFiles = [];
+async function walkDocumentation(dir) {
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) await walkDocumentation(path);
+    else if (entry.name.endsWith('.md')) documentationFiles.push(path);
+  }
+}
+await walkDocumentation(docsRoot);
+documentationFiles.push(join(projectRoot, 'README.md'));
+
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
 const assetPaths = new Set(files.map((file) => `/${relative(root, file).split(sep).join('/')}`));
 const failures = [];
@@ -34,7 +47,17 @@ const TITLE_MIN = 10;
 const TITLE_MAX = 65;
 const DESCRIPTION_MIN = 50;
 const DESCRIPTION_MAX = 180;
+const PERFORMANCE_BUDGETS = Object.freeze({
+  // HTML is delivered per route, so the route-level cap is the PSI-sensitive
+  // guard. The aggregate cap only catches accidental site-wide duplication.
+  html: { perFile: 45_000, total: 2_500_000 },
+  css: { perFile: 110_000, total: 120_000 },
+  js: { perFile: 15_000, total: 20_000 },
+  image: { perFile: 100_000, total: 250_000 },
+  font: { perFile: 20_000, total: 60_000 },
+});
 const DASH_MARKER = /[\u2013\u2014\u00c2\u00e2]/;
+const MOJIBAKE_MARKER = /[\u00c2\u00e2\ufffd]/;
 const AI_MARKERS = [
   /\bas an ai language model\b/i,
   /\bsebagai (?:sebuah )?model (?:bahasa )?ai\b/i,
@@ -62,6 +85,37 @@ function routeFor(file) {
   if (rel === 'index.html') return '/';
   if (rel === '404.html' || rel === '500.html') return `/${rel.replace('.html', '')}`;
   return `/${rel.replace(/\/index\.html$/, '')}`;
+}
+
+function formatBytes(value) {
+  return `${(value / 1_000).toFixed(1)} kB`;
+}
+
+async function auditPerformanceBudgets() {
+  const categories = [
+    ['html', (file) => file.endsWith('.html')],
+    ['css', (file) => file.endsWith('.css')],
+    ['js', (file) => file.endsWith('.js')],
+    ['image', (file) => /\.(?:avif|gif|ico|jpe?g|png|svg|webp)$/i.test(file)],
+    ['font', (file) => /\.(?:otf|ttf|woff2?)$/i.test(file)],
+  ];
+
+  for (const [category, matches] of categories) {
+    const budget = PERFORMANCE_BUDGETS[category];
+    const matchingFiles = files.filter(matches);
+    let total = 0;
+    for (const file of matchingFiles) {
+      const size = (await readFile(file)).byteLength;
+      total += size;
+      if (size > budget.perFile) {
+        const rel = relative(root, file).split(sep).join('/');
+        failures.push(`performance budget: ${rel} is ${formatBytes(size)}; ${category} file limit is ${formatBytes(budget.perFile)}`);
+      }
+    }
+    if (total > budget.total) {
+      failures.push(`performance budget: total ${category} is ${formatBytes(total)}; limit is ${formatBytes(budget.total)}`);
+    }
+  }
 }
 
 function capture(html, pattern) { return html.match(pattern)?.[1]?.trim() || ''; }
@@ -359,8 +413,15 @@ for (const file of sourceFiles.filter((item) => /\.(astro|css|js|mjs|ts|md|mdx)$
   for (const marker of AI_MARKERS) if (marker.test(source)) failures.push(`src/${rel}: AI-generation marker found`);
 }
 
+for (const file of documentationFiles) {
+  const content = await readFile(file, 'utf8');
+  if (MOJIBAKE_MARKER.test(content)) failures.push(`${relative(projectRoot, file).split(sep).join('/')}: mojibake marker found`);
+}
+
+await auditPerformanceBudgets();
+
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Audited ${htmlFiles.length} HTML files: metadata, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, and robots all passed.`);
+console.log(`Audited ${htmlFiles.length} HTML files: metadata, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, robots, documentation encoding, and production asset budgets all passed.`);

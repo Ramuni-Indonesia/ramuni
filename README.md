@@ -1,64 +1,123 @@
-# RAMUNI Marketing Website
+# RAMUNI Website
 
-Static-first marketing website and dummy blog for RAMUNI, built with Astro. The implementation follows the approved Lipat Arah brand kit, the marketing developer handover, and the page-content brief in `docs/`.
+[![Quality](https://github.com/Ramuni-Indonesia/ramuni/actions/workflows/quality.yml/badge.svg)](https://github.com/Ramuni-Indonesia/ramuni/actions/workflows/quality.yml)
+
+The official static-first marketing website and editorial blog for RAMUNI. It is built with Astro for fast delivery, accessible interaction, strong technical SEO, and a clean path from local Markdown content to a future CMS.
+
+> Publication status: production candidate. The codebase is deployable, but public launch still requires the production lead endpoint, legal and analytics approval, hosting configuration, final responsive QA, and public-domain PageSpeed verification.
+
+## What is included
+
+- Marketing, product, solution, role, and industry pages.
+- Conversion routes for early access, demo, pricing, and contact.
+- Editorial blog with local Astro content collections and structured author, category, and article templates.
+- Resource hubs for guides, calculators, templates, and business terms.
+- Technical SEO foundations: canonical URLs, robots policy, sitemap, Open Graph, JSON-LD, and evidence-gated indexability.
+- Accessible responsive navigation, forms, consent controls, focus states, and reduced-motion behavior.
+- Self-hosted Plus Jakarta Sans and optimized RAMUNI brand assets.
+- Static output audit covering metadata, schema contracts, links, accessibility basics, placeholder governance, and asset budgets.
+
+CMS integration is intentionally deferred. Current blog entries are controlled sample content for template and design validation.
+
+## Technology
+
+- [Astro](https://astro.build/) 7 with static output
+- TypeScript
+- Native CSS and a small IntersectionObserver enhancement
+- Local Markdown content collections
+- GitHub Actions for repeatable quality gates
+
+The site intentionally avoids a client-side framework, WebGL, autoplay video, and large animation libraries. Motion is CSS-first, restrained, and disabled when the user requests reduced motion.
+
+## Requirements
+
+- Node.js 22
+- npm 10 or newer
 
 ## Local development
 
 ```powershell
-npm install --force
+git clone https://github.com/Ramuni-Indonesia/ramuni.git
+cd ramuni
+npm ci --force
+Copy-Item .env.example .env
 npm run dev
-npm run build
-npm run audit
 ```
 
-`--force` is currently needed on this Windows workstation because the official Astro WASI fallback packages declare a `wasm32` CPU target. The project uses the WASI compiler path because local Application Control blocks Astro native bindings. Normal Linux CI can remove the forced WASI packages and `NAPI_RS_FORCE_WASI` after verification.
+Open the URL printed by Astro. Never commit `.env`, credentials, private endpoints, analytics secrets, or access tokens.
 
-Copy `.env.example` to the deployment environment and set only approved values. Do not commit credentials or private endpoints.
+`--force` is currently required because the locked Astro WASI fallback packages declare a `wasm32` CPU target. The project uses that fallback because local Windows Application Control blocks Astro native bindings. Revisit this exception after the native compiler path is validated on every supported environment.
 
-Indexing is fail-closed. `PUBLIC_DEPLOY_ENV` accepts `local`, `preview`, `staging`, or `production`; an unknown or missing value resolves to `local`. Local, preview, and staging builds always emit `noindex,follow` and no sitemap URLs. A production release becomes indexable only when both settings are explicit:
+## Quality checks
+
+Run the same production-candidate checks used in CI:
+
+```powershell
+npm run check
+npm run build
+npm run audit
+npm audit --audit-level=high
+```
+
+`npm run audit` inspects the generated `dist/` output. It validates route-level SEO metadata, JSON-LD/schema contracts, sitemap and noindex alignment, internal links, robots policy, static accessibility invariants, content markers, documentation encoding, and production asset budgets.
+
+The GitHub Actions workflow runs these checks on every pull request and every push to `main`. Successful `main` runs retain the generated static site as a short-lived workflow artifact for release inspection. A green workflow is necessary but does not replace browser QA, final-domain checks, or public PageSpeed Insights.
+
+## Environment and indexing safety
+
+Copy `.env.example` and provide only reviewed values. Indexing fails closed. An unknown or missing `PUBLIC_DEPLOY_ENV` is treated as local, while local, preview, and staging builds emit `noindex,follow` and exclude routes from the sitemap.
+
+Production indexing requires both values explicitly:
 
 ```dotenv
 PUBLIC_DEPLOY_ENV=production
 PUBLIC_INDEXING_ENABLED=true
 ```
 
-The page-level claim, security, calculator, and resource approval gates still apply after the production gate opens. CI sets the production environment explicitly so the static audit exercises the intended release candidate rather than an all-noindex preview build.
+Page-level claim, security, calculator, and resource approval gates still apply. Do not enable them without the matching owner approval and supporting evidence.
 
-## Architecture
+Lead forms also fail closed. Keep `PUBLIC_LEAD_ENDPOINT` empty until an approved endpoint passes validation, origin, CSRF, rate-limit, idempotency, consent, storage, and PII-safe logging reviews.
 
-- `src/layouts`: global document shell, metadata, JSON-LD, header, and footer.
-- `src/components`: reusable page, form, navigation, and content components.
-- `src/data`: launch CTA, navigation, product, and industry data.
-- `src/data/pageNarratives.ts`: section-specific product and solution narratives that prevent template filler.
-- `src/config/release.ts`: evidence-gated indexability policy.
-- `src/config/public-environment.mjs`: shared fail-closed environment resolver used by page metadata and sitemap generation.
-- `src/content/blog`: dummy Markdown articles, ready to migrate to a CMS adapter later.
-- `src/pages`: static P0 marketing, product, industry, blog, legal, and system routes.
-- `src/styles`: brand tokens, responsive layout, and reduced-motion-safe interactions.
-- `public`: approved brand exports, favicons, fonts, and Open Graph fallback.
-- `scripts/site-audit.mjs`: built-output SEO and content invariant checks.
-- `.github/workflows/quality.yml`: reproducible check, build, static audit, and dependency audit gate.
-- `docs/url-map.csv`: implemented route inventory.
+## Repository map
+
+| Path | Purpose |
+| --- | --- |
+| `src/pages` | Static routes and data-driven route families |
+| `src/layouts` | Global document shell, metadata, schema, header, and footer |
+| `src/components` | Reusable navigation, content, consent, and form components |
+| `src/content/blog` | Temporary local editorial content |
+| `src/data` | Navigation, product data, and page-specific narratives |
+| `src/config` | Public environment and release/indexability policy |
+| `src/styles` | Brand tokens, responsive layout, and motion rules |
+| `public` | Deployable fonts, favicons, Open Graph, brand, and editorial assets |
+| `brand/RAMUNI` | Approved brand source and reference exports |
+| `scripts/site-audit.mjs` | Built-output SEO, accessibility, content, and performance audit |
+| `docs` | Product, content, SEO, analytics, security, and deployment handover |
+
+Start with [`docs/README.md`](docs/README.md) for the document order and [`docs/14-marketing-website-implementation-handoff.md`](docs/14-marketing-website-implementation-handoff.md) for current implementation evidence and launch blockers.
 
 ## Design direction
 
-Reading this as a B2B website for Indonesian MSME owners with calm, practical intelligence. The implementation uses `DESIGN_VARIANCE: 7`, `MOTION_INTENSITY: 5`, and `VISUAL_DENSITY: 4`.
+RAMUNI uses the approved Lipat Arah system: calm B2B editorial composition, practical Indonesian copy, structured data storytelling, and motion that explains hierarchy instead of decorating the interface. The official logo remains static. Unverified claims, fabricated customer proof, autonomous AI promises, robots, and generic SaaS visual filler are excluded.
 
-Motion is CSS-first with a small shared IntersectionObserver reveal. The folded-card composition communicates raw signals becoming one useful direction. The official logo stays static. There is no WebGL, autoplay video, large animation library, or continuous scroll listener.
+## Release policy
 
-Reference patterns used as direction, not copied assets: Linear for precise reveals, Stripe for data-to-decision storytelling, Shopify Editions for tactile bento rhythm, Wise for plain-language business UX, and Apple product pages for one-idea-per-viewport pacing.
+Before a public release:
 
-## Launch gates
+1. Build from a reviewed commit with a clean lockfile install.
+2. Pass the GitHub quality workflow and local production audit.
+3. Complete responsive, keyboard, focus, and reduced-motion browser QA.
+4. Validate the production endpoint, consent behavior, and PII-safe analytics.
+5. Confirm legal, product, security, pricing, and claim approvals.
+6. Verify redirects, HTTPS, compression, cache and security headers, canonical URLs, robots, sitemap, and representative routes on the final domain.
+7. Run mobile and desktop PageSpeed Insights and Rich Results validation.
 
-- Connect `POST /api/leads` to the approved backend or edge function before accepting real leads.
-- Replace legal placeholders only after legal approval.
-- Set `PUBLIC_SITE_URL` to the final production origin if it differs from `https://ramuni.id`.
-- Review the built-in consent wording, then connect its `ramuni:consent` event to approved GTM/Consent Mode, GA4, and ad pixels only after PII tests pass.
-- Keep preview details noindex by default. Set `PUBLIC_CLAIM_PAGES_APPROVED=true`, `PUBLIC_SECURITY_REVIEW_APPROVED=true`, or `PUBLIC_CALCULATOR_REVIEW_APPROVED=true` only after the matching owner signs off.
-- Set `PUBLIC_DEPLOY_ENV=production` and `PUBLIC_INDEXING_ENABLED=true` only in an approved public release. Preview and staging cannot become indexable through page-level approval flags.
-- CMS is intentionally deferred. Blog content is local dummy content for template validation.
-- Run a deployed Lighthouse test on the final CDN because TTF caching, compression, and edge headers depend on the hosting platform.
+The detailed promotion and rollback checklist is in [`docs/deployment-rollback.md`](docs/deployment-rollback.md).
 
-## Brand sources
+## Security
 
-Do not replace or modify the approved logo files. The repository implementation source is `brand/RAMUNI`. Astro owns `dist/` as disposable build output, so no canonical source archive is stored there.
+Do not report vulnerabilities in a public issue. Follow the contact and disclosure instructions in [`public/.well-known/security.txt`](public/.well-known/security.txt). Never commit personal access tokens, API keys, passwords, customer records, or production exports.
+
+## License
+
+No open-source license has been granted. Unless RAMUNI publishes an explicit license, the source code, content, and brand assets remain proprietary and all rights are reserved.

@@ -3,13 +3,245 @@ export const launchCta = {
   href: '/early-access',
 };
 
-export const nav = [
-  { label: 'Produk', href: '/produk' },
-  { label: 'Solusi', href: '/solusi' },
-  { label: 'Untuk Tim', href: '/untuk' },
-  { label: 'Industri', href: '/industri' },
+export interface NavigationLink {
+  label: string;
+  href: string;
+  description?: string;
+}
+
+export interface NavigationColumn {
+  label: string;
+  links: NavigationLink[];
+}
+
+export interface MegaNavigationGroup {
+  label: string;
+  href: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  columns: NavigationColumn[];
+  actions?: NavigationLink[];
+  featured?: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    href: string;
+    cta: string;
+  };
+}
+
+export interface DirectNavigationLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterNavigationGroup {
+  label: string;
+  links: NavigationLink[];
+}
+
+export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink> = [
+  {
+    label: 'Produk',
+    href: '/produk',
+    eyebrow: 'Produk RAMUNI',
+    title: 'Satu sistem untuk membaca bisnis.',
+    description: 'Pilih modul dari cara data masuk, dihitung, lalu dijelaskan.',
+    columns: [
+      {
+        label: 'AI & Insight',
+        links: [
+          { label: 'Asisten AI', href: '/produk/asisten-ai', description: 'Tanya kondisi usaha dengan batas read-only.' },
+          { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis', description: 'Lihat prioritas sebelum membuka detail angka.' },
+          { label: 'Laporan & Insight', href: '/produk/laporan-insight', description: 'Ringkas harian dan mingguan dengan periode jelas.' },
+        ],
+      },
+      {
+        label: 'Operasional',
+        links: [
+          { label: 'Penjualan', href: '/produk/penjualan', description: 'Baca perubahan transaksi, produk, dan pembayaran.' },
+          { label: 'Inventori', href: '/produk/inventori', description: 'Pantau saldo, pergerakan, dan batas stok.' },
+          { label: 'Keuangan', href: '/produk/keuangan', description: 'Pisahkan omzet, biaya, laba, dan kas.' },
+          { label: 'Pelanggan', href: '/produk/pelanggan', description: 'Kenali riwayat dan pola pembelian yang tersedia.' },
+        ],
+      },
+      {
+        label: 'Ecosystem',
+        links: [
+          { label: 'Integrasi', href: '/produk/integrasi', description: 'Lihat jalur data dan status tiap metode.' },
+          { label: 'Semua Produk', href: '/produk', description: 'Buka katalog produk RAMUNI.' },
+        ],
+      },
+    ],
+    actions: [launchCta, { label: 'Lihat Demo', href: '/demo' }],
+    featured: {
+      eyebrow: 'Mulai di sini',
+      title: 'Belum tahu modul yang dibutuhkan?',
+      text: 'Mulai dari masalah bisnis, lalu pilih modul yang relevan.',
+      href: '/produk',
+      cta: 'Lihat semua produk',
+    },
+  },
+  {
+    label: 'Solusi',
+    href: '/solusi',
+    eyebrow: 'Solusi bisnis',
+    title: 'Pilih konteks yang paling dekat.',
+    description: 'Mulai dari tujuan, industri, atau peran yang sedang mengambil keputusan.',
+    columns: [
+      {
+        label: 'Berdasarkan tujuan',
+        links: [
+          { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet', description: 'Telusuri perubahan penjualan tanpa janji hasil.' },
+          { label: 'Kelola Stok', href: '/solusi/kelola-stok', description: 'Prioritaskan stok yang perlu diperiksa.' },
+          { label: 'Pantau Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas', description: 'Baca omzet, biaya, laba, dan kas bersama.' },
+          { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan', description: 'Lihat pola pembelian tanpa outreach otomatis.' },
+          { label: 'Laporan Otomatis', href: '/solusi/laporan-bisnis-otomatis', description: 'Rapikan rekap dengan definisi yang sama.' },
+        ],
+      },
+      {
+        label: 'Berdasarkan industri',
+        links: [
+          { label: 'Retail', href: '/industri/retail', description: 'SKU cepat, stok, dan ritme transaksi.' },
+          { label: 'F&B', href: '/industri/fnb', description: 'Menu, bahan, jam ramai, dan waste.' },
+          { label: 'Distributor', href: '/industri/distributor', description: 'Pesanan besar, repeat buyer, dan piutang.' },
+          { label: 'Reseller Online', href: '/industri/reseller-online', description: 'Kanal jual, margin produk, dan stok.' },
+          { label: 'Jasa', href: '/industri/jasa', description: 'Layanan, biaya, pelanggan, dan periode.' },
+          { label: 'Manufaktur Kecil', href: '/industri/manufaktur-kecil', description: 'Barang jadi, bahan, dan biaya produksi.' },
+        ],
+      },
+      {
+        label: 'Berdasarkan peran',
+        links: [
+          { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha', description: 'Kesehatan bisnis, tim, dan keputusan.' },
+          { label: 'Admin Toko', href: '/untuk/admin-toko', description: 'Data produk, transaksi, dan koreksi.' },
+          { label: 'Kasir', href: '/untuk/kasir', description: 'Alur transaksi dan bantuan pemulihan.' },
+          { label: 'Supervisor', href: '/untuk/supervisor', description: 'Pengecualian, laporan, dan tindak lanjut.' },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: 'Lihat semua',
+      title: 'Semua solusi bisnis',
+      text: 'Bandingkan masalah, modul terkait, dan langkah awal yang aman.',
+      href: '/solusi',
+      cta: 'Buka solusi',
+    },
+  },
   { label: 'Harga', href: '/harga' },
-  { label: 'Sumber Daya', href: '/sumber-daya' },
+  {
+    label: 'Sumber Daya',
+    href: '/sumber-daya',
+    eyebrow: 'Belajar praktis',
+    title: 'Baca, hitung, dan pahami istilah.',
+    description: 'Materi edukasi tetap dipisahkan dari klaim fitur yang belum tersedia.',
+    columns: [
+      {
+        label: 'Learn',
+        links: [
+          { label: 'Blog', href: '/blog', description: 'Artikel praktis untuk membaca bisnis.' },
+          { label: 'Panduan', href: '/panduan', description: 'Langkah kerja ringan untuk UMKM.' },
+          { label: 'Kamus Bisnis', href: '/kamus-bisnis', description: 'Istilah bisnis dalam bahasa sederhana.' },
+        ],
+      },
+      {
+        label: 'Use',
+        links: [
+          { label: 'Template', href: '/template', description: 'Format kerja setelah aset disetujui.' },
+          { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha', description: 'Hitung laba edukatif di browser.' },
+          { label: 'Kalkulator HPP', href: '/kalkulator/hpp', description: 'Periksa biaya barang terjual.' },
+          { label: 'Kalkulator Reorder Stok', href: '/kalkulator/reorder-stok', description: 'Tentukan titik cek stok berikutnya.' },
+        ],
+      },
+      {
+        label: 'Product help',
+        links: [
+          { label: 'Bantuan', href: '/bantuan', description: 'Struktur bantuan produk yang terverifikasi.' },
+          { label: 'Keamanan', href: '/keamanan', description: 'Baca batas data, AI, dan kontrol.' },
+          { label: 'Status', href: '/status', description: 'Status publik berbasis bukti operasional.' },
+        ],
+      },
+    ],
+    featured: {
+      eyebrow: 'Pilihan editor',
+      title: 'AI Business Companion untuk UMKM',
+      text: 'Pahami cara RAMUNI membaca data tanpa mengambil alih keputusan.',
+      href: '/blog/ai-business-companion-umkm',
+      cta: 'Baca artikel',
+    },
+  },
+  { label: 'Tentang', href: '/tentang' },
+];
+
+export const accountNavigation: NavigationLink[] = [
+  { label: 'Masuk', href: '/masuk' },
+];
+
+export const footerNavigation: FooterNavigationGroup[] = [
+  {
+    label: 'Produk',
+    links: [
+      { label: 'Asisten AI', href: '/produk/asisten-ai' },
+      { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis' },
+      { label: 'Penjualan', href: '/produk/penjualan' },
+      { label: 'Inventori', href: '/produk/inventori' },
+      { label: 'Keuangan', href: '/produk/keuangan' },
+      { label: 'Semua Produk', href: '/produk' },
+      { label: 'Harga', href: '/harga' },
+    ],
+  },
+  {
+    label: 'Solusi',
+    links: [
+      { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet' },
+      { label: 'Kelola Stok', href: '/solusi/kelola-stok' },
+      { label: 'Pantau Laba', href: '/solusi/pantau-laba-dan-arus-kas' },
+      { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan' },
+      { label: 'Retail', href: '/industri/retail' },
+      { label: 'F&B', href: '/industri/fnb' },
+      { label: 'Distributor', href: '/industri/distributor' },
+      { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha' },
+    ],
+  },
+  {
+    label: 'Sumber Daya',
+    links: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'Panduan', href: '/panduan' },
+      { label: 'Template', href: '/template' },
+      { label: 'Kalkulator', href: '/kalkulator' },
+      { label: 'Kamus Bisnis', href: '/kamus-bisnis' },
+      { label: 'Bantuan', href: '/bantuan' },
+    ],
+  },
+  {
+    label: 'Perusahaan',
+    links: [
+      { label: 'Tentang', href: '/tentang' },
+      { label: 'Kontak', href: '/kontak' },
+      { label: 'Keamanan', href: '/keamanan' },
+      { label: 'Status', href: '/status' },
+    ],
+  },
+  {
+    label: 'Akun',
+    links: [
+      { label: 'Masuk', href: '/masuk' },
+      { label: 'Daftar', href: '/early-access' },
+      { label: 'Coba Gratis', href: '/early-access' },
+      { label: 'Minta Demo', href: '/demo' },
+    ],
+  },
+  {
+    label: 'Legal',
+    links: [
+      { label: 'Privasi', href: '/privasi' },
+      { label: 'Syarat Penggunaan', href: '/syarat-penggunaan' },
+      { label: 'Kebijakan Cookie', href: '/kebijakan-cookie' },
+      { label: 'Pemrosesan Data', href: '/pemrosesan-data' },
+    ],
+  },
 ];
 
 export interface Product {

@@ -2,6 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 
+const homepagePains = [
+  { text: 'Omzet berubah tanpa alasan yang terlihat', href: '/solusi/naikkan-omzet' },
+  { text: 'Stok habis saat permintaan naik', href: '/solusi/kelola-stok' },
+  { text: 'Laba terasa berbeda dari kas', href: '/solusi/pantau-laba-dan-arus-kas' },
+  { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan' },
+  { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis' },
+];
+
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
   ['Apakah AI menjalankan transaksi otomatis?', 'Tidak pada versi awal. AI hanya membaca dan menjelaskan. Tindakan berisiko tetap membutuhkan persetujuan manusia.'],
@@ -46,18 +54,20 @@ const schema = [
     <div class="container problem-editorial">
       <div class="problem-lead reveal"><p class="section-kicker">Masalahnya bukan kekurangan data.</p><h2>Data ada. Arah belum jelas.</h2></div>
       <div class="problem-rail">
-        {['Omzet berubah tanpa alasan yang terlihat', 'Stok habis saat permintaan naik', 'Laba terasa berbeda dari kas', 'Pelanggan lama tidak kembali', 'Rekap datang setelah keputusan dibuat'].map((text, i) => <div class="problem-line reveal" style={`--i:${i}`}><span>0{i + 1}</span><p>{text}</p></div>)}
+        {homepagePains.map((pain, i) => <a class="problem-line reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}
       </div>
     </div>
   </section>
 
   <section class="section answer-stage chapter" data-chapter="Insight">
     <div class="container answer-layout">
-      <div class="answer-sticky reveal"><p class="section-kicker">Mulai dari jawaban</p><h2>Lihat jawabannya dulu. Buka angkanya saat perlu.</h2><p>Temukan perubahan utama tanpa membaca semua tabel.</p></div>
+      <div class="answer-sticky reveal"><p class="section-kicker">Contoh jawaban AI</p><h2>“Kenapa omzet saya turun minggu ini?”</h2><p>Data sintetis menunjukkan bentuk jawaban, bukan hasil pelanggan.</p></div>
       <div class="answer-sequence">
-        <article class="answer-step reveal"><span>Temukan</span><h3>Penjualan turun 12% pada hari kerja.</h3><p>Contoh sintetis, dibandingkan dengan periode sebelumnya.</p></article>
-        <article class="answer-step reveal"><span>Telusuri</span><h3>Dua produk menyumbang sebagian besar perubahan.</h3><p>Lihat periode, transaksi, dan kategori pendukung.</p></article>
-        <article class="answer-step reveal"><span>Putuskan</span><h3>Periksa stok dan jadwal sebelum mengubah harga.</h3><p>Saran menjadi bahan keputusan, bukan aksi otomatis.</p></article>
+        <article class="answer-step reveal"><span>Kesimpulan</span><h3>Omzet contoh turun dibanding pekan lalu.</h3><p>Perubahan dibaca pada periode Senin sampai Jumat.</p></article>
+        <article class="answer-step reveal"><span>Alasan utama</span><h3>Transaksi sore berkurang pada dua hari kerja.</h3><p>RAMUNI memisahkan perubahan jumlah transaksi dari nilai belanja.</p></article>
+        <article class="answer-step reveal"><span>Bukti</span><h3>Bandingkan periode dan transaksi pendukung.</h3><p>Waktu pembaruan serta data yang belum lengkap tetap terlihat.</p></article>
+        <article class="answer-step reveal"><span>Produk terdampak</span><h3>Kopi Susu dan Roti Panggang perlu ditelusuri.</h3><p>Nama produk hanya contoh sintetis untuk menunjukkan anatomi jawaban.</p></article>
+        <article class="answer-step reveal"><span>Pemeriksaan berikutnya</span><h3>Cek stok dan jadwal sebelum mengubah harga.</h3><p>Saran menjadi bahan keputusan, bukan tindakan otomatis.</p></article>
       </div>
     </div>
   </section>
@@ -108,7 +118,7 @@ const schema = [
     <div class="container">
       <div class="section-intro reveal"><h2>Jelajahi sembilan area kerja RAMUNI.</h2><p>Pilih sesuai kebutuhan. Ketersediaan tiap kemampuan mengikuti status rilis.</p></div>
       <div class="module-slices">
-        {products.map((product, i) => <a class="module-slice reveal" href={`/produk/${product.slug}`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><div><h3>{product.title}</h3><p>{product.outcome}</p></div><b>Buka</b></a>)}
+        {products.map((product, i) => <a class="module-slice reveal" href={`/produk/${product.slug}`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><div><div><h3>{product.title}</h3><small>Pratinjau konsep</small></div><p>{product.outcome} Contoh pertanyaan: {product.question}</p></div><b>Buka</b></a>)}
       </div>
     </div>
   </section>
@@ -133,9 +143,10 @@ const schema = [
     <div class="container start-layout">
       <div class="start-statement reveal"><h2>Mulai kecil. Rapikan yang paling mendesak.</h2></div>
       <ol class="start-steps">
-        <li class="reveal"><span>01</span><div><h3>Ceritakan alur hari ini</h3><p>Pilih proses yang paling banyak memakan waktu.</p></div></li>
-        <li class="reveal"><span>02</span><div><h3>Periksa kesiapan data</h3><p>Gunakan jalur input yang benar-benar tersedia.</p></div></li>
-        <li class="reveal"><span>03</span><div><h3>Nilai insight pertama</h3><p>Pastikan hasil mudah ditelusuri dan dipahami.</p></div></li>
+        <li class="reveal"><span>01</span><div><h3>Buat ruang kerja</h3><p>Tentukan usaha, peran, dan konteks yang akan dibaca.</p></div></li>
+        <li class="reveal"><span>02</span><div><h3>Tambah atau impor data</h3><p>Gunakan jalur input yang benar-benar tersedia dan sudah diperiksa.</p></div></li>
+        <li class="reveal"><span>03</span><div><h3>Validasi insight pertama</h3><p>Pastikan periode, pembaruan, dan data pendukungnya terlihat.</p></div></li>
+        <li class="reveal"><span>04</span><div><h3>Ajukan pertanyaan</h3><p>Baca jawaban lalu buka bukti sebelum menentukan tindakan.</p></div></li>
       </ol>
     </div>
   </section>
@@ -144,14 +155,14 @@ const schema = [
     <div class="container report-layout">
       <div class="report-lead reveal">
         <p class="section-kicker">Laporan yang bisa dibaca</p>
-        <h2>Apa yang berubah hari ini?</h2>
-        <p>Tiga sinyal utama, sumber data, dan hal yang perlu diperiksa sebelum rapat.</p>
+        <h2>Ringkasan harian. Laporan mingguan.</h2>
+        <p>Lihat perubahan utama, sumber data, dan pemeriksaan berikutnya. Kanal pengiriman hanya ditampilkan setelah tersedia.</p>
         <a href="/produk/laporan-insight" class="text-link">Lihat Laporan & Insight</a>
       </div>
       <div class="report-signals" aria-label="Contoh ringkasan laporan RAMUNI">
-        <article class="report-signal report-signal--large reveal" style="--i:0"><span>Stok</span><strong>Produk cepat mulai menipis.</strong><p>Bandingkan sisa stok dengan laju penjualan sore.</p></article>
-        <article class="report-signal reveal" style="--i:1"><span>Biaya</span><strong>Operasional naik.</strong><p>Cek kategori biaya sebelum menilai margin.</p></article>
-        <article class="report-signal report-signal--accent reveal" style="--i:2"><span>Pelanggan</span><strong>2 pelanggan kembali membeli.</strong><p>Contoh data sintetis.</p></article>
+        <article class="report-signal report-signal--large reveal" style="--i:0"><span>Ringkasan harian</span><strong>Produk cepat mulai menipis.</strong><p>Bandingkan sisa stok dengan laju penjualan sore.</p></article>
+        <article class="report-signal reveal" style="--i:1"><span>Laporan mingguan</span><strong>Biaya operasional berubah.</strong><p>Cek kategori biaya dan periode sebelum menilai margin.</p></article>
+        <article class="report-signal report-signal--accent reveal" style="--i:2"><span>Status pengiriman</span><strong>Ditampilkan di web.</strong><p>Email atau kanal lain baru disebut setelah dukungannya terverifikasi.</p></article>
       </div>
     </div>
   </section>
@@ -160,7 +171,7 @@ const schema = [
     <div class="container trust-composition">
       <div class="trust-mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="" /></div>
       <div class="trust-copy reveal"><h2>Setiap jawaban menunjukkan dasar angkanya.</h2><p>Periode, sumber, dan batas tindakan tetap terlihat.</p><a class="button button--light" href="/keamanan">Pelajari keamanan</a></div>
-      <div class="trust-list">{['AI hanya membaca pada versi awal', 'Aksi berisiko perlu persetujuan', 'Demo publik memakai data sintetis', 'Demo publik tidak meminta data pelanggan'].map((item, i) => <div class="trust-row reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
+      <div class="trust-list">{['Data antar ruang usaha dipisahkan sesuai arsitektur tenant', 'Tampilan mengikuti izin setiap peran', 'AI hanya membaca pada versi awal', 'Jawaban menunjukkan periode dan bukti pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-row reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
     </div>
   </section>
 

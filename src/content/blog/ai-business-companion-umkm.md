@@ -58,9 +58,7 @@ Struktur ini membuat jawaban lebih berguna sekaligus menunjukkan bagian yang mas
 
 ## Jawaban harus bisa ditelusuri
 
-Insight yang berguna perlu membawa pengguna kembali ke konteks. RAMUNI dirancang untuk menjelaskan arah jawaban dan batasnya.
-
-Jawaban yang berguna membawa pengguna kembali ke angka asal. Nama metrik, periode, waktu pembaruan, dan transaksi pendukung perlu terlihat tanpa meminta pengguna mempercayai AI begitu saja.
+Jawaban yang baik langsung menunjukkan metrik, periode, waktu pembaruan, dan transaksi pendukung. Pengguna dapat membaca alasan serta batasnya tanpa diminta mempercayai AI begitu saja.
 
 Ada tiga pertanyaan untuk menguji kualitas jawaban:
 
