@@ -123,7 +123,7 @@ Before a public release:
 
 The detailed promotion and rollback checklist is in [`docs/deployment-rollback.md`](docs/deployment-rollback.md).
 
-The current staging host is `https://staging.ramuni.id`. It is intentionally protected from indexing at the HTML, HTTP-header, robots, and sitemap layers. HTML is never cached; content-hashed Astro assets are immutable for one year; non-hashed images and fonts use a one-day staging TTL. Run `scripts/deploy-staging.sh` from a clean reviewed worktree to publish an atomic release.
+The current staging host is `https://staging.ramuni.id`. It is intentionally protected from indexing by HTML and HTTP-header noindex directives and by exposing no sitemap URLs. Its robots policy permits crawlers to read those noindex directives. HTML is never cached; content-hashed Astro assets are immutable for one year; non-hashed images and fonts use a one-day staging TTL. Run `scripts/deploy-staging.sh` from a clean reviewed worktree to publish an atomic release.
 
 ## Security
 

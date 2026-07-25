@@ -456,7 +456,8 @@ try {
     if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`)) failures.push('robots.txt: production sitemap missing');
     if (/Disallow: \/(?:masuk|terima-kasih)/.test(robots)) failures.push('robots.txt: noindex route incorrectly blocked');
   } else {
-    if (!/^Disallow: \/$/m.test(robots)) failures.push('robots.txt: non-production build must disallow all crawling');
+    if (!/^Allow: \/$/m.test(robots)) failures.push('robots.txt: non-production build must allow crawlers to see noindex directives');
+    if (/^Disallow: \/$/m.test(robots)) failures.push('robots.txt: non-production noindex must not be hidden behind a crawl block');
     if (/^Sitemap:/m.test(robots)) failures.push('robots.txt: non-production build must not advertise a sitemap');
   }
 } catch { failures.push('robots.txt: missing'); }

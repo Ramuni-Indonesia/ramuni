@@ -56,7 +56,7 @@ Before promotion, record the Git SHA, dependency lockfile, environment name, pag
 - Security-header source: `ops/nginx/ramuni-staging-security-headers.conf`
 - Publisher: `scripts/deploy-staging.sh`
 
-The staging build is fail-closed at four layers: every page emits `noindex,follow`, Nginx emits `X-Robots-Tag`, `robots.txt` disallows every crawler, and the sitemap contains no indexable URLs. HTML uses `Cache-Control: no-store`. Astro's content-hashed `/_astro/` assets use a one-year immutable cache; non-hashed media and fonts use a one-day staging cache with stale-while-revalidate.
+The staging build is fail-closed at three indexing layers: every page emits `noindex,follow`, Nginx emits `X-Robots-Tag`, and the sitemap contains no indexable URLs. `robots.txt` deliberately permits crawling so search engines can read and honor the noindex directives; blocking crawling would hide those directives. HTML uses `Cache-Control: no-store`. Astro's content-hashed `/_astro/` assets use a one-year immutable cache; non-hashed media and fonts use a one-day staging cache with stale-while-revalidate.
 
 Publish only from a clean reviewed worktree:
 
