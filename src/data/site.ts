@@ -52,7 +52,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'AI & Insight',
         links: [
-          { label: 'Asisten AI', href: '/produk/asisten-ai', description: 'Tanya kondisi usaha dengan batas read-only.' },
+          { label: 'Asisten AI', href: '/produk/asisten-ai', description: 'Tanya kondisi usaha. Pada versi awal, AI hanya membaca data.' },
           { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis', description: 'Lihat prioritas sebelum membuka detail angka.' },
           { label: 'Laporan & Insight', href: '/produk/laporan-insight', description: 'Ringkas harian dan mingguan dengan periode jelas.' },
         ],
@@ -96,7 +96,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
           { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet', description: 'Telusuri perubahan penjualan tanpa janji hasil.' },
           { label: 'Kelola Stok', href: '/solusi/kelola-stok', description: 'Prioritaskan stok yang perlu diperiksa.' },
           { label: 'Pantau Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas', description: 'Baca omzet, biaya, laba, dan kas bersama.' },
-          { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan', description: 'Lihat pola pembelian tanpa outreach otomatis.' },
+          { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan', description: 'Lihat pola pembelian tanpa tindak lanjut otomatis.' },
           { label: 'Laporan Otomatis', href: '/solusi/laporan-bisnis-otomatis', description: 'Rapikan rekap dengan definisi yang sama.' },
         ],
       },

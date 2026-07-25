@@ -1,18 +1,47 @@
 ---
 import { accountNavigation, headerNavigation, launchCta, type MegaNavigationGroup } from '../data/site';
+import '../styles/forms-conversion.css';
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const current = (href: string) => path === href || path.startsWith(`${href}/`);
 const isMegaGroup = (item: (typeof headerNavigation)[number]): item is MegaNavigationGroup => 'columns' in item;
 const groupId = (label: string) => `nav-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const groupClass = (label: string) => `mega-menu mega-menu--${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const megaCopy: Record<string, { title: string; description: string; featuredTitle?: string; featuredText?: string; featuredCta?: string }> = {
+  Produk: {
+    title: 'Pilih bagian usaha yang ingin Anda rapikan.',
+    description: 'Mulai dari penjualan, stok, keuangan, pelanggan, atau laporan.',
+    featuredTitle: 'Belum tahu harus mulai dari mana?',
+    featuredText: 'Pilih masalah usaha terlebih dahulu. Kami tunjukkan modul yang relevan.',
+    featuredCta: 'Lihat semua produk',
+  },
+  Solusi: {
+    title: 'Mulai dari masalah yang paling sering menghambat keputusan.',
+    description: 'Lihat data apa yang perlu diperiksa untuk penjualan, stok, kas, pelanggan, atau laporan.',
+  },
+  'Sumber Daya': {
+    title: 'Cari jawaban sesuai pekerjaan Anda.',
+    description: 'Baca panduan, gunakan alat hitung, atau cari istilah bisnis.',
+  },
+};
+const linkDescriptionOverrides: Record<string, string> = {
+  '/solusi/naikkan-omzet': 'Cari produk, waktu, dan pelanggan yang memengaruhi omzet.',
+  '/solusi/pahami-pelanggan': 'Kenali pembelian berulang dari riwayat yang tersedia.',
+  '/solusi/laporan-bisnis-otomatis': 'Samakan periode, rumus, dan sumber laporan.',
+  '/bantuan': 'Temukan panduan dan jalur bantuan.',
+  '/status': 'Periksa informasi layanan terbaru.',
+};
+const linkLabelOverrides: Record<string, string> = {
+  '/solusi/laporan-bisnis-otomatis': 'Laporan Bisnis',
+};
+const actionLabelOverrides: Record<string, string> = { '/demo': 'Lihat cara kerja' };
 const groupActive = (item: MegaNavigationGroup) => {
   const links = item.columns.flatMap((column) => column.links).concat(item.featured ? [{ label: item.featured.title, href: item.featured.href }] : [], item.actions || []);
   return current(item.href) || links.some((link) => current(link.href));
 };
 ---
 <header class="site-header">
-  {isHome && <div class="announcement"><div class="container"><span>Program early access RAMUNI sedang dibuka.</span><a href="/early-access">Lihat detail</a></div></div>}
+  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Program early access RAMUNI sedang dibuka.</span><span class="announcement-short">Early access RAMUNI dibuka.</span><a href="/early-access">Lihat detail</a></div></div>}
   <div class="container nav-shell">
     <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color.webp" width="560" height="140" alt="RAMUNI" /></a>
     <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -22,15 +51,15 @@ const groupActive = (item: MegaNavigationGroup) => {
             <summary aria-current={groupActive(item) ? 'page' : undefined} aria-controls={groupId(item.label)}>{item.label}</summary>
             <div class={groupClass(item.label)} id={groupId(item.label)}>
               <div class="mega-lead">
-                <span>{item.eyebrow}</span><strong>{item.title}</strong><p>{item.description}</p>
-                {item.actions && <div class="mega-actions">{item.actions.map((action) => <a href={action.href}>{action.label}</a>)}</div>}
-                {item.featured && <a class="mega-feature" href={item.featured.href}><span>{item.featured.eyebrow}</span><strong>{item.featured.title}</strong><small>{item.featured.text}</small><b>{item.featured.cta}</b></a>}
+                <span>{item.eyebrow}</span><strong>{megaCopy[item.label]?.title || item.title}</strong><p>{megaCopy[item.label]?.description || item.description}</p>
+                {item.actions && <div class="mega-actions">{item.actions.map((action) => <a href={action.href}>{actionLabelOverrides[action.href] || action.label}</a>)}</div>}
+                {item.featured && <a class="mega-feature" href={item.featured.href}><span>{item.featured.eyebrow}</span><strong>{megaCopy[item.label]?.featuredTitle || item.featured.title}</strong><small>{megaCopy[item.label]?.featuredText || item.featured.text}</small><b>{megaCopy[item.label]?.featuredCta || item.featured.cta}</b></a>}
               </div>
               <div class="mega-columns">
                 {item.columns.map((column) => (
                   <section class="mega-column" aria-labelledby={`${groupId(item.label)}-${groupId(column.label)}`}>
                     <h2 id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</h2>
-                    <div class="mega-links">{column.links.map((link) => <a href={link.href}><strong>{link.label}</strong>{link.description && <span>{link.description}</span>}</a>)}</div>
+                    <div class="mega-links">{column.links.map((link) => <a href={link.href}><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</a>)}</div>
                   </section>
                 ))}
               </div>
@@ -54,10 +83,10 @@ const groupActive = (item: MegaNavigationGroup) => {
                   {item.columns.map((column) => (
                     <section>
                       <h2>{column.label}</h2>
-                      {column.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                      {column.links.map((link) => <a href={link.href}>{linkLabelOverrides[link.href] || link.label}</a>)}
                     </section>
                   ))}
-                  {item.featured && <a class="mobile-feature" href={item.featured.href}>{item.featured.cta}</a>}
+                  {item.featured && <a class="mobile-feature" href={item.featured.href}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}
                 </div>
               </details>
             ) : <a href={item.href}>{item.label}</a>

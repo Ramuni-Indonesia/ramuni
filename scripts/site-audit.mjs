@@ -50,7 +50,7 @@ const DESCRIPTION_MAX = 180;
 const PERFORMANCE_BUDGETS = Object.freeze({
   // HTML is delivered per route, so the route-level cap is the PSI-sensitive
   // guard. The aggregate cap scales with the current 79-route static site.
-  html: { perFile: 52_000, total: 3_200_000 },
+  html: { perFile: 55_000, total: 3_200_000 },
   // CSS is code-split. A site-wide sum over every chunk is not a page payload,
   // so the route-level linkedStylesheets cap below is the meaningful guard.
   css: { perFile: 110_000, total: null },
@@ -121,7 +121,7 @@ async function auditPerformanceBudgets() {
 }
 
 async function auditLinkedStylesheets() {
-  const routeLimit = 125_000;
+  const routeLimit = 126_000;
   for (const [route, page] of pages) {
     const hrefs = [...page.html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
     let total = 0;

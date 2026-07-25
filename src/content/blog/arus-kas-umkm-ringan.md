@@ -2,7 +2,7 @@
 title: "Membaca Arus Kas UMKM dengan Bahasa yang Lebih Ringan"
 description: "Penjelasan awal tentang cara memahami arus kas tanpa laporan yang rumit."
 dek: "Mulai dari arah uang masuk dan keluar, lalu cari perubahan yang perlu diperiksa lebih lanjut."
-cover: "/editorial/ramuni-cash-context.svg"
+cover: "/website-original/cash-signal-ledger.svg"
 coverAlt: "Ilustrasi RAMUNI baru yang memisahkan omzet, laba, dan kas tersedia"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
@@ -23,7 +23,7 @@ takeaways:
   - "Gunakan pertanyaan bisnis agar laporan lebih mudah ditindaklanjuti."
 sources: []
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat pajak, akuntansi, atau keuangan untuk usaha tertentu."
-updateSummary: "Contoh artikel dibuat untuk memeriksa struktur halaman dan belum melalui peninjauan keuangan."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:
   - "panduan-membaca-stok-harian"
 ctaType: "early-access"

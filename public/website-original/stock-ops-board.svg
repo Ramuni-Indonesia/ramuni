@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi website RAMUNI untuk pemeriksaan stok harian</title>
+  <desc id="desc">Kanvas editorial website original yang menampilkan papan stok, laju penjualan, jam ramai, dan catatan pemeriksaan manusia.</desc>
+  <rect width="1200" height="720" fill="#F4F0E7"/>
+  <path d="M62 54h1076v612H62z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="M62 54h1076v78H62z" fill="#0B3045"/>
+  <path d="M102 88h254v12H102zM102 110h154v8H102z" fill="#FFFFFF"/>
+  <path d="M920 82h154v28H920z" fill="#F2B134"/><path d="M946 95h102" stroke="#0B3045" stroke-width="5"/>
+  <path d="M104 176h96v418h-96z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <path d="M136 210h32v32h-32zM136 426h32v32h-32z" fill="#168C8C"/>
+  <path d="M136 282h32v32h-32zM136 498h32v32h-32z" fill="#F2B134"/><path d="M136 354h32v32h-32z" fill="#0B3045"/>
+  <path d="M244 176h386v418H244z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <path d="M276 218h298M276 314h298M276 410h298M276 506h298" stroke="#0B3045" stroke-width="3"/>
+  <g fill="#168C8C"><path d="M298 236h62v78h-62z"/><path d="M382 220h92v94h-92z"/><path d="M496 252h56v62h-56z"/><path d="M298 340h104v70H298z"/><path d="M432 350h68v60h-68z"/><path d="M520 330h42v80h-42z"/></g>
+  <g fill="#F2B134"><path d="M298 440h74v66h-74z"/><path d="M396 428h112v78H396z"/><path d="M532 458h34v48h-34z"/></g>
+  <path d="M656 176h424v174H656z" fill="#0B3045"/><path d="M696 220h150v13H696zM696 249h260v8H696z" fill="#FFFFFF"/>
+  <path d="M704 307h312" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="2"/>
+  <g fill="#168C8C"><path d="M718 284h34v23h-34z"/><path d="M772 260h34v47h-34z"/><path d="M826 272h34v35h-34z"/><path d="M880 236h34v71h-34z"/><path d="M934 248h34v59h-34z"/></g>
+  <path d="m720 268 68-44 56 27 53-66 72 40" fill="none" stroke="#F2B134" stroke-width="7" stroke-linejoin="round"/><circle cx="897" cy="185" r="11" fill="#F2B134"/>
+  <path d="M656 382h198v212H656z" fill="#F2B134" stroke="#0B3045" stroke-width="3"/><path d="M690 424h90v11H690zM690 452h126v8H690zM690 478h98v8H690z" fill="#0B3045"/>
+  <path d="M692 532h52v26h-52zM764 532h52v26h-52z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="M882 382h198v212H882z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/><circle cx="981" cy="470" r="56" fill="none" stroke="#168C8C" stroke-width="14"/>
+  <path d="M981 414v56l38 24" fill="none" stroke="#0B3045" stroke-width="8"/><path d="M920 548h122v10H920z" fill="#0B3045"/>
+  <path d="M102 626h380v12H102zM102 648h238v8H102z" fill="#0B3045"/><path d="M800 630h206v28H800z" fill="#168C8C"/><path d="M826 644h154" stroke="#FFFFFF" stroke-width="5"/>
+</svg>

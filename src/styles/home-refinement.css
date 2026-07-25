@@ -1,0 +1,202 @@
+/* Homepage-only refinement. The page stays server-rendered; JS only changes tab states. */
+.home-hero .hero-composition{
+  grid-template-columns:minmax(0,1fr) minmax(520px,1.08fr);
+  gap:clamp(38px,5vw,82px);
+}
+
+.home-hero h1{
+  max-width:18ch;
+  font-size:clamp(3.2rem,4vw,3.75rem);
+  line-height:1.02;
+  text-wrap:balance;
+}
+
+.home-hero .lede{
+  max-width:42ch;
+  font-size:clamp(1rem,1.35vw,1.18rem);
+}
+
+.home-decision-demo{
+  perspective:1200px;
+}
+
+.home-decision-demo .decision-window{
+  transform-origin:50% 70%;
+  transition:transform 560ms var(--ease),box-shadow 560ms var(--ease);
+}
+
+.decision-window__tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  padding:10px 12px;
+  border-bottom:1px solid var(--ink-10);
+  background:var(--rice);
+}
+
+.decision-window__tabs button{
+  min-height:40px;
+  border:0;
+  border-right:1px solid var(--ink-10);
+  background:transparent;
+  color:var(--ink-72);
+  font:inherit;
+  font-size:.7rem;
+  font-weight:800;
+  cursor:pointer;
+  transition:background var(--fast),color var(--fast),transform var(--fast);
+}
+
+.decision-window__tabs button:last-child{border-right:0}
+.decision-window__tabs button[aria-selected="true"]{background:var(--ink);color:var(--white)}
+.decision-window__tabs button:hover{color:var(--teal)}
+.decision-window__tabs button[aria-selected="true"]:hover{color:var(--white)}
+.decision-window__tabs button:active{transform:translateY(1px)}
+.decision-window__tabs button:focus-visible{position:relative;z-index:2;outline:3px solid var(--yellow);outline-offset:2px}
+
+.decision-window__panel[hidden]{display:none}
+.decision-window__panel:not([hidden]){display:block}
+.decision-window__panel .decision-window__priority{min-height:154px}
+.decision-window__panel .decision-window__signals{min-height:96px}
+.decision-window__signals dd{font-size:clamp(.92rem,1.6vw,1.18rem)}
+
+.workflow-stage{
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,transparent 0 49.9%,var(--ink-10) 50%,transparent 50.1%),
+    var(--rice);
+}
+
+.workflow-stage .section-intro{align-items:end}
+.workflow-stage .section-intro p{max-width:38ch}
+.workflow-explorer{border:1px solid var(--ink);background:var(--white)}
+
+.workflow-explorer .workflow-track{
+  grid-template-columns:repeat(5,1fr);
+  border:0;
+}
+
+.workflow-explorer .workflow-node{
+  appearance:none;
+  min-width:0;
+  min-height:224px;
+  border:0;
+  border-right:1px solid var(--ink-10);
+  border-bottom:1px solid var(--ink);
+  border-radius:0;
+  background:var(--white);
+  color:var(--ink);
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+  transition:background var(--base),color var(--base),transform var(--fast);
+}
+
+.workflow-explorer .workflow-node:last-child{border-right:0}
+.workflow-explorer .workflow-node[aria-selected="true"]{background:var(--ink);color:var(--white)}
+.workflow-explorer .workflow-node[aria-selected="true"] span{color:var(--yellow)}
+.workflow-explorer .workflow-node[aria-selected="true"] p{color:rgb(255 255 255/.7)}
+.workflow-explorer .workflow-node:hover:not([aria-selected="true"]){background:var(--yellow)}
+.workflow-explorer .workflow-node:active{transform:translateY(1px)}
+.workflow-explorer .workflow-node:focus-visible{position:relative;z-index:2;outline:3px solid var(--teal);outline-offset:-4px}
+
+.workflow-focus{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(150px,.42fr) minmax(0,1fr) auto;
+  gap:clamp(24px,5vw,74px);
+  align-items:center;
+  min-height:240px;
+  padding:clamp(28px,4vw,54px);
+  overflow:hidden;
+}
+
+.workflow-focus::after{
+  content:'';
+  position:absolute;
+  right:-52px;
+  bottom:-86px;
+  width:190px;
+  aspect-ratio:1;
+  border:20px solid var(--teal);
+  border-left-color:transparent;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.workflow-focus__signal{
+  height:130px;
+  display:flex;
+  align-items:end;
+  gap:8px;
+  border-bottom:1px solid var(--ink);
+}
+
+.workflow-focus__signal i{
+  flex:1;
+  height:var(--bar-height,42%);
+  background:var(--teal);
+  transform-origin:bottom;
+}
+.workflow-focus__signal i:nth-child(2){--bar-height:72%;background:var(--yellow)}
+.workflow-focus__signal i:nth-child(3){--bar-height:56%}
+.workflow-focus__signal i:nth-child(4){--bar-height:88%;background:var(--ink)}
+
+.workflow-focus span{display:block;color:var(--teal);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.workflow-focus strong{display:block;margin-top:10px;font-size:clamp(1.45rem,3vw,2.6rem);line-height:1.12;letter-spacing:-.045em}
+.workflow-focus p{max-width:55ch;margin-top:13px;color:var(--ink-72)}
+.workflow-focus>b{align-self:start;color:var(--teal);font-size:.72rem;letter-spacing:.08em}
+
+@media(prefers-reduced-motion:no-preference){
+  .home-decision-demo:hover .decision-window{transform:rotateX(1deg) rotateY(-1.5deg) translateY(-4px);box-shadow:18px 20px 0 var(--ink)}
+  .decision-window__panel:not([hidden]){animation:home-panel-in 420ms var(--ease) both}
+  .decision-window__panel:not([hidden]) .decision-window__signals>div{animation:home-metric-in 440ms var(--ease) both}
+  .decision-window__panel:not([hidden]) .decision-window__signals>div:nth-child(2){animation-delay:55ms}
+  .decision-window__panel:not([hidden]) .decision-window__signals>div:nth-child(3){animation-delay:110ms}
+  .workflow-focus[data-changing="true"]>div:nth-child(2){animation:workflow-copy-in 360ms var(--ease) both}
+  .workflow-focus[data-changing="true"] .workflow-focus__signal i{animation:workflow-bar-in 480ms var(--ease) both}
+  @keyframes home-panel-in{from{opacity:.2;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes home-metric-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes workflow-copy-in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+  @keyframes workflow-bar-in{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
+}
+
+@media(max-width:1080px){
+  .home-hero .hero-composition{grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr)}
+  .workflow-explorer .workflow-node{min-height:205px;padding-inline:16px}
+}
+
+@media(max-width:960px){
+  .home-hero .hero-composition{grid-template-columns:1fr}
+  .home-hero h1{max-width:15ch}
+  .workflow-explorer .workflow-track{grid-template-columns:repeat(5,minmax(150px,1fr));overflow-x:auto;scroll-snap-type:x mandatory}
+  .workflow-explorer .workflow-node{scroll-snap-align:start}
+}
+
+@media(max-width:640px){
+  .home-hero h1{max-width:9.5ch}
+  .decision-window__tabs{padding:8px}
+  .decision-window__panel .decision-window__priority{min-height:174px}
+  .decision-window__panel .decision-window__signals{min-height:70px}
+  .decision-window__foot span:nth-child(2){display:none}
+  .workflow-explorer .workflow-track{
+    grid-template-columns:1fr;
+    overflow-x:visible;
+    scroll-snap-type:none;
+  }
+  .workflow-explorer .workflow-node{
+    min-height:156px;
+    padding:22px 20px;
+    border-right:0;
+    border-top:1px solid var(--ink-10);
+    scroll-snap-align:none;
+  }
+  .workflow-explorer .workflow-node:first-child{border-top:0}
+  .workflow-focus{grid-template-columns:82px 1fr;gap:18px;min-height:230px;padding:24px 18px}
+  .workflow-focus__signal{height:104px}
+  .workflow-focus>b{position:absolute;right:18px;top:18px}
+  .workflow-focus::after{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .home-decision-demo .decision-window{transform:none!important}
+}

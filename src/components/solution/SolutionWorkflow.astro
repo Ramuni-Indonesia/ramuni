@@ -1,0 +1,17 @@
+---
+import type { SolutionDetail } from '../../data/solutionDetails';
+
+interface Props {
+  steps: SolutionDetail['workflow'];
+}
+
+const { steps } = Astro.props;
+---
+<ol class="sd-workflow" aria-label="Alur kerja RAMUNI">
+  {steps.map((step, index) => (
+    <li class="sd-workflow__step reveal" style={`--i:${index}`}>
+      <span>{String(index + 1).padStart(2, '0')}</span>
+      <div><small>{step.verb}</small><h3>{step.title}</h3><p>{step.text}</p></div>
+    </li>
+  ))}
+</ol>

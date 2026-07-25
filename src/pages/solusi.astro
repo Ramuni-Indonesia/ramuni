@@ -2,12 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { industries, solutions } from '../data/site';
+import '../styles/other-pages-refinement.css';
 
 const painClusters = [
-  { label: 'Penjualan', text: 'Omzet berubah, tetapi pemicunya belum jelas.' },
-  { label: 'Operasional', text: 'Stok dan laporan terlambat memberi peringatan.' },
-  { label: 'Keuangan', text: 'Omzet, biaya, laba, dan kas dibaca terpisah.' },
-  { label: 'Pelanggan', text: 'Riwayat ada, pola pembelian belum terlihat.' },
+  { label: 'Penjualan', text: 'Omzet berubah, tetapi pemicunya belum jelas.', prompt: 'Bandingkan produk dan waktu sebelum mengubah promosi.', bars: [42, 66, 51, 82, 57] },
+  { label: 'Stok', text: 'Barang cepat laku dan saldo stok perlu dibaca bersama.', prompt: 'Periksa laju jual, sisa stok, dan jejak koreksi.', bars: [78, 54, 88, 47, 63] },
+  { label: 'Keuangan', text: 'Omzet, biaya, laba, dan kas masih dibaca terpisah.', prompt: 'Pisahkan aliran uang sebelum menilai kondisi usaha.', bars: [86, 69, 48, 61, 44] },
+  { label: 'Pelanggan', text: 'Riwayat ada, pola pembelian belum terlihat.', prompt: 'Lihat pembelian ulang tanpa mengirim pesan otomatis.', bars: [38, 52, 47, 72, 81] },
 ];
 
 const solutionFaq = [
@@ -28,9 +29,31 @@ const solutionFaq = [
     <section class="section pain-clusters" aria-labelledby="pain-clusters-title">
       <div class="container">
         <h2 id="pain-clusters-title">Di mana keputusan mulai tersendat?</h2>
-        <div class="pain-clusters__track">
-          {painClusters.map((cluster, index) => <article class="reveal" style={`--i:${index}`}><span>{cluster.label}</span><p>{cluster.text}</p></article>)}
-        </div>
+        <p class="pain-clusters__intro">Pilih satu gejala. Lihat urutan yang perlu diperiksa sebelum menentukan langkah.</p>
+        <fieldset class="solution-problem-lab reveal">
+          <legend class="sr-only">Pilih masalah bisnis</legend>
+          <div class="solution-problem-lab__choices">
+            {painClusters.map((cluster, index) => (
+              <label>
+                <input type="radio" name="solution-problem" value={index} checked={index === 0} />
+                <span>{cluster.label}</span>
+                <small>{cluster.text}</small>
+              </label>
+            ))}
+          </div>
+          <div class="solution-problem-lab__stage" aria-live="polite">
+            {painClusters.map((cluster, index) => (
+              <article class="solution-problem-lab__panel" data-panel={index}>
+                <header><span>Contoh pola sintetis</span><strong>{cluster.label}</strong></header>
+                <div class="solution-problem-lab__bars" aria-hidden="true">
+                  {cluster.bars.map((bar, barIndex) => <i style={`--bar:${bar}%;--delay:${barIndex * 55}ms`}></i>)}
+                </div>
+                <p>{cluster.prompt}</p>
+                <a href={`/solusi/${solutions[index].slug}`}>Buka alur {cluster.label.toLowerCase()}</a>
+              </article>
+            ))}
+          </div>
+        </fieldset>
       </div>
     </section>
 

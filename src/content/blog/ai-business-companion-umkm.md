@@ -2,7 +2,7 @@
 title: "Apa Itu AI Business Companion untuk UMKM"
 description: "Penjelasan awal tentang peran AI Business Companion dalam membantu pemilik usaha memahami data."
 dek: "Kenali peran AI sebagai pendamping membaca konteks bisnis, bukan sebagai pengganti keputusan pemilik usaha."
-cover: "/editorial/ramuni-companion-flow.svg"
+cover: "/website-original/ai-decision-companion.svg"
 coverAlt: "Ilustrasi RAMUNI baru tentang pertanyaan, data, jawaban, bukti, dan persetujuan manusia"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
@@ -23,7 +23,7 @@ takeaways:
   - "Data yang belum lengkap harus disertai batas dan ketidakpastian."
 sources: []
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
-updateSummary: "Contoh artikel dibuat untuk memeriksa struktur halaman dan belum melalui peninjauan final."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:
   - "panduan-membaca-stok-harian"
 ctaType: "demo"
@@ -34,7 +34,7 @@ noindex: true
 
 AI Business Companion adalah pendamping untuk membaca catatan bisnis, menyusun pertanyaan, dan menunjukkan angka yang mendukung jawaban. Ia bukan pengganti pemilik usaha, akuntan, atau orang yang memahami kondisi lapangan.
 
-Artikel ini menjelaskan arah produk RAMUNI melalui contoh sintetis. Kemampuan final tetap mengikuti fitur yang sudah diuji.
+Artikel ini menjelaskan cara RAMUNI membantu membaca data usaha melalui contoh. Fitur yang tersedia akan dijelaskan sesuai kondisi produk terbaru.
 
 ## Fokus pada pertanyaan bisnis
 
@@ -74,7 +74,7 @@ Jika salah satu tidak dapat dijawab, perlakukan hasil sebagai dugaan awal. Janga
 
 AI dapat membantu menyusun ringkasan dan menemukan pola pada data yang tersedia. AI tidak mengetahui keadaan toko di luar catatan tersebut. Sistem juga dapat salah membaca istilah, periode, atau data yang tidak lengkap.
 
-Karena itu, RAMUNI menggunakan arah read-only pada versi awal. AI membaca dan menjelaskan. Ia tidak mengubah harga, memesan stok, mengirim pesan pelanggan, atau memindahkan uang secara otomatis.
+Pada versi awal, AI RAMUNI hanya membaca dan menjelaskan data. AI tidak mengubah harga, memesan stok, mengirim pesan kepada pelanggan, atau memindahkan uang.
 
 ## Tindakan tetap butuh persetujuan
 

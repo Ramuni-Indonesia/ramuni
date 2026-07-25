@@ -1,0 +1,64 @@
+---
+interface Props {
+  categorySlug: string;
+  compact?: boolean;
+}
+
+const { categorySlug, compact = false } = Astro.props;
+
+const stories = {
+  'stok-inventori': {
+    eyebrow: 'Sinyal stok / contoh',
+    title: 'Prioritas cek sore',
+    kind: 'bars',
+    items: [
+      { label: 'Kopi susu', value: '82%', width: 82 },
+      { label: 'Teh lemon', value: '38%', width: 38 },
+      { label: 'Roti cokelat', value: '24%', width: 24 },
+    ],
+    note: 'Laju jual dibaca bersama sisa stok.',
+  },
+  'keuangan-umkm': {
+    eyebrow: 'Arus uang / contoh',
+    title: 'Mengapa kas berubah?',
+    kind: 'ledger',
+    items: [
+      { label: 'Uang masuk', value: '+8,0 jt', width: 78 },
+      { label: 'Belanja stok', value: '-4,6 jt', width: 46 },
+      { label: 'Biaya rutin', value: '-1,4 jt', width: 20 },
+    ],
+    note: 'Angka sintetis untuk menjelaskan alur baca.',
+  },
+  'ai-untuk-umkm': {
+    eyebrow: 'Alur jawaban / contoh',
+    title: 'Bukti tetap terlihat',
+    kind: 'flow',
+    items: [
+      { label: 'Tanya', value: '01', width: 33 },
+      { label: 'Baca data', value: '02', width: 66 },
+      { label: 'Periksa', value: '03', width: 100 },
+    ],
+    note: 'Keputusan akhir tetap di tangan manusia.',
+  },
+} as const;
+
+const story = stories[categorySlug as keyof typeof stories] || stories['stok-inventori'];
+---
+
+<div class:list={['story-micro', `story-micro--${story.kind}`, compact && 'story-micro--compact']} aria-label={`${story.title}. ${story.note}`}>
+  <div class="story-micro__head">
+    <span>{story.eyebrow}</span>
+    <i aria-hidden="true"></i>
+  </div>
+  <strong>{story.title}</strong>
+  <div class="story-micro__plot" aria-hidden="true">
+    {story.items.map((item) => (
+      <div class="story-micro__row" style={`--signal:${item.width}%`}>
+        <span>{item.label}</span>
+        <b>{item.value}</b>
+        <i></i>
+      </div>
+    ))}
+  </div>
+  <p>{story.note}</p>
+</div>

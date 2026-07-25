@@ -1,147 +1,148 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { industries, products, solutions } from '../../data/site';
-import { solutionNarratives } from '../../data/pageNarratives';
+import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
+import SolutionScenario from '../../components/solution/SolutionScenario.astro';
+import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
+import { solutionDetails, type SolutionDetail } from '../../data/solutionDetails';
 import { releaseGates } from '../../config/release';
+import '../../styles/solution-detail.css';
 
 export function getStaticPaths() {
-  return solutions.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+  return solutionDetails.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+}
+
+interface Props {
+  solution: SolutionDetail;
 }
 
 const { solution } = Astro.props;
-const narrative = solutionNarratives[solution.slug];
-type SolutionFaq = { question: string; answer: string };
-const solutionContext: Record<string, { faq: SolutionFaq[]; closingText: string }> = {
-  'naikkan-omzet': {
-    faq: [
-      { question: 'Apakah RAMUNI menjamin omzet naik?', answer: 'Tidak. RAMUNI membantu menemukan produk, waktu, dan pelanggan yang berubah agar keputusan tidak dimulai dari dugaan.' },
-      { question: 'Data apa yang perlu dibandingkan?', answer: 'Mulai dari transaksi, produk, waktu penjualan, dan periode yang setara. Tambahkan konteks pelanggan hanya jika datanya tersedia dan boleh dipakai.' },
-      { question: 'Apakah promosi menjadi langkah pertama?', answer: 'Belum tentu. Periksa stok, perubahan produk, waktu transaksi, dan data yang hilang sebelum mengubah promosi.' },
-    ],
-    closingText: 'Bawa dua periode yang setara dan satu perubahan omzet yang ingin ditelusuri.',
-  },
-  'kelola-stok': {
-    faq: [
-      { question: 'Apakah stok minimum berarti harus langsung restock?', answer: 'Tidak. Batas minimum menandai barang untuk diperiksa bersama saldo fisik, laju keluar, dan waktu isi ulang.' },
-      { question: 'Data apa yang perlu disiapkan?', answer: 'Siapkan identitas produk, unit, saldo awal bertanggal, serta riwayat barang masuk, keluar, dan koreksi.' },
-      { question: 'Bagaimana jika catatan berbeda dari stok fisik?', answer: 'Catat selisih dan alasannya terlebih dahulu. Jangan menutup perbedaan hanya dengan mengganti saldo.' },
-    ],
-    closingText: 'Mulai dari lima sampai sepuluh barang yang paling sering keluar atau paling sulit diisi ulang.',
-  },
-  'pantau-laba-dan-arus-kas': {
-    faq: [
-      { question: 'Apa beda omzet, laba, dan kas?', answer: 'Omzet adalah nilai penjualan, laba mengikuti rumus biaya, sedangkan kas menunjukkan uang yang tersedia pada waktu tertentu.' },
-      { question: 'Mengapa periode laporan harus sama?', answer: 'Transaksi, biaya, dan pembayaran dari rentang berbeda dapat membuat perubahan terlihat lebih besar atau lebih kecil dari keadaan sebenarnya.' },
-      { question: 'Apakah ringkasan ini menggantikan akuntan?', answer: 'Tidak. RAMUNI membantu membaca catatan operasional dan bukan pengganti nasihat pajak atau akuntansi profesional.' },
-    ],
-    closingText: 'Siapkan satu periode, kelompok biaya utama, dan status pembayaran yang sudah diperiksa.',
-  },
-  'pahami-pelanggan': {
-    faq: [
-      { question: 'Apakah RAMUNI menghubungi pelanggan otomatis?', answer: 'Tidak pada versi awal. Tim tetap memeriksa izin, memilih kanal, dan menentukan tindak lanjut.' },
-      { question: 'Riwayat apa yang boleh dipakai?', answer: 'Gunakan hanya riwayat yang dibutuhkan, memiliki dasar izin, dan dapat dilihat oleh peran terkait.' },
-      { question: 'Bagaimana menangani data pelanggan yang ganda?', answer: 'Gunakan pengenal yang konsisten, tetapi jangan menggabungkan dua identitas tanpa dasar yang dapat diperiksa.' },
-    ],
-    closingText: 'Mulai dari riwayat yang rapi dan satu pertanyaan pelanggan yang memang perlu dijawab.',
-  },
-  'laporan-bisnis-otomatis': {
-    faq: [
-      { question: 'Apa yang perlu disepakati sebelum laporan dibuat?', answer: 'Tentukan nama metrik, rumus, sumber, periode, jadwal tutup, dan orang yang menindaklanjuti.' },
-      { question: 'Apakah laporan langsung dikirim otomatis?', answer: 'Kanal pengiriman mengikuti status fitur. Ringkasan perlu diuji terhadap sumber asal sebelum menjadi kebiasaan tim.' },
-      { question: 'Bagaimana jika angka antar tim berbeda?', answer: 'Periksa definisi metrik, batas periode, dan waktu pembaruan sebelum membahas hasilnya.' },
-    ],
-    closingText: 'Pilih satu laporan yang paling sering terlambat, lalu samakan aturan penyusunannya.',
-  },
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: solution.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
 };
-const productByTitle = new Map(products.map((product) => [product.title, product]));
-const industryBySlug = new Map(industries.map((industry) => [industry.slug, industry]));
-const supportingModules = solution.modules.map((module, index) => ({
-  module,
-  note: solution.moduleNotes[index],
-  product: productByTitle.get(module),
-}));
-const industryExamples = narrative.industryExamples.filter((example) => industryBySlug.has(example.slug));
-const context = solutionContext[solution.slug];
 ---
-<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.summary} noindex={!releaseGates.claimPagesIndexable}>
-  <section class="solution-detail-hero">
-    <div class="container solution-detail-hero__layout">
-      <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi', href: '/solusi' }, { label: solution.title }]} /><p class="section-kicker">Solusi RAMUNI</p><h1>{solution.title}</h1></div>
-      <div><p class="lede">{solution.summary}</p><p class="solution-detail-hero__outcome">{solution.outcome}</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
-    </div>
-  </section>
-
-  <section class="section surface symptom-section" aria-labelledby="symptom-title">
-    <div class="container symptom-section__layout">
-      <header><h2 id="symptom-title">{narrative.symptomHeading}</h2><p>Cocokkan dengan catatan usaha Anda sebelum menarik kesimpulan.</p></header>
-      <ul>{solution.symptoms.map((symptom, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}</ul>
-    </div>
-  </section>
-
-  <section class="section impact-section" aria-labelledby="impact-title">
-    <div class="container"><h2 id="impact-title">{narrative.comparisonHeading}</h2><div class="impact-section__rail reveal">{narrative.impact.map(([title, text], index) => <article style={`--i:${index}`}><span>{title}</span><p>{text}</p></article>)}</div></div>
-  </section>
-
-  <section class="section surface manual-gap" aria-labelledby="manual-gap-title">
-    <div class="container manual-gap__layout">
-      <div><h2 id="manual-gap-title">{narrative.beforeTitle}</h2><p>{narrative.beforeText}</p></div>
-      <div><h2>{narrative.afterTitle}</h2><p>{narrative.afterText}</p></div>
-    </div>
-  </section>
-
-  <section class="section solution-module-flow" aria-labelledby="module-flow-title">
-    <div class="container solution-module-flow__layout">
-      <header><h2 id="module-flow-title">{narrative.moduleHeading}</h2></header>
-      <div class="solution-module-flow__list">{supportingModules.map(({ module, note }, index) => <div class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><strong>{module}</strong><p>{note}</p></div>)}</div>
-    </div>
-  </section>
-
-  <section class="section surface solution-evidence" aria-labelledby="solution-evidence-title">
-    <div class="container solution-evidence__layout">
-      <div><span>Contoh data sintetis</span><h2 id="solution-evidence-title">{narrative.evidenceHeading}</h2></div>
-      <div><p class="solution-evidence__label">Hasil yang dituju</p><strong>{solution.outcome}</strong><dl><div><dt>Periksa</dt><dd>Periode dan sumber data</dd></div><div><dt>Bandingkan</dt><dd>Sinyal dengan aktivitas terkait</dd></div><div><dt>Putuskan</dt><dd>{solution.nextAction}</dd></div></dl></div>
-    </div>
-  </section>
-
-  <section class="section action-receipt"><div class="container action-receipt__layout"><div><h2>{narrative.receiptTitle}</h2></div><div><strong>{solution.nextAction}</strong><p>{narrative.receiptText}</p></div></div></section>
-
-  <section class="section surface" id="modul-terkait" aria-labelledby="related-modules-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="related-modules-title">Modul yang terlibat tidak berdiri sendiri.</h2><p class="lede">Setiap modul di bawah mengarah ke halaman produk yang sesuai, agar batas kemampuan dan cara kerjanya bisa diperiksa.</p></div>
-      <div class="audience-module-list">
-        {supportingModules.map(({ module, note, product }) => product ? <a class="audience-module-row reveal" href={`/produk/${product.slug}`}><strong>{module}</strong><span>{note}</span></a> : <div class="audience-module-row reveal"><strong>{module}</strong><span>{note}</span></div>)}
+<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={faqSchema}>
+  <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`}>
+    <section class="sd-hero" aria-labelledby="solution-title">
+      <div class="container sd-hero__layout">
+        <div class="sd-hero__copy reveal is-visible">
+          <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi', href: '/solusi' }, { label: solution.title }]} />
+          <p class="section-kicker">{solution.eyebrow}</p>
+          <h1 id="solution-title">{solution.heroTitle}</h1>
+          <p class="lede">{solution.heroText}</p>
+          <div class="sd-hero__action">
+            <a class="button button--primary" href="/demo">{solution.ctaLabel}</a>
+            <p>{solution.heroOutcome}</p>
+          </div>
+        </div>
+        <div class="sd-hero__visual reveal is-visible">
+          <SolutionDataVisual visual={solution.visual} />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="contoh-industri" aria-labelledby="industry-examples-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="industry-examples-title">{narrative.industryHeading}</h2><p class="lede">Contoh ini memakai skenario sintetis. Kecocokan akhir tetap mengikuti data dan batas rilis RAMUNI.</p></div>
-      <div class="audience-module-list">
-        {industryExamples.map((example) => <a class="audience-module-row reveal" href={`/industri/${example.slug}`}><strong>{example.title}</strong><span>{example.example}</span></a>)}
+    <section class="section sd-problem" aria-labelledby="problem-title">
+      <div class="container sd-problem__grid">
+        <header class="sd-problem__heading reveal">
+          <p class="section-kicker">Kenali masalahnya</p>
+          <h2 id="problem-title">Apakah ini terjadi di usaha Anda?</h2>
+          <p>Cocokkan gejala dengan catatan yang tersedia. Satu tanda belum cukup untuk menyimpulkan penyebab.</p>
+        </header>
+        <ol class="sd-symptoms">
+          {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
+        </ol>
+        <div class="sd-impact" aria-label="Dampak bisnis">
+          {solution.impact.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Dampak {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section surface" id="implementasi" aria-labelledby="implementation-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="implementation-title">{narrative.onboardingHeading}</h2><p class="lede">Mulai dari data yang ada, cek batasnya, lalu perluas setelah tim nyaman.</p></div>
-      <ol class="audience-ledger">
-        {narrative.onboarding.map(([title, text], index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{title}</strong><p>{text}</p></div></li>)}
-      </ol>
-    </div>
-  </section>
+    <section class="section sd-workflow-section" aria-labelledby="workflow-title">
+      <div class="container">
+        <header class="sd-section-heading reveal">
+          <p class="section-kicker">Cara kerja</p>
+          <h2 id="workflow-title">Dari catatan usaha ke keputusan yang tetap Anda pegang.</h2>
+          <p>Setiap tahap menyimpan jalur kembali ke periode, sumber, dan konteks yang dipakai.</p>
+        </header>
+        <SolutionWorkflow steps={solution.workflow} />
+      </div>
+    </section>
 
-  <section class="section detail-faq"><div class="container detail-faq__layout"><h2>Pertanyaan sebelum memulai.</h2><div class="faq-list">{context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
+    <section class="section sd-scenario-section" aria-labelledby="scenario-title">
+      <div class="container"><SolutionScenario scenario={solution.scenario} /></div>
+    </section>
 
-  <section class="section solution-detail-close"><div class="container solution-detail-close__layout"><div><h2>{narrative.closing}</h2><p class="solution-detail-close__text">{context.closingText}</p></div><div class="button-row"><a class="button button--primary" href="/demo">Jadwalkan Demo</a><a class="button button--secondary" href="/solusi">Lihat Semua Solusi</a></div></div></section>
+    <section class="section sd-capabilities" aria-labelledby="capabilities-title">
+      <div class="container sd-capabilities__layout">
+        <header class="reveal">
+          <p class="section-kicker">Cakupan dan status</p>
+          <h2 id="capabilities-title">Modul yang membantu alur ini.</h2>
+          <p>Lihat bagian yang dapat dicoba saat demo dan yang masih disiapkan.</p>
+        </header>
+        <div class="sd-capability-list">
+          {solution.capabilities.map((capability, index) => (
+            capability.href ? (
+              <a class="sd-capability reveal" style={`--i:${index}`} href={capability.href}>
+                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b aria-hidden="true">↗</b>
+              </a>
+            ) : (
+              <div class="sd-capability sd-capability--limited reveal" style={`--i:${index}`}>
+                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section sd-context" aria-labelledby="context-title">
+      <div class="container">
+        <header class="sd-section-heading reveal">
+          <p class="section-kicker">Konteks usaha</p>
+          <h2 id="context-title">Masalah yang sama muncul dengan ritme berbeda.</h2>
+          <p>Contoh berikut memakai data rekaan. Kecocokannya bergantung pada data dan cara kerja usaha Anda.</p>
+        </header>
+        <nav class="sd-industry-list" aria-label="Contoh berdasarkan industri">
+          {solution.industries.map((industry, index) => (
+            <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat konteks</b></a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    <section class="section sd-start" aria-labelledby="start-title">
+      <div class="container sd-start__layout">
+        <div class="sd-start__steps reveal">
+          <p class="section-kicker">Mulai tanpa proyek besar</p>
+          <h2 id="start-title">Siapkan satu kasus yang memang perlu dijelaskan.</h2>
+          <ol>{solution.onboarding.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+        </div>
+        <aside class="sd-resource reveal" aria-labelledby="resource-title">
+          <span>{solution.resource.type}</span>
+          <h3 id="resource-title">{solution.resource.title}</h3>
+          <p>{solution.resource.text}</p>
+          <a class="text-link" href={solution.resource.href}>{solution.resource.cta}</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section sd-faq-close" aria-labelledby="faq-title">
+      <div class="container sd-faq__layout">
+        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pertanyaan yang perlu dijawab lebih dulu.</h2></header>
+        <div class="sd-faq-list">
+          {solution.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+        </div>
+      </div>
+      <div class="container sd-close reveal">
+        <div><h2>{solution.closingTitle}</h2><p>{solution.closingText}</p></div>
+        <div class="button-row"><a class="button button--primary" href="/demo">{solution.ctaLabel}</a><a class="button button--secondary" href="/solusi">Bandingkan Solusi</a></div>
+      </div>
+    </section>
+  </article>
 </BaseLayout>
-
-<style>
-  .solution-detail-close__text {
-    max-width: 52ch;
-    margin-top: 16px;
-    color: var(--ink-72);
-  }
-</style>

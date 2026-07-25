@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import '../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -51,11 +52,11 @@ const schema = [
   },
 ];
 ---
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1080} imageHeight={1350} noindex={post.data.noindex} schema={schema} ogType="article">
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={post.data.noindex} schema={schema} ogType="article">
   <article>
     <header class="article-hero">
       <div class="container article-head">
-        {post.data.noindex && <div class="article-preview-note"><span>Edisi awal</span><p>Artikel ini belum masuk indeks pencarian sampai sumber dan review editorialnya lengkap.</p></div>}
+        {post.data.noindex && <div class="article-preview-note"><span>Edisi awal</span><p>Artikel ini masih dalam peninjauan. Sumber dan pemeriksaan editorial sedang dilengkapi.</p></div>}
         <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
         <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a>
         <h1>{post.data.title}</h1>
@@ -68,14 +69,14 @@ const schema = [
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} /></div></figure>
+        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} /><StoryMicroVisual categorySlug={post.data.categorySlug} /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>
 
     <section class="article-reading-stage">
       <div class="container article-reading-grid">
         <div class="article-main">
-          <section class="article-short-answer" aria-labelledby="short-answer"><h2 id="short-answer">Inti artikel</h2><ul>{post.data.takeaways.map((item) => <li>{item}</li>)}</ul></section>
+          <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol></section>
 
           {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></details>}
 
@@ -84,7 +85,7 @@ const schema = [
           <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
-            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty">Daftar sumber final belum tersedia. Artikel tetap noindex dan tidak diposisikan sebagai rujukan final.</p>}
+            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty">Daftar sumber masih dilengkapi. Gunakan artikel ini sebagai panduan awal.</p>}
             {post.data.disclaimer && <p class="article-disclaimer">{post.data.disclaimer}</p>}
           </section>
 
@@ -94,25 +95,19 @@ const schema = [
             <div class="article-review-state"><span>Peninjauan</span>{hasVerifiedReviewer ? <><strong>{post.data.reviewerName}</strong><p>Revisi terbit telah ditinjau sesuai bidangnya.</p></> : <><strong>Belum ditinjau final</strong><p>Nama peninjau baru ditampilkan setelah revisi terbit disetujui.</p></>}</div>
           </section>
 
-          <section class="article-feedback" aria-labelledby="feedback-heading">
-            <h2 id="feedback-heading">Apakah artikel ini membantu?</h2>
-            <p>Penilaian akan dibuka setelah sistem editorial siap. Tidak ada data yang dikirim dari tombol di bawah ini.</p>
-            <fieldset disabled><legend class="visually-hidden">Nilai kegunaan artikel</legend><button type="button">Ya, membantu</button><button type="button">Belum cukup</button></fieldset>
-            <p><a class="text-link" href="/blog/koreksi">Kirim koreksi editorial</a></p>
-          </section>
-
         </div>
 
         <aside class="article-rail" aria-label="Navigasi artikel">
-          {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}
+          {toc.length > 0 && <nav><strong>Isi artikel</strong><small>Baca dari bagian yang paling relevan.</small><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}
           <div class="article-rail-note"><span>Status editorial</span><p>{post.data.editorialStatus}</p><a href="/blog/kebijakan-editorial">Lihat standar editorial</a></div>
+          <div class="article-rail-cta"><strong>Ingin coba alurnya?</strong><p>Gunakan data sintetis dan pilih satu masalah usaha.</p><a href="/early-access">Daftar Early Access</a></div>
         </aside>
       </div>
     </section>
   </article>
 
-  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container blog-index-layout"><div class="blog-section-lead"><h2 id="related-heading">Baca topik yang berdekatan.</h2><p>Pilih satu artikel untuk melengkapi gambaran.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /></figure><div><span>{related.data.category}</span><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small></div></a>)}</div></div></section>}
+  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container blog-index-layout"><div class="blog-section-lead"><h2 id="related-heading">Lanjut dari sini.</h2><p>Pilih topik yang membantu Anda melihat angka dari sisi lain.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
-  <section class="section blog-close-stage" aria-labelledby="article-final-cta"><div class="container blog-close reveal"><div><h2 id="article-final-cta">Lihat cara pertanyaan ini dibaca di RAMUNI.</h2><p>Gunakan data sintetis untuk memahami alur tanpa mengirim catatan usaha.</p></div><a class="button button--primary" href="/demo">Lihat Demo</a></div></section>
+  <section class="section blog-close-stage" aria-labelledby="article-final-cta"><div class="container blog-close reveal"><div><h2 id="article-final-cta">Bawa satu pertanyaan usaha.</h2><p>RAMUNI menunjukkan cara membaca konteksnya dengan data sintetis.</p></div><a class="button button--primary" href="/demo">Lihat Demo</a></div></section>
 
 </BaseLayout>

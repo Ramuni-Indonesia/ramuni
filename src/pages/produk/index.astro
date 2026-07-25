@@ -2,10 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { products, roles, solutions } from '../../data/site';
+import '../../styles/other-pages-refinement.css';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
 const ecosystem = products.find((product) => product.slug === 'integrasi');
+
+const heroSignals = [
+  { label: 'Transaksi', value: 'dicatat', note: 'waktu, produk, nilai' },
+  { label: 'Stok', value: 'dibaca', note: 'saldo dan perubahan' },
+  { label: 'Kas', value: 'dipisah', note: 'masuk, keluar, laba' },
+  { label: 'Insight', value: 'ditinjau', note: 'bukti sebelum aksi' },
+];
 
 const sharedCapabilities = [
   { title: 'Akses sesuai peran', text: 'Pemilik, supervisor, admin, dan kasir melihat ruang kerja yang sesuai tanggung jawabnya.' },
@@ -30,12 +38,27 @@ const productFaq = [
           <h1>Satu alur untuk membaca bisnis.</h1>
         </div>
         <div class="catalog-hero__aside reveal is-visible">
-          <p>Catat operasional, periksa hitungan, lalu tentukan langkah dengan bukti yang sama.</p>
+          <p>Catat operasional, periksa hitungan, lalu ambil keputusan dari bukti yang sama.</p>
           <div class="button-row">
             <a class="button button--primary" href="/early-access">Daftar Early Access</a>
             <a class="button button--secondary" href="/demo">Lihat Demo</a>
           </div>
         </div>
+        <aside class="hub-orbit product-hub__hero-visual reveal is-visible" aria-label="Ilustrasi alur data produk RAMUNI">
+          <div class="hub-orbit__core">
+            <span>Data usaha</span>
+            <strong>Dibaca bersama</strong>
+          </div>
+          <ol class="hub-orbit__rings">
+            {heroSignals.map((signal, index) => (
+              <li style={`--i:${index}`}>
+                <span>{signal.label}</span>
+                <strong>{signal.value}</strong>
+                <small>{signal.note}</small>
+              </li>
+            ))}
+          </ol>
+        </aside>
       </div>
     </section>
 
@@ -66,7 +89,7 @@ const productFaq = [
               <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
                 <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
-                <span class="availability-label">Preview terkontrol</span>
+                <span class="availability-label">Dalam pengembangan</span>
               </a>
             ))}
           </section>
@@ -76,7 +99,7 @@ const productFaq = [
               <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
                 <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
-                <span class="availability-label">Sesuai bukti rilis</span>
+                <span class="availability-label">Siap dipetakan</span>
               </a>
             ))}
           </section>
@@ -86,7 +109,7 @@ const productFaq = [
               <a class="product-row" href={`/produk/${ecosystem.slug}`}>
                 <span class="product-row__index">01</span>
                 <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
-                <span class="availability-label">Status per metode</span>
+                <span class="availability-label">Cek per metode</span>
               </a>
             </section>
           )}
@@ -130,7 +153,7 @@ const productFaq = [
     <section class="section product-trust" aria-labelledby="product-trust-title">
       <div class="container product-trust__layout">
         <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">Insight tidak langsung menjadi tindakan.</h2></div>
-        <div><p>RAMUNI memisahkan akses antar peran, menunjukkan sumber jawaban, dan menjaga AI tetap read-only pada versi awal.</p><a href="/keamanan">Pelajari keamanan dan batas AI</a></div>
+        <div><p>RAMUNI memisahkan akses tiap peran, menunjukkan sumber jawaban, dan pada versi awal membatasi AI hanya untuk membaca data.</p><a href="/keamanan">Pelajari keamanan dan batas AI</a></div>
       </div>
     </section>
 

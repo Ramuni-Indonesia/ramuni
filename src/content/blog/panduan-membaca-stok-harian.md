@@ -2,7 +2,7 @@
 title: "Cara Membaca Stok Harian Tanpa Menunggu Masalah"
 description: "Panduan awal untuk membantu UMKM membaca sinyal stok dari penjualan harian."
 dek: "Baca sisa stok bersama kecepatan penjualan agar risiko kosong terlihat sebelum jam ramai."
-cover: "/editorial/ramuni-stock-signal.svg"
+cover: "/website-original/stock-ops-board.svg"
 coverAlt: "Ilustrasi RAMUNI baru tentang sisa stok, laju penjualan, dan urutan cek"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
@@ -22,7 +22,7 @@ takeaways:
   - "Produk yang terlihat aman dapat tetap berisiko saat jam ramai."
   - "Catat keputusan berikutnya agar tim memiliki konteks yang sama."
 sources: []
-updateSummary: "Contoh artikel dibuat untuk memeriksa struktur halaman dan belum melalui peninjauan final."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:
   - "arus-kas-umkm-ringan"
   - "ai-business-companion-umkm"
@@ -32,7 +32,7 @@ draft: false
 noindex: true
 ---
 
-Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” baru berguna setelah dibandingkan dengan laju penjualan, waktu ramai, dan waktu yang dibutuhkan untuk menyiapkan barang pengganti.
+Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” perlu dibandingkan dengan laju penjualan dan waktu ramai. Periksa juga waktu yang dibutuhkan untuk menyiapkan barang pengganti.
 
 Panduan ini memakai contoh kedai fiktif. Semua angka bersifat sintetis dan ditujukan untuk menguji cara membaca stok, bukan sebagai patokan untuk setiap usaha.
 

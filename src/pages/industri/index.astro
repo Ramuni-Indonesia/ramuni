@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import { industries, products } from '../../data/site';
+import '../../styles/other-pages-refinement.css';
 
 const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string; signal: string }> = {
   retail: { rhythm: 'Cepat, sepanjang hari', stock: 'Banyak SKU; laju berbeda', customer: 'Datang langsung dan kembali', finance: 'Omzet, margin, kas harian', signal: 'SKU cepat laku' },
@@ -23,24 +24,50 @@ const resources = [
   { eyebrow: 'Template', title: 'Rapikan catatan awal', text: 'Lihat format contoh tanpa perlu membagikan data sensitif.', href: '/template' },
   { eyebrow: 'Artikel', title: 'Belajar sesuai ritme usaha', text: 'Baca pembahasan praktis untuk stok, penjualan, kas, dan pelanggan.', href: '/blog' },
 ];
+
+const industryLens = industries.map((industry) => ({
+  ...industry,
+  ...industryProfiles[industry.slug as keyof typeof industryProfiles],
+}));
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Bandingkan ritme retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil sebelum memilih konteks RAMUNI.">
-  <PageHero eyebrow="Industri" title="Bisnis berbeda, sinyal pentingnya pun berbeda." description="Pilih cara usaha Anda berjalan. RAMUNI menyesuaikan contoh dan pertanyaan, bukan membuat produk terpisah untuk setiap industri." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasikan Kebutuhan" secondaryHref="/demo" />
+  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasikan Kebutuhan" secondaryHref="/demo" />
+
+  <section class="section industry-lens" aria-labelledby="industry-lens-title">
+    <div class="container industry-lens__layout">
+      <div class="industry-lens__copy reveal">
+        <h2 id="industry-lens-title">Mulai dari cara usaha Anda berjalan.</h2>
+        <p>Retail membaca SKU cepat. F&B membaca jam ramai. Distributor membaca pesanan ulang. Pilih konteks yang paling dekat.</p>
+      </div>
+      <div class="industry-lens__cards" aria-label="Kartu konteks industri">
+        {industryLens.map((item, index) => (
+          <a class="industry-lens-card reveal" style={`--i:${index}`} href={`/industri/${item.slug}`}>
+            <span>{item.signal}</span>
+            <strong>{item.title}</strong>
+            <small>{item.rhythm}</small>
+            <div class="industry-lens-card__pulse" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <section class="section dark-surface industry-hub__selector" id="daftar-industri" aria-labelledby="industry-selector-title">
     <div class="container industry-hub__selector-layout">
       <div class="industry-hub__sticky reveal">
         <p class="eyebrow">Temukan konteks Anda</p>
         <h2 id="industry-selector-title">Pertanyaan harian adalah titik mulai terbaik.</h2>
-        <p>Setiap halaman masih berstatus Concept Preview sampai cakupan fitur dan dukungan implementasi terverifikasi.</p>
+        <p>Setiap halaman memakai contoh rekaan. Fitur yang tersedia akan dijelaskan saat demo.</p>
         <div class="industry-hub__radar" aria-hidden="true"><span></span><i></i><b></b></div>
       </div>
       <nav class="industry-hub__signals" aria-label="Daftar industri">
         {industries.map((industry, index) => (
           <a class="industry-hub__signal reveal" style={`--i:${index}`} href={`/industri/${industry.slug}`}>
             <span>{industryProfiles[industry.slug].signal}</span>
-            <div><strong>{industry.title}</strong><p>“{industry.question}”</p></div>
-            <b aria-hidden="true">↗</b>
+            <div><strong>{industry.title}</strong><p>"{industry.question}"</p></div>
+            <b aria-hidden="true">Lihat</b>
           </a>
         ))}
       </nav>
@@ -49,7 +76,7 @@ const resources = [
 
   <section class="section surface industry-hub__comparison" id="perbandingan" aria-labelledby="comparison-title">
     <div class="container">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Bandingkan ritme</p><h2 id="comparison-title">Satu angka dapat bercerita lain.</h2><p class="lede">Lihat konteks di balik transaksi, stok, pelanggan, dan keuangan sebelum menyimpulkan.</p></div>
+      <div class="industry-hub__heading reveal"><p class="eyebrow">Bandingkan cara kerja</p><h2 id="comparison-title">Angka yang sama bisa berarti hal berbeda.</h2><p class="lede">Lihat konteks transaksi, stok, pelanggan, dan keuangan sebelum menyimpulkan.</p></div>
       <div class="industry-hub__table reveal" role="region" aria-label="Perbandingan konteks industri" tabindex="0">
         <table>
           <thead><tr><th scope="col">Industri</th><th scope="col">Transaksi</th><th scope="col">Stok</th><th scope="col">Pelanggan</th><th scope="col">Keuangan</th></tr></thead>
@@ -72,7 +99,7 @@ const resources = [
     <div class="container">
       <div class="industry-hub__heading reveal"><p class="eyebrow">Produk yang sama</p><h2 id="shared-modules-title">Konteks berubah, fondasi tidak.</h2><p class="lede">Modulnya tetap. Pertanyaan, contoh, dan urutan pemeriksaan yang mengikuti cara usaha berjalan.</p></div>
       <div class="industry-hub__module-track">
-        {sharedModules.map((product, index) => <a class="industry-hub__module reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}><span>0{index + 1}</span><strong>{product.title}</strong><p>{product.outcome}</p><b aria-hidden="true">→</b></a>)}
+        {sharedModules.map((product, index) => <a class="industry-hub__module reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}><span>0{index + 1}</span><strong>{product.title}</strong><p>{product.outcome}</p><b aria-hidden="true">Buka</b></a>)}
       </div>
     </div>
   </section>
@@ -81,14 +108,14 @@ const resources = [
     <div class="container industry-hub__resource-layout">
       <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum demo</p><h2 id="industry-resources-title">Bawa konteks, bukan data sensitif.</h2></div>
       <div class="industry-hub__resource-list">
-        {resources.map((resource, index) => <a class="industry-hub__resource reveal" style={`--i:${index}`} href={resource.href}><span>{resource.eyebrow}</span><div><h3>{resource.title}</h3><p>{resource.text}</p></div><b aria-hidden="true">↗</b></a>)}
+        {resources.map((resource, index) => <a class="industry-hub__resource reveal" style={`--i:${index}`} href={resource.href}><span>{resource.eyebrow}</span><div><h3>{resource.title}</h3><p>{resource.text}</p></div><b aria-hidden="true">Buka</b></a>)}
       </div>
     </div>
   </section>
 
   <section class="section surface industry-hub__faq" id="kecocokan" aria-labelledby="fit-title">
     <div class="container industry-hub__faq-layout">
-      <div class="industry-hub__sticky reveal"><p class="eyebrow">Kecocokan</p><h2 id="fit-title">Pilih dengan batas yang jelas.</h2><p>Halaman industri membantu menyusun pertanyaan awal, bukan menjanjikan kecocokan sebelum verifikasi.</p></div>
+      <div class="industry-hub__sticky reveal"><p class="eyebrow">Kecocokan</p><h2 id="fit-title">Pilih sesuai kebutuhan usaha.</h2><p>Gunakan halaman industri untuk menyiapkan pertanyaan sebelum demo.</p></div>
       <div class="industry-hub__faq-list reveal">
         <details><summary>Apakah RAMUNI berbeda untuk setiap industri?</summary><p>Tidak. Produk intinya sama. Contoh, istilah, dan urutan pemeriksaan disesuaikan dengan ritme usaha.</p></details>
         <details><summary>Apakah semua fitur industri sudah tersedia?</summary><p>Belum tentu. Status dan batas fitur dijelaskan di halaman masing-masing dan dikonfirmasi saat demo.</p></details>

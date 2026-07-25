@@ -213,7 +213,7 @@ const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug)
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
 ---
-<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Pratinjau konsep RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/industri">Industri</a><span>/</span><span>{industry.title}</span></nav></div>
   <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat Demo" primaryHref="/demo" secondaryLabel="Semua Industri" secondaryHref="/industri" />
 
@@ -221,7 +221,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
     <div class="container audience-split">
       <div class="audience-section-heading reveal">
         <h2 id="fit-title">{headings.fit}</h2>
-        <p class="lede">Gunakan halaman ini untuk menilai kecocokan alur. Fitur final mengikuti hasil pengujian RAMUNI.</p>
+        <p class="lede">Gunakan halaman ini untuk melihat apakah alurnya sesuai dengan kegiatan usaha Anda.</p>
       </div>
       <div class="audience-boundary-ledger reveal">
         <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
@@ -254,7 +254,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 
   <section class="section surface" id="metrik-contoh" aria-labelledby="metrics-title">
     <div class="container audience-split">
-      <div class="audience-section-heading reveal"><p class="eyebrow">Data sintetis</p><h2 id="metrics-title">Angka contoh untuk membaca skenario, bukan hasil pelanggan.</h2><p class="lede">Nilai ini hanya memperlihatkan hubungan antarcatatan. RAMUNI tidak mengklaim hasil usaha dari angka berikut.</p></div>
+      <div class="audience-section-heading reveal"><p class="eyebrow">Data contoh</p><h2 id="metrics-title">Lihat hubungan antarcatatan melalui contoh sederhana.</h2><p class="lede">Angka berikut adalah rekaan dan bukan hasil usaha pelanggan.</p></div>
       <dl class="audience-permission-ledger reveal">{brief.exampleMetrics.map((metric) => <div><dt>{metric.label}</dt><dd><strong>{metric.value}</strong><span>{metric.note}</span></dd></div>)}</dl>
     </div>
   </section>

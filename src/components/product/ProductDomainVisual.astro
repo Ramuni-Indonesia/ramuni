@@ -1,0 +1,123 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  question: string;
+}
+
+const { slug, title, question } = Astro.props;
+---
+
+<figure class={`pd-visual pd-visual--${slug} reveal`} aria-label={`Visual data sintetis untuk ${title}`}>
+  <figcaption>
+    <span>Data sintetis</span>
+    <strong>{question}</strong>
+  </figcaption>
+
+  {slug === 'asisten-ai' && (
+    <div class="pd-ai-trace">
+      <div class="pd-ai-trace__answer">
+        <small>Jawaban ringkas</small>
+        <strong>Stok produk terlaris perlu dicek sebelum jam ramai.</strong>
+        <span class="pd-state pd-state--check">Perlu cek fisik</span>
+      </div>
+      <ol>
+        <li><b>01</b><span>Penjualan 7 hari</span><em>Sumber utama</em></li>
+        <li><b>02</b><span>Saldo terakhir</span><em>Diperbarui 08.15</em></li>
+        <li><b>03</b><span>Stok fisik</span><em>Belum diperiksa</em></li>
+      </ol>
+    </div>
+  )}
+
+  {slug === 'dashboard-bisnis' && (
+    <div class="pd-priority-board">
+      <header><span>Prioritas pagi</span><small>Pembanding: 7 hari</small></header>
+      <ol>
+        <li class="is-primary"><b>01</b><div><strong>Stok cepat bergerak</strong><span>Alasan: sisa turun, penjualan naik</span></div><em>Cek</em></li>
+        <li><b>02</b><div><strong>Biaya operasional</strong><span>Alasan: perubahan terbesar kedua</span></div><em>Buka</em></li>
+        <li><b>03</b><div><strong>Pembayaran tertunda</strong><span>Alasan: 4 transaksi perlu diperiksa</span></div><em>Buka</em></li>
+      </ol>
+      <footer><span>Terakhir diperbarui</span><strong>08.15</strong></footer>
+    </div>
+  )}
+
+  {slug === 'katalog-produk' && (
+    <div class="pd-catalog-cleanup">
+      <div class="pd-catalog-cleanup__before">
+        <small>Sebelum</small>
+        <span>Kopi Susu 250</span><span>Kopsu 250ml</span><span>Kopi susu botol</span>
+      </div>
+      <div class="pd-catalog-cleanup__join" aria-hidden="true"><i></i><b>Dirapikan</b></div>
+      <div class="pd-catalog-cleanup__after">
+        <small>Satu identitas</small>
+        <strong>Kopi Susu 250 ml</strong>
+        <dl><div><dt>SKU</dt><dd>KS-250</dd></div><div><dt>Unit</dt><dd>Botol</dd></div><div><dt>Status</dt><dd>Aktif</dd></div></dl>
+      </div>
+    </div>
+  )}
+
+  {slug === 'penjualan' && (
+    <div class="pd-sales-pulse">
+      <header><strong>Perubahan omzet</strong><span>Hari kerja setara</span></header>
+      <div class="pd-sales-pulse__bars" aria-label="Grafik contoh perubahan penjualan">
+        <span style="--h:42%"><i>Sen</i></span><span style="--h:58%"><i>Sel</i></span><span class="is-focus" style="--h:82%"><i>Rab</i></span><span style="--h:64%"><i>Kam</i></span><span style="--h:72%"><i>Jum</i></span>
+      </div>
+      <div class="pd-sales-pulse__driver"><small>Pendorong terbesar</small><strong>Produk A pada pukul 11.00-13.00</strong><span>2 pembayaran perlu diperiksa</span></div>
+    </div>
+  )}
+
+  {slug === 'inventori' && (
+    <div class="pd-stock-ledger">
+      <div class="pd-stock-ledger__gauge"><span><i></i></span><div><small>Saldo terakhir</small><strong>18 unit</strong><em>Batas perhatian: 20</em></div></div>
+      <ol>
+        <li><time>08.10</time><span>Barang keluar</span><strong>-6</strong></li>
+        <li><time>Kemarin</time><span>Koreksi fisik</span><strong>-2</strong></li>
+        <li><time>2 hari lalu</time><span>Barang masuk</span><strong>+12</strong></li>
+      </ol>
+      <p><span>Laju 7 hari</span><strong>34 unit</strong><em>Cek fisik sebelum isi ulang</em></p>
+    </div>
+  )}
+
+  {slug === 'keuangan' && (
+    <div class="pd-money-balance">
+      <div class="pd-money-balance__formula"><span>Omzet</span><b>tidak sama dengan</b><span>Kas</span></div>
+      <div class="pd-money-balance__streams">
+        <article><small>Uang masuk</small><strong>Sudah diterima</strong><i style="--w:78%"></i></article>
+        <article><small>Biaya</small><strong>Sudah dikelompokkan</strong><i style="--w:46%"></i></article>
+        <article><small>Transaksi tertunda</small><strong>Perlu diperiksa</strong><i style="--w:22%"></i></article>
+      </div>
+      <footer><span>Rumus dan periode</span><strong>Terlihat di setiap ringkasan</strong></footer>
+    </div>
+  )}
+
+  {slug === 'pelanggan' && (
+    <div class="pd-repeat-story">
+      <div class="pd-repeat-story__timeline">
+        <span class="is-done"><b>12 Mei</b><i></i><small>Pembelian 1</small></span>
+        <span class="is-done"><b>29 Mei</b><i></i><small>Pembelian 2</small></span>
+        <span><b>18 Jun</b><i></i><small>Pembelian 3</small></span>
+      </div>
+      <div class="pd-repeat-story__consent"><small>Sebelum tindak lanjut</small><dl><div><dt>Riwayat</dt><dd>Tersedia</dd></div><div><dt>Kanal izin</dt><dd>Perlu dicek</dd></div><div><dt>Pesan otomatis</dt><dd>Tidak aktif</dd></div></dl></div>
+    </div>
+  )}
+
+  {slug === 'laporan-insight' && (
+    <div class="pd-report-stack">
+      <div class="pd-report-stack__sheet pd-report-stack__sheet--back" aria-hidden="true"></div>
+      <article class="pd-report-stack__sheet">
+        <header><span>Laporan mingguan</span><strong>7-13 Juli</strong></header>
+        <ol><li><b>01</b><span>Perubahan utama</span><em>Ada bukti</em></li><li><b>02</b><span>Penyebab yang perlu dibahas</span><em>2 catatan</em></li><li><b>03</b><span>Pemilik tindak lanjut</span><em>Ditentukan</em></li></ol>
+        <footer><span>Ekspor</span><strong>Belum dinyatakan tersedia</strong></footer>
+      </article>
+    </div>
+  )}
+
+  {slug === 'integrasi' && (
+    <div class="pd-data-pipeline">
+      <div class="pd-data-pipeline__source"><small>Sumber</small><strong>CSV</strong><span>128 baris</span></div>
+      <ol aria-label="Tahap pemeriksaan data"><li><b>1</b><span>Format</span></li><li><b>2</b><span>Pemetaan</span></li><li><b>3</b><span>Validasi</span></li></ol>
+      <div class="pd-data-pipeline__result"><small>Hasil pemeriksaan</small><span><b>124</b> siap masuk</span><span class="has-error"><b>4</b> perlu diperbaiki</span></div>
+      <footer><span>Metode</span><strong>Import file</strong><em>Bukan koneksi langsung</em></footer>
+    </div>
+  )}
+</figure>
