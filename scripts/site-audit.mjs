@@ -1,6 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolvePublicEnvironment } from '../src/config/public-environment.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const root = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -27,6 +28,8 @@ async function walkSource(dir) {
 await walkSource(sourceRoot);
 
 const documentationFiles = [];
+const publicEnvironment = resolvePublicEnvironment(process.env);
+const siteOrigin = String(process.env.PUBLIC_SITE_URL || 'https://ramuni.id').replace(/\/$/, '');
 async function walkDocumentation(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
@@ -434,7 +437,10 @@ for (const route of sitemapUrls) {
 }
 for (const [route, page] of pages) {
   if (!page.noindex && !sitemapUrls.has(normalizeRoute(route))) failures.push(`${route}: indexable canonical page missing from sitemap`);
+  if (!publicEnvironment.indexingEnabled && !page.noindex) failures.push(`${route}: non-production build must remain noindex`);
 }
+
+if (!publicEnvironment.indexingEnabled && sitemapUrls.size > 0) failures.push('sitemap: non-production build must not expose URLs');
 
 for (const route of [...PLACEHOLDER_RESOURCE_ROUTES, ...DUMMY_BLOG_ROUTES]) {
   const page = pages.get(route);
@@ -446,8 +452,13 @@ for (const route of [...PLACEHOLDER_RESOURCE_ROUTES, ...DUMMY_BLOG_ROUTES]) {
 const robotsPath = join(root, 'robots.txt');
 try {
   const robots = await readFile(robotsPath, 'utf8');
-  if (!/Sitemap: https:\/\/ramuni\.id\/sitemap-index\.xml/.test(robots)) failures.push('robots.txt: production sitemap missing');
-  if (/Disallow: \/(?:masuk|terima-kasih)/.test(robots)) failures.push('robots.txt: noindex route incorrectly blocked');
+  if (publicEnvironment.indexingEnabled) {
+    if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`)) failures.push('robots.txt: production sitemap missing');
+    if (/Disallow: \/(?:masuk|terima-kasih)/.test(robots)) failures.push('robots.txt: noindex route incorrectly blocked');
+  } else {
+    if (!/^Disallow: \/$/m.test(robots)) failures.push('robots.txt: non-production build must disallow all crawling');
+    if (/^Sitemap:/m.test(robots)) failures.push('robots.txt: non-production build must not advertise a sitemap');
+  }
 } catch { failures.push('robots.txt: missing'); }
 
 for (const requiredAsset of ['/favicon-16x16.png', '/favicon-32x32.png', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/og-default.png']) {

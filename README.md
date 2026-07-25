@@ -98,6 +98,8 @@ Lead forms also fail closed. Keep `PUBLIC_LEAD_ENDPOINT` empty until an approved
 | `public` | Deployable fonts, favicons, Open Graph, brand, and editorial assets |
 | `brand/RAMUNI` | Approved brand source and reference exports |
 | `scripts/site-audit.mjs` | Built-output SEO, accessibility, content, and performance audit |
+| `scripts/deploy-staging.sh` | Verified, atomic deployment to `staging.ramuni.id` |
+| `ops/nginx` | Versioned staging TLS, cache, security-header, and noindex policy |
 | `.github` | Branch/PR quality workflow, Dependabot policy, and review checklist |
 | `docs` | Product, content, SEO, analytics, security, and deployment handover |
 
@@ -120,6 +122,8 @@ Before a public release:
 7. Run mobile and desktop PageSpeed Insights and Rich Results validation.
 
 The detailed promotion and rollback checklist is in [`docs/deployment-rollback.md`](docs/deployment-rollback.md).
+
+The current staging host is `https://staging.ramuni.id`. It is intentionally protected from indexing at the HTML, HTTP-header, robots, and sitemap layers. HTML is never cached; content-hashed Astro assets are immutable for one year; non-hashed images and fonts use a one-day staging TTL. Run `scripts/deploy-staging.sh` from a clean reviewed worktree to publish an atomic release.
 
 ## Security
 
