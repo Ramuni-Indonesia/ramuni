@@ -9,7 +9,7 @@ The official static-first marketing website and editorial blog for RAMUNI. It is
 ## What is included
 
 - Marketing, product, solution, role, and industry pages.
-- Conversion routes for early access, demo, pricing, and contact.
+- Focused conversion route at `/tour-produk-gratis`, plus contact and legacy-safe redirects.
 - Editorial blog with local Astro content collections and structured author, category, and article templates.
 - Resource hubs for guides, calculators, templates, and business terms.
 - Technical SEO foundations: canonical URLs, robots policy, sitemap, Open Graph, JSON-LD, and evidence-gated indexability.
@@ -23,11 +23,11 @@ CMS integration is intentionally deferred. Current blog entries are controlled s
 
 - [Astro](https://astro.build/) 7 with static output
 - TypeScript
-- Native CSS and a small IntersectionObserver enhancement
+- Native CSS, GSAP scroll motion, and one isolated Three.js brand model
 - Local Markdown content collections
 - GitHub Actions for repeatable quality gates
 
-The site intentionally avoids a client-side framework, WebGL, autoplay video, and large animation libraries. Motion is CSS-first, restrained, and disabled when the user requests reduced motion.
+The site intentionally avoids a client-side UI framework and autoplay media. Motion is CSS-first; GSAP is limited to meaningful scroll choreography and Three.js is isolated to one product-section brand model. All motion respects reduced-motion preferences, pauses outside the viewport, and keeps the static page usable without JavaScript.
 
 ## Requirements
 

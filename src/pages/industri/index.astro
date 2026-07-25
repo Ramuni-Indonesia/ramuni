@@ -6,7 +6,7 @@ import '../../styles/other-pages-refinement.css';
 
 const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string; signal: string }> = {
   retail: { rhythm: 'Cepat, sepanjang hari', stock: 'Banyak SKU; laju berbeda', customer: 'Datang langsung dan kembali', finance: 'Omzet, margin, kas harian', signal: 'SKU cepat laku' },
-  fnb: { rhythm: 'Mengikuti jam makan', stock: 'Bahan bergerak dan terbuang', customer: 'Kembali karena menu', finance: 'Penjualan, bahan, waste', signal: 'Jam ramai' },
+  fnb: { rhythm: 'Mengikuti jam makan', stock: 'Bahan bergerak dan terbuang', customer: 'Kembali karena menu', finance: 'Penjualan, bahan, sisa terbuang', signal: 'Jam ramai' },
   distributor: { rhythm: 'Pesanan besar dan bertahap', stock: 'Volume tinggi', customer: 'Repeat order dan tempo', finance: 'Kas dan piutang', signal: 'Pesanan ulang' },
   'reseller-online': { rhythm: 'Datang dari beberapa kanal', stock: 'Cepat mengikuti tren', customer: 'Riwayat tersebar', finance: 'Margin produk dan kanal', signal: 'Margin per kanal' },
   jasa: { rhythm: 'Mengikuti layanan dan periode', stock: 'Bukan fokus utama', customer: 'Butuh layanan berulang', finance: 'Pendapatan dan biaya layanan', signal: 'Layanan konsisten' },
@@ -31,7 +31,7 @@ const industryLens = industries.map((industry) => ({
 }));
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Bandingkan ritme retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil sebelum memilih konteks RAMUNI.">
-  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasikan Kebutuhan" secondaryHref="/demo" />
+  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Coba Simulasi Gratis" secondaryHref="/tour-produk-gratis" />
 
   <section class="section industry-lens" aria-labelledby="industry-lens-title">
     <div class="container industry-lens__layout">
@@ -125,7 +125,7 @@ const industryLens = industries.map((industry) => ({
     </div>
   </section>
 
-  <section class="section dark-surface industry-hub__closing" id="cta" aria-labelledby="industry-cta-title"><div class="container reveal"><div><p class="eyebrow">Langkah berikutnya</p><h2 id="industry-cta-title">Cocokkan kebutuhan sebelum memilih fitur.</h2><p>Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan batas yang perlu diperiksa.</p></div><a class="button button--light" href="/demo">Konsultasikan Kebutuhan</a></div></section>
+  <section class="section dark-surface industry-hub__closing" id="cta" aria-labelledby="industry-cta-title"><div class="container reveal"><div><p class="eyebrow">Langkah berikutnya</p><h2 id="industry-cta-title">Cocokkan kebutuhan sebelum memilih fitur.</h2><p>Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan batas yang perlu diperiksa.</p></div><a class="button button--light" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></section>
 </BaseLayout>
 
 <style>

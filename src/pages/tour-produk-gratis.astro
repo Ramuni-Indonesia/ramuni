@@ -1,137 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
 import '../styles/product-tour.css';
 
-const panels = [
-  {
-    id: 'stok',
-    label: 'Stok',
-    question: 'Barang mana yang perlu dicek sebelum jam ramai?',
-    finding: 'Kopi Susu tinggal 24 porsi, sementara penjualan pagi bergerak lebih cepat dari biasanya.',
-    metrics: [['Sisa stok', '24 porsi'], ['Terjual pagi ini', '17 porsi'], ['Langkah berikutnya', 'Cek bahan utama']],
-  },
-  {
-    id: 'penjualan',
-    label: 'Penjualan',
-    question: 'Apa yang berubah dari penjualan minggu ini?',
-    finding: 'Transaksi sore turun pada Selasa dan Rabu. Nilai belanja per transaksi tetap stabil.',
-    metrics: [['Periode', 'Senin-Jumat'], ['Perubahan utama', 'Transaksi sore'], ['Langkah berikutnya', 'Cek jadwal & stok']],
-  },
-  {
-    id: 'kas',
-    label: 'Kas',
-    question: 'Mengapa omzet naik tetapi kas belum terasa?',
-    finding: 'Sebagian penjualan belum menjadi uang masuk. Biaya bahan juga naik pada periode yang sama.',
-    metrics: [['Omzet', 'Rp8,4 jt'], ['Uang diterima', 'Rp7,1 jt'], ['Langkah berikutnya', 'Cek pembayaran']],
-  },
-];
+const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Coba RAMUNI dengan kebutuhan usaha Anda',
+  url: new URL('/tour-produk-gratis/', siteOrigin).toString(),
+  description: 'Ceritakan satu masalah bisnis untuk mendapatkan alur simulasi RAMUNI yang relevan.',
+  inLanguage: 'id-ID',
+};
 ---
 <BaseLayout
-  title="Simulasi Bisnis UMKM Gratis | RAMUNI"
-  description="Coba simulasi RAMUNI gratis dengan data contoh. Lihat cara RAMUNI membaca stok, penjualan, dan kas tanpa membuat akun."
+  title="Coba RAMUNI untuk Usaha Anda"
+  description="Ceritakan satu masalah penjualan, stok, keuangan, pelanggan, atau laporan yang ingin Anda pahami bersama RAMUNI."
+  schema={schema}
+  chrome={false}
 >
-  <section class="tour-hero">
-    <div class="container tour-hero__layout">
-      <div class="tour-hero__copy reveal is-visible">
-        <p class="section-kicker">Simulasi gratis / tanpa akun</p>
-        <h1>Lihat cara RAMUNI membaca usaha Anda.</h1>
-        <p class="lede">Pilih satu topik. RAMUNI menunjukkan perubahan penting, angka pendukung, dan hal yang perlu dicek berikutnya.</p>
-        <div class="tour-hero__notes" aria-label="Ketentuan simulasi">
-          <span>Data contoh</span><span>Tidak ada data yang dikirim</span><span>Selesai dalam 2 menit</span>
+  <section class="tour-form-page">
+    <div class="tour-form-shell">
+      <header class="tour-minimal-head">
+        <a href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color.webp" width="560" height="140" alt="RAMUNI" /></a>
+        <a href="/">Kembali ke beranda</a>
+      </header>
+
+      <div class="tour-form-layout">
+        <div class="tour-form-card reveal is-visible" aria-labelledby="tour-form-title">
+          <div class="tour-form-card__head">
+            <span>Tour produk gratis</span>
+            <h1 id="tour-form-title">Ceritakan satu hal yang ingin Anda pahami dari bisnis.</h1>
+            <p>Kami menyiapkan alur coba yang relevan. Gunakan contoh umum dan jangan mengirim data pelanggan atau transaksi.</p>
+          </div>
+          <LeadForm kind="early-access" submitLabel="Kirim permintaan tour" />
         </div>
       </div>
-
-      <div class="tour-workspace reveal is-visible" data-tour-workspace>
-        <header class="tour-workspace__head">
-          <span>Ruang simulasi</span>
-          <b><i></i> Data contoh aktif</b>
-        </header>
-        <div class="tour-workspace__tabs" role="tablist" aria-label="Pilih topik simulasi">
-          {panels.map((panel, index) => (
-            <button
-              type="button"
-              role="tab"
-              id={`tour-tab-${panel.id}`}
-              aria-controls={`tour-panel-${panel.id}`}
-              aria-selected={index === 0 ? 'true' : 'false'}
-              tabindex={index === 0 ? 0 : -1}
-              data-tour-tab={panel.id}
-            >{panel.label}</button>
-          ))}
-        </div>
-        {panels.map((panel, index) => (
-          <section
-            class="tour-panel"
-            id={`tour-panel-${panel.id}`}
-            role="tabpanel"
-            aria-labelledby={`tour-tab-${panel.id}`}
-            hidden={index !== 0}
-            data-tour-panel={panel.id}
-          >
-            <span class="tour-panel__label">Pertanyaan</span>
-            <h2>{panel.question}</h2>
-            <div class="tour-panel__finding"><span>Temuan utama</span><p>{panel.finding}</p></div>
-            <dl>{panel.metrics.map(([term, value]) => <div><dt>{term}</dt><dd>{value}</dd></div>)}</dl>
-          </section>
-        ))}
-        <footer class="tour-workspace__foot"><span>Anda memutuskan</span><b>RAMUNI membantu membaca</b></footer>
-      </div>
     </div>
   </section>
-
-  <section class="tour-explainer" aria-labelledby="tour-how-title">
-    <div class="container">
-      <div class="tour-explainer__head">
-        <p class="section-kicker">Cara kerjanya</p>
-        <h2 id="tour-how-title">Dari pertanyaan ke pemeriksaan berikutnya.</h2>
-      </div>
-      <ol class="tour-steps">
-        <li><span>01</span><div><h3>Pilih topik</h3><p>Mulai dari stok, penjualan, atau kas.</p></div></li>
-        <li><span>02</span><div><h3>Baca perubahan</h3><p>Lihat apa yang berubah pada periode yang jelas.</p></div></li>
-        <li><span>03</span><div><h3>Periksa angkanya</h3><p>Buka angka yang menjadi dasar ringkasan.</p></div></li>
-        <li><span>04</span><div><h3>Tentukan langkah</h3><p>Keputusan tetap berada di tangan Anda.</p></div></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="tour-close">
-    <div class="container tour-close__layout">
-      <div><p class="section-kicker">Lanjutkan jika cocok</p><h2>Ingin mencoba dengan kebutuhan usaha Anda?</h2><p>Ceritakan satu masalah tanpa mengirim data pelanggan atau transaksi.</p></div>
-      <div class="button-row">
-        <button class="button button--primary" type="button" data-lead-open>Minta panduan mencoba</button>
-        <a class="button button--secondary" href="/early-access">Ajukan Akses Coba</a>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    const workspace = document.querySelector('[data-tour-workspace]');
-    if (workspace instanceof HTMLElement) {
-      const tabs = Array.from(workspace.querySelectorAll<HTMLButtonElement>('[data-tour-tab]'));
-      const panels = Array.from(workspace.querySelectorAll<HTMLElement>('[data-tour-panel]'));
-      const activate = (tab: HTMLButtonElement) => {
-        const id = tab.dataset.tourTab;
-        tabs.forEach((item) => {
-          const selected = item === tab;
-          item.setAttribute('aria-selected', String(selected));
-          item.tabIndex = selected ? 0 : -1;
-        });
-        panels.forEach((panel) => { panel.hidden = panel.dataset.tourPanel !== id; });
-      };
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activate(tab));
-        tab.addEventListener('keydown', (event) => {
-          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-          event.preventDefault();
-          const next = event.key === 'Home'
-            ? 0
-            : event.key === 'End'
-              ? tabs.length - 1
-              : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-          activate(tabs[next]);
-          tabs[next].focus();
-        });
-      });
-    }
-  </script>
 </BaseLayout>

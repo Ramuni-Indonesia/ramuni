@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "draft-template"
-editorialStatus: "Contoh struktur, belum untuk dipublikasikan"
+editorialStatus: "Draf contoh - belum ditinjau final"
 readingTime: "5 menit"
 takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."

@@ -280,6 +280,36 @@
   text-underline-offset: 5px;
 }
 
+/* About: turn the flat four-column rule list into a varied editorial evidence field. */
+.company-page__principle-rail{
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:12px;
+  border:0;
+}
+.company-page__principle-rail li{
+  grid-column:span 5;
+  min-height:270px;
+  padding:26px;
+  border:1px solid var(--ink);
+  background:var(--white);
+  transition:transform 340ms var(--ease),background 340ms var(--ease),color 340ms var(--ease);
+}
+.company-page__principle-rail li:nth-child(2){grid-column:span 7;min-height:330px;background:var(--yellow)}
+.company-page__principle-rail li:nth-child(3){grid-column:span 7;min-height:310px;background:var(--ink);color:var(--white)}
+.company-page__principle-rail li:nth-child(4){grid-column:span 5;background:var(--teal);color:var(--white)}
+.company-page__principle-rail li:hover{z-index:1;transform:translateY(-6px)}
+.company-page__principle-rail li:nth-child(3) p,.company-page__principle-rail li:nth-child(4) p{color:rgb(255 255 255/.7)}
+.company-page__principle-visual{display:flex;align-items:end;gap:7px;width:min(210px,70%);height:72px;margin:28px 0 auto;border-bottom:1px solid currentColor;opacity:.84}
+.company-page__principle-visual i{flex:1;height:30%;background:currentColor;transform-origin:bottom}
+.company-page__principle-visual i:nth-child(2){height:72%}.company-page__principle-visual i:nth-child(3){height:48%}.company-page__principle-visual i:nth-child(4){height:90%}
+.company-page__principle-rail li:nth-child(2) .company-page__principle-visual{width:56%;margin-left:auto}
+.company-page__principle-rail li:nth-child(3) .company-page__principle-visual i:nth-child(odd){background:var(--yellow)}
+.company-page__principle-rail li:nth-child(4) .company-page__principle-visual{width:92%}
+@media(prefers-reduced-motion:no-preference){.company-page__principle-rail li.reveal.is-visible .company-page__principle-visual i{animation:company-principle-grow 620ms var(--ease) both}@keyframes company-principle-grow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}}
+@media(max-width:960px){.company-page__principle-rail li:nth-child(n){grid-column:span 6}}
+@media(max-width:640px){.company-page__principle-rail li:nth-child(n){grid-column:1/-1;min-height:230px}}
+@media(prefers-reduced-motion:reduce){.company-page__principle-rail li,.company-page__principle-visual i{animation:none;transition:none}}
+
 /* Industry hub: asymmetric, image-like editorial tiles built from real page context. */
 .industry-lens {
   background: var(--white);

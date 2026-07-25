@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingScopeLab from '../components/product/PricingScopeLab.astro';
+import '../styles/decision-labs.css';
+import '../styles/section-variance.css';
 
 const schema = [
   { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'RAMUNI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: 'AI Business Companion untuk membantu UMKM memahami kondisi bisnis.' },
@@ -12,7 +15,7 @@ const schema = [
 <BaseLayout title="Harga RAMUNI" description="Pelajari faktor yang membentuk paket RAMUNI dan cara memulai dari simulasi sebelum membahas kebutuhan usaha Anda." schema={schema}>
   <header class="price-hero">
     <div class="container price-hero-layout">
-      <div class="reveal is-visible"><h1>Pahami kebutuhan dulu, baru pilih paket.</h1><p class="lede">Harga publik belum dibuka. Sebelum memilih, lihat dulu modul, batas penggunaan, dan dukungan yang benar-benar Anda perlukan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/early-access">Ajukan Akses Coba</a></div></div>
+      <div class="reveal is-visible"><h1>Pahami kebutuhan dulu, baru pilih paket.</h1><p class="lede">Harga publik belum dibuka. Sebelum memilih, lihat dulu modul, batas penggunaan, dan dukungan yang benar-benar Anda perlukan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div>
       <aside class="price-status reveal is-visible" aria-label="Status harga"><span>Status harga</span><strong>Dalam validasi</strong><p>Angka akan ditampilkan setelah ruang lingkup, batas penggunaan, pajak, dukungan, dan ketentuan komersial disetujui.</p></aside>
     </div>
   </header>
@@ -25,6 +28,8 @@ const schema = [
       <article class="price-factor-row reveal"><span>04</span><div><h3>Dukungan awal</h3><p>Pendampingan, pelatihan, dan bantuan impor perlu jelas sejak awal.</p></div></article>
     </div></div>
   </section>
+
+  <PricingScopeLab />
 
   <section class="section price-contract-stage" aria-labelledby="price-contract">
     <div class="container price-contract-layout"><div><p class="section-kicker">Yang harus jelas</p><h2 id="price-contract">Ketika harga tampil, batasnya ikut tampil.</h2><p>Kami tidak ingin calon pengguna menebak apa yang termasuk dan apa yang dikenakan biaya tambahan.</p></div><ul><li>Versi paket dan tanggal berlaku</li><li>Fitur inti serta status ketersediaannya</li><li>Batas pengguna, outlet, transaksi, ekspor, dan penyimpanan</li><li>Kuota AI dan perlakuan saat batas tercapai</li><li>Setup, dukungan, pajak, pembayaran, dan pembatalan</li></ul></div>
@@ -41,5 +46,5 @@ const schema = [
     <details><summary>Kapan angka harga akan tampil?</summary><p>Setelah paket, batas, dukungan, dan ketentuan komersial disetujui. Tanggal publik belum diumumkan.</p></details>
   </div></div></section>
 
-  <section class="section price-close-stage"><div class="container price-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>Ingin tahu RAMUNI cocok untuk usaha Anda?</h2><p>Mulai dari simulasi. Jika alurnya cocok, ceritakan kebutuhan usaha tanpa mengirim data sensitif.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/early-access">Ajukan Akses Coba</a></div></div></section>
+  <section class="section price-close-stage"><div class="container price-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>Ingin tahu RAMUNI cocok untuk usaha Anda?</h2><p>Mulai dari simulasi. Jika alurnya cocok, ceritakan kebutuhan usaha tanpa mengirim data sensitif.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div></section>
 </BaseLayout>

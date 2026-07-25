@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
+import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import { solutionDetails, type SolutionDetail } from '../../data/solutionDetails';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
@@ -28,16 +28,18 @@ const faqSchema = {
 };
 ---
 <BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={faqSchema}>
-  <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`}>
+  <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`} data-solution={solution.slug}>
     <section class="sd-hero" aria-labelledby="solution-title">
       <div class="container sd-hero__layout">
         <div class="sd-hero__copy reveal is-visible">
-          <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi', href: '/solusi' }, { label: solution.title }]} />
-          <p class="section-kicker">{solution.eyebrow}</p>
+          <div class="sd-hero__meta">
+            <span class="sd-solution-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="section-kicker">{solution.eyebrow}</p>
+          </div>
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href="/demo">{solution.ctaLabel}</a>
+            <a class="button button--primary" href="/tour-produk-gratis">{solution.ctaLabel}</a>
             <p>{solution.heroOutcome}</p>
           </div>
         </div>
@@ -89,7 +91,7 @@ const faqSchema = {
           {solution.capabilities.map((capability, index) => (
             capability.href ? (
               <a class="sd-capability reveal" style={`--i:${index}`} href={capability.href}>
-                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b aria-hidden="true">↗</b>
+                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b>Buka</b>
               </a>
             ) : (
               <div class="sd-capability sd-capability--limited reveal" style={`--i:${index}`}>
@@ -141,8 +143,9 @@ const faqSchema = {
       </div>
       <div class="container sd-close reveal">
         <div><h2>{solution.closingTitle}</h2><p>{solution.closingText}</p></div>
-        <div class="button-row"><a class="button button--primary" href="/demo">{solution.ctaLabel}</a><a class="button button--secondary" href="/solusi">Bandingkan Solusi</a></div>
+        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/solusi">Bandingkan Solusi</a></div>
       </div>
     </section>
   </article>
+  <ProductScrollMotion />
 </BaseLayout>

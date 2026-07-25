@@ -19,6 +19,7 @@ interface Props {
   ogType?: 'website' | 'article';
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
   keywords?: string | string[];
+  chrome?: boolean;
 }
 
 const {
@@ -34,6 +35,7 @@ const {
   ogType = 'website',
   pageType,
   keywords = ['RAMUNI', 'AI Business Companion', 'UMKM Indonesia', 'stok usaha', 'penjualan UMKM', 'arus kas usaha'],
+  chrome = true,
 } = Astro.props;
 const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toString();
 const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
@@ -56,8 +58,49 @@ const webPageSchema = {
   inLanguage: 'id-ID',
 };
 const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const hasBreadcrumbSchema = suppliedSchema.some((entity) => {
+  const type = entity?.['@type'];
+  return type === 'BreadcrumbList' || (Array.isArray(type) && type.includes('BreadcrumbList'));
+});
+const breadcrumbRoots: Record<string, string> = {
+  produk: 'Produk',
+  solusi: 'Solusi',
+};
+const breadcrumbSegments = pathname.split('/').filter(Boolean);
+const needsAutomaticBreadcrumb = !hasBreadcrumbSchema
+  && breadcrumbSegments.length > 0
+  && breadcrumbSegments[0] in breadcrumbRoots;
+const automaticBreadcrumbSchema = needsAutomaticBreadcrumb ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Beranda',
+      item: new URL('/', Astro.site || Astro.url.origin).toString(),
+    },
+    ...breadcrumbSegments.map((segment, index) => {
+      const isLast = index === breadcrumbSegments.length - 1;
+      const path = `/${breadcrumbSegments.slice(0, index + 1).join('/')}/`;
+      const readableSegment = decodeURIComponent(segment)
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      return {
+        '@type': 'ListItem',
+        position: index + 2,
+        name: index === 0 ? breadcrumbRoots[segment] : (isLast ? title.split('|')[0].trim() : readableSegment),
+        item: new URL(path, Astro.site || Astro.url.origin).toString(),
+      };
+    }),
+  ],
+} : undefined;
 const effectiveNoindex = noindex || !releaseGates.siteIndexable;
-const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...suppliedSchema];
+const schemaWithBreadcrumb = automaticBreadcrumbSchema
+  ? [...suppliedSchema, automaticBreadcrumbSchema]
+  : suppliedSchema;
+const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [webPageSchema, ...schemaWithBreadcrumb];
 ---
 <!doctype html>
 <html lang="id">
@@ -98,10 +141,10 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
   </head>
   <body>
     <a class="skip-link" href="#main">Lewati ke konten</a>
-    <Header />
+    {chrome && <Header />}
     <main id="main"><slot /></main>
-    <Footer />
-    {!leadPromptExcluded && <LeadPrompt />}
+    {chrome && <Footer />}
+    {chrome && !leadPromptExcluded && <LeadPrompt />}
     <ConsentManager />
     <script>
       const nodes = document.querySelectorAll('.reveal');

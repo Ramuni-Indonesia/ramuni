@@ -2,9 +2,10 @@
 interface Props {
   categorySlug: string;
   compact?: boolean;
+  inline?: boolean;
 }
 
-const { categorySlug, compact = false } = Astro.props;
+const { categorySlug, compact = false, inline = false } = Astro.props;
 
 const stories = {
   'stok-inventori': {
@@ -40,20 +41,75 @@ const stories = {
     ],
     note: 'Keputusan akhir tetap di tangan manusia.',
   },
+  'penjualan-omzet': {
+    eyebrow: 'Pola transaksi / contoh',
+    title: 'Waktu ramai berubah',
+    kind: 'bars',
+    items: [
+      { label: 'Pagi', value: '28%', width: 28 },
+      { label: 'Siang', value: '74%', width: 74 },
+      { label: 'Sore', value: '52%', width: 52 },
+    ],
+    note: 'Bandingkan periode yang setara sebelum menyimpulkan.',
+  },
+  'pelanggan-crm': {
+    eyebrow: 'Pelanggan / contoh',
+    title: 'Kunjungan kembali',
+    kind: 'ledger',
+    items: [
+      { label: 'Baru', value: '46', width: 66 },
+      { label: 'Kembali', value: '31', width: 48 },
+      { label: 'Pasif', value: '12', width: 24 },
+    ],
+    note: 'Gunakan data berizin dan hindari informasi pribadi.',
+  },
+  'operasional-bisnis': {
+    eyebrow: 'Alur kerja / contoh',
+    title: 'Catat sebelum menilai',
+    kind: 'flow',
+    items: [
+      { label: 'Kegiatan', value: '01', width: 33 },
+      { label: 'Catatan', value: '02', width: 66 },
+      { label: 'Review', value: '03', width: 100 },
+    ],
+    note: 'Urutan membantu tim melihat pekerjaan yang berulang.',
+  },
+  'strategi-per-industri': {
+    eyebrow: 'Konteks usaha / contoh',
+    title: 'Sinyal berbeda',
+    kind: 'bars',
+    items: [
+      { label: 'Frekuensi', value: '64%', width: 64 },
+      { label: 'Margin', value: '42%', width: 42 },
+      { label: 'Stok', value: '79%', width: 79 },
+    ],
+    note: 'Pilih metrik sesuai ritme usaha, bukan tren semata.',
+  },
+  'panduan-ramuni': {
+    eyebrow: 'Panduan produk / contoh',
+    title: 'Status tetap jelas',
+    kind: 'flow',
+    items: [
+      { label: 'Tersedia', value: '01', width: 33 },
+      { label: 'Batas', value: '02', width: 66 },
+      { label: 'Cara pakai', value: '03', width: 100 },
+    ],
+    note: 'Materi produk mengikuti status fitur yang telah diverifikasi.',
+  },
 } as const;
 
 const story = stories[categorySlug as keyof typeof stories] || stories['stok-inventori'];
 ---
 
-<div class:list={['story-micro', `story-micro--${story.kind}`, compact && 'story-micro--compact']} aria-label={`${story.title}. ${story.note}`}>
+<div class:list={['story-micro', `story-micro--${story.kind}`, compact && 'story-micro--compact', inline && 'story-micro--inline']} role="img" aria-label={`${story.title}. ${story.note}`}>
   <div class="story-micro__head">
     <span>{story.eyebrow}</span>
     <i aria-hidden="true"></i>
   </div>
   <strong>{story.title}</strong>
   <div class="story-micro__plot" aria-hidden="true">
-    {story.items.map((item) => (
-      <div class="story-micro__row" style={`--signal:${item.width}%`}>
+    {story.items.map((item, index) => (
+      <div class="story-micro__row" style={`--signal:${item.width}%;--i:${index}`}>
         <span>{item.label}</span>
         <b>{item.value}</b>
         <i></i>

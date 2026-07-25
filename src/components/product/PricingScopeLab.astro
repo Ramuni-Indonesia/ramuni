@@ -1,0 +1,59 @@
+---
+const paths = [
+  {
+    label: 'Satu outlet',
+    note: 'Pemilik masih memegang banyak pekerjaan sendiri.',
+    focus: 'Rapikan catatan inti lebih dulu.',
+    modules: ['Penjualan', 'Stok', 'Ringkasan'],
+    checks: ['Sumber data utama', 'Jumlah pengguna', 'Bantuan impor'],
+  },
+  {
+    label: 'Banyak kanal',
+    note: 'Penjualan datang dari toko, marketplace, atau reseller.',
+    focus: 'Samakan catatan sebelum membandingkan kanal.',
+    modules: ['Penjualan', 'Inventori', 'Integrasi'],
+    checks: ['Kanal aktif', 'Frekuensi sinkronisasi', 'Aturan koreksi'],
+  },
+  {
+    label: 'Tim bertumbuh',
+    note: 'Tanggung jawab mulai dibagi antarperan.',
+    focus: 'Tentukan akses dan alur pemeriksaan.',
+    modules: ['Dashboard', 'Laporan', 'Akses peran'],
+    checks: ['Peran pengguna', 'Jejak perubahan', 'Dukungan awal'],
+  },
+];
+---
+
+<section class="section price-scope-stage" aria-labelledby="price-scope-title">
+  <div class="container price-scope__intro">
+    <div><p class="section-kicker">Peta kebutuhan</p><h2 id="price-scope-title">Paket mengikuti cara usaha bekerja.</h2></div>
+    <p>Ini bukan kalkulator harga. Pilihan di bawah membantu Anda melihat hal yang perlu dibahas sebelum menerima penawaran.</p>
+  </div>
+  <fieldset class="price-scope">
+    <legend class="sr-only">Pilih gambaran usaha</legend>
+    <div class="price-scope__choices">
+      {paths.map((path, index) => (
+        <label>
+          <input type="radio" name="price-scope" value={index} checked={index === 0} />
+          <span>{path.label}</span>
+          <small>{path.note}</small>
+        </label>
+      ))}
+    </div>
+    <div class="price-scope__canvas" aria-live="polite">
+      {paths.map((path, index) => (
+        <article data-price-panel={index}>
+          <header><span>Fokus awal</span><strong>{path.focus}</strong></header>
+          <div class="price-scope__map" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <b>{String(index + 1).padStart(2, '0')}</b>
+          </div>
+          <div class="price-scope__details">
+            <div><small>Modul yang mungkin dibahas</small><p>{path.modules.join(' · ')}</p></div>
+            <div><small>Yang perlu diperiksa</small><ul>{path.checks.map((item) => <li>{item}</li>)}</ul></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </fieldset>
+</section>

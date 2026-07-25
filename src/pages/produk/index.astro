@@ -1,20 +1,16 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
+import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
+import ProductPulseLab from '../../components/product/ProductPulseLab.astro';
+import RamuniMark3D from '../../components/product/RamuniMark3D.astro';
 import { products, roles, solutions } from '../../data/site';
 import '../../styles/other-pages-refinement.css';
+import '../../styles/decision-labs.css';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
 const ecosystem = products.find((product) => product.slug === 'integrasi');
-
-const heroSignals = [
-  { label: 'Transaksi', value: 'dicatat', note: 'waktu, produk, nilai' },
-  { label: 'Stok', value: 'dibaca', note: 'saldo dan perubahan' },
-  { label: 'Kas', value: 'dipisah', note: 'masuk, keluar, laba' },
-  { label: 'Insight', value: 'ditinjau', note: 'bukti sebelum aksi' },
-];
-
 const sharedCapabilities = [
   { title: 'Akses sesuai peran', text: 'Pemilik, supervisor, admin, dan kasir melihat ruang kerja yang sesuai tanggung jawabnya.' },
   { title: 'Jejak perubahan', text: 'Koreksi penting tetap memiliki waktu, alasan, dan pelaku yang dapat diperiksa.' },
@@ -33,7 +29,6 @@ const productFaq = [
     <section class="catalog-hero">
       <div class="container catalog-hero__layout">
         <div class="reveal is-visible">
-          <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk' }]} />
           <p class="section-kicker">Produk RAMUNI</p>
           <h1>Satu alur untuk membaca bisnis.</h1>
         </div>
@@ -41,39 +36,37 @@ const productFaq = [
           <p>Catat operasional, periksa hitungan, lalu ambil keputusan dari bukti yang sama.</p>
           <div class="button-row">
             <a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a>
-            <a class="button button--secondary" href="/early-access">Ajukan Akses Coba</a>
+            <a class="button button--secondary" href="#product-system-connected">Lihat alur produk</a>
           </div>
         </div>
-        <aside class="hub-orbit product-hub__hero-visual reveal is-visible" aria-label="Ilustrasi alur data produk RAMUNI">
-          <div class="hub-orbit__core">
-            <span>Data usaha</span>
-            <strong>Dibaca bersama</strong>
-          </div>
-          <ol class="hub-orbit__rings">
-            {heroSignals.map((signal, index) => (
-              <li style={`--i:${index}`}>
-                <span>{signal.label}</span>
-                <strong>{signal.value}</strong>
-                <small>{signal.note}</small>
-              </li>
-            ))}
-          </ol>
-        </aside>
+        <div class="product-hub__hero-visual reveal is-visible">
+          <ProductHeroCanvas slug="hub" title="Produk RAMUNI" question="Bagaimana data usaha menjadi arah yang bisa ditinjau?" />
+        </div>
       </div>
     </section>
 
-    <section class="section surface product-system" aria-labelledby="product-system-title">
+    <section id="product-system-connected" class="section surface product-system" aria-labelledby="product-system-title">
       <div class="container">
         <p class="section-kicker">Sistem yang terhubung</p>
-        <h2 id="product-system-title">Satu catatan, empat tahap.</h2>
+        <h2 id="product-system-title">Catat, periksa, lalu tentukan langkah.</h2>
         <div class="product-system__rail reveal">
           <article><span>Catatan</span><strong>Data bisnis masuk</strong><p>Produk, transaksi, stok, biaya, dan pelanggan.</p></article>
           <article><span>Hitungan</span><strong>Metrik disamakan</strong><p>Definisi dan periode dipakai secara konsisten.</p></article>
           <article><span>Insight</span><strong>Prioritas terlihat</strong><p>Perubahan yang perlu diperiksa tampil lebih dulu.</p></article>
           <article><span>Laporan</span><strong>Bukti tetap dekat</strong><p>Pengguna menelusuri dasar angka sebelum bertindak.</p></article>
         </div>
+        <div id="product-direction-model" class="product-direction-model">
+          <div class="product-direction-model__copy">
+            <span>Arah, bukan autopilot</span>
+            <h3>Satu tanda untuk mengingatkan: lihat bukti, lalu tentukan langkah.</h3>
+            <p>Geraknya mengikuti perjalanan Anda membaca alur data, dari catatan menuju keputusan.</p>
+          </div>
+          <RamuniMark3D />
+        </div>
       </div>
     </section>
+
+    <ProductPulseLab />
 
     <section class="section product-catalog" aria-labelledby="product-catalog-title">
       <div class="container product-catalog__layout">
@@ -86,8 +79,8 @@ const productFaq = [
           <section class="product-family" aria-labelledby="family-intelligence">
             <h3 id="family-intelligence">Insight dan laporan</h3>
             {intelligence.map((product, index) => (
-              <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
-                <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+              <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}`}>
+                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
                 <span class="availability-label">Dalam pengembangan</span>
               </a>
@@ -96,8 +89,8 @@ const productFaq = [
           <section class="product-family" aria-labelledby="family-operations">
             <h3 id="family-operations">Operasional</h3>
             {operations.map((product, index) => (
-              <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
-                <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+              <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}`}>
+                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
                 <span class="availability-label">Siap dipetakan</span>
               </a>
@@ -106,8 +99,8 @@ const productFaq = [
           {ecosystem && (
             <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
               <h3 id="family-ecosystem">Jalur data</h3>
-              <a class="product-row" href={`/produk/${ecosystem.slug}`}>
-                <span class="product-row__index">01</span>
+              <a class="product-row" data-product-card={ecosystem.slug} href={`/produk/${ecosystem.slug}`}>
+                <span class="product-row__mark" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
                 <span class="availability-label">Cek per metode</span>
               </a>
@@ -119,7 +112,7 @@ const productFaq = [
 
     <section class="section product-capabilities" aria-labelledby="capabilities-title">
       <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Kontrol yang ikut di setiap modul.</h2><p>Fondasi ini menjaga informasi tetap berguna saat tim dan volume data bertambah.</p></header>
+        <header><h2 id="capabilities-title">Hal penting yang tersedia di setiap modul.</h2><p>Akses, jejak perubahan, dan sumber angka tetap bisa diperiksa saat tim bertambah.</p></header>
         <div class="capability-folds">
           {sharedCapabilities.map((item, index) => (
             <article class="capability-fold reveal" style={`--i:${index}`}>
@@ -136,7 +129,7 @@ const productFaq = [
       <div class="container outcome-index__layout">
         <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modulnya?</h2></div>
         <div class="outcome-index__list">
-          {solutions.map((solution) => <a href={`/solusi/${solution.slug}`}><span>{solution.title}</span><small>{solution.summary}</small></a>)}
+          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="outcome-glyph" aria-hidden="true"><b></b><b></b><b></b></i><span>{solution.title}</span><small>{solution.summary}</small></a>)}
         </div>
       </div>
     </section>
@@ -152,8 +145,8 @@ const productFaq = [
 
     <section class="section product-trust" aria-labelledby="product-trust-title">
       <div class="container product-trust__layout">
-        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">Insight tidak langsung menjadi tindakan.</h2></div>
-        <div><p>RAMUNI memisahkan akses tiap peran, menunjukkan sumber jawaban, dan pada versi awal membatasi AI hanya untuk membaca data.</p><a href="/keamanan">Pelajari keamanan dan batas AI</a></div>
+        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">RAMUNI membantu membaca. Keputusan tetap di tangan Anda.</h2></div>
+        <div class="product-trust__copy"><p>RAMUNI memisahkan akses tiap peran, menunjukkan sumber jawaban, dan pada versi awal membatasi AI hanya untuk membaca data.</p><a href="/keamanan">Pelajari keamanan dan batas AI</a></div>
       </div>
     </section>
 
@@ -171,19 +164,53 @@ const productFaq = [
       </div>
     </section>
   </main>
+  <ProductScrollMotion />
 </BaseLayout>
 
 <style>
   .product-hub .catalog-hero h1{max-width:11ch;overflow-wrap:anywhere}
+  .product-hub .catalog-hero{overflow:hidden;background:radial-gradient(circle at 78% 30%,rgb(242 177 52/.2),transparent 25%),var(--rice)}
+  .product-hub .catalog-hero__layout{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(28px,5vw,72px);align-items:end}
+  .product-hub .catalog-hero__aside{padding-bottom:12px}
+  .product-hub__hero-visual{grid-column:1/-1;width:min(100%,1060px);margin-top:clamp(16px,3vw,34px);justify-self:center}
   .product-system__rail strong{font-size:1.08rem;margin-top:20px}
+  .product-direction-model{display:grid;grid-template-columns:minmax(0,.72fr) minmax(320px,1.28fr);gap:clamp(34px,6vw,82px);align-items:center;margin-top:clamp(54px,8vw,96px);padding:clamp(24px,4vw,46px);overflow:hidden;background:var(--ink);color:var(--white)}
+  .product-direction-model__copy{max-width:560px}.product-direction-model__copy>span{color:var(--yellow);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.product-direction-model__copy h3{margin-top:18px;font-size:clamp(1.55rem,3.1vw,3rem);line-height:1.08}.product-direction-model__copy p{max-width:42ch;margin-top:20px;color:rgb(255 255 255/.68)}
+  .product-direction-model :global(.ramuni-mark-3d){min-height:420px;border-color:rgb(255 255 255/.18);background:radial-gradient(circle at 50% 42%,rgb(242 177 52/.16),transparent 62%)}
+  .product-hub .product-row{grid-template-columns:56px minmax(0,1fr) auto;min-width:0;margin-inline:0;padding:14px 16px;border:1px solid transparent;border-top-color:var(--ink-10);overflow:hidden;transition:transform .32s var(--ease),background-color .32s ease,border-color .32s ease,box-shadow .32s ease}
+  .product-hub .product-row:last-child{border-bottom-color:var(--ink-10)}
+  .product-row__mark{position:relative;width:44px;height:44px;border:1px solid var(--ink);background:var(--rice);overflow:hidden;transition:transform .38s var(--ease),background-color .38s ease,color .38s ease}
+  .product-row__mark::before{content:"";position:absolute;inset:8px;border:1px solid currentColor;color:var(--teal);opacity:.72}
+  .product-row__mark::after{content:"";position:absolute;right:-5px;bottom:-5px;width:12px;height:12px;background:var(--yellow);border:1px solid var(--ink)}
+  .product-row__mark i{position:absolute;left:10px;right:10px;height:3px;background:var(--teal);transform-origin:left}.product-row__mark i:nth-child(1){top:13px;width:42%}.product-row__mark i:nth-child(2){top:21px;width:66%;background:var(--ink)}.product-row__mark i:nth-child(3){top:29px;width:30%;background:var(--yellow)}
+  .product-hub .product-row[data-product-card="asisten-ai"] .product-row__mark,.product-hub .product-row[data-product-card="laporan-insight"] .product-row__mark{background:var(--ink)}
+  .product-hub .product-row[data-product-card="asisten-ai"] .product-row__mark::before,.product-hub .product-row[data-product-card="laporan-insight"] .product-row__mark::before{color:var(--yellow)}
+  .product-hub .product-row[data-product-card="asisten-ai"] .product-row__mark i:nth-child(2),.product-hub .product-row[data-product-card="laporan-insight"] .product-row__mark i:nth-child(2){background:var(--white)}
+  .product-hub .product-row[data-product-card="penjualan"] .product-row__mark,.product-hub .product-row[data-product-card="inventori"] .product-row__mark{background:var(--teal)}
+  .product-hub .product-row[data-product-card="penjualan"] .product-row__mark i,.product-hub .product-row[data-product-card="inventori"] .product-row__mark i{background:var(--white)}
+  .product-hub .product-row:hover,.product-hub .product-row:focus-visible{padding-inline:16px;transform:translateX(6px);border-color:var(--ink-10);background:var(--white);box-shadow:-6px 6px 0 var(--yellow)}
+  .product-hub .product-row:hover .product-row__mark,.product-hub .product-row:focus-visible .product-row__mark{transform:rotate(-5deg) scale(1.04)}
+  .product-hub .product-catalog__layout{display:grid;gap:clamp(42px,6vw,72px)}
+  .product-hub .product-catalog__intro{max-width:760px;position:static}
+  .product-hub .outcome-index__layout{display:grid;gap:clamp(34px,5vw,58px)}
+  .product-hub .outcome-index__layout>div:first-child{max-width:720px}
+  .product-hub .outcome-index__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--ink);background:var(--ink)}
+  .product-hub .outcome-index__list a{position:relative;min-height:210px;border:0;padding:24px;background:var(--rice);overflow:hidden;transition:transform .3s var(--ease),background-color .3s ease}
+  .product-hub .outcome-index__list a:nth-child(2n){background:var(--white)}
+  .product-hub .outcome-index__list a:hover,.product-hub .outcome-index__list a:focus-visible{z-index:1;transform:translateY(-5px);background:var(--yellow)}
+  .product-hub .outcome-index__list .outcome-glyph{position:relative;display:block;width:42px;height:42px;margin-bottom:auto;border:1px solid var(--ink);background:var(--white);font-style:normal;overflow:hidden;transition:transform .3s var(--ease)}
+  .product-hub .outcome-index__list .outcome-glyph::before{content:"";position:absolute;left:8px;bottom:8px;width:8px;height:18px;background:var(--teal);box-shadow:11px -6px 0 var(--yellow),22px -13px 0 var(--ink)}
+  .product-hub .outcome-index__list .outcome-glyph b{position:absolute;border:1px solid var(--ink);border-radius:50%}.product-hub .outcome-index__list .outcome-glyph b:nth-child(1){inset:7px 22px 22px 7px}.product-hub .outcome-index__list .outcome-glyph b:nth-child(2){inset:18px 9px 9px 18px}.product-hub .outcome-index__list .outcome-glyph b:nth-child(3){right:7px;top:7px;width:8px;height:8px;background:var(--yellow)}
+  .product-hub .outcome-index__list a:hover .outcome-glyph,.product-hub .outcome-index__list a:focus-visible .outcome-glyph{transform:rotate(-6deg)}
+  .product-hub .outcome-index__list small{margin-top:auto}
   .product-capabilities{background:var(--ink);color:var(--white)}
-  .product-capabilities__layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(48px,8vw,120px);align-items:start}
-  .product-capabilities header{position:sticky;top:104px}
+  .product-capabilities__layout{display:grid;gap:clamp(42px,6vw,72px)}
+  .product-capabilities header{max-width:820px}
   .product-capabilities header p{max-width:36ch;margin-top:22px;color:rgb(255 255 255/.68)}
-  .capability-folds{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
-  .capability-fold{position:relative;min-height:auto;padding:28px;border:1px solid rgb(255 255 255/.18);overflow:visible}
+  .capability-folds{display:grid;grid-template-columns:1.15fr .85fr 1fr;gap:14px}
+  .capability-fold{position:relative;min-height:220px;padding:28px;border:1px solid rgb(255 255 255/.18);overflow:visible}
   .capability-fold:nth-child(2),.capability-fold:nth-child(3){background:rgb(255 255 255/.06)}
-  .capability-fold:nth-child(4){grid-column:1/-1;min-height:190px}
+  .capability-fold:nth-child(2){margin-top:44px}.capability-fold:nth-child(4){grid-column:2/4;min-height:190px}
   .capability-fold::after{content:"";position:absolute;z-index:0;right:18px;bottom:18px;width:78px;height:78px;border:1px solid var(--yellow);opacity:.42;transform:rotate(38deg);transition:transform .55s cubic-bezier(.16,1,.3,1);pointer-events:none}
   .capability-fold:hover::after{transform:rotate(28deg) translate(-8px,-8px)}
   .capability-fold span,.capability-fold h3,.capability-fold p{position:relative;z-index:1}
@@ -191,14 +218,17 @@ const productFaq = [
   .capability-fold h3{margin-top:30px;font-size:clamp(1.2rem,2vw,1.65rem)}
   .capability-fold p{max-width:38ch;margin-top:14px;color:rgb(255 255 255/.7);overflow-wrap:anywhere}
   .role-paths{background:var(--rice)}
-  .role-paths__layout{display:grid;grid-template-columns:1fr 1.55fr;gap:clamp(48px,9vw,132px)}
+  .role-paths__layout{display:grid;gap:clamp(42px,6vw,72px)}
+  .role-paths__layout header{max-width:760px}
   .role-paths__layout header p{max-width:36ch;margin-top:22px;color:var(--ink-72)}
-  .role-paths__nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--ink-10)}
+  .role-paths__nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--ink-10)}
   .role-paths__nav a{min-height:190px;padding:26px;background:var(--rice);text-decoration:none;transition:background .3s ease,transform .3s ease}
   .role-paths__nav a:hover,.role-paths__nav a:focus-visible{background:var(--white);transform:translateY(-4px)}
   .role-paths__nav strong,.role-paths__nav span{display:block}.role-paths__nav strong{font-size:1.2rem}.role-paths__nav span{margin-top:40px;color:var(--ink-72)}
   .product-trust{background:var(--teal);color:var(--white)}
-  .product-trust__layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(48px,9vw,132px);align-items:end}
+  .product-trust__layout{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(34px,6vw,88px);align-items:center}
+  .product-trust__layout>div:first-child{position:relative}.product-trust__layout>div:first-child::after{content:"MANUSIA";display:block;margin-top:34px;color:rgb(255 255 255/.12);font-size:clamp(3.6rem,10vw,9rem);font-weight:800;line-height:.8;letter-spacing:-.07em}
+  .product-trust__copy{border:1px solid rgb(255 255 255/.35);padding:clamp(24px,4vw,38px)}
   .product-trust .section-kicker{color:var(--yellow)}.product-trust p{max-width:52ch;color:rgb(255 255 255/.78)}
   .product-trust a{display:inline-block;margin-top:24px;color:var(--white);font-weight:800;text-underline-offset:5px}
   .product-faq{background:var(--white)}
@@ -206,7 +236,7 @@ const productFaq = [
   .product-faq details{border-top:1px solid var(--ink-10);padding:22px 0}.product-faq details:last-child{border-bottom:1px solid var(--ink-10)}
   .product-faq summary{cursor:pointer;font-weight:800}.product-faq details p{max-width:58ch;margin-top:14px;color:var(--ink-72)}
   @media (prefers-reduced-motion:no-preference){.capability-fold{animation:hub-rise .7s both;animation-delay:calc(var(--i,0)*70ms)}@keyframes hub-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}}
-  @media(max-width:960px){.product-capabilities__layout,.role-paths__layout,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-capabilities header{position:static}}
-  @media(max-width:740px){.product-hub .catalog-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.capability-folds,.role-paths__nav{grid-template-columns:1fr}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:auto;padding:22px}.capability-fold h3{margin-top:24px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}
-  @media(prefers-reduced-motion:reduce){.capability-fold,.capability-fold::after,.role-paths__nav a{animation:none;transition:none}}
+  @media(max-width:960px){.product-hub .catalog-hero__layout,.product-direction-model,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-direction-model :global(.ramuni-mark-3d){min-height:340px}.product-hub .outcome-index__list,.role-paths__nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:740px){.product-hub .catalog-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.product-hub .product-row{grid-template-columns:52px minmax(0,1fr);padding-inline:10px}.product-hub .product-row .availability-label{grid-column:2}.product-hub .outcome-index__list,.capability-folds,.role-paths__nav{grid-template-columns:1fr}.capability-fold:nth-child(2){margin-top:0}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:auto;padding:22px}.capability-fold h3{margin-top:24px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}
+  @media(prefers-reduced-motion:reduce){.product-row,.product-row__mark,.outcome-index__list a,.outcome-glyph,.capability-fold,.capability-fold::after,.role-paths__nav a{animation:none!important;transition:none!important;transform:none!important}}
 </style>

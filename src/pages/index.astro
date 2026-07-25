@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
+import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
 const homepagePains = [
@@ -23,6 +24,22 @@ const faq = [
   ['Apakah demo memakai data asli?', 'Tidak. Demo publik memakai data sintetis dan tidak meminta data bisnis sensitif.'],
 ];
 
+const answerLayers = [
+  { label: 'Kesimpulan', title: 'Omzet contoh turun dibanding pekan lalu.', text: 'Perubahan dibaca pada periode Senin sampai Jumat.' },
+  { label: 'Alasan utama', title: 'Transaksi sore berkurang pada dua hari kerja.', text: 'RAMUNI memisahkan jumlah transaksi dari nilai belanja.' },
+  { label: 'Bukti', title: 'Bandingkan periode dan transaksi pendukung.', text: 'Waktu pembaruan serta data yang belum lengkap tetap terlihat.' },
+  { label: 'Produk terdampak', title: 'Kopi Susu dan Roti Panggang perlu ditelusuri.', text: 'Nama produk dan angkanya hanya contoh.' },
+  { label: 'Pemeriksaan berikutnya', title: 'Cek stok dan jadwal sebelum mengubah harga.', text: 'Saran menjadi bahan keputusan, bukan tindakan otomatis.' },
+];
+
+const workflowStages = [
+  ['Catat', 'Penjualan, stok, biaya, dan pelanggan.'],
+  ['Hitung', 'Metrik memakai definisi dan periode yang sama.'],
+  ['Baca', 'Perubahan penting naik ke urutan teratas.'],
+  ['Telusuri', 'Periode dan bukti tetap bisa dibuka.'],
+  ['Putuskan', 'Manusia menentukan tindakan berikutnya.'],
+];
+
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const organizationId = `${siteOrigin}/#organization`;
 const schema = [
@@ -39,7 +56,7 @@ const schema = [
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
         <h1>Pahami bisnis Anda. Tahu langkah berikutnya.</h1>
         <p class="lede">RAMUNI membantu Anda membaca catatan usaha dan melihat hal yang perlu diperiksa.</p>
-        <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="/demo">Lihat cara kerjanya</a></div>
+        <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="/tour-produk-gratis">Lihat cara kerjanya</a></div>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
@@ -47,33 +64,48 @@ const schema = [
   </section>
 
   <section class="section problem-chapter chapter" data-chapter="Masalah">
-    <div class="container problem-editorial">
-      <div class="problem-lead reveal"><p class="section-kicker">Masalahnya bukan kekurangan data.</p><h2>Catatan ada. Yang perlu diperiksa belum terlihat.</h2></div>
-      <div class="problem-rail">
-        {homepagePains.map((pain, i) => <a class="problem-line reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}
+    <div class="container problem-landscape">
+      <header class="problem-landscape__head reveal">
+        <p class="section-kicker">Masalahnya bukan kekurangan data.</p>
+        <h2>Catatan ada di mana-mana. Masalahnya bersembunyi di antaranya.</h2>
+        <p>Penjualan, stok, biaya, dan pelanggan sering dibaca terpisah. RAMUNI membantu melihat hubungan yang perlu diperiksa.</p>
+      </header>
+      <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
+        <div class="problem-canvas__core reveal" aria-hidden="true">
+          <span>Catatan usaha</span><strong>?</strong><i></i><i></i><i></i>
+        </div>
+        <nav class="problem-constellation">
+          {homepagePains.map((pain, i) => <a class="problem-point reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}
+        </nav>
+        <div class="problem-canvas__axis" aria-hidden="true"><span>Terlihat di catatan</span><span>Perlu ditelusuri</span></div>
       </div>
     </div>
   </section>
 
   <section class="section answer-stage chapter" data-chapter="Insight">
-    <div class="container answer-layout">
-      <div class="answer-sticky reveal"><p class="section-kicker">Contoh jawaban AI</p><h2>Kenapa omzet saya turun minggu ini?</h2><p>Angka di bawah hanya contoh untuk memperlihatkan cara membaca jawabannya.</p></div>
-      <div class="answer-sequence">
-        <article class="answer-step reveal"><span>Kesimpulan</span><h3>Omzet contoh turun dibanding pekan lalu.</h3><p>Perubahan dibaca pada periode Senin sampai Jumat.</p></article>
-        <article class="answer-step reveal"><span>Alasan utama</span><h3>Transaksi sore berkurang pada dua hari kerja.</h3><p>RAMUNI memisahkan perubahan jumlah transaksi dari nilai belanja.</p></article>
-        <article class="answer-step reveal"><span>Bukti</span><h3>Bandingkan periode dan transaksi pendukung.</h3><p>Waktu pembaruan serta data yang belum lengkap tetap terlihat.</p></article>
-        <article class="answer-step reveal"><span>Produk terdampak</span><h3>Kopi Susu dan Roti Panggang perlu ditelusuri.</h3><p>Nama produk dan angkanya hanya contoh.</p></article>
-        <article class="answer-step reveal"><span>Pemeriksaan berikutnya</span><h3>Cek stok dan jadwal sebelum mengubah harga.</h3><p>Saran menjadi bahan keputusan, bukan tindakan otomatis.</p></article>
+    <div class="container answer-theatre">
+      <header class="answer-theatre__question reveal">
+        <p class="section-kicker">Contoh jawaban AI</p>
+        <span>Pertanyaan pemilik usaha</span>
+        <h2>“Kenapa omzet saya turun minggu ini?”</h2>
+        <p>Angka di bawah hanya contoh untuk memperlihatkan cara membaca jawabannya.</p>
+      </header>
+      <div class="answer-console reveal">
+        <div class="answer-console__rail" aria-hidden="true"><span>Jawaban dirangkai</span><i></i><b>05 lapis</b></div>
+        <div class="answer-mosaic">
+          {answerLayers.map((item, i) => <article class="answer-tile" style={`--i:${i}`}><span>0{i + 1} / {item.label}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
+        </div>
+        <footer class="answer-console__foot"><span>Data contoh</span><span>Periode dan bukti tetap terbuka</span><strong>Keputusan tetap di tangan Anda</strong></footer>
       </div>
     </div>
   </section>
 
   <section class="section workflow-stage chapter" data-chapter="Alur">
     <div class="container">
-      <div class="section-intro reveal"><h2>Dari catatan ke keputusan yang bisa dijelaskan.</h2><p>Pilih satu tahap untuk melihat apa yang terjadi di dalamnya.</p></div>
+      <div class="section-intro reveal"><h2>Kumpulkan angka, pahami perubahan, lalu tentukan langkah.</h2><p>Pilih satu tahap untuk melihat apa yang terjadi di dalamnya.</p></div>
       <div class="workflow-explorer reveal" data-workflow-explorer>
         <div class="workflow-track" role="tablist" aria-label="Alur RAMUNI">
-          {[['Catat', 'Penjualan, stok, biaya, dan pelanggan.'], ['Hitung', 'Metrik memakai definisi dan periode yang sama.'], ['Baca', 'Perubahan penting naik ke urutan teratas.'], ['Telusuri', 'Periode dan bukti tetap bisa dibuka.'], ['Putuskan', 'Manusia menentukan tindakan berikutnya.']].map(([title, text], i) => <button type="button" class="workflow-node" role="tab" aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></button>)}
+          {workflowStages.map(([title, text], i) => <button type="button" class="workflow-node" role="tab" aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></button>)}
         </div>
         <div class="workflow-focus" aria-live="polite">
           <div class="workflow-focus__signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -85,13 +117,11 @@ const schema = [
   </section>
 
   <section class="section dashboard-stage dashboard-stage--editorial chapter" data-chapter="Dashboard">
-    <div class="container dashboard-layout">
-      <div class="dashboard-copy reveal">
-        <p class="section-kicker">Bukan sekadar grafik</p>
-        <h2>Pertanyaan datang dulu. Angka menjelaskan setelahnya.</h2>
-        <p>RAMUNI merangkum perubahan dalam bahasa sehari-hari, lalu membuka konteks yang perlu Anda periksa.</p>
-        <a class="text-link" href="/produk/dashboard-bisnis">Pelajari Dashboard Bisnis</a>
-      </div>
+    <div class="container dashboard-gallery">
+      <header class="dashboard-gallery__head reveal">
+        <div><p class="section-kicker">Bukan sekadar grafik</p><h2>Pertanyaan datang dulu.</h2></div>
+        <div><strong>Angka menjelaskan setelahnya.</strong><p>RAMUNI merangkum perubahan dalam bahasa sehari-hari, lalu membuka konteks yang perlu Anda periksa.</p><a class="text-link" href="/produk/dashboard-bisnis">Pelajari Dashboard Bisnis</a></div>
+      </header>
       <div class="signal-spread" role="group" aria-label="Contoh tema insight RAMUNI">
         <figure class="signal-story signal-story--lead reveal" style="--i:0">
           <div class="signal-story__frame signal-visual signal-visual--stock" role="img" aria-label="Ilustrasi laju penjualan dibandingkan dengan sisa stok">
@@ -132,34 +162,40 @@ const schema = [
   </section>
 
   <section class="section modules-stage chapter" data-chapter="Produk">
-    <div class="container">
-      <div class="section-intro reveal"><h2>Pilih bagian usaha yang ingin Anda pahami.</h2><p>Mulai dari penjualan, stok, keuangan, pelanggan, atau laporan.</p></div>
-      <div class="module-slices">
-        {products.map((product, i) => <a class="module-slice reveal" href={`/produk/${product.slug}`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><div><div><h3>{product.title}</h3><small>Pelajari modul</small></div><p>{product.outcome} Contoh pertanyaan: {product.question}</p></div><b>Buka</b></a>)}
+    <div class="container module-atlas">
+      <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Pilih bagian usaha yang ingin Anda pahami.</h2><p>Mulai dari pertanyaan yang paling dekat dengan pekerjaan hari ini.</p></header>
+      <div class="module-map">
+        {products.map((product, i) => <a class="module-cell reveal" href={`/produk/${product.slug}`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><h3>{product.title}</h3><p>{product.question}</p><small>Pelajari modul</small></a>)}
       </div>
     </div>
   </section>
 
   <section class="section solutions-stage chapter" data-chapter="Solusi">
-    <div class="container solution-composition">
-      <div class="solution-title reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Masalah mana yang paling mengganggu usaha Anda?</h2></div>
-      <div class="solution-orbit">
-        {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}`} class="solution-link reveal" style={`--i:${i}`}><span>0{i + 1}</span><h3>{solution.title}</h3><p>{solution.summary}</p></a>)}
+    <div class="container solution-field">
+      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Tidak perlu mengubah semuanya sekaligus.</h2><p>Pilih satu masalah yang paling mengganggu, lalu lihat data dan modul yang berkaitan.</p></div>
+      <div class="solution-paths">
+        {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}`} class="solution-path reveal" style={`--i:${i}`}><span>0{i + 1}</span><div><h3>{solution.title}</h3><p>{solution.summary}</p></div><b aria-hidden="true">↗</b></a>)}
       </div>
     </div>
   </section>
 
   <section class="section industry-stage chapter" data-chapter="Industri">
-    <div class="container industry-composition">
-      <div class="industry-copy reveal"><p class="section-kicker">Konteks usaha</p><h2>Setiap jenis usaha punya titik perhatian yang berbeda.</h2><p>Lihat contoh pertanyaan sesuai cara kerja usaha Anda.</p></div>
-      <div class="industry-accordion">{industries.map((industry, i) => <a href={`/industri/${industry.slug}`} class="industry-slice reveal" style={`--i:${i}`}><span>{industry.title}</span><p>{industry.question}</p><b>Pelajari</b></a>)}</div>
+    <div class="container industry-room" data-industry-room>
+      <header class="industry-room__head reveal"><p class="section-kicker">Konteks usaha</p><h2>Satu pertanyaan bisa berarti hal berbeda di setiap usaha.</h2></header>
+      <div class="industry-room__stage reveal">
+        <div class="industry-room__visual" aria-hidden="true"><div class="industry-room__chart" data-industry-scene data-scene="retail"><span></span><span></span><span></span><span></span></div><em data-industry-code>Retail</em><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="industry-room__question"><span>Pertanyaan contoh</span><h3 data-industry-question>{industries[0].question}</h3><a data-industry-link href={`/industri/${industries[0].slug}`}>Lihat konteks <b data-industry-name>{industries[0].title}</b></a></div>
+      </div>
+      <div class="industry-switcher" role="tablist" aria-label="Pilih jenis usaha">
+        {industries.map((industry, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}`}>{industry.title}</button>)}
+      </div>
     </div>
   </section>
 
   <section class="section start-stage chapter" data-chapter="Mulai">
-    <div class="container start-layout">
-      <div class="start-statement reveal"><h2>Mulai kecil. Rapikan yang paling mendesak.</h2></div>
-      <ol class="start-steps">
+    <div class="container start-journey">
+      <header class="start-journey__head reveal"><p class="section-kicker">Cara mulai</p><h2>Mulai kecil. Rapikan yang paling mendesak.</h2><p>Empat langkah yang bisa ditelusuri, tanpa melompati validasi data.</p></header>
+      <ol class="start-steps start-steps--horizontal">
         <li class="reveal"><span>01</span><div><h3>Buat ruang kerja</h3><p>Tentukan usaha, peran, dan konteks yang akan dibaca.</p></div></li>
         <li class="reveal"><span>02</span><div><h3>Tambah atau impor data</h3><p>Gunakan jalur input yang benar-benar tersedia dan sudah diperiksa.</p></div></li>
         <li class="reveal"><span>03</span><div><h3>Validasi insight pertama</h3><p>Pastikan periode, pembaruan, dan data pendukungnya terlihat.</p></div></li>
@@ -185,23 +221,25 @@ const schema = [
   </section>
 
   <section class="section trust-stage chapter" data-chapter="Keamanan">
-    <div class="container trust-composition">
-      <div class="trust-mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="" /></div>
-      <div class="trust-copy reveal"><h2>Jawaban tidak berhenti pada kesimpulan.</h2><p>Periksa periode dan sumber angka sebelum menentukan langkah.</p><a class="button button--light" href="/keamanan">Pelajari keamanan</a></div>
-      <div class="trust-list">{['Akses mengikuti peran yang diberi wewenang', 'AI hanya membaca pada versi awal', 'Jawaban menunjukkan periode dan bukti pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-row reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
+    <div class="container trust-manifesto">
+      <div class="trust-manifesto__mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="" /><span>Prinsip kerja RAMUNI</span></div>
+      <h2 class="reveal">Jawaban tidak berhenti pada kesimpulan.</h2>
+      <p class="trust-manifesto__lede reveal">Periode, sumber angka, dan batas data tetap terlihat sebelum Anda menentukan langkah.</p>
+      <div class="trust-principles">{['Akses mengikuti peran yang diberi wewenang', 'AI hanya membaca pada versi awal', 'Jawaban menunjukkan periode dan bukti pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-principle reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
+      <a class="button button--light reveal" href="/keamanan">Pelajari keamanan</a>
     </div>
   </section>
 
   <section class="section pricing-stage chapter" data-chapter="Akses">
     <div class="container pricing-composition">
       <div class="pricing-word reveal">Akses<br />Coba</div>
-      <div class="pricing-copy reveal"><h2>Mulai dari simulasi, lanjut jika cocok.</h2><p>Coba alur RAMUNI dengan data contoh. Harga dan cakupan akses akan dijelaskan sebelum Anda membuat keputusan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="text-link" href="/harga">Lihat informasi harga</a></div></div>
+      <div class="pricing-copy reveal"><h2>Mulai dari simulasi, lanjut jika cocok.</h2><p>Coba alur RAMUNI dengan data contoh. Harga dan cakupan akses akan dijelaskan sebelum Anda membuat keputusan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div>
     </div>
   </section>
 
   <section class="section faq-stage chapter" data-chapter="FAQ">
-    <div class="container faq-composition">
-      <div class="faq-heading reveal"><h2>Pertanyaan yang perlu dijawab sebelum mulai.</h2><p>Temukan jawaban singkat sebelum Anda mencoba.</p></div>
+    <div class="container faq-library">
+      <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Pertanyaan yang perlu dijawab sebelum mulai.</h2><p>Jawaban singkat, tanpa menyembunyikan batas produk yang sedang disiapkan.</p></div>
       <div class="faq-list">{faq.map(([question, answer]) => <details class="reveal"><summary>{question}</summary><p>{answer}</p></details>)}</div>
     </div>
   </section>
@@ -253,6 +291,27 @@ const schema = [
           activate(tabs[next]);
         });
       });
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-industry-room]').forEach((room) => {
+      const tabs = Array.from(room.querySelectorAll<HTMLButtonElement>('[data-industry-tab]'));
+      const code = room.querySelector<HTMLElement>('[data-industry-code]');
+      const scene = room.querySelector<HTMLElement>('[data-industry-scene]');
+      const question = room.querySelector<HTMLElement>('[data-industry-question]');
+      const link = room.querySelector<HTMLAnchorElement>('[data-industry-link]');
+      const name = room.querySelector<HTMLElement>('[data-industry-name]');
+      const activate = (tab: HTMLButtonElement) => {
+        tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+        if (code) code.textContent = tab.dataset.code || '';
+        if (scene) scene.dataset.scene = tab.dataset.scene || '';
+        if (question) question.textContent = tab.dataset.question || '';
+        if (link) link.href = tab.dataset.href || '/industri';
+        if (name) name.textContent = tab.dataset.name || '';
+        room.dataset.changing = 'false';
+        void room.offsetWidth;
+        room.dataset.changing = 'true';
+      };
+      tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
     });
   </script>
 </BaseLayout>

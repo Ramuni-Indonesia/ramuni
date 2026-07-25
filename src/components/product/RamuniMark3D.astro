@@ -1,0 +1,34 @@
+<div id="ramuni-direction-model" class="ramuni-mark-3d" data-ramuni-mark-3d>
+  <canvas aria-label="Model 3D interaktif simbol arah RAMUNI"></canvas>
+  <noscript><img src="/brand/ramuni-mark-color.webp" width="1024" height="1024" alt="Simbol arah RAMUNI" /></noscript>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ramuni-mark-3d]').forEach((host) => {
+    let requested = false;
+    const loadModel = async () => {
+      if (requested) return;
+      requested = true;
+      const { initRamuniMark3D } = await import('../../three/initRamuniMark3D');
+      initRamuniMark3D(host);
+    };
+    if (!('IntersectionObserver' in window)) {
+      void loadModel();
+      return;
+    }
+    const loaderObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loaderObserver.disconnect();
+      void loadModel();
+    }, { rootMargin: '240px 0px' });
+    loaderObserver.observe(host);
+  });
+</script>
+
+<style>
+  .ramuni-mark-3d{position:relative;min-height:360px;overflow:hidden;border:1px solid rgb(255 255 255/.24);background:radial-gradient(circle at 50% 42%,rgb(255 255 255/.13),transparent 58%)}
+  .ramuni-mark-3d canvas{display:block;width:100%;height:100%;min-height:360px;cursor:grab;touch-action:pan-y}
+  .ramuni-mark-3d noscript img{width:100%;height:100%;object-fit:contain;padding:40px}
+  @media(max-width:740px){.ramuni-mark-3d,.ramuni-mark-3d canvas{min-height:300px}}
+  @media(prefers-reduced-motion:reduce){.ramuni-mark-3d canvas{cursor:default}}
+</style>

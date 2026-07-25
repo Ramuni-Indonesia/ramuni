@@ -1,0 +1,89 @@
+---
+const scenarios = [
+  {
+    key: 'penjualan',
+    label: 'Penjualan',
+    question: 'Kapan omzet mulai berubah?',
+    title: 'Jam sore kehilangan beberapa transaksi.',
+    summary: 'Bandingkan jumlah transaksi dan nilai belanja sebelum mengubah promosi.',
+    bars: [42, 58, 47, 72, 64, 39, 51],
+    metrics: [['Transaksi', 'turun'], ['Nilai belanja', 'stabil'], ['Periode', '7 hari']],
+    action: 'Buka modul Penjualan',
+    href: '/produk/penjualan',
+  },
+  {
+    key: 'stok',
+    label: 'Stok',
+    question: 'Barang mana yang perlu dicek dulu?',
+    title: 'Dua produk bergerak lebih cepat dari stoknya.',
+    summary: 'Lihat laju jual, saldo, dan koreksi stok dalam periode yang sama.',
+    bars: [78, 66, 54, 89, 71, 48, 83],
+    metrics: [['Laju jual', 'naik'], ['Saldo', 'menipis'], ['Koreksi', '2 catatan']],
+    action: 'Buka modul Inventori',
+    href: '/produk/inventori',
+  },
+  {
+    key: 'kas',
+    label: 'Kas',
+    question: 'Kenapa ramai belum terasa di kas?',
+    title: 'Uang keluar naik meski omzet tidak banyak berubah.',
+    summary: 'Pisahkan omzet, biaya, laba, dan kas agar perbandingannya tidak tercampur.',
+    bars: [84, 62, 69, 55, 73, 46, 52],
+    metrics: [['Omzet', 'stabil'], ['Biaya', 'naik'], ['Kas', 'perlu dicek']],
+    action: 'Buka modul Keuangan',
+    href: '/produk/keuangan',
+  },
+  {
+    key: 'pelanggan',
+    label: 'Pelanggan',
+    question: 'Siapa yang mulai jarang kembali?',
+    title: 'Jeda pembelian memanjang pada satu kelompok pelanggan.',
+    summary: 'Periksa riwayat dan pola kunjungan tanpa mengirim pesan otomatis.',
+    bars: [38, 46, 61, 57, 49, 72, 44],
+    metrics: [['Pembelian ulang', 'melambat'], ['Kelompok', '1 pola'], ['Tindakan', 'ditinjau']],
+    action: 'Buka modul Pelanggan',
+    href: '/produk/pelanggan',
+  },
+];
+---
+
+<section class="section product-pulse" aria-labelledby="product-pulse-title">
+  <div class="container product-pulse__heading">
+    <div>
+      <p class="section-kicker">Lihat sebelum memilih modul</p>
+      <h2 id="product-pulse-title">Mulai dari pertanyaan usaha Anda.</h2>
+    </div>
+    <p>Pilih satu topik. Kanvas ini memakai data contoh untuk menunjukkan bagaimana catatan, konteks, dan langkah pemeriksaan disusun.</p>
+  </div>
+
+  <fieldset class="product-pulse__lab">
+    <legend class="sr-only">Pilih topik bisnis</legend>
+    <div class="product-pulse__switcher">
+      {scenarios.map((scenario, index) => (
+        <label>
+          <input type="radio" name="product-pulse" value={index} checked={index === 0} />
+          <span>{scenario.label}</span>
+          <small>{scenario.question}</small>
+        </label>
+      ))}
+    </div>
+    <div class="product-pulse__stage" aria-live="polite">
+      {scenarios.map((scenario, index) => (
+        <article class="product-pulse__panel" data-pulse-panel={index}>
+          <header>
+            <span>Contoh data sintetis</span>
+            <b>{String(index + 1).padStart(2, '0')} / 04</b>
+          </header>
+          <div class="product-pulse__chart" aria-hidden="true">
+            {scenario.bars.map((bar, barIndex) => <i style={`--bar:${bar}%;--delay:${barIndex * 55}ms`}></i>)}
+          </div>
+          <div class="product-pulse__reading">
+            <div><small>Yang terlihat</small><h3>{scenario.title}</h3><p>{scenario.summary}</p></div>
+            <dl>{scenario.metrics.map(([term, value]) => <div><dt>{term}</dt><dd>{value}</dd></div>)}</dl>
+          </div>
+          <footer><span>Bukti dibuka sebelum keputusan</span><a href={scenario.href}>{scenario.action}</a></footer>
+        </article>
+      ))}
+    </div>
+  </fieldset>
+</section>

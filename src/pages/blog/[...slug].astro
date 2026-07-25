@@ -56,7 +56,6 @@ const schema = [
   <article>
     <header class="article-hero">
       <div class="container article-head">
-        {post.data.noindex && <div class="article-preview-note"><span>Edisi awal</span><p>Artikel ini masih dalam peninjauan. Sumber dan pemeriksaan editorial sedang dilengkapi.</p></div>}
         <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
         <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a>
         <h1>{post.data.title}</h1>
@@ -69,7 +68,7 @@ const schema = [
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} /><StoryMicroVisual categorySlug={post.data.categorySlug} /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
+        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={post.data.categorySlug} /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>
 
@@ -106,7 +105,7 @@ const schema = [
     </section>
   </article>
 
-  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container blog-index-layout"><div class="blog-section-lead"><h2 id="related-heading">Lanjut dari sini.</h2><p>Pilih topik yang membantu Anda melihat angka dari sisi lain.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
+  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <section class="section blog-close-stage" aria-labelledby="article-final-cta"><div class="container blog-close reveal"><div><h2 id="article-final-cta">Bawa satu pertanyaan usaha.</h2><p>Lihat cara RAMUNI membaca konteksnya dengan data contoh.</p></div><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></section>
 
