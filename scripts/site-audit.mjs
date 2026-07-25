@@ -196,6 +196,16 @@ function accessibleName(tag, inner, idText) {
   return getAttribute(tag, 'aria-label') || referencedName(tag, idText) || textContent(inner);
 }
 
+function localAssetPath(value, origin) {
+  try {
+    const url = new URL(value, origin);
+    if (url.origin !== origin) return '';
+    return url.pathname;
+  } catch {
+    return '';
+  }
+}
+
 function auditAccessibility(html, route) {
   const idText = new Map();
   const seenIds = new Set();
@@ -253,6 +263,17 @@ for (const file of htmlFiles) {
   const description = capture(html, /<meta name="description" content="([^"]+)"/i);
   const canonical = capture(html, /<link rel="canonical" href="([^"]+)"/i);
   const robots = capture(html, /<meta name="robots" content="([^"]+)"/i);
+  const ogTitle = capture(html, /<meta property="og:title" content="([^"]+)"/i);
+  const ogDescription = capture(html, /<meta property="og:description" content="([^"]+)"/i);
+  const ogUrl = capture(html, /<meta property="og:url" content="([^"]+)"/i);
+  const ogImage = capture(html, /<meta property="og:image" content="([^"]+)"/i);
+  const ogImageAlt = capture(html, /<meta property="og:image:alt" content="([^"]+)"/i);
+  const ogImageWidth = Number(capture(html, /<meta property="og:image:width" content="([^"]+)"/i));
+  const ogImageHeight = Number(capture(html, /<meta property="og:image:height" content="([^"]+)"/i));
+  const twitterTitle = capture(html, /<meta name="twitter:title" content="([^"]+)"/i);
+  const twitterDescription = capture(html, /<meta name="twitter:description" content="([^"]+)"/i);
+  const twitterImage = capture(html, /<meta name="twitter:image" content="([^"]+)"/i);
+  const twitterImageAlt = capture(html, /<meta name="twitter:image:alt" content="([^"]+)"/i);
   const noindex = robots.includes('noindex');
   let canonicalUrl;
   try {
@@ -269,14 +290,37 @@ for (const file of htmlFiles) {
     ['description', Boolean(description)],
     ['canonical', Boolean(canonical)],
     ['robots meta', Boolean(robots)],
+    ['valid robots directive', ['index,follow', 'noindex,follow'].includes(robots)],
+    ['viewport', /<meta name="viewport" content="width=device-width, initial-scale=1"/i.test(html)],
+    ['theme color', /<meta name="theme-color" content="#[0-9a-f]{6}"/i.test(html)],
+    ['manifest link', /<link rel="manifest" href="\/site\.webmanifest"/i.test(html)],
     ['single h1', (html.match(/<h1\b/gi) || []).length === 1],
-    ['Open Graph title', /property="og:title" content="[^"]+"/i.test(html)],
-    ['Open Graph image', /property="og:image" content="https?:\/\//i.test(html)],
+    ['Open Graph title', Boolean(ogTitle)],
+    ['Open Graph description', Boolean(ogDescription)],
+    ['Open Graph URL', Boolean(ogUrl)],
+    ['Open Graph image', /^https?:\/\//i.test(ogImage)],
+    ['Open Graph image alt', Boolean(ogImageAlt)],
+    ['Open Graph image dimensions', Number.isInteger(ogImageWidth) && ogImageWidth > 0 && Number.isInteger(ogImageHeight) && ogImageHeight > 0],
     ['Twitter card', /name="twitter:card" content="summary_large_image"/i.test(html)],
+    ['Twitter title', Boolean(twitterTitle)],
+    ['Twitter description', Boolean(twitterDescription)],
+    ['Twitter image', /^https?:\/\//i.test(twitterImage)],
+    ['Twitter image alt', Boolean(twitterImageAlt)],
     ['no em dash or mojibake', !DASH_MARKER.test(html)],
     ['no AI-generation marker', !AI_MARKERS.some((pattern) => pattern.test(textContent(html)))],
   ];
   for (const [label, pass] of checks) if (!pass) failures.push(`${route}: ${label}`);
+  if (ogTitle && ogTitle !== title) failures.push(`${route}: Open Graph title must match document title`);
+  if (ogDescription && ogDescription !== description) failures.push(`${route}: Open Graph description must match meta description`);
+  if (twitterTitle && twitterTitle !== title) failures.push(`${route}: Twitter title must match document title`);
+  if (twitterDescription && twitterDescription !== description) failures.push(`${route}: Twitter description must match meta description`);
+  if (twitterImage && ogImage && twitterImage !== ogImage) failures.push(`${route}: Twitter image must match Open Graph image`);
+  if (twitterImageAlt && ogImageAlt && twitterImageAlt !== ogImageAlt) failures.push(`${route}: Twitter image alt must match Open Graph image alt`);
+  if (canonical && ogUrl && !equivalentUrl(ogUrl, canonical)) failures.push(`${route}: Open Graph URL must match canonical`);
+  if (canonicalUrl && ogImage) {
+    const imagePath = localAssetPath(ogImage, canonicalUrl.origin);
+    if (imagePath && !assetPaths.has(imagePath)) failures.push(`${route}: Open Graph image asset missing ${imagePath}`);
+  }
   auditAccessibility(html, route);
   let hasValidJsonLd = false;
   const schemaEntities = [];
@@ -406,6 +450,25 @@ try {
   if (/Disallow: \/(?:masuk|terima-kasih)/.test(robots)) failures.push('robots.txt: noindex route incorrectly blocked');
 } catch { failures.push('robots.txt: missing'); }
 
+for (const requiredAsset of ['/favicon-16x16.png', '/favicon-32x32.png', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/og-default.png']) {
+  if (!assetPaths.has(requiredAsset)) failures.push(`asset: missing required ${requiredAsset}`);
+}
+
+try {
+  const manifest = JSON.parse(await readFile(join(root, 'site.webmanifest'), 'utf8'));
+  if (manifest.name !== 'RAMUNI') failures.push('site.webmanifest: name must be RAMUNI');
+  if (manifest.short_name !== 'RAMUNI') failures.push('site.webmanifest: short_name must be RAMUNI');
+  if (manifest.start_url !== '/') failures.push('site.webmanifest: start_url must be /');
+  if (manifest.display !== 'standalone') failures.push('site.webmanifest: display must be standalone');
+  const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+  for (const size of ['192x192', '512x512']) {
+    const icon = icons.find((entry) => entry.sizes === size && entry.src && assetPaths.has(entry.src));
+    if (!icon) failures.push(`site.webmanifest: missing usable ${size} icon`);
+  }
+} catch {
+  failures.push('site.webmanifest: missing or invalid JSON');
+}
+
 for (const file of sourceFiles.filter((item) => /\.(astro|css|js|mjs|ts|md|mdx)$/.test(item))) {
   const rel = relative(sourceRoot, file).split(sep).join('/');
   const source = await readFile(file, 'utf8');
@@ -424,4 +487,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Audited ${htmlFiles.length} HTML files: metadata, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, robots, documentation encoding, and production asset budgets all passed.`);
+console.log(`Audited ${htmlFiles.length} HTML files: metadata, social previews, manifest/icons, static accessibility, content markers, JSON-LD/schema contracts, internal links, sitemap/noindex, robots, documentation encoding, and production asset budgets all passed.`);

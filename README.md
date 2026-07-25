@@ -31,8 +31,10 @@ The site intentionally avoids a client-side framework, WebGL, autoplay video, an
 
 ## Requirements
 
-- Node.js 22
+- Node.js 22.12 or newer in the Node 22 release line
 - npm 10 or newer
+
+The supported Node line is recorded in `.node-version`, `.nvmrc`, and `package.json`. CI reads the same version policy, so local and hosted checks do not silently drift apart.
 
 ## Local development
 
@@ -43,6 +45,8 @@ npm ci --force
 Copy-Item .env.example .env
 npm run dev
 ```
+
+On macOS or Linux, copy the environment template with `cp .env.example .env`. If you use `nvm`, run `nvm use` before installing dependencies.
 
 Open the URL printed by Astro. Never commit `.env`, credentials, private endpoints, analytics secrets, or access tokens.
 
@@ -61,7 +65,9 @@ npm audit --audit-level=high
 
 `npm run audit` inspects the generated `dist/` output. It validates route-level SEO metadata, JSON-LD/schema contracts, sitemap and noindex alignment, internal links, robots policy, static accessibility invariants, content markers, documentation encoding, and production asset budgets.
 
-The GitHub Actions workflow runs these checks on every pull request and every push to `main`. Successful `main` runs retain the generated static site as a short-lived workflow artifact for release inspection. A green workflow is necessary but does not replace browser QA, final-domain checks, or public PageSpeed Insights.
+The GitHub Actions workflow runs these checks on every pull request and every branch push. It first rejects common committed credential patterns, then installs the lockfile, checks Astro and TypeScript, builds with production indexability policy, runs the custom SEO/accessibility audit, and rejects high-severity dependency vulnerabilities. Every successful run retains the generated static site as a seven-day workflow artifact for review.
+
+Dependabot checks npm and GitHub Actions weekly. The pull request template makes brand, credentials, indexability, metadata, schema, and evidence gates explicit during review. A green workflow is necessary but does not replace browser QA, final-domain checks, or public PageSpeed Insights.
 
 ## Environment and indexing safety
 
@@ -92,6 +98,7 @@ Lead forms also fail closed. Keep `PUBLIC_LEAD_ENDPOINT` empty until an approved
 | `public` | Deployable fonts, favicons, Open Graph, brand, and editorial assets |
 | `brand/RAMUNI` | Approved brand source and reference exports |
 | `scripts/site-audit.mjs` | Built-output SEO, accessibility, content, and performance audit |
+| `.github` | Branch/PR quality workflow, Dependabot policy, and review checklist |
 | `docs` | Product, content, SEO, analytics, security, and deployment handover |
 
 Start with [`docs/README.md`](docs/README.md) for the document order and [`docs/14-marketing-website-implementation-handoff.md`](docs/14-marketing-website-implementation-handoff.md) for current implementation evidence and launch blockers.
@@ -116,7 +123,7 @@ The detailed promotion and rollback checklist is in [`docs/deployment-rollback.m
 
 ## Security
 
-Do not report vulnerabilities in a public issue. Follow the contact and disclosure instructions in [`public/.well-known/security.txt`](public/.well-known/security.txt). Never commit personal access tokens, API keys, passwords, customer records, or production exports.
+Do not report vulnerabilities in a public issue. Follow [`SECURITY.md`](SECURITY.md) and the contact instructions in [`public/.well-known/security.txt`](public/.well-known/security.txt). Never commit personal access tokens, API keys, passwords, customer records, or production exports.
 
 ## License
 
