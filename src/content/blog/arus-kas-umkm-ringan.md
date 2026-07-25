@@ -14,8 +14,10 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "draft-template"
-editorialStatus: "Draf contoh - belum ditinjau final"
+reviewerName: "Tim Editorial RAMUNI"
+reviewerSlug: "tim-editorial-ramuni"
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau Tim Editorial RAMUNI"
 readingTime: "4 menit"
 takeaways:
   - "Pisahkan arus masuk dan keluar sebelum membaca detail lain."
@@ -29,7 +31,7 @@ related:
 ctaType: "early-access"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Arus kas sering terasa rumit karena omzet, laba, saldo rekening, dan tagihan dibaca sebagai satu angka. Padahal masing-masing menjawab pertanyaan berbeda.

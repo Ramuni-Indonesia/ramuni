@@ -4,6 +4,7 @@ import SolutionDataVisual from '../../components/solution/SolutionDataVisual.ast
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
+import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { solutionDetails, type SolutionDetail } from '../../data/solutionDetails';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
@@ -62,6 +63,14 @@ const faqSchema = {
         <div class="sd-impact" aria-label="Dampak bisnis">
           {solution.impact.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Dampak {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
         </div>
+        <InsightEvidenceFlow
+          context="Solusi"
+          title="Uji satu gejala sebelum menarik kesimpulan."
+          prompt={solution.heroOutcome}
+          sources={solution.symptoms}
+          outcome={solution.scenario.decision}
+          variant={solution.slug}
+        />
       </div>
     </section>
 

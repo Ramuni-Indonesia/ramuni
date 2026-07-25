@@ -14,8 +14,10 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "draft-template"
-editorialStatus: "Draf contoh - belum ditinjau final"
+reviewerName: "Tim Editorial RAMUNI"
+reviewerSlug: "tim-editorial-ramuni"
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau Tim Editorial RAMUNI"
 readingTime: "4 menit"
 takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."
@@ -29,7 +31,7 @@ related:
 ctaType: "demo"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 AI Business Companion adalah pendamping untuk membaca catatan bisnis, menyusun pertanyaan, dan menunjukkan angka yang mendukung jawaban. Ia bukan pengganti pemilik usaha, akuntan, atau orang yang memahami kondisi lapangan.

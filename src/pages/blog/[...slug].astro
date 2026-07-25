@@ -53,6 +53,7 @@ const schema = [
 ];
 ---
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={post.data.noindex} schema={schema} ogType="article">
+  <div class="article-reading-progress" role="progressbar" aria-label="Progres membaca artikel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-reading-progress><i></i></div>
   <article>
     <header class="article-hero">
       <div class="container article-head">
@@ -62,7 +63,7 @@ const schema = [
         <p class="article-dek">{post.data.dek}</p>
         <div class="article-trust-row" aria-label="Akuntabilitas artikel">
           <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}`}>{post.data.authorName}</a></div>
-          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/reviewer/${post.data.reviewerSlug}`}>{post.data.reviewerName}</a></div>}
+          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/penulis/${post.data.reviewerSlug}`}>{post.data.reviewerName}</a></div>}
           {!hasVerifiedReviewer && <div><span>Status editorial</span><strong>{post.data.editorialStatus}</strong></div>}
           <div><span>Koreksi</span><a href="/blog/koreksi">Sampaikan perbaikan</a></div>
         </div>
@@ -110,6 +111,21 @@ const schema = [
   <section class="section blog-close-stage" aria-labelledby="article-final-cta"><div class="container blog-close reveal"><div><h2 id="article-final-cta">Bawa satu pertanyaan usaha.</h2><p>Lihat cara RAMUNI membaca konteksnya dengan data contoh.</p></div><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></section>
 
   <script>
+    const readingProgress = document.querySelector<HTMLElement>('[data-reading-progress]');
+    const updateReadingProgress = () => {
+      if (!readingProgress) return;
+      const article = document.querySelector('article');
+      if (!article) return;
+      const start = article.offsetTop;
+      const distance = Math.max(article.offsetHeight - window.innerHeight, 1);
+      const value = Math.min(100, Math.max(0, ((window.scrollY - start) / distance) * 100));
+      readingProgress.style.setProperty('--reading-progress', `${value}%`);
+      readingProgress.setAttribute('aria-valuenow', String(Math.round(value)));
+    };
+    updateReadingProgress();
+    window.addEventListener('scroll', updateReadingProgress, { passive: true });
+    window.addEventListener('resize', updateReadingProgress, { passive: true });
+
     const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
     const tocTargets = tocLinks
       .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))

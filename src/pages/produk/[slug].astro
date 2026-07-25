@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
+import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
 import { productDetails } from '../../data/productDetails';
 import { releaseGates } from '../../config/release';
@@ -121,6 +122,14 @@ const structuredData = [
             </li>
           ))}
         </ol>
+        <InsightEvidenceFlow
+          context="Produk"
+          title="Pilih satu catatan, lalu lihat hubungannya."
+          prompt={detail.question}
+          sources={detail.problems}
+          outcome={detail.outcome}
+          variant={product.slug}
+        />
       </div>
     </section>
 

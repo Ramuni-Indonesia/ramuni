@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LeadForm from '../components/LeadForm.astro';
 import '../styles/forms-conversion.css';
+const whatsappHref = 'https://wa.me/message/K35W6X6WT7YMJ1';
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const schema = {
   '@context': 'https://schema.org',
@@ -13,7 +13,7 @@ const schema = {
     '@type': 'ContactPoint',
     contactType: 'customer support',
     availableLanguage: ['id'],
-    url: `${siteOrigin}/kontak/`,
+    url: whatsappHref,
   },
 };
 ---
@@ -23,7 +23,7 @@ const schema = {
       <div class="contact-conversion-page__intro reveal is-visible">
         <p class="section-kicker">Kontak RAMUNI</p>
         <h1 id="contact-form">Ada yang ingin dibahas?</h1>
-        <p class="lede">Ceritakan kebutuhan Anda secara ringkas. Kami akan mengarahkan pertanyaan tentang demo, produk, atau kerja sama.</p>
+        <p class="lede">Ceritakan kebutuhan Anda secara ringkas lewat WhatsApp. Tim RAMUNI akan membantu mengarahkan pertanyaan tentang produk atau kerja sama.</p>
         <p class="contact-conversion-page__safe">Jangan sertakan data pelanggan, transaksi, kata sandi, atau token.</p>
         <nav class="contact-conversion-links" aria-label="Tautan bantuan kontak">
           <a href="/bantuan">Pusat Bantuan</a>
@@ -32,7 +32,10 @@ const schema = {
         </nav>
       </div>
       <div class="contact-conversion-page__panel reveal is-visible">
-        <LeadForm kind="contact" />
+        <p class="section-kicker">Kanal resmi</p>
+        <h2>Mulai percakapan di WhatsApp.</h2>
+        <p>Sampaikan nama, jenis usaha, dan satu hal yang ingin dipahami. Hindari mengirim data sensitif.</p>
+        <a class="button button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Hubungi RAMUNI di WhatsApp</a>
       </div>
     </div>
   </section>

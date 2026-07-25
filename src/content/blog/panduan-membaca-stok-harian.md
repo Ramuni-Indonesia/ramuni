@@ -14,8 +14,10 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "draft-template"
-editorialStatus: "Draf contoh - belum ditinjau final"
+reviewerName: "Tim Editorial RAMUNI"
+reviewerSlug: "tim-editorial-ramuni"
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau Tim Editorial RAMUNI"
 readingTime: "5 menit"
 takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."
@@ -29,7 +31,7 @@ related:
 ctaType: "demo"
 featured: true
 draft: false
-noindex: true
+noindex: false
 ---
 
 Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” perlu dibandingkan dengan laju penjualan dan waktu ramai. Periksa juga waktu yang dibutuhkan untuk menyiapkan barang pengganti.

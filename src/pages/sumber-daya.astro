@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../components/blog/StoryMicroVisual.astro';
-import { resources } from '../data/site';
 import '../styles/resource-hub.css';
 
 const posts = (await getCollection('blog'))
@@ -10,7 +9,12 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featuredPost = posts.find((post) => post.data.featured) || posts[0];
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
-const resourceFormats = resources.map((resource, index) => ({ ...resource, visual: ['guide', 'template', 'calculator', 'glossary'][index] || 'guide' }));
+const resourceFormats = [
+  { href: '/panduan', title: 'Panduan', text: 'Ikuti langkah berurutan saat Anda belum tahu harus mulai memeriksa dari mana.', fit: 'Untuk memahami proses', visual: 'guide' },
+  { href: '/template', title: 'Template', text: 'Pakai struktur siap isi agar review rutin tidak dimulai dari halaman kosong.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
+  { href: '/kalkulator', title: 'Kalkulator', text: 'Uji laba, HPP, atau titik pesan ulang dengan rumus yang ditampilkan terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
+  { href: '/kamus-bisnis', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
+];
 
 const paths = [
   { question: 'Stok berubah, tetapi penyebabnya belum terlihat', href: '/panduan/membaca-stok-harian', label: 'Baca panduan stok', visual: 'stock' },
@@ -42,7 +46,7 @@ const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: resources.map((item, index) => ({
+    itemListElement: resourceFormats.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: item.title,
@@ -95,7 +99,7 @@ const schema = [
               <div><span>Artikel pilihan</span><h3>{featuredPost.data.title}</h3><p>{featuredPost.data.dek}</p><small>{formatDate(featuredPost.data.updatedAt || featuredPost.data.publishedAt)} · {featuredPost.data.readingTime}</small><b>Baca artikel <i aria-hidden="true">&rarr;</i></b></div>
             </a>}
             <div class="resource-format-grid">
-              {resourceFormats.map((item, index) => <a class="resource-format-card reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['resource-format-card__visual', `resource-format-card__visual--${item.visual}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><h3>{item.title}</h3><p>{item.text}</p></div><b>Buka <i aria-hidden="true">&rarr;</i></b></a>)}
+              {resourceFormats.map((item, index) => <a class="resource-format-card reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['resource-format-card__visual', `resource-format-card__visual--${item.visual}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><small>{item.fit}</small><h3>{item.title}</h3><p>{item.text}</p></div><b>Buka {item.title} <i aria-hidden="true">&rarr;</i></b></a>)}
             </div>
           </div>
         </div>

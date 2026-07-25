@@ -1,0 +1,27 @@
+---
+const whatsappHref = 'https://wa.me/message/K35W6X6WT7YMJ1';
+---
+
+<div class="floating-actions" data-floating-actions>
+  <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden>
+    <span aria-hidden="true">&uarr;</span>
+  </button>
+  <button class="floating-actions__contact" type="button" data-contact-open aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-dialog">
+    <img src="/brand/ramuni-mark-white.webp" width="28" height="28" alt="" />
+    <span>Hubungi kami</span>
+  </button>
+</div>
+
+<dialog class="contact-dialog" id="contact-dialog" data-contact-dialog aria-label="Hubungi RAMUNI melalui WhatsApp" aria-labelledby="contact-dialog-title" aria-describedby="contact-dialog-copy">
+  <div class="contact-dialog__panel">
+    <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">Tutup</button>
+    <img src="/brand/ramuni-mark-color.webp" width="44" height="44" alt="" loading="lazy" />
+    <p class="section-kicker">Bicara dengan RAMUNI</p>
+    <h2 id="contact-dialog-title">Ada yang ingin ditanyakan?</h2>
+    <p id="contact-dialog-copy">Ceritakan kebutuhan usaha Anda lewat WhatsApp. Jangan kirim kata sandi atau data pelanggan.</p>
+    <a class="button button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Lanjut ke WhatsApp</a>
+    <small>WhatsApp akan terbuka di tab baru.</small>
+  </div>
+</dialog>
+
+<script is:inline type="module" src="/scripts/floating-contact.js"></script>

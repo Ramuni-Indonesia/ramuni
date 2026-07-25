@@ -122,3 +122,35 @@
   .resource-editorial__statement h2{font-size:clamp(3rem,13vw,4.4rem)}.resource-editorial__standards{grid-template-columns:1fr}.resource-editorial__standards a{min-height:220px}.resource-close{align-items:flex-start;flex-direction:column}.resource-close .button-row,.resource-close .button{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.resource-navigator__orbit,.resource-navigator__orbit::before,.resource-problem-card__visual i{animation:none!important}.resource-hub-page *{scroll-behavior:auto}}
+
+/* Resource density and purpose pass. */
+.resource-hub-hero{padding:clamp(44px,5vw,72px) 0 clamp(64px,7vw,96px)}
+.resource-hub-hero__grid{align-items:center}
+.resource-hub-hero__copy h1{font-size:clamp(3.35rem,6.2vw,6.65rem);line-height:.92}
+.resource-navigator{min-height:500px}
+.resource-navigator__panels{margin-top:clamp(32px,4vw,52px)}
+.resource-library{padding-top:clamp(68px,8vw,108px)}
+.resource-library__head{margin-bottom:clamp(36px,5vw,58px)}
+.resource-library__head h2,.resource-problem-stage__head h2{font-size:clamp(2.45rem,4.5vw,4.65rem);line-height:.98}
+.resource-format-card>div>small{display:block;margin-bottom:9px;color:var(--teal);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.resource-format-card:hover>div>small,.resource-format-card:focus-visible>div>small{color:var(--yellow)}
+.resource-format-card>b{gap:12px}
+.resource-editorial__statement h2{font-size:clamp(2.7rem,5vw,5.3rem);line-height:.96}
+.resource-editorial__standards{margin-top:clamp(42px,6vw,72px)}
+
+@media(prefers-reduced-motion:no-preference){
+  .resource-format-card__visual--guide i{animation:resource-line-read 3.2s var(--ease) infinite alternate;transform-origin:left}.resource-format-card__visual--guide i:nth-child(2){animation-delay:-1s}.resource-format-card__visual--guide i:nth-child(3){animation-delay:-1.8s}
+  .resource-format-card__visual--template i:first-child{animation:resource-cell-focus 3.2s var(--ease) infinite alternate}
+  .resource-format-card__visual--calculator i{animation:resource-calc-rise 2.8s var(--ease) infinite alternate;transform-origin:center bottom}.resource-format-card__visual--calculator i:nth-child(2){animation-delay:-.8s}.resource-format-card__visual--calculator i:nth-child(4){animation-delay:-1.5s}
+  .resource-format-card__visual--glossary i:first-child{animation:resource-cell-focus 3.6s var(--ease) infinite alternate}
+  @keyframes resource-line-read{from{transform:scaleX(.38);opacity:.55}to{transform:scaleX(1);opacity:1}}
+  @keyframes resource-calc-rise{from{transform:scaleY(.72)}to{transform:scaleY(1.04)}}
+  @keyframes resource-cell-focus{to{background:var(--yellow-18);border-color:var(--yellow)}}
+}
+@media(max-width:1080px){.resource-navigator{min-height:470px}.resource-featured-article figure{min-height:440px}}
+@media(max-width:740px){
+  .resource-hub-hero{padding:32px 0 58px}.resource-hub-hero__copy h1{font-size:clamp(2.8rem,12vw,3.9rem)}
+  .resource-navigator{min-height:0}.resource-navigator__panels{margin-top:30px}.resource-library{padding-top:58px}
+  .resource-library__head h2,.resource-problem-stage__head h2,.resource-editorial__statement h2{font-size:clamp(2.25rem,10vw,3.15rem)}
+}
+@media(prefers-reduced-motion:reduce){.resource-format-card__visual i{animation:none!important}}

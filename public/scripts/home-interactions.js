@@ -59,3 +59,23 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
   };
   tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab)));
 });
+
+const problemCanvas = document.querySelector('.problem-canvas');
+const problemMascot = document.querySelector('[data-problem-mascot]');
+if (problemCanvas && problemMascot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let frame = 0;
+  problemCanvas.addEventListener('pointermove', (event) => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const bounds = problemCanvas.getBoundingClientRect();
+      const x = ((event.clientX - bounds.left) / bounds.width - .5) * 14;
+      const y = ((event.clientY - bounds.top) / bounds.height - .5) * 10;
+      problemMascot.style.setProperty('--mascot-x', `${x.toFixed(1)}px`);
+      problemMascot.style.setProperty('--mascot-y', `${y.toFixed(1)}px`);
+    });
+  });
+  problemCanvas.addEventListener('pointerleave', () => {
+    problemMascot.style.setProperty('--mascot-x', '0px');
+    problemMascot.style.setProperty('--mascot-y', '0px');
+  });
+}

@@ -71,8 +71,10 @@ const schema = [
         <p>Penjualan, stok, biaya, dan pelanggan sering dibaca terpisah. RAMUNI membantu melihat hubungan yang perlu diperiksa.</p>
       </header>
       <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
-        <div class="problem-canvas__core reveal" aria-hidden="true">
-          <span>Catatan usaha</span><strong>?</strong><i></i><i></i><i></i>
+        <div class="problem-canvas__core reveal" aria-hidden="true" data-problem-mascot>
+          <span>Catatan yang terhubung</span>
+          <img src="/website-original/ramuni-mascot-problem-section.webp" width="900" height="900" alt="" loading="lazy" decoding="async" />
+          <i></i><i></i><i></i>
         </div>
         <nav class="problem-constellation">
           {homepagePains.map((pain, i) => <a class="problem-point reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}
