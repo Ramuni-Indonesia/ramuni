@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">RAMUNI companion flow editorial cover</title>
+  <desc id="desc">Original RAMUNI cover showing question, data, answer, evidence, and human approval.</desc>
+  <rect width="1080" height="1350" fill="#F4F0E7"/>
+  <rect x="84" y="92" width="912" height="1166" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <text x="138" y="178" fill="#168C8C" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="4">AI BUSINESS COMPANION</text>
+  <text x="138" y="242" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="52" font-weight="800">Jawaban pendek.</text>
+  <text x="138" y="302" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="52" font-weight="800">Dasar angka tetap terlihat.</text>
+  <g transform="translate(138 398)">
+    <rect width="804" height="132" fill="#0B3045"/>
+    <text x="34" y="55" fill="#F2B134" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="800">PERTANYAAN</text>
+    <text x="34" y="100" fill="#FFFFFF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="30" font-weight="800">“Stok apa yang perlu saya cek sore ini?”</text>
+    <rect y="170" width="804" height="108" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+    <text x="34" y="238" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800">Data: saldo · penjualan 7 hari · pembaruan</text>
+    <rect y="318" width="804" height="108" fill="#F2B134" stroke="#0B3045" stroke-width="3"/>
+    <text x="34" y="386" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800">Jawaban: dua produk perlu cek fisik</text>
+    <rect y="466" width="804" height="108" fill="#168C8C" stroke="#0B3045" stroke-width="3"/>
+    <text x="34" y="534" fill="#FFFFFF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800">Bukti: periode · transaksi · batas data</text>
+    <rect y="614" width="804" height="108" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+    <text x="34" y="682" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="26" font-weight="800">Tindakan: manusia memeriksa lalu memutuskan</text>
+  </g>
+  <path d="M740 104h198v198H740z" fill="#168C8C"/>
+  <path d="M806 170h198v198H806z" fill="#F2B134"/>
+  <path d="M806 170h132v132H806z" fill="#0B3045"/>
+</svg>

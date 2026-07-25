@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">RAMUNI stock signal editorial cover</title>
+  <desc id="desc">Original RAMUNI cover showing stock balance, sales pace, and a review note.</desc>
+  <rect width="1080" height="1350" fill="#F4F0E7"/>
+  <rect x="70" y="72" width="940" height="1206" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <rect x="70" y="72" width="940" height="180" fill="#0B3045"/>
+  <text x="122" y="152" fill="#F2B134" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="4">STOK HARIAN</text>
+  <text x="122" y="204" fill="#FFFFFF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="42" font-weight="800">Sisa stok dibaca bersama laju jual.</text>
+  <rect x="122" y="326" width="836" height="26" fill="#0B3045"/>
+  <rect x="122" y="326" width="376" height="26" fill="#F2B134"/>
+  <text x="122" y="300" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="26" font-weight="800">Kopi Susu · 24 porsi</text>
+  <g transform="translate(122 454)">
+    <line x1="0" y1="470" x2="836" y2="470" stroke="#0B3045" stroke-width="3"/>
+    <rect x="0" y="260" width="80" height="210" fill="#168C8C"/>
+    <rect x="126" y="194" width="80" height="276" fill="#168C8C"/>
+    <rect x="252" y="140" width="80" height="330" fill="#168C8C"/>
+    <rect x="378" y="78" width="80" height="392" fill="#F2B134"/>
+    <rect x="504" y="116" width="80" height="354" fill="#168C8C"/>
+    <rect x="630" y="34" width="80" height="436" fill="#F2B134"/>
+    <text x="0" y="520" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="700">08</text>
+    <text x="252" y="520" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="700">10</text>
+    <text x="504" y="520" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="700">12</text>
+    <text x="690" y="520" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="22" font-weight="700">14</text>
+  </g>
+  <rect x="122" y="1058" width="836" height="126" fill="#F2B134" stroke="#0B3045" stroke-width="3"/>
+  <text x="158" y="1112" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="28" font-weight="800">Periksa sebelum jam ramai</text>
+  <text x="158" y="1158" fill="#0B3045" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="24">Sinyal menentukan urutan cek, bukan pesanan otomatis.</text>
+  <path d="M760 268h190v190H760z" fill="#168C8C"/>
+  <path d="M818 326h190v190H818z" fill="#F2B134"/>
+  <path d="M818 326h132v132H818z" fill="#0B3045"/>
+</svg>

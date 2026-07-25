@@ -1,98 +1,188 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { products, solutions } from '../../data/site';
+import { products, roles, solutions } from '../../data/site';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
 const ecosystem = products.find((product) => product.slug === 'integrasi');
+
+const sharedCapabilities = [
+  { title: 'Akses sesuai peran', text: 'Pemilik, supervisor, admin, dan kasir melihat ruang kerja yang sesuai tanggung jawabnya.' },
+  { title: 'Jejak perubahan', text: 'Koreksi penting tetap memiliki waktu, alasan, dan pelaku yang dapat diperiksa.' },
+  { title: 'Bukti di balik insight', text: 'Ringkasan membawa pengguna kembali ke metrik, periode, dan catatan sumber.' },
+  { title: 'Impor dan ekspor terkontrol', text: 'Jalur data ditampilkan bersama status ketersediaan dan hasil validasinya.' },
+];
+
+const productFaq = [
+  { question: 'Apakah semua modul sudah tersedia?', answer: 'Belum. Setiap halaman menjelaskan kemampuan yang aktif, terbatas, atau masih berupa preview.' },
+  { question: 'Haruskah memakai semua modul sekaligus?', answer: 'Tidak. Mulai dari catatan yang paling penting, lalu tambah modul saat alurnya sudah rapi.' },
+  { question: 'Apakah AI dapat menjalankan transaksi?', answer: 'Tidak pada versi awal. AI membaca konteks dan bukti, sedangkan tindakan tetap diputuskan pengguna.' },
+];
 ---
 <BaseLayout title="Produk RAMUNI" description="Jelajahi modul RAMUNI untuk memahami penjualan, stok, keuangan, pelanggan, dan kondisi bisnis dalam satu alur.">
-  <section class="catalog-hero">
-    <div class="container catalog-hero__layout">
-      <div class="reveal is-visible">
-        <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk' }]} />
-        <p class="section-kicker">Produk RAMUNI</p>
-        <h1>Satu sistem untuk membaca bisnis dengan lebih jelas.</h1>
-      </div>
-      <div class="catalog-hero__aside reveal is-visible">
-        <p>Mulai dari catatan operasional. RAMUNI membantu menyusun perhitungan, insight, dan langkah yang tetap berada dalam kendali manusia.</p>
-        <div class="button-row">
-          <a class="button button--primary" href="/early-access">Daftar Early Access</a>
-          <a class="button button--secondary" href="/demo">Lihat Demo</a>
+  <main class="product-hub">
+    <section class="catalog-hero">
+      <div class="container catalog-hero__layout">
+        <div class="reveal is-visible">
+          <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk' }]} />
+          <p class="section-kicker">Produk RAMUNI</p>
+          <h1>Satu alur untuk membaca bisnis.</h1>
+        </div>
+        <div class="catalog-hero__aside reveal is-visible">
+          <p>Catat operasional, periksa hitungan, lalu tentukan langkah dengan bukti yang sama.</p>
+          <div class="button-row">
+            <a class="button button--primary" href="/early-access">Daftar Early Access</a>
+            <a class="button button--secondary" href="/demo">Lihat Demo</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section surface product-system" aria-labelledby="product-system-title">
-    <div class="container">
-      <p class="section-kicker">Cara kerja sistem</p>
-      <h2 id="product-system-title">Dari catatan sampai keputusan.</h2>
-      <div class="product-system__rail reveal">
-        <article><span>Data bisnis</span><p>Produk, transaksi, stok, biaya, dan pelanggan.</p></article>
-        <article><span>Perhitungan</span><p>Definisi metrik dan periode yang konsisten.</p></article>
-        <article><span>Insight</span><p>Hal yang perlu perhatian ditampilkan lebih dulu.</p></article>
-        <article><span>Keputusan</span><p>Pengguna memeriksa bukti sebelum bertindak.</p></article>
+    <section class="section surface product-system" aria-labelledby="product-system-title">
+      <div class="container">
+        <p class="section-kicker">Sistem yang terhubung</p>
+        <h2 id="product-system-title">Satu catatan, empat tahap.</h2>
+        <div class="product-system__rail reveal">
+          <article><span>Catatan</span><strong>Data bisnis masuk</strong><p>Produk, transaksi, stok, biaya, dan pelanggan.</p></article>
+          <article><span>Hitungan</span><strong>Metrik disamakan</strong><p>Definisi dan periode dipakai secara konsisten.</p></article>
+          <article><span>Insight</span><strong>Prioritas terlihat</strong><p>Perubahan yang perlu diperiksa tampil lebih dulu.</p></article>
+          <article><span>Laporan</span><strong>Bukti tetap dekat</strong><p>Pengguna menelusuri dasar angka sebelum bertindak.</p></article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section product-catalog" aria-labelledby="product-catalog-title">
-    <div class="container product-catalog__layout">
-      <header class="product-catalog__intro">
-        <p class="section-kicker">Keluarga produk</p>
-        <h2 id="product-catalog-title">Pilih dari pertanyaan yang ingin dijawab.</h2>
-        <p>Setiap halaman menunjukkan batas kemampuan. Status rilis tetap menjadi sumber kebenaran.</p>
-      </header>
-      <div class="product-families">
-        <section class="product-family" aria-labelledby="family-intelligence">
-          <h3 id="family-intelligence">Insight dan laporan</h3>
-          {intelligence.map((product, index) => (
-            <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
-              <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
-              <span><strong>{product.title}</strong><small>{product.question}</small></span>
-              <span class="availability-label">Preview terkontrol</span>
-            </a>
-          ))}
-        </section>
-        <section class="product-family" aria-labelledby="family-operations">
-          <h3 id="family-operations">Operasional</h3>
-          {operations.map((product, index) => (
-            <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
-              <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
-              <span><strong>{product.title}</strong><small>{product.question}</small></span>
-              <span class="availability-label">Sesuai bukti rilis</span>
-            </a>
-          ))}
-        </section>
-        {ecosystem && (
-          <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
-            <h3 id="family-ecosystem">Jalur data</h3>
-            <a class="product-row" href={`/produk/${ecosystem.slug}`}>
-              <span class="product-row__index">01</span>
-              <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
-              <span class="availability-label">Status per metode</span>
-            </a>
+    <section class="section product-catalog" aria-labelledby="product-catalog-title">
+      <div class="container product-catalog__layout">
+        <header class="product-catalog__intro">
+          <p class="section-kicker">Keluarga produk</p>
+          <h2 id="product-catalog-title">Pilih pertanyaan yang perlu dijawab.</h2>
+          <p>Setiap modul menjelaskan manfaat, bukti, dan batas kemampuannya.</p>
+        </header>
+        <div class="product-families">
+          <section class="product-family" aria-labelledby="family-intelligence">
+            <h3 id="family-intelligence">Insight dan laporan</h3>
+            {intelligence.map((product, index) => (
+              <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
+                <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+                <span><strong>{product.title}</strong><small>{product.question}</small></span>
+                <span class="availability-label">Preview terkontrol</span>
+              </a>
+            ))}
           </section>
-        )}
+          <section class="product-family" aria-labelledby="family-operations">
+            <h3 id="family-operations">Operasional</h3>
+            {operations.map((product, index) => (
+              <a class="product-row reveal" style={`--i:${index}`} href={`/produk/${product.slug}`}>
+                <span class="product-row__index">{String(index + 1).padStart(2, '0')}</span>
+                <span><strong>{product.title}</strong><small>{product.question}</small></span>
+                <span class="availability-label">Sesuai bukti rilis</span>
+              </a>
+            ))}
+          </section>
+          {ecosystem && (
+            <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
+              <h3 id="family-ecosystem">Jalur data</h3>
+              <a class="product-row" href={`/produk/${ecosystem.slug}`}>
+                <span class="product-row__index">01</span>
+                <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
+                <span class="availability-label">Status per metode</span>
+              </a>
+            </section>
+          )}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section surface outcome-index" aria-labelledby="outcome-index-title">
-    <div class="container outcome-index__layout">
-      <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modul yang dibutuhkan?</h2></div>
-      <div class="outcome-index__list">
-        {solutions.map((solution) => <a href={`/solusi/${solution.slug}`}><span>{solution.title}</span><small>{solution.summary}</small></a>)}
+    <section class="section product-capabilities" aria-labelledby="capabilities-title">
+      <div class="container product-capabilities__layout">
+        <header><h2 id="capabilities-title">Kontrol yang ikut di setiap modul.</h2><p>Fondasi ini menjaga informasi tetap berguna saat tim dan volume data bertambah.</p></header>
+        <div class="capability-folds">
+          {sharedCapabilities.map((item, index) => (
+            <article class="capability-fold reveal" style={`--i:${index}`}>
+              <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section product-close">
-    <div class="container product-close__layout">
-      <div><p class="section-kicker">Batas yang jelas</p><h2>Fitur hanya ditampilkan sesuai status yang dapat dibuktikan.</h2></div>
-      <div><p>Klaim produk, integrasi, dan keamanan tidak mendahului bukti rilis. Kami dapat membantu memilih titik awal yang paling relevan.</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
-    </div>
-  </section>
+    <section class="section surface outcome-index" aria-labelledby="outcome-index-title">
+      <div class="container outcome-index__layout">
+        <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modulnya?</h2></div>
+        <div class="outcome-index__list">
+          {solutions.map((solution) => <a href={`/solusi/${solution.slug}`}><span>{solution.title}</span><small>{solution.summary}</small></a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section role-paths" aria-labelledby="role-paths-title">
+      <div class="container role-paths__layout">
+        <header><h2 id="role-paths-title">Lihat dari tanggung jawab tim.</h2><p>Akses dan prioritas berubah sesuai pekerjaan, bukan sekadar jabatan.</p></header>
+        <nav class="role-paths__nav" aria-label="Produk berdasarkan peran">
+          {roles.map((role) => <a href={`/untuk/${role.slug}`}><strong>{role.title}</strong><span>{role.summary}</span></a>)}
+        </nav>
+      </div>
+    </section>
+
+    <section class="section product-trust" aria-labelledby="product-trust-title">
+      <div class="container product-trust__layout">
+        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">Insight tidak langsung menjadi tindakan.</h2></div>
+        <div><p>RAMUNI memisahkan akses antar peran, menunjukkan sumber jawaban, dan menjaga AI tetap read-only pada versi awal.</p><a href="/keamanan">Pelajari keamanan dan batas AI</a></div>
+      </div>
+    </section>
+
+    <section class="section product-faq" aria-labelledby="product-faq-title">
+      <div class="container product-faq__layout">
+        <h2 id="product-faq-title">Pertanyaan sebelum memilih modul.</h2>
+        <div>{productFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+      </div>
+    </section>
+
+    <section class="section product-close">
+      <div class="container product-close__layout">
+        <div><h2>Mulai dari alur yang paling penting.</h2></div>
+        <div><p>Demo memakai data sintetis untuk memetakan modul awal tanpa membuka data sensitif usaha Anda.</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .product-hub .catalog-hero h1{max-width:11ch}
+  .product-system__rail strong{font-size:1.08rem;margin-top:20px}
+  .product-capabilities{background:var(--ink);color:var(--white)}
+  .product-capabilities__layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(48px,8vw,120px);align-items:start}
+  .product-capabilities header{position:sticky;top:104px}
+  .product-capabilities header p{max-width:36ch;margin-top:22px;color:rgb(255 255 255/.68)}
+  .capability-folds{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+  .capability-fold{position:relative;min-height:240px;padding:28px;border:1px solid rgb(255 255 255/.18);overflow:hidden}
+  .capability-fold:nth-child(2),.capability-fold:nth-child(3){background:rgb(255 255 255/.06)}
+  .capability-fold:nth-child(4){grid-column:1/-1;min-height:190px}
+  .capability-fold::after{content:"";position:absolute;right:-55px;bottom:-55px;width:130px;height:130px;border:1px solid var(--yellow);transform:rotate(38deg);transition:transform .55s cubic-bezier(.16,1,.3,1)}
+  .capability-fold:hover::after{transform:rotate(28deg) translate(-8px,-8px)}
+  .capability-fold span{font-size:.72rem;font-weight:800;color:var(--yellow)}
+  .capability-fold h3{margin-top:44px;font-size:clamp(1.2rem,2vw,1.65rem)}
+  .capability-fold p{max-width:38ch;margin-top:14px;color:rgb(255 255 255/.7)}
+  .role-paths{background:var(--rice)}
+  .role-paths__layout{display:grid;grid-template-columns:1fr 1.55fr;gap:clamp(48px,9vw,132px)}
+  .role-paths__layout header p{max-width:36ch;margin-top:22px;color:var(--ink-72)}
+  .role-paths__nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--ink-10)}
+  .role-paths__nav a{min-height:190px;padding:26px;background:var(--rice);text-decoration:none;transition:background .3s ease,transform .3s ease}
+  .role-paths__nav a:hover,.role-paths__nav a:focus-visible{background:var(--white);transform:translateY(-4px)}
+  .role-paths__nav strong,.role-paths__nav span{display:block}.role-paths__nav strong{font-size:1.2rem}.role-paths__nav span{margin-top:40px;color:var(--ink-72)}
+  .product-trust{background:var(--teal);color:var(--white)}
+  .product-trust__layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(48px,9vw,132px);align-items:end}
+  .product-trust .section-kicker{color:var(--yellow)}.product-trust p{max-width:52ch;color:rgb(255 255 255/.78)}
+  .product-trust a{display:inline-block;margin-top:24px;color:var(--white);font-weight:800;text-underline-offset:5px}
+  .product-faq{background:var(--white)}
+  .product-faq__layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,9vw,132px)}
+  .product-faq details{border-top:1px solid var(--ink-10);padding:22px 0}.product-faq details:last-child{border-bottom:1px solid var(--ink-10)}
+  .product-faq summary{cursor:pointer;font-weight:800}.product-faq details p{max-width:58ch;margin-top:14px;color:var(--ink-72)}
+  @media (prefers-reduced-motion:no-preference){.capability-fold{animation:hub-rise .7s both;animation-delay:calc(var(--i,0)*70ms)}@keyframes hub-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}}
+  @media(max-width:960px){.product-capabilities__layout,.role-paths__layout,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-capabilities header{position:static}}
+  @media(max-width:740px){.capability-folds,.role-paths__nav{grid-template-columns:1fr}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:190px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}
+  @media(prefers-reduced-motion:reduce){.capability-fold,.capability-fold::after,.role-paths__nav a{animation:none;transition:none}}
+</style>

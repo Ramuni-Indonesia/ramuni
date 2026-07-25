@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ConsentManager from '../components/ConsentManager.astro';
+import LeadPrompt from '../components/LeadPrompt.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
 
@@ -36,6 +37,7 @@ const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toS
 const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
 const pathname = new URL(absoluteCanonical).pathname;
+const leadPromptExcluded = /^\/(?:kontak|demo|early-access|harga|masuk|terima-kasih|privasi|pemrosesan-data|syarat-penggunaan|kebijakan-cookie|keamanan|status|maintenance|404|500)(?:\/|$)/.test(pathname);
 const inferredPageType = pageType
   || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
   || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)
@@ -92,6 +94,7 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    {!leadPromptExcluded && <LeadPrompt />}
     <ConsentManager />
     <script>
       const nodes = document.querySelectorAll('.reveal');

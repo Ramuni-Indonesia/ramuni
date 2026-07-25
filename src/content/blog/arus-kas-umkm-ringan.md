@@ -2,8 +2,8 @@
 title: "Membaca Arus Kas UMKM dengan Bahasa yang Lebih Ringan"
 description: "Penjelasan awal tentang cara memahami arus kas tanpa laporan yang rumit."
 dek: "Mulai dari arah uang masuk dan keluar, lalu cari perubahan yang perlu diperiksa lebih lanjut."
-cover: "/editorial/arus-kas.webp"
-coverAlt: "Ilustrasi editorial RAMUNI tentang hubungan omzet, laba, dan arus kas"
+cover: "/editorial/ramuni-cash-context.svg"
+coverAlt: "Ilustrasi RAMUNI baru yang memisahkan omzet, laba, dan kas tersedia"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "Keuangan UMKM"

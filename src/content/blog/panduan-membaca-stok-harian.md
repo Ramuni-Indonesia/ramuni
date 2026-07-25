@@ -2,8 +2,8 @@
 title: "Cara Membaca Stok Harian Tanpa Menunggu Masalah"
 description: "Panduan awal untuk membantu UMKM membaca sinyal stok dari penjualan harian."
 dek: "Baca sisa stok bersama kecepatan penjualan agar risiko kosong terlihat sebelum jam ramai."
-cover: "/editorial/stok-harian.webp"
-coverAlt: "Ilustrasi editorial RAMUNI tentang stok yang menipis sebelum jam ramai"
+cover: "/editorial/ramuni-stock-signal.svg"
+coverAlt: "Ilustrasi RAMUNI baru tentang sisa stok, laju penjualan, dan urutan cek"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "Stok & Inventori"

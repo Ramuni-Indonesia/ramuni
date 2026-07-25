@@ -78,6 +78,8 @@ const groupActive = (item: MegaNavigationGroup) => {
     ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
     : [];
   const desktopIndex = (node: Element | null) => desktopItems.findIndex((item) => item === node);
+  const desktopHover = window.matchMedia('(min-width: 961px) and (hover: hover)');
+  let hoverCloseTimer: number | undefined;
   const closeDesktopGroups = () => groups.forEach((group) => {
     group.removeAttribute('open');
     group.querySelector(':scope > summary')?.setAttribute('aria-expanded', 'false');
@@ -86,6 +88,16 @@ const groupActive = (item: MegaNavigationGroup) => {
     if (!(group instanceof HTMLDetailsElement)) return;
     const summary = group.querySelector(':scope > summary');
     if (summary instanceof HTMLElement) summary.setAttribute('aria-expanded', String(group.open));
+    summary?.addEventListener('mouseenter', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
+    summary?.addEventListener('mouseover', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
     group.addEventListener('toggle', () => {
       const trigger = group.querySelector(':scope > summary');
       if (trigger instanceof HTMLElement) trigger.setAttribute('aria-expanded', String(group.open));
@@ -93,6 +105,28 @@ const groupActive = (item: MegaNavigationGroup) => {
         item.removeAttribute('open');
         item.querySelector(':scope > summary')?.setAttribute('aria-expanded', 'false');
       });
+    });
+    group.addEventListener('pointerenter', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      groups.filter((item) => item !== group).forEach((item) => item.removeAttribute('open'));
+      group.open = true;
+    });
+    group.addEventListener('pointerleave', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      hoverCloseTimer = window.setTimeout(() => {
+        if (!group.matches(':focus-within')) group.open = false;
+      }, 140);
+    });
+    group.addEventListener('focusin', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
+    group.addEventListener('focusout', (event) => {
+      if (!desktopHover.matches || group.contains(event.relatedTarget as Node)) return;
+      group.open = false;
     });
   });
   if (desktopNav instanceof HTMLElement) {

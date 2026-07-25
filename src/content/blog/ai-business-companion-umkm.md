@@ -2,8 +2,8 @@
 title: "Apa Itu AI Business Companion untuk UMKM"
 description: "Penjelasan awal tentang peran AI Business Companion dalam membantu pemilik usaha memahami data."
 dek: "Kenali peran AI sebagai pendamping membaca konteks bisnis, bukan sebagai pengganti keputusan pemilik usaha."
-cover: "/editorial/ai-business-companion.webp"
-coverAlt: "Ilustrasi editorial RAMUNI tentang proses data menjadi insight dan rekomendasi"
+cover: "/editorial/ramuni-companion-flow.svg"
+coverAlt: "Ilustrasi RAMUNI baru tentang pertanyaan, data, jawaban, bukti, dan persetujuan manusia"
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "AI untuk UMKM"

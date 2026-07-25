@@ -45,9 +45,9 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
   {
     label: 'Produk',
     href: '/produk',
-    eyebrow: 'Produk RAMUNI',
-    title: 'Satu sistem untuk membaca bisnis.',
-    description: 'Pilih modul dari cara data masuk, dihitung, lalu dijelaskan.',
+    eyebrow: 'Produk',
+    title: 'Modul untuk angka yang mulai sulit dibaca.',
+    description: 'Mulai dari catatan, laporan, atau pertanyaan yang paling sering muncul di tim.',
     columns: [
       {
         label: 'AI & Insight',
@@ -67,7 +67,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
         ],
       },
       {
-        label: 'Ecosystem',
+        label: 'Pondasi',
         links: [
           { label: 'Integrasi', href: '/produk/integrasi', description: 'Lihat jalur data dan status tiap metode.' },
           { label: 'Semua Produk', href: '/produk', description: 'Buka katalog produk RAMUNI.' },
@@ -86,9 +86,9 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
   {
     label: 'Solusi',
     href: '/solusi',
-    eyebrow: 'Solusi bisnis',
-    title: 'Pilih konteks yang paling dekat.',
-    description: 'Mulai dari tujuan, industri, atau peran yang sedang mengambil keputusan.',
+    eyebrow: 'Solusi',
+    title: 'Cari dari masalah yang terasa hari ini.',
+    description: 'Omzet, stok, kas, pelanggan, dan laporan dibaca dari konteks usaha Anda.',
     columns: [
       {
         label: 'Berdasarkan tujuan',
@@ -138,7 +138,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     description: 'Materi edukasi tetap dipisahkan dari klaim fitur yang belum tersedia.',
     columns: [
       {
-        label: 'Learn',
+        label: 'Baca',
         links: [
           { label: 'Blog', href: '/blog', description: 'Artikel praktis untuk membaca bisnis.' },
           { label: 'Panduan', href: '/panduan', description: 'Langkah kerja ringan untuk UMKM.' },
@@ -146,7 +146,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
         ],
       },
       {
-        label: 'Use',
+        label: 'Pakai',
         links: [
           { label: 'Template', href: '/template', description: 'Format kerja setelah aset disetujui.' },
           { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha', description: 'Hitung laba edukatif di browser.' },
@@ -155,7 +155,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
         ],
       },
       {
-        label: 'Product help',
+        label: 'Bantuan',
         links: [
           { label: 'Bantuan', href: '/bantuan', description: 'Struktur bantuan produk yang terverifikasi.' },
           { label: 'Keamanan', href: '/keamanan', description: 'Baca batas data, AI, dan kontrol.' },

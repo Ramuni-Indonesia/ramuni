@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import '../../styles/blog.css';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
@@ -54,18 +55,20 @@ const schema = [
   <article>
     <header class="article-hero">
       <div class="container article-head">
+        {post.data.noindex && <div class="article-preview-note"><span>Edisi awal</span><p>Artikel ini belum masuk indeks pencarian sampai sumber dan review editorialnya lengkap.</p></div>}
         <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
         <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a>
         <h1>{post.data.title}</h1>
         <p class="article-dek">{post.data.dek}</p>
-        <div class="article-trust-row">
+        <div class="article-trust-row" aria-label="Akuntabilitas artikel">
           <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}`}>{post.data.authorName}</a></div>
           {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/reviewer/${post.data.reviewerSlug}`}>{post.data.reviewerName}</a></div>}
           {!hasVerifiedReviewer && <div><span>Status editorial</span><strong>{post.data.editorialStatus}</strong></div>}
+          <div><span>Koreksi</span><a href="/blog/koreksi">Sampaikan perbaikan</a></div>
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover"><img src={post.data.cover} width="1080" height="1350" alt={post.data.coverAlt} /></figure>
+        <figure class="article-cover"><div><img src={post.data.cover} width="1080" height="1350" alt={post.data.coverAlt} /></div></figure>
       </div>
     </header>
 
@@ -81,28 +84,28 @@ const schema = [
           <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
-            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p>Contoh artikel ini belum memakai sumber eksternal dan belum dapat dijadikan rujukan final.</p>}
+            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty">Daftar sumber final belum tersedia. Artikel tetap noindex dan tidak diposisikan sebagai rujukan final.</p>}
             {post.data.disclaimer && <p class="article-disclaimer">{post.data.disclaimer}</p>}
           </section>
 
           <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>
 
-          <section class="article-people" aria-labelledby="author-heading"><img src="/brand/ramuni-mark-color.webp" width="96" height="96" alt="" /><div><h2 id="author-heading">{post.data.authorName}</h2><p>Tim Editorial RAMUNI menyusun panduan praktis untuk membantu UMKM membaca angka usaha sehari-hari.</p><a class="text-link" href={`/blog/penulis/${post.data.authorSlug}`}>Lihat profil editorial</a>
-            {!hasVerifiedReviewer && <p class="reviewer-note">Artikel ini belum memiliki peninjau final. Nama peninjau hanya akan ditampilkan setelah proses editorial tercatat.</p>}
-          </div></section>
+          <section class="article-people" aria-labelledby="author-heading"><img src="/brand/ramuni-mark-color.webp" width="96" height="96" alt="" /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{post.data.authorName}</h2><p>Tim Editorial RAMUNI menyusun panduan praktis untuk membantu UMKM membaca angka usaha sehari-hari.</p><a class="text-link" href={`/blog/penulis/${post.data.authorSlug}`}>Lihat profil editorial</a></div>
+            <div class="article-review-state"><span>Peninjauan</span>{hasVerifiedReviewer ? <><strong>{post.data.reviewerName}</strong><p>Revisi terbit telah ditinjau sesuai bidangnya.</p></> : <><strong>Belum ditinjau final</strong><p>Nama peninjau baru ditampilkan setelah revisi terbit disetujui.</p></>}</div>
+          </section>
 
           <section class="article-feedback" aria-labelledby="feedback-heading">
             <h2 id="feedback-heading">Apakah artikel ini membantu?</h2>
-            <p>Tanggapan belum dikirim ke server sampai endpoint editorial resmi tersedia.</p>
+            <p>Penilaian akan dibuka setelah sistem editorial siap. Tidak ada data yang dikirim dari tombol di bawah ini.</p>
             <fieldset disabled><legend class="visually-hidden">Nilai kegunaan artikel</legend><button type="button">Ya, membantu</button><button type="button">Belum cukup</button></fieldset>
-            <p><a class="text-link" href="/blog/koreksi">Laporkan koreksi atau konteks yang perlu diperbaiki</a></p>
+            <p><a class="text-link" href="/blog/koreksi">Kirim koreksi editorial</a></p>
           </section>
 
         </div>
 
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}
-          <div class="article-rail-note"><span>Status</span><p>{post.data.editorialStatus}</p></div>
+          <div class="article-rail-note"><span>Status editorial</span><p>{post.data.editorialStatus}</p><a href="/blog/kebijakan-editorial">Lihat standar editorial</a></div>
         </aside>
       </div>
     </section>

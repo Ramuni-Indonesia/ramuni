@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
@@ -15,9 +16,20 @@ const categories = [...new Set(sortedPosts.map((post) => post.data.category))];
 const latestUpdate = sortedPosts[0]?.data.updatedAt || sortedPosts[0]?.data.publishedAt;
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const schema = { '@context': 'https://schema.org', '@type': 'ProfilePage', mainEntity: { '@type': 'Organization', name: authorName, description: 'Tim editorial yang menyusun artikel edukasi RAMUNI.' } };
+const expertise = ['Penjelasan metrik dasar', 'Konteks operasional UMKM', 'Batas penggunaan AI'];
 ---
 <BaseLayout title={`${authorName} | Blog RAMUNI`} description="Profil Tim Editorial RAMUNI dan artikel yang disusun untuk membantu UMKM membaca konteks bisnis." noindex={true} schema={schema}>
-  <header class="author-hero"><div class="container author-profile"><div class="author-mark"><img src="/brand/ramuni-mark-color.webp" width="160" height="160" alt="RAMUNI" /></div><div><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Penulis</span></nav><p class="eyebrow">Profil Editorial</p><h1>{authorName}</h1><p class="lede">Tim yang menyusun panduan praktis untuk membantu UMKM membaca penjualan, stok, keuangan, pelanggan, dan penggunaan AI dengan batas yang jelas.</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel contoh</span><span>{categories.join(', ')}</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div><p class="taxonomy-status">Profil tim ini tidak menyatakan kredensial individual. Profil tetap noindex sampai struktur penulis dan bukti editorial final tersedia.</p></div></div></header>
-  <section class="section surface"><div class="container blog-index-layout"><div class="blog-section-lead"><p class="section-kicker">Artikel</p><h2>Ditulis oleh tim ini.</h2><p>Urutan artikel mengikuti pembaruan terakhir agar konteks terbaru tampil lebih dulu.</p></div><div class="reading-list">{sortedPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}`}><span>{post.data.category}</span><div><h3>{post.data.title}</h3><p>{post.data.dek}</p></div><small>{post.data.readingTime}</small></a>)}</div></div></section>
-  <section class="section editorial-trust-stage"><div class="container editorial-trust-layout"><div><p class="section-kicker">Akuntabilitas</p><h2>Cara kerja editorial kami.</h2><p>Artikel final harus melewati pemeriksaan sumber, status produk, dan review topik sensitif sebelum dipublikasikan.</p></div><nav class="editorial-policy-links" aria-label="Kebijakan editorial"><a href="/blog/kebijakan-editorial">Kebijakan editorial</a><a href="/blog/metodologi-fact-check">Metodologi fact-check</a><a href="/blog/kebijakan-sumber">Kebijakan sumber</a></nav></div></section>
+  <header class="author-hero"><div class="container author-profile">
+    <div class="author-mark"><img src="/brand/ramuni-mark-color.webp" width="160" height="160" alt="Tanda RAMUNI" /></div>
+    <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Penulis</span></nav><p class="eyebrow">Profil Editorial</p><h1>{authorName}</h1><p class="author-role">Tim konten dan riset produk RAMUNI</p><p class="lede">Menulis panduan yang membantu UMKM membaca penjualan, stok, keuangan, pelanggan, dan AI dengan batas yang jelas.</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel edisi awal</span><span>{categories.join(', ')}</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div></div>
+  </div></header>
+
+  <section class="section author-about-stage" aria-labelledby="author-about-title"><div class="container author-about">
+    <div><p class="section-kicker">Tentang tim</p><h2 id="author-about-title">Penjelasan praktis, klaim tetap terbatas.</h2></div>
+    <div class="author-about__body"><p>Tim Editorial RAMUNI menyusun struktur, contoh, dan bahasa artikel. Tim produk memeriksa kesesuaian status fitur. Topik sensitif baru dianggap final setelah ditinjau oleh orang dengan bidang yang relevan.</p><div class="author-expertise" aria-label="Topik yang ditulis">{expertise.map((item) => <span>{item}</span>)}</div><p class="author-disclosure"><strong>Hubungan dengan RAMUNI:</strong> profil ini mewakili tim internal. Belum ada kredensial individual yang dinyatakan.</p></div>
+  </div></section>
+
+  <section class="section surface"><div class="container blog-index-layout"><div class="blog-section-lead"><p class="section-kicker">Artikel</p><h2>Ditulis oleh tim ini.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list">{sortedPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}`}><span>{post.data.category}</span><div><h3>{post.data.title}</h3><p>{post.data.dek}</p></div><small>{post.data.readingTime}</small></a>)}</div></div></section>
+
+  <section class="section editorial-trust-stage"><div class="container editorial-trust-layout"><div><p class="section-kicker">Akuntabilitas</p><h2>Cara kerja editorial kami.</h2><p>Sumber, status produk, dan review topik sensitif diperiksa sebelum artikel masuk indeks pencarian.</p><p class="taxonomy-status"><strong>Status profil:</strong> noindex sampai struktur penulis dan bukti editorial final tersedia.</p></div><nav class="editorial-policy-links" aria-label="Kebijakan editorial"><a href="/blog/kebijakan-editorial">Kebijakan editorial</a><a href="/blog/metodologi-fact-check">Metodologi pengecekan fakta</a><a href="/blog/kebijakan-sumber">Kebijakan sumber</a><a href="/blog/koreksi">Kirim koreksi</a></nav></div></section>
 </BaseLayout>

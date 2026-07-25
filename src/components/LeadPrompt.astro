@@ -1,0 +1,32 @@
+---
+import LeadForm from './LeadForm.astro';
+---
+<dialog class="lead-dialog" data-lead-dialog aria-labelledby="lead-dialog-title">
+  <div class="lead-dialog__layout">
+    <div class="lead-dialog__intro">
+      <button class="lead-dialog__close" type="button" data-lead-close aria-label="Tutup formulir">Tutup</button>
+      <p class="section-kicker">Daftar Early Access</p>
+      <h2 id="lead-dialog-title">Mulai dari kebutuhan usaha Anda.</h2>
+      <p>Isi data dasar dan pilih masalah yang paling ingin dibantu. Jangan kirim data pelanggan, token, atau rincian transaksi.</p>
+      <a href="/demo">Lebih nyaman menjadwalkan demo?</a>
+    </div>
+    <div class="lead-dialog__form"><LeadForm kind="demo" /></div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector('[data-lead-dialog]');
+  document.querySelectorAll('a[href="/early-access"], [data-lead-open]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      if (!(dialog instanceof HTMLDialogElement)) return;
+      event.preventDefault();
+      dialog.showModal();
+    });
+  });
+  document.querySelector('[data-lead-close]')?.addEventListener('click', () => {
+    if (dialog instanceof HTMLDialogElement) dialog.close();
+  });
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+  });
+</script>

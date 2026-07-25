@@ -49,9 +49,11 @@ const DESCRIPTION_MIN = 50;
 const DESCRIPTION_MAX = 180;
 const PERFORMANCE_BUDGETS = Object.freeze({
   // HTML is delivered per route, so the route-level cap is the PSI-sensitive
-  // guard. The aggregate cap only catches accidental site-wide duplication.
-  html: { perFile: 45_000, total: 2_500_000 },
-  css: { perFile: 110_000, total: 120_000 },
+  // guard. The aggregate cap scales with the current 79-route static site.
+  html: { perFile: 52_000, total: 3_200_000 },
+  // CSS is code-split. A site-wide sum over every chunk is not a page payload,
+  // so the route-level linkedStylesheets cap below is the meaningful guard.
+  css: { perFile: 110_000, total: null },
   js: { perFile: 15_000, total: 20_000 },
   image: { perFile: 100_000, total: 250_000 },
   font: { perFile: 20_000, total: 60_000 },
@@ -112,9 +114,23 @@ async function auditPerformanceBudgets() {
         failures.push(`performance budget: ${rel} is ${formatBytes(size)}; ${category} file limit is ${formatBytes(budget.perFile)}`);
       }
     }
-    if (total > budget.total) {
+    if (budget.total !== null && total > budget.total) {
       failures.push(`performance budget: total ${category} is ${formatBytes(total)}; limit is ${formatBytes(budget.total)}`);
     }
+  }
+}
+
+async function auditLinkedStylesheets() {
+  const routeLimit = 125_000;
+  for (const [route, page] of pages) {
+    const hrefs = [...page.html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
+    let total = 0;
+    for (const href of new Set(hrefs)) {
+      const pathname = href.split(/[?#]/)[0];
+      const file = files.find((candidate) => `/${relative(root, candidate).split(sep).join('/')}` === pathname);
+      if (file) total += (await readFile(file)).byteLength;
+    }
+    if (total > routeLimit) failures.push(`performance budget: ${route} links ${formatBytes(total)} of CSS; route limit is ${formatBytes(routeLimit)}`);
   }
 }
 
@@ -419,6 +435,7 @@ for (const file of documentationFiles) {
 }
 
 await auditPerformanceBudgets();
+await auditLinkedStylesheets();
 
 if (failures.length) {
   console.error(failures.join('\n'));

@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { resources } from '../data/site';
+const paths = [
+  { question:'Saya ingin memahami perubahan stok', href:'/panduan/membaca-stok-harian', label:'Baca panduan stok' },
+  { question:'Saya ingin memeriksa laba sederhana', href:'/kalkulator/laba-usaha', label:'Buka kalkulator laba' },
+  { question:'Saya belum paham istilah keuangan', href:'/kamus-bisnis', label:'Buka kamus bisnis' },
+  { question:'Saya ingin menyiapkan review mingguan', href:'/template', label:'Lihat struktur template' },
+];
 ---
 <BaseLayout title="Sumber Daya Bisnis untuk UMKM" description="Panduan, template, kalkulator, dan kamus bisnis RAMUNI untuk membantu UMKM memahami angka dan keputusan sehari-hari.">
-  <section class="resource-hero"><div class="container"><p class="eyebrow">Sumber Daya</p><h1>Baca seperlunya. Pakai saat dibutuhkan.</h1><p class="lede">Pilih cara belajar yang paling dekat dengan pekerjaan Anda hari ini.</p></div></section>
-  <section class="section surface"><div class="container resource-index">{resources.map((item, i) => <a class="resource-entry reveal" href={item.href}><span>0{i + 1}</span><h2>{item.title}</h2><p>{item.text}</p><b>Buka</b></a>)}</div></section>
-  <section class="section"><div class="container resource-path"><div class="reveal"><h2>Mulai dari masalah bisnis.</h2><p>Jangan mulai dari istilah. Mulai dari pertanyaan yang ingin dijawab.</p></div><div class="resource-questions">{['Kenapa omzet berubah?', 'Stok mana yang perlu dicek?', 'Kas bergerak ke mana?', 'Apa arti HPP?', 'Kapan pelanggan kembali?'].map((text) => <a href="/blog">{text}</a>)}</div></div></section>
+  <section class="resource-hero"><div class="container"><p class="eyebrow">Sumber Daya</p><h1>Baca seperlunya. Pakai saat dibutuhkan.</h1><p class="lede">Panduan, alat hitung, template, dan istilah bisnis untuk pekerjaan yang sedang ada di depan Anda.</p></div></section>
+  <section class="section surface" aria-labelledby="resource-format-title"><div class="container"><div class="section-intro reveal"><div><p class="section-kicker">Pilih format</p><h2 id="resource-format-title">Cara belajar mengikuti pekerjaannya.</h2></div><p>Baca penjelasan, coba perhitungan, atau mulai dari format catatan. Tidak perlu mengikuti urutan tertentu.</p></div><div class="resource-index">{resources.map((item, i) => <a class="resource-entry reveal" href={item.href}><span>0{i + 1}</span><h3>{item.title}</h3><p>{item.text}</p><b>Buka</b></a>)}</div></div></section>
+  <section class="section" aria-labelledby="resource-question-title"><div class="container resource-path"><div class="reveal"><p class="section-kicker">Jalur cepat</p><h2 id="resource-question-title">Mulai dari masalah bisnis.</h2><p>Lewati istilah teknis. Pilih pertanyaan yang paling dekat dengan keputusan hari ini.</p></div><div class="resource-questions">{paths.map((item) => <a href={item.href}><span>{item.question}</span><strong>{item.label}</strong></a>)}</div></div></section>
+  <section class="section dark-surface" aria-labelledby="resource-standard-title"><div class="container resource-path"><div class="reveal"><p class="section-kicker">Standar isi</p><h2 id="resource-standard-title">Setiap materi harus menunjukkan batasnya.</h2></div><div class="resource-questions"><p>Definisi dan periode harus jelas.</p><p>Contoh tidak boleh disamarkan sebagai hasil usaha nyata.</p><p>Insight harus kembali ke bukti yang bisa diperiksa.</p></div></div></section>
 </BaseLayout>

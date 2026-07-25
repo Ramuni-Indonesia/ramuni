@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <rect width="1080" height="1350" fill="#F4F0E7"/>
+  <rect x="80" y="80" width="920" height="1190" fill="#0B3045"/>
+  <text x="136" y="166" fill="#F2B134" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="28" font-weight="800" letter-spacing="4">ARUS KAS UMKM</text>
+  <text x="136" y="238" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="56" font-weight="800">Ramai belum tentu</text>
+  <text x="136" y="302" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="56" font-weight="800">kas ikut longgar.</text>
+  <g transform="translate(136 430)">
+    <rect width="808" height="148" fill="#FFFFFF"/>
+    <rect x="34" y="58" width="548" height="28" fill="#168C8C"/>
+    <text x="34" y="118" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Omzet tercatat</text>
+    <text x="672" y="83" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">88%</text>
+    <rect y="198" width="808" height="148" fill="#F2B134"/>
+    <rect x="34" y="256" width="386" height="28" fill="#FFFFFF"/>
+    <text x="34" y="316" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Laba setelah biaya</text>
+    <text x="672" y="281" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">62%</text>
+    <rect y="396" width="808" height="148" fill="#168C8C"/>
+    <rect x="34" y="454" width="243" height="28" fill="#F2B134"/>
+    <text x="34" y="514" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Kas tersedia</text>
+    <text x="672" y="479" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">39%</text>
+  </g>
+  <rect x="136" y="1040" width="808" height="130" fill="#FFFFFF"/>
+  <text x="174" y="1096" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="30" font-weight="800">Cari transaksi yang menjelaskan selisih.</text>
+  <text x="174" y="1144" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="24">Baca omzet, laba, dan kas sebagai tiga sinyal.</text>
+  <path d="M746 1002h170v170H746z" fill="#168C8C"/>
+  <path d="M804 1060h170v170H804z" fill="#F2B134"/>
+  <path d="M804 1060h112v112H804z" fill="#0B3045"/>
+</svg>

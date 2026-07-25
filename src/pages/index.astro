@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 
 const homepagePains = [
@@ -39,13 +40,7 @@ const schema = [
         <p class="lede">RAMUNI mengubah catatan usaha menjadi insight yang bisa Anda periksa.</p>
         <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="/demo">Lihat cara kerjanya</a></div>
       </div>
-      <div class="hero-instrument reveal is-visible" aria-label="Contoh insight RAMUNI dengan data sintetis">
-        <div class="instrument-head"><span>RAMUNI / Hari ini</span><span class="live-state">Data sintetis</span></div>
-        <p class="instrument-question">Apa yang perlu saya perhatikan?</p>
-        <div class="instrument-answer"><span class="answer-index">01</span><div><strong>Stok Kopi Susu menipis menjelang jam ramai.</strong><p>Periksa kebutuhan sore sebelum menambah promosi.</p></div></div>
-        <div class="instrument-evidence"><div><small>Sisa</small><strong>18 porsi</strong></div><div><small>Rata-rata sore</small><strong>34 terjual</strong></div><div><small>Periode</small><strong>7 hari</strong></div></div>
-        <div class="instrument-foot"><span>Bukti tersedia</span><span>AI hanya membaca</span></div>
-      </div>
+      <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
     <div class="hero-rule" aria-hidden="true"><span></span></div>
   </section>
@@ -91,21 +86,35 @@ const schema = [
       </div>
       <div class="signal-spread" role="group" aria-label="Contoh tema insight RAMUNI">
         <figure class="signal-story signal-story--lead reveal" style="--i:0">
-          <div class="signal-story__frame">
-            <img src="/editorial/stok-harian.webp" width="1080" height="1350" loading="lazy" decoding="async" alt="Contoh visual RAMUNI tentang stok yang menipis sebelum disadari" />
+          <div class="signal-story__frame signal-visual signal-visual--stock" role="img" aria-label="Ilustrasi laju penjualan dibandingkan dengan sisa stok">
+            <div class="signal-visual__head"><span>Stok vs laju jual</span><b>09.15</b></div>
+            <div class="stock-gauge" aria-hidden="true"><span></span><i>24 porsi</i></div>
+            <div class="stock-bars" aria-hidden="true">
+              <span style="--level:44%"></span><span style="--level:58%"></span><span style="--level:69%"></span><span style="--level:84%"></span><span style="--level:72%"></span><span style="--level:93%"></span>
+            </div>
+            <div class="signal-visual__verdict"><span>Perlu diperiksa</span><strong>Stok berpotensi menipis sebelum jam makan siang.</strong></div>
           </div>
           <figcaption><strong>Stok menipis sebelum terlihat</strong><span>Periksa laju penjualan, bukan sisa stok saja.</span></figcaption>
         </figure>
         <div class="signal-spread__notes">
           <figure class="signal-story reveal" style="--i:1">
-            <div class="signal-story__frame">
-              <img src="/editorial/arus-kas.webp" width="1080" height="1350" loading="lazy" decoding="async" alt="Contoh visual RAMUNI yang membedakan omzet, laba, dan arus kas" />
+            <div class="signal-story__frame signal-visual signal-visual--cash" role="img" aria-label="Ilustrasi yang memisahkan omzet, laba, dan arus kas">
+              <div class="signal-visual__head"><span>Konteks kas</span><b>7 hari</b></div>
+              <div class="cash-lines" aria-hidden="true"><span><i style="--value:88%"></i></span><span><i style="--value:62%"></i></span><span><i style="--value:39%"></i></span></div>
+              <div class="cash-legend"><span>Omzet</span><span>Laba</span><span>Kas</span></div>
+              <strong class="signal-visual__short">Tiga angka, tiga arti.</strong>
             </div>
             <figcaption><strong>Ramai belum tentu untung</strong><span>Pisahkan omzet, laba, dan kas.</span></figcaption>
           </figure>
           <figure class="signal-story reveal" style="--i:2">
-            <div class="signal-story__frame">
-              <img src="/editorial/ai-business-companion.webp" width="1080" height="1350" loading="lazy" decoding="async" alt="Diagram cara RAMUNI mengubah data menjadi insight dan arah" />
+            <div class="signal-story__frame signal-visual signal-visual--evidence" role="img" aria-label="Ilustrasi struktur jawaban RAMUNI dari kesimpulan hingga bukti">
+              <div class="signal-visual__head"><span>Anatomi jawaban</span><b>04 lapis</b></div>
+              <ol class="evidence-stack">
+                <li><span>01</span><strong>Kesimpulan</strong></li>
+                <li><span>02</span><strong>Alasan</strong></li>
+                <li><span>03</span><strong>Bukti</strong></li>
+                <li><span>04</span><strong>Pemeriksaan</strong></li>
+              </ol>
             </div>
             <figcaption><strong>Data masuk. Insight muncul.</strong><span>Setiap kesimpulan tetap punya konteks.</span></figcaption>
           </figure>

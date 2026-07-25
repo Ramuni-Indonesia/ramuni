@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import '../../styles/blog.css';
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
@@ -9,6 +10,7 @@ const posts = (await getCollection('blog'))
 const featured = posts.find((post) => post.data.featured) || posts[0];
 const latest = posts.filter((post) => post.id !== featured?.id);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
+const publishedCategories = new Set(posts.map((post) => post.data.categorySlug));
 
 const categoryCatalog = [
   { slug: 'penjualan-omzet', name: 'Penjualan & Omzet', description: 'Baca pola transaksi, produk terlaris, dan waktu ramai tanpa laporan yang rumit.', question: 'Produk mana yang mendorong omzet minggu ini?' },
@@ -31,6 +33,12 @@ const problems = [
   { label: 'AI untuk usaha', question: 'Apa yang boleh dibantu AI, dan apa yang tetap harus dicek manusia?', slug: 'ai-untuk-umkm' },
 ];
 
+const readingPaths = [
+  { title: 'Rapikan catatan', text: 'Mulai dari istilah, periode, dan angka yang paling sering membingungkan.', href: '/blog/kategori/operasional-bisnis' },
+  { title: 'Baca perubahan', text: 'Bandingkan penjualan, stok, atau kas dengan periode yang setara.', href: '/blog/kategori/stok-inventori' },
+  { title: 'Periksa sebelum bertindak', text: 'Gunakan bukti dan batas AI sebelum memilih langkah berikutnya.', href: '/blog/kategori/ai-untuk-umkm' },
+].filter((item) => publishedCategories.has(item.href.split('/').pop() || ''));
+
 const schema = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, dan AI untuk UMKM.' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -46,6 +54,10 @@ const schema = [
         <p class="eyebrow">Blog RAMUNI</p>
         <h1>Panduan praktis untuk keputusan usaha sehari-hari.</h1>
         <p class="lede">Baca stok, kas, penjualan, pelanggan, dan AI dengan contoh yang dekat dengan pekerjaan harian.</p>
+        <div class="blog-hero-note" aria-label="Status konten blog">
+          <span>Edisi awal</span>
+          <p>Artikel contoh tetap noindex sampai review editorial dan sumbernya lengkap.</p>
+        </div>
       </div>
       <form class="blog-search reveal is-visible" action="/blog/cari" method="get" role="search">
         <label for="blog-query">Cari jawaban praktis</label>
@@ -55,7 +67,7 @@ const schema = [
     </div>
   </section>
 
-  {featured && <section class="section surface" aria-labelledby="featured-heading">
+  {featured && <section class="section surface blog-featured-stage" aria-labelledby="featured-heading">
     <div class="container featured-story reveal">
       <div class="featured-copy">
         <p class="section-kicker">Pilihan editor</p>
@@ -63,9 +75,18 @@ const schema = [
         <h2 id="featured-heading"><a href={`/blog/${featured.id}`}>{featured.data.title}</a></h2>
         <p>{featured.data.dek}</p>
         <ul class="featured-takeaways">{featured.data.takeaways.slice(0, 3).map((item) => <li>{item}</li>)}</ul>
-        <div class="featured-meta"><span>{featured.data.authorName}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span><span>{featured.data.readingTime}</span></div>
+        <div class="featured-meta"><span>{featured.data.authorName}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span><span>{featured.data.readingTime}</span><span>{featured.data.editorialStatus}</span></div>
       </div>
       <div class="featured-visual"><img src={featured.data.cover} width="1080" height="1350" alt={featured.data.coverAlt} fetchpriority="high" /></div>
+    </div>
+  </section>}
+
+  {readingPaths.length > 0 && <section class="section blog-reading-path" aria-labelledby="reading-path-heading">
+    <div class="container blog-index-layout">
+      <div class="blog-section-lead reveal"><p class="section-kicker">Jalur membaca</p><h2 id="reading-path-heading">Mulai dari dasar, lalu buka konteksnya.</h2><p>Urutan singkat untuk pembaca yang baru mulai merapikan data usaha.</p></div>
+      <ol class="blog-reading-path__list">
+        {readingPaths.map((path, index) => <li class="reveal"><a href={path.href}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{path.title}</h3><p>{path.text}</p></div><b aria-hidden="true">Baca topik</b></a></li>)}
+      </ol>
     </div>
   </section>}
 
@@ -87,7 +108,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="latest-heading">
+  <section class="section blog-latest-stage" aria-labelledby="latest-heading">
     <div class="container blog-index-layout">
       <div class="blog-section-lead reveal"><h2 id="latest-heading">Artikel untuk dibaca berikutnya.</h2><p>Pilih satu langkah yang paling dekat dengan masalah Anda.</p></div>
       <div class="editorial-cards">
@@ -98,7 +119,7 @@ const schema = [
 
   <section class="section editorial-trust-stage" aria-labelledby="trust-heading">
     <div class="container editorial-trust-layout">
-      <div class="reveal"><p class="section-kicker">Kepercayaan editorial</p><h2 id="trust-heading">Bagaimana artikel RAMUNI dibuat.</h2><p>Artikel membantu pemilik usaha memahami konteks, bukan menggantikan keputusan bisnis. Topik sensitif harus ditinjau sebelum dipublikasikan.</p></div>
+      <div class="reveal"><p class="section-kicker">Kepercayaan editorial</p><h2 id="trust-heading">Cara kami menjaga artikel tetap berguna.</h2><p>Topik sensitif harus punya sumber, batas yang jelas, dan peninjau yang sesuai sebelum dipublikasikan.</p></div>
       <nav class="editorial-policy-links" aria-label="Kebijakan editorial blog">
         <a href="/blog/kebijakan-editorial">Kebijakan editorial</a>
         <a href="/blog/metodologi-fact-check">Metodologi pengecekan fakta</a>
