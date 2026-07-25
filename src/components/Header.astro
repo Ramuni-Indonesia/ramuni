@@ -62,7 +62,7 @@ const groupActive = (item: MegaNavigationGroup) => {
                 {item.columns.map((column) => (
                   <section class="mega-column" aria-labelledby={`${groupId(item.label)}-${groupId(column.label)}`}>
                     <h2 id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</h2>
-                    <div class="mega-links">{column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</a>)}</div>
+                    <div class="mega-links">{column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}><span class="mega-link-copy"><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</span></a>)}</div>
                   </section>
                 ))}
               </div>
@@ -86,7 +86,7 @@ const groupActive = (item: MegaNavigationGroup) => {
                   {item.columns.map((column) => (
                     <section>
                       <h2>{column.label}</h2>
-                      {column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}>{linkLabelOverrides[link.href] || link.label}</a>)}
+                      {column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
                     </section>
                   ))}
                   {item.featured && item.featured.href !== '/harga' && <a class="mobile-feature" href={publicHref(item.featured.href)}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}

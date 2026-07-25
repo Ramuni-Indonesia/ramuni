@@ -123,11 +123,11 @@
 
 .pd-hero .button-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin-top: 30px;
 }
 
-.pd-close .button-row { display: flex; flex-wrap: nowrap; }
+.pd-close .button-row { display: flex; flex-wrap: wrap; }
 
 .pd-visual {
   position: relative;
@@ -1843,9 +1843,6 @@
   }
 
   .pd-visual > :not(figcaption) { min-height: 0; }
-
-  .pd-hero .button-row { flex-wrap: wrap; }
-  .pd-close .button-row { flex-wrap: wrap; }
 
   .pd-visual > figcaption {
     grid-template-columns: 1fr;

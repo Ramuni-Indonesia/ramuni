@@ -37,6 +37,7 @@ export function initRamuniMark3D(host: HTMLElement) {
   let scrollProgress = 0;
   let elapsed = 0;
   let lastFrame = performance.now();
+  let firstFrame = true;
 
   const resize = () => {
     const width = Math.max(1, host.clientWidth);
@@ -51,10 +52,15 @@ export function initRamuniMark3D(host: HTMLElement) {
     const delta = Math.min((time - lastFrame) / 1000, 0.05);
     lastFrame = time;
     elapsed += delta;
-    model.root.rotation.x += (targetX - model.root.rotation.x) * 0.05;
-    model.root.rotation.y += (targetY - model.root.rotation.y) * 0.05;
-    model.root.position.y = Math.sin(elapsed * 1.1) * 0.024 + (scrollProgress - 0.5) * 0.08;
+    const damping = 1 - Math.exp(-delta * 7.5);
+    model.root.rotation.x += (targetX - model.root.rotation.x) * damping;
+    model.root.rotation.y += (targetY - model.root.rotation.y) * damping;
+    model.root.position.y = Math.sin(elapsed * 1.05) * 0.02 + (scrollProgress - 0.5) * 0.08;
     renderer.render(scene, camera);
+    if (firstFrame) {
+      firstFrame = false;
+      host.dataset.modelState = 'ready';
+    }
   };
 
   const setLoop = () => renderer.setAnimationLoop(active && !reducedMotion ? render : null);
@@ -88,7 +94,11 @@ export function initRamuniMark3D(host: HTMLElement) {
   host.addEventListener('ramuni-mark-scroll', updateScrollPose);
 
   resize();
-  setLoop();
+  if (reducedMotion) {
+    render();
+  } else {
+    setLoop();
+  }
   window.addEventListener('pagehide', () => {
     renderer.setAnimationLoop(null);
     resizeObserver.disconnect();
