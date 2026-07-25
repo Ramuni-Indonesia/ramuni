@@ -48,7 +48,7 @@ while IFS= read -r -d '' html_file; do
   fi
 done < <(find dist -type f -name '*.html' -print0)
 
-if find dist -maxdepth 1 -type f -name 'sitemap*.xml' -print0 | xargs -0 -r grep -l '<url>' >/dev/null; then
+if find dist -maxdepth 1 -type f -name 'sitemap*.xml' -exec grep -l '<url>' {} + | grep -q .; then
   echo "Staging sitemap unexpectedly contains indexable URLs." >&2
   exit 1
 fi
