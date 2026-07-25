@@ -35,8 +35,9 @@ h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.04;letter-spacing:-.045em}h1{font-siz
 
 .lead-form{max-width:840px;border-top:1px solid var(--ink);padding-top:30px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.consent-field{display:flex;gap:12px;align-items:flex-start;margin:12px 0 24px;color:var(--ink-72);font-size:.84rem}.consent-field input{width:18px;height:18px;accent-color:var(--teal);flex:0 0 auto}.form-actions{display:flex;align-items:center;gap:18px}.form-status{color:var(--ink-72);font-size:.84rem}.form-unavailable{border-left:4px solid var(--yellow);background:var(--yellow-18);padding:20px}.form-unavailable p{margin-top:8px;color:var(--ink-72)}
 
-/* Motion */
-.reveal{opacity:1;transform:none}.js .reveal:not(.is-visible){opacity:0;transform:translateY(20px)}.js .reveal{transition:opacity var(--reveal) var(--ease),transform var(--reveal) var(--ease);transition-delay:calc(var(--i,0)*45ms)}.reveal.is-visible{opacity:1;transform:none}
+/* Motion: content stays visible before intersection so captures, print, slow devices, and interrupted JS never produce blank sections. */
+.reveal{opacity:1;transform:none}
+@media(prefers-reduced-motion:no-preference){.js .reveal.is-visible{animation:reveal-arrive var(--reveal) var(--ease) both;animation-delay:calc(var(--i,0)*45ms)}@keyframes reveal-arrive{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}}
 
 /* FAQ, close, footer */
 .faq-stage{background:var(--white)}.faq-composition{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(44px,9vw,130px)}.faq-heading{position:sticky;top:100px;align-self:start}.faq-heading p{margin-top:20px;color:var(--ink-72)}.faq-list{border-top:1px solid var(--ink)}.faq-list details{border-bottom:1px solid var(--ink-10);padding:22px 0}.faq-list summary{position:relative;padding-right:44px;cursor:pointer;font-weight:700;font-size:1.05rem;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary::after{content:'+';position:absolute;right:4px;top:-6px;font-size:1.7rem;font-weight:400;transition:transform var(--fast)}.faq-list details[open] summary::after{transform:rotate(45deg)}.faq-list details p{margin-top:15px;color:var(--ink-72)}

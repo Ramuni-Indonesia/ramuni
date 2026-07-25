@@ -1,0 +1,36 @@
+---
+import type { SolutionDetail } from '../../data/solutionDetails';
+
+interface Props {
+  solution: SolutionDetail;
+}
+
+const { solution } = Astro.props;
+---
+<section class="section sd-manual-gap" aria-labelledby="manual-gap-title">
+  <div class="container sd-manual-gap__layout">
+    <header class="sd-manual-gap__copy reveal">
+      <p class="section-kicker">Saat catatan manual kurang</p>
+      <h2 id="manual-gap-title">{solution.manualGap.title}</h2>
+      <p>{solution.manualGap.text}</p>
+    </header>
+    <div class="sd-manual-gap__visual reveal">
+      <div class="sd-manual-gap__note">
+        <span>Catatan usaha</span>
+        <strong>{solution.visual.title}</strong>
+        <small>{solution.manualGap.note}</small>
+      </div>
+      <div class="sd-manual-gap__checks" aria-label="Pemeriksaan yang perlu dibuka">
+        {solution.manualGap.checks.map((check, index) => (
+          <details class="sd-manual-gap__check" open={index === 0}>
+            <summary><span>{String(index + 1).padStart(2, '0')}</span>{check.label}</summary>
+            <div>
+              <p><b>Jika dibaca manual</b>{check.manual}</p>
+              <p><b>Yang dibuka RAMUNI</b>{check.ramuni}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

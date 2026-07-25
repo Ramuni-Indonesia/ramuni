@@ -20,6 +20,12 @@ export interface SolutionDetail {
   };
   symptoms: string[];
   impact: { title: string; text: string }[];
+  manualGap: {
+    title: string;
+    text: string;
+    note: string;
+    checks: { label: string; manual: string; ramuni: string }[];
+  };
   workflow: { verb: string; title: string; text: string }[];
   scenario: {
     eyebrow: string;
@@ -73,6 +79,16 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Stok menutup peluang', text: 'Produk diminati, tetapi waktu stok kosong tidak dibaca bersama transaksi.' },
       { title: 'Tim membahas total', text: 'Rapat berhenti pada angka omzet tanpa membuka transaksi yang membentuk perubahan.' },
     ],
+    manualGap: {
+      title: 'Total omzet menunjukkan perubahan, bukan penyebabnya.',
+      text: 'Rekap harian mudah dibuat. Masalah muncul ketika produk, waktu, stok, dan pelanggan tidak dibaca pada periode yang sama.',
+      note: 'Angka total perlu dipecah sebelum dipakai untuk memilih promosi.',
+      checks: [
+        { label: 'Produk yang berubah', manual: 'Produk lemah tertutup oleh total penjualan.', ramuni: 'Bandingkan kontribusi per produk pada periode setara.' },
+        { label: 'Waktu penurunan', manual: 'Jam ramai dan sepi tercampur dalam satu angka.', ramuni: 'Buka hari dan jam yang membentuk perubahan.' },
+        { label: 'Stok saat permintaan', manual: 'Penjualan hilang tidak tercatat sebagai transaksi.', ramuni: 'Baca riwayat stok bersama waktu penjualan.' },
+      ],
+    },
     workflow: [
       { verb: 'Masukkan', title: 'Transaksi yang sebanding', text: 'Pilih dua periode dengan jumlah hari dan jam operasi yang setara.' },
       { verb: 'Periksa', title: 'Kelengkapan catatan', text: 'Tandai produk, kanal, stok, atau pelanggan yang belum tercatat.' },
@@ -145,6 +161,16 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Modal tertahan', text: 'Stok lambat dibeli kembali karena semua barang dianggap sama mendesaknya.' },
       { title: 'Selisih berulang', text: 'Koreksi tanpa alasan membuat masalah pencatatan sulit ditemukan.' },
     ],
+    manualGap: {
+      title: 'Saldo yang sama belum tentu punya risiko yang sama.',
+      text: 'Daftar stok hanya menunjukkan jumlah terakhir. Prioritas baru terlihat setelah laju keluar, waktu tunggu, dan koreksi ikut diperiksa.',
+      note: 'Saldo adalah titik awal, bukan perintah untuk langsung memesan.',
+      checks: [
+        { label: 'Laju barang keluar', manual: 'Semua SKU dengan saldo rendah terlihat sama mendesak.', ramuni: 'Bandingkan sisa stok dengan penjualan periode terbaru.' },
+        { label: 'Waktu isi ulang', manual: 'Jadwal pemasok tersimpan di catatan terpisah.', ramuni: 'Tempatkan waktu tunggu di samping perkiraan sisa hari.' },
+        { label: 'Jejak koreksi', manual: 'Saldo diganti tanpa menjelaskan penyebab selisih.', ramuni: 'Buka perubahan bertanggal dan alasan koreksinya.' },
+      ],
+    },
     workflow: [
       { verb: 'Masukkan', title: 'Saldo awal bertanggal', text: 'Gunakan hasil pemeriksaan fisik, satuan, dan tanggal yang jelas.' },
       { verb: 'Periksa', title: 'Gerak dan koreksi', text: 'Baca barang masuk, keluar, dan alasan perubahan saldo.' },
@@ -216,6 +242,16 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Biaya tidak terlihat', text: 'Kenaikan penjualan menutupi biaya yang ikut membesar.' },
       { title: 'Perbandingan keliru', text: 'Transaksi dan pembayaran dari periode berbeda dibaca sebagai satu angka.' },
     ],
+    manualGap: {
+      title: 'Omzet, laba, dan kas menjawab pertanyaan yang berbeda.',
+      text: 'Rekap tunggal dapat terlihat sehat ketika pembayaran belum masuk atau biaya belum dikelompokkan dengan benar.',
+      note: 'Nilai penjualan tidak selalu sama dengan uang yang tersedia.',
+      checks: [
+        { label: 'Penjualan tercatat', manual: 'Nilai transaksi dibaca sebagai uang yang sudah diterima.', ramuni: 'Pisahkan transaksi dari status pembayarannya.' },
+        { label: 'Biaya periode', manual: 'Biaya muncul di file atau tanggal yang berbeda.', ramuni: 'Gunakan kelompok biaya dan batas periode yang sama.' },
+        { label: 'Kas yang tersedia', manual: 'Saldo kas tidak ditelusuri ke transaksi sumber.', ramuni: 'Hubungkan uang masuk dan keluar dengan catatan operasional.' },
+      ],
+    },
     workflow: [
       { verb: 'Masukkan', title: 'Transaksi dan biaya', text: 'Catat pemasukan, pengeluaran, serta status pembayaran.' },
       { verb: 'Periksa', title: 'Definisi dan periode', text: 'Gunakan rumus dan batas tanggal yang disepakati.' },
@@ -287,6 +323,16 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Segmen dibentuk dari dugaan', text: 'Pelanggan dikelompokkan tanpa frekuensi atau jeda yang dapat diperiksa.' },
       { title: 'Privasi terabaikan', text: 'Riwayat dan izin tidak dibaca sebagai dua hal yang berbeda.' },
     ],
+    manualGap: {
+      title: 'Daftar pelanggan belum menunjukkan pola pembelian.',
+      text: 'Nama dan nomor kontak tidak cukup. Riwayat, jeda pembelian, identitas, dan izin perlu dibaca sebagai konteks yang terpisah.',
+      note: 'Pola membantu layanan, tetapi tidak memberi izin untuk menghubungi pelanggan.',
+      checks: [
+        { label: 'Identitas yang konsisten', manual: 'Nama serupa mudah dianggap sebagai orang yang sama.', ramuni: 'Tinjau pengenal dan duplikat sebelum menggabungkan riwayat.' },
+        { label: 'Jeda pembelian', manual: 'Pembelian terakhir dibaca tanpa pola waktunya.', ramuni: 'Bandingkan frekuensi dan jeda pada riwayat yang tersedia.' },
+        { label: 'Izin tindak lanjut', manual: 'Riwayat transaksi dianggap sebagai persetujuan kontak.', ramuni: 'Pisahkan pola pembelian dari status izin dan kanal.' },
+      ],
+    },
     workflow: [
       { verb: 'Masukkan', title: 'Identitas dan riwayat yang diizinkan', text: 'Gunakan pengenal konsisten dan hanya data yang dibutuhkan.' },
       { verb: 'Periksa', title: 'Duplikat dan izin', text: 'Jangan menggabungkan identitas tanpa dasar yang dapat diperiksa.' },
@@ -358,6 +404,16 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Temuan kehilangan konteks', text: 'Perubahan muncul tanpa sumber transaksi atau periode yang jelas.' },
       { title: 'Tindak lanjut menghilang', text: 'Keputusan tidak mencatat siapa yang memeriksa langkah berikutnya.' },
     ],
+    manualGap: {
+      title: 'Menyalin angka lebih cepat tidak membuat laporan konsisten.',
+      text: 'Rekap tetap berbeda ketika periode, rumus, sumber, dan pemilik tindak lanjut belum disepakati sejak awal.',
+      note: 'Laporan yang dapat diperiksa dimulai dari kontrak metrik yang sama.',
+      checks: [
+        { label: 'Periode laporan', manual: 'Batas tanggal berubah saat file disusun ulang.', ramuni: 'Kunci rentang dan waktu tutup pada setiap ringkasan.' },
+        { label: 'Rumus metrik', manual: 'Tim memakai definisi angka yang berbeda.', ramuni: 'Tampilkan nama, rumus, dan sumber di konteks yang sama.' },
+        { label: 'Pemilik tindakan', manual: 'Temuan berhenti sebagai catatan rapat.', ramuni: 'Simpan keputusan dan siapa yang perlu memeriksanya.' },
+      ],
+    },
     workflow: [
       { verb: 'Masukkan', title: 'Metrik dan periode', text: 'Tentukan nama, rumus, sumber, serta batas waktu laporan.' },
       { verb: 'Periksa', title: 'Kelengkapan sumber', text: 'Cocokkan ringkasan dengan transaksi sebelum dipakai.' },

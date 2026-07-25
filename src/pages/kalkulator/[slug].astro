@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
+import CalculatorWidget from '../../components/CalculatorWidget.astro';
+import '../../styles/calculator-widget.css';
+import { calculatorEntries } from '../../data/calculators';
 export function getStaticPaths(){
-const calculators={
-  'laba-usaha':{title:'Kalkulator Laba Usaha',decision:'Memahami selisih pendapatan dan biaya dalam satu periode.',formula:'Laba = Pendapatan - Biaya',fields:[['income','Pendapatan','Rp'],['cost','Total biaya','Rp']]},
-  'hpp':{title:'Kalkulator HPP Sederhana',decision:'Memperkirakan biaya barang yang terjual dalam satu periode.',formula:'HPP = Stok awal + Pembelian - Stok akhir',fields:[['opening','Stok awal','Rp'],['purchase','Pembelian','Rp'],['closing','Stok akhir','Rp']]},
-  'reorder-stok':{title:'Kalkulator Titik Reorder',decision:'Memperkirakan batas stok untuk mulai memeriksa pemesanan.',formula:'Titik reorder = Pemakaian harian x Lead time + Stok pengaman',fields:[['daily','Pemakaian rata-rata','unit/hari'],['lead','Lead time','hari'],['safety','Stok pengaman','unit']]},
-};
-return Object.entries(calculators).map(([slug,calculator])=>({params:{slug},props:{calculator,slug}}));
+return calculatorEntries.map(([slug,calculator])=>({params:{slug},props:{calculator,slug}}));
 }
 const {calculator,slug}=Astro.props;
 const calculatorUrl = new URL(`/kalkulator/${slug}/`, Astro.site || Astro.url.origin).toString();
@@ -22,14 +20,5 @@ const schema = [
 ---
 <BaseLayout title={calculator.title} description={`${calculator.decision} Kalkulator edukasi dengan formula dan batas yang terlihat.`} noindex={!releaseGates.calculatorPagesIndexable} schema={schema}>
   <section class="calculator-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/kalkulator">Kalkulator</a><span>/</span><span>{calculator.title}</span></nav><p class="eyebrow">Alat bantu hitung</p><h1>{calculator.title}</h1><p class="lede">{calculator.decision}</p></div></section>
-  <section class="section surface"><div class="container calculator-workspace"><form class="calculator-form" data-calculator={slug}>{calculator.fields.map(([name,label,unit])=><div class="field"><label for={name}>{label}</label><div class="unit-field"><input id={name} name={name} type="number" min="0" step="any" inputmode="decimal" required/><span>{unit}</span></div></div>)}<div class="button-row"><button class="button button--primary" type="submit">Hitung</button><button class="button button--secondary" type="reset">Atur ulang</button></div><p class="fine-print">Nilai diproses hanya di halaman ini. Jangan masukkan data pribadi atau informasi sensitif.</p></form><div class="calculator-result" aria-live="polite"><span>Hasil</span><strong data-result>Belum dihitung</strong><p data-interpretation>Isi semua input untuk melihat hasil dan artinya.</p><div class="formula"><small>Formula</small><code>{calculator.formula}</code></div><p class="disclaimer">Hasil bersifat edukasi umum. Periksa kembali satuan, periode, dan catatan bisnis Anda.</p></div></div></section>
-  <script>
-    const form=document.querySelector('[data-calculator]');
-    if(form instanceof HTMLFormElement){
-      const result=document.querySelector('[data-result]');const note=document.querySelector('[data-interpretation]');
-      const format=(value:number)=>new Intl.NumberFormat('id-ID',{maximumFractionDigits:2}).format(value);
-      form.addEventListener('submit',(event)=>{event.preventDefault();const data=new FormData(form);const values=[...data.values()].map(Number);let value=0;const kind=form.dataset.calculator;if(kind==='laba-usaha')value=values[0]-values[1];if(kind==='hpp')value=values[0]+values[1]-values[2];if(kind==='reorder-stok')value=values[0]*values[1]+values[2];if(result)result.textContent=`${kind==='reorder-stok'?'':'Rp '}${format(value)}${kind==='reorder-stok'?' unit':''}`;if(note)note.textContent=value<0?'Hasil negatif. Periksa periode dan input sebelum menyimpulkan.':'Gunakan hasil sebagai titik awal, lalu periksa konteks operasionalnya.';});
-      form.addEventListener('reset',()=>{if(result)result.textContent='Belum dihitung';if(note)note.textContent='Isi semua input untuk melihat hasil dan artinya.';});
-    }
-  </script>
+  <section class="section surface"><div class="container"><CalculatorWidget kind={slug} /></div></section>
 </BaseLayout>

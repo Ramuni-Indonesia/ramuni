@@ -219,6 +219,44 @@ const structuredData = [
       </div>
     </section>
 
+    <section id="product-roles" class="pd-roles" data-section-id="product-roles" data-analytics-id="product_role_relevance" aria-labelledby="product-roles-title">
+      <div class="container pd-roles__layout">
+        <header>
+          <span>Untuk siapa</span>
+          <h2 id="product-roles-title">Satu konteks, tanggung jawab yang berbeda.</h2>
+          <p>Setiap peran masuk dari pekerjaan yang memang perlu mereka periksa.</p>
+        </header>
+        <nav class="pd-role-track" data-count={detail.roles.length} aria-label={`Kegunaan ${product.title} berdasarkan peran`}>
+          {detail.roles.map((role, index) => (
+            <a href={role.href}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{role.title}</strong>
+              <p>{role.text}</p>
+              <small>Lihat kebutuhan peran</small>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    <section id="product-industries" class="pd-industries" data-section-id="product-industries" data-analytics-id="product_industry_examples" aria-labelledby="product-industries-title">
+      <div class="container">
+        <header class="pd-section-heading">
+          <h2 id="product-industries-title">Pertanyaannya berubah mengikuti cara usaha bekerja.</h2>
+          <p>Contoh berikut menunjukkan konteks pemakaian, bukan klaim hasil atau ketersediaan fitur khusus industri.</p>
+        </header>
+        <div class="pd-industry-spread">
+          {detail.industries.map((industry, index) => (
+            <a href={industry.href}>
+              <span>{industry.title}</span>
+              <p>{industry.text}</p>
+              <small>{String(index + 1).padStart(2, '0')} · Lihat contoh usaha</small>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">
         <div class="pd-related__modules">
@@ -227,16 +265,6 @@ const structuredData = [
             {relatedProducts.map((related, index) => (
               <a href={`/produk/${related.slug}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{related.title}</strong><p>{related.summary}</p></a>
             ))}
-          </div>
-          <div class="pd-related__context" aria-label="Konteks peran dan industri">
-            <section id="product-roles" data-section-id="product-roles" data-analytics-id="product_role_relevance">
-              <h3>Sesuai tanggung jawab</h3>
-              <div>{detail.roles.map((role) => <a href={role.href}><strong>{role.title}</strong><span>{role.text}</span></a>)}</div>
-            </section>
-            <section id="product-industries" data-section-id="product-industries" data-analytics-id="product_industry_examples">
-              <h3>Contoh jenis usaha</h3>
-              <div>{detail.industries.map((industry) => <a href={industry.href}><strong>{industry.title}</strong><span>{industry.text}</span></a>)}</div>
-            </section>
           </div>
         </div>
         <div class="pd-related__paths" aria-label="Jalur lanjutan">

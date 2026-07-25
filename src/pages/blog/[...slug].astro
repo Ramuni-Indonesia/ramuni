@@ -3,6 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import { getEditorialPerson } from '../../data/editorialPeople';
+import type { CalculatorKey } from '../../data/calculators';
+import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -20,6 +22,8 @@ const relatedPosts = post.data.related.flatMap((id) => {
   return related ? [related] : [];
 }).slice(0, 4);
 const author = getEditorialPerson(post.data.authorSlug);
+const embeddedCalculator: CalculatorKey | undefined = post.id === 'panduan-membaca-stok-harian' ? 'reorder-stok' : undefined;
+const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
 const hasVerifiedReviewer = Boolean(
   post.data.reviewStatus === 'reviewed'
   && post.data.reviewerName
@@ -60,6 +64,7 @@ const schema = [
 ];
 ---
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={post.data.noindex} schema={schema} ogType="article">
+  {embeddedCalculator && <style is:inline set:html={calculatorWidgetStyles} />}
   <div class="article-reading-progress" role="progressbar" aria-label="Progres membaca artikel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-reading-progress><i></i></div>
   <article>
     <header class="article-hero">
@@ -89,6 +94,8 @@ const schema = [
 
           <div class="article-content"><Content /></div>
 
+          {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}
+
           <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
@@ -99,7 +106,7 @@ const schema = [
           <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>
 
           <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt="" /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}`}>Lihat profil editorial</a></div>
-            <div class="article-review-state"><span>Peninjauan</span>{hasVerifiedReviewer ? <><strong>{post.data.reviewerName}</strong><p>Revisi yang sedang dibaca telah disetujui oleh peninjau tersebut.</p></> : <><strong>Pemeriksaan editorial internal</strong><p>Contoh, batas klaim, dan status fitur diperiksa sebelum terbit. Nama peninjau ahli hanya ditampilkan bila ada persetujuan untuk revisi yang sama.</p></>}</div>
+            <div class="article-review-state"><span>Peninjauan</span>{hasVerifiedReviewer ? <><strong>{post.data.reviewerName}</strong><p>Revisi yang sedang dibaca telah disetujui oleh peninjau tersebut.</p></> : <><strong>Peninjau ahli belum ditampilkan</strong><p>Artikel ini menggunakan contoh sintetis dan bukan nasihat profesional.</p></>}</div>
           </section>
 
         </div>

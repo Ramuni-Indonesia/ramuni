@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
+import SolutionManualGap from '../../components/solution/SolutionManualGap.astro';
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
@@ -19,6 +20,10 @@ interface Props {
 }
 
 const { solution } = Astro.props;
+const capabilityIconForHref = (href?: string) => {
+  const slug = href?.startsWith('/produk/') ? href.split('/').pop() : undefined;
+  return slug ? capabilityIconAttributes('product', slug) : {};
+};
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -75,6 +80,8 @@ const faqSchema = {
       </div>
     </section>
 
+    <SolutionManualGap solution={solution} />
+
     <section class="section sd-workflow-section" aria-labelledby="workflow-title">
       <div class="container">
         <header class="sd-section-heading reveal">
@@ -101,11 +108,11 @@ const faqSchema = {
           {solution.capabilities.map((capability, index) => (
             capability.href ? (
               <a class="sd-capability reveal" style={`--i:${index}`} href={capability.href}>
-                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b>Buka</b>
+                <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b>Buka</b>
               </a>
             ) : (
               <div class="sd-capability sd-capability--limited reveal" style={`--i:${index}`}>
-                <span>{String(index + 1).padStart(2, '0')}</span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p>
+                <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p>
               </div>
             )
           ))}
