@@ -14,10 +14,8 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewerName: "Tim Editorial RAMUNI"
-reviewerSlug: "tim-editorial-ramuni"
-reviewStatus: "reviewed"
-editorialStatus: "Ditinjau Tim Editorial RAMUNI"
+reviewStatus: "needs-review"
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan contoh sintetis dan langkah pemeriksaan stok."
 readingTime: "5 menit"
 takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."

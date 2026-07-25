@@ -20,7 +20,11 @@ const {
 } = Astro.props;
 
 const evidence = sources.slice(0, 3);
-const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotEnabled = releaseGates.mascotExplorationEnabled;
+const mascotSrc = mascotEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotLabel = mascotEnabled
+  ? 'Muni si Manyar mengingatkan untuk memeriksa bukti'
+  : 'Ilustrasi catatan usaha yang dihubungkan untuk diperiksa';
 ---
 
 <figure class="evidence-flow reveal" data-evidence-flow data-variant={variant}>
@@ -28,8 +32,8 @@ const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ram
     <span>{context} dalam praktik</span>
     <h3>{title}</h3>
     <p>{prompt}</p>
-    <div class="evidence-flow__mascot" data-mascot-card aria-label="Muni si Manyar mengingatkan untuk memeriksa bukti">
-      <img src={mascotSrc} width="720" height="720" alt="Konsep visual pendamping RAMUNI" loading="lazy" decoding="async" />
+    <div class="evidence-flow__mascot" data-mascot-card role="img" aria-label={mascotLabel}>
+      <img src={mascotSrc} width="720" height="720" alt="" loading="lazy" decoding="async" />
       <strong>Periksa bukti sebelum menentukan langkah.</strong>
     </div>
   </figcaption>
