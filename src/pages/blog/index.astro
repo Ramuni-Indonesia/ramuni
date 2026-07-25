@@ -77,7 +77,7 @@ const schema = [
         <ul class="featured-takeaways">{featured.data.takeaways.slice(0, 3).map((item) => <li>{item}</li>)}</ul>
         <div class="featured-meta"><span>{featured.data.authorName}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span><span>{featured.data.readingTime}</span><span>{featured.data.editorialStatus}</span></div>
       </div>
-      <div class="featured-visual"><img src={featured.data.cover} width="1080" height="1350" alt={featured.data.coverAlt} fetchpriority="high" /></div>
+      <div class="featured-visual"><img src={featured.data.cover} width="1200" height="720" alt={featured.data.coverAlt} fetchpriority="high" /></div>
     </div>
   </section>}
 
@@ -112,7 +112,7 @@ const schema = [
     <div class="container blog-index-layout">
       <div class="blog-section-lead reveal"><h2 id="latest-heading">Artikel untuk dibaca berikutnya.</h2><p>Pilih satu langkah yang paling dekat dengan masalah Anda.</p></div>
       <div class="editorial-cards">
-        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1080" height="1350" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.authorName}</span><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
+        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.authorName}</span><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
       </div>
     </div>
   </section>

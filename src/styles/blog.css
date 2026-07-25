@@ -68,8 +68,9 @@
 .article-preview-note span{color:var(--teal);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .article-preview-note p{color:var(--ink-72);font-size:.9rem}
 .article-cover{margin:clamp(42px,7vw,74px) 0 0}
-.article-cover>div{min-height:520px;padding:clamp(24px,5vw,54px);display:grid;place-items:center;background:var(--yellow);overflow:hidden;border-radius:var(--radius)}
-.article-cover img{width:min(100%,520px);max-height:680px;object-fit:contain;box-shadow:0 28px 64px rgb(11 48 69/.16)}
+.article-cover>div{padding:clamp(18px,3vw,34px);display:grid;place-items:center;background:var(--yellow);overflow:hidden;border-radius:var(--radius)}
+.article-cover img{width:100%;aspect-ratio:5/3;object-fit:cover;box-shadow:0 28px 64px rgb(11 48 69/.16)}
+.featured-visual img{width:100%;height:auto;max-height:none;aspect-ratio:5/3;object-fit:cover}
 .article-short-answer{position:relative;padding:clamp(26px,4vw,42px);background:var(--ink);color:var(--white);border-radius:var(--radius)}
 .article-short-answer h2{color:var(--yellow);font-size:clamp(1.45rem,2.5vw,2rem)}
 .article-short-answer li{color:rgb(255 255 255/.78)}

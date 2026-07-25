@@ -1,27 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
-  <rect width="1080" height="1350" fill="#F4F0E7"/>
-  <rect x="80" y="80" width="920" height="1190" fill="#0B3045"/>
-  <text x="136" y="166" fill="#F2B134" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="28" font-weight="800" letter-spacing="4">ARUS KAS UMKM</text>
-  <text x="136" y="238" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="56" font-weight="800">Ramai belum tentu</text>
-  <text x="136" y="302" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="56" font-weight="800">kas ikut longgar.</text>
-  <g transform="translate(136 430)">
-    <rect width="808" height="148" fill="#FFFFFF"/>
-    <rect x="34" y="58" width="548" height="28" fill="#168C8C"/>
-    <text x="34" y="118" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Omzet tercatat</text>
-    <text x="672" y="83" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">88%</text>
-    <rect y="198" width="808" height="148" fill="#F2B134"/>
-    <rect x="34" y="256" width="386" height="28" fill="#FFFFFF"/>
-    <text x="34" y="316" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Laba setelah biaya</text>
-    <text x="672" y="281" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">62%</text>
-    <rect y="396" width="808" height="148" fill="#168C8C"/>
-    <rect x="34" y="454" width="243" height="28" fill="#F2B134"/>
-    <text x="34" y="514" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="800">Kas tersedia</text>
-    <text x="672" y="479" fill="#FFFFFF" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="34" font-weight="800">39%</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi konteks arus kas RAMUNI</title>
+  <desc id="desc">Ilustrasi editorial baru berupa buku kas, transaksi, dan perbandingan uang masuk serta keluar.</desc>
+  <rect width="1200" height="720" fill="#F2B134"/>
+  <path d="M0 0h1200v116H0z" fill="#0B3045"/>
+  <path d="M72 176h1056v464H72z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <g transform="translate(120 222)">
+    <path d="M0 0h526v348H0z" fill="#FFF" stroke="#0B3045" stroke-width="3"/>
+    <path d="M263 0v348M0 68h526" stroke="#0B3045" stroke-width="3"/>
+    <path d="M34 28h156v12H34zM298 28h134v12H298z" fill="#168C8C"/>
+    <g fill="#0B3045"><path d="M34 103h118v9H34z"/><path d="M34 150h178v9H34z"/><path d="M34 197h142v9H34z"/><path d="M34 244h196v9H34z"/><path d="M34 291h124v9H34z"/></g>
+    <g fill="#168C8C"><path d="M298 98h84v18h-84z"/><path d="M298 145h146v18H298z"/><path d="M298 192h108v18H298z"/></g>
+    <g fill="#F2B134"><path d="M298 239h174v18H298z"/><path d="M298 286h118v18H298z"/></g>
+    <path d="M242 86h42v42h-42z" fill="#0B3045"/><path d="m251 106 9 9 17-24" fill="none" stroke="#F2B134" stroke-width="6"/>
   </g>
-  <rect x="136" y="1040" width="808" height="130" fill="#FFFFFF"/>
-  <text x="174" y="1096" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="30" font-weight="800">Cari transaksi yang menjelaskan selisih.</text>
-  <text x="174" y="1144" fill="#0B3045" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="24">Baca omzet, laba, dan kas sebagai tiga sinyal.</text>
-  <path d="M746 1002h170v170H746z" fill="#168C8C"/>
-  <path d="M804 1060h170v170H804z" fill="#F2B134"/>
-  <path d="M804 1060h112v112H804z" fill="#0B3045"/>
+  <g transform="translate(696 204)">
+    <path d="M0 0h376v382H0z" fill="#0B3045"/>
+    <path d="M38 42h184v13H38zM38 72h116v8H38z" fill="#FFF"/>
+    <path d="M42 296h292" stroke="#FFF" stroke-opacity=".32" stroke-width="2"/>
+    <path d="M58 190h48v106H58zM128 142h48v154H128z" fill="#168C8C"/>
+    <path d="M198 218h48v78H198zM268 244h48v52H268z" fill="#F2B134"/>
+    <path d="m58 173 94-62 70 88 70-44" fill="none" stroke="#FFF" stroke-width="8"/>
+    <circle cx="152" cy="111" r="12" fill="#FFF"/>
+    <path d="M38 332h138v10H38zM234 329h100v16H234z" fill="#FFF"/>
+  </g>
+  <circle cx="952" cy="84" r="38" fill="#168C8C"/><circle cx="1037" cy="84" r="38" fill="#F2B134" stroke="#FFF" stroke-width="3"/>
+  <path d="M124 47h248v14H124zM124 76h154v9H124z" fill="#FFF"/>
 </svg>
