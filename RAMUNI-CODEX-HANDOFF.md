@@ -12,13 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `6b4651d56924226ada64ababb70517a9db8f322a` (`feat: diversify visual product storytelling`).
-- Visual/tablet implementation commit: `8e83afaa30fbf14e49876ae207db633109386670` (`fix: stabilize tablet visuals and motion`).
-- CSS release-gate follow-ups: `6081e38` and `608fd57`; both keep `/blog/cari` below the route CSS budget after the visual batch.
-- Contextual visual implementation commit: `6b4651d`; it is rebased onto and identical to current `origin/main`.
-- Active staging release: `20260726T170644Z-6b4651d56924`.
-- Active release path: `/var/www/ramuni-staging/releases/20260726T170644Z-6b4651d56924`.
-- Deployed artifact SHA-256: `5ca766dba3a91e7f746e8ce6ae365609fe5562ea0f11cb9e57156df251224adb`.
+- Published runtime commit: `97db759f4163457880fe187686ad0f6d9a04fe04` (`feat: add real product visuals and mascot motion`).
+- Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
+- Active staging release: `20260726T184251Z-97db759f4163`.
+- Active release path: `/var/www/ramuni-staging/releases/20260726T184251Z-97db759f4163`.
+- Deployed artifact SHA-256: `c511a07b2d13d1beec7343a99a6dc75312f323daadea9183366effbe13667f5d`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -54,8 +52,9 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
 - Normalized heading scale, text measures, mobile/tablet card behavior, CTA layout, and reveal-motion guardrails.
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
-- Product and solution pages use contextual synthetic dashboard raster visuals and decision flows. They must not be presented as real customer data.
-- Home and product flows include brand-safe mascot/decision visuals. Heavy motion is gated for reduced-motion, save-data, touch, and viewport lifecycle conditions.
+- Product, solution, industry, and role pages now use contextual real RAMUNI product screenshots where the seeded dashboard evidence supports the claim; unsupported AI/import-specific flows retain explicitly conceptual visuals.
+- Real product screenshots are cropped from local product evidence that uses demo fixtures, not production tenant or customer data. Public labels say `Tampilan produk · data demo`.
+- Home and product flows include brand-safe mascot/decision visuals. The homepage dashboard caption now includes a four-frame Muni working animation generated through the native HashMicro gateway; it pauses offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
 - Pricing remains hidden. `/tour-produk-gratis/` is the focused conversion form without the normal navbar/footer.
 - `/demo`, `/early-access`, and `/harga` redirect in one hop to `/tour-produk-gratis/`.
 - All official WhatsApp contact links use `https://wa.me/message/K35W6X6WT7YMJ1`.
@@ -77,7 +76,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Four web-optimized synthetic dashboards cover AI/evidence, inventory/reorder, cash flow, and sales/customer contexts.
 - Blog article layout now uses a wider reading area with a useful TOC/tools rail; AI, cash-flow, and stock articles have distinct contextual dashboards and relevant tool/resource routes.
 - The old large WebGL mascot block was removed. `DecisionFlow3D.astro` is now a lighter 2.5D workbench whose small mascot accent changes by step.
-- Repository audit found one verified mascot character only: Muni si Manyar. The available files are pose/style variants of Muni, not three different approved characters; do not invent additional mascot identities without approved source art.
+- Repository-wide audit still found one verifiable mascot identity only: Muni si Manyar. `Ruda`, the third mascot, approved turnaround masters, and GLB/GLTF/FBX/OBJ/Rive/Lottie/GIF sources were not present in active repos, archives, or Git history. Do not invent identities or call the procedural Three.js primitive an approved 3D model.
 
 Useful visual components and assets:
 
@@ -94,16 +93,26 @@ Useful visual components and assets:
 - `public/website-original/dashboards/ramuni-dashboard-cash-flow.webp`
 - `public/website-original/dashboards/ramuni-dashboard-sales-customer.webp`
 - `public/website-original/mascot/ramuni-mascot-working-dashboard.webp`
+- `public/website-original/mascot/ramuni-mascot-working-sprite.webp`
+- `public/website-original/product-screens/ramuni-product-dashboard-overview.webp`
+- `public/website-original/product-screens/ramuni-product-dashboard-performance.webp`
+- `public/website-original/product-screens/ramuni-product-dashboard-operations.webp`
+- `public/website-original/product-screens/ramuni-product-dashboard-mobile.webp`
 
-No verified real customer dashboard screenshots were found in the supplied product references. The current contextual dashboards are synthetic brand visuals; keep truthful synthetic labels and replace them only when approved product screenshots exist.
+The current real screenshots show the implemented RAMUNI seeded/demo dashboard, not a real customer account. New route-specific captures for Sales, Inventory, Finance, Customers, Reports, and Import remain blocked on this host because Playwright Chromium hangs at `chromium.launch()`, including a minimal local HTML test. Use the existing evidence or run the fixture capture pipeline on a healthy Playwright runner; never substitute fabricated customer screens.
 
 ## Latest validation evidence
 
-- Astro check: 109 files, zero diagnostics.
+- Astro check with Node `22.23.1`: 110 files, zero diagnostics.
 - Staging build: 87 pages.
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
-- R2 sync covered 71 assets; the four dashboards and working-dashboard mascot were uploaded in this release.
+- `/solusi/` remains below the enforced 64 KiB route HTML budget after the product-preview refinement.
+- R2 sync uploaded five new assets and left 71 existing objects unchanged.
+- Live staging returned HTTP 200 for homepage, product hub/details, solution hub/details, industry, role, and article routes.
+- New screenshot and sprite assets return HTTP 200 with `image/webp` from `assets-staging.ramuni.id`.
+- Live HTML contains the real product overview, three product-family previews, the solution product preview, and the animated Muni component.
+- The four earlier synthetic dashboards remain available for flows without a truthful real screenshot; they are still labelled conceptual/synthetic.
 - A stale negative Cloudflare cache entry initially kept `ramuni-mascot-working-dashboard.webp` at 404 after upload. The exact URL was purged successfully and now returns HTTP 200 with `image/webp`.
 - The minified live stylesheet preserves `overflow-x: hidden` for older engines and upgrades `html`, `body`, and `main` to `overflow-x: clip` inside `@supports`.
 - Live staging checks returned HTTP 200 for `/healthz`, the homepage, product hub/detail, solution hub, blog, calculator hub, and contact page.
@@ -112,9 +121,9 @@ No verified real customer dashboard screenshots were found in the supplied produ
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T170644Z-6b4651d56924` and artifact `5ca766dba3a91e7f746e8ce6ae365609fe5562ea0f11cb9e57156df251224adb`.
+- Deployment health check passed for release `20260726T184251Z-97db759f4163` and artifact `c511a07b2d13d1beec7343a99a6dc75312f323daadea9183366effbe13667f5d`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
-- Post-release cleanup removed the worktree's generated `node_modules`, `dist`, `.astro`, disposable `outputs`, and four pre-build snapshots after confirming the published assets and release; the worktree is clean.
+- Post-release cleanup moved the visual worktree's generated `node_modules` (352 MiB), `dist` (8 MiB), `.astro`, disposable `outputs` (2.9 MiB), and temporary build log to the system trash after release verification; the published assets remain in Git/R2 and the worktree is clean.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
@@ -155,10 +164,11 @@ Latest read-only gateway audit:
 
 ## Remaining visual-content backlog after this release
 
-The requested contextual visual batch is complete. Remaining work should be treated as targeted refinement, not a repeat of the completed redesign:
+The current batch materially increases real product evidence and motion, but several requested items require source assets or a healthy capture runner:
 
-- Replace synthetic dashboards only when approved real product screenshots become available; never imply synthetic values are customer data.
-- If the brand truly has three different mascot characters, obtain and document the missing approved master assets and names first. The repository currently proves only Muni si Manyar with multiple poses/styles.
+- Capture route-specific seeded screens for Sales, Inventory, Finance, Customers, Reports, and Import on a runner where Chromium launches successfully; map them only after verifying the route/version.
+- If the brand truly has three different mascot characters, obtain and document approved master assets, names, and usage roles. The repository currently proves only Muni si Manyar with multiple poses/styles.
+- A precise animated 3D mascot requires approved front/side/back turnaround art and preferably a rigged `.glb`. The current procedural Three.js primitive is not an identity model and should not be presented as one.
 - Continue differentiating tool cards and article imagery only where the topic benefits from it, while preserving the passing route CSS/image budgets.
 - Run human visual QA at the listed responsive widths before production promotion because browser automation remains unreliable on this host.
 - Keep new raster generation on the native HashMicro plugin and keep disposable source outputs outside the published tree.
