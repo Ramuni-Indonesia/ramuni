@@ -12,11 +12,13 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `608fd578acb630bb7b6b804b50ebf4a6b5474deb` (`perf: trim blog route CSS`).
+- Published runtime commit: `6b4651d56924226ada64ababb70517a9db8f322a` (`feat: diversify visual product storytelling`).
 - Visual/tablet implementation commit: `8e83afaa30fbf14e49876ae207db633109386670` (`fix: stabilize tablet visuals and motion`).
 - CSS release-gate follow-ups: `6081e38` and `608fd57`; both keep `/blog/cari` below the route CSS budget after the visual batch.
-- Active staging release: `20260726T153002Z-608fd578acb6`.
-- Deployed artifact SHA-256: `6076e1265171360c78c93ffb6f596b731e36cfc799b94b5003ff9ba829fb3f58`.
+- Contextual visual implementation commit: `6b4651d`; it is rebased onto and identical to current `origin/main`.
+- Active staging release: `20260726T170644Z-6b4651d56924`.
+- Active release path: `/var/www/ramuni-staging/releases/20260726T170644Z-6b4651d56924`.
+- Deployed artifact SHA-256: `5ca766dba3a91e7f746e8ce6ae365609fe5562ea0f11cb9e57156df251224adb`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -52,7 +54,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
 - Normalized heading scale, text measures, mobile/tablet card behavior, CTA layout, and reveal-motion guardrails.
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
-- Product and solution pages use synthetic component-built dashboards and decision visuals. They must not be presented as real customer data.
+- Product and solution pages use contextual synthetic dashboard raster visuals and decision flows. They must not be presented as real customer data.
 - Home and product flows include brand-safe mascot/decision visuals. Heavy motion is gated for reduced-motion, save-data, touch, and viewport lifecycle conditions.
 - Pricing remains hidden. `/tour-produk-gratis/` is the focused conversion form without the normal navbar/footer.
 - `/demo`, `/early-access`, and `/harga` redirect in one hop to `/tour-produk-gratis/`.
@@ -71,6 +73,11 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Nine product pages and four role pages have unique SEO metadata; role pages have explicit self-canonicals.
 - Internal links use trailing-slash canonical routes. Header/footer matching and solution-icon routing follow the same convention.
 - All nine product icons and all five solution icons are available. The latest three solution icons are `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`; their optimized WebP files are committed and synchronized to R2.
+- Product detail, solution detail, industry, role, help, and selected blog pages now select dashboard art by context instead of repeating one generic shell.
+- Four web-optimized synthetic dashboards cover AI/evidence, inventory/reorder, cash flow, and sales/customer contexts.
+- Blog article layout now uses a wider reading area with a useful TOC/tools rail; AI, cash-flow, and stock articles have distinct contextual dashboards and relevant tool/resource routes.
+- The old large WebGL mascot block was removed. `DecisionFlow3D.astro` is now a lighter 2.5D workbench whose small mascot accent changes by step.
+- Repository audit found one verified mascot character only: Muni si Manyar. The available files are pose/style variants of Muni, not three different approved characters; do not invent additional mascot identities without approved source art.
 
 Useful visual components and assets:
 
@@ -82,8 +89,13 @@ Useful visual components and assets:
 - `public/website-original/cash-signal-ledger.svg`
 - `public/website-original/ramuni-mascot-muni-manyar.webp`
 - `public/website-original/ramuni-mascot-problem-section.webp`
+- `public/website-original/dashboards/ramuni-dashboard-ai-evidence.webp`
+- `public/website-original/dashboards/ramuni-dashboard-inventory-reorder.webp`
+- `public/website-original/dashboards/ramuni-dashboard-cash-flow.webp`
+- `public/website-original/dashboards/ramuni-dashboard-sales-customer.webp`
+- `public/website-original/mascot/ramuni-mascot-working-dashboard.webp`
 
-No verified real product dashboard screenshots were found in the supplied product references. Prefer lightweight component-built previews with truthful synthetic labels until approved screenshots exist.
+No verified real customer dashboard screenshots were found in the supplied product references. The current contextual dashboards are synthetic brand visuals; keep truthful synthetic labels and replace them only when approved product screenshots exist.
 
 ## Latest validation evidence
 
@@ -91,8 +103,8 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Staging build: 87 pages.
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
-- All 67 R2 assets synchronized.
-- Latest R2 sync uploaded nothing and confirmed all 67 assets unchanged, including `ramuni-catatan-bukti-arah.webp`.
+- R2 sync covered 71 assets; the four dashboards and working-dashboard mascot were uploaded in this release.
+- A stale negative Cloudflare cache entry initially kept `ramuni-mascot-working-dashboard.webp` at 404 after upload. The exact URL was purged successfully and now returns HTTP 200 with `image/webp`.
 - The minified live stylesheet preserves `overflow-x: hidden` for older engines and upgrades `html`, `body`, and `main` to `overflow-x: clip` inside `@supports`.
 - Live staging checks returned HTTP 200 for `/healthz`, the homepage, product hub/detail, solution hub, blog, calculator hub, and contact page.
 - Live staging remains fail-closed: HTTP `X-Robots-Tag` is noindex, HTML is `noindex,follow`, responses are `no-store`, and sitemap endpoints return 404.
@@ -100,7 +112,7 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T153002Z-608fd578acb6` and artifact `6076e1265171360c78c93ffb6f596b731e36cfc799b94b5003ff9ba829fb3f58`.
+- Deployment health check passed for release `20260726T170644Z-6b4651d56924` and artifact `5ca766dba3a91e7f746e8ce6ae365609fe5562ea0f11cb9e57156df251224adb`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
@@ -140,17 +152,15 @@ Latest read-only gateway audit:
 - Continue gateway development only from `/home/meetsin/internal/ramuni-source-cms-provider`. It has local commit `2538ffd` plus dirty provider/build-runner/config/server/store/package refinements that still need rebase and testing.
 - The obsolete clean worktree `/home/meetsin/internal/ramuni-source-marketing-gateway` had no unique commits and was removed after audit. Its local branch may be deleted separately after confirming it is not referenced.
 
-## Active visual-content backlog after this release
+## Remaining visual-content backlog after this release
 
-The user requested a follow-up visual system pass after the tablet stabilization release. Treat these as the next implementation batch, not as completed work:
+The requested contextual visual batch is complete. Remaining work should be treated as targeted refinement, not a repeat of the completed redesign:
 
-- Replace remaining generic/repeated hero art with context-specific product, solution, tool, resource, and article visuals.
-- Audit all approved mascot sources and use distinct mascot variants only where they explain a task. Build lightweight 2D interaction states such as reviewing notes, arranging evidence, or checking a dashboard; avoid repeating one bird pose everywhere.
-- Rework the current decorative 3D mascot treatment before expanding it. 3D must be a small explanatory accent, not a large character-introduction section.
-- Add truthful synthetic dashboard visuals or approved screenshots to relevant product/solution pages. Label synthetic examples clearly and do not present them as customer data.
-- Widen the blog article reading column where the current TOC/aside leaves an oversized right-side gap, while preserving readable line length and sticky navigation behavior.
-- Add contextual calculator/tool cards and useful diagrams inside relevant articles, with server-rendered explanatory copy, accessible alt text, and no financial input/result tracking.
-- Keep the CSS/image performance budgets green. New raster generation must use the native HashMicro plugin and store source outputs below `outputs/`.
+- Replace synthetic dashboards only when approved real product screenshots become available; never imply synthetic values are customer data.
+- If the brand truly has three different mascot characters, obtain and document the missing approved master assets and names first. The repository currently proves only Muni si Manyar with multiple poses/styles.
+- Continue differentiating tool cards and article imagery only where the topic benefits from it, while preserving the passing route CSS/image budgets.
+- Run human visual QA at the listed responsive widths before production promotion because browser automation remains unreliable on this host.
+- Keep new raster generation on the native HashMicro plugin and keep disposable source outputs outside the published tree.
 
 ## Next continuation workflow
 
