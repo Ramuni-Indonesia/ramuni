@@ -1,0 +1,12 @@
+[Unit]
+Description=RAMUNI staging health check and automatic rollback
+After=network-online.target nginx.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+Environment=RAMUNI_HEALTH_RESOLVE_IP=127.0.0.1
+ExecStart=/usr/local/lib/ramuni-staging/monitor-staging.sh
+
+[Install]
+WantedBy=multi-user.target

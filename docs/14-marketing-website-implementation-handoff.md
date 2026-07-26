@@ -50,6 +50,14 @@ Lead forms are fail-closed.
 
 ## Current verification evidence
 
+Repository hardening added on 25 July 2026:
+
+- Node 22 is now declared consistently in `.node-version`, `.nvmrc`, `package.json`, and the GitHub Actions setup.
+- Quality checks run for every branch push and pull request, reject common committed credential patterns, publish a seven-day static artifact, and write a route/build summary to the workflow run.
+- Dependabot reviews npm and GitHub Actions updates weekly, while the pull request template makes brand, SEO, indexability, evidence, and credential review explicit.
+- The static audit now validates complete Open Graph and Twitter metadata parity, social image availability and dimensions, robots directives, viewport/theme/manifest links, required favicon and icon assets, and the generated web manifest contract.
+- `SECURITY.md` provides a repository-level private reporting and data-handling policy.
+
 - The current `dist` inventory contains 79 HTML pages.
 - Earlier baseline Lighthouse evidence remains under `output/qa/`: Performance 97, Accessibility 100, Best Practices 96, and SEO 100 on the local mobile production preview.
 - `npm run check` on 25 July 2026 05:34 WIB: 63 files, 0 errors, 0 warnings, 0 hints.

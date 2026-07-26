@@ -1,6 +1,6 @@
 # Deployment and Rollback Handoff
 
-Status: build and static verification are implemented. The production host, CDN, preview protection, DNS, promotion mechanism, and rollback operator are not yet defined in this repository.
+Status: build, static verification, and the Nginx staging host are implemented. Production hosting, public CDN, access protection, DNS recovery ownership, and the production promotion operator remain launch decisions.
 
 ## Environment policy
 
@@ -46,4 +46,36 @@ Before promotion, record the Git SHA, dependency lockfile, environment name, pag
 5. Verify homepage, conversion routes, robots, sitemap, assets, and representative route families.
 6. Record the incident, failed artifact, restored artifact, timing, user impact, and follow-up owner.
 
-The host-specific commands, health endpoint, retention count, rollback SLA, and DNS recovery procedure remain external blockers and must be added after a platform is selected.
+## Current staging host
+
+- Origin: `https://staging.ramuni.id`
+- Document root alias: `/var/www/ramuni-staging/current`
+- Immutable releases: `/var/www/ramuni-staging/releases/<UTC timestamp>-<Git SHA>`
+- Health endpoint: `/healthz`
+- Nginx source: `ops/nginx/staging.ramuni.id.conf`
+- Security-header source: `ops/nginx/ramuni-staging-security-headers.conf`
+- Publisher: `scripts/deploy-staging.sh`
+- Health check: `scripts/health-check-staging.sh`
+- Manual rollback: `scripts/rollback-staging.sh [release-id]`
+- Recovery monitor: `scripts/monitor-staging.sh` via `ramuni-staging-health.timer`
+
+The staging build is fail-closed at three indexing layers: every page emits `noindex,follow`, Nginx emits `X-Robots-Tag`, and sitemap URLs return 404. `robots.txt` deliberately permits crawling so search engines can read and honor the noindex directives; blocking crawling would hide those directives. HTML uses `Cache-Control: no-store`. Astro's content-hashed `/_astro/` assets use a one-year immutable cache; non-hashed media and fonts use a seven-day staging cache with stale-while-revalidate and stale-if-error.
+
+Publish only from a clean reviewed worktree:
+
+```bash
+./scripts/install-staging-ops.sh
+./scripts/deploy-staging.sh
+```
+
+Rollback does not rebuild. Resolve the previous release directory, repoint the alias atomically, and verify it:
+
+```bash
+sudo ln -sfn /var/www/ramuni-staging/releases/<known-good-release> /var/www/ramuni-staging/current.next
+sudo mv -Tf /var/www/ramuni-staging/current.next /var/www/ramuni-staging/current
+curl -fsS https://staging.ramuni.id/healthz
+```
+
+Keep at least two verified releases. Retention cleanup remains a deliberate operator action; the deployment script never deletes a previous release. A production CDN is intentionally not placed in front of staging until its cache purge, TLS, origin protection, and log ownership are approved.
+
+The publisher precompresses text assets with Gzip and Brotli, writes the release manifest, and switches `current` atomically only after the artifact is complete. It then checks the TLS virtual host through `127.0.0.1` and automatically restores the previous symlink if validation fails. The systemd timer checks once per minute and rolls back only after three consecutive failures, avoiding a rollback on one transient network error. Install the checked-in units into `/etc/systemd/system`, run `systemctl daemon-reload`, and enable `ramuni-staging-health.timer`. Cloudflare's recommended staging rules and activation boundary are documented in `docs/cloudflare-staging-cache.md`.
