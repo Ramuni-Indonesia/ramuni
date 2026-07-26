@@ -76,6 +76,7 @@ npm run assets:cdn
 PUBLIC_DEPLOY_ENV=staging \
 PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
+PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
 npm run audit
 npm audit --audit-level=high
 
