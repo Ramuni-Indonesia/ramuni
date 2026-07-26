@@ -18,6 +18,21 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, and `/home/meetsin/internal/ramuni-handoff` are separate repositories or contexts; do not mix them into the marketing site.
 - Old worktrees are audit sources only. Preserve unique valid work in `main`, then remove obsolete worktrees only after they are clean or their dirty state has been fully reviewed.
 
+## Responsive stability and companion visual release
+
+- Implemented and pushed directly to `main`: `d88eb1f9a814e943a70b1a964d0cabf8e582ef15` (`fix: stabilize ramuni responsive layout and visual flow`).
+- Deployed staging release: `20260726T122545Z-d88eb1f9a814`.
+- Deployed artifact SHA-256: `9f2de13c7d29c3d75d290935b48a1b8156869af1c929895ec48fc43f1653b266`.
+- The header is now genuinely sticky, retains its shape after scroll, sits above page controls, and hides floating actions while the mobile menu is open. `overflow-x: clip` preserves sticky behavior without reintroducing page-level horizontal movement.
+- Desktop navigation and split heroes now start at `1081px`, allowing 11–12 inch landscape tablets such as the 1194px viewport to keep the desktop composition. CSS and `header-nav.js` use the same breakpoint.
+- Homepage and shared page heroes retain two-column composition on large tablets, while smaller tablets/mobile use the contained single-column fallback. Logo sizes, H1–H4 scale, line height, weight, and text measures were normalized.
+- Reveal motion now uses individual CSS `translate`, runs once, and settles without overwriting transforms owned by component layouts. Homepage mascot pointer/scroll motion only runs on large hover-capable screens and cleans up observers, listeners, and animation frames.
+- The old image-heavy/blank homepage 3D presentation was replaced with one restrained visual explanation plus one decorative mascot and a semantic `Catatan → Bukti → Arah` rail. Product-level Three.js remains available with stronger disposal and Astro view-transition cleanup.
+- New raster artwork was generated through the HashMicro native image plugin with model `codex/gpt-5.6-sol`, then optimized to `public/website-original/ramuni-decision-landscape.webp` at 1280×720 and 24.5 kB. The default OG PNG was losslessly/palette optimized from 23.0 kB to 2.2 kB so the site-wide image budget remained below the release gate.
+- Browser QA passed at 390, 1024, 1194, 1280, and 1440px, with breakpoint spot checks at 1080/1081px. Sticky header stayed at `top: 0` after scrolling, document/body width matched the viewport, generated art loaded, and repeated scroll sampling found no reveal flicker or disappearing cards. Evidence is under `outputs/visual-qa-latest/` and is not committed.
+- Node 22 validation passed: Astro check reported zero diagnostics, 87 staging pages built, full metadata/schema/accessibility/link/noindex/robots/asset-budget audit passed, and `npm audit --audit-level=high` found zero vulnerabilities.
+- Live staging verification passed: HTTP/2 200, `Cache-Control: no-store`, global `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, HTML `noindex,follow`, sitemap 404, and the generated CDN asset returns HTTP/2 200 with public cache directives.
+
 ## Visual, mascot, and tablet-responsive continuation — local commits pending push
 
 - Current implementation commit on local `main`: `cf58377` (`feat: refine ramuni visuals and tablet responsiveness`). Preserve it together with `0650b80` and `8a8f4bd`; the checkout is ahead of `origin/main` because this server still has no usable GitHub HTTPS credential or authorized SSH key.
