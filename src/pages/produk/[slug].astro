@@ -7,16 +7,15 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
-import { productDetails } from '../../data/productDetails';
+import { listProductRouteModels, type ProductRouteModel } from '../../content-gateway/site-records';
 import { releaseGates } from '../../config/release';
 import '../../styles/product-detail.css';
 
-export function getStaticPaths() {
-  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+export async function getStaticPaths() {
+  return (await listProductRouteModels()).map((model) => ({ params: { slug: model.product.slug }, props: model }));
 }
 
-const { product } = Astro.props;
-const detail = productDetails[product.slug];
+const { product, detail, seo, cmsSnapshotId } = Astro.props as ProductRouteModel;
 
 if (!detail) {
   throw new Error(`Product detail content is missing for ${product.slug}`);
@@ -64,8 +63,8 @@ const structuredData = [
     '@type': 'WebPage',
     '@id': productUrl,
     url: productUrl,
-    name: seo.title,
-    description: seo.description,
+    name: seo?.title || `${product.title} RAMUNI`,
+    description: seo?.description || detail.heroLead,
     inLanguage: 'id-ID',
     isPartOf: {
       '@type': 'WebSite',
@@ -96,14 +95,14 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title={seo.title}
-  description={seo.description}
+  title={seo?.title || `${product.title} RAMUNI`}
+  description={seo?.description || detail.heroLead}
   canonical={canonicalPath}
   noindex={!releaseGates.claimPagesIndexable}
   schema={structuredData}
   pageType="WebPage"
 >
-  <article class="pd-page" data-layout={detail.layout} data-product={product.slug}>
+  <article class="pd-page" data-layout={detail.layout} data-product={product.slug} data-cms-snapshot={cmsSnapshotId}>
     <section id="product-outcome" class="pd-hero" data-section-id="product-outcome" data-analytics-id="product_outcome_hero" aria-labelledby="product-title">
       <div class="container pd-hero__layout">
         <div class="pd-hero__copy reveal is-visible">

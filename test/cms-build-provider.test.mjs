@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import test from 'node:test';
+import { createProviderService } from '../ops/cms-build-provider/server.mjs';
+import { ProviderStore } from '../ops/cms-build-provider/store.mjs';
+import { signBody } from '../ops/cms-build-provider/security.mjs';
+
+test('provider authenticates, deduplicates, builds one exact candidate and retries callback durably', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'ramuni-provider-'));
+  const store = new ProviderStore(path.join(root, 'inbox.sqlite'));
+  const sharedSecret = 'test-shared-secret-with-at-least-thirty-two-characters';
+  const payload = { slug: 'asisten-ai', title: 'Candidate', hero: { title: 'Candidate', description: 'Candidate body' } };
+  const revisionHash = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
+  const event = { operation: 'publish', eventId: 'provider-event-0001', snapshotId: '42', revisionHash, routes: ['/produk/asisten-ai/'], callbackUrl: 'https://cms.example.test/v1/cms/webhooks/website-build' };
+  const raw = JSON.stringify(event);
+  let callbackAttempts = 0;
+  const fetchImpl = async (url, options = {}) => {
+    const target = new URL(url);
+    if (target.pathname.includes('/delivery/candidates/')) return Response.json({ id: '42', snapshot_id: event.eventId, content_type: 'product-pages', schema_version: '1', locale: 'id-ID', canonical_path: '/produk/asisten-ai/', routes: event.routes, published_revision_id: 'revision-2', content_version: '2', payload_hash: revisionHash, payload, event_id: event.eventId, operation: 'publish', activation_state: 'candidate' });
+    callbackAttempts += 1;
+    if (callbackAttempts === 1) return new Response('retry', { status: 503 });
+    assert.match(options.headers['x-ramuni-signature'], /^[a-f0-9]{64}$/);
+    return Response.json({ ok: true });
+  };
+  const config = { bindHost: '127.0.0.1', port: 0, maxBodyBytes: 65536, sharedSecret, replayWindowSeconds: 300, cmsBaseUrl: 'https://cms.example.test', deliveryToken: 'test-token', fetchTimeoutMs: 5000, pollIntervalMs: 60000, callbackMaxAttempts: 0 };
+  const service = createProviderService({ config, store, fetchImpl, buildRunner: async (_config, received, candidate) => {
+    assert.equal(received.eventId, event.eventId); assert.equal(candidate.payload_hash, revisionHash);
+    return { providerBuildId: 'build-1', artifactUrl: 'https://staging.ramuni.id/?release=build-1' };
+  } });
+  await new Promise((resolve) => service.server.listen(0, '127.0.0.1', resolve));
+  const address = service.server.address();
+  const endpoint = `http://127.0.0.1:${address.port}/api/cms/revalidate`;
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const headers = { 'content-type': 'application/json', 'idempotency-key': event.eventId, 'x-ramuni-timestamp': timestamp, 'x-ramuni-signature': signBody(sharedSecret, timestamp, raw) };
+  assert.equal((await fetch(endpoint, { method: 'POST', headers, body: raw })).status, 202);
+  assert.equal((await fetch(endpoint, { method: 'POST', headers, body: raw })).status, 200);
+  const conflictRaw = JSON.stringify({ ...event, routes: ['/produk/inventori/'] });
+  const conflictHeaders = { ...headers, 'x-ramuni-signature': signBody(sharedSecret, timestamp, conflictRaw) };
+  assert.equal((await fetch(endpoint, { method: 'POST', headers: conflictHeaders, body: conflictRaw })).status, 409);
+  assert.equal((await fetch(endpoint, { method: 'POST', headers: { ...headers, 'x-ramuni-signature': '0'.repeat(64) }, body: raw })).status, 401);
+  await service.tick();
+  assert.equal(store.get(event.eventId).status, 'callback-pending');
+  store.db.prepare('UPDATE events SET callback_next_at=0 WHERE event_id=?').run(event.eventId);
+  await service.tick();
+  assert.equal(store.get(event.eventId).status, 'succeeded');
+  assert.equal(callbackAttempts, 2);
+  await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
+});

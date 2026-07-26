@@ -12,6 +12,9 @@
     "build": "cross-env NAPI_RS_FORCE_WASI=1 astro check && cross-env NAPI_RS_FORCE_WASI=1 astro build",
     "preview": "cross-env NAPI_RS_FORCE_WASI=1 astro preview",
     "check": "cross-env NAPI_RS_FORCE_WASI=1 astro check",
+    "test:content-gateway": "node scripts/test-content-gateway.mjs",
+    "test:cms-candidate-render": "node scripts/test-cms-candidate-render.mjs",
+    "test:cms-provider": "node --test test/cms-build-provider.test.mjs",
     "audit": "node scripts/site-audit.mjs",
     "r2:sync": "node scripts/sync-r2-assets.mjs",
     "assets:cdn": "node scripts/rewrite-cdn-assets.mjs"

@@ -7,20 +7,16 @@ import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
-import { solutionDetails, type SolutionDetail } from '../../data/solutionDetails';
+import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
 
-export function getStaticPaths() {
-  return solutionDetails.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+export async function getStaticPaths() {
+  return (await listSolutionRouteModels()).map((model) => ({ params: { slug: model.solution.slug }, props: model }));
 }
 
-interface Props {
-  solution: SolutionDetail;
-}
-
-const { solution } = Astro.props;
+const { solution, cmsSnapshotId } = Astro.props as SolutionRouteModel;
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -36,7 +32,7 @@ const faqSchema = {
 };
 ---
 <BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={faqSchema}>
-  <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`} data-solution={solution.slug}>
+  <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`} data-solution={solution.slug} data-cms-snapshot={cmsSnapshotId}>
     <section class="sd-hero" aria-labelledby="solution-title">
       <div class="container sd-hero__layout">
         <div class="sd-hero__copy reveal is-visible">
