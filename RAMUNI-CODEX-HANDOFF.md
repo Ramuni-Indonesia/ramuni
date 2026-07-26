@@ -18,6 +18,16 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, and `/home/meetsin/internal/ramuni-handoff` are separate repositories or contexts; do not mix them into the marketing site.
 - Old worktrees are audit sources only. Preserve unique valid work in `main`, then remove obsolete worktrees only after they are clean or their dirty state has been fully reviewed.
 
+## Server continuation integration checkpoint
+
+- Integrated and pushed directly to `main`: `971afaf7f5d753af73317fda55185ee580f5a0d7` (`feat: integrate marketing continuation into main`).
+- Deployed staging release: `20260726T063517Z-971afaf7f5d7`.
+- Deployed artifact SHA-256: `c62b1fb48c77b255922874f85168a2abc89329738f0db7be4fbf3591c875639c`.
+- Quality evidence: Astro check passed on 92 files with zero diagnostics; 83 static pages built; the full metadata, social preview, manifest, accessibility, schema, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed; dependency audit found zero vulnerabilities.
+- Staging evidence: public homepage returns HTTP/2 200 with `Cache-Control: no-store`, global `X-Robots-Tag: noindex`, Cloudflare `DYNAMIC`, and HTTP/3 advertisement; `/sitemap.xml` returns 404; `/demo` returns 301 to `/tour-produk-gratis`; the new template routes return 200; newly uploaded R2 assets return a cache HIT after warm-up.
+- R2 synchronization added three downloadable template CSV files and updated the changed public scripts without deleting remote objects.
+- Removed obsolete server worktrees after review: `codex-ramuni-marketing-site`, `staging-performance-20260725`, and `website-seo-ci`. This reclaimed about 1.09 GB. Their committed branch history remains in Git; reviewed uncommitted work was either integrated into `main` or intentionally discarded because newer `main` infrastructure superseded it. The incomplete old `nginx-restart.conf` override was not promoted.
+
 ## Source of truth
 
 Read before copy, IA, brand, blog, or SEO changes:
