@@ -1,0 +1,5 @@
+[
+  {"id":"overall-silhouette","score":0.8,"visible":true,"notes":"Two-ribbon direction mark is recognizable; navy vertical ribbon and teal angled ribbon keep the official macro silhouette. Perspective extrusion intentionally changes flat reference contours."},
+  {"id":"primary-structure","score":0.82,"visible":true,"notes":"Navy and teal ribbons are separate interlocking components with visible overlap and depth. No floating parts observed in desktop/mobile render."},
+  {"id":"reference-material-system","score":0.76,"visible":true,"notes":"Brand navy and teal match the reference family with bevel highlights and soft contact shadow. Material is stylized painted metal rather than flat vector color."}
+]

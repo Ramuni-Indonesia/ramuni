@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi website RAMUNI untuk arus kas UMKM</title>
+  <desc id="desc">Kanvas editorial website original berisi buku kas, arus uang masuk, biaya, dan transaksi yang masih perlu diperiksa.</desc>
+  <rect width="1200" height="720" fill="#F4F0E7"/>
+  <path d="M70 58h1060v604H70z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="M70 58h1060v78H70z" fill="#168C8C"/>
+  <path d="M112 91h266v13H112zM112 114h170v8H112z" fill="#FFFFFF"/>
+  <path d="M934 86h126v28H934z" fill="#F2B134"/><path d="M958 100h78" stroke="#0B3045" stroke-width="5"/>
+  <path d="M120 190h448v376H120z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <path d="M344 190v376M120 256h448" stroke="#0B3045" stroke-width="3"/>
+  <path d="M156 220h118v12H156zM380 220h122v12H380z" fill="#0B3045"/>
+  <g fill="#0B3045"><path d="M156 296h92v10h-92z"/><path d="M156 354h146v10H156z"/><path d="M156 412h112v10H156z"/><path d="M156 470h164v10H156z"/></g>
+  <g fill="#168C8C"><path d="M380 290h74v22h-74z"/><path d="M380 348h128v22H380z"/><path d="M380 406h96v22h-96z"/></g>
+  <g fill="#F2B134"><path d="M380 464h150v22H380z"/><path d="M380 522h88v22H380z"/></g>
+  <path d="M626 190h446v176H626z" fill="#0B3045"/>
+  <path d="M668 234h166v13H668zM668 264h258v8H668z" fill="#FFFFFF"/>
+  <path d="M678 318h322" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="2"/>
+  <g fill="#168C8C"><path d="M698 274h42v44h-42z"/><path d="M766 238h42v80h-42z"/><path d="M834 256h42v62h-42z"/></g>
+  <g fill="#F2B134"><path d="M902 286h42v32h-42z"/><path d="M970 270h42v48h-42z"/></g>
+  <path d="m700 260 88-58 70 76 66-48 70 22" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="788" cy="202" r="12" fill="#FFFFFF"/><circle cx="924" cy="230" r="12" fill="#FFFFFF"/>
+  <path d="M626 404h202v162H626z" fill="#F2B134" stroke="#0B3045" stroke-width="3"/>
+  <path d="M664 446h90v11H664zM664 474h122v8H664zM664 500h80v8H664z" fill="#0B3045"/>
+  <path d="m674 535 20-26 21 13 36-48" fill="none" stroke="#0B3045" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M868 404h204v162H868z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="M906 444h118v12H906zM906 474h86v8H906z" fill="#0B3045"/>
+  <circle cx="968" cy="522" r="36" fill="none" stroke="#168C8C" stroke-width="12"/>
+  <path d="M968 486v36l26 16" stroke="#0B3045" stroke-width="7" fill="none"/>
+  <path d="M124 614h310v12H124zM124 640h206v8H124z" fill="#0B3045"/>
+  <path d="M842 616h188v28H842z" fill="#168C8C"/><path d="M866 630h140" stroke="#FFFFFF" stroke-width="5"/>
+</svg>

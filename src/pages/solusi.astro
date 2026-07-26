@@ -1,28 +1,142 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { solutions } from '../data/site';
+import { industries, solutions } from '../data/site';
+import { capabilityIconAttributes } from '../data/capabilityIcons';
+import '../styles/other-pages-refinement.css';
+
+const painClusters = [
+  { label: 'Penjualan', text: 'Omzet berubah, tetapi pemicunya belum jelas.', prompt: 'Bandingkan produk dan waktu sebelum mengubah promosi.', bars: [42, 66, 51, 82, 57] },
+  { label: 'Stok', text: 'Barang cepat laku dan saldo stok perlu dibaca bersama.', prompt: 'Periksa laju jual, sisa stok, dan jejak koreksi.', bars: [78, 54, 88, 47, 63] },
+  { label: 'Keuangan', text: 'Omzet, biaya, laba, dan kas masih dibaca terpisah.', prompt: 'Pisahkan aliran uang sebelum menilai kondisi usaha.', bars: [86, 69, 48, 61, 44] },
+  { label: 'Pelanggan', text: 'Riwayat ada, pola pembelian belum terlihat.', prompt: 'Lihat pembelian ulang tanpa mengirim pesan otomatis.', bars: [38, 52, 47, 72, 81] },
+];
+
+const solutionFaq = [
+  { question: 'Bagaimana memilih solusi yang tepat?', answer: 'Mulai dari gejala yang paling sering menghambat keputusan, lalu periksa modul dan data yang dibutuhkan.' },
+  { question: 'Apakah RAMUNI menjamin hasil bisnis?', answer: 'Tidak. RAMUNI membantu membaca pola dan bukti. Hasil tetap dipengaruhi keputusan dan kondisi usaha.' },
+  { question: 'Data apa yang dibutuhkan untuk mulai?', answer: 'Tergantung masalahnya. Demo memetakan catatan minimum tanpa meminta data sensitif.' },
+];
 ---
-<BaseLayout title="Solusi Bisnis RAMUNI" description="Mulai dari masalah penjualan, stok, laba, pelanggan, atau laporan dan lihat bagaimana RAMUNI membantu menyusun konteksnya.">
-  <section class="solution-hub-hero">
-    <div class="container solution-hub-hero__layout">
-      <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Solusi' }]} /><p class="section-kicker">Solusi bisnis</p><h1>Mulai dari masalah yang perlu dipahami.</h1></div>
-      <div><p class="lede">RAMUNI menghubungkan sinyal operasional dengan pertanyaan yang lebih terarah. Tidak ada janji hasil tanpa bukti.</p><a class="button button--primary" href="/demo">Konsultasikan Kebutuhan</a></div>
-    </div>
-  </section>
-
-  <section class="section surface solution-directory" aria-labelledby="solution-directory-title">
-    <div class="container solution-directory__layout">
-      <header><p class="section-kicker">Pilih konteks</p><h2 id="solution-directory-title">Masalah berbeda membutuhkan pemeriksaan berbeda.</h2><p>Setiap solusi menunjukkan gejala, modul terkait, dan langkah yang tetap dikendalikan pengguna.</p></header>
-      <div class="solution-directory__list">
-        {solutions.map((solution, index) => <a class="solution-directory__row reveal" style={`--i:${index}`} href={`/solusi/${solution.slug}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{solution.title}</strong><p>{solution.summary}</p><small>Lihat alur</small></a>)}
+<BaseLayout title="Solusi AI Bisnis untuk UMKM | RAMUNI" description="Mulai dari masalah penjualan, stok, laba, pelanggan, atau laporan dan lihat bagaimana RAMUNI membantu menyusun konteksnya.">
+  <div class="solution-hub">
+    <section class="solution-hub-hero">
+      <div class="container solution-hub-hero__layout">
+        <div><p class="section-kicker">Solusi bisnis</p><h1>Pilih masalahnya, bukan modulnya.</h1></div>
+        <div><p class="lede">Pilih masalah usaha, lalu lihat angka apa yang perlu diperiksa.</p><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section solution-principle" aria-labelledby="solution-principle-title">
-    <div class="container"><p class="section-kicker">Cara RAMUNI membantu</p><h2 id="solution-principle-title">Baca sinyal. Periksa bukti. Tentukan langkah.</h2><div class="solution-principle__rail"><article><strong>Kenali gejala</strong><p>Mulai dari perubahan yang terlihat di operasional.</p></article><article><strong>Hubungkan konteks</strong><p>Satukan modul dan periode yang relevan.</p></article><article><strong>Periksa dasar</strong><p>Telusuri angka sebelum menerima kesimpulan.</p></article><article><strong>Tetap memegang kendali</strong><p>Pengguna memutuskan tindakan berikutnya.</p></article></div></div>
-  </section>
+    <section class="section pain-clusters" aria-labelledby="pain-clusters-title">
+      <div class="container">
+        <h2 id="pain-clusters-title">Di mana keputusan mulai tersendat?</h2>
+        <p class="pain-clusters__intro">Pilih satu gejala. Lihat urutan yang perlu diperiksa sebelum menentukan langkah.</p>
+        <fieldset class="solution-problem-lab reveal">
+          <legend class="sr-only">Pilih masalah bisnis</legend>
+          <div class="solution-problem-lab__choices">
+            {painClusters.map((cluster, index) => (
+              <label>
+                <input type="radio" name="solution-problem" value={index} checked={index === 0} />
+                <span>{cluster.label}</span>
+                <small>{cluster.text}</small>
+              </label>
+            ))}
+          </div>
+          <div class="solution-problem-lab__stage" aria-live="polite">
+            {painClusters.map((cluster, index) => (
+              <article class="solution-problem-lab__panel" data-panel={index}>
+                <header><span>Contoh pola sintetis</span><strong>{cluster.label}</strong></header>
+                <div class="solution-problem-lab__bars" aria-hidden="true">
+                  {cluster.bars.map((bar, barIndex) => <i style={`--bar:${bar}%;--delay:${barIndex * 55}ms`}></i>)}
+                </div>
+                <p>{cluster.prompt}</p>
+                <a href={`/solusi/${solutions[index].slug}`}>Buka alur {cluster.label.toLowerCase()}</a>
+              </article>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+    </section>
 
-  <section class="section surface solution-hub-close"><div class="container solution-hub-close__layout"><div><p class="section-kicker">Butuh arah awal</p><h2>Bahas masalah bisnis tanpa membagikan data sensitif.</h2></div><div><p>Demo menggunakan contoh data sintetis. Tim dapat membantu memetakan area yang perlu dirapikan lebih dulu.</p><a class="button button--primary" href="/demo">Jadwalkan Demo</a></div></div></section>
+    <section class="section surface solution-directory" aria-labelledby="solution-directory-title">
+      <div class="container solution-directory__layout">
+        <header><p class="section-kicker">Lima konteks</p><h2 id="solution-directory-title">Mulai dari gejala yang paling dekat.</h2><p>Buka alur untuk melihat dampak, modul terkait, dan tindakan yang aman.</p></header>
+        <div class="solution-stories">
+          {solutions.map((solution, index) => (
+            <a class="solution-story reveal" data-solution-card={solution.slug} style={`--i:${index}`} href={`/solusi/${solution.slug}`}>
+              <span class="solution-story__mark" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><i></i><i></i><i></i></span>
+              <div><h3>{solution.title}</h3><p>{solution.symptoms[0]}</p></div>
+              <dl><div><dt>Jika dibiarkan</dt><dd>Keputusan mengandalkan asumsi atau catatan yang terlambat.</dd></div><div><dt>Arah yang dicari</dt><dd>{solution.outcome}</dd></div></dl>
+              <strong>Lihat alur</strong>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section solution-principle" aria-labelledby="solution-principle-title">
+      <div class="container"><h2 id="solution-principle-title">Satu masalah dibaca lintas modul.</h2><div class="solution-principle__rail"><article><strong>Kenali gejala</strong><p>Mulai dari perubahan yang terlihat.</p></article><article><strong>Hubungkan konteks</strong><p>Pilih modul dan periode yang relevan.</p></article><article><strong>Periksa bukti</strong><p>Telusuri angka sebelum menyimpulkan.</p></article><article><strong>Tentukan langkah</strong><p>Pengguna tetap memegang keputusan.</p></article></div></div>
+    </section>
+
+    <section class="section solution-combinations" aria-labelledby="solution-combinations-title">
+      <div class="container solution-combinations__layout">
+        <header><p class="section-kicker">Modul bekerja bersama</p><h2 id="solution-combinations-title">Tidak ada satu modul untuk semua masalah.</h2></header>
+        <div class="combination-lines">
+          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="combination-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section synthetic-decisions" aria-labelledby="synthetic-title">
+      <div class="container synthetic-decisions__layout">
+        <div><p class="section-kicker">Contoh data sintetis</p><h2 id="synthetic-title">Bukan sekadar angka. Ada pemeriksaan berikutnya.</h2><p>Contoh ini menjelaskan bentuk keputusan, bukan hasil pelanggan nyata.</p></div>
+        <div class="decision-notes">
+          {solutions.slice(0,3).map((solution) => <article><span>{solution.comparison}</span><strong>{solution.nextAction}</strong><small>Sumber yang diperiksa: {solution.modules.slice(0,2).join(' dan ')}</small></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section industry-crosslinks" aria-labelledby="industry-crosslinks-title">
+      <div class="container industry-crosslinks__layout">
+        <header><h2 id="industry-crosslinks-title">Masalah yang sama, konteks yang berbeda.</h2><p>Lihat pertanyaan awal berdasarkan ritme operasional usaha Anda.</p></header>
+        <nav aria-label="Solusi berdasarkan industri">{industries.map((industry) => <a href={`/industri/${industry.slug}`}><strong>{industry.title}</strong><span>{industry.question}</span></a>)}</nav>
+      </div>
+    </section>
+
+    <section class="section solution-faq" aria-labelledby="solution-faq-title">
+      <div class="container solution-faq__layout">
+        <h2 id="solution-faq-title">Sebelum menentukan titik awal.</h2>
+        <div>{solutionFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+      </div>
+    </section>
+
+    <section class="section surface solution-hub-close"><div class="container solution-hub-close__layout"><div><h2>Petakan masalah tanpa membuka data sensitif.</h2></div><div><p>Gunakan data contoh untuk memilih alur dan modul awal yang relevan.</p><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div></section>
+  </div>
 </BaseLayout>
+
+<style>
+  .solution-hub .solution-hub-hero h1{max-width:12ch;overflow-wrap:anywhere}
+  .pain-clusters{background:var(--white)}.pain-clusters h2{max-width:13ch}
+  .pain-clusters__track{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;margin-top:clamp(42px,6vw,72px);border-block:1px solid var(--ink)}
+  .pain-clusters__track article{min-height:220px;padding:24px;border-right:1px solid var(--ink-10);display:flex;flex-direction:column}.pain-clusters__track article:last-child{border-right:0}
+  .pain-clusters__track span{color:var(--teal);font-size:.76rem;font-weight:800}.pain-clusters__track p{margin-top:auto;font-size:1.08rem}
+  .solution-directory__layout{display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(44px,7vw,104px);align-items:start}.solution-directory__layout>header{position:sticky;top:104px}.solution-directory__layout>header>p:last-child{margin-top:20px;color:var(--ink-72)}
+  .solution-stories{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+  .solution-story{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:18px;align-items:start;min-width:0;min-height:300px;margin:0;padding:26px;border:1px solid var(--ink-10);background:var(--white);text-decoration:none;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
+  .solution-story:nth-child(1),.solution-story:nth-child(4){grid-column:span 7}.solution-story:nth-child(2),.solution-story:nth-child(3){grid-column:span 5;background:var(--rice)}.solution-story:nth-child(5){grid-column:1/-1;min-height:220px;grid-template-columns:52px .8fr 1.2fr auto;grid-template-rows:auto}.solution-story:hover,.solution-story:focus-visible{transform:translateY(-5px);border-color:var(--teal);box-shadow:-7px 7px 0 var(--yellow)}
+  .solution-story::after{content:"";position:absolute;z-index:0;right:18px;bottom:18px;width:72px;height:72px;background:var(--yellow);opacity:.15;transform:rotate(38deg);transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none}.solution-story:hover::after{transform:rotate(28deg) translate(-8px,-8px)}
+  .solution-story__mark,.solution-story h3,.solution-story>div,.solution-story dl,.solution-story>strong{position:relative;z-index:1;min-width:0}.solution-story__mark{display:block;width:46px;height:46px;border:1px solid var(--ink);background:var(--rice);overflow:hidden;transition:transform .35s var(--ease),background-color .35s ease,color .35s ease}.solution-story__mark::before{content:"";position:absolute;inset:8px;border:1px solid var(--ink-20);border-radius:50%}.solution-story__mark i{position:absolute;left:9px;bottom:9px;width:6px;height:17px;background:var(--teal)}.solution-story__mark i:nth-child(2){left:19px;height:25px;background:var(--yellow)}.solution-story__mark i:nth-child(3){left:29px;height:11px;background:var(--ink)}.solution-story[data-solution-card="naikkan-omzet"] .solution-story__mark,.solution-story[data-solution-card="pantau-laba-dan-arus-kas"] .solution-story__mark{background:var(--ink)}.solution-story[data-solution-card="naikkan-omzet"] .solution-story__mark i:nth-child(3),.solution-story[data-solution-card="pantau-laba-dan-arus-kas"] .solution-story__mark i:nth-child(3){background:var(--white)}.solution-story[data-solution-card="kelola-stok"] .solution-story__mark,.solution-story[data-solution-card="pahami-pelanggan"] .solution-story__mark{background:var(--teal)}.solution-story[data-solution-card="kelola-stok"] .solution-story__mark i:nth-child(1),.solution-story[data-solution-card="pahami-pelanggan"] .solution-story__mark i:nth-child(1){background:var(--white)}.solution-story:hover .solution-story__mark,.solution-story:focus-visible .solution-story__mark{transform:rotate(-6deg) scale(1.05)}.solution-story>div{grid-column:2}.solution-story h3{font-size:clamp(1.2rem,2vw,1.55rem)}.solution-story>div>p{margin-top:10px;color:var(--ink-72);overflow-wrap:anywhere}
+  .solution-story dl{grid-column:1/-1;align-self:end;display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:16px 0 0}.solution-story:nth-child(2) dl,.solution-story:nth-child(3) dl{grid-template-columns:1fr}.solution-story dl>div+div{margin-top:0}.solution-story dt{font-size:.72rem;font-weight:800;color:var(--teal)}.solution-story dd{margin:4px 0 0;color:var(--ink-72)}.solution-story>strong{grid-column:2;align-self:end;color:var(--teal);font-size:.8rem}.solution-story:nth-child(5)>div,.solution-story:nth-child(5) dl,.solution-story:nth-child(5)>strong{grid-column:auto;margin-top:0}
+  .solution-combinations{background:var(--ink);color:var(--white)}
+  .solution-combinations__layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(48px,8vw,120px)}.solution-combinations .section-kicker{color:var(--yellow)}
+  .combination-lines{border-top:1px solid rgb(255 255 255/.28)}.combination-lines a{display:grid;grid-template-columns:42px .9fr 1.1fr;gap:18px;align-items:center;margin-inline:0;padding:18px 14px;border-bottom:1px solid rgb(255 255 255/.18);color:var(--white);text-decoration:none;overflow:hidden;transition:transform .3s var(--ease),background-color .3s ease}.combination-lines a:hover,.combination-lines a:focus-visible{transform:translateX(5px);background:rgb(255 255 255/.06)}.combination-glyph{position:relative;display:block;width:36px;height:36px;border:1px solid rgb(255 255 255/.35);font-style:normal}.combination-glyph::before,.combination-glyph::after,.combination-glyph b{content:"";position:absolute;border-radius:50%;background:var(--yellow)}.combination-glyph::before{width:7px;height:7px;left:6px;top:14px}.combination-glyph::after{width:7px;height:7px;right:6px;top:6px}.combination-glyph b:nth-child(1){width:7px;height:7px;right:7px;bottom:6px}.combination-glyph b:nth-child(2){left:10px;top:16px;width:18px;height:1px;border-radius:0;transform:rotate(-27deg)}.combination-glyph b:nth-child(3){left:10px;top:21px;width:18px;height:1px;border-radius:0;transform:rotate(27deg)}.combination-lines span{color:rgb(255 255 255/.68)}
+  .synthetic-decisions{background:var(--teal);color:var(--white)}
+  .synthetic-decisions__layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,9vw,132px)}.synthetic-decisions .section-kicker{color:var(--yellow)}.synthetic-decisions__layout>div:first-child>p:last-child{max-width:38ch;margin-top:22px;color:rgb(255 255 255/.72)}
+  .decision-notes{display:grid;gap:14px}.decision-notes article{padding:26px;border:1px solid rgb(255 255 255/.24)}.decision-notes span,.decision-notes strong,.decision-notes small{display:block}.decision-notes span{color:var(--yellow);font-size:.78rem;font-weight:800}.decision-notes strong{margin-top:18px;font-size:1.14rem}.decision-notes small{margin-top:18px;color:rgb(255 255 255/.68)}
+  .industry-crosslinks{background:var(--rice)}.industry-crosslinks__layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,9vw,132px)}.industry-crosslinks header p{max-width:38ch;margin-top:22px;color:var(--ink-72)}
+  .industry-crosslinks nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--ink-10)}.industry-crosslinks nav a{min-height:155px;padding:24px;background:var(--rice);text-decoration:none;transition:background .3s ease,transform .3s ease}.industry-crosslinks nav a:hover,.industry-crosslinks nav a:focus-visible{background:var(--white);transform:translateY(-4px)}.industry-crosslinks nav strong,.industry-crosslinks nav span{display:block}.industry-crosslinks nav span{margin-top:24px;color:var(--ink-72)}
+  .solution-faq{background:var(--white)}.solution-faq__layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,9vw,132px)}.solution-faq details{padding:22px 0;border-top:1px solid var(--ink-10)}.solution-faq details:last-child{border-bottom:1px solid var(--ink-10)}.solution-faq summary{cursor:pointer;font-weight:800}.solution-faq details p{max-width:58ch;margin-top:14px;color:var(--ink-72)}
+  @media(prefers-reduced-motion:no-preference){.pain-clusters__track article{animation:solution-rise .7s both;animation-delay:calc(var(--i,0)*70ms)}@keyframes solution-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}}
+  @media(max-width:960px){.pain-clusters__track{grid-template-columns:repeat(2,1fr)}.pain-clusters__track article:nth-child(2){border-right:0}.pain-clusters__track article:nth-child(n+3){border-top:1px solid var(--ink-10)}.solution-directory__layout,.solution-combinations__layout,.synthetic-decisions__layout,.industry-crosslinks__layout,.solution-faq__layout{grid-template-columns:1fr}.solution-directory__layout>header{position:static}.solution-story,.solution-story:nth-child(5){grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto 1fr}.solution-story:nth-child(1),.solution-story:nth-child(2),.solution-story:nth-child(3),.solution-story:nth-child(4){grid-column:span 6}.solution-story:nth-child(5){grid-column:1/-1}.solution-story dl,.solution-story:nth-child(5) dl,.solution-story>strong,.solution-story:nth-child(5)>strong{grid-column:1/-1}.solution-story:nth-child(5)>div{grid-column:2}}
+  @media(max-width:740px){.solution-hub .solution-hub-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.pain-clusters__track,.solution-stories,.industry-crosslinks nav{grid-template-columns:1fr}.pain-clusters__track article{min-height:155px;border-right:0;border-top:1px solid var(--ink-10)}.solution-story,.solution-story:nth-child(1),.solution-story:nth-child(2),.solution-story:nth-child(3),.solution-story:nth-child(4),.solution-story:nth-child(5){grid-column:auto;grid-template-columns:50px minmax(0,1fr);min-height:0;padding:18px}.solution-story dl,.solution-story:nth-child(2) dl,.solution-story:nth-child(3) dl{grid-template-columns:1fr}.solution-story__mark{width:40px;height:40px}.combination-lines a{grid-template-columns:38px minmax(0,1fr);gap:8px 14px}.combination-lines a>span{grid-column:2}.industry-crosslinks nav a{min-height:135px}}
+  @media(prefers-reduced-motion:reduce){.pain-clusters__track article,.solution-story,.solution-story__mark,.solution-story::after,.combination-lines a,.industry-crosslinks nav a{animation:none!important;transition:none!important;transform:none!important}}
+</style>

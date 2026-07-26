@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ConsentManager from '../components/ConsentManager.astro';
+import LeadPrompt from '../components/LeadPrompt.astro';
+import FloatingContact from '../components/FloatingContact.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
 
@@ -17,6 +19,8 @@ interface Props {
   schema?: Record<string, unknown> | Record<string, unknown>[];
   ogType?: 'website' | 'article';
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  keywords?: string | string[];
+  chrome?: boolean;
 }
 
 const {
@@ -31,11 +35,15 @@ const {
   schema,
   ogType = 'website',
   pageType,
+  keywords = ['RAMUNI', 'AI Business Companion', 'UMKM Indonesia', 'stok usaha', 'penjualan UMKM', 'arus kas usaha'],
+  chrome = true,
 } = Astro.props;
 const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toString();
 const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
+const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
+const leadPromptExcluded = /^\/(?:kontak|demo|harga|masuk|terima-kasih|privasi|pemrosesan-data|syarat-penggunaan|kebijakan-cookie|keamanan|status|maintenance|404|500)(?:\/|$)/.test(pathname);
 const inferredPageType = pageType
   || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
   || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)
@@ -51,8 +59,49 @@ const webPageSchema = {
   inLanguage: 'id-ID',
 };
 const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const hasBreadcrumbSchema = suppliedSchema.some((entity) => {
+  const type = entity?.['@type'];
+  return type === 'BreadcrumbList' || (Array.isArray(type) && type.includes('BreadcrumbList'));
+});
+const breadcrumbRoots: Record<string, string> = {
+  produk: 'Produk',
+  solusi: 'Solusi',
+};
+const breadcrumbSegments = pathname.split('/').filter(Boolean);
+const needsAutomaticBreadcrumb = !hasBreadcrumbSchema
+  && breadcrumbSegments.length > 0
+  && breadcrumbSegments[0] in breadcrumbRoots;
+const automaticBreadcrumbSchema = needsAutomaticBreadcrumb ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Beranda',
+      item: new URL('/', Astro.site || Astro.url.origin).toString(),
+    },
+    ...breadcrumbSegments.map((segment, index) => {
+      const isLast = index === breadcrumbSegments.length - 1;
+      const path = `/${breadcrumbSegments.slice(0, index + 1).join('/')}/`;
+      const readableSegment = decodeURIComponent(segment)
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      return {
+        '@type': 'ListItem',
+        position: index + 2,
+        name: index === 0 ? breadcrumbRoots[segment] : (isLast ? title.split('|')[0].trim() : readableSegment),
+        item: new URL(path, Astro.site || Astro.url.origin).toString(),
+      };
+    }),
+  ],
+} : undefined;
 const effectiveNoindex = noindex || !releaseGates.siteIndexable;
-const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...suppliedSchema];
+const schemaWithBreadcrumb = automaticBreadcrumbSchema
+  ? [...suppliedSchema, automaticBreadcrumbSchema]
+  : suppliedSchema;
+const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [webPageSchema, ...schemaWithBreadcrumb];
 ---
 <!doctype html>
 <html lang="id">
@@ -61,8 +110,11 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#F4F0E7" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywordContent} />
     <meta name="robots" content={effectiveNoindex ? 'noindex,follow' : 'index,follow'} />
     <link rel="canonical" href={absoluteCanonical} />
+    <link rel="alternate" hreflang="id-ID" href={absoluteCanonical} />
+    <link rel="alternate" hreflang="x-default" href={absoluteCanonical} />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -84,14 +136,17 @@ const structuredData = effectiveNoindex ? suppliedSchema : [webPageSchema, ...su
     <meta name="twitter:image" content={absoluteImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
     <title>{fullTitle}</title>
+    {pathname !== '/' && <style is:inline>.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px)!important}.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:clamp(42px,5vw,72px) 0 clamp(58px,7vw,96px)!important}@media(max-width:740px){.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero,.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:38px 0 56px!important}}</style>}
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredData.length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
   </head>
   <body>
     <a class="skip-link" href="#main">Lewati ke konten</a>
-    <Header />
+    {chrome && <Header />}
     <main id="main"><slot /></main>
-    <Footer />
+    {chrome && <Footer />}
+    {chrome && !leadPromptExcluded && <LeadPrompt />}
+    {chrome && <FloatingContact />}
     <ConsentManager />
     <script>
       const nodes = document.querySelectorAll('.reveal');

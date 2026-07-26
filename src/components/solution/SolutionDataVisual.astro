@@ -1,0 +1,77 @@
+---
+import type { SolutionDetail } from '../../data/solutionDetails';
+
+interface Props {
+  visual: SolutionDetail['visual'];
+}
+
+const { visual } = Astro.props;
+---
+<figure class={`sd-visual sd-visual--${visual.kind}`} aria-labelledby={`visual-${visual.kind}-title`}>
+  <figcaption class="sd-visual__head">
+    <span>{visual.label}</span>
+    <strong id={`visual-${visual.kind}-title`}>{visual.title}</strong>
+    <small>{visual.period}</small>
+  </figcaption>
+
+  {visual.kind === 'revenue' && (
+    <div class="sd-revenue" aria-hidden="true">
+      {visual.metrics.map((metric, index) => (
+        <div class={`sd-revenue__column ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--level:${[82, 54, 67][index]}%`}>
+          <span>{metric.value}</span><i></i><b>{metric.label}</b>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {visual.kind === 'stock' && (
+    <div class="sd-stock" aria-hidden="true">
+      {visual.metrics.map((metric, index) => (
+        <div class={`sd-stock__row ${metric.tone ? `is-${metric.tone}` : ''}`}>
+          <span>{String(index + 1).padStart(2, '0')}</span><b>{metric.label}</b><i style={`--level:${[36, 70, 55][index]}%`}></i><strong>{metric.value}</strong>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {visual.kind === 'cash' && (
+    <div class="sd-cash" aria-hidden="true">
+      {visual.metrics.map((metric, index) => (
+        <div class={`sd-cash__step ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--level:${[100, 62, 48][index]}%`}>
+          <span>{metric.label}</span><i></i><strong>{metric.value}</strong>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {visual.kind === 'customer' && (
+    <div class="sd-customer" aria-hidden="true">
+      <i class="sd-customer__line"></i>
+      {visual.metrics.map((metric, index) => (
+        <div class={`sd-customer__event ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--i:${index}`}>
+          <span>{String(index + 1).padStart(2, '0')}</span><b>{metric.label}</b><strong>{metric.value}</strong>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {visual.kind === 'report' && (
+    <div class="sd-report" aria-hidden="true">
+      <div class="sd-report__rule"><span></span><span></span><span></span></div>
+      {visual.metrics.map((metric, index) => (
+        <div class={`sd-report__item ${metric.tone ? `is-${metric.tone}` : ''}`}>
+          <span>{String(index + 1).padStart(2, '0')}</span><b>{metric.label}</b><strong>{metric.value}</strong>
+        </div>
+      ))}
+      <div class="sd-report__approval"><span>Persetujuan</span><b>Menunggu pemeriksaan</b></div>
+    </div>
+  )}
+
+  <dl class="sd-visual__metrics">
+    {visual.metrics.map((metric) => (
+      <div class={metric.tone ? `is-${metric.tone}` : ''}>
+        <dt>{metric.label}</dt><dd>{metric.value}</dd><small>{metric.note}</small>
+      </div>
+    ))}
+  </dl>
+</figure>

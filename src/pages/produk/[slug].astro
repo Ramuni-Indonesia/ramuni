@@ -1,540 +1,296 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
+import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
+import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
-import { productNarratives } from '../../data/pageNarratives';
+import { capabilityIconAttributes } from '../../data/capabilityIcons';
+import { productDetails } from '../../data/productDetails';
 import { releaseGates } from '../../config/release';
+import '../../styles/product-detail.css';
 
-export function getStaticPaths() { return products.map((product) => ({ params: { slug: product.slug }, props: { product } })); }
+export function getStaticPaths() {
+  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
+}
+
 const { product } = Astro.props;
-const narrative = productNarratives[product.slug];
-type UseCase = { title: string; text: string; href: string };
-type FaqItem = { question: string; answer: string };
+const detail = productDetails[product.slug];
 
-const productContext: Record<string, { roles: UseCase[]; industries: UseCase[]; faq: FaqItem[] }> = {
-  'asisten-ai': {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Menanyakan perubahan utama, lalu membuka angka yang menjadi dasarnya.', href: '/untuk/pemilik-usaha' },
-      { title: 'Supervisor', text: 'Meringkas masalah operasional sebelum meneruskannya kepada pemilik.', href: '/untuk/supervisor' },
-      { title: 'Admin Toko', text: 'Memeriksa data yang belum lengkap ketika jawaban belum cukup kuat.', href: '/untuk/admin-toko' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Menelusuri stok, produk laris, dan jam transaksi dari pertanyaan harian.', href: '/industri/retail' },
-      { title: 'F&B', text: 'Membaca perubahan menu bersama bahan dan waktu penjualan.', href: '/industri/fnb' },
-      { title: 'Distributor', text: 'Memeriksa pesanan ulang, stok, dan pembayaran tanpa mengirim tindakan otomatis.', href: '/industri/distributor' },
-    ],
-    faq: [
-      { question: 'Data apa yang dipakai untuk menjawab?', answer: 'Jawaban mengikuti periode, modul, dan catatan yang sedang dibuka. Data yang belum lengkap harus disebutkan.' },
-      { question: 'Apakah Asisten AI dapat mengubah data?', answer: 'Tidak pada versi awal. Asisten hanya membaca dan menjelaskan; perubahan tetap dilakukan pengguna sesuai akses.' },
-      { question: 'Apa yang perlu diperiksa sebelum memakai jawaban?', answer: 'Periksa periode, waktu pembaruan, sumber angka, dan bagian yang masih perlu dicek manusia.' },
-    ],
-  },
-  'dashboard-bisnis': {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Melihat perubahan penjualan, stok, dan kas sebelum membuka rinciannya.', href: '/untuk/pemilik-usaha' },
-      { title: 'Supervisor', text: 'Membawa pengecualian dan tindak lanjut yang belum selesai ke rapat.', href: '/untuk/supervisor' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Memantau produk laris, stok kritis, dan omzet pada periode yang sama.', href: '/industri/retail' },
-      { title: 'F&B', text: 'Membaca menu, jam ramai, bahan, dan biaya dalam satu ringkasan.', href: '/industri/fnb' },
-      { title: 'Jasa', text: 'Membandingkan pendapatan layanan dengan biaya yang terkait.', href: '/industri/jasa' },
-    ],
-    faq: [
-      { question: 'Seberapa baru angka yang tampil?', answer: 'Setiap ringkasan perlu menyebut waktu pembaruan. Angka lama tidak ditampilkan seolah-olah masih terkini.' },
-      { question: 'Apakah semua orang melihat dashboard yang sama?', answer: 'Tidak. Ringkasan dan detail mengikuti tugas serta akses setiap peran.' },
-      { question: 'Bisakah angka ringkasan ditelusuri?', answer: 'Arah produknya adalah membuka metrik, periode, dan catatan pendukung dari setiap sorotan.' },
-    ],
-  },
-  'katalog-produk': {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Menetapkan aturan nama, kategori, unit, harga, dan HPP yang dipakai tim.', href: '/untuk/pemilik-usaha' },
-      { title: 'Admin Toko', text: 'Merapikan produk ganda dan mengarsipkan item lama tanpa menghapus riwayat.', href: '/untuk/admin-toko' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Menjaga SKU dan satuan tetap sama dari rak sampai laporan.', href: '/industri/retail' },
-      { title: 'Distributor', text: 'Membedakan produk dan unit penjualan sebelum membaca stok volume besar.', href: '/industri/distributor' },
-      { title: 'Reseller Online', text: 'Menyamakan kode produk yang dicatat dari beberapa kanal.', href: '/industri/reseller-online' },
-    ],
-    faq: [
-      { question: 'Bagaimana menangani produk yang namanya ganda?', answer: 'Pilih satu identitas utama, samakan SKU dan unit, lalu arsipkan duplikat tanpa menghapus riwayat transaksi.' },
-      { question: 'Apakah varian dan bundel sudah termasuk?', answer: 'Belum tentu. Barcode, varian, bundel, lot, dan serial mengikuti status fitur yang sudah diuji.' },
-      { question: 'Siapa yang boleh mengubah harga atau HPP?', answer: 'Perubahan mengikuti pembagian akses akun dan perlu meninggalkan jejak yang dapat diperiksa.' },
-    ],
-  },
-  penjualan: {
-    roles: [
-      { title: 'Kasir', text: 'Mencatat item, nilai, waktu, dan status pembayaran pada transaksi aktif.', href: '/untuk/kasir' },
-      { title: 'Admin Toko', text: 'Memeriksa transaksi terlambat, ganda, atau belum lengkap.', href: '/untuk/admin-toko' },
-      { title: 'Pemilik Usaha', text: 'Membaca produk dan waktu yang membentuk perubahan omzet.', href: '/untuk/pemilik-usaha' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Membandingkan produk dan jam transaksi pada hari yang setara.', href: '/industri/retail' },
-      { title: 'F&B', text: 'Melihat menu yang berubah sebelum menilai promosi atau bahan.', href: '/industri/fnb' },
-      { title: 'Reseller Online', text: 'Menyatukan catatan kanal yang tersedia sebelum membandingkan produk.', href: '/industri/reseller-online' },
-    ],
-    faq: [
-      { question: 'Apa beda transaksi dan pembayaran?', answer: 'Transaksi mencatat penjualan; status pembayaran menunjukkan apakah uangnya sudah diterima atau masih perlu diperiksa.' },
-      { question: 'Bagaimana menangani transaksi yang gagal tersimpan?', answer: 'Jangan mengulang tanpa pemeriksaan. Catat statusnya dan teruskan ke admin atau supervisor agar tidak terjadi duplikasi.' },
-      { question: 'Apakah RAMUNI menjalankan promosi dari data penjualan?', answer: 'Tidak. Pola penjualan menjadi bahan pemeriksaan; keputusan promosi tetap dibuat pengguna.' },
-    ],
-  },
-  inventori: {
-    roles: [
-      { title: 'Admin Toko', text: 'Mencatat barang masuk, keluar, dan koreksi beserta alasannya.', href: '/untuk/admin-toko' },
-      { title: 'Supervisor', text: 'Menangani selisih dan stok kritis yang perlu tindak lanjut.', href: '/untuk/supervisor' },
-      { title: 'Pemilik Usaha', text: 'Menilai kebutuhan isi ulang dari saldo, laju keluar, dan waktu tunggu.', href: '/untuk/pemilik-usaha' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Mendahulukan SKU laris yang mendekati batas minimum.', href: '/industri/retail' },
-      { title: 'F&B', text: 'Mengecek bahan utama sebelum jam ramai berdasarkan unit yang konsisten.', href: '/industri/fnb' },
-      { title: 'Distributor', text: 'Membandingkan stok volume besar dengan pesanan yang sudah tercatat.', href: '/industri/distributor' },
-    ],
-    faq: [
-      { question: 'Apakah stok minimum berarti harus langsung membeli?', answer: 'Tidak. Batas minimum menandai barang untuk diperiksa bersama saldo fisik, laju keluar, dan waktu isi ulang.' },
-      { question: 'Bagaimana jika saldo sistem berbeda dari stok fisik?', answer: 'Catat jumlah fisik, selisih, waktu cek, dan alasan koreksi agar perubahan dapat ditelusuri.' },
-      { question: 'Apakah RAMUNI membuat pesanan pembelian otomatis?', answer: 'Tidak. RAMUNI tidak menjanjikan pengadaan otomatis; pengguna tetap menentukan tindakan.' },
-    ],
-  },
-  keuangan: {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Membaca omzet, biaya, laba, dan kas tanpa mencampur definisinya.', href: '/untuk/pemilik-usaha' },
-      { title: 'Supervisor', text: 'Membandingkan periode dengan rumus yang sama sebelum membahas perubahan.', href: '/untuk/supervisor' },
-      { title: 'Admin Toko', text: 'Menjaga kategori pemasukan dan pengeluaran tetap konsisten.', href: '/untuk/admin-toko' },
-    ],
-    industries: [
-      { title: 'Jasa', text: 'Membaca pendapatan layanan bersama biaya pengerjaannya.', href: '/industri/jasa' },
-      { title: 'Distributor', text: 'Memisahkan nilai pesanan dari pembayaran yang sudah masuk.', href: '/industri/distributor' },
-      { title: 'Manufaktur Kecil', text: 'Membandingkan biaya utama dengan penjualan pada periode yang sama.', href: '/industri/manufaktur-kecil' },
-    ],
-    faq: [
-      { question: 'Apa beda omzet, laba, dan kas?', answer: 'Omzet adalah nilai penjualan, laba mengikuti rumus biaya, dan kas menunjukkan uang yang tersedia pada waktu tertentu.' },
-      { question: 'Apakah informasi ini menggantikan akuntan?', answer: 'Tidak. Ringkasan bersifat operasional dan bukan nasihat pajak atau akuntansi profesional.' },
-      { question: 'Mengapa periode harus sama?', answer: 'Periode yang setara mencegah transaksi dan biaya dari rentang berbeda dibaca sebagai satu perubahan.' },
-    ],
-  },
-  pelanggan: {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Melihat pola pembelian berulang tanpa mengambil alih pilihan pelanggan.', href: '/untuk/pemilik-usaha' },
-      { title: 'Admin Toko', text: 'Menjaga identitas, riwayat, dan dasar izin tetap rapi.', href: '/untuk/admin-toko' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Membaca riwayat pembelian yang memang tersedia dan diizinkan.', href: '/industri/retail' },
-      { title: 'Jasa', text: 'Melihat layanan yang pernah dipakai sebelum tindak lanjut manusia.', href: '/industri/jasa' },
-      { title: 'Reseller Online', text: 'Menghubungkan riwayat kanal tanpa menyatukan identitas secara sembarang.', href: '/industri/reseller-online' },
-    ],
-    faq: [
-      { question: 'Apakah RAMUNI mengirim pesan otomatis?', answer: 'Tidak pada versi awal. Tindak lanjut dilakukan manusia setelah memeriksa izin dan konteks pelanggan.' },
-      { question: 'Data pelanggan apa yang perlu disimpan?', answer: 'Gunakan hanya data yang dibutuhkan, memiliki dasar izin, dan sesuai akses pekerjaan.' },
-      { question: 'Bagaimana jika satu pelanggan tercatat beberapa kali?', answer: 'Samakan pengenal secara hati-hati dan jangan menggabungkan identitas tanpa dasar yang jelas.' },
-    ],
-  },
-  'laporan-insight': {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Membaca perubahan, alasan, dan pemilik tindak lanjut dalam satu ringkasan.', href: '/untuk/pemilik-usaha' },
-      { title: 'Supervisor', text: 'Menyiapkan laporan dengan periode dan definisi yang disepakati.', href: '/untuk/supervisor' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Merangkum penjualan, stok kritis, dan koreksi yang perlu dicek.', href: '/industri/retail' },
-      { title: 'F&B', text: 'Membawa perubahan menu, bahan, dan biaya ke evaluasi periode.', href: '/industri/fnb' },
-      { title: 'Distributor', text: 'Menghubungkan pergerakan produk, pesanan ulang, dan pembayaran.', href: '/industri/distributor' },
-    ],
-    faq: [
-      { question: 'Kapan laporan dianggap siap dibahas?', answer: 'Saat periode, rumus, sumber, perubahan utama, dan penanggung jawab tindak lanjut sudah jelas.' },
-      { question: 'Apakah laporan dikirim otomatis?', answer: 'Kanal notifikasi dan pengiriman mengikuti status fitur. Jangan menganggapnya aktif sebelum tersedia.' },
-      { question: 'Bagaimana jika angka berbeda antar laporan?', answer: 'Periksa batas periode, definisi metrik, dan waktu pembaruan sebelum memilih angka acuan.' },
-    ],
-  },
-  integrasi: {
-    roles: [
-      { title: 'Pemilik Usaha', text: 'Menentukan sumber data yang boleh dipakai dan tingkat aksesnya.', href: '/untuk/pemilik-usaha' },
-      { title: 'Admin Toko', text: 'Menyiapkan format, menjalankan impor, dan memeriksa baris yang gagal.', href: '/untuk/admin-toko' },
-    ],
-    industries: [
-      { title: 'Retail', text: 'Memulai dari katalog dan transaksi yang dapat diekspor dengan rapi.', href: '/industri/retail' },
-      { title: 'Distributor', text: 'Memeriksa format produk, pelanggan, dan pembayaran sebelum impor.', href: '/industri/distributor' },
-      { title: 'Reseller Online', text: 'Membawa catatan kanal melalui metode yang memang sudah tersedia.', href: '/industri/reseller-online' },
-    ],
-    faq: [
-      { question: 'Metode data apa yang tersedia?', answer: 'CSV menjadi jalur awal. Metode lain hanya ditampilkan setelah diuji dan aktif untuk akun terkait.' },
-      { question: 'Apa yang terjadi jika sebagian baris gagal?', answer: 'Impor perlu menunjukkan baris bermasalah dan alasannya agar admin dapat memperbaiki lalu mencoba kembali.' },
-      { question: 'Apakah semua koneksi berjalan langsung?', answer: 'Tidak. Status harus membedakan proses manual, terjadwal, langsung, terbatas, dan belum tersedia.' },
-    ],
-  },
-};
-const relatedProductSlugs: Record<string, string[]> = {
-  'asisten-ai': ['dashboard-bisnis', 'laporan-insight', 'integrasi'],
-  'dashboard-bisnis': ['asisten-ai', 'laporan-insight', 'keuangan'],
-  'katalog-produk': ['inventori', 'penjualan', 'integrasi'],
-  penjualan: ['dashboard-bisnis', 'inventori', 'pelanggan'],
-  inventori: ['katalog-produk', 'penjualan', 'laporan-insight'],
-  keuangan: ['penjualan', 'dashboard-bisnis', 'laporan-insight'],
-  pelanggan: ['penjualan', 'asisten-ai', 'dashboard-bisnis'],
-  'laporan-insight': ['dashboard-bisnis', 'asisten-ai', 'keuangan'],
-  integrasi: ['katalog-produk', 'dashboard-bisnis', 'laporan-insight'],
-};
-const educationByProduct: Record<string, { href: string; title: string; text: string }> = {
-  'asisten-ai': { href: '/blog/ai-business-companion-umkm', title: 'Kenali peran AI dalam membaca data usaha', text: 'Pelajari mengapa jawaban AI tetap perlu memiliki dasar data dan diperiksa manusia.' },
-  'dashboard-bisnis': { href: '/kamus-bisnis', title: 'Pahami istilah di balik ringkasan bisnis', text: 'Gunakan kamus sederhana sebelum membandingkan omzet, laba, kas, dan stok.' },
-  'katalog-produk': { href: '/blog/panduan-membaca-stok-harian', title: 'Baca stok harian dari daftar produk yang rapi', text: 'Lihat hubungan antara identitas produk, saldo, dan kecepatan barang keluar.' },
-  penjualan: { href: '/kamus-bisnis', title: 'Bedakan omzet, transaksi, dan pembayaran', text: 'Buka definisi dasar agar tim membaca angka penjualan dengan cara yang sama.' },
-  inventori: { href: '/blog/panduan-membaca-stok-harian', title: 'Cara membaca stok sebelum masalah muncul', text: 'Pelajari cara membandingkan saldo dengan laju penjualan dan waktu isi ulang.' },
-  keuangan: { href: '/blog/arus-kas-umkm-ringan', title: 'Mulai membaca arus kas dengan bahasa ringan', text: 'Pisahkan uang masuk, uang keluar, laba, dan saldo sebelum menarik kesimpulan.' },
-  pelanggan: { href: '/panduan', title: 'Pelajari cara membaca pola pelanggan', text: 'Mulai dari riwayat yang tersedia dan pastikan izin sebelum menindaklanjuti.' },
-  'laporan-insight': { href: '/template', title: 'Siapkan catatan untuk laporan yang konsisten', text: 'Gunakan struktur yang sama agar perubahan, alasan, dan tindak lanjut mudah dibahas.' },
-  integrasi: { href: '/panduan', title: 'Siapkan data sebelum masuk ke RAMUNI', text: 'Pelajari langkah awal untuk merapikan sumber dan format data usaha.' },
-};
-const relatedProducts = (relatedProductSlugs[product.slug] || []).flatMap((slug) => {
+if (!detail) {
+  throw new Error(`Product detail content is missing for ${product.slug}`);
+}
+
+const relatedProducts = detail.relatedProductSlugs.flatMap((slug) => {
   const related = products.find((entry) => entry.slug === slug);
   return related ? [related] : [];
 });
-const education = educationByProduct[product.slug];
-const context = productContext[product.slug];
-const productUrl = new URL(`/produk/${product.slug}/`, Astro.site || Astro.url.origin).toString();
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: `${product.title} RAMUNI`,
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  url: productUrl,
-  description: product.summary,
-};
+
+const capabilityRows = detail.capabilities.map((capability) => {
+  const isApproved = releaseGates.claimPagesIndexable
+    && capability.publicApproved
+    && Boolean(capability.approvedStatus);
+  return {
+    ...capability,
+    status: isApproved ? capability.approvedStatus : 'Dalam pengembangan',
+    statusClass: isApproved ? 'is-approved' : 'is-concept',
+  };
+});
+
+const canonicalPath = `/produk/${product.slug}/`;
+const productUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
+const breadcrumbItems = [
+  { label: 'Beranda', href: '/' },
+  { label: 'Produk', href: '/produk' },
+  { label: product.title },
+];
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': productUrl,
+    url: productUrl,
+    name: `${product.title} RAMUNI`,
+    description: detail.heroLead,
+    inLanguage: 'id-ID',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'RAMUNI',
+      url: new URL('/', Astro.site || Astro.url.origin).toString(),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      ...(item.href ? { item: new URL(item.href, Astro.site || Astro.url.origin).toString() } : {}),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: detail.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  },
+];
 ---
-<BaseLayout title={`${product.title} RAMUNI`} description={product.summary} noindex={!releaseGates.claimPagesIndexable} schema={schema}>
-  <section class="detail-hero">
-    <div class="container detail-hero__layout">
-      <div class="detail-hero__copy reveal is-visible">
-        <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Produk', href: '/produk' }, { label: product.title }]} />
-        <span class="availability-label">Pratinjau konsep</span>
-        <h1>{product.title}</h1>
-        <p class="lede">{product.summary}</p>
-        <div class="button-row"><a class="button button--primary" href="/early-access">Daftar Early Access</a><a class="button button--secondary" href="/demo">Lihat Demo</a></div>
+
+<BaseLayout
+  title={`${product.title} RAMUNI`}
+  description={detail.heroLead}
+  canonical={canonicalPath}
+  noindex={!releaseGates.claimPagesIndexable}
+  schema={structuredData}
+  pageType="WebPage"
+>
+  <article class="pd-page" data-layout={detail.layout} data-product={product.slug}>
+    <section id="product-outcome" class="pd-hero" data-section-id="product-outcome" data-analytics-id="product_outcome_hero" aria-labelledby="product-title">
+      <div class="container pd-hero__layout">
+        <div class="pd-hero__copy reveal is-visible">
+          <div class="pd-hero__meta">
+            <span class="pd-product-glyph" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
+            <span class="pd-status-label">Simulasi tersedia</span>
+          </div>
+          <h1 id="product-title">{product.title}</h1>
+          <p class="pd-hero__audience">{detail.audience}</p>
+          <p class="pd-hero__lead">{product.summary}</p>
+          <div class="button-row">
+            <a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a>
+            <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
+          </div>
+        </div>
+        <ProductDomainVisual slug={product.slug} title={product.title} question={detail.question} />
       </div>
-      <aside class="detail-hero__statement reveal is-visible">
-        <span>Pertanyaan utama</span>
-        <strong>{product.question}</strong>
-        <p>{product.outcome}</p>
-      </aside>
-    </div>
-  </section>
+    </section>
 
-  <section class="section surface problem-sequence" aria-labelledby="problem-sequence-title">
-    <div class="container problem-sequence__layout">
-      <header><h2 id="problem-sequence-title">{narrative.problemHeading}</h2></header>
-      <ol>{product.situations.map((situation, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><p>{situation}</p></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section evidence-section" aria-labelledby="evidence-title">
-    <div class="container evidence-section__layout">
-      <div class="evidence-question reveal">
-        <span>{narrative.exampleLabel} dengan data sintetis</span>
-        <h2 id="evidence-title">{narrative.exampleHeading}</h2>
-        <p>Contoh ini menunjukkan urutan membaca informasi, bukan tampilan aplikasi final.</p>
-      </div>
-      <figure class="product-sample reveal">
-        <blockquote>
-          <span>Pertanyaan usaha</span>
-          <p>{product.question}</p>
-        </blockquote>
-        <dl>{narrative.exampleRows.map(([term, description]) => <div><dt>{term}</dt><dd>{description}</dd></div>)}</dl>
-        <figcaption>
-          <span>Hasil yang dicari</span>
-          <strong>{product.outcome}</strong>
-          <small>Gunakan data usaha yang sudah diperiksa sebelum mengambil keputusan.</small>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="section surface feature-chapters" aria-labelledby="feature-chapters-title">
-    <div class="container feature-chapters__layout">
-      <header><h2 id="feature-chapters-title">{narrative.featureHeading}</h2><p>Preview ini menunjukkan cara kerja inti. Cakupan final mengikuti fitur yang sudah lolos uji.</p></header>
-      <div class="feature-chapters__list">
-        {product.features.map((feature, index) => <article class="feature-line reveal"><span>{String(index + 1).padStart(2, '0')}</span><h3>{feature.title}</h3><p>{feature.text}</p></article>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section product-workflow" aria-labelledby="product-workflow-title">
-    <div class="container">
-      <h2 id="product-workflow-title">{narrative.workflowHeading}</h2>
-      <ol class="product-flow reveal">{narrative.workflow.map(([title, text], index) => <li style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{title}</strong><p>{text}</p></div></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section surface relevance-section">
-    <div class="container relevance-section__layout">
-      <div><h2>{narrative.roleHeading}</h2><div class="context-list">{context.roles.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</div></div>
-      <div><h2>{narrative.industryHeading}</h2><div class="context-list">{context.industries.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</div></div>
-    </div>
-  </section>
-
-  <section class="section related-learning" aria-labelledby="related-learning-title">
-    <div class="container related-learning__layout">
-      <div class="related-learning__modules reveal">
-        <h2 id="related-learning-title">Lanjutkan dengan modul yang memakai data yang sama.</h2>
-        <div class="related-module-list">
-          {relatedProducts.map((related, index) => (
-            <a href={`/produk/${related.slug}`}>
+    <section id="product-problem" class="pd-problem" data-section-id="product-problem" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
+      <div class="container pd-problem__layout">
+        <header>
+          <span>Situasi awal</span>
+          <h2 id="product-problem-title">Masalahnya terlihat sederhana. Jejaknya sering tersebar.</h2>
+          <p>Tiga situasi ini sering muncul sebagai satu masalah. Buka satu per satu agar penyebabnya tidak tercampur.</p>
+        </header>
+        <ol>
+          {detail.problems.map((problem, index) => (
+            <li class="reveal" style={`--i:${index}`}>
               <span>{String(index + 1).padStart(2, '0')}</span>
-              <div><strong>{related.title}</strong><p>{related.summary}</p></div>
-              <small>Buka modul</small>
+              <p>{problem}</p>
+            </li>
+          ))}
+        </ol>
+        <InsightEvidenceFlow
+          context="Produk"
+          title="Pilih satu catatan, lalu lihat hubungannya."
+          prompt={detail.question}
+          sources={detail.problems}
+          outcome={detail.outcome}
+          variant={product.slug}
+        />
+      </div>
+    </section>
+
+    <section id="product-benefits" class="pd-benefits" data-section-id="product-benefits" data-analytics-id="product_benefit_decisions" aria-labelledby="product-benefits-title">
+      <div class="container">
+        <div id="product-example" class="pd-example-embedded" data-section-id="product-example" data-analytics-id="product_example_output">
+          <div class="pd-example__intro reveal">
+            <span>{detail.example.label}</span>
+            <h2 id="product-example-title">{detail.example.heading}</h2>
+            <p>Contoh ini menunjukkan hasil dan dasar bacanya dalam satu tampilan.</p>
+          </div>
+          <figure class="pd-example__receipt reveal">
+            <blockquote>{detail.question}</blockquote>
+            <dl>
+              {detail.example.rows.map(([term, description]) => (
+                <div><dt>{term}</dt><dd>{description}</dd></div>
+              ))}
+            </dl>
+            <figcaption>{detail.example.takeaway}</figcaption>
+          </figure>
+        </div>
+        <header class="pd-section-heading">
+          <h2 id="product-benefits-title">Dari informasi ke keputusan yang lebih jelas.</h2>
+          <p>Setiap manfaat menjawab satu hal: apa artinya bagi pekerjaan Anda.</p>
+        </header>
+        <div class="pd-benefit-grid">
+          {detail.benefits.map((benefit, index) => (
+            <article class="pd-benefit reveal" style={`--i:${index}`}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{benefit.title}</h3>
+              <p>{benefit.meaning}</p>
+              <strong>{benefit.decision}</strong>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="product-workflow" class="pd-workflow" data-section-id="product-workflow" data-analytics-id="product_workflow" aria-labelledby="product-workflow-title">
+      <div class="container pd-workflow__layout">
+        <header>
+          <h2 id="product-workflow-title">Empat langkah dari data ke tindakan.</h2>
+          <p>Urutannya tetap dapat diperiksa pada setiap tahap.</p>
+        </header>
+        <ol class="pd-workflow__steps reveal">
+          {detail.workflow.map((step, index) => (
+            <li style={`--i:${index}`}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div><strong>{step.label}</strong><p>{step.text}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="product-capabilities" class="pd-capabilities" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
+      <div class="container pd-capabilities__layout">
+        <header>
+          <span>Status kemampuan</span>
+          <h2 id="product-capabilities-title">Lihat kemampuan yang sedang kami siapkan.</h2>
+          <p>Status diperbarui setelah setiap kemampuan siap dipakai dan sudah melalui pemeriksaan.</p>
+        </header>
+        <div class="pd-capability-list">
+          {capabilityRows.map((capability) => (
+            <article>
+              <div><h3>{capability.label}</h3><p>{capability.description}</p></div>
+              <span class={`pd-capability-status ${capability.statusClass}`}>{capability.status}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="product-safety" class="pd-safety" data-section-id="product-safety" data-analytics-id="product_evidence_safety" aria-labelledby="product-safety-title">
+      <div class="container pd-safety__layout">
+        <div class="pd-safety__copy">
+          <span>Bukti, izin, dan batas</span>
+          <h2 id="product-safety-title">{detail.safety.heading}</h2>
+          <p>{detail.safety.boundary}</p>
+        </div>
+        <div class="pd-safety__seal" aria-hidden="true"><span>Bukti</span><strong>Manusia</strong><small>menentukan</small></div>
+        <ol>
+          {detail.safety.checks.map((check, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{check}</strong></li>)}
+        </ol>
+        <a class="text-link" href="/keamanan">Pelajari keamanan RAMUNI</a>
+      </div>
+    </section>
+
+    <section id="product-roles" class="pd-roles" data-section-id="product-roles" data-analytics-id="product_role_relevance" aria-labelledby="product-roles-title">
+      <div class="container pd-roles__layout">
+        <header>
+          <span>Untuk siapa</span>
+          <h2 id="product-roles-title">Satu konteks, tanggung jawab yang berbeda.</h2>
+          <p>Setiap peran masuk dari pekerjaan yang memang perlu mereka periksa.</p>
+        </header>
+        <nav class="pd-role-track" data-count={detail.roles.length} aria-label={`Kegunaan ${product.title} berdasarkan peran`}>
+          {detail.roles.map((role, index) => (
+            <a href={role.href}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{role.title}</strong>
+              <p>{role.text}</p>
+              <small>Lihat kebutuhan peran</small>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    <section id="product-industries" class="pd-industries" data-section-id="product-industries" data-analytics-id="product_industry_examples" aria-labelledby="product-industries-title">
+      <div class="container">
+        <header class="pd-section-heading">
+          <h2 id="product-industries-title">Pertanyaannya berubah mengikuti cara usaha bekerja.</h2>
+          <p>Contoh berikut menunjukkan konteks pemakaian, bukan klaim hasil atau ketersediaan fitur khusus industri.</p>
+        </header>
+        <div class="pd-industry-spread">
+          {detail.industries.map((industry, index) => (
+            <a href={industry.href}>
+              <span>{industry.title}</span>
+              <p>{industry.text}</p>
+              <small>{String(index + 1).padStart(2, '0')} · Lihat contoh usaha</small>
             </a>
           ))}
         </div>
       </div>
-      <aside class="learning-route reveal" aria-labelledby="learning-route-title">
-        <span>Pelajari dasarnya</span>
-        <h2 id="learning-route-title">{education.title}</h2>
-        <p>{education.text}</p>
-        <a class="text-link" href={education.href}>Buka materi edukasi</a>
-      </aside>
-    </div>
-  </section>
+    </section>
 
-  <section class="section safety-ledger" aria-labelledby="safety-ledger-title">
-    <div class="container safety-ledger__layout">
-      <div><p class="section-kicker">Bukti dan kendali</p><h2 id="safety-ledger-title">Batas produk terlihat sebelum digunakan.</h2></div>
-      <div class="safety-ledger__content"><strong>{product.safety}</strong><p>Waktu pembaruan, izin akses, dan status kemampuan harus dapat diperiksa. Tindakan berisiko tetap membutuhkan persetujuan manusia.</p><a class="text-link" href="/keamanan">Pelajari keamanan RAMUNI</a></div>
-    </div>
-  </section>
+    <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
+      <div class="container pd-related__layout">
+        <div class="pd-related__modules">
+          <h2 id="product-related-title">Modul yang memakai konteks yang sama.</h2>
+          <div>
+            {relatedProducts.map((related, index) => (
+              <a href={`/produk/${related.slug}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{related.title}</strong><p>{related.summary}</p></a>
+            ))}
+          </div>
+        </div>
+        <div class="pd-related__paths" aria-label="Jalur lanjutan">
+          <a href={detail.solution.href}><small>Solusi terkait</small><strong>{detail.solution.title}</strong><span>{detail.solution.text}</span></a>
+          <a href={detail.resource.href}><small>Materi edukasi</small><strong>{detail.resource.title}</strong><span>{detail.resource.text}</span></a>
+          <a href={detail.help.href}><small>Panduan dan bantuan</small><strong>{detail.help.title}</strong><span>{detail.help.text}</span></a>
+          <div class="pd-related__quick"><a href="/tour-produk-gratis">Coba Simulasi</a></div>
+        </div>
+      </div>
+    </section>
 
-  <section class="section surface detail-faq">
-    <div class="container detail-faq__layout"><h2>Pertanyaan tentang {product.title}.</h2><div class="faq-list">{context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div>
-  </section>
+    <section id="product-faq" class="pd-faq" data-section-id="product-faq" data-analytics-id="product_faq" aria-labelledby="product-faq-title">
+      <div class="container pd-faq__layout">
+        <div><span>FAQ</span><h2 id="product-faq-title">Pertanyaan tentang {product.title}.</h2></div>
+        <div class="faq-list">
+          {detail.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+        </div>
+      </div>
+    </section>
 
-  <section class="section product-detail-close"><div class="container product-detail-close__layout"><h2>{narrative.closing}</h2><div class="button-row"><a class="button button--primary" href="/early-access">Daftar Early Access</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div></div></section>
+    <section id="product-next-step" class="pd-close" data-section-id="product-next-step" data-analytics-id="product_final_cta" aria-labelledby="product-next-step-title">
+      <div class="container pd-close__layout">
+        <div><span>Langkah berikutnya</span><h2 id="product-next-step-title">{detail.closing}</h2><p>{detail.outcome}</p></div>
+        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div>
+      </div>
+    </section>
+  </article>
+  <ProductScrollMotion />
 </BaseLayout>
-
-<style>
-  .evidence-question > p {
-    max-width: 36rem;
-    margin-top: 24px;
-    color: rgb(255 255 255 / 0.72);
-  }
-
-  .product-sample {
-    margin: 0;
-    border: 1px solid rgb(255 255 255 / 0.34);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .product-sample blockquote,
-  .product-sample figcaption {
-    margin: 0;
-    padding: clamp(24px, 4vw, 40px);
-  }
-
-  .product-sample blockquote {
-    background: var(--ink);
-  }
-
-  .product-sample blockquote span,
-  .product-sample figcaption span,
-  .learning-route > span {
-    display: block;
-    color: var(--yellow);
-    font-size: 0.72rem;
-    font-weight: 800;
-  }
-
-  .product-sample blockquote p {
-    margin-top: 14px;
-    font-size: clamp(1.35rem, 2.6vw, 2.25rem);
-    font-weight: 800;
-    line-height: 1.25;
-  }
-
-  .product-sample dl {
-    margin: 0;
-    padding: 8px clamp(24px, 4vw, 40px);
-  }
-
-  .product-sample dl > div {
-    display: grid;
-    grid-template-columns: minmax(110px, 0.45fr) 1fr;
-    gap: 20px;
-    padding: 18px 0;
-    border-bottom: 1px solid rgb(255 255 255 / 0.2);
-  }
-
-  .product-sample dl > div:last-child {
-    border-bottom: 0;
-  }
-
-  .product-sample dt {
-    color: var(--yellow);
-    font-size: 0.76rem;
-    font-weight: 800;
-  }
-
-  .product-sample dd {
-    margin: 0;
-    color: rgb(255 255 255 / 0.78);
-  }
-
-  .product-sample figcaption {
-    background: var(--white);
-    color: var(--ink);
-  }
-
-  .product-sample figcaption span {
-    color: var(--teal);
-  }
-
-  .product-sample figcaption strong,
-  .product-sample figcaption small {
-    display: block;
-  }
-
-  .product-sample figcaption strong {
-    margin-top: 12px;
-    font-size: clamp(1.15rem, 2vw, 1.55rem);
-    line-height: 1.35;
-  }
-
-  .product-sample figcaption small {
-    margin-top: 10px;
-    color: var(--ink-72);
-  }
-
-  .related-learning {
-    background: var(--rice);
-  }
-
-  .context-list {
-    display: grid;
-    margin-top: 30px;
-    border-top: 1px solid var(--ink);
-  }
-
-  .context-list > a {
-    display: grid;
-    gap: 7px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--ink-10);
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .context-list > a span {
-    color: var(--ink-72);
-    font-size: 0.9rem;
-    line-height: 1.55;
-  }
-
-  .related-learning__layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-    gap: clamp(48px, 9vw, 128px);
-    align-items: start;
-  }
-
-  .related-learning__modules > h2,
-  .learning-route h2 {
-    font-size: clamp(1.85rem, 3.4vw, 3.25rem);
-  }
-
-  .related-module-list {
-    margin-top: 36px;
-    border-top: 1px solid var(--ink);
-  }
-
-  .related-module-list > a {
-    display: grid;
-    grid-template-columns: 36px 1fr auto;
-    gap: 20px;
-    align-items: start;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--ink-10);
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .related-module-list > a > span,
-  .related-module-list > a > small {
-    color: var(--teal);
-    font-size: 0.72rem;
-    font-weight: 800;
-  }
-
-  .related-module-list strong {
-    font-size: 1.15rem;
-  }
-
-  .related-module-list p {
-    max-width: 48ch;
-    margin-top: 7px;
-    color: var(--ink-72);
-  }
-
-  .learning-route {
-    border-top: 4px solid var(--yellow);
-    padding-top: 24px;
-  }
-
-  .learning-route > span {
-    color: var(--teal);
-  }
-
-  .learning-route h2 {
-    margin-top: 18px;
-  }
-
-  .learning-route p {
-    margin: 20px 0 24px;
-    color: var(--ink-72);
-  }
-
-  @media (hover: hover) {
-    .context-list > a {
-      transition: padding 180ms ease, background-color 180ms ease;
-    }
-
-    .context-list > a:hover {
-      padding-inline: 12px;
-      background: var(--white);
-    }
-
-    .related-module-list > a {
-      transition: padding 180ms ease, background-color 180ms ease;
-    }
-
-    .related-module-list > a:hover {
-      padding-inline: 14px;
-      background: var(--white);
-    }
-  }
-
-  @media (max-width: 960px) {
-    .related-learning__layout {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .product-sample dl > div,
-    .related-module-list > a {
-      grid-template-columns: 32px 1fr;
-      gap: 12px;
-    }
-
-    .product-sample dl > div {
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
-
-    .related-module-list > a > small {
-      grid-column: 2;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .context-list > a,
-    .related-module-list > a {
-      transition: none;
-    }
-  }
-</style>

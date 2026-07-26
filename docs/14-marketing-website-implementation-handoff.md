@@ -19,20 +19,20 @@ Brand direction: Lipat Arah
 - Legal, status, help, login, 500, and maintenance routes are structural shells pending their owners or deployment environment.
 - `docs/url-map.csv` now uses all 25 required governance columns and records every current static route family and generated instance set.
 - Product detail pages now use feature-specific benefit copy instead of index-based filler. Solution pages use problem-specific comparisons and module notes. Role and industry pages use simpler Indonesian labels and fewer repeated section kickers.
-- Blog covers reuse approved RAMUNI Instagram launch artwork as deployable editorial assets. The featured-story placeholder graphic, duplicate end-of-article CTA, and disabled feedback fixture were removed.
+- Blog covers use original 1200 x 720 website illustrations created specifically for RAMUNI's editorial pages. No Instagram launch artwork is used as a deployable website asset. The featured-story placeholder graphic, duplicate end-of-article CTA, and disabled feedback fixture were removed.
 - Footer tablet layout, logo intrinsic ratios, homepage 1024 px type sizing, article imagery, and reduced-motion-safe family motion received a code-level visual pass.
 - Product pages now load per-product section narratives from `src/data/pageNarratives.ts`; workflows, examples, headings, and closing copy are no longer one shared filler block across nine routes.
 - Solution, role, and industry pages now use problem-, role-, and vertical-specific headings and examples. Role industry recommendations are mapped rather than sliced from the first three entries.
 - Blog home now uses an asymmetric question navigator and image-led editorial cards. The flagship stock article exercises long-form copy, tables, callouts, checklists, and editorial metadata.
 - A first-party consent adapter now provides essential, analytics, and marketing choices, persists only the choice locally, and keeps non-essential categories off by default. No analytics or advertising script is loaded yet.
 - Evidence-gated product, solution, industry, security, and calculator details default to `noindex,follow` and stay out of the sitemap until their explicit release environment gates are enabled.
-- Homepage hero and report sections now use a flatter RAMUNI editorial composition based on the Instagram launch language: teal offset fields, restrained data modules, no tilt-driven hero card, and motivated stagger motion only.
+- Homepage hero and report sections use a website-specific RAMUNI composition: teal offset fields, restrained data modules, no tilt-driven hero card, and motivated stagger motion only. The Instagram package is not a source asset for these sections.
 - The final static audit now also checks static accessibility basics: accessible names for links and buttons, image alt and dimensions, form labels, dialog labels, duplicate IDs, heading skips, and content-marker hygiene.
 - Product detail pages now include real industry slug links, related modules, one educational resource path, and a semantic synthetic evidence figure.
 - Solution detail pages now link related modules to product routes and include industry examples plus implementation expectations for each solution.
 - Role and industry pages now use role-specific support paths, Kasir avoids the demo funnel, industry-role mapping is not hard-coded, and industry pages include related solutions/resources plus synthetic example metrics.
 - Dummy guide details, glossary details, and the unavailable template hub are gated by `PUBLIC_RESOURCE_REVIEW_APPROVED`; they render as `noindex,follow` and stay out of the sitemap until substantive review is approved.
-- RAMUNI editorial covers are shipped as WebP only. The duplicate PNG deploy copies were removed; the supplied Instagram launch archive remains the recoverable design source outside Astro's disposable `dist/` output.
+- RAMUNI editorial covers are shipped as lightweight SVG files under `public/website-original/`. They were drawn specifically for the website and are independent from the supplied Instagram launch archive.
 
 ## Form endpoint contract
 

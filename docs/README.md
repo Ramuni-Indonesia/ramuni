@@ -1,5 +1,9 @@
 # RAMUNI Marketing Website and Blog Pack
 
+## CMS integration handover
+
+- [15-marketing-website-cms-integration-handover.md](./15-marketing-website-cms-integration-handover.md) — kontrak adaptasi repo Astro ke CMS, termasuk mapping data, delivery gateway, preview, publish webhook, migration parity, rollback, acceptance, dan ownership tim.
+
 Folder `docs/` sekarang dikhususkan untuk dokumen marketing website, money-site, blog, content, SEO, social launch, dan final brand implementation. Dokumen product-development tetap menjadi referensi requirement agar klaim marketing sesuai kemampuan produk.
 
 ## Urutan dokumen handover

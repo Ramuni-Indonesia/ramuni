@@ -1,26 +1,29 @@
 ---
-interface Props { kind?: 'early-access' | 'demo' | 'contact'; }
-const { kind = 'early-access' } = Astro.props;
-const labels = { 'early-access': 'Kirim pendaftaran', demo: 'Minta jadwal demo', contact: 'Kirim pesan' };
+import '../styles/forms-conversion.css';
+interface Props { kind?: 'early-access' | 'demo' | 'contact'; submitLabel?: string; }
+const { kind = 'early-access', submitLabel } = Astro.props;
+const labels = { 'early-access': 'Minta akses uji coba', demo: 'Jadwalkan Demo', contact: 'Kirim pesan' };
+const isEarlyAccess = kind === 'early-access';
+const isContact = kind === 'contact';
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const consentVersion = '2026-07-25';
 ---
 <form class="lead-form" action={enabled ? endpoint : undefined} method="post" data-lead-form={kind} data-enabled={String(enabled)}>
   <div class="form-grid">
-    <div class="field"><label for={`${kind}-name`}>Nama</label><input id={`${kind}-name`} name="name" autocomplete="name" required disabled={!enabled} /></div>
-    <div class="field"><label for={`${kind}-email`}>Email bisnis</label><input id={`${kind}-email`} name="email" type="email" autocomplete="email" required disabled={!enabled} /><small>Dipakai hanya untuk menindaklanjuti permintaan.</small></div>
-    <div class="field"><label for={`${kind}-business`}>Nama usaha</label><input id={`${kind}-business`} name="business" autocomplete="organization" required disabled={!enabled} /></div>
-    <div class="field"><label for={`${kind}-industry`}>Jenis usaha</label><select id={`${kind}-industry`} name="industry" required disabled={!enabled}><option value="">Pilih jenis usaha</option><option>Retail</option><option>F&B</option><option>Distributor</option><option>Reseller Online</option><option>Jasa</option><option>Manufaktur Kecil</option><option>Lainnya</option></select></div>
-    <div class="field"><label for={`${kind}-size`}>Ukuran tim</label><select id={`${kind}-size`} name="businessSize" required disabled={!enabled}><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21+">Lebih dari 20 orang</option></select></div>
-    <div class="field"><label for={`${kind}-intent`}>Kebutuhan utama</label><select id={`${kind}-intent`} name="intent" required disabled={!enabled}><option value="">Pilih kebutuhan</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option></select></div>
+    <div class="field"><label for={`${kind}-name`}>Nama lengkap</label><input id={`${kind}-name`} name="name" autocomplete="name" required /></div>
+    <div class="field"><label for={`${kind}-email`}>Email</label><input id={`${kind}-email`} name="email" type="email" autocomplete="email" required /><small>Dipakai untuk menindaklanjuti permintaan ini.</small></div>
+    <div class="field"><label for={`${kind}-business`}>Nama usaha</label><input id={`${kind}-business`} name="business" autocomplete="organization" required /></div>
+    {!isContact && !isEarlyAccess && <div class="field"><label for={`${kind}-industry`}>Jenis usaha</label><select id={`${kind}-industry`} name="industry" required><option value="">Pilih jenis usaha</option><option>Retail</option><option>F&B</option><option>Distributor</option><option>Reseller Online</option><option>Jasa</option><option>Manufaktur Kecil</option><option>Lainnya</option></select></div>}
+    {!isContact && !isEarlyAccess && <div class="field"><label for={`${kind}-size`}>Ukuran tim</label><select id={`${kind}-size`} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21+">Lebih dari 20 orang</option></select></div>}
+    {!isContact && <div class="field"><label for={`${kind}-intent`}>Kebutuhan utama</label><select id={`${kind}-intent`} name="intent" required><option value="">Pilih kebutuhan</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option></select></div>}
   </div>
-  <div class="field"><label for={`${kind}-need`}>Konteks singkat</label><textarea id={`${kind}-need`} name="need" disabled={!enabled} aria-describedby={`${kind}-privacy`}></textarea><small id={`${kind}-privacy`}>Jangan masukkan data pelanggan, transaksi, atau informasi sensitif.</small></div>
-  <label class="consent-field"><input type="checkbox" name="consent" value="yes" required disabled={!enabled} /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi">kebijakan privasi</a>.</span></label>
+  <div class="field field--context"><label for={`${kind}-need`}>Apa yang ingin Anda pahami?</label><textarea id={`${kind}-need`} name="need" aria-describedby={`${kind}-privacy`} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai."></textarea><small id={`${kind}-privacy`}>Jangan masukkan data pelanggan, transaksi, atau informasi sensitif.</small></div>
+  <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi">kebijakan privasi</a>.</span></label>
   <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value={consentVersion} />
   <input type="hidden" name="firstTouchAttribution" data-attribution-field="first" />
   <input type="hidden" name="lastTouchAttribution" data-attribution-field="last" />
-  {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Formulir belum menerima kiriman.</strong><p>Formulir resmi belum tersedia. Gunakan halaman kontak untuk melihat kanal yang sudah aktif.</p></div>}
+  {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{submitLabel || labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Lanjutkan lewat WhatsApp.</strong><a class="button button--primary" href="https://wa.me/message/K35W6X6WT7YMJ1" target="_blank" rel="noopener noreferrer">Hubungi tim RAMUNI</a></div>}
 </form>
 {enabled && <script>
   const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id'];
@@ -80,7 +83,10 @@ const consentVersion = '2026-07-25';
       button.disabled = true;
       const original = button.textContent;
       button.textContent = 'Mengirim...';
-      if (status) status.textContent = '';
+      if (status) {
+        status.textContent = 'Sedang mengirim data...';
+        status.setAttribute('data-state', 'loading');
+      }
       try {
         const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error('request_failed');
@@ -92,9 +98,16 @@ const consentVersion = '2026-07-25';
             acceptedAt: new Date().toISOString(),
           },
         }));
+        if (status) {
+          status.textContent = 'Terkirim. Mengarahkan ke halaman konfirmasi...';
+          status.setAttribute('data-state', 'success');
+        }
         window.location.assign(`/terima-kasih/${kind === 'contact' ? 'kontak' : kind}`);
       } catch {
-        if (status) status.textContent = 'Kiriman belum berhasil. Periksa koneksi lalu coba lagi.';
+        if (status) {
+          status.textContent = 'Kiriman belum berhasil. Periksa koneksi lalu coba lagi.';
+          status.setAttribute('data-state', 'error');
+        }
         button.disabled = false;
         button.textContent = original;
       }

@@ -66,7 +66,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { title: 'Kelompokkan biaya bahan', text: 'Gunakan kategori yang sama setiap periode supaya perubahan biaya mudah dibandingkan.' },
     ],
     faq: [
-      { question: 'Apakah RAMUNI menghitung resep dan waste otomatis?', answer: 'Belum tentu. Cakupan resep dan waste hanya ditampilkan setelah fitur serta cara pencatatannya terverifikasi.' },
+      { question: 'Apakah RAMUNI menghitung resep dan bahan terbuang otomatis?', answer: 'Belum tentu. Cakupan resep dan bahan terbuang hanya ditampilkan setelah fitur serta cara pencatatannya terverifikasi.' },
       { question: 'Bagaimana membaca menu laris yang bahannya menipis?', answer: 'Bandingkan penjualan pada jam ramai dengan saldo bahan terakhir, lalu cek kondisi fisik sebelum menambah stok.' },
     ],
     privacy: 'Demo dan contoh F&B memakai data sintetis. Jangan memasukkan data pelanggan atau transaksi sensitif ke formulir publik.',
@@ -213,15 +213,15 @@ const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug)
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
 ---
-<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Pratinjau konsep RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/industri">Industri</a><span>/</span><span>{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat Demo" primaryHref="/demo" secondaryLabel="Semua Industri" secondaryHref="/industri" />
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis" secondaryLabel="Semua Industri" secondaryHref="/industri" />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
       <div class="audience-section-heading reveal">
         <h2 id="fit-title">{headings.fit}</h2>
-        <p class="lede">Gunakan halaman ini untuk menilai kecocokan alur. Fitur final mengikuti hasil pengujian RAMUNI.</p>
+        <p class="lede">Gunakan halaman ini untuk melihat apakah alurnya sesuai dengan kegiatan usaha Anda.</p>
       </div>
       <div class="audience-boundary-ledger reveal">
         <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
@@ -254,7 +254,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 
   <section class="section surface" id="metrik-contoh" aria-labelledby="metrics-title">
     <div class="container audience-split">
-      <div class="audience-section-heading reveal"><p class="eyebrow">Data sintetis</p><h2 id="metrics-title">Angka contoh untuk membaca skenario, bukan hasil pelanggan.</h2><p class="lede">Nilai ini hanya memperlihatkan hubungan antarcatatan. RAMUNI tidak mengklaim hasil usaha dari angka berikut.</p></div>
+      <div class="audience-section-heading reveal"><p class="eyebrow">Data contoh</p><h2 id="metrics-title">Lihat hubungan antarcatatan melalui contoh sederhana.</h2><p class="lede">Angka berikut adalah rekaan dan bukan hasil usaha pelanggan.</p></div>
       <dl class="audience-permission-ledger reveal">{brief.exampleMetrics.map((metric) => <div><dt>{metric.label}</dt><dd><strong>{metric.value}</strong><span>{metric.note}</span></dd></div>)}</dl>
     </div>
   </section>
@@ -291,6 +291,6 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
   </section>
 
   <section class="section" id="cta" aria-labelledby="cta-title">
-    <div class="container audience-closing reveal"><div><h2 id="cta-title">Cocokkan kebutuhan usaha {industry.title} dengan alur RAMUNI.</h2><p>Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi.</p></div><a class="button button--primary" href="/demo">Konsultasikan Kebutuhan</a></div>
+    <div class="container audience-closing reveal"><div><h2 id="cta-title">Cocokkan kebutuhan usaha {industry.title} dengan alur RAMUNI.</h2><p>Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi.</p></div><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div>
   </section>
 </BaseLayout>

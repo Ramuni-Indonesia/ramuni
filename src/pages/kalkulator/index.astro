@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const tools=[['laba-usaha','Laba usaha','Pendapatan dikurangi biaya pada periode yang sama.'],['hpp','HPP sederhana','Biaya yang berkaitan dengan barang yang tersedia untuk dijual.'],['reorder-stok','Titik reorder','Perkiraan kapan stok perlu diperiksa untuk pemesanan berikutnya.']];
+const tools=[
+  { slug:'laba-usaha', title:'Laba usaha', text:'Pendapatan dikurangi biaya pada periode yang sama.', input:'Pendapatan dan biaya', output:'Perkiraan laba' },
+  { slug:'hpp', title:'HPP sederhana', text:'Biaya yang berkaitan dengan barang yang tersedia untuk dijual.', input:'Persediaan dan pembelian', output:'Perkiraan HPP' },
+  { slug:'reorder-stok', title:'Titik reorder', text:'Perkiraan kapan stok perlu diperiksa untuk pemesanan berikutnya.', input:'Pemakaian, waktu tunggu, cadangan', output:'Titik pemeriksaan' },
+];
 ---
 <BaseLayout title="Kalkulator Bisnis RAMUNI" description="Kalkulator laba, HPP, dan reorder stok dengan formula, asumsi, dan batas yang terlihat.">
   <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Kalkulator</span></nav><p class="eyebrow">Kalkulator</p><h1>Hitung. Baca artinya. Periksa asumsi.</h1><p class="lede">Perhitungan dilakukan langsung di perangkat Anda.</p></div></section>
-  <section class="section surface"><div class="container calculator-list">{tools.map(([slug,title,text],i)=><a class="calculator-row reveal" href={`/kalkulator/${slug}`}><span>0{i+1}</span><div><h2>{title}</h2><p>{text}</p></div><b>Gunakan</b></a>)}</div></section>
+  <section class="section surface" aria-labelledby="calculator-list-title"><div class="container"><div class="section-intro reveal"><div><p class="section-kicker">Alat kerja</p><h2 id="calculator-list-title">Pilih hitungan yang ingin diperiksa.</h2></div><p>Hasil ditampilkan bersama formula dan asumsi. Angka tidak dikirim ke server.</p></div><div class="calculator-list">{tools.map((tool,i)=><a class="calculator-row reveal" href={`/kalkulator/${tool.slug}`}><span>0{i+1}</span><div><small>{tool.input} → {tool.output}</small><h3>{tool.title}</h3><p>{tool.text}</p></div><b>Gunakan</b></a>)}</div></div></section>
+  <section class="section" aria-labelledby="calculator-rule-title"><div class="container resource-path"><div class="reveal"><p class="section-kicker">Sebelum memakai hasil</p><h2 id="calculator-rule-title">Hitungan membantu memeriksa. Data usaha tetap penentu.</h2></div><div class="resource-questions"><p>Samakan periode input.</p><p>Periksa satuan dan definisi biaya.</p><p>Simpan konteks jika hasil dipakai untuk keputusan.</p></div></div></section>
 </BaseLayout>

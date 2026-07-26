@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustrasi website RAMUNI untuk pendamping keputusan AI</title>
+  <desc id="desc">Kanvas editorial website original berisi pertanyaan usaha, bukti data, ringkasan jawaban, dan keputusan yang tetap diperiksa manusia.</desc>
+  <rect width="1200" height="720" fill="#0B3045"/>
+  <path d="M0 558h1200v162H0z" fill="#F2B134"/>
+  <path d="M74 62h1052v536H74z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <path d="M118 112h612v408H118z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="M118 112h612v68H118z" fill="#168C8C"/>
+  <circle cx="154" cy="146" r="8" fill="#F2B134"/><circle cx="182" cy="146" r="8" fill="#FFFFFF"/><circle cx="210" cy="146" r="8" fill="#0B3045"/>
+  <path d="M250 140h174v12H250z" fill="#FFFFFF"/>
+  <path d="M164 224h284v76H164z" fill="#0B3045"/>
+  <circle cx="206" cy="262" r="15" fill="#F2B134"/>
+  <path d="M240 248h164v11H240zM240 270h118v8H240z" fill="#FFFFFF"/>
+  <path d="M214 330h428v120H214z" fill="#F4F0E7" stroke="#0B3045" stroke-width="3"/>
+  <path d="M252 360h152v11H252zM252 388h306v8H252zM252 414h242v8H252z" fill="#0B3045"/>
+  <path d="M488 224h154v76H488z" fill="#F2B134" stroke="#0B3045" stroke-width="3"/>
+  <path d="m522 262 18 18 54-58" fill="none" stroke="#0B3045" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M780 112h302v408H780z" fill="#168C8C" stroke="#0B3045" stroke-width="3"/>
+  <path d="M820 158h130v13H820zM820 188h214v8H820z" fill="#FFFFFF"/>
+  <path d="M820 236h222v96H820z" fill="#FFFFFF"/>
+  <path d="M854 268h96v11H854zM854 296h146v8H854z" fill="#0B3045"/>
+  <path d="M820 370h94v104H820z" fill="#F2B134"/>
+  <path d="M944 370h98v104H944z" fill="#0B3045"/>
+  <path d="m850 440 22-34 20 14 30-52" fill="none" stroke="#0B3045" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="993" cy="422" r="26" fill="none" stroke="#FFFFFF" stroke-width="10"/>
+  <path d="M993 396v26l19 12" stroke="#FFFFFF" stroke-width="7" fill="none"/>
+  <path d="M174 610h292v70H174z" fill="#0B3045"/>
+  <path d="M210 636h176v11H210zM210 660h118v8H210z" fill="#FFFFFF"/>
+  <path d="M866 606h150v58H866z" fill="#FFFFFF" stroke="#0B3045" stroke-width="3"/>
+  <path d="m900 634 18 18 50-56" fill="none" stroke="#168C8C" stroke-width="10" stroke-linejoin="round"/>
+</svg>

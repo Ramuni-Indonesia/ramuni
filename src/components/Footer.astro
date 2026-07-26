@@ -1,6 +1,7 @@
 ---
 import { footerNavigation } from '../data/site';
 const year = new Date().getFullYear();
+const publicHref = (href: string) => href === '/demo' ? '/tour-produk-gratis' : href;
 ---
 <footer class="site-footer">
   <div class="container">
@@ -9,7 +10,7 @@ const year = new Date().getFullYear();
       {footerNavigation.map((group) => (
         <nav class="footer-col" aria-label={group.label}>
           <h2>{group.label}</h2>
-          {group.links.map((link) => <a href={link.href}>{link.label}</a>)}
+          {group.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}>{link.href === '/demo' ? 'Coba Simulasi Gratis' : link.label}</a>)}
           {group.label === 'Legal' && <button class="footer-button" type="button" data-cookie-settings>Kelola Cookie</button>}
         </nav>
       ))}

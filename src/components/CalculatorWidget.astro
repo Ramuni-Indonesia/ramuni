@@ -1,0 +1,83 @@
+---
+import { calculators, type CalculatorKey } from '../data/calculators';
+
+interface Props {
+  kind: CalculatorKey;
+  embedded?: boolean;
+}
+
+const { kind, embedded = false } = Astro.props;
+const calculator = calculators[kind];
+const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
+---
+
+<section class:list={['ramuni-calculator', { 'ramuni-calculator--embedded': embedded }]} data-calculator-widget={kind} aria-labelledby={titleId}>
+  <div class="ramuni-calculator__intro">
+    <span>{embedded ? 'Coba di artikel' : 'Hitung dengan data Anda'}</span>
+    <h2 id={titleId}>{calculator.shortTitle}</h2>
+    <p>{calculator.decision}</p>
+  </div>
+
+  <div class="ramuni-calculator__workspace">
+    <form class="ramuni-calculator__form">
+      {calculator.fields.map((field) => <div class="ramuni-calculator__field">
+        <label for={`${titleId}-${field.name}`}>{field.label}</label>
+        <div class="ramuni-calculator__input">
+          <input id={`${titleId}-${field.name}`} name={field.name} type="number" min="0" step="any" inputmode="decimal" required />
+          <span>{field.unit}</span>
+        </div>
+      </div>)}
+      <div class="ramuni-calculator__actions">
+        <button class="button button--primary" type="submit">Hitung hasil</button>
+        <button class="button button--secondary" type="reset">Atur ulang</button>
+      </div>
+      <p class="ramuni-calculator__privacy">Hitungan berjalan di browser. Jangan masukkan data pribadi atau informasi sensitif.</p>
+    </form>
+
+    <div class="ramuni-calculator__result" aria-live="polite">
+      <span>Hasil</span>
+      <strong data-calculator-result>Belum dihitung</strong>
+      <p data-calculator-note>Isi semua angka untuk melihat hasil dan cara membacanya.</p>
+      <div class="ramuni-calculator__formula"><small>Rumus yang dipakai</small><code>{calculator.formula}</code></div>
+      <p class="ramuni-calculator__disclaimer">Hasil bersifat edukasi. Periksa kembali satuan, periode, dan catatan usaha Anda.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const formatNumber = (value: number) => new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format(value);
+  document.querySelectorAll<HTMLElement>('[data-calculator-widget]').forEach((widget) => {
+    if (widget.dataset.ready === 'true') return;
+    widget.dataset.ready = 'true';
+    const form = widget.querySelector('form');
+    const result = widget.querySelector<HTMLElement>('[data-calculator-result]');
+    const note = widget.querySelector<HTMLElement>('[data-calculator-note]');
+    if (!(form instanceof HTMLFormElement) || !result || !note) return;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const values = Object.fromEntries(Array.from(new FormData(form).entries()).map(([key, value]) => [key, Number(value)]));
+      const kind = widget.dataset.calculatorWidget;
+      let value = 0;
+      if (kind === 'laba-usaha') value = values.income - values.cost;
+      if (kind === 'hpp') value = values.opening + values.purchase - values.closing;
+      if (kind === 'reorder-stok') value = values.daily * values.lead + values.safety;
+
+      const isUnitResult = kind === 'reorder-stok';
+      result.textContent = `${isUnitResult ? '' : 'Rp '}${formatNumber(value)}${isUnitResult ? ' unit' : ''}`;
+      note.textContent = value < 0
+        ? 'Hasil negatif. Periksa kembali periode dan angka yang dimasukkan.'
+        : isUnitResult
+          ? 'Mulai periksa pemesanan saat stok mendekati angka ini.'
+          : 'Bandingkan hasil dengan periode sebelumnya sebelum menarik kesimpulan.';
+      widget.dataset.hasResult = 'true';
+    });
+
+    form.addEventListener('reset', () => {
+      result.textContent = 'Belum dihitung';
+      note.textContent = 'Isi semua angka untuk melihat hasil dan cara membacanya.';
+      delete widget.dataset.hasResult;
+    });
+  });
+</script>

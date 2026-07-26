@@ -1,42 +1,74 @@
 ---
 import { accountNavigation, headerNavigation, launchCta, type MegaNavigationGroup } from '../data/site';
+import '../styles/forms-conversion.css';
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const current = (href: string) => path === href || path.startsWith(`${href}/`);
 const isMegaGroup = (item: (typeof headerNavigation)[number]): item is MegaNavigationGroup => 'columns' in item;
+const publicHeaderNavigation = headerNavigation.filter((item) => item.href !== '/harga');
+const publicHref = (href: string) => href === '/demo' ? '/tour-produk-gratis' : href;
+const publicActions = (actions: { label: string; href: string }[] = []) => actions.filter((action) => action.href !== '/harga');
 const groupId = (label: string) => `nav-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const groupClass = (label: string) => `mega-menu mega-menu--${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const megaCopy: Record<string, { title: string; description: string; featuredTitle?: string; featuredText?: string; featuredCta?: string }> = {
+  Produk: {
+    title: 'Pilih bagian usaha yang ingin Anda rapikan.',
+    description: 'Mulai dari penjualan, stok, keuangan, pelanggan, atau laporan.',
+    featuredTitle: 'Belum tahu harus mulai dari mana?',
+    featuredText: 'Pilih masalah usaha terlebih dahulu. Kami tunjukkan modul yang relevan.',
+    featuredCta: 'Lihat semua produk',
+  },
+  Solusi: {
+    title: 'Mulai dari masalah yang paling sering menghambat keputusan.',
+    description: 'Lihat data apa yang perlu diperiksa untuk penjualan, stok, kas, pelanggan, atau laporan.',
+  },
+  'Sumber Daya': {
+    title: 'Cari jawaban sesuai pekerjaan Anda.',
+    description: 'Baca panduan, gunakan alat hitung, atau cari istilah bisnis.',
+  },
+};
+const linkDescriptionOverrides: Record<string, string> = {
+  '/solusi/naikkan-omzet': 'Cari produk, waktu, dan pelanggan yang memengaruhi omzet.',
+  '/solusi/pahami-pelanggan': 'Kenali pembelian berulang dari riwayat yang tersedia.',
+  '/solusi/laporan-bisnis-otomatis': 'Samakan periode, rumus, dan sumber laporan.',
+  '/bantuan': 'Temukan panduan dan jalur bantuan.',
+  '/status': 'Periksa informasi layanan terbaru.',
+};
+const linkLabelOverrides: Record<string, string> = {
+  '/solusi/laporan-bisnis-otomatis': 'Laporan Bisnis',
+};
+const actionLabelOverrides: Record<string, string> = { '/demo': 'Lihat cara kerja' };
 const groupActive = (item: MegaNavigationGroup) => {
   const links = item.columns.flatMap((column) => column.links).concat(item.featured ? [{ label: item.featured.title, href: item.featured.href }] : [], item.actions || []);
   return current(item.href) || links.some((link) => current(link.href));
 };
 ---
 <header class="site-header">
-  {isHome && <div class="announcement"><div class="container"><span>Program early access RAMUNI sedang dibuka.</span><a href="/early-access">Lihat detail</a></div></div>}
+  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Lihat cara RAMUNI membaca stok, penjualan, dan kas.</span><span class="announcement-short">Coba RAMUNI dengan data contoh.</span><a href="/tour-produk-gratis">Coba simulasi</a></div></div>}
   <div class="container nav-shell">
     <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color.webp" width="560" height="140" alt="RAMUNI" /></a>
     <nav class="desktop-nav" aria-label="Navigasi utama">
-      {headerNavigation.map((item) => (
+      {publicHeaderNavigation.map((item) => (
         isMegaGroup(item) ? (
           <details class="nav-group" data-nav-group>
             <summary aria-current={groupActive(item) ? 'page' : undefined} aria-controls={groupId(item.label)}>{item.label}</summary>
             <div class={groupClass(item.label)} id={groupId(item.label)}>
               <div class="mega-lead">
-                <span>{item.eyebrow}</span><strong>{item.title}</strong><p>{item.description}</p>
-                {item.actions && <div class="mega-actions">{item.actions.map((action) => <a href={action.href}>{action.label}</a>)}</div>}
-                {item.featured && <a class="mega-feature" href={item.featured.href}><span>{item.featured.eyebrow}</span><strong>{item.featured.title}</strong><small>{item.featured.text}</small><b>{item.featured.cta}</b></a>}
+                <span>{item.eyebrow}</span><strong>{megaCopy[item.label]?.title || item.title}</strong><p>{megaCopy[item.label]?.description || item.description}</p>
+                {item.actions && <div class="mega-actions">{publicActions(item.actions).map((action) => <a href={publicHref(action.href)}>{actionLabelOverrides[action.href] || action.label}</a>)}</div>}
+                {item.featured && item.featured.href !== '/harga' && <a class="mega-feature" href={publicHref(item.featured.href)}><span>{item.featured.eyebrow}</span><strong>{megaCopy[item.label]?.featuredTitle || item.featured.title}</strong><small>{megaCopy[item.label]?.featuredText || item.featured.text}</small><b>{megaCopy[item.label]?.featuredCta || item.featured.cta}</b></a>}
               </div>
               <div class="mega-columns">
                 {item.columns.map((column) => (
                   <section class="mega-column" aria-labelledby={`${groupId(item.label)}-${groupId(column.label)}`}>
                     <h2 id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</h2>
-                    <div class="mega-links">{column.links.map((link) => <a href={link.href}><strong>{link.label}</strong>{link.description && <span>{link.description}</span>}</a>)}</div>
+                    <div class="mega-links">{column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}><span class="mega-link-copy"><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</span></a>)}</div>
                   </section>
                 ))}
               </div>
             </div>
           </details>
-        ) : <a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a>
+        ) : <a href={publicHref(item.href)} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
       {accountNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
       <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
@@ -45,7 +77,7 @@ const groupActive = (item: MegaNavigationGroup) => {
       <summary>Menu</summary>
       <div class="mobile-panel">
         <nav aria-label="Navigasi seluler">
-          {headerNavigation.map((item) => (
+          {publicHeaderNavigation.map((item) => (
             isMegaGroup(item) ? (
               <details>
                 <summary>{item.label}</summary>
@@ -54,16 +86,16 @@ const groupActive = (item: MegaNavigationGroup) => {
                   {item.columns.map((column) => (
                     <section>
                       <h2>{column.label}</h2>
-                      {column.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                      {column.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
                     </section>
                   ))}
-                  {item.featured && <a class="mobile-feature" href={item.featured.href}>{item.featured.cta}</a>}
+                  {item.featured && item.featured.href !== '/harga' && <a class="mobile-feature" href={publicHref(item.featured.href)}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}
                 </div>
               </details>
-            ) : <a href={item.href}>{item.label}</a>
+            ) : <a href={publicHref(item.href)}>{item.label}</a>
           ))}
           {accountNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
-          <a href="/kontak">Kontak</a><a href="/kebijakan-cookie">Pengaturan cookie</a>
+          <a href="https://wa.me/message/K35W6X6WT7YMJ1">Kontak</a><a href="/kebijakan-cookie">Pengaturan cookie</a>
         </nav>
         <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
       </div>
@@ -78,6 +110,8 @@ const groupActive = (item: MegaNavigationGroup) => {
     ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
     : [];
   const desktopIndex = (node: Element | null) => desktopItems.findIndex((item) => item === node);
+  const desktopHover = window.matchMedia('(min-width: 961px) and (hover: hover)');
+  let hoverCloseTimer: number | undefined;
   const closeDesktopGroups = () => groups.forEach((group) => {
     group.removeAttribute('open');
     group.querySelector(':scope > summary')?.setAttribute('aria-expanded', 'false');
@@ -86,6 +120,16 @@ const groupActive = (item: MegaNavigationGroup) => {
     if (!(group instanceof HTMLDetailsElement)) return;
     const summary = group.querySelector(':scope > summary');
     if (summary instanceof HTMLElement) summary.setAttribute('aria-expanded', String(group.open));
+    summary?.addEventListener('mouseenter', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
+    summary?.addEventListener('mouseover', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
     group.addEventListener('toggle', () => {
       const trigger = group.querySelector(':scope > summary');
       if (trigger instanceof HTMLElement) trigger.setAttribute('aria-expanded', String(group.open));
@@ -93,6 +137,28 @@ const groupActive = (item: MegaNavigationGroup) => {
         item.removeAttribute('open');
         item.querySelector(':scope > summary')?.setAttribute('aria-expanded', 'false');
       });
+    });
+    group.addEventListener('pointerenter', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      groups.filter((item) => item !== group).forEach((item) => item.removeAttribute('open'));
+      group.open = true;
+    });
+    group.addEventListener('pointerleave', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      hoverCloseTimer = window.setTimeout(() => {
+        if (!group.matches(':focus-within')) group.open = false;
+      }, 140);
+    });
+    group.addEventListener('focusin', () => {
+      if (!desktopHover.matches) return;
+      window.clearTimeout(hoverCloseTimer);
+      group.open = true;
+    });
+    group.addEventListener('focusout', (event) => {
+      if (!desktopHover.matches || group.contains(event.relatedTarget as Node)) return;
+      group.open = false;
     });
   });
   if (desktopNav instanceof HTMLElement) {

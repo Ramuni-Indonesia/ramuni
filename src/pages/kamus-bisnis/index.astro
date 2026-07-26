@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const terms=[['arus-kas','Arus kas','Pergerakan uang masuk dan keluar pada suatu periode.'],['hpp','Harga Pokok Penjualan','Biaya yang berkaitan dengan barang yang terjual.'],['omzet','Omzet','Nilai penjualan sebelum dikurangi biaya.'],['stok-pengaman','Stok pengaman','Cadangan untuk membantu menghadapi ketidakpastian.']];
+const terms=[
+  { slug:'arus-kas', title:'Arus kas', text:'Pergerakan uang masuk dan keluar pada suatu periode.', use:'Untuk melihat waktu uang benar-benar bergerak' },
+  { slug:'hpp', title:'Harga Pokok Penjualan', text:'Biaya yang berkaitan dengan barang yang terjual.', use:'Untuk membaca margin dengan definisi biaya yang sama' },
+  { slug:'omzet', title:'Omzet', text:'Nilai penjualan sebelum dikurangi biaya.', use:'Untuk melihat nilai transaksi, bukan keuntungan' },
+  { slug:'stok-pengaman', title:'Stok pengaman', text:'Cadangan untuk membantu menghadapi ketidakpastian.', use:'Untuk menimbang risiko kehabisan stok' },
+];
 ---
 <BaseLayout title="Kamus Bisnis untuk UMKM" description="Kamus bisnis RAMUNI untuk memahami istilah omzet, HPP, arus kas, stok, dan operasional dalam bahasa sederhana.">
   <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Kamus Bisnis</span></nav><p class="eyebrow">Kamus Bisnis</p><h1>Istilah bisnis, tanpa bahasa yang berputar.</h1><p class="lede">Definisi singkat, contoh, dan alasan mengapa istilah itu penting.</p></div></section>
-  <section class="section surface"><div class="container glossary-index">{terms.map(([slug,title,text])=><a class="glossary-row reveal" href={`/kamus-bisnis/${slug}`}><h2>{title}</h2><p>{text}</p><b>Baca arti</b></a>)}</div></section>
+  <section class="section surface" aria-labelledby="glossary-list-title"><div class="container"><div class="section-intro reveal"><div><p class="section-kicker">A sampai Z</p><h2 id="glossary-list-title">Pahami istilahnya. Lalu lihat kapan dipakai.</h2></div><p>Definisi dibuat ringkas dan dihubungkan ke keputusan harian, bukan sekadar arti formal.</p></div><div class="glossary-index">{terms.map((term)=><a class="glossary-row reveal" href={`/kamus-bisnis/${term.slug}`}><h3>{term.title}</h3><div><p>{term.text}</p><small>{term.use}</small></div><b>Baca arti</b></a>)}</div></div></section>
+  <section class="section" aria-labelledby="glossary-bridge-title"><div class="container resource-path"><div class="reveal"><p class="section-kicker">Hubungkan istilah</p><h2 id="glossary-bridge-title">Satu angka jarang berdiri sendiri.</h2><p>Omzet perlu dibaca bersama biaya. Stok perlu dibaca bersama laju penjualan. Arus kas perlu dibaca bersama waktu pembayaran.</p></div><div class="resource-questions"><a href="/panduan/memahami-arus-kas">Arus kas dan waktu</a><a href="/kalkulator/hpp">HPP dan margin</a><a href="/panduan/membaca-stok-harian">Stok dan penjualan</a></div></div></section>
 </BaseLayout>

@@ -1,9 +1,158 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { resources } from '../data/site';
+import { getCollection } from 'astro:content';
+import StoryMicroVisual from '../components/blog/StoryMicroVisual.astro';
+import { releaseGates } from '../config/release';
+import '../styles/resource-hub.css';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
+const featuredPost = posts.find((post) => post.data.featured) || posts[0];
+const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
+const resourceFormats = [
+  { href: '/panduan', title: 'Panduan', text: 'Ikuti langkah berurutan saat Anda belum tahu harus mulai memeriksa dari mana.', fit: 'Untuk memahami proses', visual: 'guide' },
+  { href: '/template', title: 'Template', text: 'Pakai struktur siap isi agar review rutin tidak dimulai dari halaman kosong.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
+  { href: '/kalkulator', title: 'Kalkulator', text: 'Uji laba, HPP, atau titik pesan ulang dengan rumus yang ditampilkan terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
+  { href: '/kamus-bisnis', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
+];
+
+const paths = [
+  { question: 'Stok berubah, tetapi penyebabnya belum terlihat', href: '/panduan/membaca-stok-harian', label: 'Baca panduan stok', visual: 'stock' },
+  { question: 'Omzet naik, tetapi laba belum terasa', href: '/kalkulator/laba-usaha', label: 'Periksa laba sederhana', visual: 'profit' },
+  { question: 'Istilah di laporan masih membingungkan', href: '/kamus-bisnis', label: 'Cari istilah bisnis', visual: 'terms' },
+  { question: 'Review mingguan belum punya urutan tetap', href: '/template', label: 'Lihat struktur template', visual: 'weekly' },
+];
+
+const modes = [
+  { id: 'baca', label: 'Baca', title: 'Mulai dari penjelasan', text: 'Artikel dan panduan membantu Anda memahami konteks sebelum membuka alat.', steps: ['Pilih masalah', 'Baca contoh', 'Catat pertanyaan'] },
+  { id: 'coba', label: 'Coba', title: 'Uji dengan angka contoh', text: 'Kalkulator dan template membantu memeriksa asumsi tanpa mengirim data usaha.', steps: ['Isi angka', 'Lihat cara hitung', 'Bandingkan hasil'] },
+  { id: 'periksa', label: 'Periksa', title: 'Lihat sumber dan batasnya', text: 'Standar editorial menjelaskan cara materi disusun, diperbarui, dan dikoreksi.', steps: ['Buka sumber', 'Cek pembaruan', 'Kirim koreksi'] },
+];
+
+const standards = [
+  { number: '01', title: 'Sumber terlihat', text: 'Definisi, periode, dan rujukan ditulis agar pembaca dapat memeriksanya.', href: '/blog/kebijakan-sumber' },
+  { number: '02', title: 'Contoh diberi konteks', text: 'Data contoh tidak ditampilkan sebagai hasil usaha nyata atau janji produk.', href: '/blog/metodologi-fact-check' },
+  { number: '03', title: 'Pembaruan tercatat', text: 'Perubahan penting memiliki tanggal, ringkasan, dan jalur koreksi.', href: '/blog/kebijakan-pembaruan' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Sumber Daya RAMUNI',
+    description: 'Pusat artikel, panduan, kalkulator, template, kamus bisnis, dan standar editorial RAMUNI untuk UMKM.',
+    url: new URL('/sumber-daya/', Astro.site || Astro.url.origin).toString(),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: resourceFormats.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.title,
+      url: new URL(item.href, Astro.site || Astro.url.origin).toString(),
+    })),
+  },
+];
 ---
-<BaseLayout title="Sumber Daya Bisnis untuk UMKM" description="Panduan, template, kalkulator, dan kamus bisnis RAMUNI untuk membantu UMKM memahami angka dan keputusan sehari-hari.">
-  <section class="resource-hero"><div class="container"><p class="eyebrow">Sumber Daya</p><h1>Baca seperlunya. Pakai saat dibutuhkan.</h1><p class="lede">Pilih cara belajar yang paling dekat dengan pekerjaan Anda hari ini.</p></div></section>
-  <section class="section surface"><div class="container resource-index">{resources.map((item, i) => <a class="resource-entry reveal" href={item.href}><span>0{i + 1}</span><h2>{item.title}</h2><p>{item.text}</p><b>Buka</b></a>)}</div></section>
-  <section class="section"><div class="container resource-path"><div class="reveal"><h2>Mulai dari masalah bisnis.</h2><p>Jangan mulai dari istilah. Mulai dari pertanyaan yang ingin dijawab.</p></div><div class="resource-questions">{['Kenapa omzet berubah?', 'Stok mana yang perlu dicek?', 'Kas bergerak ke mana?', 'Apa arti HPP?', 'Kapan pelanggan kembali?'].map((text) => <a href="/blog">{text}</a>)}</div></div></section>
+
+<BaseLayout title="Sumber Daya Bisnis UMKM | RAMUNI" description="Pusat artikel, panduan, kalkulator, template, kamus bisnis, dan standar editorial untuk membantu UMKM memahami angka usaha." schema={schema}>
+  <div class="resource-hub-page">
+    <header class="resource-hub-hero">
+      <div class="container resource-hub-hero__grid">
+        <div class="resource-hub-hero__copy reveal is-visible">
+          <p class="eyebrow">Sumber Daya</p>
+          <h1>Cari jawaban untuk angka usaha.</h1>
+          <p class="lede">Baca artikel, coba alat sederhana, lalu periksa sumber dan batasnya sebelum menentukan langkah.</p>
+          <nav class="resource-hub-hero__links" aria-label="Pintasan sumber daya">
+            <a href="/blog">Artikel</a><a href="/panduan">Panduan</a><a href="/kalkulator">Kalkulator</a><a href="/kamus-bisnis">Kamus</a>
+          </nav>
+        </div>
+
+        <div class="resource-navigator reveal is-visible" data-resource-navigator>
+          <div class="resource-navigator__top"><span>Peta belajar</span><small>Gunakan data contoh</small></div>
+          <div class="resource-navigator__tabs" role="tablist" aria-label="Cara memakai sumber daya">
+            {modes.map((mode, index) => <button type="button" role="tab" id={`resource-tab-${mode.id}`} aria-controls={`resource-panel-${mode.id}`} aria-selected={index === 0 ? 'true' : 'false'} data-resource-tab={mode.id}>{mode.label}</button>)}
+          </div>
+          <div class="resource-navigator__panels">
+            {modes.map((mode, index) => <section role="tabpanel" id={`resource-panel-${mode.id}`} aria-labelledby={`resource-tab-${mode.id}`} data-resource-panel={mode.id} hidden={index !== 0}>
+              <span>0{index + 1}</span><h2>{mode.title}</h2><p>{mode.text}</p>
+              <ol>{mode.steps.map((step, stepIndex) => <li><b>{String(stepIndex + 1).padStart(2, '0')}</b><strong>{step}</strong></li>)}</ol>
+            </section>)}
+          </div>
+          <div class="resource-navigator__orbit" aria-hidden="true"><i></i><b></b><img src={mascotSrc} width="720" height="720" alt="" decoding="async" /></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="resource-hub-main">
+      <section class="section resource-library" aria-labelledby="resource-library-title">
+        <div class="container">
+          <div class="resource-library__head reveal">
+            <p class="section-kicker">Pusat materi</p>
+            <h2 id="resource-library-title">Pilih format yang sesuai dengan pekerjaan Anda.</h2>
+            <p>Tidak ada urutan wajib. Mulai dari artikel jika butuh konteks, atau langsung buka alat jika pertanyaannya sudah jelas.</p>
+          </div>
+          <div class="resource-library__grid">
+            {featuredPost && <a class="resource-featured-article reveal" href={`/blog/${featuredPost.id}`}>
+              <figure><img src={featuredPost.data.cover} width="1200" height="720" alt={featuredPost.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={featuredPost.data.categorySlug} compact /></figure>
+              <div><span>Artikel pilihan</span><h3>{featuredPost.data.title}</h3><p>{featuredPost.data.dek}</p><small>{formatDate(featuredPost.data.updatedAt || featuredPost.data.publishedAt)} · {featuredPost.data.readingTime}</small><b>Baca artikel <i aria-hidden="true">&rarr;</i></b></div>
+            </a>}
+            <div class="resource-format-grid">
+              {resourceFormats.map((item, index) => <a class="resource-format-card reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['resource-format-card__visual', `resource-format-card__visual--${item.visual}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><small>{item.fit}</small><h3>{item.title}</h3><p>{item.text}</p></div><b>Buka {item.title} <i aria-hidden="true">&rarr;</i></b></a>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section resource-problem-stage" aria-labelledby="resource-problem-title">
+        <div class="container">
+          <div class="resource-problem-stage__head reveal"><p class="section-kicker">Mulai dari masalah</p><h2 id="resource-problem-title">Apa yang ingin Anda pahami hari ini?</h2><p>Pilih kalimat yang paling dekat. Setiap jalur membuka satu materi yang bisa langsung dipakai.</p></div>
+          <div class="resource-problem-deck">
+            {paths.map((item, index) => <a class:list={['resource-problem-card', `resource-problem-card--${item.visual}`, 'reveal']} href={item.href} style={`--i:${index}`}>
+              <div class="resource-problem-card__visual" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <span>0{index + 1}</span><h3>{item.question}</h3><b>{item.label} <i aria-hidden="true">&rarr;</i></b>
+            </a>)}
+          </div>
+        </div>
+      </section>
+
+      <section class="section resource-editorial" aria-labelledby="resource-editorial-title">
+        <div class="container resource-editorial__layout">
+          <div class="resource-editorial__statement reveal"><p class="section-kicker">Standar editorial</p><h2 id="resource-editorial-title">Materi yang berguna harus bisa diperiksa.</h2><p>Kami menunjukkan sumber, konteks contoh, dan riwayat pembaruan. Jika ada yang kurang tepat, jalur koreksi selalu tersedia.</p><a class="text-link" href="/blog/kebijakan-editorial">Baca kebijakan editorial</a></div>
+          <ol class="resource-editorial__standards">
+            {standards.map((standard) => <li class="reveal"><a href={standard.href}><span>{standard.number}</span><div><h3>{standard.title}</h3><p>{standard.text}</p></div><i aria-hidden="true">&rarr;</i></a></li>)}
+          </ol>
+          <nav class="resource-editorial__policies" aria-label="Kebijakan editorial"><a href="/blog/metodologi-fact-check">Pengecekan fakta</a><a href="/blog/kebijakan-sumber">Sumber</a><a href="/blog/kebijakan-pembaruan">Pembaruan</a><a href="/blog/koreksi">Koreksi</a></nav>
+        </div>
+      </section>
+
+      <section class="section resource-close-stage">
+        <div class="container resource-close reveal"><div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan usaha.</h2><p>Mulai dari artikel jika masih mencari konteks, atau buka simulasi dengan data contoh.</p></div><div class="button-row"><a class="button button--primary" href="/blog">Jelajahi Artikel</a><a class="button button--secondary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-resource-navigator]').forEach((navigator) => {
+      const tabs = Array.from(navigator.querySelectorAll<HTMLButtonElement>('[data-resource-tab]'));
+      const panels = Array.from(navigator.querySelectorAll<HTMLElement>('[data-resource-panel]'));
+      const activate = (id: string) => {
+        tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.resourceTab === id)));
+        panels.forEach((panel) => { panel.hidden = panel.dataset.resourcePanel !== id; });
+      };
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab.dataset.resourceTab || 'baca'));
+        tab.addEventListener('keydown', (event) => {
+          if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+          event.preventDefault();
+          const nextIndex = event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+          tabs[nextIndex]?.focus();
+          activate(tabs[nextIndex]?.dataset.resourceTab || 'baca');
+        });
+      });
+    });
+  </script>
 </BaseLayout>

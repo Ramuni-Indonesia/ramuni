@@ -1,0 +1,131 @@
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionRoot = document.querySelector<HTMLElement>('.pd-page, .sd-page, .product-hub');
+
+  const initialiseMotion = async () => {
+    if (reduceMotion || !motionRoot) return;
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]);
+    gsap.registerPlugin(ScrollTrigger);
+
+    const context = gsap.context(() => {
+      document.querySelectorAll<HTMLElement>('#product-direction-model [data-ramuni-mark-3d]').forEach((mark) => {
+        gsap.fromTo(mark,
+          { autoAlpha: 0.38, y: 54, scale: 0.94, rotateZ: -2 },
+          {
+            immediateRender: false,
+            autoAlpha: 1,
+            y: -18,
+            scale: 1,
+            rotateZ: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: mark,
+              start: 'top 92%',
+              end: 'bottom 34%',
+              scrub: 0.65,
+              onUpdate: (self) => {
+                mark.dispatchEvent(new CustomEvent('ramuni-mark-scroll', {
+                  detail: { progress: self.progress },
+                }));
+              },
+            },
+          },
+        );
+      });
+
+      document.querySelectorAll<HTMLElement>('.pd-page .product-canvas, .product-catalog .product-canvas').forEach((canvas) => {
+        gsap.fromTo(canvas,
+          { opacity: 0.72, rotateX: 5, rotateY: -4, y: 28, transformPerspective: 1100, transformOrigin: '50% 70%' },
+          {
+            immediateRender: false,
+            opacity: 1,
+            rotateX: 0,
+            rotateY: 0,
+            y: 0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: canvas,
+              start: 'top 88%',
+              end: 'top 42%',
+              scrub: 0.7,
+            },
+          },
+        );
+      });
+
+      document.querySelectorAll<HTMLElement>('.pd-workflow__steps, .product-workflow__rail').forEach((track) => {
+        const items = track.querySelectorAll<HTMLElement>('li, article');
+        if (!items.length) return;
+        gsap.fromTo(items,
+          { opacity: 0, y: 22 },
+          {
+            immediateRender: false,
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: track, start: 'top 82%', once: true },
+          },
+        );
+      });
+
+      document.querySelectorAll<HTMLElement>('.pd-page > section, .sd-page > section').forEach((section) => {
+        const targets = section.querySelectorAll<HTMLElement>(
+          '.reveal, .pd-benefit, .pd-capability-list article, .pd-related__modules > div > a, .pd-related__paths > a, .sd-symptoms > li, .sd-impact > article, .sd-workflow__step, .sd-capability, .sd-industry-list > a',
+        );
+        if (!targets.length) return;
+        gsap.fromTo(targets,
+          { autoAlpha: 0, y: 30 },
+          {
+            immediateRender: false,
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.72,
+            stagger: 0.07,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: section, start: 'top 78%', once: true },
+          },
+        );
+      });
+
+      document.querySelectorAll<HTMLElement>('.pd-visual, .sd-hero__visual').forEach((visual) => {
+        gsap.fromTo(visual,
+          { y: 34, rotateZ: -1.2, scale: 0.96 },
+          {
+            immediateRender: false,
+            y: -10,
+            rotateZ: 0,
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: visual,
+              start: 'top 88%',
+              end: 'bottom 30%',
+              scrub: 0.65,
+            },
+          },
+        );
+      });
+
+    });
+
+    window.addEventListener('pagehide', () => context.revert(), { once: true });
+  };
+
+  if (!reduceMotion && motionRoot) {
+    if (!('IntersectionObserver' in window)) {
+      void initialiseMotion();
+    } else {
+      const motionLoader = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        motionLoader.disconnect();
+        void initialiseMotion();
+      }, { rootMargin: '120px 0px' });
+      motionLoader.observe(motionRoot);
+    }
+  }
+</script>
