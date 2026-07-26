@@ -156,3 +156,4 @@
 @media(prefers-reduced-motion:reduce){.resource-format-card__visual i{animation:none!important}}
 .resource-navigator__orbit img{position:absolute;right:-18px;bottom:-42px;width:132px;height:132px;object-fit:cover;border:7px solid var(--white);border-radius:50%;box-shadow:0 14px 32px rgb(11 48 69/.14);transform:rotate(5deg);pointer-events:none}
 @media(prefers-reduced-motion:no-preference){.resource-navigator__orbit img{animation:resource-mascot-float 5.6s ease-in-out infinite}@keyframes resource-mascot-float{50%{transform:translateY(-8px) rotate(1deg)}}}
+@media(min-width:1081px) and (max-width:1200px){.resource-hub-hero__grid{grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr)}}

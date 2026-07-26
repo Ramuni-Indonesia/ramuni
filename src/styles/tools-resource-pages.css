@@ -29,3 +29,4 @@
 .tools-section-head h2{max-width:20ch}
 .tool-card__copy h3{font-size:clamp(1.4rem,2.1vw,2.05rem);line-height:1.12}
 @media(max-width:620px){.tools-hero__copy h1,.tool-detail-hero__copy h1{font-size:clamp(2.35rem,10.5vw,3.2rem)}}
+@media(min-width:1081px) and (max-width:1200px){.tools-hero__grid,.tool-detail-hero__grid{grid-template-columns:minmax(0,.8fr) minmax(520px,1.2fr)}.tools-hero__copy,.tool-detail-hero__copy{max-width:none}.tools-hero__lab,.tool-detail-hero__visual{width:100%;justify-self:stretch}}

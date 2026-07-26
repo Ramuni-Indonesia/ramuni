@@ -567,3 +567,4 @@
 @media(prefers-reduced-motion:reduce){
   .blog-decision-cta__panel,.blog-decision-cta__mascot{animation:none!important}
 }
+@media(min-width:1081px) and (max-width:1200px){.blog-hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(340px,.72fr)}}

@@ -159,7 +159,7 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
       const nodes = document.querySelectorAll('.reveal');
       nodes.forEach((node) => {
         node.addEventListener('animationend', (event) => {
-          if (event instanceof AnimationEvent && event.target === node && event.animationName === 'reveal-arrive') {
+          if (event instanceof AnimationEvent && event.target === node) {
             node.classList.add('is-settled');
           }
         });

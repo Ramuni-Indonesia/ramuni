@@ -1,16 +1,20 @@
 <script>
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopMotion = window.matchMedia('(min-width: 1201px) and (hover: hover) and (pointer: fine)');
   const motionRoot = document.querySelector<HTMLElement>('.pd-page, .sd-page, .product-hub');
+  let activeContext: { revert: () => void } | undefined;
+  let motionLoader: IntersectionObserver | undefined;
 
   const initialiseMotion = async () => {
-    if (reduceMotion || !motionRoot) return;
+    if (reduceMotion.matches || !desktopMotion.matches || !motionRoot || activeContext) return;
     const [{ gsap }, { ScrollTrigger }] = await Promise.all([
       import('gsap'),
       import('gsap/ScrollTrigger'),
     ]);
+    if (reduceMotion.matches || !desktopMotion.matches || !motionRoot || activeContext) return;
     gsap.registerPlugin(ScrollTrigger);
 
-    const context = gsap.context(() => {
+    activeContext = gsap.context(() => {
       document.querySelectorAll<HTMLElement>('#product-direction-model [data-decision-flow-3d]').forEach((mark) => {
         gsap.fromTo(mark,
           { autoAlpha: 0.38, y: 54, scale: 0.94, rotateZ: -2 },
@@ -94,19 +98,38 @@
 
     });
 
-    window.addEventListener('pagehide', () => context.revert(), { once: true });
   };
 
-  if (!reduceMotion && motionRoot) {
+  const resetMotion = () => {
+    motionLoader?.disconnect();
+    motionLoader = undefined;
+    activeContext?.revert();
+    activeContext = undefined;
+  };
+
+  const armMotion = () => {
+    resetMotion();
+    if (reduceMotion.matches || !desktopMotion.matches || !motionRoot) return;
     if (!('IntersectionObserver' in window)) {
       void initialiseMotion();
     } else {
-      const motionLoader = new IntersectionObserver((entries) => {
+      motionLoader = new IntersectionObserver((entries) => {
         if (!entries.some((entry) => entry.isIntersecting)) return;
-        motionLoader.disconnect();
+        motionLoader?.disconnect();
+        motionLoader = undefined;
         void initialiseMotion();
       }, { rootMargin: '120px 0px' });
       motionLoader.observe(motionRoot);
     }
-  }
+  };
+
+  const handleMotionPreference = () => armMotion();
+  reduceMotion.addEventListener('change', handleMotionPreference);
+  desktopMotion.addEventListener('change', handleMotionPreference);
+  window.addEventListener('pagehide', () => {
+    reduceMotion.removeEventListener('change', handleMotionPreference);
+    desktopMotion.removeEventListener('change', handleMotionPreference);
+    resetMotion();
+  }, { once: true });
+  armMotion();
 </script>
