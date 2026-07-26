@@ -49,29 +49,30 @@ export async function runCandidateBuild(config, event, candidate) {
   const workRoot = join(config.stateRoot, 'work', safeId);
   const checkout = join(workRoot, 'checkout');
   const candidateFile = join(workRoot, 'candidate.json');
-  const tokenFile = join(workRoot, 'delivery-token');
   const buildHome = join(workRoot, 'home');
   const buildId = `${new Date().toISOString().replace(/[-:.]/g, '').replace('Z', 'Z')}-${config.marketingSha.slice(0, 12)}-${safeId}`;
   const releaseDir = join(config.releaseRoot, 'releases', buildId);
   await mkdir(buildHome, { recursive: true, mode: 0o750 });
   await writeFile(candidateFile, JSON.stringify(candidate), { mode: 0o600 });
-  await writeFile(tokenFile, config.deliveryToken, { mode: 0o600 });
   try {
     await run('git', ['-C', config.repository, 'worktree', 'add', '--detach', checkout, config.marketingSha], { env: process.env, timeoutMs: config.commandTimeoutMs });
-    const buildEnv = {
+    const baseEnv = {
       PATH: process.env.PATH, HOME: buildHome, NPM_CONFIG_CACHE: join(buildHome, '.npm'), ...config.publicBuildEnv,
       PUBLIC_DEPLOY_ENV: config.publicBuildEnv.PUBLIC_DEPLOY_ENV || 'staging',
       PUBLIC_INDEXING_ENABLED: 'false',
+    };
+    const candidateBuildEnv = {
+      ...baseEnv,
       RAMUNI_CONTENT_SOURCE: 'cms-candidate', RAMUNI_CMS_MIGRATION_FALLBACK: 'local',
-      RAMUNI_CMS_BASE_URL: config.cmsBaseUrl, RAMUNI_CMS_DELIVERY_TOKEN_FILE: tokenFile,
+      RAMUNI_CMS_BASE_URL: config.cmsBaseUrl, RAMUNI_CMS_DELIVERY_TOKEN_FILE: config.deliveryTokenPath,
       RAMUNI_CMS_CANDIDATE_FILE: candidateFile, RAMUNI_CMS_EVENT_ID: event.eventId,
       RAMUNI_CMS_SNAPSHOT_ID: event.snapshotId, RAMUNI_CMS_REVISION_HASH: event.revisionHash,
     };
-    await run('npm', ['ci', '--force'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'build'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'audit'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['ci', '--force'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'build'], { cwd: checkout, env: candidateBuildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'audit'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
     const dist = join(checkout, 'dist');
     for (const route of event.routes) {
       const path = outputPath(dist, route);

@@ -11,7 +11,15 @@ async function body(request, limit) {
 function json(response, status, value) { response.writeHead(status, { 'content-type': 'application/json', 'cache-control': 'no-store' }); response.end(JSON.stringify(value)); }
 function safeErrorCode(error) {
   if (!(error instanceof Error)) return 'build_failed';
-  return error.message.replace(/[^a-zA-Z0-9_:-]/g, '_').slice(0, 120) || 'build_failed';
+  const message = error.message;
+  const exact = new Set([
+    'candidate_too_large', 'candidate_binding_mismatch', 'candidate_operation_mismatch', 'candidate_routes_mismatch',
+    'candidate_payload_hash_mismatch', 'candidate_route_did_not_render_exact_snapshot', 'unpublished_route_still_rendered',
+    'public_candidate_route_verification_failed', 'public_unpublish_route_verification_failed',
+  ]);
+  if (exact.has(message)) return message;
+  const classified = /^(candidate_http_\d{3}|git_(?:timeout|exit_\d+)|npm_(?:timeout|exit_\d+))(?::|$)/.exec(message)?.[1];
+  return classified || 'build_failed';
 }
 
 export function createProviderService({ config, store, fetchImpl = fetch, buildRunner = runCandidateBuild }) {

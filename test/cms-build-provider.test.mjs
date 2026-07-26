@@ -74,7 +74,7 @@ test('provider stores sanitized build failures durably before callback', async (
   await service.tick();
   const row = store.get(event.eventId);
   assert.equal(row.status, 'callback-pending');
-  assert.match(row.buildError, /^npm_exit_1:/);
+  assert.equal(row.buildError, 'npm_exit_1');
   assert.equal(JSON.parse(row.callbackBody).status, 'failed');
   await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
 });
