@@ -131,8 +131,6 @@ Read before copy, IA, brand, blog, or SEO changes:
 - `docs/10-marketing-pages-blog-content-brief.md`
 - `docs/README.md`
 - `brand/RAMUNI/RAMUNI-BRAND-GUIDELINES.md`
-- `dist/RAMUNI_Final_Lipat_Arah_Brand_Kit.zip`
-- Product reference only: `RAMUNI-Product-Developer-Handover-v2.0-2026-07-25.zip`
 
 Final brand:
 
@@ -165,7 +163,9 @@ The user repeatedly said the site is not live-ready because:
 
 References named by the user: `https://sintra.ai/`, `https://komchat.id/ai/`, `https://www.awwwards.com/awwwards/collections/inspiring-blog-design/`, and HashMicro V11 AI-agent/Hashy OS/product pages for richer hero/dashboard composition.
 
-## Work completed in the current snapshot
+## Historical implementation summary
+
+The bullets below describe earlier implementation batches and are retained only as release history. The authoritative current state is the checkpoint at the top of this document.
 
 - Header/mega menu refined; empty icon boxes removed.
 - Icons render only when a real asset exists.
@@ -181,7 +181,7 @@ References named by the user: `https://sintra.ai/`, `https://komchat.id/ai/`, `h
 - Brand-violating 3D logo removed.
 - Brand-safe Three.js sculpture `catatan -> bukti -> arah` exists in the product flow.
 - Product detail hero was centered, heading reduced, interactive dashboard made full-width, negative margins/tilt removed, and blocking overlay icon removed.
-- Solution detail hero received a similar CSS override but still needs desktop/mobile QA.
+- Solution detail hero received a similar CSS override. Current static checks passed; fresh human visual QA is still required for the latest release.
 - Home now includes a release-gated procedural Three.js Muni companion plus 2D/3D mascot story cards. The mobile problem journey keeps the mascot contained and avoids the old sticky overlap/glitch behavior.
 
 ## Image generation state
@@ -192,25 +192,22 @@ Mandatory protocol:
 - one job at a time;
 - `quality: medium`;
 - no generic ImageGen;
+- pass the active model as `codex/gpt-5.6-sol` when model identity is needed;
 - no blind resubmission of timed-out jobs;
 - web-specific prompts, brand colors, no fake claims/logos/customers.
 
-Known failures:
+Current success state:
+
+- Generated decision artwork is tracked at `public/website-original/ramuni-decision-landscape.webp`.
+- All product icons and all five solution icons are available. The three formerly missing solution icons are tracked under `public/website-original/icons/` and synchronized to R2.
+
+Historical failures, retained only to avoid repeating the same prompts blindly:
 
 - Solution icon generation using explicit `codex/gpt-5.6-sol` did not return `data[0].b64_json`.
 - Mascot edit with or without explicit model selected provider `codex` and failed HTTP 400 because image edit was unsupported.
 - Dashboard 16:9 medium generation timed out; do not retry the identical job automatically.
 
-Mascot references:
-
-- `output/mascot-exploration/phase-1/ramuni-mascot-imagegen-route-a-friendly-cute-v2-with-logo.png`
-- `output/mascot-exploration/phase-1/ramuni-mascot-imagegen-route-b-friendly-cute-v2-with-logo.png`
-- `output/mascot-exploration/phase-1/ramuni-mascot-imagegen-route-c-friendly-cute-v2-with-logo.png`
-- `output/RAMUNI-Mascot-Friendly-ImageGen-Phase-1-v2.0.zip`
-
-Route A/Muni is the working recommendation, not final approval.
-
-Product icons are available 9/9. Solution icons available: `naikkan-omzet`, `kelola-stok`. Missing: `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, `laporan-bisnis-otomatis`.
+Mascot exploration remains release-gated. Route A/Muni is the working recommendation, not final approval. Keep `PUBLIC_MASCOT_EXPLORATION_APPROVED=false` until final mascot approval is recorded.
 
 ## Asset audit
 
@@ -219,10 +216,9 @@ No real product dashboard screenshots were found in the product ZIP/app folders.
 - `public/website-original/ai-decision-companion.svg`
 - `public/website-original/stock-ops-board.svg`
 - `public/website-original/cash-signal-ledger.svg`
+- `public/website-original/ramuni-decision-landscape.webp`
 - `public/website-original/ramuni-mascot-muni-manyar.webp`
 - `public/website-original/ramuni-mascot-problem-section.webp`
-- `outputs/hashmicro/*.png` as legacy/reference icon source
-- `output/mascot-exploration/phase-1/`
 
 The best dashboard visuals are component-built:
 
@@ -232,7 +228,7 @@ The best dashboard visuals are component-built:
 
 ## Verification checkpoint
 
-Latest local evidence:
+Latest evidence for commit `dbf4db1487ff36d980c38248ed63f7d60fe18675` and staging release `20260726T133603Z-dbf4db1487ff`:
 
 - `NAPI_RS_FORCE_WASI=1 npx -y node@22 node_modules/.bin/astro check`: 100 files, zero errors/warnings/hints.
 - Staging build: 87 pages, `noindex,follow`, no sitemap files, robots `Allow: /`.
@@ -241,9 +237,14 @@ Latest local evidence:
 - `npm audit --audit-level=high`: zero vulnerabilities.
 - `git diff --check`, `node --check public/scripts/header-nav.js`, and `node --check public/scripts/floating-contact.js`: passed.
 - The final generated `dist` was rebuilt in staging mode after the production-like gate test; staging remains fail-closed and has no sitemap output.
-- Browser-rendered visual QA remains outstanding because headless Chromium hangs on this host; do not claim screenshot/PSI evidence until a functioning browser runner or external PSI is available.
+- R2 synchronization completed with all 67 public assets present.
+- Live `/healthz` reports artifact SHA-256 `0deaf19805d4813e65f562a5385c1075d531c418ed8200acdd6fec90ab3161c3`, deployed at `2026-07-26T13:37:39Z`.
+- Live staging returns HTTP/2 200, `Cache-Control: no-store`, global `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; both sitemap endpoints return 404; legacy aliases redirect in one hop.
+- Fresh browser-rendered QA for the `dbf4db1` batch remains outstanding because Chromium, Firefox, Playwright, and CLI screenshot attempts hang on this host. Do not claim a new screenshot/PSI verdict until a functioning browser runner or external PSI is available.
 
-## Important changed files in the snapshot
+## Historical changed-file notes
+
+This list came from an older pre-release snapshot and is not a current dirty-state inventory. The authoritative latest diff is `git show --stat dbf4db1`: 58 files, 828 insertions, 528 deletions, and three new optimized solution WebPs.
 
 Tracked modified/deleted files include:
 
@@ -270,7 +271,7 @@ Tracked modified/deleted files include:
 - deleted `src/three/createRamuniMarkModel.ts`
 - deleted `src/three/initRamuniMark3D.ts`
 
-Untracked but important:
+Historical untracked-at-the-time files that have since been reviewed or committed where relevant:
 
 - `public/downloads/template/`
 - `public/scripts/header-nav.js`
@@ -301,8 +302,8 @@ Old 3D-logo files must stay deleted unless a brand-safe alternative is intention
 
 ### P0 assets and motion
 
-1. Generate the three missing solution icons through `hashmicro-imagegen-native`.
-2. Generate web-specific hero/section assets rather than reusing Instagram artwork.
+1. Generate additional web-specific hero/section assets only when a page genuinely benefits from raster art; use `hashmicro-imagegen-native` and keep source output under `outputs/` before optimization.
+2. Do not reuse Instagram artwork as a website hero unless the user explicitly approves it.
 3. Add richer visuals/interactive dashboards to product and solution pages.
 4. When real screenshots are unavailable, build lightweight product UI previews without presenting them as real customer data.
 5. Polish mascot section: centered, unclipped, scroll-following, pointing/guiding cards, ideally 3D or convincing pseudo-3D.
