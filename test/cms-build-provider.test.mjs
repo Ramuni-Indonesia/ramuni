@@ -66,7 +66,7 @@ test('provider stores sanitized build failures durably before callback', async (
     return new Response('retry', { status: 503 });
   };
   const config = { bindHost: '127.0.0.1', port: 0, maxBodyBytes: 65536, sharedSecret, replayWindowSeconds: 300, cmsBaseUrl: 'https://cms.example.test', deliveryToken: 'test-token', fetchTimeoutMs: 5000, pollIntervalMs: 60000, callbackMaxAttempts: 0 };
-  const service = createProviderService({ config, store, fetchImpl, buildRunner: async () => { throw new Error('npm_exit_1:secret/path output'); } });
+  const service = createProviderService({ config, store, fetchImpl, buildRunner: async () => { throw new Error('astro_build_exit_1:secret/path output'); } });
   await new Promise((resolve) => service.server.listen(0, '127.0.0.1', resolve));
   const endpoint = `http://127.0.0.1:${service.server.address().port}/api/cms/revalidate`;
   const timestamp = String(Math.floor(Date.now() / 1000));
@@ -75,7 +75,7 @@ test('provider stores sanitized build failures durably before callback', async (
   await service.tick();
   const row = store.get(event.eventId);
   assert.equal(row.status, 'callback-pending');
-  assert.equal(row.buildError, 'npm_exit_1');
+  assert.equal(row.buildError, 'astro_build_exit_1');
   assert.equal(JSON.parse(row.callbackBody).status, 'failed');
   await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
 });

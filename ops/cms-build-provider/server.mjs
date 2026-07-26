@@ -18,7 +18,7 @@ function safeErrorCode(error) {
     'public_candidate_route_verification_failed', 'public_unpublish_route_verification_failed',
   ]);
   if (exact.has(message)) return message;
-  const classified = /^(candidate_http_\d{3}|git_(?:timeout|exit_\d+)|npm_(?:timeout|exit_\d+))(?::|$)/.exec(message)?.[1];
+  const classified = /^(candidate_http_\d{3}|(?:git_worktree_(?:add|remove)|npm_ci|content_gateway_test|astro_build|site_audit|dependency_audit)_(?:timeout|exit_\d+))(?::|$)/.exec(message)?.[1];
   return classified || 'build_failed';
 }
 

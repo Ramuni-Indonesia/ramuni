@@ -5,6 +5,7 @@ import { join } from 'node:path';
 
 function run(command, args, options) {
   return new Promise((resolve, reject) => {
+    const label = options?.label || command;
     const child = spawn(command, args, { ...options, stdio: ['ignore', 'pipe', 'pipe'] });
     let stderr = '';
     let timedOut = false;
@@ -20,9 +21,9 @@ function run(command, args, options) {
     child.once('error', (error) => { if (timer) clearTimeout(timer); reject(error); });
     child.once('exit', (code) => {
       if (timer) clearTimeout(timer);
-      if (timedOut) reject(new Error(`${command}_timeout`));
+      if (timedOut) reject(new Error(`${label}_timeout`));
       else if (code === 0) resolve();
-      else reject(new Error(`${command}_exit_${code}:${stderr.replace(/[\r\n]+/g, ' ').slice(-1000)}`));
+      else reject(new Error(`${label}_exit_${code}:${stderr.replace(/[\r\n]+/g, ' ').slice(-1000)}`));
     });
   });
 }
@@ -55,7 +56,7 @@ export async function runCandidateBuild(config, event, candidate) {
   await mkdir(buildHome, { recursive: true, mode: 0o750 });
   await writeFile(candidateFile, JSON.stringify(candidate), { mode: 0o600 });
   try {
-    await run('git', ['-C', config.repository, 'worktree', 'add', '--detach', checkout, config.marketingSha], { env: process.env, timeoutMs: config.commandTimeoutMs });
+    await run('git', ['-C', config.repository, 'worktree', 'add', '--detach', checkout, config.marketingSha], { env: process.env, timeoutMs: config.commandTimeoutMs, label: 'git_worktree_add' });
     const baseEnv = {
       PATH: process.env.PATH, HOME: buildHome, NPM_CONFIG_CACHE: join(buildHome, '.npm'), ...config.publicBuildEnv,
       PUBLIC_DEPLOY_ENV: config.publicBuildEnv.PUBLIC_DEPLOY_ENV || 'staging',
@@ -68,11 +69,11 @@ export async function runCandidateBuild(config, event, candidate) {
       RAMUNI_CMS_CANDIDATE_FILE: candidateFile, RAMUNI_CMS_EVENT_ID: event.eventId,
       RAMUNI_CMS_SNAPSHOT_ID: event.snapshotId, RAMUNI_CMS_REVISION_HASH: event.revisionHash,
     };
-    await run('npm', ['ci', '--force'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'build'], { cwd: checkout, env: candidateBuildEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['run', 'audit'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
-    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['ci', '--force'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs, label: 'npm_ci' });
+    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs, label: 'content_gateway_test' });
+    await run('npm', ['run', 'build'], { cwd: checkout, env: candidateBuildEnv, timeoutMs: config.commandTimeoutMs, label: 'astro_build' });
+    await run('npm', ['run', 'audit'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs, label: 'site_audit' });
+    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: baseEnv, timeoutMs: config.commandTimeoutMs, label: 'dependency_audit' });
     const dist = join(checkout, 'dist');
     for (const route of event.routes) {
       const path = outputPath(dist, route);
@@ -111,7 +112,7 @@ export async function runCandidateBuild(config, event, candidate) {
     await pruneReleases(config.releaseRoot, config.releaseRetention || 8);
     return { providerBuildId: buildId, artifactDigest: digest, artifactUrl: `https://staging.ramuni.id/?release=${encodeURIComponent(buildId)}` };
   } finally {
-    await run('git', ['-C', config.repository, 'worktree', 'remove', '--force', checkout], { env: process.env }).catch(() => undefined);
+    await run('git', ['-C', config.repository, 'worktree', 'remove', '--force', checkout], { env: process.env, label: 'git_worktree_remove' }).catch(() => undefined);
     await rm(workRoot, { recursive: true, force: true });
   }
 }
