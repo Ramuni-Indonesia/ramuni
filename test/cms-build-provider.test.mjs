@@ -7,6 +7,7 @@ import test from 'node:test';
 import { createProviderService } from '../ops/cms-build-provider/server.mjs';
 import { ProviderStore } from '../ops/cms-build-provider/store.mjs';
 import { signBody } from '../ops/cms-build-provider/security.mjs';
+import { contentApprovalHash, fetchCandidate } from '../ops/cms-build-provider/candidate-client.mjs';
 
 test('provider authenticates, deduplicates, builds one exact candidate and retries callback durably', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'ramuni-provider-'));
@@ -77,4 +78,14 @@ test('provider stores sanitized build failures durably before callback', async (
   assert.equal(row.buildError, 'npm_exit_1');
   assert.equal(JSON.parse(row.callbackBody).status, 'failed');
   await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
+});
+
+test('candidate verification accepts PostgreSQL JSONB key reordering when the approved content hash is valid', async () => {
+  const payload = { title: 'Acceptance', seo: { description: 'Stable', title: 'CMS' }, workflowState: 'approved' };
+  payload.approvedVersionHash = contentApprovalHash(payload);
+  const event = { operation: 'publish', eventId: 'provider-event-jsonb-0001', snapshotId: '44', revisionHash: 'a'.repeat(64), routes: ['/produk/asisten-ai/'] };
+  const candidate = await fetchCandidate({ cmsBaseUrl: 'https://cms.example.test', deliveryToken: 'token', fetchTimeoutMs: 5000 }, event, async () => Response.json({
+    id: '44', event_id: event.eventId, payload_hash: event.revisionHash, activation_state: 'candidate', operation: 'publish', routes: event.routes, payload,
+  }));
+  assert.equal(candidate.payload.approvedVersionHash, payload.approvedVersionHash);
 });
