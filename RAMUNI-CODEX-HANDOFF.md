@@ -11,12 +11,28 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - Remote: `https://github.com/Ramuni-Indonesia/ramuni.git`
 - Canonical checkout: `/home/meetsin/internal/ramuni-source`
 - Canonical branch/upstream: `main` / `origin/main`
-- Server-continuation source commit: `482f246ca87c341dccce61b83902482cb3e4af6c`
-- Staging/CDN baseline before this continuation: `ebdea81f3b97546345ff29b9cdc5692a78c9fd83`
+- Current published source commit: `dbf4db1487ff36d980c38248ed63f7d60fe18675`
+- Current staging release: `20260726T133603Z-dbf4db1487ff`
+- Current deployed artifact SHA-256: `0deaf19805d4813e65f562a5385c1075d531c418ed8200acdd6fec90ab3161c3`
 - The user explicitly authorized direct commits and pushes to `main`. The previous mandatory continuation-branch, pull-request, and merge workflow is cancelled for this repository.
 - Always pull with `git pull --ff-only origin main`, verify a clean worktree, run the release gates, push `main`, then deploy and verify staging when runtime files changed.
 - `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, and `/home/meetsin/internal/ramuni-handoff` are separate repositories or contexts; do not mix them into the marketing site.
 - Old worktrees are audit sources only. Preserve unique valid work in `main`, then remove obsolete worktrees only after they are clean or their dirty state has been fully reviewed.
+
+## Current authoritative release checkpoint
+
+- Published directly to `main`: `dbf4db1487ff36d980c38248ed63f7d60fe18675` (`feat: strengthen ramuni trust support and seo journeys`). This supersedes older sections below that describe commits as pending push or staging activation as blocked.
+- Deployed staging release: `20260726T133603Z-dbf4db1487ff` with artifact SHA-256 `0deaf19805d4813e65f562a5385c1075d531c418ed8200acdd6fec90ab3161c3`.
+- `/bantuan/`, `/keamanan/`, and `/tentang/` were redesigned. Nine product pages and four role pages now have unique SEO metadata; role pages also have explicit self-canonicals.
+- Internal links were normalized to trailing-slash canonical URLs across 44 source files. Header/footer route matching and the solution-icon slug resolver were updated for the same URL convention.
+- Added the three previously missing solution icons for `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`. The optimized WebP files are committed, synchronized to R2, and return HTTP 200 from the CDN.
+- Help-center landmark nesting, visible keyboard focus, and the 1194px desktop-layout breakpoint were corrected. Audit routing now understands trailing-slash directory output.
+- Validation passed on Node 22: Astro check covered 100 files with zero diagnostics; 87 staging pages built; metadata, schema, accessibility, internal-link, robots/noindex, sitemap, encoding, and asset-budget gates passed; `npm audit` found zero vulnerabilities; all 67 R2 assets were synchronized.
+- Staging remains deliberately fail-closed: global HTTP `X-Robots-Tag` contains `noindex`; HTML contains `noindex,follow`; responses use `Cache-Control: no-store`; sitemap endpoints return 404; representative routes return HTTP 200.
+- Nginx legacy aliases `/demo`, `/early-access`, and `/harga` now redirect in one hop to `/tour-produk-gratis/`. The active config is `/etc/nginx/sites-available/staging.ramuni.id`; backup is `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`. `nginx -t` passed before reload.
+- Browser automation is currently unreliable on this host: Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive checks and route smoke tests passed, but do not claim a fresh screenshot verdict for this release. Perform human visual QA at 390, 1024, 1194, and 1440px before production promotion.
+- Safe release worktree used for this release: `/home/meetsin/internal/ramuni-release-20260726`. The canonical checkout `/home/meetsin/internal/ramuni-source` contains separate content-gateway WIP and must not be committed blindly.
+- Preserve the content-gateway stashes `ramuni-content-gateway-live-wip-pre-release-20260726` and `ramuni-content-gateway-wip-pre-release-20260726`, plus worktrees `/home/meetsin/internal/ramuni-source-cms-provider` and `/home/meetsin/internal/ramuni-source-marketing-gateway`, until their unique changes have been reviewed. Do not apply or drop those stashes into the canonical checkout without an overlap audit.
 
 ## Responsive stability and companion visual release
 
