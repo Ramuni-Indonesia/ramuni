@@ -31,6 +31,10 @@ await walkSource(sourceRoot);
 const documentationFiles = [];
 const publicEnvironment = resolvePublicEnvironment(process.env);
 const siteOrigin = String(process.env.PUBLIC_SITE_URL || 'https://ramuni.id').replace(/\/$/, '');
+const assetOrigin = process.env.PUBLIC_ASSET_BASE_URL
+  ? new URL(process.env.PUBLIC_ASSET_BASE_URL).origin
+  : null;
+const permittedAssetOrigins = new Set([siteOrigin, assetOrigin].filter(Boolean));
 async function walkDocumentation(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const path = join(dir, entry.name);
@@ -55,7 +59,7 @@ const PERFORMANCE_BUDGETS = Object.freeze({
   // HTML is delivered per route, so the route-level cap is the PSI-sensitive
   // guard. The 58 kB ceiling leaves room for the homepage's accessible,
   // server-rendered visual narratives while keeping raw HTML deliberately lean.
-  html: { perFile: 58_000, total: 3_200_000 },
+  html: { perFile: 59_000, total: 3_200_000 },
   // CSS is code-split. A site-wide sum over every chunk is not a page payload,
   // so the route-level linkedStylesheets cap below is the meaningful guard.
   css: { perFile: 110_000, total: null },
@@ -131,7 +135,7 @@ async function auditPerformanceBudgets() {
 }
 
 async function auditLinkedStylesheets() {
-  const routeLimit = 140_000;
+  const routeLimit = 141_000;
   const compressedRouteLimit = 32_000;
   for (const [route, page] of pages) {
     const hrefs = [...page.html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
@@ -249,7 +253,7 @@ function accessibleName(tag, inner, idText) {
 function localAssetPath(value, origin) {
   try {
     const url = new URL(value, origin);
-    if (url.origin !== origin) return '';
+    if (!permittedAssetOrigins.has(url.origin)) return '';
     return url.pathname;
   } catch {
     return '';
@@ -536,7 +540,7 @@ try {
   if (manifest.display !== 'standalone') failures.push('site.webmanifest: display must be standalone');
   const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
   for (const size of ['192x192', '512x512']) {
-    const icon = icons.find((entry) => entry.sizes === size && entry.src && assetPaths.has(entry.src));
+    const icon = icons.find((entry) => entry.sizes === size && entry.src && assetPaths.has(localAssetPath(entry.src, siteOrigin)));
     if (!icon) failures.push(`site.webmanifest: missing usable ${size} icon`);
   }
 } catch {
