@@ -36,6 +36,26 @@ Never copy values into the repository, CI logs, shell history, issue comments,
 or pull requests. Rotate an exposed token in Cloudflare, then replace the local
 file without changing its permissions.
 
+R2 S3 credentials are stored separately at
+`/home/meetsin/.config/ramuni/r2.env`, also with mode `0600`. The active bucket
+is `ramuni` in the APAC location, and its staging delivery domain is
+`https://assets-staging.ramuni.id`.
+
+To publish the static files from `public/`, run:
+
+```bash
+npm run r2:sync -- --env-file /home/meetsin/.config/ramuni/r2.env
+```
+
+The sync is non-destructive: it uploads new or changed files and skips objects
+whose remote checksum already matches the local file. It never deletes remote objects.
+Objects use their source-relative path, so `public/brand/logo.webp` becomes
+`https://assets-staging.ramuni.id/brand/logo.webp`.
+
+The R2 bucket permits cross-origin `GET` and `HEAD` requests from the staging,
+apex, and `www` sites. The custom domain caches successful assets for seven
+days and supports stale delivery during an origin interruption.
+
 ## Validation
 
 Expected behavior:
@@ -48,6 +68,9 @@ Expected behavior:
   `BYPASS`.
 - `/` and `robots.txt` include the staging noindex response header.
 - `/sitemap.xml` remains HTTP 404 while staging is private from search engines.
+- `https://assets-staging.ramuni.id/health/r2-check.txt` returns HTTP 200; a
+  repeated request from the same Cloudflare location reports
+  `cf-cache-status: HIT`.
 
 If a public filename is replaced in place, purge that URL. Fingerprinted
 `/_astro/` files do not require purging and remain safe during rollback.
