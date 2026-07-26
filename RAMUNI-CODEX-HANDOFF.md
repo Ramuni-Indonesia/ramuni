@@ -12,10 +12,10 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `4adcf8df748845cc5e5cdd4b347c11f8d3dc2bf5` (`fix: keep commercial heroes split on large tablets`).
+- Published runtime commit: `ebf0edada44dcc995cbce674dff37efd5f69f631` (`fix: stabilize tablet navigation and motion`).
 - Documentation follow-up on `main`: this handoff update is documentation-only and does not require another staging redeploy.
-- Active staging release: `20260726T135947Z-4adcf8df7488`.
-- Deployed artifact SHA-256: `068afcee9540c6c18fe8f65eb2842d8e12b6a8b59eb629fc15145c3a03d785bd`.
+- Active staging release: `20260726T141859Z-ebf0edada44d`.
+- Deployed artifact SHA-256: `c7e6cdb849ab1827a23aa326936c7f2a10e446a4a8107a80a171357a5a916ece`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -61,6 +61,9 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Help center has local search/filter behavior and accessible status messaging.
 - `/bantuan/`, `/keamanan/`, and `/tentang/` were redesigned in the latest release.
 - Product hub, solution hub, product detail, and solution detail heroes now keep their desktop split composition from 1081px through 1200px, matching the desktop navbar contract on 11–12 inch landscape tablets. They still stack at 1080px and below.
+- Tool, guide, glossary, template, resource, and blog heroes now use the same 1081px large-tablet desktop handoff while their lower-content grids retain safer tablet stacking.
+- Tablet/touch headers are opaque without backdrop blur; blur is limited to fine-pointer desktop above 1200px. A hidden-before-clip overflow fallback protects older Safari while modern browsers retain sticky-safe `overflow-x: clip`.
+- Product/solution GSAP scroll motion now runs only above 1200px on fine-pointer hover devices and reverts when motion preferences or the device breakpoint changes. Reveal settling is animation-name agnostic, and reveal-linked industry keyframes no longer start from zero opacity.
 - Nine product pages and four role pages have unique SEO metadata; role pages have explicit self-canonicals.
 - Internal links use trailing-slash canonical routes. Header/footer matching and solution-icon routing follow the same convention.
 - All nine product icons and all five solution icons are available. The latest three solution icons are `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`; their optimized WebP files are committed and synchronized to R2.
@@ -89,7 +92,7 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T135947Z-4adcf8df7488` and artifact `068afcee9540c6c18fe8f65eb2842d8e12b6a8b59eb629fc15145c3a03d785bd`.
+- Deployment health check passed for release `20260726T141859Z-ebf0edada44d` and artifact `c7e6cdb849ab1827a23aa326936c7f2a10e446a4a8107a80a171357a5a916ece`.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
