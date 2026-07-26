@@ -28,6 +28,21 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - R2 synchronization added three downloadable template CSV files and updated the changed public scripts without deleting remote objects.
 - Removed obsolete server worktrees after review: `codex-ramuni-marketing-site`, `staging-performance-20260725`, and `website-seo-ci`. This reclaimed about 1.09 GB. Their committed branch history remains in Git; reviewed uncommitted work was either integrated into `main` or intentionally discarded because newer `main` infrastructure superseded it. The incomplete old `nginx-restart.conf` override was not promoted.
 
+## Product, solution, and blog visual continuation
+
+- Implemented and pushed directly to `main`: `6344d910fca6` (`feat: enrich product and solution visual journeys`) and accessibility follow-up `087ec6f3f67aa777529aa502bee3f872c151b2f5` (`fix: strengthen visual control accessibility`).
+- Deployed staging release: `20260726T071410Z-087ec6f3f67a`.
+- Deployed artifact SHA-256: `27ac0c55de9e0d056cb9febb8c300e88dfbdf03322202df93886dfdcf4fb2316`.
+- Product detail heroes now pair concise outcome copy with the interactive Ringkasan/Bukti/Batas dashboard. The product-specific synthetic dashboard remains available in the example section rather than being discarded.
+- Product hub and all product details now close with a mascot-guided, keyboard-operable Catatan/Bukti/Arah decision workspace instead of a text-and-button block.
+- The solution hub now has an interactive Muni problem map. Solution detail heroes use a split layout and expose Pola/Bukti/Langkah views from existing synthetic data, with explicit manual-decision boundaries.
+- Solution hub/detail closing sections now use the same richer mascot decision workspace. Blog archive/article closing sections use a lighter editorial version with proper tablist/tabpanel keyboard behavior.
+- Visitor-facing internal `editorialStatus` text was removed from article sidebars while metadata and release gates remain intact.
+- Accessibility follow-up added target relationships between visual controls and panels. Decorative mascot images retain empty alt text; informative visual regions keep accessible labels.
+- Quality evidence: Astro check passed on 95 files with zero diagnostics; 83 static pages built; metadata, social preview, manifest, accessibility, schema, internal-link, sitemap/noindex, robots, encoding, and production asset-budget audit passed; dependency audit found zero vulnerabilities.
+- Staging evidence: health reports SHA `087ec6f3f67a`; representative product, solution, and blog routes return HTTP/2 200 with `Cache-Control: no-store` and global `X-Robots-Tag: noindex`; `/sitemap.xml` returns 404; `/demo` redirects to `/tour-produk-gratis`; mascot asset is served from R2/CDN with `cf-cache-status: HIT`.
+- Known limitation: a Chromium executable is not installed in this workspace, so browser screenshot comparison was not available. Static responsive rules, rendered HTML contracts, route markers, and production deployment checks passed; perform a human visual pass on desktop/tablet/mobile before declaring the broader site live-ready.
+
 ## Source of truth
 
 Read before copy, IA, brand, blog, or SEO changes:
