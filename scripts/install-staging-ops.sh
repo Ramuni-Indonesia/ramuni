@@ -44,6 +44,7 @@ else
   sudo systemctl restart nginx
 fi
 sudo systemctl start ramuni-staging-health.timer
+sudo systemctl start ramuni-staging-health.service
 
 RAMUNI_HEALTH_RESOLVE_IP=127.0.0.1 "$repo_dir/scripts/health-check-staging.sh"
 echo "Installed Nginx, HTTP/2, compression, cache policy, and recovery monitor for staging.ramuni.id"

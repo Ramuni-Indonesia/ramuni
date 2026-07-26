@@ -4,10 +4,15 @@ set -Eeuo pipefail
 state_dir=${RAMUNI_MONITOR_STATE_DIR:-/var/lib/ramuni-staging-monitor}
 failures_file="$state_dir/failures"
 threshold=${RAMUNI_MONITOR_FAILURE_THRESHOLD:-3}
-repo_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+script_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+if [[ -x $script_dir/health-check-staging.sh ]]; then
+  tool_dir=$script_dir
+else
+  tool_dir=$(CDPATH= cd -- "$script_dir/../scripts" && pwd)
+fi
 
 sudo install -d -m 0755 "$state_dir"
-if "$repo_dir/scripts/health-check-staging.sh"; then
+if "$tool_dir/health-check-staging.sh"; then
   printf '0\n' | sudo tee "$failures_file" >/dev/null
   exit 0
 fi
@@ -19,6 +24,6 @@ printf '%s\n' "$failures" | sudo tee "$failures_file" >/dev/null
 echo "Staging health failure $failures/$threshold" >&2
 
 if (( failures >= threshold )); then
-  "$repo_dir/scripts/rollback-staging.sh"
+  "$tool_dir/rollback-staging.sh"
   printf '0\n' | sudo tee "$failures_file" >/dev/null
 fi
