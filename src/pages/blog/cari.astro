@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import '../../styles/blog.css';
 import '../../styles/blog-search.css';
 
 const articles = (await getCollection('blog'))

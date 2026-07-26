@@ -69,7 +69,8 @@ const visualAlt = releaseGates.mascotExplorationEnabled
   .page-hero__visual:hover img{transform:translateY(-7px) rotate(-1deg)}
   .page-hero__visual figcaption{position:absolute;z-index:2;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.94);color:var(--ink);backdrop-filter:blur(10px)}
   .page-hero__visual figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.page-hero__visual figcaption strong{font-size:.88rem}.page-hero__visual figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
-  @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__visual{width:min(720px,100%);min-height:480px;justify-self:center}}
+  @media(max-width:1200px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__visual{width:min(720px,100%);min-height:480px;justify-self:center}}
+  @media(max-width:900px){.page-hero__visual{min-height:440px}}
   @media(max-width:620px){.page-hero__visual{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.page-hero__visual img{height:78%;bottom:96px}.page-hero__visual figcaption{grid-template-columns:1fr}.page-hero__visual figcaption small{grid-column:auto}}
   @media(prefers-reduced-motion:reduce){.page-hero__visual img{transition:none}.page-hero__visual:hover img{transform:none}}
 </style>

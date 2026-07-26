@@ -174,7 +174,7 @@
   @keyframes workflow-bar-in{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
 }
 
-@media(max-width:1080px){
+@media(max-width:1200px){
   .home-hero .hero-composition{grid-template-columns:1fr}
   .home-hero h1{max-width:15ch}
   .home-decision-demo{width:min(100%,820px);justify-self:center}
@@ -244,8 +244,8 @@
 .mascot-story__card strong{font-size:1.35rem}
 .mascot-story__card p{margin-top:10px;color:var(--ink-72);font-size:.88rem}
 .mascot-story__card:hover img{transform:scale(1.045) translateY(-3px)}
-@media(max-width:1080px){.mascot-story__card{grid-template-columns:1fr}.mascot-story__card figure{min-height:210px}.mascot-story__card>div{min-height:150px}}
-@media(max-width:820px){.companion-stage__layout{grid-template-columns:1fr}.companion-stage__copy{padding-top:0}.companion-stage__copy h2{max-width:15ch}.mascot-story{grid-template-columns:1fr}.mascot-story__card{grid-template-columns:minmax(120px,.72fr) minmax(0,1.28fr);min-height:220px}.mascot-story__card figure{min-height:220px}.mascot-story__card>div{min-height:auto}}
+@media(max-width:1200px){.mascot-story__card{grid-template-columns:1fr}.mascot-story__card figure{min-height:210px}.mascot-story__card>div{min-height:150px}}
+@media(max-width:900px){.companion-stage__layout{grid-template-columns:1fr}.companion-stage__copy{padding-top:0}.companion-stage__copy h2{max-width:15ch}.mascot-story{grid-template-columns:1fr}.mascot-story__card{grid-template-columns:minmax(120px,.72fr) minmax(0,1.28fr);min-height:220px}.mascot-story__card figure{min-height:220px}.mascot-story__card>div{min-height:auto}}
 @media(max-width:520px){.mascot-story__card{grid-template-columns:1fr}.mascot-story__card figure{min-height:280px}.companion-stage__model .decision-flow-3d,.companion-stage__model .decision-flow-3d canvas,.companion-stage__model .muni-mascot-3d,.companion-stage__model .muni-mascot-3d canvas{min-height:310px}}
 @media(prefers-reduced-motion:reduce){.mascot-story__card img{transition:none}}
 /* Contain decorative motion without clipping real content at tablet widths. */
@@ -441,7 +441,7 @@
   @keyframes industry-code-in{from{opacity:.2;transform:scale(.84) rotate(-4deg)}to{opacity:1;transform:none}}
 }
 
-@media(max-width:1080px){
+@media(max-width:1200px){
   .problem-landscape__head,.answer-theatre__question,.dashboard-gallery__head,.module-atlas__head{grid-template-columns:1fr}.problem-landscape__head .section-kicker,.answer-theatre__question .section-kicker,.answer-theatre__question>p:last-child,.module-atlas__head .section-kicker{grid-column:auto}.problem-canvas{min-height:780px}.problem-point{width:34%}.problem-point:nth-child(3){top:43%}.problem-point:nth-child(4){right:7%}.answer-mosaic{grid-template-columns:1fr 1fr}.answer-tile:first-child{grid-row:auto;grid-column:1/-1;min-height:280px}.answer-tile:nth-child(2){grid-column:1/-1}.dashboard-gallery .signal-spread__notes{grid-template-columns:repeat(2,minmax(0,1fr))}.module-cell:nth-child(n){grid-column:span 6;grid-row:auto;min-height:240px}.module-cell:nth-child(1){min-height:360px}.solution-field__statement{grid-column:1/span 9}.solution-paths{grid-column:2/-1}.industry-room__stage{grid-template-columns:.75fr 1.25fr}.industry-switcher{grid-template-columns:repeat(3,1fr)}.start-journey__head{display:grid}.start-steps--horizontal{grid-template-columns:1fr 1fr;gap:54px 0}.start-steps--horizontal::before{display:none}.start-steps--horizontal li{padding-top:0}.start-steps--horizontal li::before{top:-18px}.trust-manifesto__mark{grid-column:1/-1}.trust-manifesto>h2{grid-column:1/-1}.trust-manifesto__lede{grid-column:1/span 9}.trust-principles{grid-template-columns:1fr 1fr}.trust-principle:nth-child(2){border-right:0}.trust-principle:nth-child(-n+2){border-bottom:1px solid rgb(255 255 255/.2)}.trust-manifesto>.button{grid-column:1/-1;justify-self:start}.faq-library__head{grid-column:1/span 10}.faq-library .faq-list{grid-column:1/-1}
 }
 
@@ -457,3 +457,32 @@
 }
 
 @media(prefers-reduced-motion:reduce){.problem-canvas__core,.problem-canvas__core img{animation:none}.problem-point,.module-cell,.solution-path,.answer-tile{transform:none!important}}
+
+/* Tablet containment: keep the mascot and problem cards in normal flow so
+   scroll reveals cannot overlap the next section or create a horizontal pan. */
+.trust-manifesto>h2{font-size:var(--type-h2)}
+.problem-landscape,.answer-theatre,.dashboard-gallery,.module-atlas,.solution-field,.industry-room,.start-journey,.trust-manifesto,.faq-library{min-width:0;max-width:100%}
+
+@media(max-width:1200px){
+  .problem-canvas{min-height:0;padding:28px 22px;overflow:clip}
+  .problem-canvas::before{display:none}
+  .problem-canvas__core{position:relative;inset:auto;width:min(260px,68vw);margin:0 auto 28px;transform:none}
+  .problem-constellation{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .problem-point:nth-child(n){position:relative;inset:auto;width:auto;min-height:118px;transform:none;box-shadow:none}
+  .problem-canvas__axis{display:none}
+  .workflow-explorer .workflow-track{grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;scroll-snap-type:none}
+  .workflow-explorer .workflow-node{min-height:190px}
+  .workflow-explorer .workflow-node:last-child{grid-column:1/-1}
+  .companion-stage__model,.answer-console,.industry-room__stage{max-width:100%;overflow:clip}
+}
+
+@media(max-width:680px){
+  .problem-constellation{grid-template-columns:1fr}
+  .workflow-explorer .workflow-track{grid-template-columns:1fr}
+  .workflow-explorer .workflow-node:last-child{grid-column:auto}
+}
+
+@media(max-width:1200px) and (hover:none){
+  .problem-canvas__core,.problem-canvas__core img{animation:none}
+  .problem-point:hover,.problem-point:focus-visible,.module-cell:hover,.module-cell:focus-visible,.solution-path:hover,.solution-path:focus-visible{transform:none}
+}

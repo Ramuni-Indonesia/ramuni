@@ -16,6 +16,17 @@ const schema = {
     url: whatsappHref,
   },
 };
+const contactPaths = [
+  ['Demo produk', 'Lihat apakah RAMUNI cocok untuk alur usaha Anda.', 'Jenis usaha + masalah utama'],
+  ['Pertanyaan produk', 'Tanya batas fitur, data yang dibutuhkan, atau status rilis.', 'Konteks singkat tanpa data sensitif'],
+  ['Kerja sama', 'Bahas peluang partner, edukasi, atau kolaborasi.', 'Tujuan kerja sama + kanal resmi'],
+  ['Privasi / keamanan', 'Minta arahan untuk permintaan data atau laporan keamanan.', 'Jenis permintaan tanpa rahasia teknis'],
+];
+const safeBrief = [
+  ['Boleh dikirim', 'Peran Anda, jenis usaha, masalah yang ingin dipahami.'],
+  ['Jangan dikirim', 'Password, token, data pelanggan, transaksi rinci.'],
+  ['Langkah berikut', 'Tim mengarahkan ke demo, bantuan, keamanan, atau sumber yang tepat.'],
+];
 ---
 <BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk membahas demo, produk, atau kerja sama tanpa mengirim data sensitif." schema={schema}>
   <section class="contact-conversion-page" id="formulir-kontak" aria-labelledby="contact-form">
@@ -30,11 +41,29 @@ const schema = {
           <a href="/privasi">Privasi</a>
           <a href="/keamanan">Keamanan</a>
         </nav>
+        <div class="contact-intent-board" aria-label="Jenis pertanyaan yang bisa diarahkan">
+          {contactPaths.map((path, index) => (
+            <article class="contact-intent-card" style={`--i:${index}`}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{path[0]}</strong>
+              <p>{path[1]}</p>
+              <small>{path[2]}</small>
+            </article>
+          ))}
+        </div>
       </div>
       <div class="contact-conversion-page__panel reveal is-visible">
+        <div class="contact-channel-visual" aria-hidden="true">
+          <span>Pesan masuk</span>
+          <i></i><i></i><i></i>
+          <b>Arah aman</b>
+        </div>
         <p class="section-kicker">Kanal resmi</p>
         <h2>Mulai percakapan di WhatsApp.</h2>
         <p>Sampaikan nama, jenis usaha, dan satu hal yang ingin dipahami. Hindari mengirim data sensitif.</p>
+        <ol class="contact-safe-steps">
+          {safeBrief.map((item) => <li><strong>{item[0]}</strong><span>{item[1]}</span></li>)}
+        </ol>
         <a class="button button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Hubungi RAMUNI di WhatsApp</a>
       </div>
     </div>

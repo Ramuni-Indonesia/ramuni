@@ -1,8 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/system-status-visuals.css';
 interface Props { code: string; title: string; description: string; note: string; ctaLabel: string; ctaHref: string; secondaryLabel?: string; secondaryHref?: string; }
 const { code, title, description, note, ctaLabel, ctaHref, secondaryLabel, secondaryHref } = Astro.props;
 ---
 <BaseLayout title={title} description={description} noindex>
-  <section class="system-stage"><div class="container system-layout"><div class="system-code reveal is-visible" aria-hidden="true">{code}</div><div class="system-copy reveal is-visible"><p class="eyebrow">RAMUNI</p><h1>{title}</h1><p class="lede">{description}</p><div class="system-note"><span>Status</span><p>{note}</p></div><div class="button-row"><a class="button button--primary" href={ctaHref}>{ctaLabel}</a>{secondaryLabel && secondaryHref && <a class="text-link" href={secondaryHref}>{secondaryLabel}</a>}</div></div></div></section>
+  <section class="system-stage">
+    <div class="container system-layout">
+      <div class="system-route-map reveal is-visible" aria-hidden="true">
+        <span class="system-route-map__node system-route-map__node--start">RAMUNI</span>
+        <i></i><i></i><i></i>
+        <strong>{code}</strong>
+        <span class="system-route-map__node system-route-map__node--help">Bantuan</span>
+        <span class="system-route-map__node system-route-map__node--home">Beranda</span>
+      </div>
+      <div class="system-copy reveal is-visible"><p class="eyebrow">RAMUNI</p><h1>{title}</h1><p class="lede">{description}</p><div class="system-note"><span>Status</span><p>{note}</p></div><div class="button-row"><a class="button button--primary" href={ctaHref}>{ctaLabel}</a>{secondaryLabel && secondaryHref && <a class="text-link" href={secondaryHref}>{secondaryLabel}</a>}</div></div>
+    </div>
+  </section>
 </BaseLayout>

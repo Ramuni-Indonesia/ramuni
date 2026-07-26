@@ -111,7 +111,7 @@
   .resource-problem-card--stock .resource-problem-card__visual i{animation:resource-bar 2.8s var(--ease) infinite alternate;transform-origin:center bottom}.resource-problem-card--stock .resource-problem-card__visual i:nth-child(2){animation-delay:-.9s}.resource-problem-card--stock .resource-problem-card__visual i:nth-child(3){animation-delay:-1.6s}
   @keyframes resource-orbit{to{transform:rotate(360deg)}}@keyframes resource-orbit-reverse{to{transform:rotate(-360deg)}}@keyframes resource-bar{50%{transform:scaleY(.72)}100%{transform:scaleY(1.08)}}
 }
-@media(max-width:1080px){
+@media(max-width:1200px){
   .resource-hub-hero__grid,.resource-library__grid{grid-template-columns:1fr}.resource-hub-hero__copy h1{max-width:12ch}.resource-navigator{min-height:540px}.resource-featured-article{display:grid;grid-template-columns:1.1fr .9fr}.resource-featured-article figure{aspect-ratio:auto;min-height:520px}
   .resource-problem-card{grid-column:span 6}.resource-problem-card:nth-child(2),.resource-problem-card:nth-child(4){margin-top:0}
 }
@@ -147,7 +147,7 @@
   @keyframes resource-calc-rise{from{transform:scaleY(.72)}to{transform:scaleY(1.04)}}
   @keyframes resource-cell-focus{to{background:var(--yellow-18);border-color:var(--yellow)}}
 }
-@media(max-width:1080px){.resource-navigator{min-height:470px}.resource-featured-article figure{min-height:440px}}
+@media(max-width:1200px){.resource-navigator{min-height:470px}.resource-featured-article figure{min-height:440px}}
 @media(max-width:740px){
   .resource-hub-hero{padding:32px 0 58px}.resource-hub-hero__copy h1{font-size:clamp(2.8rem,12vw,3.9rem)}
   .resource-navigator{min-height:0}.resource-navigator__panels{margin-top:30px}.resource-library{padding-top:58px}

@@ -14,7 +14,7 @@ const initialiseFloatingContact = () => {
 
   const setScrollButtonState = () => {
     if (!(scrollButton instanceof HTMLButtonElement)) return;
-    scrollButton.hidden = window.scrollY < Math.min(420, window.innerHeight * 0.55);
+    scrollButton.hidden = window.scrollY < Math.min(320, window.innerHeight * 0.42);
   };
 
   const queueScrollButtonState = () => {

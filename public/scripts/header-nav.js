@@ -5,9 +5,24 @@ const desktopItems = desktopNav
   ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
   : [];
 const desktopIndex = (node) => desktopItems.findIndex((item) => item === node);
-const desktopHover = window.matchMedia('(min-width: 1101px) and (hover: hover)');
-const desktopLayout = window.matchMedia('(min-width: 1101px)');
+const desktopHover = window.matchMedia('(min-width: 1201px) and (hover: hover)');
+const desktopLayout = window.matchMedia('(min-width: 1201px)');
+const siteHeader = mobile?.closest('.site-header');
 let hoverCloseTimer;
+
+const syncMobilePanelOffset = () => {
+  if (!(siteHeader instanceof HTMLElement)) return;
+  siteHeader.style.setProperty('--mobile-panel-top', `${Math.ceil(siteHeader.getBoundingClientRect().height)}px`);
+};
+
+const headerResizeObserver = typeof ResizeObserver === 'function' && siteHeader instanceof HTMLElement
+  ? new ResizeObserver(syncMobilePanelOffset)
+  : null;
+
+headerResizeObserver?.observe(siteHeader);
+syncMobilePanelOffset();
+
+window.addEventListener('pagehide', () => headerResizeObserver?.disconnect(), { once: true });
 const closeDesktopGroups = () => groups.forEach((group) => {
   group.removeAttribute('open');
   group.querySelector(':scope > summary')?.setAttribute('aria-expanded', 'false');

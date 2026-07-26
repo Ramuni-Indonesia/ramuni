@@ -157,6 +157,13 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     <ConsentManager />
     <script>
       const nodes = document.querySelectorAll('.reveal');
+      nodes.forEach((node) => {
+        node.addEventListener('animationend', (event) => {
+          if (event instanceof AnimationEvent && event.target === node && event.animationName === 'reveal-arrive') {
+            node.classList.add('is-settled');
+          }
+        });
+      });
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
           for (const entry of entries) {

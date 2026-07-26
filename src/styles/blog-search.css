@@ -62,7 +62,7 @@
 .search-topic-card i{font-size:1rem;font-style:normal;transition:transform var(--fast)}
 .search-topic-card:hover i,.search-topic-card:focus-visible i{transform:translateX(4px)}
 
-@media(max-width:1080px){
+@media(max-width:1200px){
   .search-hero-layout{grid-template-columns:1fr}
   .search-route-preview{width:min(100%,720px)}
 }

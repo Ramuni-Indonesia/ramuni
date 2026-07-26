@@ -24,7 +24,7 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - Homepage, role, industry, solution, product, blog-search, calculator, and CTA journeys were made more visual with component-built dashboards, context boards, mascot-guided states, distinct calculator visuals, and reduced text-only composition. Simple/trust pages remain intentionally restrained.
 - Added a real procedural Three.js Muni model in `src/components/MuniMascot3D.astro` and `src/three/`. It loads near the viewport, adapts its camera to tablet/mobile, pauses outside the viewport, supports pointer drag without blocking vertical scroll, and fully disposes geometry, materials, observers, listeners, and WebGL context. Reduced-motion and save-data use the poster without allocating WebGL.
 - Mascot exploration is release-gated. With `PUBLIC_MASCOT_EXPLORATION_APPROVED=false`, production output contains no reference to `/website-original/mascot/ramuni-mascot-3d-*`; approved abstract decision artwork is used instead. Do not remove this gate until final mascot approval is recorded.
-- Tablet/narrow-desktop layout rules now switch major hero, product, solution, role, industry, blog, resource, form, and CTA compositions to one column around 1080px. Global `min-width:0`/max-width guardrails prevent grid min-content overflow; large visuals are centered instead of clipping or leaving an uneven right gutter.
+- Tablet/narrow-desktop layout rules now switch major hero, product, solution, role, industry, blog, resource, form, and CTA compositions to one column at or below 1200px. Global `min-width:0`/max-width guardrails prevent grid min-content overflow; large visuals are centered instead of clipping or leaving an uneven right gutter.
 - Persistent actions were repaired: scroll-to-top now uses a throttled `scrollY` threshold instead of relying only on a sentinel, while the contact control has safe-area offsets, viewport width limits, and a higher stacking layer.
 - Header/footer use larger tightly cropped lockups. Heading tokens, text measures, mobile button behavior, reveal motion, breadcrumbs, and hamburger behavior are normalized across templates.
 - Solution hub now covers all five solution problems, including Laporan. Calculator cards use H3 headings and distinct patterns. Blog search has visual results and accessible live-status semantics.
@@ -32,6 +32,17 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - Staging contract remains fail-closed: `noindex,follow`, crawlable robots, and no sitemap files. The final `dist` must be rebuilt in staging mode after any production-like gate test.
 - Headless Chromium was downloaded for QA but could not complete even a blank-page capture in this host environment and was terminated. Responsive source/build checks passed, but human visual QA is still required at 1440, 1194, 1024, 834, 768, 390, and 360 widths.
 - Push and staging deployment remain blocked only by missing server GitHub authentication. Never reuse plaintext credentials from chat or history. Restore the server credential helper or SSH authorization, push the existing local `main`, then deploy and verify the exact pushed SHA.
+
+### Second responsive, typography, and visual-density batch ready for local commit
+
+- The tablet hamburger breakpoint is synchronized between CSS and JavaScript at `max-width: 1200px` / `min-width: 1201px`. The mobile panel now measures the real rendered header height with `ResizeObserver`, so a wrapped announcement cannot overlap or leave a false top gap.
+- Navbar and footer lockups are larger while preserving the supplied brand asset. Shared H1-H4 tokens, weights, line heights, title measures, section measures, and body wrapping are normalized. Indonesian copy uses `break-word` rather than arbitrary mid-word splitting, and narrow product/solution hub headings have safer measures.
+- Major sticky/two-column layouts collapse at the tablet breakpoint. Homepage problem cards and mascot move into normal flow at or below 1200px, preventing the mascot or reveal animation from crossing into another section. PageHero visuals are shorter in tablet portrait.
+- Reveal elements settle after their first animation instead of replaying while scrolling. Heavy continuous product-detail CSS animation was removed; product motion remains in the lazy GSAP controller and interactive components. Touch/reduced-motion fallbacks remain static.
+- Contact now includes intent cards, safe-contact steps, and a WhatsApp routing visual. Status uses truthful CSS signal visuals. Shared 404/500/maintenance pages use a lightweight route-map visual. Legal/privacy pages remain intentionally restrained.
+- Blog-only editorial CSS moved out of the global bundle and `/blog/cari` imports it explicitly. This keeps commercial and product routes below the existing raw/gzip CSS budgets without raising the audit threshold.
+- This batch did not require new raster generation. The HashMicro native image route was therefore not invoked.
+- Human browser QA is still required at 1440, 1194, 1024, 834, 768, 390, and 360 widths because the local Chromium runner hangs on this host. Keep `overflow-x` safety guards, but inspect those widths for any visually clipped source element before public launch.
 
 ## Resource tools and navigation continuation — local commit pending GitHub authentication
 
@@ -186,7 +197,8 @@ Latest local evidence:
 - Production-like build with mascot approval false: 87 pages, sitemap generated, no gated 3D mascot raster references in rendered HTML.
 - `npx -y node@22 scripts/site-audit.mjs`: all metadata, social preview, manifest/icon, static accessibility, content marker, JSON-LD/schema, internal-link, sitemap/noindex, robots, encoding, and asset-budget checks passed in both staging and production-like modes.
 - `npm audit --audit-level=high`: zero vulnerabilities.
-- `git diff --check` and `node --check public/scripts/floating-contact.js`: passed.
+- `git diff --check`, `node --check public/scripts/header-nav.js`, and `node --check public/scripts/floating-contact.js`: passed.
+- The final generated `dist` was rebuilt in staging mode after the production-like gate test; staging remains fail-closed and has no sitemap output.
 - Browser-rendered visual QA remains outstanding because headless Chromium hangs on this host; do not claim screenshot/PSI evidence until a functioning browser runner or external PSI is available.
 
 ## Important changed files in the snapshot

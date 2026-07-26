@@ -104,10 +104,6 @@
   line-height: 1;
 }
 
-.pd-page[data-product='asisten-ai'] .pd-hero h1 {
-  font-size: clamp(3rem, 5.4vw, 5.35rem);
-}
-
 .pd-hero__audience {
   max-width: 52ch;
   margin-top: 24px;
@@ -121,7 +117,6 @@
   color: var(--ink-72);
 }
 
-.pd-page[data-product='asisten-ai'] .pd-hero h1,
 .pd-page[data-product='asisten-ai'] .pd-status-label {
   max-width: none;
   white-space: nowrap;
@@ -1917,147 +1912,9 @@
   }
 }
 
-@media (hover: hover) {
-  .pd-role-track a,
-  .pd-industry-spread a,
-  .pd-related__modules a,
-  .pd-related__paths > a {
-    transition: transform 260ms var(--ease), background-color 260ms var(--ease);
-  }
+/* Product motion is handled by the lazy GSAP controller and interactive visual components. */
 
-  .pd-role-track a:hover {
-    transform: translateY(-4px);
-    background: rgb(22 140 140 / 0.22);
-  }
-
-  .pd-industry-spread a:hover {
-    transform: translateY(-5px);
-  }
-
-  .pd-related__modules a:hover,
-  .pd-related__paths > a:hover {
-    transform: translateY(-3px);
-    background: var(--white);
-    box-shadow: 0 5px 0 var(--yellow);
-  }
-
-  .pd-related__modules a:hover > span,
-  .pd-related__modules a:focus-visible > span {
-    transform: rotate(-6deg);
-    background: var(--yellow);
-  }
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .pd-visual.is-visible {
-    animation: pd-visual-enter 720ms var(--ease) both;
-  }
-
-  .pd-ai-trace li {
-    animation: pd-row-enter 520ms var(--ease) both;
-    animation-delay: calc(var(--i, 0) * 80ms + 260ms);
-  }
-
-  .pd-priority-board li,
-  .pd-report-stack li,
-  .pd-data-pipeline li {
-    animation: pd-row-enter 560ms var(--ease) both;
-  }
-
-  .pd-priority-board li:nth-child(2),
-  .pd-report-stack li:nth-child(2),
-  .pd-data-pipeline li:nth-child(2) {
-    animation-delay: 90ms;
-  }
-
-  .pd-priority-board li:nth-child(3),
-  .pd-report-stack li:nth-child(3),
-  .pd-data-pipeline li:nth-child(3) {
-    animation-delay: 180ms;
-  }
-
-  .pd-catalog-cleanup__join i,
-  .pd-stock-ledger__gauge > span i,
-  .pd-money-balance__streams article i {
-    animation: pd-line-grow 760ms 220ms var(--ease) both;
-  }
-
-  .pd-sales-pulse__bars > span {
-    animation: pd-bar-grow 720ms var(--ease) both;
-  }
-
-  .pd-sales-pulse__bars > span:nth-child(2) { animation-delay: 70ms; }
-  .pd-sales-pulse__bars > span:nth-child(3) { animation-delay: 140ms; }
-  .pd-sales-pulse__bars > span:nth-child(4) { animation-delay: 210ms; }
-  .pd-sales-pulse__bars > span:nth-child(5) { animation-delay: 280ms; }
-
-  .pd-repeat-story__timeline .is-done i {
-    animation: pd-pulse-once 720ms 320ms var(--ease) both;
-  }
-
-  .pd-report-stack__sheet {
-    animation: pd-sheet-place 720ms 160ms var(--ease) both;
-  }
-
-  .pd-priority-board li.is-primary,
-  .pd-data-pipeline__result,
-  .pd-repeat-story__consent {
-    animation: pd-soft-float 5.6s ease-in-out infinite;
-  }
-
-  .pd-sales-pulse__bars > span:nth-child(3),
-  .pd-stock-ledger__gauge > span i,
-  .pd-money-balance__streams article:nth-child(2) i {
-    animation: pd-data-breathe 3.8s ease-in-out infinite alternate;
-  }
-
-  .pd-report-stack__sheet--back { animation: pd-paper-drift 6.4s ease-in-out infinite; }
-  .pd-ai-trace__answer strong { animation: pd-copy-breathe 5.2s ease-in-out infinite; }
-
-  .pd-workflow__steps.is-visible li {
-    animation: pd-row-enter 560ms var(--ease) both;
-    animation-delay: calc(var(--i) * 80ms);
-  }
-
-  @keyframes pd-visual-enter {
-    from { transform: translateY(18px) scale(0.985); box-shadow: 0 0 0 var(--ink); }
-    to { transform: none; box-shadow: 12px 12px 0 var(--ink); }
-  }
-
-  @keyframes pd-row-enter {
-    from { transform: translateY(12px); }
-    to { transform: none; }
-  }
-
-  @keyframes pd-line-grow {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-
-  @keyframes pd-bar-grow {
-    from { transform: scaleY(0); }
-    to { transform: scaleY(1); }
-  }
-
-  @keyframes pd-pulse-once {
-    0% { transform: scale(0.35); opacity: 0.4; }
-    65% { transform: scale(1.35); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  @keyframes pd-sheet-place {
-    from { opacity: 0; transform: translateY(18px) rotate(-2deg); }
-    to { opacity: 1; transform: none; }
-  }
-
-  @keyframes pd-soft-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-  @keyframes pd-data-breathe { from { filter: brightness(.92); } to { filter: brightness(1.18); } }
-  @keyframes pd-paper-drift { 0%,100% { transform: rotate(3deg) translateY(0); } 50% { transform: rotate(1.6deg) translateY(-5px); } }
-  @keyframes pd-copy-breathe { 0%,100% { opacity: .88; } 50% { opacity: 1; } }
-}
-
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   .pd-hero__layout,
   .pd-problem__layout,
   .pd-example__layout,
@@ -2080,7 +1937,7 @@
     width: min(100%, 760px);
     max-height: none;
     margin-right: 0;
-    justify-self: start;
+    justify-self: center;
   }
 
   .pd-problem header,
@@ -2167,7 +2024,6 @@
     font-size: clamp(2.7rem, 14vw, 4.4rem);
   }
 
-  .pd-page[data-product='asisten-ai'] .pd-hero h1,
   .pd-page[data-product='asisten-ai'] .pd-status-label {
     white-space: normal;
   }
@@ -2408,19 +2264,10 @@
     transition: none !important;
   }
 
-  .pd-sales-pulse__bars > span,
-  .pd-catalog-cleanup__join i,
-  .pd-stock-ledger__gauge > span i,
-  .pd-money-balance__streams article i {
-    transform: none;
-  }
-
-  .pd-related__modules a > span { transition: none !important; transform: none !important; }
 }
 
 /* Product heroes keep the question and the interactive evidence workspace visible together. */
-.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:12ch;font-size:clamp(2.5rem,4.35vw,4.8rem);line-height:1;white-space:normal}
+.pd-hero h1{max-width:12ch;font-size:clamp(2.5rem,4.35vw,4.8rem);line-height:1;white-space:normal}
 .pd-hero__canvas{width:100%;justify-self:stretch}
-@media(max-width:1100px){.pd-hero__layout{grid-template-columns:minmax(280px,.82fr) minmax(440px,1.18fr);gap:34px}.pd-hero__canvas :where(.product-canvas__panel){padding-inline:24px}}
-@media(max-width:1080px){.pd-hero__layout{grid-template-columns:minmax(0,1fr)}.pd-hero__copy{width:min(100%,760px)}.pd-hero__canvas{width:min(100%,820px);justify-self:center}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:13ch}}
-@media(max-width:740px){.pd-hero__copy{max-width:100%}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{font-size:clamp(2.35rem,11vw,3.65rem)}}
+@media(max-width:1200px){.pd-hero__layout{grid-template-columns:minmax(0,1fr)}.pd-hero__copy{width:min(100%,760px)}.pd-hero__canvas{width:min(100%,820px);justify-self:center}.pd-hero__canvas :where(.product-canvas__panel){padding-inline:24px}.pd-hero h1{max-width:13ch}}
+@media(max-width:740px){.pd-hero__copy{max-width:100%}.pd-hero h1{font-size:clamp(2.35rem,11vw,3.65rem)}}
