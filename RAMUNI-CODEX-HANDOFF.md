@@ -18,6 +18,17 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, and `/home/meetsin/internal/ramuni-handoff` are separate repositories or contexts; do not mix them into the marketing site.
 - Old worktrees are audit sources only. Preserve unique valid work in `main`, then remove obsolete worktrees only after they are clean or their dirty state has been fully reviewed.
 
+## Resource tools and navigation continuation — local commit pending GitHub authentication
+
+- Implemented on local `main`: `0650b80` (`feat: expand resource tools and navigation`). The commit is ready but could not be pushed because the server has no usable GitHub HTTPS credential and no authorized SSH key. Do not place a PAT in a command or repository file; restore the server credential helper, then push the existing local commits.
+- Staging was intentionally not redeployed because the repository rule requires the runtime commit to be pushed first. The last verified staging release remains `20260726T071410Z-087ec6f3f67a` until authentication is restored.
+- Header: removed `Masuk`, added desktop hub links, completed all public mega-menu icons with lightweight assets, tightened active-state semantics, constrained short-viewport mega menus, and corrected mobile panel/icon sizing.
+- Tools: expanded the calculator library from three to seven practical calculators, added example presets, visible formula notes, result guidance, FAQ/schema, related resources, and a generated/optimized workspace visual.
+- Resources: redesigned `/panduan` and `/kamus-bisnis` index/detail pages with Muni-led visual flows, practical scenarios, filters, HowTo/DefinedTerm schema, internal links, and responsive motion. Added schema and related-resource improvements to `/template` and explicit breadcrumb schema to resource hubs.
+- SEO/indexation: added fail-closed sitemap gating for calculator, guide, glossary, and template index routes; staging output remains `noindex,follow`, robots remains crawlable, and no sitemap is generated.
+- Quality evidence: Astro check passed on 95 files with zero diagnostics; 87 static pages built; metadata, social preview, manifest/icons, accessibility, schema, internal links, sitemap/noindex, robots, encoding, and production asset budgets passed; dependency audit found zero vulnerabilities. Static QA covered 22 resource/tool routes with one H1, self-canonical/hreflang, accessible breadcrumbs, valid schema, no broken local links/assets, and no duplicate IDs.
+- Cleanup: removed the 2.3 MB generation source after preserving the optimized 1200x675 WebP public asset, then moved the verified 5.3 MB `dist` and 84 KB `.astro` outputs to trash. The deployment script will rebuild them after GitHub authentication is restored.
+
 ## Server continuation integration checkpoint
 
 - Integrated and pushed directly to `main`: `971afaf7f5d753af73317fda55185ee580f5a0d7` (`feat: integrate marketing continuation into main`).
