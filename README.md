@@ -67,6 +67,8 @@ npm audit --audit-level=high
 
 The GitHub Actions workflow runs these checks on every pull request and every branch push. It first rejects common committed credential patterns, then installs the lockfile, checks Astro and TypeScript, builds with production indexability policy, runs the custom SEO/accessibility audit, and rejects high-severity dependency vulnerabilities. Every successful run retains the generated static site as a seven-day workflow artifact for review.
 
+Astro 7 requires Node.js `>=22.12`. The staging deployment script automatically re-executes itself with an ephemeral Node 22 toolchain when the host system Node is older. Local contributors should use Node 22 directly before running the quality commands.
+
 Dependabot checks npm and GitHub Actions weekly. The pull request template makes brand, credentials, indexability, metadata, schema, and evidence gates explicit during review. A green workflow is necessary but does not replace browser QA, final-domain checks, or public PageSpeed Insights.
 
 ## Environment and indexing safety
@@ -123,7 +125,7 @@ Before a public release:
 
 The detailed promotion and rollback checklist is in [`docs/deployment-rollback.md`](docs/deployment-rollback.md).
 
-The current staging host is `https://staging.ramuni.id`. It is intentionally protected from indexing by HTML and HTTP-header noindex directives and by exposing no sitemap URLs. Its robots policy permits crawlers to read those noindex directives. HTML is never cached; content-hashed Astro assets are immutable for one year; non-hashed images and fonts use a one-day staging TTL. Run `scripts/deploy-staging.sh` from a clean reviewed worktree to publish an atomic release.
+The current staging host is `https://staging.ramuni.id`. It is intentionally protected from indexing by HTML and HTTP-header noindex directives, while sitemap endpoints return 404. Its robots policy permits crawlers to read those noindex directives. HTML is never cached; content-hashed Astro assets are immutable for one year; non-hashed images and fonts use a seven-day staging TTL. Run `scripts/deploy-staging.sh` from the clean reviewed `main` checkout to publish an atomic release.
 
 ## Security
 

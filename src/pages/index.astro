@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
-import { releaseGates } from '../config/release';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
@@ -13,7 +12,7 @@ const homepagePains = [
   { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan' },
   { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis' },
 ];
-const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotSrc = '/website-original/ramuni-mascot-muni-manyar.webp';
 
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],

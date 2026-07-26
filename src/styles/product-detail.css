@@ -54,9 +54,16 @@
 
 .pd-hero__layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(32px, 4vw, 62px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: clamp(28px, 4vw, 54px);
+  text-align: center;
+}
+
+.pd-hero__copy {
+  display: grid;
+  justify-items: center;
+  max-width: 900px;
 }
 
 .pd-status-label,
@@ -92,10 +99,10 @@
 .pd-page[data-product='integrasi'] .pd-product-glyph::before { inset: 11px 4px; transform: none; border: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--teal); box-shadow: 0 -5px 0 var(--yellow), 0 5px 0 var(--ink); }
 
 .pd-hero h1 {
-  max-width: 10ch;
+  max-width: 13ch;
   margin-top: 22px;
-  font-size: clamp(3rem, 6.2vw, 6.4rem);
-  line-height: 0.96;
+  font-size: clamp(2.9rem, 5.2vw, 5.5rem);
+  line-height: 1;
 }
 
 .pd-page[data-product='asisten-ai'] .pd-hero h1 {
@@ -138,18 +145,18 @@
   overflow: hidden;
   background: var(--white);
   box-shadow: 12px 12px 0 var(--ink);
-  width: min(100%, 710px);
-  max-height: 420px;
-  justify-self: end;
-  margin-right: clamp(-68px, -4vw, -28px);
+  width: min(100%, 980px);
+  max-height: 520px;
+  justify-self: center;
+  margin-right: 0;
 }
 
 .pd-visual > :not(figcaption) { min-height: 350px; }
 
-.pd-page[data-product='dashboard-bisnis'] .pd-visual { transform: rotate(.7deg); }
-.pd-page[data-product='katalog-produk'] .pd-visual { transform: rotate(-.65deg); }
+.pd-page[data-product='dashboard-bisnis'] .pd-visual,
+.pd-page[data-product='katalog-produk'] .pd-visual,
 .pd-page[data-product='inventori'] .pd-visual,
-.pd-page[data-product='pelanggan'] .pd-visual { margin-right: clamp(-52px, -3vw, -20px); }
+.pd-page[data-product='pelanggan'] .pd-visual { margin-right: 0; }
 
 .pd-visual > figcaption {
   display: grid;
@@ -2403,3 +2410,12 @@
 
   .pd-related__modules a > span { transition: none !important; transform: none !important; }
 }
+
+/* Final hero contract override: source order keeps product details centered and full-width across breakpoints. */
+.pd-hero__layout{grid-template-columns:minmax(0,1fr);gap:clamp(36px,5vw,66px)}
+.pd-hero__copy{display:grid;width:min(100%,880px);max-width:880px;margin-inline:auto;justify-items:center;text-align:center}
+.pd-hero__meta{justify-content:center}
+.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:14ch;font-size:clamp(2.55rem,4.8vw,5.05rem);line-height:1;white-space:normal}
+.pd-hero__audience,.pd-hero__lead{margin-inline:auto}.pd-hero .button-row{justify-content:center}
+.pd-visual,.pd-page[data-product='dashboard-bisnis'] .pd-visual,.pd-page[data-product='katalog-produk'] .pd-visual,.pd-page[data-product='inventori'] .pd-visual,.pd-page[data-product='pelanggan'] .pd-visual{width:100%;max-width:none;max-height:none;margin:0;justify-self:stretch;transform:none}
+@media(max-width:740px){.pd-hero__copy{max-width:100%}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{font-size:clamp(2.35rem,11vw,3.65rem)}}

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getEditorialPerson } from '../../../data/editorialPeople';
+import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -28,7 +29,7 @@ const schema = {
   },
 };
 ---
-<BaseLayout title={`${authorName} | Blog RAMUNI`} description="Profil Tim Editorial RAMUNI dan artikel yang disusun untuk membantu UMKM membaca konteks bisnis." noindex schema={schema}>
+<BaseLayout title={`${authorName} | Blog RAMUNI`} description="Profil Tim Editorial RAMUNI dan artikel yang disusun untuk membantu UMKM membaca konteks bisnis." noindex={!releaseGates.resourcePagesIndexable} schema={schema}>
   <header class="author-hero"><div class="container author-profile">
     <div class="author-mark"><img src={author.photo} width="160" height="160" alt={author.photoAlt} /></div>
     <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Penulis</span></nav><p class="eyebrow">Profil Editorial</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div></div>

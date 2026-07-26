@@ -11,7 +11,7 @@
     gsap.registerPlugin(ScrollTrigger);
 
     const context = gsap.context(() => {
-      document.querySelectorAll<HTMLElement>('#product-direction-model [data-ramuni-mark-3d]').forEach((mark) => {
+      document.querySelectorAll<HTMLElement>('#product-direction-model [data-decision-flow-3d]').forEach((mark) => {
         gsap.fromTo(mark,
           { autoAlpha: 0.38, y: 54, scale: 0.94, rotateZ: -2 },
           {
@@ -27,7 +27,7 @@
               end: 'bottom 34%',
               scrub: 0.65,
               onUpdate: (self) => {
-                mark.dispatchEvent(new CustomEvent('ramuni-mark-scroll', {
+                mark.dispatchEvent(new CustomEvent('decision-flow-scroll', {
                   detail: { progress: self.progress },
                 }));
               },

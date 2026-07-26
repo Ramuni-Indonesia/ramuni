@@ -1,0 +1,4 @@
+"Tanggal","SKU","Nama barang","Saldo awal","Masuk","Keluar","Saldo akhir","Catatan","Diperiksa oleh"
+"2026-07-21","CONTOH-001","Kopi bubuk 250 g","24","12","7","29","Penerimaan pemasok pagi","Rani"
+"2026-07-22","CONTOH-001","Kopi bubuk 250 g","29","0","9","20","Satu barang rusak dicatat sebagai keluar","Rani"
+"2026-07-22","CONTOH-002","Teh melati 100 g","18","0","5","13","Tidak ada selisih saat pemeriksaan","Dimas"

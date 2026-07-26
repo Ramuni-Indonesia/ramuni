@@ -64,6 +64,53 @@ const problemCanvas = document.querySelector('.problem-canvas');
 const problemMascot = document.querySelector('[data-problem-mascot]');
 if (problemCanvas && problemMascot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let frame = 0;
+  const problemPoints = Array.from(problemCanvas.querySelectorAll('.problem-point'));
+  let canvasVisible = false;
+  let activeProblemIndex = -1;
+
+  const focusProblem = (index) => {
+    if (!problemPoints.length || index === activeProblemIndex) return;
+    activeProblemIndex = index;
+    problemPoints.forEach((point, pointIndex) => point.classList.toggle('is-mascot-focus', pointIndex === index));
+    const point = problemPoints[index];
+    if (!point) return;
+    const mascotBounds = problemMascot.getBoundingClientRect();
+    const pointBounds = point.getBoundingClientRect();
+    const deltaX = pointBounds.left + pointBounds.width / 2 - (mascotBounds.left + mascotBounds.width / 2);
+    const deltaY = pointBounds.top + pointBounds.height / 2 - (mascotBounds.top + mascotBounds.height / 2);
+    const direction = Math.max(-1, Math.min(1, deltaX / Math.max(1, problemCanvas.clientWidth * .34)));
+    problemMascot.style.setProperty('--mascot-look-x', `${(direction * 9).toFixed(1)}px`);
+    problemMascot.style.setProperty('--mascot-look-y', `${Math.max(-5, Math.min(5, deltaY / 38)).toFixed(1)}px`);
+    problemMascot.style.setProperty('--mascot-tilt', `${(direction * 2.4).toFixed(1)}deg`);
+    problemMascot.style.setProperty('--mascot-ry', `${(direction * 5).toFixed(1)}deg`);
+    problemMascot.style.setProperty('--mascot-shadow', String(1 - Math.abs(direction) * .08));
+  };
+
+  const updateProblemScroll = () => {
+    if (!canvasVisible || !problemPoints.length) return;
+    const bounds = problemCanvas.getBoundingClientRect();
+    const viewportAnchor = window.innerHeight * .56;
+    const progress = Math.max(0, Math.min(1, (viewportAnchor - bounds.top) / Math.max(1, bounds.height)));
+    const index = Math.min(problemPoints.length - 1, Math.floor(progress * problemPoints.length));
+    focusProblem(index);
+    problemMascot.style.setProperty('--mascot-scroll-y', `${(Math.sin(progress * Math.PI * 2) * 4).toFixed(1)}px`);
+  };
+
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    canvasVisible = entries.some((entry) => entry.isIntersecting);
+    if (canvasVisible) updateProblemScroll();
+  }, { rootMargin: '10% 0px' });
+  visibilityObserver.observe(problemCanvas);
+
+  let scrollFrame = 0;
+  window.addEventListener('scroll', () => {
+    if (!canvasVisible || scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = 0;
+      updateProblemScroll();
+    });
+  }, { passive: true });
+
   problemCanvas.addEventListener('pointermove', (event) => {
     if (frame) cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {

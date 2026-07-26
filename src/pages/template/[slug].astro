@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TemplatePreview from '../../components/template/TemplatePreview.astro';
+import { releaseGates } from '../../config/release';
+import { templateEntries } from '../../data/templates';
+import '../../styles/template-library.css';
+
+export function getStaticPaths() {
+  return templateEntries.map(([slug, template]) => ({ params: { slug }, props: { template } }));
+}
+
+const { template } = Astro.props;
+const templateUrl = new URL(`/template/${template.slug}/`, Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'DigitalDocument',
+    name: template.title,
+    description: template.summary,
+    url: templateUrl,
+    inLanguage: 'id-ID',
+    encodingFormat: 'text/csv',
+    version: template.version,
+    dateModified: '2026-07-26',
+    isAccessibleForFree: true,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Template', item: new URL('/template/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: template.title, item: templateUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={template.title} description={`${template.summary} Unduh CSV gratis dengan contoh, petunjuk kolom, dan batas penggunaan yang jelas.`} noindex={!releaseGates.resourcePagesIndexable} schema={schema} keywords={[template.title, 'template bisnis UMKM', 'template CSV gratis', 'RAMUNI']}>
+  <article class="template-detail-page">
+    <header class="template-detail-hero">
+      <div class="container">
+        <nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/template">Template</a><span>/</span><span>{template.shortTitle}</span></nav>
+        <div class="template-detail-hero__grid">
+          <div class="template-detail-hero__copy">
+            <p class="eyebrow">{template.eyebrow}</p>
+            <h1>{template.title}</h1>
+            <p class="lede">{template.summary}</p>
+            <div class="button-row">
+              <a class="button button--primary" href="#pratinjau">Lihat dan unduh</a>
+              <a class="button button--secondary" href="/template">Lihat template lain</a>
+            </div>
+          </div>
+          <aside class="template-detail-hero__brief" aria-label="Ringkasan template">
+            <span>Hasil yang dibantu</span>
+            <strong>{template.outcome}</strong>
+            <dl>
+              <div><dt>Ritme</dt><dd>{template.cadence}</dd></div>
+              <div><dt>Format</dt><dd>CSV · {template.columns.length} kolom</dd></div>
+              <div><dt>Versi</dt><dd>{template.version} · {template.updatedAt}</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <section class="section surface" id="pratinjau" aria-label={`Pratinjau ${template.title}`}>
+      <div class="container"><TemplatePreview template={template} /></div>
+    </section>
+
+    <section class="section template-how" aria-labelledby="template-how-title">
+      <div class="container template-how__layout">
+        <div class="template-how__lead reveal">
+          <p class="section-kicker">Cara pakai</p>
+          <h2 id="template-how-title">Dari catatan kosong sampai siap diperiksa.</h2>
+          <p>Gunakan urutan ini sebagai kebiasaan kerja, lalu sesuaikan nama kolom bila proses usaha Anda berbeda.</p>
+        </div>
+        <ol class="template-how__steps">
+          {template.instructions.map((item, index) => <li class="reveal" style={`--i:${index}`}><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section dark-surface template-columns-stage" aria-labelledby="template-columns-title">
+      <div class="container">
+        <div class="template-columns-stage__head reveal">
+          <p class="section-kicker">Definisi kolom</p>
+          <h2 id="template-columns-title">Tidak ada kolom yang perlu ditebak.</h2>
+        </div>
+        <div class="template-column-index">
+          {template.columns.map((column, index) => <article class="reveal" style={`--i:${index % 4}`}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{column.label}</h3><p>{column.description}</p></div></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface template-boundaries" aria-labelledby="template-boundaries-title">
+      <div class="container template-boundaries__grid">
+        <div>
+          <p class="section-kicker">Batas penggunaan</p>
+          <h2 id="template-boundaries-title">Sederhana untuk mulai, jujur tentang batasnya.</h2>
+        </div>
+        <ul>
+          {template.limitations.map((limitation) => <li>{limitation}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section template-download-stage">
+      <div class="container template-download-panel">
+        <div><p class="section-kicker">Versi {template.version}</p><h2>Simpan salinan. Isi dengan catatan Anda.</h2><p>File berisi contoh sintetis untuk menunjukkan cara pengisian. Tidak perlu membuat akun.</p></div>
+        <div class="button-row"><a class="button button--primary" href={`/downloads/template/${template.downloadName}`} download>Unduh CSV</a><a class="button button--secondary" href="#pratinjau">Lihat lagi contoh</a></div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

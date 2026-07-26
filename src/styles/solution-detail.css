@@ -79,6 +79,12 @@
   .sd-close .button-row{flex-wrap:wrap}
 }
 
+/* Final hero contract: outcome first, then a full-width interactive dashboard. */
+.sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:minmax(0,1fr);gap:clamp(36px,5vw,66px)}
+.sd-hero__copy,.sd-page--bridge .sd-hero__copy,.sd-page--timeline .sd-hero__copy{display:grid;width:min(100%,900px);margin-inline:auto;justify-items:center;text-align:center;order:1}
+.sd-hero__meta{justify-content:center}.sd-page h1{max-width:15ch;font-size:clamp(2.55rem,4.8vw,5.05rem);line-height:1}.sd-hero__copy .lede{max-width:58ch;margin-inline:auto}.sd-hero__action{grid-template-columns:auto minmax(0,380px);justify-content:center;text-align:left}.sd-hero__visual,.sd-page--bridge .sd-hero__visual,.sd-page--timeline .sd-hero__visual{order:2;width:100%;max-width:none;margin:0;justify-self:stretch;transform:none}.sd-visual{max-height:none}
+@media(max-width:767px){.sd-page h1{font-size:clamp(2.3rem,11vw,3.55rem)}.sd-hero__action{width:100%;grid-template-columns:1fr;text-align:center}.sd-hero__action p{margin-inline:auto}}
+
 @media(hover:hover){
   .sd-capability-list,.sd-industry-list{padding-inline:6px}
   .sd-capability,.sd-industry-list a{padding-inline:16px}

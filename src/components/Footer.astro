@@ -10,7 +10,7 @@ const publicHref = (href: string) => href === '/demo' ? '/tour-produk-gratis' : 
       {footerNavigation.map((group) => (
         <nav class="footer-col" aria-label={group.label}>
           <h2>{group.label}</h2>
-          {group.links.filter((link) => link.href !== '/harga').map((link) => <a href={publicHref(link.href)}>{link.href === '/demo' ? 'Coba Simulasi Gratis' : link.label}</a>)}
+          {group.links.filter((link) => link.href !== '/harga' && link.href !== '/status').map((link) => <a href={publicHref(link.href)}>{link.href === '/demo' ? 'Coba Simulasi Gratis' : link.label}</a>)}
           {group.label === 'Legal' && <button class="footer-button" type="button" data-cookie-settings>Kelola Cookie</button>}
         </nav>
       ))}

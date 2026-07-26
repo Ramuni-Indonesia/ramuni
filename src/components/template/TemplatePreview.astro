@@ -1,0 +1,117 @@
+---
+import type { BusinessTemplate } from '../../data/templates';
+
+interface Props {
+  template: BusinessTemplate;
+  embedded?: boolean;
+}
+
+const { template, embedded = false } = Astro.props;
+const previewId = `template-preview-${template.slug}${embedded ? '-embedded' : ''}`;
+const blankRows = Array.from({ length: 3 }, () => Object.fromEntries(template.columns.map((column) => [column.key, ''])));
+const payload = JSON.stringify({
+  columns: template.columns.map(({ key, label }) => ({ key, label })),
+  exampleRows: template.exampleRows,
+  blankRows,
+  filename: template.downloadName,
+});
+---
+
+<section class:list={['template-preview', { 'template-preview--embedded': embedded }]} data-template-preview aria-labelledby={previewId}>
+  <header class="template-preview__header">
+    <div>
+      <span>{embedded ? 'Template di artikel' : 'Pratinjau interaktif'}</span>
+      <h2 id={previewId}>{template.shortTitle}</h2>
+      <p>Pilih isi contoh untuk memahami strukturnya, atau lihat baris kosong sebelum mengunduh.</p>
+    </div>
+    <div class="template-preview__view-switch" role="group" aria-label="Pilih isi pratinjau">
+      <button type="button" data-template-view="example" aria-pressed="true">Isi contoh</button>
+      <button type="button" data-template-view="blank" aria-pressed="false">Baris kosong</button>
+    </div>
+  </header>
+
+  <div class="template-preview__sheet" tabindex="0" aria-label={`Pratinjau tabel ${template.shortTitle}`}>
+    <table>
+      <thead><tr>{template.columns.map((column) => <th scope="col">{column.label}</th>)}</tr></thead>
+      <tbody data-template-body>
+        {template.exampleRows.map((row) => <tr>{template.columns.map((column) => <td class:list={{ 'is-number': column.align === 'number', 'is-status': column.align === 'status' }}>{row[column.key] || '-'}</td>)}</tr>)}
+      </tbody>
+    </table>
+  </div>
+
+  <footer class="template-preview__footer">
+    <p data-template-caption>Data contoh sintetis. Hapus atau ganti sebelum digunakan.</p>
+    <div class="button-row">
+      <button class="button button--primary" type="button" data-template-download>Unduh CSV contoh</button>
+      <a class="button button--secondary" href={`/downloads/template/${template.downloadName}`} download>Unduhan langsung</a>
+    </div>
+  </footer>
+  <script is:inline type="application/json" data-template-payload set:html={payload} />
+</section>
+
+<script>
+  interface TemplatePayload {
+    columns: { key: string; label: string }[];
+    exampleRows: Record<string, string>[];
+    blankRows: Record<string, string>[];
+    filename: string;
+  }
+
+  const escapeCsv = (value: string) => `"${String(value).replaceAll('"', '""')}"`;
+
+  document.querySelectorAll<HTMLElement>('[data-template-preview]').forEach((preview) => {
+    if (preview.dataset.ready === 'true') return;
+    preview.dataset.ready = 'true';
+    const payloadNode = preview.querySelector<HTMLScriptElement>('[data-template-payload]');
+    const body = preview.querySelector<HTMLTableSectionElement>('[data-template-body]');
+    const caption = preview.querySelector<HTMLElement>('[data-template-caption]');
+    if (!payloadNode?.textContent || !body || !caption) return;
+
+    const payload = JSON.parse(payloadNode.textContent) as TemplatePayload;
+    let currentView: 'example' | 'blank' = 'example';
+
+    const render = () => {
+      const rows = currentView === 'example' ? payload.exampleRows : payload.blankRows;
+      body.replaceChildren(...rows.map((row) => {
+        const tr = document.createElement('tr');
+        payload.columns.forEach((column) => {
+          const td = document.createElement('td');
+          td.textContent = row[column.key] || '-';
+          tr.append(td);
+        });
+        return tr;
+      }));
+      caption.textContent = currentView === 'example'
+        ? 'Data contoh sintetis. Hapus atau ganti sebelum digunakan.'
+        : 'Tiga baris kosong siap diisi setelah file diunduh.';
+      preview.querySelectorAll<HTMLButtonElement>('[data-template-view]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.templateView === currentView));
+      });
+      const download = preview.querySelector<HTMLButtonElement>('[data-template-download]');
+      if (download) download.textContent = currentView === 'example' ? 'Unduh CSV contoh' : 'Unduh CSV kosong';
+    };
+
+    preview.querySelectorAll<HTMLButtonElement>('[data-template-view]').forEach((button) => {
+      button.addEventListener('click', () => {
+        currentView = button.dataset.templateView === 'blank' ? 'blank' : 'example';
+        render();
+      });
+    });
+
+    preview.querySelector<HTMLButtonElement>('[data-template-download]')?.addEventListener('click', () => {
+      const rows = currentView === 'example' ? payload.exampleRows : payload.blankRows;
+      const lines = [
+        payload.columns.map((column) => escapeCsv(column.label)).join(','),
+        ...rows.map((row) => payload.columns.map((column) => escapeCsv(row[column.key] || '')).join(',')),
+      ];
+      const blob = new Blob([`\uFEFF${lines.join('\r\n')}\r\n`], { type: 'text/csv;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = currentView === 'example' ? payload.filename : payload.filename.replace('.csv', '-kosong.csv');
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+    });
+  });
+</script>
