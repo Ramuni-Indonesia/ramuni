@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
+import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
@@ -104,7 +106,9 @@ const structuredData = [
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
         </div>
-        <ProductDomainVisual slug={product.slug} title={product.title} question={detail.question} />
+        <div class="pd-hero__canvas reveal is-visible">
+          <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />
+        </div>
       </div>
     </section>
 
@@ -142,15 +146,18 @@ const structuredData = [
             <h2 id="product-example-title">{detail.example.heading}</h2>
             <p>Contoh ini menunjukkan hasil dan dasar bacanya dalam satu tampilan.</p>
           </div>
-          <figure class="pd-example__receipt reveal">
-            <blockquote>{detail.question}</blockquote>
-            <dl>
-              {detail.example.rows.map(([term, description]) => (
-                <div><dt>{term}</dt><dd>{description}</dd></div>
-              ))}
-            </dl>
-            <figcaption>{detail.example.takeaway}</figcaption>
-          </figure>
+          <div class="pd-example__stage">
+            <ProductDomainVisual slug={product.slug} title={product.title} question={detail.question} />
+            <figure class="pd-example__receipt reveal">
+              <blockquote>{detail.question}</blockquote>
+              <dl>
+                {detail.example.rows.map(([term, description]) => (
+                  <div><dt>{term}</dt><dd>{description}</dd></div>
+                ))}
+              </dl>
+              <figcaption>{detail.example.takeaway}</figcaption>
+            </figure>
+          </div>
         </div>
         <header class="pd-section-heading">
           <h2 id="product-benefits-title">Dari informasi ke keputusan yang lebih jelas.</h2>
@@ -286,9 +293,8 @@ const structuredData = [
     </section>
 
     <section id="product-next-step" class="pd-close" data-section-id="product-next-step" data-analytics-id="product_final_cta" aria-labelledby="product-next-step-title">
-      <div class="container pd-close__layout">
-        <div><span>Langkah berikutnya</span><h2 id="product-next-step-title">{detail.closing}</h2><p>{detail.outcome}</p></div>
-        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/produk">Lihat Semua Produk</a></div>
+      <div class="container">
+        <MascotDecisionCTA headingId="product-next-step-title" title={detail.closing} body={detail.outcome} />
       </div>
     </section>
   </article>

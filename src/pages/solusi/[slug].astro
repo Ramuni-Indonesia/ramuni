@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
 import SolutionManualGap from '../../components/solution/SolutionManualGap.astro';
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
@@ -158,9 +159,15 @@ const faqSchema = {
           {solution.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>
       </div>
-      <div class="container sd-close reveal">
-        <div><h2>{solution.closingTitle}</h2><p>{solution.closingText}</p></div>
-        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/solusi">Bandingkan Solusi</a></div>
+      <div class="container sd-close-visual reveal">
+        <MascotDecisionCTA
+          eyebrow="Langkah berikutnya"
+          title={solution.closingTitle}
+          body={solution.closingText}
+          secondaryLabel="Bandingkan Solusi"
+          secondaryHref="/solusi"
+          theme="ink"
+        />
       </div>
     </section>
   </article>

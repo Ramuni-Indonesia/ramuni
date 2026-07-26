@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
+import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
 import { releaseGates } from '../../config/release';
 import '../../styles/blog.css';
 
@@ -146,5 +147,15 @@ const schema = [
     </div>
   </section>
 
-  <section class="section blog-close-stage"><div class="container blog-close reveal"><div><h2>Punya satu angka usaha yang membingungkan?</h2><p>Lihat contoh cara RAMUNI mengubah catatan menjadi pertanyaan yang bisa diperiksa.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/produk">Pelajari Produk</a></div></div></section>
+  <section class="section blog-close-stage" aria-labelledby="blog-final-cta-heading">
+    <div class="container reveal">
+      <BlogDecisionCTA
+        id="blog-final-cta"
+        title="Punya satu angka usaha yang membingungkan?"
+        text="Lihat contoh cara RAMUNI mengubah catatan menjadi pertanyaan yang bisa diperiksa."
+        secondaryLabel="Pelajari Produk"
+        secondaryHref="/produk"
+      />
+    </div>
+  </section>
 </BaseLayout>

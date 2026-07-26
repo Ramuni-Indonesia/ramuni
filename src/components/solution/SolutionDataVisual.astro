@@ -14,6 +14,14 @@ const { visual } = Astro.props;
     <small>{visual.period}</small>
   </figcaption>
 
+  <div class="sd-visual__tabs" role="group" aria-label="Mode pembacaan visual">
+    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="pattern" checked /><span>Pola</span></label>
+    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="evidence" /><span>Bukti</span></label>
+    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="step" /><span>Langkah</span></label>
+  </div>
+
+  <div class="sd-visual__pane sd-visual__pane--pattern" data-visual-pane="pattern">
+
   {visual.kind === 'revenue' && (
     <div class="sd-revenue" aria-hidden="true">
       {visual.metrics.map((metric, index) => (
@@ -67,11 +75,19 @@ const { visual } = Astro.props;
     </div>
   )}
 
-  <dl class="sd-visual__metrics">
-    {visual.metrics.map((metric) => (
+  </div>
+
+  <dl class="sd-visual__metrics sd-visual__pane" data-visual-pane="evidence">
+    {visual.metrics.map((metric, index) => (
       <div class={metric.tone ? `is-${metric.tone}` : ''}>
-        <dt>{metric.label}</dt><dd>{metric.value}</dd><small>{metric.note}</small>
+        <dt>Bukti {String(index + 1).padStart(2, '0')} · {metric.label}</dt><dd>{metric.value}</dd><small>{metric.note}</small>
       </div>
     ))}
   </dl>
+
+  <ol class="sd-visual__next sd-visual__pane" data-visual-pane="step">
+    <li><span>01</span><div><strong>Samakan periode</strong><small>{visual.period}</small></div></li>
+    <li><span>02</span><div><strong>Periksa sumber paling menonjol</strong><small>{visual.metrics.find((metric) => metric.tone === 'warning')?.label ?? visual.metrics[0]?.label}</small></div></li>
+    <li><span>03</span><div><strong>Bawa ke keputusan manual</strong><small>Pengguna tetap menentukan tindakan setelah bukti dibaca.</small></div></li>
+  </ol>
 </figure>

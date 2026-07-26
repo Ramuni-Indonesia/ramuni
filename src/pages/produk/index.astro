@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import ProductPulseLab from '../../components/product/ProductPulseLab.astro';
@@ -159,9 +160,13 @@ const productFaq = [
     </section>
 
     <section class="section product-close">
-      <div class="container product-close__layout">
-        <div><h2>Mulai dari alur yang paling penting.</h2></div>
-        <div><p>Gunakan data contoh untuk melihat modul yang paling dekat dengan masalah usaha Anda.</p><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div>
+      <div class="container">
+        <MascotDecisionCTA
+          eyebrow="Mulai dari satu alur"
+          title="Mulai dari alur yang paling penting."
+          body="Gunakan data contoh untuk melihat modul yang paling dekat dengan masalah usaha Anda."
+          theme="yellow"
+        />
       </div>
     </section>
   </div>

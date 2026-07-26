@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
+import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
@@ -110,8 +111,8 @@ const schema = [
 
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><small>Pilih bagian yang paling Anda butuhkan.</small><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
-          <div class="article-rail-note"><span>Cara artikel disusun</span><p>{post.data.editorialStatus}</p><a href="/blog/kebijakan-editorial">Lihat standar editorial</a></div>
-          <div class="article-rail-cta"><strong>Ingin coba alurnya?</strong><p>Pilih stok, penjualan, atau kas. Kami siapkan data contohnya.</p><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div>
+          <div class="article-rail-note"><span>Cara artikel disusun</span><p>Sumber, koreksi, dan riwayat pembaruan tersedia untuk membantu pembaca memeriksa konteks.</p><a href="/blog/kebijakan-editorial">Lihat standar editorial</a></div>
+          <div class="article-rail-next"><strong>Setelah selesai membaca</strong><p>Lanjutkan ke alur catatan, bukti, dan arah.</p><a href="#article-next-step">Lihat langkah berikutnya &darr;</a></div>
         </aside>
       </div>
     </section>
@@ -119,7 +120,17 @@ const schema = [
 
   {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
-  <section class="section blog-close-stage" aria-labelledby="article-final-cta"><div class="container blog-close reveal"><div><h2 id="article-final-cta">Bawa satu pertanyaan usaha.</h2><p>Lihat cara RAMUNI membaca konteksnya dengan data contoh.</p></div><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></section>
+  <section class="section blog-close-stage" aria-labelledby="article-next-step-heading">
+    <div class="container reveal">
+      <BlogDecisionCTA
+        id="article-next-step"
+        variant="article"
+        eyebrow="Langkah setelah membaca"
+        title="Bawa satu pertanyaan usaha."
+        text="Lihat cara RAMUNI membaca konteksnya dengan data contoh."
+      />
+    </div>
+  </section>
 
   <script>
     const readingProgress = document.querySelector<HTMLElement>('[data-reading-progress]');
