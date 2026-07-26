@@ -33,8 +33,9 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - Headless Chromium was downloaded for QA but could not complete even a blank-page capture in this host environment and was terminated. Responsive source/build checks passed, but human visual QA is still required at 1440, 1194, 1024, 834, 768, 390, and 360 widths.
 - Push and staging deployment remain blocked only by missing server GitHub authentication. Never reuse plaintext credentials from chat or history. Restore the server credential helper or SSH authorization, push the existing local `main`, then deploy and verify the exact pushed SHA.
 
-### Second responsive, typography, and visual-density batch ready for local commit
+### Second responsive, typography, and visual-density batch committed locally
 
+- Implemented on local `main` as `bef1b97` (`fix: normalize ramuni tablet layout and motion`). Push and staging deployment remain blocked by missing server GitHub authentication.
 - The tablet hamburger breakpoint is synchronized between CSS and JavaScript at `max-width: 1200px` / `min-width: 1201px`. The mobile panel now measures the real rendered header height with `ResizeObserver`, so a wrapped announcement cannot overlap or leave a false top gap.
 - Navbar and footer lockups are larger while preserving the supplied brand asset. Shared H1-H4 tokens, weights, line heights, title measures, section measures, and body wrapping are normalized. Indonesian copy uses `break-word` rather than arbitrary mid-word splitting, and narrow product/solution hub headings have safer measures.
 - Major sticky/two-column layouts collapse at the tablet breakpoint. Homepage problem cards and mascot move into normal flow at or below 1200px, preventing the mascot or reveal animation from crossing into another section. PageHero visuals are shorter in tablet portrait.
