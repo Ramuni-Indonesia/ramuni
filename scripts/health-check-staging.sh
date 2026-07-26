@@ -38,6 +38,15 @@ for ((attempt = 1; attempt <= attempts; attempt += 1)); do
         --connect-timeout 3 --max-time 10 "${resolve_args[@]}" "$origin/$sitemap_path")
       [[ $status == 404 ]]
     done
+    for redirect_path in demo early-access harga; do
+      redirect_headers=$(curl --silent --show-error --head --output - \
+        --connect-timeout 3 --max-time 10 "${resolve_args[@]}" "$origin/$redirect_path/")
+      grep -qi '^HTTP/.* 301' <<<"$redirect_headers"
+      grep -qi '^location: .*\/tour-produk-gratis' <<<"$redirect_headers"
+    done
+    status_404=$(curl --silent --output /dev/null --write-out '%{http_code}' \
+      --connect-timeout 3 --max-time 10 "${resolve_args[@]}" "$origin/404")
+    [[ $status_404 == 404 ]]
     if [[ -n $expected_release ]]; then
       grep -Fxq "release=$expected_release" <<<"$body"
       grep -Fxq "release=$expected_release" "$current/RELEASE"
