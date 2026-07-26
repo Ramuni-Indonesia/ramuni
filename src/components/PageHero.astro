@@ -66,10 +66,11 @@ const visualAlt = releaseGates.mascotExplorationEnabled
   .page-hero__visual-grid i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--ink)}
   .page-hero__visual-grid i:nth-child(1){top:13%;left:10%}.page-hero__visual-grid i:nth-child(2){top:26%;right:9%;background:var(--white)}.page-hero__visual-grid i:nth-child(3){left:18%;bottom:20%;background:var(--teal)}.page-hero__visual--evidence .page-hero__visual-grid i:nth-child(3){background:var(--yellow)}.page-hero__visual-grid i:nth-child(4){right:20%;bottom:12%;background:var(--yellow)}
   .page-hero__visual img{position:absolute;left:4%;right:4%;bottom:82px;width:92%;height:82%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 24px 22px rgb(11 48 69/.24));transition:transform .55s var(--ease)}
-  .page-hero__visual:hover img{transform:translateY(-7px) rotate(-1deg)}
   .page-hero__visual figcaption{position:absolute;z-index:2;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.94);color:var(--ink);backdrop-filter:blur(10px)}
   .page-hero__visual figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.page-hero__visual figcaption strong{font-size:.88rem}.page-hero__visual figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
   @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__visual{width:min(720px,100%);min-height:480px;justify-self:center}}
+  @media(min-width:961px) and (max-width:1200px){.page-hero__layout{grid-template-columns:minmax(260px,.82fr) minmax(430px,1.18fr);gap:30px}.page-hero__visual{width:100%;min-height:410px;justify-self:stretch}.page-hero__visual img{bottom:72px;height:80%}}
+  @media(min-width:1201px) and (hover:hover) and (pointer:fine){.page-hero__visual:hover img{transform:translateY(-7px) rotate(-1deg)}}
   @media(max-width:900px){.page-hero__visual{min-height:440px}}
   @media(max-width:620px){.page-hero__visual{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.page-hero__visual img{height:78%;bottom:96px}.page-hero__visual figcaption{grid-template-columns:1fr}.page-hero__visual figcaption small{grid-column:auto}}
   @media(prefers-reduced-motion:reduce){.page-hero__visual img{transition:none}.page-hero__visual:hover img{transform:none}}

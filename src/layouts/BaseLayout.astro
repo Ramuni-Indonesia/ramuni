@@ -181,7 +181,11 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
       const activeNodes = document.querySelectorAll('[data-observe-active]');
       if ('IntersectionObserver' in window && activeNodes.length) {
         const activeObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => entry.target.toggleAttribute('data-active', entry.isIntersecting));
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.setAttribute('data-active', '');
+            activeObserver.unobserve(entry.target);
+          });
         }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
         activeNodes.forEach((node) => activeObserver.observe(node));
       }

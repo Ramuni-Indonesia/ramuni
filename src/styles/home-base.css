@@ -29,3 +29,10 @@
 
 /* Keep the hero's decorative arc inside the section's paint boundary. */
 .home-hero{overflow:clip;isolation:isolate;contain:paint}
+
+@media(max-width:1200px), (hover:none), (pointer:coarse){
+  .hero-rule span,.signal-story.reveal.is-visible .signal-story__frame,.signal-story.reveal.is-visible .stock-bars span{animation:none!important}
+  .problem-line:hover,.module-slice:hover,.solution-link:hover,.industry-slice:hover,.signal-story:hover .signal-story__frame{transform:none!important}
+  .problem-line:hover,.module-slice:hover,.industry-slice:hover{padding-inline:0}
+  .signal-story:hover .signal-story__frame{box-shadow:none}
+}

@@ -135,12 +135,10 @@ const schema = [
         <p>Visual ini menggambarkan cara RAMUNI menyusun sinyal usaha. Bukan aksi otomatis, melainkan bahan yang lebih rapi untuk keputusan manusia.</p>
       </div>
       <figure class="companion-journey reveal">
-        <img class="companion-journey__art" src="/website-original/ramuni-decision-landscape.webp" width="1280" height="720" alt="Ilustrasi catatan penjualan, stok, biaya, dan pelanggan yang disusun menjadi satu arah" loading="lazy" decoding="async" />
-        <img class="companion-journey__mascot" src={mascotSrc} width="512" height="512" alt="" loading="lazy" decoding="async" />
-        <figcaption><span>Contoh visual</span><strong>Catatan dirapikan. Bukti dibuka. Arah dipilih.</strong></figcaption>
+        <img class="companion-journey__art" src="/website-original/ramuni-catatan-bukti-arah.webp" width="1280" height="720" alt="Ilustrasi catatan usaha yang dirapikan menjadi bukti dan arah keputusan" loading="lazy" decoding="async" />
       </figure>
       <ol class="companion-stage__steps" aria-label="Alur catatan, bukti, dan arah">
-        {companionSteps.map(([title, text], index) => <li class="reveal" style={`--i:${index}`}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}
+        {companionSteps.map(([title, text], index) => <li class="reveal" style={`--i:${index}`}><h3>{title}</h3><p>{text}</p></li>)}
       </ol>
     </div>
   </section>
