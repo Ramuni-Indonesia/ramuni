@@ -12,10 +12,10 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published source commit: `dbf4db1487ff36d980c38248ed63f7d60fe18675` (`feat: strengthen ramuni trust support and seo journeys`).
-- Documentation follow-up on `main`: this handoff update is documentation-only and does not require a staging redeploy.
-- Active staging release: `20260726T133603Z-dbf4db1487ff`.
-- Deployed artifact SHA-256: `0deaf19805d4813e65f562a5385c1075d531c418ed8200acdd6fec90ab3161c3`.
+- Published runtime commit: `4adcf8df748845cc5e5cdd4b347c11f8d3dc2bf5` (`fix: keep commercial heroes split on large tablets`).
+- Documentation follow-up on `main`: this handoff update is documentation-only and does not require another staging redeploy.
+- Active staging release: `20260726T135947Z-4adcf8df7488`.
+- Deployed artifact SHA-256: `068afcee9540c6c18fe8f65eb2842d8e12b6a8b59eb629fc15145c3a03d785bd`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -60,6 +60,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Seven practical calculator flows and real downloadable CSV template resources are present.
 - Help center has local search/filter behavior and accessible status messaging.
 - `/bantuan/`, `/keamanan/`, and `/tentang/` were redesigned in the latest release.
+- Product hub, solution hub, product detail, and solution detail heroes now keep their desktop split composition from 1081px through 1200px, matching the desktop navbar contract on 11–12 inch landscape tablets. They still stack at 1080px and below.
 - Nine product pages and four role pages have unique SEO metadata; role pages have explicit self-canonicals.
 - Internal links use trailing-slash canonical routes. Header/footer matching and solution-icon routing follow the same convention.
 - All nine product icons and all five solution icons are available. The latest three solution icons are `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`; their optimized WebP files are committed and synchronized to R2.
@@ -84,9 +85,11 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - All 67 R2 assets synchronized.
+- Latest R2 sync uploaded nothing and confirmed all 67 assets unchanged.
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
+- Deployment health check passed for release `20260726T135947Z-4adcf8df7488` and artifact `068afcee9540c6c18fe8f65eb2842d8e12b6a8b59eb629fc15145c3a03d785bd`.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
@@ -117,6 +120,13 @@ The canonical checkout is not a safe release source until this work is reconcile
 - `/home/meetsin/internal/ramuni-source-marketing-gateway`
 
 Do not apply, pop, drop, overwrite, or commit these changes before reviewing their unique files and overlap with published `main`. Preserve the stashes until the dedicated gateway worktrees have been reconciled and tested.
+
+Latest read-only gateway audit:
+
+- The canonical checkout contains almost the full older release staged plus gateway wiring in `src/pages/produk/[slug].astro` and `src/pages/solusi/[slug].astro`; it is not safe for pull, reset, or commit.
+- `stash@{0}` combines the older release snapshot with live gateway WIP. `stash@{1}` is an earlier gateway implementation. Keep both until their behavior is compared with the provider branch, especially the older `artifact-publisher.mjs` path.
+- Continue gateway development only from `/home/meetsin/internal/ramuni-source-cms-provider`. It has local commit `2538ffd` plus dirty provider/build-runner/config/server/store/package refinements that still need rebase and testing.
+- The obsolete clean worktree `/home/meetsin/internal/ramuni-source-marketing-gateway` had no unique commits and was removed after audit. Its local branch may be deleted separately after confirming it is not referenced.
 
 ## Next continuation workflow
 
