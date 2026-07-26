@@ -47,7 +47,13 @@ try {
   assert.equal((await removal.getPage('/produk/inventori/')).payload.product.title, 'Inventori');
   assert.equal((await overlay.getRedirects()).length, 1);
   assert.throws(() => new gateway.CandidateOverlayGateway(hybrid, candidate, { eventId: 'bad', snapshotId: '42', revisionHash: candidateHash }), /event ID/);
-  console.log(JSON.stringify({ ok: true, checks: 12, modes: ['local', 'hybrid', 'cms-candidate-publish', 'cms-candidate-unpublish'] }));
+  const jsonbPayload = { title: 'JSONB candidate', seo: { description: 'Stable', title: 'CMS' }, workflowState: 'approved' };
+  jsonbPayload.approvedVersionHash = createHash('sha256').update(JSON.stringify({ seo: { description: 'Stable', title: 'CMS' }, title: 'JSONB candidate' })).digest('hex');
+  const jsonbCandidate = gateway.parseProviderCandidate({ ...candidateRecord, id: '45', event_id: 'event-jsonb', payload_hash: 'a'.repeat(64), payload: jsonbPayload });
+  assert.doesNotThrow(() => new gateway.CandidateOverlayGateway(hybrid, jsonbCandidate, { eventId: 'event-jsonb', snapshotId: '45', revisionHash: 'a'.repeat(64) }));
+  const tamperedCandidate = gateway.parseProviderCandidate({ ...candidateRecord, id: '46', event_id: 'event-tampered', payload_hash: 'b'.repeat(64), payload: { ...jsonbPayload, title: 'Tampered' } });
+  assert.throws(() => new gateway.CandidateOverlayGateway(hybrid, tamperedCandidate, { eventId: 'event-tampered', snapshotId: '46', revisionHash: 'b'.repeat(64) }), /payload hash/);
+  console.log(JSON.stringify({ ok: true, checks: 14, modes: ['local', 'hybrid', 'cms-candidate-publish', 'cms-candidate-unpublish'] }));
 } finally {
   await rm(workspace, { recursive: true, force: true });
 }
