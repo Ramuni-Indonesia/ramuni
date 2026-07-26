@@ -58,6 +58,12 @@ fi
 echo "Building staging artifact from $(git rev-parse --short=12 HEAD)..."
 npm ci --force
 npm run check
+ramuni_r2_env_file=${RAMUNI_R2_ENV_FILE:-/home/meetsin/.config/ramuni/r2.env}
+if [[ -f $ramuni_r2_env_file ]]; then
+  npm run r2:sync -- --env-file "$ramuni_r2_env_file"
+else
+  echo "R2 sync skipped; set RAMUNI_R2_ENV_FILE to publish public assets." >&2
+fi
 PUBLIC_DEPLOY_ENV=staging \
 PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
