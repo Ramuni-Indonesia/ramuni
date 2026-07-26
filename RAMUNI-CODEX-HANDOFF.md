@@ -12,10 +12,10 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `ebf0edada44dcc995cbce674dff37efd5f69f631` (`fix: stabilize tablet navigation and motion`).
+- Published runtime commit: `27905cde8bf6ab746f76918b3026bddb071a66f1` (`fix: preserve horizontal overflow fallback`).
 - Documentation follow-up on `main`: this handoff update is documentation-only and does not require another staging redeploy.
-- Active staging release: `20260726T141859Z-ebf0edada44d`.
-- Deployed artifact SHA-256: `c7e6cdb849ab1827a23aa326936c7f2a10e446a4a8107a80a171357a5a916ece`.
+- Active staging release: `20260726T143122Z-27905cde8bf6`.
+- Deployed artifact SHA-256: `6435c15e8a769670864cdebe4d26d69a31af9ee4c885fb564553012c7578b898`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -83,16 +83,20 @@ No verified real product dashboard screenshots were found in the supplied produc
 
 ## Latest validation evidence
 
-- Astro check: 100 files, zero diagnostics.
+- Astro check: 109 files, zero diagnostics.
 - Staging build: 87 pages.
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - All 67 R2 assets synchronized.
 - Latest R2 sync uploaded nothing and confirmed all 67 assets unchanged.
+- The minified live stylesheet preserves `overflow-x: hidden` for older engines and upgrades `html`, `body`, and `main` to `overflow-x: clip` inside `@supports`.
+- Live staging checks returned HTTP 200 for `/healthz`, the homepage, product hub/detail, solution hub, blog, calculator hub, and contact page.
+- Live staging remains fail-closed: HTTP `X-Robots-Tag` is noindex, HTML is `noindex,follow`, responses are `no-store`, and sitemap endpoints return 404.
+- `/demo/`, `/early-access/`, and `/harga/` return a single 301 hop to `/tour-produk-gratis`.
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T141859Z-ebf0edada44d` and artifact `c7e6cdb849ab1827a23aa326936c7f2a10e446a4a8107a80a171357a5a916ece`.
+- Deployment health check passed for release `20260726T143122Z-27905cde8bf6` and artifact `6435c15e8a769670864cdebe4d26d69a31af9ee4c885fb564553012c7578b898`.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
