@@ -9,12 +9,20 @@ async function body(request, limit) {
   return Buffer.concat(chunks).toString('utf8');
 }
 function json(response, status, value) { response.writeHead(status, { 'content-type': 'application/json', 'cache-control': 'no-store' }); response.end(JSON.stringify(value)); }
+function safeErrorCode(error) {
+  if (!(error instanceof Error)) return 'build_failed';
+  return error.message.replace(/[^a-zA-Z0-9_:-]/g, '_').slice(0, 120) || 'build_failed';
+}
 
 export function createProviderService({ config, store, fetchImpl = fetch, buildRunner = runCandidateBuild }) {
   let stopped = false; let running = false;
   const server = http.createServer(async (request, response) => {
     try {
       if (request.method === 'GET' && request.url === '/healthz') return json(response, 200, { ok: true, queue: store.counts() });
+      if (request.method === 'OPTIONS' && request.url === '/api/cms/revalidate') {
+        response.writeHead(204, { allow: 'POST, OPTIONS', 'cache-control': 'no-store' });
+        return response.end();
+      }
       if (request.method !== 'POST' || request.url !== '/api/cms/revalidate') return json(response, 404, { error: 'not_found' });
       const raw = await body(request, config.maxBodyBytes);
       verifySignedBody({ secret: config.sharedSecret, timestamp: request.headers['x-ramuni-timestamp'] || '', signature: request.headers['x-ramuni-signature'] || '', body: raw, toleranceSeconds: config.replayWindowSeconds });
@@ -40,9 +48,10 @@ export function createProviderService({ config, store, fetchImpl = fetch, buildR
           const result = await buildRunner(config, event, candidate);
           callback = { eventId: event.eventId, status: 'success', providerBuildId: result.providerBuildId, artifactUrl: result.artifactUrl };
         } catch (error) {
-          callback = { eventId: event.eventId, status: 'failed', providerBuildId: `failed-${Date.now()}` };
+          const errorCode = safeErrorCode(error);
+          callback = { eventId: event.eventId, status: 'failed', providerBuildId: `failed-${Date.now()}`, errorCode };
         }
-        store.finishBuild(event.eventId, JSON.stringify(callback));
+        store.finishBuild(event.eventId, JSON.stringify(callback), callback.errorCode || null);
       }
       const pending = store.nextCallback();
       if (pending?.callbackBody) {

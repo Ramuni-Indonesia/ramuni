@@ -33,6 +33,7 @@ test('provider authenticates, deduplicates, builds one exact candidate and retri
   await new Promise((resolve) => service.server.listen(0, '127.0.0.1', resolve));
   const address = service.server.address();
   const endpoint = `http://127.0.0.1:${address.port}/api/cms/revalidate`;
+  assert.equal((await fetch(endpoint, { method: 'OPTIONS' })).status, 204);
   const timestamp = String(Math.floor(Date.now() / 1000));
   const headers = { 'content-type': 'application/json', 'idempotency-key': event.eventId, 'x-ramuni-timestamp': timestamp, 'x-ramuni-signature': signBody(sharedSecret, timestamp, raw) };
   assert.equal((await fetch(endpoint, { method: 'POST', headers, body: raw })).status, 202);
@@ -47,5 +48,33 @@ test('provider authenticates, deduplicates, builds one exact candidate and retri
   await service.tick();
   assert.equal(store.get(event.eventId).status, 'succeeded');
   assert.equal(callbackAttempts, 2);
+  await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
+});
+
+test('provider stores sanitized build failures durably before callback', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'ramuni-provider-fail-'));
+  const store = new ProviderStore(path.join(root, 'inbox.sqlite'));
+  const sharedSecret = 'test-shared-secret-with-at-least-thirty-two-characters';
+  const payload = { slug: 'asisten-ai', title: 'Candidate' };
+  const revisionHash = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
+  const event = { operation: 'publish', eventId: 'provider-event-fail-0001', snapshotId: '43', revisionHash, routes: ['/produk/asisten-ai/'], callbackUrl: 'https://cms.example.test/v1/cms/webhooks/website-build' };
+  const raw = JSON.stringify(event);
+  const fetchImpl = async (url) => {
+    const target = new URL(url);
+    if (target.pathname.includes('/delivery/candidates/')) return Response.json({ id: '43', snapshot_id: event.eventId, content_type: 'product-pages', schema_version: '1', locale: 'id-ID', canonical_path: '/produk/asisten-ai/', routes: event.routes, published_revision_id: 'revision-3', content_version: '3', payload_hash: revisionHash, payload, event_id: event.eventId, operation: 'publish', activation_state: 'candidate' });
+    return new Response('retry', { status: 503 });
+  };
+  const config = { bindHost: '127.0.0.1', port: 0, maxBodyBytes: 65536, sharedSecret, replayWindowSeconds: 300, cmsBaseUrl: 'https://cms.example.test', deliveryToken: 'test-token', fetchTimeoutMs: 5000, pollIntervalMs: 60000, callbackMaxAttempts: 0 };
+  const service = createProviderService({ config, store, fetchImpl, buildRunner: async () => { throw new Error('npm_exit_1:secret/path output'); } });
+  await new Promise((resolve) => service.server.listen(0, '127.0.0.1', resolve));
+  const endpoint = `http://127.0.0.1:${service.server.address().port}/api/cms/revalidate`;
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const headers = { 'content-type': 'application/json', 'idempotency-key': event.eventId, 'x-ramuni-timestamp': timestamp, 'x-ramuni-signature': signBody(sharedSecret, timestamp, raw) };
+  assert.equal((await fetch(endpoint, { method: 'POST', headers, body: raw })).status, 202);
+  await service.tick();
+  const row = store.get(event.eventId);
+  assert.equal(row.status, 'callback-pending');
+  assert.match(row.buildError, /^npm_exit_1:/);
+  assert.equal(JSON.parse(row.callbackBody).status, 'failed');
   await service.stop(); store.close(); await rm(root, { recursive: true, force: true });
 });

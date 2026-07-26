@@ -27,6 +27,8 @@ export function loadConfig(env = process.env) {
     maxBodyBytes: integer(env, 'RAMUNI_PROVIDER_MAX_BODY_BYTES', 65536, 1024, 1048576),
     pollIntervalMs: integer(env, 'RAMUNI_PROVIDER_POLL_INTERVAL_MS', 1000, 100, 60000),
     fetchTimeoutMs: integer(env, 'RAMUNI_PROVIDER_FETCH_TIMEOUT_MS', 15000, 1000, 60000),
+    commandTimeoutMs: integer(env, 'RAMUNI_PROVIDER_COMMAND_TIMEOUT_MS', 1200000, 60000, 7200000),
+    releaseRetention: integer(env, 'RAMUNI_PROVIDER_RELEASE_RETENTION', 8, 2, 100),
     callbackMaxAttempts: integer(env, 'RAMUNI_PROVIDER_CALLBACK_MAX_ATTEMPTS', 0, 0, 1000),
     publicBuildEnv: Object.fromEntries(Object.entries(env).filter(([key, value]) => key.startsWith('PUBLIC_') && typeof value === 'string')),
   };

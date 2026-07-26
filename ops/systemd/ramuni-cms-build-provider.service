@@ -8,7 +8,7 @@ Type=simple
 User=root
 Group=root
 WorkingDirectory=/home/meetsin/internal/ramuni-source-provider-runtime
-ExecStart=/usr/bin/docker run --rm --name ramuni-cms-build-provider --network host --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,nodev,noexec,size=128m --env-file /home/meetsin/.config/ramuni-cms-build-provider/provider.env -v /home/meetsin/internal/ramuni-source-provider-runtime:/app:rw -v /home/meetsin/.config/ramuni-cms-build-provider:/run/secrets:ro -v /var/lib/ramuni-cms-build-provider:/var/lib/ramuni-cms-build-provider -v /var/www/ramuni-staging:/var/www/ramuni-staging -w /app node:22.18.0-bookworm node ops/cms-build-provider/index.mjs
+ExecStart=/usr/bin/docker run --rm --name ramuni-cms-build-provider --network host --read-only --cap-drop ALL --security-opt no-new-privileges --pids-limit 512 --tmpfs /tmp:rw,nosuid,nodev,noexec,size=128m --env-file /home/meetsin/.config/ramuni-cms-build-provider/provider.env -v /home/meetsin/internal/ramuni-source-provider-runtime:/app:rw -v /home/meetsin/.config/ramuni-cms-build-provider:/run/secrets:ro -v /var/lib/ramuni-cms-build-provider:/var/lib/ramuni-cms-build-provider -v /var/www/ramuni-staging:/var/www/ramuni-staging -w /app node:22.18.0-bookworm@sha256:3266bc9e8bee1acc8a77386eefaf574987d2729b8c5ec35b0dbd6ddbc40b0ce2 node ops/cms-build-provider/index.mjs
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=30

@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { cp, lstat, mkdir, readFile, readlink, rename, rm, symlink, writeFile } from 'node:fs/promises';
+import { cp, lstat, mkdir, readFile, readdir, readlink, rename, rm, symlink, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
@@ -7,15 +7,27 @@ function run(command, args, options) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { ...options, stdio: ['ignore', 'pipe', 'pipe'] });
     let stderr = '';
+    let timedOut = false;
+    const timeoutMs = Number(options?.timeoutMs || 0);
+    const timer = timeoutMs > 0 ? setTimeout(() => {
+      timedOut = true;
+      child.kill('SIGTERM');
+      setTimeout(() => child.kill('SIGKILL'), 5000).unref();
+    }, timeoutMs) : null;
+    timer?.unref();
     child.stderr.on('data', (chunk) => { stderr = (stderr + chunk).slice(-8000); });
     child.stdout.resume();
-    child.once('error', reject);
-    child.once('exit', (code) => code === 0 ? resolve() : reject(new Error(`${command}_exit_${code}:${stderr.replace(/[\r\n]+/g, ' ').slice(-1000)}`)));
+    child.once('error', (error) => { if (timer) clearTimeout(timer); reject(error); });
+    child.once('exit', (code) => {
+      if (timer) clearTimeout(timer);
+      if (timedOut) reject(new Error(`${command}_timeout`));
+      else if (code === 0) resolve();
+      else reject(new Error(`${command}_exit_${code}:${stderr.replace(/[\r\n]+/g, ' ').slice(-1000)}`));
+    });
   });
 }
 
 async function artifactDigest(root) {
-  const { readdir } = await import('node:fs/promises');
   const files = [];
   async function walk(dir) { for (const entry of await readdir(dir, { withFileTypes: true })) { const path = join(dir, entry.name); if (entry.isDirectory()) await walk(path); else files.push(path); } }
   await walk(root); files.sort(); const digest = createHash('sha256');
@@ -24,6 +36,13 @@ async function artifactDigest(root) {
 }
 
 function outputPath(dist, route) { return route === '/' ? join(dist, 'index.html') : join(dist, route.replace(/^\//, ''), 'index.html'); }
+async function pruneReleases(releaseRoot, keep) {
+  const releasesRoot = join(releaseRoot, 'releases');
+  let entries;
+  try { entries = await readdir(releasesRoot, { withFileTypes: true }); } catch (error) { if (error?.code === 'ENOENT') return; throw error; }
+  const releases = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort().reverse();
+  await Promise.all(releases.slice(keep).map((name) => rm(join(releasesRoot, name), { recursive: true, force: true })));
+}
 
 export async function runCandidateBuild(config, event, candidate) {
   const safeId = createHash('sha256').update(event.eventId).digest('hex').slice(0, 20);
@@ -38,7 +57,7 @@ export async function runCandidateBuild(config, event, candidate) {
   await writeFile(candidateFile, JSON.stringify(candidate), { mode: 0o600 });
   await writeFile(tokenFile, config.deliveryToken, { mode: 0o600 });
   try {
-    await run('git', ['-C', config.repository, 'worktree', 'add', '--detach', checkout, config.marketingSha], { env: process.env });
+    await run('git', ['-C', config.repository, 'worktree', 'add', '--detach', checkout, config.marketingSha], { env: process.env, timeoutMs: config.commandTimeoutMs });
     const buildEnv = {
       PATH: process.env.PATH, HOME: buildHome, NPM_CONFIG_CACHE: join(buildHome, '.npm'), ...config.publicBuildEnv,
       PUBLIC_DEPLOY_ENV: config.publicBuildEnv.PUBLIC_DEPLOY_ENV || 'staging',
@@ -48,11 +67,11 @@ export async function runCandidateBuild(config, event, candidate) {
       RAMUNI_CMS_CANDIDATE_FILE: candidateFile, RAMUNI_CMS_EVENT_ID: event.eventId,
       RAMUNI_CMS_SNAPSHOT_ID: event.snapshotId, RAMUNI_CMS_REVISION_HASH: event.revisionHash,
     };
-    await run('npm', ['ci', '--force'], { cwd: checkout, env: buildEnv });
-    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: buildEnv });
-    await run('npm', ['run', 'build'], { cwd: checkout, env: buildEnv });
-    await run('npm', ['run', 'audit'], { cwd: checkout, env: buildEnv });
-    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: buildEnv });
+    await run('npm', ['ci', '--force'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'test:content-gateway'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'build'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['run', 'audit'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
+    await run('npm', ['audit', '--audit-level=high'], { cwd: checkout, env: buildEnv, timeoutMs: config.commandTimeoutMs });
     const dist = join(checkout, 'dist');
     for (const route of event.routes) {
       const path = outputPath(dist, route);
@@ -88,6 +107,7 @@ export async function runCandidateBuild(config, event, candidate) {
       }
       throw error;
     }
+    await pruneReleases(config.releaseRoot, config.releaseRetention || 8);
     return { providerBuildId: buildId, artifactDigest: digest, artifactUrl: `https://staging.ramuni.id/?release=${encodeURIComponent(buildId)}` };
   } finally {
     await run('git', ['-C', config.repository, 'worktree', 'remove', '--force', checkout], { env: process.env }).catch(() => undefined);

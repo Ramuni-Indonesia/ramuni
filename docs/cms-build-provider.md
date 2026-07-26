@@ -18,4 +18,10 @@ Secrets are file references with protected permissions. Required provider enviro
 
 The provider service and Nginx change must be installed only after the pinned SHA passes Node 22 checks. Keep the previous `current` symlink target and provider environment backup for rollback.
 
-For the supplied Docker-backed systemd unit, provider paths inside `provider.env` must use container paths: repository `/app`, secret files below `/run/secrets`, state below `/var/lib/ramuni-cms-build-provider`, and release root `/var/www/ramuni-staging`. The host checkout mounted at `/app` is the dedicated clean clone `/home/meetsin/internal/ramuni-source-provider-runtime`; do not point the service at an editor worktree or the canonical dirty checkout. The unit uses the full Node 22 Bookworm image because the build runner requires `git` as well as Node/npm.
+For the supplied Docker-backed systemd unit, provider paths inside `provider.env` must use container paths: repository `/app`, secret files below `/run/secrets`, state below `/var/lib/ramuni-cms-build-provider`, and release root `/var/www/ramuni-staging`. The host checkout mounted at `/app` is the dedicated clean clone `/home/meetsin/internal/ramuni-source-provider-runtime`; do not point the service at an editor worktree or the canonical dirty checkout. The unit pins the full Node 22 Bookworm image by digest because the build runner requires `git` as well as Node/npm.
+
+Operational limits:
+
+- `RAMUNI_PROVIDER_COMMAND_TIMEOUT_MS` bounds every Git/npm build command.
+- `RAMUNI_PROVIDER_RELEASE_RETENTION` keeps the newest successful provider releases and removes older provider artifacts.
+- Build failures are stored as sanitized error codes in the durable inbox and returned through the signed callback.
