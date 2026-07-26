@@ -1,16 +1,156 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
-export function getStaticPaths(){
-const guides={
-  'membaca-stok-harian':{title:'Membaca Stok Harian',outcome:'Menemukan stok yang perlu diperiksa sebelum jam ramai.',steps:[{title:'Pilih produk yang bergerak cepat',text:'Mulai dari produk yang paling sering terjual atau paling berisiko habis.'},{title:'Bandingkan sisa stok dengan penjualan',text:'Gunakan periode yang sama agar sisa stok dan laju penjualan dapat dibaca bersama.'},{title:'Periksa pergerakan dan selisih',text:'Telusuri barang masuk, penjualan, retur, serta koreksi sebelum menyimpulkan penyebab.'},{title:'Catat keputusan berikutnya',text:'Tentukan produk yang perlu dihitung ulang, dipindahkan, atau disiapkan untuk pemesanan.'}]},
-  'memahami-arus-kas':{title:'Memahami Arus Kas',outcome:'Membaca arah uang masuk dan keluar dalam satu periode.',steps:[{title:'Tentukan periode',text:'Pilih tanggal awal dan akhir, lalu catat saldo kas pada kedua titik tersebut.'},{title:'Kelompokkan uang masuk',text:'Pisahkan penerimaan penjualan, pelunasan piutang, modal, dan sumber lain yang diketahui.'},{title:'Kelompokkan uang keluar',text:'Bedakan pembelian stok, biaya rutin, pembayaran utang, dan pengeluaran lain.'},{title:'Periksa perubahan yang tidak biasa',text:'Bandingkan arus bersih dengan perubahan saldo dan telusuri selisih yang belum memiliki catatan.'}]},
-  'menilai-insight-ai':{title:'Menilai Insight AI',outcome:'Memeriksa jawaban AI sebelum menjadikannya dasar keputusan.',steps:[{title:'Baca kesimpulan',text:'Pastikan jawaban menjawab pertanyaan Anda dan tidak menyamarkan ketidakpastian.'},{title:'Periksa periode',text:'Cocokkan rentang waktu, waktu pembaruan, dan kelengkapan data yang digunakan.'},{title:'Telusuri bukti',text:'Buka angka atau catatan pendukung dan periksa apakah bukti sesuai dengan kesimpulannya.'},{title:'Nilai batas dan tindakan',text:'Catat asumsi yang tersisa, lalu tentukan pemeriksaan manusia sebelum mengambil tindakan.'}]},
-};
-return Object.entries(guides).map(([slug,guide])=>({params:{slug},props:{guide}}));
+import '../../styles/learning-resource-pages.css';
+
+export function getStaticPaths() {
+  const guides = {
+  'membaca-stok-harian': {
+    slug: 'membaca-stok-harian',
+    title: 'Membaca stok harian',
+    query: 'Produk mana yang perlu dicek lebih dulu?',
+    outcome: 'Menemukan stok yang perlu diperiksa sebelum jam ramai.',
+    time: '6 menit',
+    visual: 'stock',
+    checklist: ['Periode stok dan penjualan sama', 'Satuan setiap produk konsisten', 'Selisih memiliki catatan'],
+    steps: [
+      { title: 'Pilih produk yang bergerak cepat', text: 'Mulai dari produk yang paling sering terjual atau paling berisiko habis. Hindari memeriksa semua barang sekaligus bila waktu terbatas.', cue: 'Fokus' },
+      { title: 'Bandingkan sisa stok dengan penjualan', text: 'Gunakan periode yang sama agar saldo stok dan laju penjualan dapat dibaca bersama.', cue: 'Bandingkan' },
+      { title: 'Periksa pergerakan dan selisih', text: 'Telusuri barang masuk, penjualan, retur, barang rusak, serta koreksi sebelum menyimpulkan penyebab.', cue: 'Telusuri' },
+      { title: 'Catat keputusan berikutnya', text: 'Tentukan produk yang perlu dihitung ulang, dipindahkan, atau disiapkan untuk pemesanan.', cue: 'Tindak lanjut' },
+    ],
+    related: [
+      { type: 'Kalkulator', title: 'Titik reorder stok', text: 'Perkirakan batas stok untuk mulai memeriksa pemesanan.', href: '/kalkulator/reorder-stok' },
+      { type: 'Template', title: 'Stok harian', text: 'Catat saldo awal, barang masuk, barang keluar, dan alasan selisih.', href: '/template/stok-harian' },
+      { type: 'Kamus', title: 'Stok pengaman', text: 'Pahami fungsi cadangan stok dan batas penggunaannya.', href: '/kamus-bisnis/stok-pengaman' },
+    ],
+  },
+  'memahami-arus-kas': {
+    slug: 'memahami-arus-kas',
+    title: 'Memahami arus kas',
+    query: 'Kenapa omzet naik tetapi kas terasa sempit?',
+    outcome: 'Membaca arah uang masuk dan keluar dalam satu periode.',
+    time: '7 menit',
+    visual: 'cash',
+    checklist: ['Saldo pembuka berasal dari catatan', 'Piutang tidak dihitung sebagai kas masuk', 'Pengeluaran memiliki tanggal yang jelas'],
+    steps: [
+      { title: 'Tentukan periode', text: 'Pilih tanggal awal dan akhir, lalu catat saldo kas pada kedua titik tersebut.', cue: 'Periode' },
+      { title: 'Kelompokkan uang masuk', text: 'Pisahkan penerimaan penjualan, pelunasan piutang, modal, dan sumber lain yang diketahui.', cue: 'Masuk' },
+      { title: 'Kelompokkan uang keluar', text: 'Bedakan pembelian stok, biaya rutin, pembayaran utang, dan pengeluaran lain.', cue: 'Keluar' },
+      { title: 'Periksa perubahan yang tidak biasa', text: 'Bandingkan arus bersih dengan perubahan saldo dan telusuri selisih yang belum memiliki catatan.', cue: 'Selisih' },
+    ],
+    related: [
+      { type: 'Template', title: 'Arus kas sederhana', text: 'Susun uang masuk dan keluar sesuai waktu terjadinya.', href: '/template/arus-kas-sederhana' },
+      { type: 'Kalkulator', title: 'Laba usaha', text: 'Bandingkan pendapatan dan biaya tanpa mencampurnya dengan kas.', href: '/kalkulator/laba-usaha' },
+      { type: 'Kamus', title: 'Arus kas', text: 'Lihat definisi, contoh, dan istilah yang sering tertukar.', href: '/kamus-bisnis/arus-kas' },
+    ],
+  },
+  'menilai-insight-ai': {
+    slug: 'menilai-insight-ai',
+    title: 'Menilai insight AI',
+    query: 'Apa yang perlu dicek sebelum mengikuti saran AI?',
+    outcome: 'Memeriksa jawaban AI sebelum menjadikannya dasar keputusan.',
+    time: '5 menit',
+    visual: 'ai',
+    checklist: ['Pertanyaan dan periode terlihat', 'Angka pendukung dapat ditelusuri', 'Tindakan tetap diperiksa manusia'],
+    steps: [
+      { title: 'Baca kesimpulan', text: 'Pastikan jawaban menjawab pertanyaan Anda dan tidak menyamarkan ketidakpastian.', cue: 'Jawaban' },
+      { title: 'Periksa periode', text: 'Cocokkan rentang waktu, waktu pembaruan, dan kelengkapan data yang digunakan.', cue: 'Konteks' },
+      { title: 'Telusuri bukti', text: 'Buka angka atau catatan pendukung dan periksa apakah bukti sesuai dengan kesimpulannya.', cue: 'Bukti' },
+      { title: 'Nilai batas dan tindakan', text: 'Catat asumsi yang tersisa, lalu tentukan pemeriksaan manusia sebelum mengambil tindakan.', cue: 'Batas' },
+    ],
+    related: [
+      { type: 'Artikel', title: 'Metodologi pengecekan fakta', text: 'Lihat cara klaim, sumber, dan contoh diperiksa.', href: '/blog/metodologi-fact-check' },
+      { type: 'Artikel', title: 'Kebijakan sumber', text: 'Pahami jenis sumber dan cara rujukan ditampilkan.', href: '/blog/kebijakan-sumber' },
+      { type: 'Produk', title: 'Asisten AI', text: 'Lihat peran, bukti, dan batas Asisten AI RAMUNI.', href: '/produk/asisten-ai' },
+    ],
+  },
+  };
+  return Object.entries(guides).map(([slug, guide]) => ({ params: { slug }, props: { guide } }));
 }
-const {guide}=Astro.props;
+
+const { guide } = Astro.props;
+const guideUrl = new URL(`/panduan/${guide.slug}/`, Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: guide.title,
+    description: guide.outcome,
+    url: guideUrl,
+    inLanguage: 'id-ID',
+    totalTime: guide.time === '7 menit' ? 'PT7M' : guide.time === '6 menit' ? 'PT6M' : 'PT5M',
+    step: guide.steps.map((step, index) => ({ '@type': 'HowToStep', position: index + 1, name: step.title, text: step.text })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Panduan', item: new URL('/panduan/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: guideUrl },
+    ],
+  },
+];
 ---
-<BaseLayout title={`${guide.title} | Panduan RAMUNI`} description={`${guide.outcome} Panduan RAMUNI dengan langkah praktis dan batas penggunaan yang jelas.`} noindex={!releaseGates.resourcePagesIndexable}>
-  <article class="guide-article"><header class="container guide-header"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/panduan">Panduan</a><span>/</span><span>{guide.title}</span></nav><p class="eyebrow">Panduan praktis</p><h1>{guide.title}</h1><p class="lede">{guide.outcome}</p><div class="article-meta"><span>Tim Editorial RAMUNI</span><span>Contoh edukatif</span><span>5 menit</span></div></header><section class="section surface"><div class="container guide-body"><aside><strong>Hasil yang dituju</strong><p>{guide.outcome}</p><small>Gunakan data contoh atau data yang sudah disamarkan. Jangan masukkan data sensitif.</small></aside><ol>{guide.steps.map((step,i)=><li class="reveal"><span>0{i+1}</span><div><h2>{step.title}</h2><p>{step.text}</p></div></li>)}</ol></div></section></article>
+
+<BaseLayout
+  title={`${guide.title} | Panduan Bisnis RAMUNI`}
+  description={`${guide.outcome} Ikuti langkah praktis, checklist pemeriksaan, dan alat terkait untuk UMKM.`}
+  noindex={!releaseGates.resourcePagesIndexable}
+  schema={schema}
+  keywords={[guide.title, guide.query, 'panduan bisnis UMKM', 'RAMUNI']}
+>
+  <article class:list={['learning-page', 'learning-detail', `learning-detail--${guide.visual}`]}>
+    <header class="learning-detail-hero">
+      <div class="container learning-detail-hero__grid">
+        <div class="learning-detail-hero__copy reveal is-visible">
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/panduan">Panduan</a><span>/</span><span aria-current="page">{guide.title}</span></nav>
+          <p class="eyebrow">Panduan praktis · {guide.time}</p>
+          <h1>{guide.title}</h1>
+          <p class="learning-detail-hero__question">{guide.query}</p>
+          <p class="lede">{guide.outcome} Mulai dari catatan yang sudah tersedia, lalu hentikan pemeriksaan jika konteksnya belum cukup.</p>
+          <div class="button-row"><a class="button button--primary" href="#langkah">Mulai dari langkah pertama</a><a class="button button--secondary" href="#alat-terkait">Siapkan alat bantu</a></div>
+        </div>
+        <div class="learning-detail-visual reveal is-visible" aria-label={`Ilustrasi alur ${guide.title}`}>
+          <header><span>Mode pemeriksaan</span><strong>{guide.visual === 'stock' ? 'Stok harian' : guide.visual === 'cash' ? 'Arus kas' : 'Insight AI'}</strong></header>
+          <div class="learning-detail-visual__stage">
+            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="Muni menunjukkan alur dari catatan menuju langkah berikutnya" decoding="async" />
+            <div class="learning-detail-visual__board">
+              <small>Pertanyaan hari ini</small><strong>{guide.query}</strong>
+              <ol>{guide.steps.slice(0, 3).map((step, index) => <li><span>0{index + 1}</span><i aria-hidden="true"></i><b>{step.cue}</b></li>)}</ol>
+            </div>
+          </div>
+          <footer><span>Contoh edukatif</span><strong>Keputusan tetap diperiksa manusia</strong></footer>
+        </div>
+      </div>
+    </header>
+
+    <section class="section surface learning-steps" id="langkah" aria-labelledby="learning-steps-title">
+      <div class="container learning-steps__layout">
+        <aside class="learning-checklist reveal">
+          <p class="section-kicker">Sebelum mulai</p><h2 id="learning-steps-title">Tiga hal yang perlu tersedia.</h2>
+          <ul>{guide.checklist.map((item) => <li><span aria-hidden="true">✓</span>{item}</li>)}</ul>
+          <small>Gunakan data yang sudah disamarkan bila Anda sedang mencoba alurnya. Jangan menyalin data sensitif ke alat yang tidak membutuhkannya.</small>
+        </aside>
+        <ol class="learning-step-list">
+          {guide.steps.map((step, index) => <li class="reveal" style={`--i:${index}`}><span>0{index + 1}</span><div><small>{step.cue}</small><h2>{step.title}</h2><p>{step.text}</p></div><i aria-hidden="true"></i></li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section learning-related" id="alat-terkait" aria-labelledby="learning-related-title">
+      <div class="container">
+        <div class="learning-section-head reveal"><div><p class="section-kicker">Lanjutkan pemeriksaan</p><h2 id="learning-related-title">Buka alat yang sesuai dengan catatan Anda.</h2></div><p>Tidak semua alat perlu dipakai. Pilih satu yang membantu menjawab pertanyaan tanpa menambah pekerjaan baru.</p></div>
+        <div class="learning-related__grid">{guide.related.map((item, index) => <a class="learning-related-card reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><small>{item.type}</small><h3>{item.title}</h3><p>{item.text}</p><b>Buka {item.type.toLowerCase()} <i aria-hidden="true">→</i></b></a>)}</div>
+      </div>
+    </section>
+
+    <section class="section learning-close-stage">
+      <div class="container learning-close learning-close--compact reveal">
+        <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
+        <div><p class="section-kicker">Selesai membaca</p><h2>Simpan pertanyaannya, bukan hanya jawabannya.</h2><p>Catat data yang dipakai, keputusan kecil yang dibuat, dan waktu untuk memeriksa hasilnya lagi.</p><div class="button-row"><a class="button button--primary" href="/template/evaluasi-mingguan">Pakai template evaluasi</a><a class="button button--secondary" href="/panduan">Panduan lainnya</a></div></div>
+      </div>
+    </section>
+  </article>
 </BaseLayout>

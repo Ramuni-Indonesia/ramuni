@@ -11,7 +11,13 @@ const calculator = calculators[kind];
 const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
 ---
 
-<section class:list={['ramuni-calculator', { 'ramuni-calculator--embedded': embedded }]} data-calculator-widget={kind} aria-labelledby={titleId}>
+<section
+  class:list={['ramuni-calculator', { 'ramuni-calculator--embedded': embedded }]}
+  data-calculator-widget={kind}
+  data-example-values={JSON.stringify(calculator.example)}
+  data-result-notes={JSON.stringify({ empty: calculator.emptyNote, positive: calculator.positiveNote, caution: calculator.cautionNote })}
+  aria-labelledby={titleId}
+>
   <div class="ramuni-calculator__intro">
     <span>{embedded ? 'Coba di artikel' : 'Hitung dengan data Anda'}</span>
     <h2 id={titleId}>{calculator.shortTitle}</h2>
@@ -20,10 +26,14 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
 
   <div class="ramuni-calculator__workspace">
     <form class="ramuni-calculator__form">
+      <div class="ramuni-calculator__scenario">
+        <span>Mulai dengan angka sendiri atau</span>
+        <button type="button" data-calculator-example>{calculator.exampleLabel}</button>
+      </div>
       {calculator.fields.map((field) => <div class="ramuni-calculator__field">
         <label for={`${titleId}-${field.name}`}>{field.label}</label>
         <div class="ramuni-calculator__input">
-          <input id={`${titleId}-${field.name}`} name={field.name} type="number" min="0" step="any" inputmode="decimal" required />
+          <input id={`${titleId}-${field.name}`} name={field.name} type="number" min="0" step="any" inputmode="decimal" placeholder={field.placeholder} required />
           <span>{field.unit}</span>
         </div>
       </div>)}
@@ -35,10 +45,10 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
     </form>
 
     <div class="ramuni-calculator__result" aria-live="polite">
-      <span>Hasil</span>
+      <span>{calculator.resultLabel}</span>
       <strong data-calculator-result>Belum dihitung</strong>
-      <p data-calculator-note>Isi semua angka untuk melihat hasil dan cara membacanya.</p>
-      <div class="ramuni-calculator__formula"><small>Rumus yang dipakai</small><code>{calculator.formula}</code></div>
+      <p data-calculator-note>{calculator.emptyNote}</p>
+      <div class="ramuni-calculator__formula"><small>Rumus yang dipakai</small><code>{calculator.formula}</code><p>{calculator.formulaNote}</p></div>
       <p class="ramuni-calculator__disclaimer">Hasil bersifat edukasi. Periksa kembali satuan, periode, dan catatan usaha Anda.</p>
     </div>
   </div>
@@ -52,7 +62,19 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
     const form = widget.querySelector('form');
     const result = widget.querySelector<HTMLElement>('[data-calculator-result]');
     const note = widget.querySelector<HTMLElement>('[data-calculator-note]');
+    const exampleButton = widget.querySelector<HTMLButtonElement>('[data-calculator-example]');
     if (!(form instanceof HTMLFormElement) || !result || !note) return;
+
+    const notes = JSON.parse(widget.dataset.resultNotes || '{}') as { empty?: string; positive?: string; caution?: string };
+
+    exampleButton?.addEventListener('click', () => {
+      const values = JSON.parse(widget.dataset.exampleValues || '{}') as Record<string, number>;
+      Object.entries(values).forEach(([name, value]) => {
+        const input = form.elements.namedItem(name);
+        if (input instanceof HTMLInputElement) input.value = String(value);
+      });
+      form.requestSubmit();
+    });
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -63,20 +85,26 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       if (kind === 'laba-usaha') value = values.income - values.cost;
       if (kind === 'hpp') value = values.opening + values.purchase - values.closing;
       if (kind === 'reorder-stok') value = values.daily * values.lead + values.safety;
+      if (kind === 'margin-laba-kotor') value = values.sales > 0 ? ((values.sales - values.cogs) / values.sales) * 100 : Number.NaN;
+      if (kind === 'titik-impas') value = values.price > values.variable ? Math.ceil(values.fixed / (values.price - values.variable)) : Number.NaN;
+      if (kind === 'arus-kas-bersih') value = values.cashIn - values.cashOut;
+      if (kind === 'nilai-transaksi-rata-rata') value = values.transactions > 0 ? values.revenue / values.transactions : Number.NaN;
 
-      const isUnitResult = kind === 'reorder-stok';
-      result.textContent = `${isUnitResult ? '' : 'Rp '}${formatNumber(value)}${isUnitResult ? ' unit' : ''}`;
-      note.textContent = value < 0
-        ? 'Hasil negatif. Periksa kembali periode dan angka yang dimasukkan.'
-        : isUnitResult
-          ? 'Mulai periksa pemesanan saat stok mendekati angka ini.'
-          : 'Bandingkan hasil dengan periode sebelumnya sebelum menarik kesimpulan.';
+      const isPercentResult = kind === 'margin-laba-kotor';
+      const isUnitResult = kind === 'reorder-stok' || kind === 'titik-impas';
+      const isMoneyResult = !isPercentResult && !isUnitResult;
+      const valid = Number.isFinite(value);
+      result.textContent = valid
+        ? `${isMoneyResult ? 'Rp ' : ''}${formatNumber(value)}${isPercentResult ? '%' : isUnitResult ? ' unit' : ''}`
+        : 'Periksa input';
+      const nonPositiveWarning = kind === 'reorder-stok' && value <= 0;
+      note.textContent = !valid || value < 0 || nonPositiveWarning ? notes.caution || '' : notes.positive || '';
       widget.dataset.hasResult = 'true';
     });
 
     form.addEventListener('reset', () => {
       result.textContent = 'Belum dihitung';
-      note.textContent = 'Isi semua angka untuk melihat hasil dan cara membacanya.';
+      note.textContent = notes.empty || 'Isi semua angka untuk melihat hasil dan cara membacanya.';
       delete widget.dataset.hasResult;
     });
   });

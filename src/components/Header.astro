@@ -1,20 +1,16 @@
 ---
-import { accountNavigation, headerNavigation, launchCta, type MegaNavigationGroup } from '../data/site';
-import { capabilityIconAttributes } from '../data/capabilityIcons';
+import { headerNavigation, launchCta, type MegaNavigationGroup } from '../data/site';
+import { navigationIconAttributes } from '../data/capabilityIcons';
 import '../styles/forms-conversion.css';
 const path = Astro.url.pathname;
 const isHome = path === '/';
 const current = (href: string) => path === href || path.startsWith(`${href}/`);
+const exactCurrent = (href: string) => path === href;
 const isMegaGroup = (item: (typeof headerNavigation)[number]): item is MegaNavigationGroup => 'columns' in item;
 const publicHeaderNavigation = headerNavigation.filter((item) => item.href !== '/harga');
 const publicHref = (href: string) => href === '/demo' ? '/tour-produk-gratis' : href;
 const publicActions = (actions: { label: string; href: string }[] = []) => actions.filter((action) => action.href !== '/harga');
 const isPublicNavigationLink = (href: string) => href !== '/harga' && href !== '/status';
-const iconAttributesForHref = (href: string) => {
-  const match = href.match(/^\/(produk|solusi)\/([^/?#]+)/);
-  if (!match) return {};
-  return capabilityIconAttributes(match[1] === 'produk' ? 'product' : 'solution', match[2]);
-};
 const groupId = (label: string) => `nav-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const groupClass = (label: string) => `mega-menu mega-menu--${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const megaCopy: Record<string, { title: string; description: string; featuredTitle?: string; featuredText?: string; featuredCta?: string }> = {
@@ -57,18 +53,21 @@ const groupActive = (item: MegaNavigationGroup) => {
       {publicHeaderNavigation.map((item) => (
         isMegaGroup(item) ? (
           <details class="nav-group" data-nav-group>
-            <summary aria-current={groupActive(item) ? 'page' : undefined} aria-controls={groupId(item.label)}>{item.label}</summary>
+            <summary data-current={groupActive(item) ? 'true' : undefined} aria-controls={groupId(item.label)}>{item.label}</summary>
             <div class={groupClass(item.label)} id={groupId(item.label)}>
               <div class="mega-lead">
                 <span>{item.eyebrow}</span><strong>{megaCopy[item.label]?.title || item.title}</strong><p>{megaCopy[item.label]?.description || item.description}</p>
-                {item.actions && <div class="mega-actions">{publicActions(item.actions).map((action) => <a href={publicHref(action.href)}>{actionLabelOverrides[action.href] || action.label}</a>)}</div>}
+                <div class="mega-actions">
+                  <a class="mega-hub-link" href={publicHref(item.href)} aria-current={exactCurrent(publicHref(item.href)) ? 'page' : undefined}>Buka {item.label}</a>
+                  {publicActions(item.actions).map((action) => <a href={publicHref(action.href)}>{actionLabelOverrides[action.href] || action.label}</a>)}
+                </div>
                 {item.featured && item.featured.href !== '/harga' && <a class="mega-feature" href={publicHref(item.featured.href)}><span>{item.featured.eyebrow}</span><strong>{megaCopy[item.label]?.featuredTitle || item.featured.title}</strong><small>{megaCopy[item.label]?.featuredText || item.featured.text}</small><b>{megaCopy[item.label]?.featuredCta || item.featured.cta}</b></a>}
               </div>
               <div class="mega-columns">
                 {item.columns.map((column) => (
                   <section class="mega-column" aria-labelledby={`${groupId(item.label)}-${groupId(column.label)}`}>
                     <h2 id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</h2>
-                    <div class="mega-links">{column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} {...iconAttributesForHref(link.href)}><span class="mega-link-copy"><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</span></a>)}</div>
+                    <div class="mega-links">{column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} aria-current={exactCurrent(publicHref(link.href)) && publicHref(link.href) !== publicHref(item.href) ? 'page' : undefined} {...navigationIconAttributes(publicHref(link.href))}><span class="mega-link-copy"><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</span></a>)}</div>
                   </section>
                 ))}
               </div>
@@ -76,7 +75,6 @@ const groupActive = (item: MegaNavigationGroup) => {
           </details>
         ) : <a href={publicHref(item.href)} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
-      {accountNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
       <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
     </nav>
     <details class="mobile-menu" data-mobile-menu>
@@ -86,21 +84,20 @@ const groupActive = (item: MegaNavigationGroup) => {
           {publicHeaderNavigation.map((item) => (
             isMegaGroup(item) ? (
               <details>
-                <summary>{item.label}</summary>
+                <summary data-current={groupActive(item) ? 'true' : undefined}>{item.label}</summary>
                 <div>
-                  <a class="mobile-hub" href={item.href}>Buka {item.label}</a>
+                  <a class="mobile-hub" href={publicHref(item.href)} aria-current={exactCurrent(publicHref(item.href)) ? 'page' : undefined}>Buka {item.label}</a>
                   {item.columns.map((column) => (
                     <section>
                       <h2>{column.label}</h2>
-                      {column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} {...iconAttributesForHref(link.href)}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
+                      {column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} aria-current={exactCurrent(publicHref(link.href)) && publicHref(link.href) !== publicHref(item.href) ? 'page' : undefined} {...navigationIconAttributes(publicHref(link.href))}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
                     </section>
                   ))}
                   {item.featured && item.featured.href !== '/harga' && <a class="mobile-feature" href={publicHref(item.featured.href)}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}
                 </div>
               </details>
-            ) : <a href={publicHref(item.href)}>{item.label}</a>
+            ) : <a href={publicHref(item.href)} aria-current={current(publicHref(item.href)) ? 'page' : undefined}>{item.label}</a>
           ))}
-          {accountNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
           <a href="https://wa.me/message/K35W6X6WT7YMJ1">Kontak</a><a href="/kebijakan-cookie">Pengaturan cookie</a>
         </nav>
         <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>

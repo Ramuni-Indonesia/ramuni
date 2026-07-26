@@ -16,9 +16,10 @@ const isGatedPage = (page) => {
   const pathname = new URL(page).pathname;
   if (!claimPagesApproved && /^\/(produk|solusi|industri|untuk)\/[^/]+\/$/.test(pathname)) return true;
   if (!securityReviewApproved && pathname === '/keamanan/') return true;
+  if (!calculatorReviewApproved && pathname === '/kalkulator/') return true;
   if (!calculatorReviewApproved && /^\/kalkulator\/[^/]+\/$/.test(pathname)) return true;
+  if (!resourceReviewApproved && /^\/(panduan|kamus-bisnis|template)\/$/.test(pathname)) return true;
   if (!resourceReviewApproved && /^\/(panduan|kamus-bisnis|template)\/[^/]+\/$/.test(pathname)) return true;
-  if (!resourceReviewApproved && pathname === '/template/') return true;
   return false;
 };
 

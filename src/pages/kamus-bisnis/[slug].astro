@@ -1,17 +1,151 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
-export function getStaticPaths(){
-const terms={
-  'arus-kas':{title:'Arus Kas',definition:'Pergerakan uang masuk dan keluar pada suatu periode.',why:'Membantu melihat apakah usaha memiliki uang yang cukup untuk menjalankan kegiatan hariannya.',example:'Penjualan bisa naik, tetapi arus kas tetap turun bila pembayaran belum diterima.'},
-  'hpp':{title:'Harga Pokok Penjualan',definition:'Biaya yang berkaitan dengan barang yang terjual.',why:'Membantu membaca laba kotor dengan definisi biaya yang konsisten.',example:'Harga beli barang, biaya masuk tertentu, dan perubahan stok dapat memengaruhi HPP.'},
-  'omzet':{title:'Omzet',definition:'Nilai penjualan sebelum dikurangi biaya.',why:'Menunjukkan aktivitas penjualan, tetapi belum menjelaskan laba atau kas.',example:'Omzet Rp10 juta tidak berarti laba Rp10 juta karena biaya belum dikurangi.'},
-  'stok-pengaman':{title:'Stok Pengaman',definition:'Cadangan stok untuk membantu menghadapi ketidakpastian permintaan atau pasokan.',why:'Membantu mencegah kekosongan, tetapi jumlahnya perlu disesuaikan dengan pola usaha.',example:'Produk cepat bergerak mungkin membutuhkan cadangan berbeda dari barang lambat.'},
-};
-return Object.entries(terms).map(([slug,term])=>({params:{slug},props:{term}}));
+import '../../styles/learning-resource-pages.css';
+
+export function getStaticPaths() {
+  const terms = {
+  'arus-kas': {
+    slug: 'arus-kas',
+    title: 'Arus kas',
+    short: 'Kas',
+    category: 'Keuangan',
+    definition: 'Pergerakan uang masuk dan keluar pada suatu periode.',
+    why: 'Membantu melihat apakah usaha memiliki uang yang cukup untuk menjalankan kegiatan hariannya.',
+    example: 'Penjualan bisa naik, tetapi arus kas tetap turun bila pembayaran belum diterima atau pengeluaran terjadi lebih dulu.',
+    contrast: { title: 'Jangan tertukar dengan omzet', text: 'Omzet mencatat nilai penjualan. Arus kas menunjukkan kapan uang benar-benar diterima atau dibayarkan.' },
+    visual: ['Uang masuk', 'Waktu', 'Uang keluar'],
+    related: [
+      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas' },
+      { title: 'Template arus kas sederhana', type: 'Template', href: '/template/arus-kas-sederhana' },
+      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet' },
+    ],
+  },
+  hpp: {
+    slug: 'hpp',
+    title: 'Harga Pokok Penjualan',
+    short: 'HPP',
+    category: 'Keuangan',
+    definition: 'Biaya yang berkaitan dengan barang yang terjual.',
+    why: 'Membantu membaca laba kotor dengan definisi biaya yang konsisten dari satu periode ke periode berikutnya.',
+    example: 'Pada perhitungan sederhana, stok awal dan pembelian menambah barang tersedia, sedangkan stok akhir mengurangi barang yang dianggap terjual.',
+    contrast: { title: 'Jangan tertukar dengan seluruh biaya usaha', text: 'HPP berhubungan dengan barang yang terjual. Biaya sewa, administrasi, atau pemasaran dapat dicatat di kelompok biaya lain.' },
+    visual: ['Stok awal + pembelian', 'Kurangi stok akhir', 'Perkiraan HPP'],
+    related: [
+      { title: 'Kalkulator HPP sederhana', type: 'Kalkulator', href: '/kalkulator/hpp' },
+      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian' },
+      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet' },
+    ],
+  },
+  omzet: {
+    slug: 'omzet',
+    title: 'Omzet',
+    short: 'Omzet',
+    category: 'Penjualan',
+    definition: 'Nilai penjualan sebelum dikurangi biaya.',
+    why: 'Menunjukkan aktivitas penjualan, tetapi belum menjelaskan laba atau jumlah kas yang tersedia.',
+    example: 'Omzet Rp10 juta tidak berarti laba Rp10 juta karena biaya barang dan biaya usaha belum dikurangi. Angka ini juga belum tentu seluruhnya sudah diterima sebagai kas.',
+    contrast: { title: 'Jangan tertukar dengan laba', text: 'Laba adalah selisih antara pendapatan dan biaya pada periode yang sama. Omzet masih berada sebelum pengurangan biaya.' },
+    visual: ['Nilai transaksi', 'Kurangi biaya', 'Periksa laba'],
+    related: [
+      { title: 'Kalkulator laba usaha', type: 'Kalkulator', href: '/kalkulator/laba-usaha' },
+      { title: 'Arti HPP', type: 'Kamus', href: '/kamus-bisnis/hpp' },
+      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas' },
+    ],
+  },
+  'stok-pengaman': {
+    slug: 'stok-pengaman',
+    title: 'Stok pengaman',
+    short: 'Cadangan',
+    category: 'Stok',
+    definition: 'Cadangan stok untuk membantu menghadapi ketidakpastian permintaan atau pasokan.',
+    why: 'Membantu mengurangi risiko kehabisan stok, tetapi jumlahnya perlu disesuaikan dengan pola pemakaian dan waktu tunggu barang.',
+    example: 'Produk yang cepat bergerak atau membutuhkan waktu pengiriman lebih lama dapat memerlukan cadangan berbeda dari barang yang jarang terjual.',
+    contrast: { title: 'Jangan ditetapkan tanpa catatan', text: 'Cadangan yang terlalu besar dapat menahan uang dalam stok. Periksa pemakaian, waktu tunggu, dan perubahan permintaan secara berkala.' },
+    visual: ['Pemakaian harian', 'Waktu tunggu', 'Cadangan'],
+    related: [
+      { title: 'Kalkulator titik reorder', type: 'Kalkulator', href: '/kalkulator/reorder-stok' },
+      { title: 'Panduan membaca stok', type: 'Panduan', href: '/panduan/membaca-stok-harian' },
+      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian' },
+    ],
+  },
+  };
+  return Object.entries(terms).map(([slug, term]) => ({ params: { slug }, props: { term } }));
 }
-const {term}=Astro.props;
+
+const { term } = Astro.props;
+const termUrl = new URL(`/kamus-bisnis/${term.slug}/`, Astro.site || Astro.url.origin).toString();
+const glossaryUrl = new URL('/kamus-bisnis/', Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: term.title,
+    description: term.definition,
+    url: termUrl,
+    inLanguage: 'id-ID',
+    inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kamus Bisnis RAMUNI', url: glossaryUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Kamus Bisnis', item: glossaryUrl },
+      { '@type': 'ListItem', position: 3, name: term.title, item: termUrl },
+    ],
+  },
+];
 ---
-<BaseLayout title={`${term.title}: Arti dan Contoh`} description={`${term.definition} Pelajari arti, alasan penting, dan contoh sederhana untuk UMKM.`} noindex={!releaseGates.resourcePagesIndexable}>
-  <article class="glossary-article"><header class="container glossary-header"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis">Kamus Bisnis</a><span>/</span><span>{term.title}</span></nav><p class="eyebrow">Kamus Bisnis</p><h1>{term.title}</h1><p class="glossary-definition">{term.definition}</p></header><section class="section surface"><div class="container glossary-body"><div><span>Kenapa penting</span><h2>{term.why}</h2></div><div><span>Contoh sederhana</span><p>{term.example}</p><small>Contoh bersifat edukasi umum dan bukan saran profesional.</small></div></div></section></article>
+
+<BaseLayout
+  title={`${term.title}: Arti, Contoh, dan Penggunaan`}
+  description={`${term.definition} Pelajari arti ${term.short}, contoh sederhana untuk UMKM, istilah yang sering tertukar, dan alat terkait.`}
+  noindex={!releaseGates.resourcePagesIndexable}
+  schema={schema}
+  keywords={[`arti ${term.title}`, `${term.title} adalah`, `${term.title} UMKM`, 'kamus bisnis', 'RAMUNI']}
+>
+  <article class:list={['learning-page', 'glossary-detail', `glossary-detail--${term.slug}`]}>
+    <header class="glossary-detail-hero">
+      <div class="container glossary-detail-hero__grid">
+        <div class="glossary-detail-hero__copy reveal is-visible">
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis">Kamus Bisnis</a><span>/</span><span aria-current="page">{term.title}</span></nav>
+          <p class="eyebrow">Kamus bisnis · {term.category}</p>
+          <h1>{term.title}</h1>
+          <p class="glossary-detail-hero__definition">{term.definition}</p>
+          <div class="button-row"><a class="button button--primary" href="#contoh">Lihat contoh</a><a class="button button--secondary" href="#terkait">Istilah dan alat terkait</a></div>
+        </div>
+        <div class="term-visual reveal is-visible" aria-label={`Ilustrasi hubungan ${term.title}`}>
+          <header><span>Hubungan sederhana</span><strong>{term.short}</strong></header>
+          <div class="term-visual__stage">
+            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt={`Muni menunjukkan tiga bagian yang membantu memahami ${term.title}`} decoding="async" />
+            <ol>{term.visual.map((item, index) => <li><span>0{index + 1}</span><i aria-hidden="true"></i><strong>{item}</strong></li>)}</ol>
+          </div>
+          <footer><small>Definisi edukatif</small><strong>Baca bersama konteks catatan</strong></footer>
+        </div>
+      </div>
+    </header>
+
+    <section class="section surface term-explanation" id="contoh" aria-labelledby="term-why-title">
+      <div class="container term-explanation__grid">
+        <div class="term-explanation__lead reveal"><p class="section-kicker">Kenapa penting</p><h2 id="term-why-title">{term.why}</h2><p>Gunakan istilah ini dengan definisi yang sama saat membandingkan periode atau membahas angka bersama tim.</p></div>
+        <div class="term-example-card reveal"><span>Contoh sederhana</span><p>{term.example}</p><small>Contoh bersifat edukasi umum. Nominal, bila disebutkan, bukan tolok ukur hasil usaha dan bukan nasihat profesional.</small></div>
+        <div class="term-contrast-card reveal"><span>Perlu dibedakan</span><h3>{term.contrast.title}</h3><p>{term.contrast.text}</p></div>
+      </div>
+    </section>
+
+    <section class="section term-related" id="terkait" aria-labelledby="term-related-title">
+      <div class="container">
+        <div class="learning-section-head reveal"><div><p class="section-kicker">Lanjut dari definisi</p><h2 id="term-related-title">Hubungkan istilah dengan catatan yang tepat.</h2></div><p>Gunakan panduan untuk mengikuti alur, kalkulator untuk memeriksa rumus, atau template untuk merapikan data dasarnya.</p></div>
+        <div class="term-related__rail">{term.related.map((item, index) => <a class="reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><small>{item.type}</small><strong>{item.title}</strong><i aria-hidden="true">→</i></a>)}</div>
+      </div>
+    </section>
+
+    <section class="section learning-close-stage">
+      <div class="container learning-close learning-close--compact reveal">
+        <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
+        <div><p class="section-kicker">Cari istilah lain</p><h2>Samakan bahasa sebelum menyamakan keputusan.</h2><p>Kembali ke kamus untuk mencari istilah lain, atau buka panduan jika Anda sudah memiliki pertanyaan usaha yang ingin diperiksa.</p><div class="button-row"><a class="button button--primary" href="/kamus-bisnis">Buka kamus</a><a class="button button--secondary" href="/panduan">Pilih panduan</a></div></div>
+      </div>
+    </section>
+  </article>
 </BaseLayout>

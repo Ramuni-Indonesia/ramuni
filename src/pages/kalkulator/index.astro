@@ -1,13 +1,107 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const tools=[
-  { slug:'laba-usaha', title:'Laba usaha', text:'Pendapatan dikurangi biaya pada periode yang sama.', input:'Pendapatan dan biaya', output:'Perkiraan laba' },
-  { slug:'hpp', title:'HPP sederhana', text:'Biaya yang berkaitan dengan barang yang tersedia untuk dijual.', input:'Persediaan dan pembelian', output:'Perkiraan HPP' },
-  { slug:'reorder-stok', title:'Titik reorder', text:'Perkiraan kapan stok perlu diperiksa untuk pemesanan berikutnya.', input:'Pemakaian, waktu tunggu, cadangan', output:'Titik pemeriksaan' },
+import { releaseGates } from '../../config/release';
+import { calculatorEntries } from '../../data/calculators';
+import '../../styles/tools-resource-pages.css';
+
+const mascotSrc = releaseGates.mascotExplorationEnabled
+  ? '/website-original/ramuni-mascot-muni-manyar.webp'
+  : '/website-original/ramuni-mascot-problem-section.webp';
+const calculatorUrl = new URL('/kalkulator/', Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Kalkulator Bisnis Gratis untuk UMKM',
+    description: 'Kumpulan kalkulator laba, HPP, margin, titik impas, arus kas, transaksi, dan reorder stok untuk UMKM.',
+    url: calculatorUrl,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: calculatorEntries.map(([slug, calculator], index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: calculator.title,
+      url: new URL(`/kalkulator/${slug}/`, Astro.site || Astro.url.origin).toString(),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Kalkulator Bisnis', item: calculatorUrl },
+    ],
+  },
 ];
 ---
-<BaseLayout title="Kalkulator Bisnis RAMUNI" description="Kalkulator laba, HPP, dan reorder stok dengan formula, asumsi, dan batas yang terlihat.">
-  <section class="resource-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Kalkulator</span></nav><p class="eyebrow">Kalkulator</p><h1>Hitung. Baca artinya. Periksa asumsi.</h1><p class="lede">Perhitungan dilakukan langsung di perangkat Anda.</p></div></section>
-  <section class="section surface" aria-labelledby="calculator-list-title"><div class="container"><div class="section-intro reveal"><div><p class="section-kicker">Alat kerja</p><h2 id="calculator-list-title">Pilih hitungan yang ingin diperiksa.</h2></div><p>Hasil ditampilkan bersama formula dan asumsi. Angka tidak dikirim ke server.</p></div><div class="calculator-list">{tools.map((tool,i)=><a class="calculator-row reveal" href={`/kalkulator/${tool.slug}`}><span>0{i+1}</span><div><small>{tool.input} → {tool.output}</small><h3>{tool.title}</h3><p>{tool.text}</p></div><b>Gunakan</b></a>)}</div></div></section>
-  <section class="section" aria-labelledby="calculator-rule-title"><div class="container resource-path"><div class="reveal"><p class="section-kicker">Sebelum memakai hasil</p><h2 id="calculator-rule-title">Hitungan membantu memeriksa. Data usaha tetap penentu.</h2></div><div class="resource-questions"><p>Samakan periode input.</p><p>Periksa satuan dan definisi biaya.</p><p>Simpan konteks jika hasil dipakai untuk keputusan.</p></div></div></section>
+<BaseLayout
+  title="Kalkulator Bisnis Gratis untuk UMKM"
+  description="Kalkulator bisnis gratis untuk menghitung laba, HPP, margin, titik impas, arus kas, nilai transaksi, dan reorder stok. Rumus terlihat dan data tetap di browser."
+  noindex={!releaseGates.calculatorPagesIndexable}
+  schema={schema}
+  keywords={calculatorEntries.map(([, calculator]) => calculator.keyword)}
+>
+  <div class="tools-page tools-page--calculator">
+    <header class="tools-hero">
+      <div class="container tools-hero__grid">
+        <div class="tools-hero__copy reveal is-visible">
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span aria-current="page">Kalkulator</span></nav>
+          <p class="eyebrow">Kalkulator bisnis gratis</p>
+          <h1>Hitung angkanya. Lalu pahami artinya.</h1>
+          <p class="lede">Tujuh alat hitung untuk laba, stok, kas, dan penjualan. Rumus terlihat, contoh tersedia, dan data tidak dikirim ke server.</p>
+          <div class="button-row"><a class="button button--primary" href="#daftar-kalkulator">Pilih Kalkulator</a><a class="button button--secondary" href="/panduan">Baca Panduan</a></div>
+        </div>
+        <figure class="tools-hero__lab reveal is-visible">
+          <img class="tools-hero__art" src="/website-original/resource-tools/ramuni-tools-workspace-hero.webp" width="1200" height="675" alt="Ilustrasi meja kerja dengan catatan stok, lembar perhitungan, kalkulator, dan Muni yang menunjukkan alur pemeriksaan" decoding="async" fetchpriority="high" />
+          <figcaption class="tools-hero__lab-top"><span>Ruang hitung</span><small>Contoh edukatif</small></figcaption>
+          <div class="tools-hero__equation" aria-hidden="true"><span>catatan</span><b>+</b><span>rumus</span><b>=</b><span>arah cek</span></div>
+          <div class="tools-hero__signals">
+            <article><small>Laba</small><strong>Omzet belum tentu laba</strong><i style="--v:72%"></i></article>
+            <article><small>Stok</small><strong>Kapan perlu pesan ulang?</strong><i style="--v:46%"></i></article>
+            <article><small>Kas</small><strong>Uang masuk dan keluar</strong><i style="--v:61%"></i></article>
+          </div>
+          <img class="tools-hero__mascot" src={mascotSrc} width="720" height="720" alt="" decoding="async" />
+        </figure>
+      </div>
+    </header>
+
+    <section class="section tools-catalog" id="daftar-kalkulator" aria-labelledby="calculator-list-title">
+      <div class="container">
+        <div class="tools-section-head reveal"><p class="section-kicker">Pilih pertanyaan</p><h2 id="calculator-list-title">Apa yang sedang ingin Anda periksa?</h2><p>Mulai dari masalah nyata. Setiap kalkulator menjelaskan input, rumus, arti hasil, dan langkah pemeriksaan berikutnya.</p></div>
+        <div class="tools-catalog__grid">
+          {calculatorEntries.map(([slug, calculator], index) => <a class:list={['tool-card', `tool-card--${calculator.category.toLowerCase()}`, 'reveal']} href={`/kalkulator/${slug}`} style={`--i:${index}`}>
+            <div class="tool-card__top"><span>{String(index + 1).padStart(2, '0')}</span><small>{calculator.category}</small></div>
+            <div class="tool-card__visual" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="tool-card__copy"><h2>{calculator.title}</h2><p>{calculator.intent}</p><small>{calculator.formula}</small></div>
+            <b>Gunakan kalkulator <i aria-hidden="true">&rarr;</i></b>
+          </a>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section tools-method" aria-labelledby="calculator-method-title">
+      <div class="container tools-method__grid">
+        <div class="tools-method__statement reveal"><p class="section-kicker">Cara membaca hasil</p><h2 id="calculator-method-title">Jangan berhenti pada satu angka.</h2><p>Kalkulator memberi titik awal. Keputusan tetap perlu periode yang sama, catatan yang lengkap, dan pemeriksaan manusia.</p></div>
+        <ol class="tools-method__steps">
+          <li class="reveal"><span>01</span><div><strong>Samakan periode</strong><p>Jangan mencampur data harian, mingguan, dan bulanan.</p></div></li>
+          <li class="reveal"><span>02</span><div><strong>Coba contoh dulu</strong><p>Lihat cara kerja rumus sebelum memakai angka usaha.</p></div></li>
+          <li class="reveal"><span>03</span><div><strong>Lihat penyebabnya</strong><p>Periksa perubahan harga, volume, stok, dan waktu pembayaran.</p></div></li>
+          <li class="reveal"><span>04</span><div><strong>Catat tindak lanjut</strong><p>Simpan apa yang perlu dicek, siapa yang memeriksa, dan kapan.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section tools-crosslink" aria-labelledby="calculator-next-title">
+      <div class="container">
+        <div class="tools-section-head reveal"><p class="section-kicker">Lanjutkan pemeriksaan</p><h2 id="calculator-next-title">Lengkapi hitungan dengan catatan usaha.</h2></div>
+        <div class="tools-crosslink__grid">
+          <a href="/template"><span>01</span><h3>Template bisnis</h3><p>Simpan stok, arus kas, dan evaluasi mingguan dengan format siap isi.</p><b>Lihat template</b></a>
+          <a href="/panduan"><span>02</span><h3>Panduan praktis</h3><p>Ikuti urutan pemeriksaan saat penyebab perubahan belum terlihat.</p><b>Baca panduan</b></a>
+          <a href="/kamus-bisnis"><span>03</span><h3>Kamus bisnis</h3><p>Samakan arti omzet, HPP, arus kas, margin, dan stok.</p><b>Cari istilah</b></a>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

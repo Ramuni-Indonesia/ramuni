@@ -3,22 +3,101 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
 import CalculatorWidget from '../../components/CalculatorWidget.astro';
 import '../../styles/calculator-widget.css';
+import '../../styles/tools-resource-pages.css';
 import { calculatorEntries } from '../../data/calculators';
-export function getStaticPaths(){
-return calculatorEntries.map(([slug,calculator])=>({params:{slug},props:{calculator,slug}}));
+
+export function getStaticPaths() {
+  return calculatorEntries.map(([slug, calculator]) => ({ params: { slug }, props: { calculator, slug } }));
 }
-const {calculator,slug}=Astro.props;
+const { calculator, slug } = Astro.props;
 const calculatorUrl = new URL(`/kalkulator/${slug}/`, Astro.site || Astro.url.origin).toString();
+const commonFaq = [
+  { question: 'Apakah angka yang saya isi dikirim ke server?', answer: 'Tidak. Perhitungan berjalan di browser pada perangkat Anda.' },
+  { question: 'Apakah hasil kalkulator ini merupakan saran keuangan atau akuntansi?', answer: 'Tidak. Hasilnya bersifat edukatif dan perlu diperiksa kembali dengan catatan usaha serta tenaga profesional bila diperlukan.' },
+];
 const schema = [
-  { '@context':'https://schema.org', '@type':'WebApplication', name:calculator.title, url:calculatorUrl, applicationCategory:'BusinessApplication', operatingSystem:'Web', inLanguage:'id-ID', description:calculator.decision },
-  { '@context':'https://schema.org', '@type':'BreadcrumbList', itemListElement:[
-    { '@type':'ListItem', position:1, name:'Beranda', item:new URL('/', Astro.site || Astro.url.origin).toString() },
-    { '@type':'ListItem', position:2, name:'Kalkulator', item:new URL('/kalkulator/', Astro.site || Astro.url.origin).toString() },
-    { '@type':'ListItem', position:3, name:calculator.title, item:calculatorUrl },
-  ] },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: calculator.title,
+    url: calculatorUrl,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    browserRequirements: 'JavaScript',
+    inLanguage: 'id-ID',
+    description: calculator.metaDescription,
+    isAccessibleForFree: true,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Kalkulator Bisnis', item: new URL('/kalkulator/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: calculator.title, item: calculatorUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: commonFaq.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })),
+  },
 ];
 ---
-<BaseLayout title={calculator.title} description={`${calculator.decision} Kalkulator edukasi dengan formula dan batas yang terlihat.`} noindex={!releaseGates.calculatorPagesIndexable} schema={schema}>
-  <section class="calculator-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/kalkulator">Kalkulator</a><span>/</span><span>{calculator.title}</span></nav><p class="eyebrow">Alat bantu hitung</p><h1>{calculator.title}</h1><p class="lede">{calculator.decision}</p></div></section>
-  <section class="section surface"><div class="container"><CalculatorWidget kind={slug} /></div></section>
+<BaseLayout
+  title={calculator.seoTitle}
+  description={calculator.metaDescription}
+  noindex={!releaseGates.calculatorPagesIndexable}
+  schema={schema}
+  keywords={[calculator.keyword, 'kalkulator bisnis UMKM', 'alat hitung bisnis gratis', 'RAMUNI']}
+>
+  <article class="tools-page tool-detail-page">
+    <header class="tool-detail-hero">
+      <div class="container tool-detail-hero__grid">
+        <div class="tool-detail-hero__copy reveal is-visible">
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kalkulator">Kalkulator</a><span>/</span><span aria-current="page">{calculator.title}</span></nav>
+          <p class="eyebrow">{calculator.category} · kalkulator gratis</p>
+          <h1>{calculator.title}</h1>
+          <p class="lede">{calculator.decision}</p>
+          <p class="tool-detail-hero__intent">{calculator.intent}</p>
+          <a class="button button--primary" href="#hitung">Mulai Menghitung</a>
+        </div>
+        <div class="tool-detail-hero__visual reveal is-visible" aria-label={`Gambaran cara kerja ${calculator.title}`}>
+          <div class="tool-detail-hero__screen"><span>Input</span>{calculator.fields.map((field, index) => <i style={`--w:${78 - index * 13}%`}>{field.label}</i>)}</div>
+          <div class="tool-detail-hero__operator" aria-hidden="true">=</div>
+          <div class="tool-detail-hero__result"><span>{calculator.resultLabel}</span><strong>?</strong><small>Rumus terbuka</small></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section surface tool-workspace" id="hitung" aria-label={`Area hitung ${calculator.title}`}>
+      <div class="container"><CalculatorWidget kind={slug} /></div>
+    </section>
+
+    <section class="section tool-explanation" aria-labelledby="calculator-reading-title">
+      <div class="container tool-explanation__grid">
+        <div class="tool-explanation__sticky reveal"><p class="section-kicker">Sesudah hasil muncul</p><h2 id="calculator-reading-title">Apa yang perlu diperiksa berikutnya?</h2><p>{calculator.formulaNote}</p></div>
+        <ol class="tool-explanation__steps">
+          {calculator.nextSteps.map((step, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section dark-surface tool-related" aria-labelledby="calculator-related-title">
+      <div class="container">
+        <div class="tools-section-head reveal"><p class="section-kicker">Jangan baca sendirian</p><h2 id="calculator-related-title">Hubungkan hasil dengan catatan usaha.</h2><p>Gunakan materi terkait untuk memeriksa definisi, sumber angka, dan kejadian pada periode yang sama.</p></div>
+        <div class="tool-related__grid">
+          {calculator.related.map((item, index) => <a class="reveal" href={item.href}><span>{String(index + 1).padStart(2, '0')}</span><h3>{item.label}</h3><p>{item.text}</p><b>Buka materi <i aria-hidden="true">&rarr;</i></b></a>)}
+          <a class="reveal" href="/kalkulator"><span>03</span><h3>Kalkulator lainnya</h3><p>Bandingkan laba, stok, kas, margin, dan penjualan dari sudut yang berbeda.</p><b>Lihat semua <i aria-hidden="true">&rarr;</i></b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tool-faq" aria-labelledby="calculator-faq-title">
+      <div class="container tool-faq__grid">
+        <div><p class="section-kicker">Sebelum memakai hasil</p><h2 id="calculator-faq-title">Dua batas yang perlu diingat.</h2></div>
+        <div>{commonFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+      </div>
+    </section>
+  </article>
 </BaseLayout>

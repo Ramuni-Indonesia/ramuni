@@ -11,6 +11,23 @@ export function getStaticPaths() {
 
 const { template } = Astro.props;
 const templateUrl = new URL(`/template/${template.slug}/`, Astro.site || Astro.url.origin).toString();
+const relatedResources = {
+  'stok-harian': [
+    { type: 'Panduan', title: 'Membaca stok harian', text: 'Tentukan urutan pemeriksaan sebelum mengisi dan membandingkan saldo.', href: '/panduan/membaca-stok-harian' },
+    { type: 'Kalkulator', title: 'Titik reorder stok', text: 'Perkirakan kapan stok perlu mulai diperiksa untuk pemesanan.', href: '/kalkulator/reorder-stok' },
+    { type: 'Kamus', title: 'Stok pengaman', text: 'Pahami fungsi cadangan stok dan risikonya.', href: '/kamus-bisnis/stok-pengaman' },
+  ],
+  'arus-kas-sederhana': [
+    { type: 'Panduan', title: 'Memahami arus kas', text: 'Pisahkan kas, omzet, piutang, dan waktu pembayaran.', href: '/panduan/memahami-arus-kas' },
+    { type: 'Kalkulator', title: 'Arus kas bersih', text: 'Hitung selisih uang masuk dan keluar pada periode yang sama.', href: '/kalkulator/arus-kas-bersih' },
+    { type: 'Kamus', title: 'Arus kas', text: 'Lihat definisi dan contoh yang sering tertukar dengan laba.', href: '/kamus-bisnis/arus-kas' },
+  ],
+  'evaluasi-mingguan': [
+    { type: 'Panduan', title: 'Menilai insight AI', text: 'Periksa pertanyaan, bukti, periode, dan batas jawaban.', href: '/panduan/menilai-insight-ai' },
+    { type: 'Kalkulator', title: 'Laba usaha', text: 'Bawa hasil hitung ke evaluasi dengan periode yang jelas.', href: '/kalkulator/laba-usaha' },
+    { type: 'Sumber daya', title: 'Pusat sumber daya', text: 'Pilih panduan, alat, atau istilah untuk temuan berikutnya.', href: '/sumber-daya' },
+  ],
+}[template.slug];
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -40,7 +57,7 @@ const schema = [
   <article class="template-detail-page">
     <header class="template-detail-hero">
       <div class="container">
-        <nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/template">Template</a><span>/</span><span>{template.shortTitle}</span></nav>
+        <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/template">Template</a><span>/</span><span aria-current="page">{template.shortTitle}</span></nav>
         <div class="template-detail-hero__grid">
           <div class="template-detail-hero__copy">
             <p class="eyebrow">{template.eyebrow}</p>
@@ -102,6 +119,15 @@ const schema = [
         <ul>
           {template.limitations.map((limitation) => <li>{limitation}</li>)}
         </ul>
+      </div>
+    </section>
+
+    <section class="section template-related" aria-labelledby="template-related-title">
+      <div class="container">
+        <div class="template-library-intro reveal"><div><p class="section-kicker">Gunakan bersama</p><h2 id="template-related-title">Baca catatan sebelum mengambil keputusan.</h2></div><p>Template menyimpan urutan data. Materi berikut membantu Anda membaca angka, istilah, dan batasnya.</p></div>
+        <div class="template-related__grid">
+          {relatedResources.map((item, index) => <a class="reveal" href={item.href}><span>{String(index + 1).padStart(2, '0')}</span><small>{item.type}</small><h3>{item.title}</h3><p>{item.text}</p><b>Buka materi <i aria-hidden="true">→</i></b></a>)}
+        </div>
       </div>
     </section>
 

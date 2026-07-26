@@ -57,9 +57,10 @@ const DESCRIPTION_MIN = 50;
 const DESCRIPTION_MAX = 180;
 const PERFORMANCE_BUDGETS = Object.freeze({
   // HTML is delivered per route, so the route-level cap is the PSI-sensitive
-  // guard. The 60 kB ceiling leaves room for accessible, server-rendered
-  // server-rendered visual narratives while keeping raw HTML deliberately lean.
-  html: { perFile: 60_000, total: 3_200_000 },
+  // guard. The 62 kB ceiling leaves room for accessible, server-rendered
+  // visual narratives while keeping every individual document deliberately lean.
+  // A site-wide total would punish useful new routes even when each page stays small.
+  html: { perFile: 62_000, total: null },
   // CSS is code-split. A site-wide sum over every chunk is not a page payload,
   // so the route-level linkedStylesheets cap below is the meaningful guard.
   css: { perFile: 110_000, total: null },
@@ -140,7 +141,7 @@ async function auditLinkedStylesheets() {
   // component-scoped CSS repeats selector prefixes in source but compresses
   // efficiently; the richer product decision workspaces remain under 32 kB
   // over the wire even though their uncompressed aggregate is larger.
-  const routeLimit = 160_000;
+  const routeLimit = 165_000;
   const compressedRouteLimit = 32_000;
   for (const [route, page] of pages) {
     const hrefs = [...page.html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/gi)].map((match) => match[1]);

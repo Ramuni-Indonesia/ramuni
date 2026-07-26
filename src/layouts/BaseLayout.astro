@@ -59,6 +59,10 @@ const webPageSchema = {
   inLanguage: 'id-ID',
 };
 const suppliedSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const hasPageSchema = suppliedSchema.some((entity) => {
+  const type = entity?.['@type'];
+  return type === inferredPageType || (Array.isArray(type) && type.includes(inferredPageType));
+});
 const hasBreadcrumbSchema = suppliedSchema.some((entity) => {
   const type = entity?.['@type'];
   return type === 'BreadcrumbList' || (Array.isArray(type) && type.includes('BreadcrumbList'));
@@ -101,7 +105,10 @@ const effectiveNoindex = noindex || !releaseGates.siteIndexable;
 const schemaWithBreadcrumb = automaticBreadcrumbSchema
   ? [...suppliedSchema, automaticBreadcrumbSchema]
   : suppliedSchema;
-const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [webPageSchema, ...schemaWithBreadcrumb];
+const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
+  ...(hasPageSchema ? [] : [webPageSchema]),
+  ...schemaWithBreadcrumb,
+];
 ---
 <!doctype html>
 <html lang="id">

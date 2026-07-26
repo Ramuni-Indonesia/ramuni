@@ -41,6 +41,41 @@
   padding-top: 24px;
 }
 
+.ramuni-calculator__scenario {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-left: 3px solid var(--yellow);
+  background: var(--rice);
+}
+
+.ramuni-calculator__scenario span {
+  color: var(--ink-72);
+  font-size: .7rem;
+}
+
+.ramuni-calculator__scenario button {
+  min-height: 44px;
+  width: fit-content;
+  border: 0;
+  padding: 8px 0;
+  background: transparent;
+  color: var(--teal);
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.ramuni-calculator__scenario button:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+}
+
 .ramuni-calculator__field {
   margin-bottom: 18px;
 }
@@ -167,6 +202,13 @@
 .ramuni-calculator__formula small,
 .ramuni-calculator__formula code {
   display: block;
+}
+
+.ramuni-calculator__formula p {
+  margin-top: 10px;
+  color: rgb(255 255 255 / .62);
+  font-size: .7rem;
+  line-height: 1.5;
 }
 
 .ramuni-calculator__formula small {

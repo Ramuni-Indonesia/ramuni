@@ -3,14 +3,44 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
 import { templateEntries } from '../../data/templates';
 import '../../styles/template-library.css';
+
+const templateUrl = new URL('/template/', Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Template Bisnis Gratis untuk UMKM',
+    description: 'Kumpulan template stok harian, arus kas sederhana, dan evaluasi mingguan dalam format CSV.',
+    url: templateUrl,
+    inLanguage: 'id-ID',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: templateEntries.map(([, template], index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: template.title,
+      url: new URL(`/template/${template.slug}/`, Astro.site || Astro.url.origin).toString(),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Template', item: templateUrl },
+    ],
+  },
+];
 ---
 
-<BaseLayout title="Template Bisnis Gratis untuk UMKM" description="Unduh template stok harian, arus kas sederhana, dan evaluasi mingguan dalam format CSV. Lengkap dengan contoh, petunjuk kolom, serta batas penggunaan." noindex={!releaseGates.resourcePagesIndexable} pageType="CollectionPage" keywords={['template bisnis gratis', 'template UMKM', 'template stok', 'template arus kas', 'RAMUNI']}>
+<BaseLayout title="Template Bisnis Gratis untuk UMKM" description="Unduh template stok harian, arus kas sederhana, dan evaluasi mingguan dalam format CSV. Lengkap dengan contoh, petunjuk kolom, serta batas penggunaan." noindex={!releaseGates.resourcePagesIndexable} pageType="CollectionPage" schema={schema} keywords={['template bisnis gratis', 'template UMKM', 'template stok', 'template arus kas', 'RAMUNI']}>
   <div class="template-library-page">
     <header class="template-library-hero">
       <div class="container template-library-hero__grid">
         <div>
-          <nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span>Template</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span aria-current="page">Template</span></nav>
           <p class="eyebrow">Template kerja gratis</p>
           <h1>Catatan yang siap dipakai, bukan sekadar file kosong.</h1>
           <p class="lede">Tiga format CSV untuk pekerjaan rutin usaha. Setiap template dilengkapi contoh sintetis, arti kolom, dan cara memeriksanya.</p>
