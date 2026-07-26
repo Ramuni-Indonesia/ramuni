@@ -123,7 +123,7 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
 - Deployment health check passed for release `20260726T184251Z-97db759f4163` and artifact `c511a07b2d13d1beec7343a99a6dc75312f323daadea9183366effbe13667f5d`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
-- Post-release cleanup moved the visual worktree's generated `node_modules` (352 MiB), `dist` (8 MiB), `.astro`, disposable `outputs` (2.9 MiB), and temporary build log to the system trash after release verification; the published assets remain in Git/R2 and the worktree is clean.
+- Post-release cleanup moved the visual worktree's generated `node_modules` (352 MiB), `dist` (8 MiB), `.astro`, disposable `outputs` (2.9 MiB), and temporary build log to the system trash after release verification. The published assets remain in Git/R2; the reviewed clean visual worktree and its merged branch were then removed.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
