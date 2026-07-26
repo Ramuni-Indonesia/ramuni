@@ -56,6 +56,12 @@ The R2 bucket permits cross-origin `GET` and `HEAD` requests from the staging,
 apex, and `www` sites. The custom domain caches successful assets for seven
 days and supports stale delivery during an origin interruption.
 
+The staging publisher rewrites generated image and font references to the R2
+custom domain after the Astro build. Source files keep origin-relative URLs, so
+local development and production promotion do not accidentally depend on the
+staging CDN. The staging Content Security Policy explicitly permits images and
+fonts from `assets-staging.ramuni.id`.
+
 ## Validation
 
 Expected behavior:

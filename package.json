@@ -13,7 +13,8 @@
     "preview": "cross-env NAPI_RS_FORCE_WASI=1 astro preview",
     "check": "cross-env NAPI_RS_FORCE_WASI=1 astro check",
     "audit": "node scripts/site-audit.mjs",
-    "r2:sync": "node scripts/sync-r2-assets.mjs"
+    "r2:sync": "node scripts/sync-r2-assets.mjs",
+    "assets:cdn": "node scripts/rewrite-cdn-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
