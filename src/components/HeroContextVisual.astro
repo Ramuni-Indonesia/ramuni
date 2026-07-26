@@ -1,0 +1,75 @@
+---
+import { dashboardVisuals, type DashboardVisualKey } from '../data/dashboardVisuals';
+
+export type HeroContextScene =
+  | 'industry-hub' | 'retail' | 'fnb' | 'distributor' | 'reseller-online' | 'jasa' | 'manufaktur-kecil'
+  | 'role-hub' | 'pemilik-usaha' | 'admin-toko' | 'kasir' | 'supervisor' | 'support';
+
+type SceneMode = 'bars' | 'ledger' | 'flow' | 'roles' | 'support';
+interface Props { scene?: HeroContextScene; label?: string; title?: string; }
+
+const { scene = 'industry-hub', label, title } = Astro.props;
+const profiles: Record<HeroContextScene, { mode: SceneMode; eyebrow: string; headline: string; rows: string[]; values: string[] }> = {
+  'industry-hub': { mode: 'bars', eyebrow: 'Konteks usaha', headline: 'Pertanyaan yang sama dibaca dengan ritme berbeda.', rows: ['Penjualan', 'Stok', 'Biaya', 'Pelanggan'], values: ['Prioritas', 'Perlu cek', 'Stabil', 'Tinjau'] },
+  retail: { mode: 'bars', eyebrow: 'Rak & SKU', headline: 'Produk cepat bergerak dipasangkan dengan sisa stok.', rows: ['Kopi susu', 'Roti cokelat', 'Air mineral', 'Snack'], values: ['Laris', '8 unit', 'Stabil', 'Naik'] },
+  fnb: { mode: 'bars', eyebrow: 'Menu & bahan', headline: 'Menu ramai dibaca bersama bahan sebelum jam puncak.', rows: ['Menu ramai', 'Bahan utama', 'Jam puncak', 'Biaya bahan'], values: ['18 porsi', '11 tersisa', 'Sore', 'Cek'] },
+  distributor: { mode: 'ledger', eyebrow: 'Pesanan ulang', headline: 'Pesanan, pelanggan rutin, dan stok dilihat dalam satu urutan.', rows: ['Pesanan aktif', 'Pelanggan rutin', 'Stok karton', 'Pembayaran'], values: ['14 order', '4 akun', '32 karton', 'Tinjau'] },
+  'reseller-online': { mode: 'flow', eyebrow: 'Kanal penjualan', headline: 'Produk ramai belum tentu sehat jika HPP dan kanal belum rapi.', rows: ['Katalog', 'Kanal A', 'Kanal B', 'Margin'], values: ['24 unit', 'Rp85 rb', 'Rp58 rb', 'Cek HPP'] },
+  jasa: { mode: 'ledger', eyebrow: 'Layanan & biaya', headline: 'Pendapatan layanan dibaca bersama biaya pendukung.', rows: ['Pendapatan', 'Biaya langsung', 'Kas masuk', 'Repeat order'], values: ['Rp4,8 jt', 'Rp1,6 jt', 'Tercatat', '3 order'] },
+  'manufaktur-kecil': { mode: 'flow', eyebrow: 'Bahan ke barang jadi', headline: 'Bahan, proses, dan penjualan tidak dibaca terpisah.', rows: ['Bahan utama', 'Proses', 'Barang jadi', 'Penjualan'], values: ['32 bahan', 'Batch 04', '18 jadi', 'Cek'] },
+  'role-hub': { mode: 'roles', eyebrow: 'Batas peran', headline: 'Satu sumber data, sudut baca berbeda untuk setiap orang.', rows: ['Pemilik', 'Admin', 'Kasir', 'Supervisor'], values: ['Penuh', 'Operasional', 'Terbatas', 'Pantau'] },
+  'pemilik-usaha': { mode: 'roles', eyebrow: 'Layar pemilik', headline: 'Ringkasan menyorot keputusan yang perlu disetujui.', rows: ['Omzet', 'Kas', 'Stok', 'Tindak lanjut'], values: ['Prioritas', 'Bukti ada', 'Cek', 'Putuskan'] },
+  'admin-toko': { mode: 'ledger', eyebrow: 'Ruang admin', headline: 'Data kotor ditandai sebelum masuk ringkasan.', rows: ['Produk ganda', 'Import file', 'Koreksi', 'Sinkron'], values: ['4 perlu cek', '124 siap', 'Berjejak', 'Rapi'] },
+  kasir: { mode: 'support', eyebrow: 'Meja kasir', headline: 'Transaksi dibantu tanpa membuka area sensitif.', rows: ['Transaksi', 'Pembayaran', 'Catatan', 'Minta bantuan'], values: ['2 tertahan', 'Perlu cek', 'Aman', 'Kirim'] },
+  supervisor: { mode: 'ledger', eyebrow: 'Pengecualian', headline: 'Masalah harian dikirim dengan konteks, bukan chat kosong.', rows: ['Antrian', 'Stok turun', 'Tim', 'Tindak lanjut'], values: ['3 isu', 'Periksa', 'Pemilik', 'Pantau'] },
+  support: { mode: 'support', eyebrow: 'Alur bantuan', headline: 'Cari masalah, siapkan konteks aman, lalu pilih dukungan.', rows: ['Cari topik', 'Baca rujukan', 'Cek status', 'Hubungi'], values: ['Tanpa PII', 'Panduan', 'Terkini', 'Aman'] },
+};
+const profile = profiles[scene] ?? profiles['industry-hub'];
+const sceneDashboardMap: Record<HeroContextScene, DashboardVisualKey> = {
+  'industry-hub': 'sales', retail: 'sales', fnb: 'inventory', distributor: 'inventory', 'reseller-online': 'sales', jasa: 'cash', 'manufaktur-kecil': 'inventory',
+  'role-hub': 'ai', 'pemilik-usaha': 'ai', 'admin-toko': 'inventory', kasir: 'sales', supervisor: 'cash', support: 'ai',
+};
+const dashboard = dashboardVisuals[sceneDashboardMap[scene] || 'ai'];
+const levels = [78, 34, 62, 48];
+---
+
+<figure class:list={['hero-context', 'hero-context--' + profile.mode]} aria-labelledby={'hero-context-' + scene}>
+  <figcaption>
+    <span>{label || profile.eyebrow}</span>
+    <strong id={'hero-context-' + scene}>{title || profile.headline}</strong>
+    <small>Data contoh, bukan data pelanggan</small>
+  </figcaption>
+  <div class="hero-context__image">
+    <img src={dashboard.src} width="1280" height="853" alt={dashboard.alt} decoding="async" fetchpriority="high" />
+  </div>
+  <div class="hero-context__screen" aria-hidden="true">
+    <header><span>{profile.eyebrow}</span><b>Ruang usaha contoh</b></header>
+    {profile.mode === 'bars' && <div class="hero-context__bars">{profile.rows.map((row, index) => <article class:list={{ 'is-focus': index === 1 }}><span>{row}</span><i style={'--level:' + levels[index] + '%'}></i><strong>{profile.values[index]}</strong></article>)}</div>}
+    {profile.mode === 'ledger' && <div class="hero-context__ledger">{profile.rows.map((row, index) => <article class:list={{ 'is-focus': index === 0 }}><small>{String(index + 1).padStart(2, '0')}</small><div><strong>{row}</strong><span>{profile.values[index]}</span></div><b>{index === 0 ? 'Buka' : 'Cek'}</b></article>)}</div>}
+    {profile.mode === 'flow' && <div class="hero-context__flow">{profile.rows.map((row, index) => <><article><span>0{index + 1}</span><strong>{row}</strong><small>{profile.values[index]}</small></article>{index < 3 && <i></i>}</>)}</div>}
+    {profile.mode === 'roles' && <div class="hero-context__roles">{profile.rows.map((row, index) => <article class:list={{ 'is-primary': index === 0 }}><span>{row}</span><strong>{profile.values[index]}</strong></article>)}</div>}
+    {profile.mode === 'support' && <div class="hero-context__support"><div><i></i><span>{profile.rows[0]}</span><b>{profile.values[0]}</b></div><ol>{profile.rows.slice(1).map((row, index) => <li><small>0{index + 1}</small><strong>{row}</strong><span>{profile.values[index + 1]}</span></li>)}</ol></div>}
+  </div>
+  <div class="hero-context__tokens" aria-hidden="true"><i></i><i></i><i></i></div>
+</figure>
+
+<style>
+  .hero-context{position:relative;min-height:520px;margin:0;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);overflow:hidden;isolation:isolate}
+  .hero-context::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:44px 44px;opacity:.46}
+  .hero-context__image{position:absolute;inset:32px 28px 106px;border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.16);overflow:hidden}.hero-context__image img{display:block;width:100%;height:100%;object-fit:cover}
+  .hero-context__screen{display:none}
+  .hero-context__screen header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--ink-10);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.hero-context__screen header span{color:var(--teal)}
+  .hero-context figcaption{position:absolute;z-index:3;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.95);color:var(--ink);backdrop-filter:blur(10px)}
+  .hero-context figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero-context figcaption strong{font-size:.88rem}.hero-context figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
+  .hero-context__tokens{position:absolute;right:26px;top:24px;display:flex;gap:7px}.hero-context__tokens i{width:22px;height:22px;border:1px solid var(--ink);background:var(--teal)}.hero-context__tokens i:nth-child(2){background:var(--yellow);transform:translateY(8px)}.hero-context__tokens i:nth-child(3){background:var(--ink);transform:translateY(16px)}
+  .hero-context__bars,.hero-context__ledger,.hero-context__flow,.hero-context__roles,.hero-context__support{min-width:0;padding:clamp(18px,3vw,32px)}
+  .hero-context__bars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:10px}.hero-context__bars article{display:grid;align-content:end;gap:12px;min-height:240px;padding:12px;border:1px solid var(--ink-10);background:var(--rice)}.hero-context__bars article.is-focus{background:var(--yellow)}.hero-context__bars span,.hero-context__bars strong{font-size:.66rem}.hero-context__bars i{display:block;height:var(--level);min-height:32px;background:var(--teal)}
+  .hero-context__ledger{display:grid;align-content:center}.hero-context__ledger article{display:grid;grid-template-columns:30px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--ink-10)}.hero-context__ledger article.is-focus{padding-inline:12px;background:var(--yellow)}.hero-context__ledger small{color:var(--teal);font-weight:800}.hero-context__ledger div{display:grid;gap:3px}.hero-context__ledger div span{color:var(--ink-72);font-size:.68rem}.hero-context__ledger article>b{color:var(--teal);font-size:.65rem}
+  .hero-context__flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:8px}.hero-context__flow article{display:grid;align-content:end;min-height:170px;padding:13px;border:1px solid var(--ink);background:var(--rice)}.hero-context__flow article:nth-of-type(2){background:var(--yellow)}.hero-context__flow>i{width:16px;height:2px;background:var(--teal)}.hero-context__flow article span,.hero-context__flow article small{color:var(--teal);font-size:.58rem;font-weight:800}.hero-context__flow article strong{margin-top:38px;font-size:.82rem}
+  .hero-context__roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hero-context__roles article{display:grid;place-items:center;gap:9px;min-height:120px;border:1px solid var(--ink-10);background:var(--rice);text-align:center}.hero-context__roles article.is-primary{grid-row:span 2;background:var(--ink);color:var(--white)}.hero-context__roles span{font-size:.72rem;font-weight:800}.hero-context__roles strong{color:var(--teal);font-size:.66rem}.hero-context__roles .is-primary strong{color:var(--yellow)}
+  .hero-context__support{display:grid;gap:14px}.hero-context__support>div{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;padding:15px;border:1px solid var(--ink);background:var(--rice)}.hero-context__support>div i{width:17px;height:17px;border:3px solid var(--teal);border-radius:50%}.hero-context__support>div b{color:var(--teal);font-size:.62rem}.hero-context__support ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}.hero-context__support li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;padding:13px;border:1px solid var(--ink-10)}.hero-context__support li small,.hero-context__support li span{color:var(--teal);font-size:.62rem}
+  @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.hero-context:hover .hero-context__screen{transform:translateY(-5px)}}
+  @media(max-width:900px){.hero-context{min-height:440px}.hero-context__screen{inset:38px 22px 110px}.hero-context__bars{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-context__bars article{min-height:100px}.hero-context__flow{grid-template-columns:1fr}.hero-context__flow>i{width:2px;height:12px;justify-self:center}.hero-context__flow article{min-height:72px}}
+  @media(max-width:620px){.hero-context{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.hero-context__screen{inset:32px 14px 120px}.hero-context figcaption{grid-template-columns:1fr}.hero-context figcaption small{grid-column:auto}.hero-context__tokens{display:none}.hero-context__roles{grid-template-columns:1fr}.hero-context__roles article{min-height:66px}.hero-context__roles article.is-primary{grid-row:auto}.hero-context__support li{grid-template-columns:26px 1fr}.hero-context__support li span{grid-column:2}}
+  @media(prefers-reduced-motion:reduce){.hero-context__screen{transition:none;transform:none!important}}
+</style>

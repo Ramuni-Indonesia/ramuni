@@ -1,52 +1,52 @@
-<div id="ramuni-decision-flow" class="decision-flow-3d" data-decision-flow-3d>
-  <img class="decision-flow-3d__poster" src="/website-original/ai-decision-companion.svg" width="1200" height="720" alt="" aria-hidden="true" decoding="async" />
-  <canvas aria-label="Sculpture 3D interaktif dari catatan menuju bukti dan arah"></canvas>
-  <noscript><img src="/website-original/ai-decision-companion.svg" width="1200" height="720" alt="Ilustrasi alur catatan, bukti, dan keputusan" /></noscript>
+---
+import { mascots } from '../../data/mascots';
+
+const stages = [
+  ['catatan', 'Catatan', 'Pilih satu kejadian', mascots.working2d.src],
+  ['bukti', 'Bukti', 'Samakan periode', mascots.evidence3d.src],
+  ['arah', 'Arah', 'Manusia memutuskan', mascots.guide3d.src],
+] as const;
+---
+
+<div class="decision-workbench" data-decision-flow-3d data-active-stage="catatan">
+  <header><span>Catatan → Bukti → Arah</span></header>
+  <div class="decision-workbench__scene" role="group" aria-label="Tahap membaca keputusan">
+    {stages.map(([key, label, title, mascotSrc], index) => (
+      <button type="button" data-decision-tab={key} data-mascot-src={mascotSrc} aria-pressed={index === 0 ? 'true' : 'false'}>
+        <span>0{index + 1}</span><strong>{label}</strong><small>{title}</small>
+      </button>
+    ))}
+    <i aria-hidden="true"></i><i aria-hidden="true"></i>
+    <img class="decision-workbench__mascot" data-decision-mascot src={stages[0][3]} width="512" height="512" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  </div>
+  <footer><strong>Kendali tetap pada Anda</strong></footer>
 </div>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-decision-flow-3d]').forEach((host) => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
-    if (reducedMotion || saveData) {
-      host.dataset.modelState = 'fallback';
-      return;
-    }
-    let requested = false;
-    const loadModel = async () => {
-      if (requested) return;
-      requested = true;
-      host.dataset.modelState = 'loading';
-      try {
-        const { initDecisionFlow3D } = await import('../../three/initDecisionFlow3D');
-        initDecisionFlow3D(host);
-      } catch {
-        host.dataset.modelState = 'fallback';
-      }
-    };
-    if (!('IntersectionObserver' in window)) {
-      void loadModel();
-      return;
-    }
-    const loaderObserver = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      loaderObserver.disconnect();
-      void loadModel();
-    }, { rootMargin: '240px 0px' });
-    loaderObserver.observe(host);
-    document.addEventListener('astro:before-swap', () => loaderObserver.disconnect(), { once: true });
-  });
+  const initialiseDecisionWorkbenches = () => {
+    document.querySelectorAll<HTMLElement>('[data-decision-flow-3d]').forEach((root) => {
+      if (root.dataset.ready === 'true') return;
+      root.dataset.ready = 'true';
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-decision-tab]'));
+      const mascot = root.querySelector<HTMLImageElement>('[data-decision-mascot]');
+      tabs.forEach((tab) => tab.addEventListener('click', () => {
+        root.dataset.activeStage = tab.dataset.decisionTab || '';
+        tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
+        if (mascot && tab.dataset.mascotSrc) mascot.src = tab.dataset.mascotSrc;
+      }));
+    });
+  };
+  initialiseDecisionWorkbenches();
+  document.addEventListener('astro:page-load', initialiseDecisionWorkbenches);
 </script>
 
 <style>
-  .decision-flow-3d{position:relative;min-height:360px;overflow:hidden;border:1px solid rgb(255 255 255/.24);background:#f4f0e7}
-  .decision-flow-3d::after{content:"";position:absolute;inset:18px;border:1px solid rgb(11 48 69/.12);pointer-events:none}
-  .decision-flow-3d canvas{position:relative;z-index:2;display:block;width:100%;height:100%;min-height:360px;cursor:grab;touch-action:pan-y;opacity:0;transition:opacity .45s ease}
-  .decision-flow-3d[data-model-state="ready"] canvas{opacity:1}
-  .decision-flow-3d__poster{position:absolute;z-index:1;inset:12% 10%;width:80%;height:76%;object-fit:contain;opacity:.9;transition:opacity .32s ease,transform .55s cubic-bezier(.16,1,.3,1)}
-  .decision-flow-3d[data-model-state="loading"] .decision-flow-3d__poster{transform:scale(.98)}
-  .decision-flow-3d[data-model-state="ready"] .decision-flow-3d__poster{opacity:0;transform:scale(.97);pointer-events:none}
-  .decision-flow-3d noscript img{width:100%;height:100%;object-fit:contain;padding:40px}
-  @media(max-width:740px){.decision-flow-3d,.decision-flow-3d canvas{min-height:300px}}
-  @media(prefers-reduced-motion:reduce){.decision-flow-3d canvas{cursor:default;transition:none}.decision-flow-3d__poster{transition:none}}
+  .decision-workbench{position:relative;min-height:420px;border:1px solid rgb(255 255 255/.28);background:var(--rice);color:var(--ink);overflow:hidden;isolation:isolate}
+  .decision-workbench::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:42px 42px;opacity:.45}
+  .decision-workbench>header,.decision-workbench>footer{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 16px;background:rgb(255 255 255/.94);font-size:.64rem;font-weight:800}.decision-workbench>header{border-bottom:1px solid var(--ink-10);letter-spacing:.05em;text-transform:uppercase}.decision-workbench>header span{color:var(--teal)}.decision-workbench>header small{font:inherit;color:var(--ink-56)}.decision-workbench>footer{border-top:1px solid var(--ink-10)}.decision-workbench>footer span{color:var(--teal)}
+  .decision-workbench__scene{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:center;min-height:310px;padding:38px 30px}
+  .decision-workbench__mascot{position:absolute;z-index:4;right:8px;bottom:2px;width:clamp(86px,10vw,128px);height:auto;object-fit:contain;filter:drop-shadow(0 10px 12px rgb(11 48 69/.16));pointer-events:none;transition:opacity .2s var(--ease),transform .28s var(--ease)}
+  .decision-workbench__scene>button{position:relative;z-index:2;display:grid;align-content:end;min-height:190px;border:1px solid var(--ink);padding:20px;background:var(--white);color:var(--ink);font:inherit;text-align:left;box-shadow:10px 10px 0 rgb(11 48 69/.16);cursor:pointer;transition:transform .25s var(--ease),background .25s var(--ease)}.decision-workbench__scene>button:nth-child(2){transform:translateY(-16px)}.decision-workbench__scene>button:nth-child(3){transform:translateY(-32px)}.decision-workbench__scene>button[aria-pressed='true']{background:var(--yellow);transform:translateY(-8px)}.decision-workbench__scene>button span{color:var(--teal);font-size:.62rem;font-weight:800}.decision-workbench__scene>button strong{margin-top:36px;font-size:1.35rem}.decision-workbench__scene>button small{margin-top:8px;color:var(--ink-72);font-size:.66rem}.decision-workbench__scene>i{position:absolute;z-index:1;top:50%;width:20%;height:2px;background:var(--teal)}.decision-workbench__scene>i:nth-of-type(1){left:28%}.decision-workbench__scene>i:nth-of-type(2){right:28%}
+  @media(max-width:740px){.decision-workbench{min-height:390px}.decision-workbench__scene{grid-template-columns:1fr;gap:8px;padding:20px 16px 110px}.decision-workbench__scene>button,.decision-workbench__scene>button:nth-child(n){min-height:72px;transform:none;box-shadow:6px 6px 0 rgb(11 48 69/.14)}.decision-workbench__scene>button strong{margin-top:10px}.decision-workbench__scene>i{display:none}.decision-workbench__mascot{right:50%;width:96px;transform:translateX(50%)}.decision-workbench>header small{display:none}}
+  @media(prefers-reduced-motion:reduce){.decision-workbench *{transition:none!important;transform:none!important}}
 </style>

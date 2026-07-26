@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
-import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
+import ArticleContextVisual from '../../components/blog/ArticleContextVisual.astro';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
@@ -25,6 +25,27 @@ const relatedPosts = post.data.related.flatMap((id) => {
 const author = getEditorialPerson(post.data.authorSlug);
 const embeddedCalculator = getArticleCalculator(post.id);
 const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
+const articleResources = {
+  'ai-business-companion-umkm': {
+    title: 'Uji jawaban AI sebelum dipakai.',
+    text: 'Gunakan panduan pemeriksaan untuk melihat pertanyaan, bukti, periode, batas, dan persetujuan manusia.',
+    primary: { label: 'Buka panduan menilai insight AI', href: '/panduan/menilai-insight-ai/' },
+    secondary: { label: 'Kenali Asisten AI RAMUNI', href: '/produk/asisten-ai/' },
+  },
+  'arus-kas-umkm-ringan': {
+    title: 'Lanjutkan dari penjelasan ke catatan.',
+    text: 'Hitung selisih kas di artikel, lalu gunakan template agar tanggal uang masuk dan keluar tetap dapat diperiksa.',
+    primary: { label: 'Buka template arus kas', href: '/template/arus-kas-sederhana/' },
+    secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
+  },
+  'panduan-membaca-stok-harian': {
+    title: 'Bawa urutan cek ke pekerjaan harian.',
+    text: 'Perkirakan titik pemeriksaan di artikel, lalu simpan saldo, koreksi, dan waktu pembaruan dalam format yang konsisten.',
+    primary: { label: 'Gunakan kalkulator reorder stok', href: '/kalkulator/reorder-stok/' },
+    secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
+  },
+} as const;
+const articleResource = articleResources[post.id as keyof typeof articleResources];
 const hasVerifiedReviewer = Boolean(
   post.data.reviewStatus === 'reviewed'
   && post.data.reviewerName
@@ -81,7 +102,7 @@ const schema = [
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={post.data.categorySlug} /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
+        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>
 
@@ -92,9 +113,16 @@ const schema = [
 
           {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></details>}
 
+          <ArticleContextVisual articleId={post.id} />
+
           <div class="article-content"><Content /></div>
 
           {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}
+
+          {articleResource && <aside class="article-resource-bridge" aria-labelledby="article-resource-title">
+            <div><span>Gunakan bersama artikel</span><h2 id="article-resource-title">{articleResource.title}</h2><p>{articleResource.text}</p></div>
+            <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
+          </aside>}
 
           <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
 
@@ -110,15 +138,14 @@ const schema = [
         </div>
 
         <aside class="article-rail" aria-label="Navigasi artikel">
-          {toc.length > 0 && <nav><strong>Isi artikel</strong><small>Pilih bagian yang paling Anda butuhkan.</small><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
-          <div class="article-rail-note"><span>Cara artikel disusun</span><p>Sumber, koreksi, dan riwayat pembaruan tersedia untuk membantu pembaca memeriksa konteks.</p><a href="/blog/kebijakan-editorial/">Lihat standar editorial</a></div>
-          <div class="article-rail-next"><strong>Setelah selesai membaca</strong><p>Lanjutkan ke alur catatan, bukti, dan arah.</p><a href="#article-next-step">Lihat langkah berikutnya &darr;</a></div>
+          {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
+          {articleResource && <div class="article-rail-tool"><span>Tools terkait</span><strong>{articleResource.title}</strong><a href={articleResource.primary.href}>{articleResource.primary.label}</a></div>}
         </aside>
       </div>
     </section>
   </article>
 
-  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
+  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <section class="section blog-close-stage" aria-labelledby="article-next-step-heading">
     <div class="container reveal">
@@ -172,3 +199,9 @@ const schema = [
   </script>
 
 </BaseLayout>
+
+<style is:global>
+  .article-resource-bridge{display:grid;grid-template-columns:1fr minmax(260px,.72fr);gap:clamp(26px,5vw,58px);margin:clamp(48px,7vw,76px) 0;padding:clamp(26px,4vw,42px);background:var(--rice);border-top:4px solid var(--teal)}
+  .article-resource-bridge>div>span{color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.article-resource-bridge h2{max-width:16ch;margin-top:10px;font-size:clamp(1.65rem,3vw,2.8rem)}.article-resource-bridge>div>p{max-width:48ch;margin-top:14px;color:var(--ink-72)}.article-resource-bridge nav{border-top:1px solid var(--ink)}.article-resource-bridge nav a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 0;border-bottom:1px solid var(--ink-10);color:var(--ink);font-size:.82rem;font-weight:800;text-decoration:none}.article-resource-bridge nav i{color:var(--teal);font-style:normal}.article-rail-tool{display:grid;gap:9px;margin-top:28px;padding:18px;background:var(--rice);border-left:3px solid var(--teal)}.article-rail-tool span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase}.article-rail-tool strong{font-size:.9rem;line-height:1.4}.article-rail-tool a{color:var(--ink);font-size:.78rem;font-weight:800;text-decoration:none}
+  @media(max-width:960px){.article-resource-bridge{grid-template-columns:1fr}}
+</style>

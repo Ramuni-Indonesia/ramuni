@@ -1,4 +1,6 @@
 ---
+import { getProductDashboardVisual } from '../../data/dashboardVisuals';
+
 interface Props {
   slug?: string;
   title?: string;
@@ -92,13 +94,14 @@ const profiles: Record<string, Profile> = {
 
 const { slug = 'hub', title = 'Produk RAMUNI', question = 'Apa yang perlu diperhatikan?' } = Astro.props;
 const profile = profiles[slug] ?? profiles.hub;
+const dashboardVisual = slug === 'hub' ? undefined : getProductDashboardVisual(slug);
 const series = profile.series ?? [28, 44, 36, 68, 52, 76, 62];
 const uid = `product-canvas-${slug}`;
 ---
 
 <figure class={`product-canvas product-canvas--${profile.mode}`} data-product-canvas id={uid} aria-label={`Visual interaktif ${title} dengan data contoh`}>
   <figcaption class="product-canvas__bar">
-    <span class="product-canvas__brand"><i aria-hidden="true"></i> RAMUNI</span>
+    <span class="product-canvas__brand"><i aria-hidden="true"></i> Preview dashboard RAMUNI</span>
     <span>Simulasi dengan data contoh</span>
   </figcaption>
 
@@ -110,6 +113,12 @@ const uid = `product-canvas-${slug}`;
     </nav>
 
     <section class="product-canvas__panel is-active" data-canvas-panel="overview" aria-label="Ringkasan contoh">
+      {dashboardVisual ? (
+        <div class="product-canvas__image-preview">
+          <img src={dashboardVisual.src} width="1280" height="853" alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
+          <span>Visual dashboard sintetis</span>
+        </div>
+      ) : (<>
       <div class="product-canvas__question">
         <small>{profile.focus}</small>
         <strong>{question}</strong>
@@ -146,6 +155,7 @@ const uid = `product-canvas-${slug}`;
           <span>Periksa bukti sebelum bertindak</span>
         </div>
       )}
+      </>)}
     </section>
 
     <section class="product-canvas__panel" data-canvas-panel="evidence" aria-label="Bukti contoh" hidden>
@@ -205,6 +215,7 @@ const uid = `product-canvas-${slug}`;
   .product-canvas__tabs{display:flex;width:max-content;max-width:100%;gap:4px;padding:4px;border:1px solid var(--ink-10);border-radius:999px;background:rgb(255 255 255/.88)}
   .product-canvas__tabs button{min-height:34px;border:0;border-radius:999px;padding:7px 13px;background:transparent;color:var(--ink-72);font:inherit;font-size:.67rem;font-weight:800;cursor:pointer}.product-canvas__tabs button.is-active{background:var(--ink);color:var(--white)}
   .product-canvas__panel{min-height:420px;padding:clamp(24px,4vw,44px)}.product-canvas__panel[hidden]{display:none}.product-canvas__panel.is-active{display:grid;align-content:center;animation:canvas-panel-in .42s var(--ease) both}
+  .product-canvas__image-preview{position:relative;min-width:0;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.product-canvas__image-preview img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}.product-canvas__image-preview span{position:absolute;left:14px;bottom:14px;padding:8px 10px;background:rgb(11 48 69/.9);color:var(--white);font-size:.62rem;font-weight:800}
   .product-canvas__question{display:grid;gap:8px;max-width:72%;margin-bottom:28px}.product-canvas__question small,.product-canvas__insight small,.product-canvas__flow small,.product-canvas__evidence small,.product-canvas__boundary small{color:var(--teal);font-size:.65rem;font-weight:800}.product-canvas__question strong{font-size:clamp(1.1rem,2.2vw,1.65rem);line-height:1.25}
   .product-canvas__chart{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;align-items:stretch}.product-canvas__bars{display:flex;align-items:end;gap:9px;height:220px;border-left:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:18px 18px 0}.product-canvas__bars i{position:relative;flex:1;height:var(--value);background:var(--teal);transform-origin:bottom}.product-canvas__bars i:nth-last-child(2){background:var(--yellow)}.product-canvas__bars span{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);font-size:.55rem;font-style:normal}.product-canvas__chart-note{display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:var(--ink);color:var(--white)}.product-canvas__chart-note span{color:var(--yellow);font-size:.63rem;font-weight:800}.product-canvas__chart-note strong{margin-top:16px;font-size:clamp(1rem,1.8vw,1.35rem);line-height:1.35}
   .product-canvas__flow,.product-canvas__hub-map{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center}.product-canvas__flow>div,.product-canvas__hub-map>div{display:flex;min-height:150px;flex-direction:column;justify-content:flex-end;border:1px solid var(--ink);padding:18px;background:var(--white)}.product-canvas__flow>div.is-focus,.product-canvas__hub-core{background:var(--yellow)!important}.product-canvas__flow>span{display:flex;gap:4px}.product-canvas__flow>span i{width:5px;height:5px;border-radius:50%;background:var(--teal)}.product-canvas__flow strong,.product-canvas__hub-map strong{margin-top:8px;font-size:1rem}.product-canvas__hub-map{grid-template-columns:1fr 1.2fr 1fr}.product-canvas__hub-source{transform:translateY(26px)}.product-canvas__hub-result{transform:translateY(-24px)}.product-canvas__hub-map>div span{color:var(--teal);font-size:.64rem;font-weight:800}

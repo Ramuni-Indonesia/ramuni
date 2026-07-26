@@ -32,6 +32,8 @@ const {
 const safeId = id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
 const visiblePanes = panes.slice(0, 3).map((pane) => ({ ...pane, items: pane.items.slice(0, 4) }));
 const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
+const mascotStateKeys: MascotKey[] = [mascot, 'working2d', mascot === 'evidence3d' ? 'guide3d' : 'evidence3d'];
+const mascotStateAssets = mascotStateKeys.map((key) => releaseGates.mascotExplorationEnabled ? mascots[key] : mascots.decisionVisual);
 const mascotAlt = releaseGates.mascotExplorationEnabled
   ? mascot === 'evidence3d'
     ? 'Muni si Manyar memeriksa bukti pada papan contoh'
@@ -45,7 +47,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
     <h2 id={safeId + '-title'}>{title}</h2>
     <p>{description}</p>
     <div class="audience-context__mascot" role="img" aria-label={mascotAlt}>
-      <img src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
+      <img data-audience-mascot src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
       <span>Data sintetis · pengguna tetap memutuskan</span>
     </div>
   </div>
@@ -63,6 +65,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
           data-audience-tab
           data-index={index}
           data-title={pane.title}
+          data-mascot-src={mascotStateAssets[index]?.src}
         >
           <span>{String(index + 1).padStart(2, '0')}</span>
           {pane.label}
@@ -119,6 +122,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
       const panels = Array.from(board.querySelectorAll<HTMLElement>('[data-audience-panel]'));
       const activeLabel = board.querySelector<HTMLElement>('[data-audience-active-label]');
       const activeTitle = board.querySelector<HTMLElement>('[data-audience-active-title]');
+      const mascotImage = board.querySelector<HTMLImageElement>('[data-audience-mascot]');
 
       const activate = (nextIndex: number) => {
         tabs.forEach((tab, index) => {
@@ -137,6 +141,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
           activeLabel.textContent = activeTab.textContent?.replace(/^\s*\d+\s*/, '').trim() || '';
         }
         if (activeTab && activeTitle) activeTitle.textContent = activeTab.dataset.title || '';
+        if (activeTab?.dataset.mascotSrc && mascotImage) mascotImage.src = activeTab.dataset.mascotSrc;
         board.dataset.activeIndex = String(nextIndex);
       };
 

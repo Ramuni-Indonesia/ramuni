@@ -52,6 +52,17 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       <p class="ramuni-calculator__disclaimer">Hasil bersifat edukasi. Periksa kembali satuan, periode, dan catatan usaha Anda.</p>
     </div>
   </div>
+
+  {embedded && <div class="ramuni-calculator__followup" aria-label="Langkah setelah menghitung">
+    <div>
+      <span>Setelah hasil muncul</span>
+      <ol>{calculator.nextSteps.map((step) => <li>{step}</li>)}</ol>
+    </div>
+    <nav aria-label={`Materi terkait ${calculator.shortTitle}`}>
+      <span>Periksa bersama</span>
+      {calculator.related.map((item) => <a href={item.href}><strong>{item.label}</strong><i aria-hidden="true">&rarr;</i></a>)}
+    </nav>
+  </div>}
 </section>
 
 <script>
@@ -109,3 +120,9 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
     });
   });
 </script>
+
+<style is:global>
+  .ramuni-calculator__followup{display:grid;grid-template-columns:minmax(0,.9fr) minmax(280px,1.1fr);gap:clamp(24px,5vw,56px);margin-top:32px;padding-top:28px;border-top:1px solid var(--ink-20)}
+  .ramuni-calculator__followup>div>span,.ramuni-calculator__followup nav>span{display:block;margin-bottom:14px;color:var(--teal);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.ramuni-calculator__followup ol{margin:0;padding-left:20px}.ramuni-calculator__followup li+li{margin-top:9px}.ramuni-calculator__followup nav{border-top:1px solid var(--ink);padding-top:16px}.ramuni-calculator__followup nav>a{display:grid;grid-template-columns:1fr auto;gap:18px;padding:14px 0;border-bottom:1px solid var(--ink-10);color:var(--ink);text-decoration:none}.ramuni-calculator__followup nav i{color:var(--teal);font-style:normal}
+  @media(max-width:900px){.ramuni-calculator__followup{grid-template-columns:1fr}}
+</style>

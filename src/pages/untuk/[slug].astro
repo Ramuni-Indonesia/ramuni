@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
+import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, roles } from '../../data/site';
 import { releaseGates } from '../../config/release';
 
@@ -90,6 +91,7 @@ export function getStaticPaths() {
 }
 
 const { role } = Astro.props;
+const roleVisualScene = role.slug as HeroContextScene;
 const context = roleContext[role.slug];
 const roleSeo: Record<string, { title: string; description: string }> = {
   'pemilik-usaha': { title: 'Dashboard untuk Pemilik Usaha | RAMUNI', description: 'Bantu pemilik UMKM membaca perubahan penjualan, stok, kas, dan pekerjaan tim sebelum menentukan prioritas serta penanggung jawab.' },
@@ -128,7 +130,7 @@ const closingLinks = role.slug === 'kasir'
 ---
 <BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
-  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" visual="guide" visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
+  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" visual="guide" visualScene={roleVisualScene} visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
 
   <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
     <div class="container audience-split">

@@ -9,6 +9,11 @@ export const mascots = {
     width: 720,
     height: 720,
   },
+  working2d: {
+    src: '/website-original/mascot/ramuni-mascot-working-dashboard.webp',
+    width: 640,
+    height: 640,
+  },
   guide3d: {
     src: '/website-original/mascot/ramuni-mascot-3d-guide.webp',
     width: 384,

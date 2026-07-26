@@ -67,7 +67,9 @@ const PERFORMANCE_BUDGETS = Object.freeze({
   // Large interaction libraries must remain deferred. Their compressed budget
   // is audited separately from the tiny route bootstrap below.
   js: { perFile: 150_000, total: 200_000, compressed: true },
-  image: { perFile: 100_000, total: 250_000 },
+  // Image delivery is route-specific and most editorial/product media is lazy.
+  // Audit individual files here, then enforce per-route referenced payload below.
+  image: { perFile: 100_000, total: null },
   font: { perFile: 20_000, total: 60_000 },
 });
 const DASH_MARKER = /[\u2013\u2014\u00c2\u00e2]/;
@@ -165,6 +167,37 @@ async function auditInitialJavaScript() {
       if (file) total += gzipSync(await readFile(file), { level: 9 }).byteLength;
     }
     if (total > routeLimit) failures.push(`performance budget: ${route} initially links ${formatBytes(total)} of compressed JS; route limit is ${formatBytes(routeLimit)}`);
+  }
+}
+
+async function auditLinkedImages() {
+  const routeLimit = 320_000;
+  const eagerRouteLimit = 150_000;
+  for (const [route, page] of pages) {
+    if (page.isRedirect) continue;
+    const references = new Map();
+    for (const match of page.html.matchAll(/<img\b[^>]*>/gi)) {
+      const tag = match[0];
+      const src = getAttribute(tag, 'src');
+      if (!src) continue;
+      const pathname = localAssetPath(src, siteOrigin);
+      if (!pathname) continue;
+      const current = references.get(pathname) || { eager: false };
+      current.eager ||= getAttribute(tag, 'loading') !== 'lazy';
+      references.set(pathname, current);
+    }
+
+    let total = 0;
+    let eagerTotal = 0;
+    for (const [pathname, state] of references) {
+      const file = files.find((candidate) => `/${relative(root, candidate).split(sep).join('/')}` === pathname);
+      if (!file) continue;
+      const size = (await readFile(file)).byteLength;
+      total += size;
+      if (state.eager) eagerTotal += size;
+    }
+    if (total > routeLimit) failures.push(`performance budget: ${route} references ${formatBytes(total)} of images; route limit is ${formatBytes(routeLimit)}`);
+    if (eagerTotal > eagerRouteLimit) failures.push(`performance budget: ${route} eagerly loads ${formatBytes(eagerTotal)} of images; eager route limit is ${formatBytes(eagerRouteLimit)}`);
   }
 }
 
@@ -559,6 +592,7 @@ for (const file of documentationFiles) {
 await auditPerformanceBudgets();
 await auditLinkedStylesheets();
 await auditInitialJavaScript();
+await auditLinkedImages();
 
 if (failures.length) {
   console.error(failures.join('\n'));

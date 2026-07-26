@@ -26,9 +26,9 @@ const {
   variant = 'archive',
 } = Astro.props;
 
-const mascotSrc = releaseGates.mascotExplorationEnabled
-  ? mascots.evidence3d.src
-  : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotStates = releaseGates.mascotExplorationEnabled
+  ? [mascots.working2d, mascots.evidence3d, mascots.guide3d]
+  : [mascots.decisionVisual, mascots.decisionVisual, mascots.decisionVisual];
 
 const signals = [
   {
@@ -82,6 +82,7 @@ const signals = [
           aria-controls={`${id}-panel-${signal.key}`}
           tabindex={index === 0 ? 0 : -1}
           data-signal-tab={signal.key}
+          data-mascot-src={mascotStates[index].src}
         >
           <b>0{index + 1}</b>
           <span>{signal.label}</span>
@@ -109,7 +110,7 @@ const signals = [
       ))}
     </div>
 
-    <img class="blog-decision-cta__mascot" src={mascotSrc} width="384" height="384" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <img class="blog-decision-cta__mascot" data-blog-mascot src={mascotStates[0].src} width={mascotStates[0].width} height={mascotStates[0].height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
   </div>
 </div>
 
@@ -121,6 +122,7 @@ const signals = [
 
       const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-signal-tab]'));
       const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-signal-panel]'));
+      const mascotImage = root.querySelector<HTMLImageElement>('[data-blog-mascot]');
 
       const selectTab = (nextTab: HTMLButtonElement) => {
         const key = nextTab.dataset.signalTab;
@@ -132,6 +134,7 @@ const signals = [
         panels.forEach((panel) => {
           panel.hidden = panel.dataset.signalPanel !== key;
         });
+        if (mascotImage && nextTab.dataset.mascotSrc) mascotImage.src = nextTab.dataset.mascotSrc;
       };
 
       tabs.forEach((tab, index) => {

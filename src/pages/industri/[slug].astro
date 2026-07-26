@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
+import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
 import { releaseGates } from '../../config/release';
 
@@ -200,6 +201,7 @@ export function getStaticPaths() {
 }
 
 const { industry } = Astro.props;
+const industryVisualScene = industry.slug as HeroContextScene;
 const brief = industryBriefs[industry.slug];
 const industryHeadings: Record<string, { hero: string; fit: string; workflow: string; signals: string; modules: string }> = {
   retail: { hero: 'Jangan tunggu rak kosong untuk mengecek stok.', fit: 'Toko ramai butuh catatan produk yang tetap rapi.', workflow: 'Mulai pagi dari stok kritis dan produk yang sedang laris.', signals: 'Bedakan produk laris, stok lambat, dan selisih catatan.', modules: 'Penjualan dan inventori dibaca dalam satu alur.' },
@@ -217,7 +219,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualLabel={industry.title} visualTitle="Contoh tampilan memakai data sintetis dan batas fitur yang dijelaskan." />
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh tampilan memakai data sintetis dan batas fitur yang dijelaskan." />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">

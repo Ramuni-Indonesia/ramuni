@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
-import ProductPulseLab from '../../components/product/ProductPulseLab.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
@@ -67,8 +66,6 @@ const productFaq = [
         </div>
       </div>
     </section>
-
-    <ProductPulseLab />
 
     <section class="section product-catalog" aria-labelledby="product-catalog-title">
       <div class="container product-catalog__layout">
@@ -182,7 +179,7 @@ const productFaq = [
   .product-system__rail strong{font-size:1.08rem;margin-top:20px}
   .product-direction-model{display:grid;grid-template-columns:minmax(0,.72fr) minmax(320px,1.28fr);gap:clamp(34px,6vw,82px);align-items:center;margin-top:clamp(54px,8vw,96px);padding:clamp(24px,4vw,46px);overflow:hidden;background:var(--ink);color:var(--white)}
   .product-direction-model__copy{max-width:560px}.product-direction-model__copy>span{color:var(--yellow);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.product-direction-model__copy h3{margin-top:18px;font-size:clamp(1.55rem,3.1vw,3rem);line-height:1.08}.product-direction-model__copy p{max-width:42ch;margin-top:20px;color:rgb(255 255 255/.68)}
-  .product-direction-model :global(.decision-flow-3d){min-height:420px;border-color:rgb(255 255 255/.28)}
+  .product-direction-model :global(.decision-workbench){min-height:420px;border-color:rgb(255 255 255/.28)}
   .product-hub .product-row{grid-template-columns:56px minmax(0,1fr) auto;min-width:0;margin-inline:0;padding:14px 16px;border:1px solid transparent;border-top-color:var(--ink-10);overflow:hidden;transition:transform .32s var(--ease),background-color .32s ease,border-color .32s ease,box-shadow .32s ease}
   .product-hub .product-row:last-child{border-bottom-color:var(--ink-10)}
   .product-row__mark{position:relative;width:44px;height:44px;border:1px solid var(--ink);background:var(--rice);overflow:hidden;transition:transform .38s var(--ease),background-color .38s ease,color .38s ease}
@@ -242,7 +239,7 @@ const productFaq = [
   .product-faq details{border-top:1px solid var(--ink-10);padding:22px 0}.product-faq details:last-child{border-bottom:1px solid var(--ink-10)}
   .product-faq summary{cursor:pointer;font-weight:800}.product-faq details p{max-width:58ch;margin-top:14px;color:var(--ink-72)}
   @media (prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.capability-fold{animation:hub-rise .7s both;animation-delay:calc(var(--i,0)*70ms)}@keyframes hub-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}}
-  @media(max-width:1200px){.product-hub .catalog-hero__layout,.product-direction-model,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-direction-model :global(.decision-flow-3d){min-height:340px}.product-hub .outcome-index__list,.role-paths__nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:1200px){.product-hub .catalog-hero__layout,.product-direction-model,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-direction-model :global(.decision-workbench){min-height:340px}.product-hub .outcome-index__list,.role-paths__nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(min-width:961px) and (max-width:1200px){.product-hub .catalog-hero__layout{grid-template-columns:minmax(260px,.78fr) minmax(430px,1.22fr);gap:clamp(24px,3vw,40px)}}
   @media(max-width:1200px), (hover:none), (pointer:coarse){.product-hub .product-row:hover,.product-hub .product-row:focus-visible,.product-hub .outcome-index__list a:hover,.product-hub .outcome-index__list a:focus-visible,.capability-fold:hover::after,.role-paths__nav a:hover,.role-paths__nav a:focus-visible{transform:none}.product-hub .product-row:hover .product-row__mark,.product-hub .product-row:focus-visible .product-row__mark,.product-hub .outcome-index__list a:hover .outcome-glyph,.product-hub .outcome-index__list a:focus-visible .outcome-glyph{transform:none}}
   @media(max-width:740px){.product-hub .catalog-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.product-hub .product-row{grid-template-columns:52px minmax(0,1fr);padding-inline:10px}.product-hub .product-row .availability-label{grid-column:2}.product-hub .outcome-index__list,.capability-folds,.role-paths__nav{grid-template-columns:1fr}.capability-fold:nth-child(2){margin-top:0}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:auto;padding:22px}.capability-fold h3{margin-top:24px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}

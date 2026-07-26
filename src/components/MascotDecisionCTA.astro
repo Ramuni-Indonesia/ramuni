@@ -9,7 +9,7 @@ interface Props {
   secondaryHref?: string;
   theme?: 'teal' | 'yellow' | 'ink';
   headingId?: string;
-  mascot?: 'welcome2d' | 'guide3d' | 'evidence3d';
+  mascot?: 'welcome2d' | 'working2d' | 'guide3d' | 'evidence3d';
 }
 
 import { mascots } from '../data/mascots';
@@ -27,13 +27,14 @@ const {
   headingId,
   mascot = 'guide3d',
 } = Astro.props;
-const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
+const fallbackMascot = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
 
 const stages = [
-  { label: 'Catatan', title: 'Mulai dari satu pertanyaan', text: 'Pilih angka atau kejadian usaha yang paling perlu dipahami.' },
-  { label: 'Bukti', title: 'Periksa jejaknya', text: 'Lihat periode, sumber, dan catatan sebelum menyimpulkan.' },
-  { label: 'Arah', title: 'Tentukan langkah', text: 'Gunakan simulasi untuk membahas pilihan tanpa menyerahkan kendali.' },
+  { label: 'Catatan', title: 'Mulai dari satu pertanyaan', text: 'Pilih angka atau kejadian usaha yang paling perlu dipahami.', mascot: 'working2d' as const },
+  { label: 'Bukti', title: 'Periksa jejaknya', text: 'Lihat periode, sumber, dan catatan sebelum menyimpulkan.', mascot: 'evidence3d' as const },
+  { label: 'Arah', title: 'Tentukan langkah', text: 'Gunakan simulasi untuk membahas pilihan tanpa menyerahkan kendali.', mascot: 'guide3d' as const },
 ];
+const stageMascots = stages.map((stage) => releaseGates.mascotExplorationEnabled ? mascots[stage.mascot] : fallbackMascot);
 const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
 ---
 
@@ -50,12 +51,12 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
 
   <div class="mascot-decision__visual" aria-label="Alur interaktif dari catatan menuju arah keputusan">
     <div class="mascot-decision__mascot" aria-hidden="true">
-      <img src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
+      <img data-decision-mascot src={stageMascots[0].src} width={stageMascots[0].width} height={stageMascots[0].height} alt="" loading="lazy" decoding="async" />
     </div>
     <div class="mascot-decision__workspace">
       <div class="mascot-decision__tabs" role="group" aria-label="Tahap membaca kondisi usaha">
         {stages.map((stage, index) => (
-          <button type="button" id={`${instanceId}-tab-${index}`} data-decision-tab={index} class:list={{ 'is-active': index === 0 }} aria-pressed={index === 0 ? 'true' : 'false'} aria-controls={`${instanceId}-panel-${index}`}>
+          <button type="button" id={`${instanceId}-tab-${index}`} data-decision-tab={index} data-mascot-src={stageMascots[index].src} class:list={{ 'is-active': index === 0 }} aria-pressed={index === 0 ? 'true' : 'false'} aria-controls={`${instanceId}-panel-${index}`}>
             <small>{String(index + 1).padStart(2, '0')}</small>
             <span>{stage.label}</span>
           </button>
@@ -83,6 +84,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
       root.dataset.bound = 'true';
       const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-decision-tab]')];
       const panels = [...root.querySelectorAll<HTMLElement>('[data-decision-panel]')];
+      const mascotImage = root.querySelector<HTMLImageElement>('[data-decision-mascot]');
       tabs.forEach((tab) => tab.addEventListener('click', () => {
         const target = tab.dataset.decisionTab;
         tabs.forEach((item) => {
@@ -95,6 +97,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
           panel.hidden = !active;
           panel.classList.toggle('is-active', active);
         });
+        if (mascotImage && tab.dataset.mascotSrc) mascotImage.src = tab.dataset.mascotSrc;
       }));
     });
   };
@@ -107,7 +110,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
   .mascot-decision--yellow{--cta-bg:var(--yellow);--cta-fg:var(--ink);--cta-accent:var(--teal)}
   .mascot-decision--ink{--cta-bg:var(--ink);--cta-fg:var(--white);--cta-accent:var(--yellow)}
   .mascot-decision__copy>span{color:var(--cta-accent);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.mascot-decision__copy h2{max-width:18ch;margin:18px 0 0;font-size:var(--type-h2);line-height:1.04}.mascot-decision__copy p{max-width:49ch;margin:20px 0 0;color:color-mix(in srgb,var(--cta-fg) 72%,transparent);line-height:1.65}.mascot-decision__copy .button-row{display:flex;flex-wrap:wrap;margin-top:30px}.mascot-decision__copy .button--secondary{border-color:color-mix(in srgb,var(--cta-fg) 55%,transparent);color:var(--cta-fg)}.mascot-decision--yellow .button--secondary{border-color:var(--ink);color:var(--ink)}
-  .mascot-decision__visual{position:relative;display:grid;grid-template-columns:minmax(96px,.3fr) minmax(0,1fr);align-items:end;min-height:360px}.mascot-decision__mascot{position:relative;z-index:3;align-self:end;margin-right:-24px;filter:drop-shadow(0 18px 18px rgb(11 48 69/.18));transform:translateY(10px) rotate(-1deg)}.mascot-decision__mascot img{position:relative;z-index:2;display:block;width:clamp(150px,18vw,225px);height:auto;object-fit:contain}
+  .mascot-decision__visual{position:relative;display:grid;grid-template-columns:minmax(96px,.3fr) minmax(0,1fr);align-items:end;min-height:360px}.mascot-decision__mascot{position:relative;z-index:3;align-self:end;margin-right:-24px;filter:drop-shadow(0 18px 18px rgb(11 48 69/.18));transform:translateY(10px) rotate(-1deg)}.mascot-decision__mascot img{position:relative;z-index:2;display:block;width:clamp(150px,18vw,225px);height:auto;object-fit:contain;transition:opacity .2s var(--ease),transform .28s var(--ease)}
   .mascot-decision__workspace{position:relative;z-index:2;min-width:0;border:1px solid var(--ink);background:var(--rice);color:var(--ink);box-shadow:10px 10px 0 rgb(11 48 69/.3)}.mascot-decision__tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}.mascot-decision__tabs button{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;min-height:54px;border:0;border-right:1px solid var(--ink-10);padding:10px 12px;background:transparent;color:var(--ink);font:inherit;text-align:left;cursor:pointer}.mascot-decision__tabs button:last-child{border-right:0}.mascot-decision__tabs button.is-active{background:var(--yellow)}.mascot-decision__tabs small{color:var(--teal);font-size:.56rem;font-weight:800}.mascot-decision__tabs span{font-size:.7rem;font-weight:800}
   .mascot-decision__cards{min-height:270px;padding:clamp(22px,4vw,38px)}.mascot-decision__cards article{min-height:210px}.mascot-decision__cards article[hidden]{display:none}.mascot-decision__cards article.is-active{display:grid;align-content:end}.mascot-decision__cards small{color:var(--teal);font-size:.65rem;font-weight:800;text-transform:uppercase}.mascot-decision__cards strong{max-width:17ch;margin-top:14px;font-size:clamp(1.35rem,2.5vw,2.15rem);line-height:1.1}.mascot-decision__cards p{max-width:38ch;margin:14px 0 0;color:var(--ink-72);font-size:.82rem}.mascot-decision__cards article>div{display:flex;gap:6px;margin-top:24px}.mascot-decision__cards article>div i{display:block;width:30%;height:7px;background:var(--teal)}.mascot-decision__cards article>div i:nth-child(2){width:22%;background:var(--yellow)}.mascot-decision__cards article>div i:nth-child(3){width:14%;background:var(--ink)}.mascot-decision__workspace footer{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-top:1px solid var(--ink-10);font-size:.6rem;font-weight:800}.mascot-decision__workspace footer span{display:flex;align-items:center;gap:7px}.mascot-decision__workspace footer i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
   @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.mascot-decision__mascot{animation:mascot-guide-float 5.6s ease-in-out infinite}.mascot-decision__cards article.is-active{animation:mascot-card-in .3s var(--ease) both}@keyframes mascot-card-in{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes mascot-guide-float{50%{transform:translateY(4px) rotate(.5deg)}}}
