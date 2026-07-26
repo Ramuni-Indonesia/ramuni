@@ -12,10 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `27905cde8bf6ab746f76918b3026bddb071a66f1` (`fix: preserve horizontal overflow fallback`).
-- Documentation follow-up on `main`: this handoff update is documentation-only and does not require another staging redeploy.
-- Active staging release: `20260726T143122Z-27905cde8bf6`.
-- Deployed artifact SHA-256: `6435c15e8a769670864cdebe4d26d69a31af9ee4c885fb564553012c7578b898`.
+- Published runtime commit: `608fd578acb630bb7b6b804b50ebf4a6b5474deb` (`perf: trim blog route CSS`).
+- Visual/tablet implementation commit: `8e83afaa30fbf14e49876ae207db633109386670` (`fix: stabilize tablet visuals and motion`).
+- CSS release-gate follow-ups: `6081e38` and `608fd57`; both keep `/blog/cari` below the route CSS budget after the visual batch.
+- Active staging release: `20260726T153002Z-608fd578acb6`.
+- Deployed artifact SHA-256: `6076e1265171360c78c93ffb6f596b731e36cfc799b94b5003ff9ba829fb3f58`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -60,8 +61,11 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Seven practical calculator flows and real downloadable CSV template resources are present.
 - Help center has local search/filter behavior and accessible status messaging.
 - `/bantuan/`, `/keamanan/`, and `/tentang/` were redesigned in the latest release.
-- Product hub, solution hub, product detail, and solution detail heroes now keep their desktop split composition from 1081px through 1200px, matching the desktop navbar contract on 11–12 inch landscape tablets. They still stack at 1080px and below.
-- Tool, guide, glossary, template, resource, and blog heroes now use the same 1081px large-tablet desktop handoff while their lower-content grids retain safer tablet stacking.
+- Product hub, solution hub, product detail, and solution detail heroes now keep their split composition from 961px through 1200px while the navbar independently stays in hamburger mode through 1200px.
+- Tool, guide, glossary, template, resource, and blog heroes use the same 961px large-tablet split handoff while their lower-content grids retain safer tablet stacking.
+- Decorative reveal, hover, mascot, orbit, and data motion is gated away from touch/tablet and coarse-pointer devices; reveal observers settle once instead of flickering during repeated scroll.
+- Homepage companion art now uses one web-specific HashMicro-generated `catatan -> bukti -> arah` visual. The redundant overlaid mascot/caption and the obsolete `ramuni-decision-landscape.webp` asset were removed.
+- `MascotDecisionCTA` is flatter and smaller, with no orbit decoration or forced 3D tilt. Product/solution visual animations now run only on fine-pointer desktop.
 - Tablet/touch headers are opaque without backdrop blur; blur is limited to fine-pointer desktop above 1200px. A hidden-before-clip overflow fallback protects older Safari while modern browsers retain sticky-safe `overflow-x: clip`.
 - Product/solution GSAP scroll motion now runs only above 1200px on fine-pointer hover devices and reverts when motion preferences or the device breakpoint changes. Reveal settling is animation-name agnostic, and reveal-linked industry keyframes no longer start from zero opacity.
 - Nine product pages and four role pages have unique SEO metadata; role pages have explicit self-canonicals.
@@ -88,7 +92,7 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - All 67 R2 assets synchronized.
-- Latest R2 sync uploaded nothing and confirmed all 67 assets unchanged.
+- Latest R2 sync uploaded nothing and confirmed all 67 assets unchanged, including `ramuni-catatan-bukti-arah.webp`.
 - The minified live stylesheet preserves `overflow-x: hidden` for older engines and upgrades `html`, `body`, and `main` to `overflow-x: clip` inside `@supports`.
 - Live staging checks returned HTTP 200 for `/healthz`, the homepage, product hub/detail, solution hub, blog, calculator hub, and contact page.
 - Live staging remains fail-closed: HTTP `X-Robots-Tag` is noindex, HTML is `noindex,follow`, responses are `no-store`, and sitemap endpoints return 404.
@@ -96,7 +100,8 @@ No verified real product dashboard screenshots were found in the supplied produc
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T143122Z-27905cde8bf6` and artifact `6435c15e8a769670864cdebe4d26d69a31af9ee4c885fb564553012c7578b898`.
+- Deployment health check passed for release `20260726T153002Z-608fd578acb6` and artifact `6076e1265171360c78c93ffb6f596b731e36cfc799b94b5003ff9ba829fb3f58`.
+- Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
@@ -134,6 +139,18 @@ Latest read-only gateway audit:
 - `stash@{0}` combines the older release snapshot with live gateway WIP. `stash@{1}` is an earlier gateway implementation. Keep both until their behavior is compared with the provider branch, especially the older `artifact-publisher.mjs` path.
 - Continue gateway development only from `/home/meetsin/internal/ramuni-source-cms-provider`. It has local commit `2538ffd` plus dirty provider/build-runner/config/server/store/package refinements that still need rebase and testing.
 - The obsolete clean worktree `/home/meetsin/internal/ramuni-source-marketing-gateway` had no unique commits and was removed after audit. Its local branch may be deleted separately after confirming it is not referenced.
+
+## Active visual-content backlog after this release
+
+The user requested a follow-up visual system pass after the tablet stabilization release. Treat these as the next implementation batch, not as completed work:
+
+- Replace remaining generic/repeated hero art with context-specific product, solution, tool, resource, and article visuals.
+- Audit all approved mascot sources and use distinct mascot variants only where they explain a task. Build lightweight 2D interaction states such as reviewing notes, arranging evidence, or checking a dashboard; avoid repeating one bird pose everywhere.
+- Rework the current decorative 3D mascot treatment before expanding it. 3D must be a small explanatory accent, not a large character-introduction section.
+- Add truthful synthetic dashboard visuals or approved screenshots to relevant product/solution pages. Label synthetic examples clearly and do not present them as customer data.
+- Widen the blog article reading column where the current TOC/aside leaves an oversized right-side gap, while preserving readable line length and sticky navigation behavior.
+- Add contextual calculator/tool cards and useful diagrams inside relevant articles, with server-rendered explanatory copy, accessible alt text, and no financial input/result tracking.
+- Keep the CSS/image performance budgets green. New raster generation must use the native HashMicro plugin and store source outputs below `outputs/`.
 
 ## Next continuation workflow
 
