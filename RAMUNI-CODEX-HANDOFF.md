@@ -18,6 +18,21 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, and `/home/meetsin/internal/ramuni-handoff` are separate repositories or contexts; do not mix them into the marketing site.
 - Old worktrees are audit sources only. Preserve unique valid work in `main`, then remove obsolete worktrees only after they are clean or their dirty state has been fully reviewed.
 
+## Visual, mascot, and tablet-responsive continuation — local commits pending push
+
+- Current implementation commit on local `main`: `cf58377` (`feat: refine ramuni visuals and tablet responsiveness`). Preserve it together with `0650b80` and `8a8f4bd`; the checkout is ahead of `origin/main` because this server still has no usable GitHub HTTPS credential or authorized SSH key.
+- Homepage, role, industry, solution, product, blog-search, calculator, and CTA journeys were made more visual with component-built dashboards, context boards, mascot-guided states, distinct calculator visuals, and reduced text-only composition. Simple/trust pages remain intentionally restrained.
+- Added a real procedural Three.js Muni model in `src/components/MuniMascot3D.astro` and `src/three/`. It loads near the viewport, adapts its camera to tablet/mobile, pauses outside the viewport, supports pointer drag without blocking vertical scroll, and fully disposes geometry, materials, observers, listeners, and WebGL context. Reduced-motion and save-data use the poster without allocating WebGL.
+- Mascot exploration is release-gated. With `PUBLIC_MASCOT_EXPLORATION_APPROVED=false`, production output contains no reference to `/website-original/mascot/ramuni-mascot-3d-*`; approved abstract decision artwork is used instead. Do not remove this gate until final mascot approval is recorded.
+- Tablet/narrow-desktop layout rules now switch major hero, product, solution, role, industry, blog, resource, form, and CTA compositions to one column around 1080px. Global `min-width:0`/max-width guardrails prevent grid min-content overflow; large visuals are centered instead of clipping or leaving an uneven right gutter.
+- Persistent actions were repaired: scroll-to-top now uses a throttled `scrollY` threshold instead of relying only on a sentinel, while the contact control has safe-area offsets, viewport width limits, and a higher stacking layer.
+- Header/footer use larger tightly cropped lockups. Heading tokens, text measures, mobile button behavior, reveal motion, breadcrumbs, and hamburger behavior are normalized across templates.
+- Solution hub now covers all five solution problems, including Laporan. Calculator cards use H3 headings and distinct patterns. Blog search has visual results and accessible live-status semantics.
+- Validation on Node 22: Astro check passed on 100 files with zero diagnostics; staging and production-like builds each generated 87 pages; the full metadata/social/schema/accessibility/internal-link/sitemap/noindex/robots/encoding/asset-budget audit passed; `npm audit --audit-level=high` found zero vulnerabilities; `git diff --check` passed.
+- Staging contract remains fail-closed: `noindex,follow`, crawlable robots, and no sitemap files. The final `dist` must be rebuilt in staging mode after any production-like gate test.
+- Headless Chromium was downloaded for QA but could not complete even a blank-page capture in this host environment and was terminated. Responsive source/build checks passed, but human visual QA is still required at 1440, 1194, 1024, 834, 768, 390, and 360 widths.
+- Push and staging deployment remain blocked only by missing server GitHub authentication. Never reuse plaintext credentials from chat or history. Restore the server credential helper or SSH authorization, push the existing local `main`, then deploy and verify the exact pushed SHA.
+
 ## Resource tools and navigation continuation — local commit pending GitHub authentication
 
 - Implemented on local `main`: `0650b80` (`feat: expand resource tools and navigation`). The commit is ready but could not be pushed because the server has no usable GitHub HTTPS credential and no authorized SSH key. Do not place a PAT in a command or repository file; restore the server credential helper, then push the existing local commits.
@@ -114,7 +129,7 @@ References named by the user: `https://sintra.ai/`, `https://komchat.id/ai/`, `h
 - Brand-safe Three.js sculpture `catatan -> bukti -> arah` exists in the product flow.
 - Product detail hero was centered, heading reduced, interactive dashboard made full-width, negative margins/tilt removed, and blocking overlay icon removed.
 - Solution detail hero received a similar CSS override but still needs desktop/mobile QA.
-- Home section 2 now uses Muni si Manyar with contain/sticky/parallax/active-card behavior. It is not yet a real 3D mascot model.
+- Home now includes a release-gated procedural Three.js Muni companion plus 2D/3D mascot story cards. The mobile problem journey keeps the mascot contained and avoids the old sticky overlap/glitch behavior.
 
 ## Image generation state
 
@@ -164,22 +179,15 @@ The best dashboard visuals are component-built:
 
 ## Verification checkpoint
 
-Last known local evidence:
+Latest local evidence:
 
-- `npm run check`: passed on 92 files with zero errors/warnings/hints.
-- `git diff --check`: passed earlier.
-- Dashboard Bisnis desktop: centered hero, full-width dashboard, no overflow, no blocking overlay icon.
-- Dashboard Bisnis mobile: heading around 42.9px, both CTAs around 343px/full-width, `scrollWidth === clientWidth`.
-- Mascot mobile: centered, full body visible, sticky above problem cards.
-
-Rerun after transfer because later CSS/home changes were not covered by a final production verification:
-
-- `npm run check`
-- `npm run build`
-- `npm run audit`
-- rendered desktop/tablet/mobile QA on core routes.
-
-Earlier audit was slightly over budget: home and `/produk` about 0.7 kB over HTML budget; blog/product around 1 to 1.8 kB over route CSS budget.
+- `NAPI_RS_FORCE_WASI=1 npx -y node@22 node_modules/.bin/astro check`: 100 files, zero errors/warnings/hints.
+- Staging build: 87 pages, `noindex,follow`, no sitemap files, robots `Allow: /`.
+- Production-like build with mascot approval false: 87 pages, sitemap generated, no gated 3D mascot raster references in rendered HTML.
+- `npx -y node@22 scripts/site-audit.mjs`: all metadata, social preview, manifest/icon, static accessibility, content marker, JSON-LD/schema, internal-link, sitemap/noindex, robots, encoding, and asset-budget checks passed in both staging and production-like modes.
+- `npm audit --audit-level=high`: zero vulnerabilities.
+- `git diff --check` and `node --check public/scripts/floating-contact.js`: passed.
+- Browser-rendered visual QA remains outstanding because headless Chromium hangs on this host; do not claim screenshot/PSI evidence until a functioning browser runner or external PSI is available.
 
 ## Important changed files in the snapshot
 
