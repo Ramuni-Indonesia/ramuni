@@ -114,6 +114,7 @@ No verified real customer dashboard screenshots were found in the supplied produ
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
 - Deployment health check passed for release `20260726T170644Z-6b4651d56924` and artifact `5ca766dba3a91e7f746e8ce6ae365609fe5562ea0f11cb9e57156df251224adb`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
+- Post-release cleanup removed the worktree's generated `node_modules`, `dist`, `.astro`, disposable `outputs`, and four pre-build snapshots after confirming the published assets and release; the worktree is clean.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
