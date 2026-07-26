@@ -10,9 +10,10 @@ const desktopLayout = window.matchMedia('(min-width: 1201px) and (hover: hover) 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const siteHeader = mobile?.closest('.site-header');
 const mobileSummary = mobile?.querySelector(':scope > summary');
+const mobilePanel = mobile?.querySelector('.mobile-panel');
 let hoverCloseTimer;
 let mobileCloseTimer;
-let mobileOpenFrame;
+let mobilePanelAnimation;
 let scrollRestoreFrame;
 let lockedScrollY = 0;
 let previousBodyStyle;
@@ -59,37 +60,56 @@ const unlockPageScroll = () => {
 const openMobileMenu = () => {
   if (!(mobile instanceof HTMLDetailsElement) || mobile.open) return;
   window.clearTimeout(mobileCloseTimer);
-  window.cancelAnimationFrame(mobileOpenFrame);
+  mobilePanelAnimation?.cancel();
   mobile.dataset.menuState = 'opening';
   mobile.setAttribute('open', '');
   setMobileExpanded(true);
   lockPageScroll();
   syncMobilePanelOffset();
-  mobileOpenFrame = window.requestAnimationFrame(() => {
-    mobileOpenFrame = window.requestAnimationFrame(() => {
-      if (mobile.open && mobile.dataset.menuState === 'opening') mobile.dataset.menuState = 'open';
-    });
-  });
+  if (!(mobilePanel instanceof HTMLElement) || reducedMotion.matches || typeof mobilePanel.animate !== 'function') {
+    mobile.dataset.menuState = 'open';
+    return;
+  }
+  mobilePanel.style.pointerEvents = 'none';
+  mobilePanelAnimation = mobilePanel.animate([
+    { opacity: 0, transform: 'translateY(-12px)' },
+    { opacity: 1, transform: 'translateY(0)' },
+  ], { duration: 220, easing: 'cubic-bezier(.16,1,.3,1)' });
+  mobilePanelAnimation.finished.then(() => {
+    mobilePanel.style.pointerEvents = '';
+    if (mobile.open && mobile.dataset.menuState === 'opening') mobile.dataset.menuState = 'open';
+  }).catch(() => {});
 };
 
 const closeMobileMenu = ({ animate = true, returnFocus = false } = {}) => {
   if (!(mobile instanceof HTMLDetailsElement) || !mobile.open) return;
   window.clearTimeout(mobileCloseTimer);
-  window.cancelAnimationFrame(mobileOpenFrame);
+  mobilePanelAnimation?.cancel();
   setMobileExpanded(false);
+  let didFinish = false;
   const finish = () => {
+    if (didFinish) return;
+    didFinish = true;
+    window.clearTimeout(mobileCloseTimer);
     mobile.removeAttribute('open');
     mobile.dataset.menuState = 'closed';
+    if (mobilePanel instanceof HTMLElement) mobilePanel.style.pointerEvents = '';
     mobile.querySelectorAll('.mobile-panel details[open]').forEach((item) => item.removeAttribute('open'));
     unlockPageScroll();
     if (returnFocus && mobileSummary instanceof HTMLElement) mobileSummary.focus();
   };
-  if (!animate || reducedMotion.matches) {
+  if (!animate || reducedMotion.matches || !(mobilePanel instanceof HTMLElement) || typeof mobilePanel.animate !== 'function') {
     finish();
     return;
   }
   mobile.dataset.menuState = 'closing';
-  mobileCloseTimer = window.setTimeout(finish, 230);
+  mobilePanel.style.pointerEvents = 'none';
+  mobilePanelAnimation = mobilePanel.animate([
+    { opacity: 1, transform: 'translateY(0)' },
+    { opacity: 0, transform: 'translateY(-12px)' },
+  ], { duration: 220, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' });
+  mobilePanelAnimation.finished.then(finish).catch(() => {});
+  mobileCloseTimer = window.setTimeout(finish, 260);
 };
 
 const syncMobilePanelOffset = () => {
@@ -252,7 +272,7 @@ if (mobile instanceof HTMLDetailsElement) {
 
 window.addEventListener('pagehide', () => {
   window.clearTimeout(mobileCloseTimer);
-  window.cancelAnimationFrame(mobileOpenFrame);
+  mobilePanelAnimation?.cancel();
   window.cancelAnimationFrame(scrollRestoreFrame);
   unlockPageScroll();
 }, { once: true });
