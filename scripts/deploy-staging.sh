@@ -105,7 +105,7 @@ done < <(find dist -type f \( \
 
 ramuni_artifact_digest=$(find dist -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
 
-sudo install -d -o root -g www-data -m 0755 "$ramuni_deploy_root" "$ramuni_deploy_root/releases"
+sudo install -d -o root -g www-data -m 2775 "$ramuni_deploy_root" "$ramuni_deploy_root/releases"
 sudo install -d -o www-data -g www-data -m 0755 "$ramuni_release_dir"
 sudo rsync -a --delete --chown=www-data:www-data --chmod=D755,F644 dist/ "$ramuni_release_dir/"
 if [[ -L $ramuni_current_link ]]; then

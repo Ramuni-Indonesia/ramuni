@@ -20,7 +20,7 @@ The provider service and Nginx change must be installed only after the pinned SH
 
 For the supplied Docker-backed systemd unit, provider paths inside `provider.env` must use container paths: repository `/app`, secret files below `/run/secrets`, state below `/var/lib/ramuni-cms-build-provider`, and release root `/var/www/ramuni-staging`. The host checkout mounted at `/app` is the dedicated clean clone `/home/meetsin/internal/ramuni-source-provider-runtime`; do not point the service at an editor worktree or the canonical dirty checkout. The unit pins the full Node 22 Bookworm image by digest because the build runner requires `git` as well as Node/npm.
 
-The container runs as host UID/GID `1000:1000`. The dedicated clone, provider state directory, provider release directories and protected secret files must therefore be owned by that identity. The delivery-token file is mounted read-only and its path is supplied only to the candidate Astro build; the token value is not copied into the work directory or inherited by install, test, audit, or dependency-scan commands.
+The container runs as host UID/GID `1000:1000` with supplemental group `33` (`www-data`). The dedicated clone, provider state directory and protected secret files remain owned by UID 1000. The shared staging root and `releases/` directory are `root:www-data` with mode `2775`, so both the regular root-driven staging deploy and the non-root provider can create immutable releases and switch the alias without changing ownership back and forth. The delivery-token file is mounted read-only and its path is supplied only to the candidate Astro build; the token value is not copied into the work directory or inherited by install, test, audit, or dependency-scan commands.
 
 Operational limits:
 
