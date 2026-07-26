@@ -84,8 +84,8 @@ const groupActive = (item: MegaNavigationGroup) => {
       <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
     </nav>
     <details class="mobile-menu" data-mobile-menu>
-      <summary><span class="mobile-menu__icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="mobile-menu__label">Menu</span></summary>
-      <div class="mobile-panel">
+      <summary aria-controls="mobile-navigation-panel" aria-expanded="false"><span class="mobile-menu__icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="mobile-menu__label">Menu</span></summary>
+      <div class="mobile-panel" id="mobile-navigation-panel">
         <nav aria-label="Navigasi seluler">
           {publicHeaderNavigation.map((item) => (
             isMegaGroup(item) ? (

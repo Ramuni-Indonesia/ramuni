@@ -7,8 +7,90 @@ const desktopItems = desktopNav
 const desktopIndex = (node) => desktopItems.findIndex((item) => item === node);
 const desktopHover = window.matchMedia('(min-width: 1201px) and (hover: hover) and (pointer: fine)');
 const desktopLayout = window.matchMedia('(min-width: 1201px) and (hover: hover) and (pointer: fine)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const siteHeader = mobile?.closest('.site-header');
+const mobileSummary = mobile?.querySelector(':scope > summary');
 let hoverCloseTimer;
+let mobileCloseTimer;
+let mobileOpenFrame;
+let scrollRestoreFrame;
+let lockedScrollY = 0;
+let previousBodyStyle;
+
+const setMobileExpanded = (expanded) => {
+  if (mobileSummary instanceof HTMLElement) mobileSummary.setAttribute('aria-expanded', String(expanded));
+};
+
+const lockPageScroll = () => {
+  if (previousBodyStyle) return;
+  window.cancelAnimationFrame(scrollRestoreFrame);
+  lockedScrollY = window.scrollY;
+  previousBodyStyle = {
+    position: document.body.style.position,
+    top: document.body.style.top,
+    insetInline: document.body.style.insetInline,
+    width: document.body.style.width,
+    overflow: document.body.style.overflow,
+  };
+  document.body.classList.add('menu-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${lockedScrollY}px`;
+  document.body.style.insetInline = '0';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+};
+
+const unlockPageScroll = () => {
+  document.body.classList.remove('menu-open');
+  if (!previousBodyStyle) return;
+  const savedStyle = previousBodyStyle;
+  previousBodyStyle = undefined;
+  document.body.style.position = savedStyle.position;
+  document.body.style.top = savedStyle.top;
+  document.body.style.insetInline = savedStyle.insetInline;
+  document.body.style.width = savedStyle.width;
+  document.body.style.overflow = savedStyle.overflow;
+  const restoreY = lockedScrollY;
+  scrollRestoreFrame = window.requestAnimationFrame(() => {
+    window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+  });
+};
+
+const openMobileMenu = () => {
+  if (!(mobile instanceof HTMLDetailsElement) || mobile.open) return;
+  window.clearTimeout(mobileCloseTimer);
+  window.cancelAnimationFrame(mobileOpenFrame);
+  mobile.dataset.menuState = 'opening';
+  mobile.setAttribute('open', '');
+  setMobileExpanded(true);
+  lockPageScroll();
+  syncMobilePanelOffset();
+  mobileOpenFrame = window.requestAnimationFrame(() => {
+    mobileOpenFrame = window.requestAnimationFrame(() => {
+      if (mobile.open && mobile.dataset.menuState === 'opening') mobile.dataset.menuState = 'open';
+    });
+  });
+};
+
+const closeMobileMenu = ({ animate = true, returnFocus = false } = {}) => {
+  if (!(mobile instanceof HTMLDetailsElement) || !mobile.open) return;
+  window.clearTimeout(mobileCloseTimer);
+  window.cancelAnimationFrame(mobileOpenFrame);
+  setMobileExpanded(false);
+  const finish = () => {
+    mobile.removeAttribute('open');
+    mobile.dataset.menuState = 'closed';
+    mobile.querySelectorAll('.mobile-panel details[open]').forEach((item) => item.removeAttribute('open'));
+    unlockPageScroll();
+    if (returnFocus && mobileSummary instanceof HTMLElement) mobileSummary.focus();
+  };
+  if (!animate || reducedMotion.matches) {
+    finish();
+    return;
+  }
+  mobile.dataset.menuState = 'closing';
+  mobileCloseTimer = window.setTimeout(finish, 230);
+};
 
 const syncMobilePanelOffset = () => {
   if (!(siteHeader instanceof HTMLElement)) return;
@@ -119,15 +201,31 @@ document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
   closeDesktopGroups();
   if (mobile instanceof HTMLDetailsElement && mobile.open) {
-    mobile.removeAttribute('open');
-    document.body.classList.remove('menu-open');
-    const trigger = mobile.querySelector(':scope > summary');
-    if (trigger instanceof HTMLElement) trigger.focus();
+    closeMobileMenu({ returnFocus: true });
   }
 });
 
 if (mobile instanceof HTMLDetailsElement) {
-  mobile.addEventListener('toggle', () => document.body.classList.toggle('menu-open', mobile.open));
+  mobile.dataset.menuState = mobile.open ? 'open' : 'closed';
+  setMobileExpanded(mobile.open);
+  mobileSummary?.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (mobile.dataset.menuState === 'closing') return;
+    if (mobile.open) closeMobileMenu();
+    else openMobileMenu();
+  });
+  mobile.addEventListener('toggle', () => {
+    if (mobile.open) {
+      if (mobile.dataset.menuState !== 'opening') mobile.dataset.menuState = 'open';
+      setMobileExpanded(true);
+      lockPageScroll();
+      syncMobilePanelOffset();
+      return;
+    }
+    mobile.dataset.menuState = 'closed';
+    setMobileExpanded(false);
+    unlockPageScroll();
+  });
   mobile.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab' || !mobile.open) return;
     const focusable = [...mobile.querySelectorAll('summary, a[href], button:not([disabled])')]
@@ -146,9 +244,15 @@ if (mobile instanceof HTMLDetailsElement) {
   });
   const closeMobileAtDesktop = () => {
     if (!desktopLayout.matches) return;
-    mobile.removeAttribute('open');
-    document.body.classList.remove('menu-open');
+    closeMobileMenu({ animate: false });
   };
   desktopLayout.addEventListener?.('change', closeMobileAtDesktop);
   closeMobileAtDesktop();
 }
+
+window.addEventListener('pagehide', () => {
+  window.clearTimeout(mobileCloseTimer);
+  window.cancelAnimationFrame(mobileOpenFrame);
+  window.cancelAnimationFrame(scrollRestoreFrame);
+  unlockPageScroll();
+}, { once: true });
