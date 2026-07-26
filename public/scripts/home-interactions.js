@@ -62,11 +62,14 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
 
 const problemCanvas = document.querySelector('.problem-canvas');
 const problemMascot = document.querySelector('[data-problem-mascot]');
-if (problemCanvas && problemMascot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const desktopMascotMotion = window.matchMedia('(min-width: 1281px) and (hover: hover)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (problemCanvas && problemMascot && desktopMascotMotion.matches && !reducedMotion.matches) {
   let frame = 0;
   const problemPoints = Array.from(problemCanvas.querySelectorAll('.problem-point'));
   let canvasVisible = false;
   let activeProblemIndex = -1;
+  let scrollFrame = 0;
 
   const focusProblem = (index) => {
     if (!problemPoints.length || index === activeProblemIndex) return;
@@ -102,16 +105,15 @@ if (problemCanvas && problemMascot && !window.matchMedia('(prefers-reduced-motio
   }, { rootMargin: '10% 0px' });
   visibilityObserver.observe(problemCanvas);
 
-  let scrollFrame = 0;
-  window.addEventListener('scroll', () => {
+  const handleScroll = () => {
     if (!canvasVisible || scrollFrame) return;
     scrollFrame = requestAnimationFrame(() => {
       scrollFrame = 0;
       updateProblemScroll();
     });
-  }, { passive: true });
+  };
 
-  problemCanvas.addEventListener('pointermove', (event) => {
+  const handlePointerMove = (event) => {
     if (frame) cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {
       const bounds = problemCanvas.getBoundingClientRect();
@@ -120,9 +122,23 @@ if (problemCanvas && problemMascot && !window.matchMedia('(prefers-reduced-motio
       problemMascot.style.setProperty('--mascot-x', `${x.toFixed(1)}px`);
       problemMascot.style.setProperty('--mascot-y', `${y.toFixed(1)}px`);
     });
-  });
-  problemCanvas.addEventListener('pointerleave', () => {
+  };
+  const handlePointerLeave = () => {
     problemMascot.style.setProperty('--mascot-x', '0px');
     problemMascot.style.setProperty('--mascot-y', '0px');
-  });
+  };
+  const cleanupProblemMotion = () => {
+    visibilityObserver.disconnect();
+    window.removeEventListener('scroll', handleScroll);
+    problemCanvas.removeEventListener('pointermove', handlePointerMove);
+    problemCanvas.removeEventListener('pointerleave', handlePointerLeave);
+    if (frame) cancelAnimationFrame(frame);
+    if (scrollFrame) cancelAnimationFrame(scrollFrame);
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  problemCanvas.addEventListener('pointermove', handlePointerMove);
+  problemCanvas.addEventListener('pointerleave', handlePointerLeave);
+  window.addEventListener('pagehide', cleanupProblemMotion, { once: true });
+  document.addEventListener('astro:before-swap', cleanupProblemMotion, { once: true });
 }

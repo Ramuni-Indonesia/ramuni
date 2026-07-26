@@ -38,6 +38,7 @@ export function initDecisionFlow3D(host: HTMLElement) {
   let elapsed = 0;
   let lastFrame = performance.now();
   let firstFrame = true;
+  let destroyed = false;
 
   const resize = () => {
     const width = Math.max(1, host.clientWidth);
@@ -100,7 +101,9 @@ export function initDecisionFlow3D(host: HTMLElement) {
   if (reducedMotion) render();
   else setLoop();
 
-  window.addEventListener('pagehide', () => {
+  const destroy = () => {
+    if (destroyed) return;
+    destroyed = true;
     renderer.setAnimationLoop(null);
     resizeObserver.disconnect();
     viewObserver.disconnect();
@@ -115,5 +118,10 @@ export function initDecisionFlow3D(host: HTMLElement) {
     groundGeometry.dispose();
     groundMaterial.dispose();
     renderer.dispose();
-  }, { once: true });
+    renderer.forceContextLoss();
+    delete host.dataset.modelReady;
+  };
+
+  window.addEventListener('pagehide', destroy, { once: true });
+  document.addEventListener('astro:before-swap', destroy, { once: true });
 }

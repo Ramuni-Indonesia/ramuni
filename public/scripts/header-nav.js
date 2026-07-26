@@ -5,8 +5,8 @@ const desktopItems = desktopNav
   ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
   : [];
 const desktopIndex = (node) => desktopItems.findIndex((item) => item === node);
-const desktopHover = window.matchMedia('(min-width: 1201px) and (hover: hover)');
-const desktopLayout = window.matchMedia('(min-width: 1201px)');
+const desktopHover = window.matchMedia('(min-width: 1081px) and (hover: hover)');
+const desktopLayout = window.matchMedia('(min-width: 1081px)');
 const siteHeader = mobile?.closest('.site-header');
 let hoverCloseTimer;
 

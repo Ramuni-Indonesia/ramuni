@@ -57,7 +57,7 @@ const visualAlt = releaseGates.mascotExplorationEnabled
 <style>
   .page-hero__copy{min-width:0}.page-hero--visual{overflow:hidden;padding-block:clamp(48px,6vw,90px)}
   .page-hero__layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(430px,1.12fr);gap:clamp(40px,7vw,104px);align-items:center}
-  .page-hero--visual h1{font-size:clamp(2.8rem,5vw,5.6rem);line-height:.98;max-width:13ch;text-wrap:balance}
+  .page-hero--visual h1{font-size:var(--type-h1);line-height:1.04;max-width:16ch;text-wrap:balance}
   .page-hero--visual .lede{max-width:48ch}
   .page-hero__visual{position:relative;min-height:520px;margin:0;background:var(--yellow);border:1px solid var(--ink);overflow:hidden;isolation:isolate;box-shadow:16px 16px 0 var(--ink)}
   .page-hero__visual::before{content:"";position:absolute;z-index:-1;inset:28px;border:1px solid rgb(11 48 69/.18)}
@@ -69,7 +69,7 @@ const visualAlt = releaseGates.mascotExplorationEnabled
   .page-hero__visual:hover img{transform:translateY(-7px) rotate(-1deg)}
   .page-hero__visual figcaption{position:absolute;z-index:2;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.94);color:var(--ink);backdrop-filter:blur(10px)}
   .page-hero__visual figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.page-hero__visual figcaption strong{font-size:.88rem}.page-hero__visual figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
-  @media(max-width:1200px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__visual{width:min(720px,100%);min-height:480px;justify-self:center}}
+  @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__visual{width:min(720px,100%);min-height:480px;justify-self:center}}
   @media(max-width:900px){.page-hero__visual{min-height:440px}}
   @media(max-width:620px){.page-hero__visual{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.page-hero__visual img{height:78%;bottom:96px}.page-hero__visual figcaption{grid-template-columns:1fr}.page-hero__visual figcaption small{grid-column:auto}}
   @media(prefers-reduced-motion:reduce){.page-hero__visual img{transition:none}.page-hero__visual:hover img{transform:none}}
