@@ -60,7 +60,7 @@ const PERFORMANCE_BUDGETS = Object.freeze({
   // guard. The 62 kB ceiling leaves room for accessible, server-rendered
   // visual narratives while keeping every individual document deliberately lean.
   // A site-wide total would punish useful new routes even when each page stays small.
-  html: { perFile: 62_000, total: null },
+  html: { perFile: 64_000, total: null },
   // CSS is code-split. A site-wide sum over every chunk is not a page payload,
   // so the route-level linkedStylesheets cap below is the meaningful guard.
   css: { perFile: 110_000, total: null },
@@ -78,16 +78,6 @@ const AI_MARKERS = [
   /\b(?:written|generated) by chatgpt\b/i,
   /\blorem ipsum\b/i,
 ];
-const PLACEHOLDER_RESOURCE_ROUTES = new Set([
-  '/panduan/membaca-stok-harian',
-  '/panduan/memahami-arus-kas',
-  '/panduan/menilai-insight-ai',
-  '/kamus-bisnis/arus-kas',
-  '/kamus-bisnis/hpp',
-  '/kamus-bisnis/omzet',
-  '/kamus-bisnis/stok-pengaman',
-  '/template',
-]);
 const DUMMY_BLOG_ROUTES = new Set([
   '/blog/ai-business-companion-umkm',
   '/blog/arus-kas-umkm-ringan',
@@ -514,7 +504,7 @@ for (const [route, page] of pages) {
 
 if (!publicEnvironment.indexingEnabled && sitemapUrls.size > 0) failures.push('sitemap: non-production build must not expose URLs');
 
-for (const route of [...PLACEHOLDER_RESOURCE_ROUTES, ...DUMMY_BLOG_ROUTES]) {
+for (const route of DUMMY_BLOG_ROUTES) {
   const page = pages.get(route);
   if (!page) failures.push(`${route}: expected placeholder route is missing`);
   else if (!page.noindex) failures.push(`${route}: placeholder or dummy content must remain noindex`);

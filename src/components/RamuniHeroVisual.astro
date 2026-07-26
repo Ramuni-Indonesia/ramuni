@@ -1,3 +1,12 @@
+---
+import { releaseGates } from '../config/release';
+import { mascots } from '../data/mascots';
+
+const heroVisual = releaseGates.mascotExplorationEnabled ? mascots.guide3d : mascots.decisionVisual;
+const heroVisualAlt = releaseGates.mascotExplorationEnabled
+  ? 'Muni si Manyar menunjuk ke contoh dashboard RAMUNI'
+  : 'Sculpture abstrak Catatan, Bukti, dan Arah di samping contoh dashboard RAMUNI';
+---
 <div class="ramuni-hero-visual home-decision-demo" aria-label="Contoh interaktif ruang kerja RAMUNI dengan data sintetis">
   <div class="direction-fold" aria-hidden="true">
     <span class="direction-fold__ink"></span>
@@ -38,6 +47,7 @@
       <b>Periksa data</b>
     </footer>
   </div>
+  <img class="home-decision-demo__mascot" src={heroVisual.src} width={heroVisual.width} height={heroVisual.height} alt={heroVisualAlt} decoding="async" fetchpriority="high" />
   <div class="visual-note visual-note--evidence" aria-hidden="true"><span>03 sumber dibaca</span><strong>Penjualan / Stok / Biaya</strong></div>
   <div class="visual-note visual-note--boundary" aria-hidden="true"><span>Batas tindakan</span><strong>AI membaca. Anda memutuskan.</strong></div>
 </div>

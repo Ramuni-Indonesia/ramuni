@@ -1,0 +1,227 @@
+---
+import { releaseGates } from '../config/release';
+import { mascots, type MascotKey } from '../data/mascots';
+
+type AudiencePane = {
+  label: string;
+  title: string;
+  items: string[];
+};
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  panes: AudiencePane[];
+  note: string;
+  mascot?: MascotKey;
+  variant?: 'role' | 'industry';
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  panes,
+  note,
+  mascot = 'guide3d',
+  variant = 'role',
+} = Astro.props;
+const safeId = id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
+const visiblePanes = panes.slice(0, 3).map((pane) => ({ ...pane, items: pane.items.slice(0, 4) }));
+const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
+const mascotAlt = releaseGates.mascotExplorationEnabled
+  ? mascot === 'evidence3d'
+    ? 'Muni si Manyar memeriksa bukti pada papan contoh'
+    : 'Muni si Manyar memandu alur kerja pada papan contoh'
+  : 'Sculpture abstrak Catatan, Bukti, dan Arah pada papan contoh';
+---
+
+<article class:list={['audience-context', 'audience-context--' + variant]} data-audience-context-board data-active-index="0" aria-labelledby={safeId + '-title'}>
+  <div class="audience-context__copy">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 id={safeId + '-title'}>{title}</h2>
+    <p>{description}</p>
+    <div class="audience-context__mascot" role="img" aria-label={mascotAlt}>
+      <img src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
+      <span>Data sintetis · pengguna tetap memutuskan</span>
+    </div>
+  </div>
+
+  <div class="audience-context__workspace">
+    <div class="audience-context__tabs" role="tablist" aria-label={'Mode tampilan ' + title}>
+      {visiblePanes.map((pane, index) => (
+        <button
+          type="button"
+          id={safeId + '-tab-' + index}
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-controls={safeId + '-panel-' + index}
+          tabindex={index === 0 ? '0' : '-1'}
+          data-audience-tab
+          data-index={index}
+          data-title={pane.title}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          {pane.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="audience-context__screen">
+      <header>
+        <span data-audience-active-label>{visiblePanes[0]?.label}</span>
+        <strong data-audience-active-title>{visiblePanes[0]?.title}</strong>
+      </header>
+
+      <div class="audience-context__diagram" aria-hidden="true">
+        <i></i>
+        {visiblePanes.map((pane) => <span><b>{pane.label.charAt(0)}</b></span>)}
+      </div>
+
+      {visiblePanes.map((pane, index) => (
+        <section
+          id={safeId + '-panel-' + index}
+          class:list={['audience-context__panel', { 'is-active': index === 0 }]}
+          role="tabpanel"
+          aria-labelledby={safeId + '-tab-' + index}
+          hidden={index !== 0}
+          data-audience-panel
+        >
+          <ul>
+            {pane.items.map((item, itemIndex) => (
+              <li style={'--i:' + itemIndex}>
+                <span>{String(itemIndex + 1).padStart(2, '0')}</span>
+                <p>{item}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+
+      <footer>
+        <span>Catatan penggunaan</span>
+        <p>{note}</p>
+      </footer>
+    </div>
+  </div>
+</article>
+
+<script>
+  const initialiseAudienceContextBoards = () => {
+    document.querySelectorAll<HTMLElement>('[data-audience-context-board]').forEach((board) => {
+      if (board.dataset.ready === 'true') return;
+      board.dataset.ready = 'true';
+
+      const tabs = Array.from(board.querySelectorAll<HTMLButtonElement>('[data-audience-tab]'));
+      const panels = Array.from(board.querySelectorAll<HTMLElement>('[data-audience-panel]'));
+      const activeLabel = board.querySelector<HTMLElement>('[data-audience-active-label]');
+      const activeTitle = board.querySelector<HTMLElement>('[data-audience-active-title]');
+
+      const activate = (nextIndex: number) => {
+        tabs.forEach((tab, index) => {
+          const selected = index === nextIndex;
+          tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+          tab.tabIndex = selected ? 0 : -1;
+        });
+        panels.forEach((panel, index) => {
+          const selected = index === nextIndex;
+          panel.hidden = !selected;
+          panel.classList.toggle('is-active', selected);
+        });
+
+        const activeTab = tabs[nextIndex];
+        if (activeTab && activeLabel) {
+          activeLabel.textContent = activeTab.textContent?.replace(/^\s*\d+\s*/, '').trim() || '';
+        }
+        if (activeTab && activeTitle) activeTitle.textContent = activeTab.dataset.title || '';
+        board.dataset.activeIndex = String(nextIndex);
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(index));
+        tab.addEventListener('keydown', (event) => {
+          const current = tabs.findIndex((entry) => entry.getAttribute('aria-selected') === 'true');
+          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === 'Home'
+            ? 0
+            : event.key === 'End'
+              ? tabs.length - 1
+              : (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+          activate(next);
+          tabs[next]?.focus();
+        });
+      });
+    });
+  };
+
+  initialiseAudienceContextBoards();
+  document.addEventListener('astro:page-load', initialiseAudienceContextBoards);
+</script>
+
+<style>
+  .audience-context{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(30px,6vw,86px);align-items:stretch}
+  .audience-context__copy{position:relative;display:grid;align-content:center;gap:18px;min-width:0}
+  .audience-context__copy .eyebrow{margin:0;color:var(--teal)}
+  .audience-context__copy h2{max-width:16ch;font-size:clamp(1.85rem,3.8vw,4.05rem);line-height:1.04;text-wrap:balance}
+  .audience-context__copy>p:not(.eyebrow){max-width:38ch;color:var(--ink-72);font-size:clamp(.98rem,1.2vw,1.08rem);line-height:1.65;text-wrap:pretty}
+  .audience-context__mascot{position:relative;width:min(250px,72%);margin-top:10px;padding:10px;border:1px solid var(--ink);background:var(--white);box-shadow:8px 8px 0 var(--yellow);overflow:hidden}
+  .audience-context--industry .audience-context__mascot{box-shadow:8px 8px 0 var(--teal)}
+  .audience-context__mascot img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;transform-origin:50% 80%}
+  .audience-context__mascot span{position:absolute;left:10px;right:10px;bottom:10px;padding:9px 11px;background:rgb(11 48 69/.9);color:var(--white);font-size:.63rem;font-weight:800;line-height:1.35}
+  .audience-context__workspace{min-width:0;display:grid;grid-template-columns:190px minmax(0,1fr);border:1px solid var(--ink);background:var(--white);box-shadow:12px 12px 0 var(--ink)}
+  .audience-context__tabs{display:grid;align-content:stretch;border-right:1px solid var(--ink-10);background:var(--rice)}
+  .audience-context__tabs button{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:center;min-width:0;border:0;border-bottom:1px solid var(--ink-10);padding:18px 14px;background:transparent;color:var(--ink);font:inherit;font-size:.82rem;font-weight:800;text-align:left;cursor:pointer;transition:background-color 220ms var(--ease),transform 220ms var(--ease),color 220ms var(--ease)}
+  .audience-context__tabs button:last-child{border-bottom:0}
+  .audience-context__tabs button span{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:.58rem}
+  .audience-context__tabs button:hover,.audience-context__tabs button:focus-visible,.audience-context__tabs button[aria-selected='true']{background:var(--yellow);color:var(--ink)}
+  .audience-context--industry .audience-context__tabs button:hover,.audience-context--industry .audience-context__tabs button:focus-visible,.audience-context--industry .audience-context__tabs button[aria-selected='true']{background:var(--teal);color:var(--white)}
+  .audience-context--industry .audience-context__tabs button[aria-selected='true'] span,.audience-context--industry .audience-context__tabs button:hover span,.audience-context--industry .audience-context__tabs button:focus-visible span{border-color:rgb(255 255 255/.5);color:var(--white)}
+  .audience-context__tabs button:active{transform:scale(.98)}
+  .audience-context__screen{position:relative;min-width:0;display:grid;grid-template-rows:auto 112px 1fr auto;overflow:hidden;background:var(--white)}
+  .audience-context__screen header{display:grid;gap:8px;padding:clamp(20px,3vw,30px) clamp(18px,3vw,32px) 18px;border-bottom:1px solid var(--ink-10)}
+  .audience-context__screen header span,.audience-context__screen footer span{color:var(--teal);font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  .audience-context__screen header strong{max-width:36ch;font-size:clamp(1.08rem,1.8vw,1.42rem);line-height:1.25;text-wrap:balance}
+  .audience-context__diagram{position:relative;display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:18px clamp(20px,4vw,48px)}
+  .audience-context__diagram i{position:absolute;left:11%;right:11%;top:50%;height:2px;background:var(--ink-10);transform:translateY(-50%)}
+  .audience-context__diagram span{position:relative;z-index:1;justify-self:center;display:grid;place-items:center;width:54px;height:54px;border:1px solid var(--ink);border-radius:50%;background:var(--white);box-shadow:5px 5px 0 var(--yellow);transition:transform 260ms var(--ease),background-color 260ms var(--ease),color 260ms var(--ease)}
+  .audience-context--industry .audience-context__diagram span{box-shadow:5px 5px 0 var(--teal)}
+  .audience-context[data-active-index='0'] .audience-context__diagram span:nth-of-type(1),.audience-context[data-active-index='1'] .audience-context__diagram span:nth-of-type(2),.audience-context[data-active-index='2'] .audience-context__diagram span:nth-of-type(3){background:var(--ink);color:var(--white);transform:translateY(-4px)}
+  .audience-context__diagram b{font-size:.76rem;font-weight:800}
+  .audience-context__panel{min-width:0;padding:0 clamp(18px,3vw,32px) 24px}
+  .audience-context__panel[hidden]{display:none}
+  .audience-context__panel ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+  .audience-context__panel li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--ink-10)}
+  .audience-context__panel li span{color:var(--teal);font-size:.62rem;font-weight:800}
+  .audience-context__panel li p{margin:0;color:var(--ink-72);font-size:.9rem;line-height:1.5;text-wrap:pretty;overflow-wrap:anywhere}
+  .audience-context__screen footer{display:grid;gap:7px;margin:0 clamp(18px,3vw,32px) clamp(18px,3vw,28px);padding:14px 16px;background:var(--ink);color:var(--white)}
+  .audience-context__screen footer p{margin:0;color:rgb(255 255 255/.72);font-size:.78rem;line-height:1.45;text-wrap:pretty}
+  @media(prefers-reduced-motion:no-preference){
+    .audience-context__mascot img{animation:audience-mascot-breathe 5.8s ease-in-out infinite}
+    .audience-context__panel.is-active li{animation:audience-context-item-in 360ms var(--ease) both;animation-delay:calc(var(--i) * 45ms)}
+    @keyframes audience-mascot-breathe{50%{transform:translateY(-4px) rotate(-1.5deg) scale(1.025)}}
+    @keyframes audience-context-item-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  }
+  @media(max-width:980px){
+    .audience-context{grid-template-columns:1fr}
+    .audience-context__copy{grid-template-columns:minmax(0,1fr) minmax(170px,230px);align-items:end}
+    .audience-context__copy .eyebrow,.audience-context__copy h2,.audience-context__copy>p:not(.eyebrow){grid-column:1}
+    .audience-context__mascot{grid-column:2;grid-row:1 / span 3;margin-top:0;align-self:center;width:100%}
+  }
+  @media(max-width:680px){
+    .audience-context__copy{display:grid;grid-template-columns:1fr}
+    .audience-context__copy h2{max-width:100%;font-size:clamp(1.85rem,8vw,2.55rem)}
+    .audience-context__mascot{grid-column:auto;grid-row:auto;width:min(230px,82%)}
+    .audience-context__workspace{grid-template-columns:1fr;box-shadow:7px 7px 0 var(--ink)}
+    .audience-context__tabs{grid-template-columns:1fr;border-right:0;border-bottom:1px solid var(--ink-10)}
+    .audience-context__tabs button{min-height:54px;padding:14px 13px}
+    .audience-context__screen{grid-template-rows:auto 92px 1fr auto}
+    .audience-context__diagram{padding-inline:22px}
+    .audience-context__diagram span{width:44px;height:44px}
+    .audience-context__panel li{grid-template-columns:30px minmax(0,1fr)}
+  }
+  @media(prefers-reduced-motion:reduce){.audience-context *{animation:none!important;transition:none!important;transform:none!important}}
+</style>

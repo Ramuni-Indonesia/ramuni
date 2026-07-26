@@ -17,7 +17,7 @@
           {
             immediateRender: false,
             autoAlpha: 1,
-            y: -18,
+            y: 0,
             scale: 1,
             rotateZ: 0,
             ease: 'none',
@@ -74,9 +74,9 @@
       });
 
       document.querySelectorAll<HTMLElement>('.pd-page > section, .sd-page > section').forEach((section) => {
-        const targets = section.querySelectorAll<HTMLElement>(
-          '.reveal, .pd-benefit, .pd-capability-list article, .pd-related__modules > div > a, .pd-related__paths > a, .sd-symptoms > li, .sd-impact > article, .sd-workflow__step, .sd-capability, .sd-industry-list > a',
-        );
+        const targets = [...section.querySelectorAll<HTMLElement>(
+          '.pd-benefit, .pd-capability-list article, .pd-related__modules > div > a, .pd-related__paths > a, .sd-symptoms > li, .sd-impact > article, .sd-workflow__step, .sd-capability, .sd-industry-list > a',
+        )].filter((target) => !target.classList.contains('reveal'));
         if (!targets.length) return;
         gsap.fromTo(targets,
           { autoAlpha: 0, y: 30 },
@@ -88,25 +88,6 @@
             stagger: 0.07,
             ease: 'power3.out',
             scrollTrigger: { trigger: section, start: 'top 78%', once: true },
-          },
-        );
-      });
-
-      document.querySelectorAll<HTMLElement>('.pd-visual, .sd-hero__visual').forEach((visual) => {
-        gsap.fromTo(visual,
-          { y: 34, rotateZ: -1.2, scale: 0.96 },
-          {
-            immediateRender: false,
-            y: -10,
-            rotateZ: 0,
-            scale: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: visual,
-              start: 'top 88%',
-              end: 'bottom 30%',
-              scrub: 0.65,
-            },
           },
         );
       });

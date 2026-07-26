@@ -1,54 +1,202 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import '../../styles/blog-search.css';
 
-const articles = (await getCollection('blog')).filter((post) => !post.data.draft).map((post) => ({
-  title: post.data.title,
-  dek: post.data.dek,
-  category: post.data.category,
-  tags: post.data.tags,
-  author: post.data.authorName,
-  href: `/blog/${post.id}`,
-  readingTime: post.data.readingTime,
-}));
+const articles = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => (b.data.updatedAt || b.data.publishedAt).valueOf() - (a.data.updatedAt || a.data.publishedAt).valueOf())
+  .map((post) => ({
+    title: post.data.title,
+    dek: post.data.dek,
+    category: post.data.category,
+    categorySlug: post.data.categorySlug,
+    tags: post.data.tags,
+    author: post.data.authorName,
+    cover: post.data.cover,
+    coverAlt: post.data.coverAlt,
+    href: `/blog/${post.id}`,
+    readingTime: post.data.readingTime,
+  }));
+
+const topicMap = new Map<string, { title: string; slug: string; count: number; firstTitle: string }>();
+for (const article of articles) {
+  const current = topicMap.get(article.categorySlug);
+  if (current) {
+    current.count += 1;
+  } else {
+    topicMap.set(article.categorySlug, {
+      title: article.category,
+      slug: article.categorySlug,
+      count: 1,
+      firstTitle: article.title,
+    });
+  }
+}
+const quickTopics = [...topicMap.values()].slice(0, 3);
 ---
 <BaseLayout title="Cari Artikel | Blog RAMUNI" description="Cari artikel praktis di Blog RAMUNI." noindex={true}>
-  <header class="search-page-hero"><div class="container"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>Cari</span></nav><p class="eyebrow">Pencarian Blog</p><h1>Cari jawaban praktis.</h1><form class="blog-search search-page-form" action="/blog/cari" method="get" role="search"><label for="search-query">Topik yang ingin dipahami</label><div class="search-line"><input id="search-query" name="q" type="search" placeholder="Contoh: arus kas, stok, pelanggan" /><button type="submit">Cari</button></div><small>Jangan masukkan nama pelanggan, transaksi, atau data usaha sensitif.</small></form></div></header>
-  <section class="section surface"><div class="container search-results-shell"><div><p class="section-kicker">Hasil pencarian</p><h2 id="search-summary" aria-live="polite">Masukkan topik untuk mulai mencari.</h2></div><div id="search-results" class="reading-list"><p class="blog-empty">Anda juga dapat mulai dari kategori Stok & Inventori, Keuangan UMKM, atau AI untuk UMKM.</p></div></div></section>
-  <script is:inline define:vars={{ articles }}>
+  <header class="search-page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span aria-current="page">Cari</span></nav>
+      <div class="search-hero-layout">
+        <div class="search-hero-copy">
+          <p class="eyebrow">Pencarian Blog</p>
+          <h1>Cari jawaban praktis.</h1>
+          <p class="lede">Mulai dari satu persoalan usaha. RAMUNI akan membantu menemukan artikel yang paling dekat dengan topik tersebut.</p>
+          <form class="blog-search search-page-form" action="/blog/cari" method="get" role="search">
+            <label for="search-query">Topik yang ingin dipahami</label>
+            <div class="search-line"><input id="search-query" name="q" type="search" placeholder="Contoh: arus kas, stok, pelanggan" enterkeyhint="search" /><button type="submit">Cari</button></div>
+            <small>Jangan masukkan nama pelanggan, transaksi, atau data usaha sensitif.</small>
+          </form>
+        </div>
+        <aside class="search-route-preview" aria-label="Alur pencarian artikel RAMUNI">
+          <div class="search-route-preview__head"><span>Jalur membaca</span><small>3 langkah</small></div>
+          <ol>
+            <li><b>01</b><div><span>Tulis topik</span><small>Pilih satu masalah usaha.</small></div></li>
+            <li><b>02</b><div><span>Bandingkan artikel</span><small>Lihat kategori dan ringkasannya.</small></div></li>
+            <li><b>03</b><div><span>Baca langkahnya</span><small>Mulai dari pemeriksaan paling sederhana.</small></div></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section class="section surface search-results-stage" aria-labelledby="search-summary">
+    <div class="container search-results-shell">
+      <header class="search-results-head">
+        <p class="section-kicker">Hasil pencarian</p>
+        <h2 id="search-summary" aria-live="polite" aria-atomic="true">Masukkan topik untuk mulai mencari.</h2>
+        <p>Cari dengan istilah singkat seperti “stok”, “kas”, atau “AI”.</p>
+      </header>
+      <div id="search-results" class="search-results">
+        <div class="search-empty">
+          <div class="search-empty__copy"><span>Belum menulis kata kunci?</span><p>Mulai dari salah satu topik yang sudah memiliki artikel.</p></div>
+          <nav class="search-topic-grid" aria-label="Topik cepat blog RAMUNI">
+            {quickTopics.map((topic, index) => (
+              <a class="search-topic-card" href={`/blog/kategori/${topic.slug}`}>
+                <span>0{index + 1}</span>
+                <strong>{topic.title}</strong>
+                <p>Mulai dari “{topic.firstTitle}”.</p>
+                <small>{topic.count} artikel <i aria-hidden="true">&rarr;</i></small>
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ articles, quickTopics }}>
     const query = new URLSearchParams(window.location.search).get('q')?.trim() || '';
     const input = document.querySelector('#search-query');
     const summary = document.querySelector('#search-summary');
     const results = document.querySelector('#search-results');
+
+    const createQuickTopics = (message) => {
+      const empty = document.createElement('div');
+      empty.className = 'search-empty';
+
+      const copy = document.createElement('div');
+      copy.className = 'search-empty__copy';
+      const label = document.createElement('span');
+      label.textContent = 'Coba jalur lain';
+      const description = document.createElement('p');
+      description.textContent = message;
+      copy.append(label, description);
+
+      const topicGrid = document.createElement('nav');
+      topicGrid.className = 'search-topic-grid';
+      topicGrid.setAttribute('aria-label', 'Topik cepat blog RAMUNI');
+      quickTopics.forEach((topic, index) => {
+        const link = document.createElement('a');
+        link.className = 'search-topic-card';
+        link.href = `/blog/kategori/${topic.slug}`;
+
+        const number = document.createElement('span');
+        number.textContent = `0${index + 1}`;
+        const title = document.createElement('strong');
+        title.textContent = topic.title;
+        const teaser = document.createElement('p');
+        teaser.textContent = `Mulai dari “${topic.firstTitle}”.`;
+        const count = document.createElement('small');
+        count.append(`${topic.count} artikel `);
+        const arrow = document.createElement('i');
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '→';
+        count.append(arrow);
+
+        link.append(number, title, teaser, count);
+        topicGrid.append(link);
+      });
+
+      empty.append(copy, topicGrid);
+      return empty;
+    };
+
     if (input instanceof HTMLInputElement) input.value = query;
     if (summary && results && query) {
-      const normalized = query.toLocaleLowerCase('id-ID');
-      const matches = articles.filter((article) => [article.title, article.dek, article.category, article.author, ...article.tags].join(' ').toLocaleLowerCase('id-ID').includes(normalized));
+      const terms = query.toLocaleLowerCase('id-ID').split(/\s+/).filter(Boolean);
+      const matches = articles.filter((article) => {
+        const haystack = [article.title, article.dek, article.category, article.author, ...article.tags]
+          .join(' ')
+          .toLocaleLowerCase('id-ID');
+        return terms.every((term) => haystack.includes(term));
+      });
+
       summary.textContent = matches.length ? `${matches.length} artikel untuk “${query}”` : `Belum ada artikel untuk “${query}”`;
       results.replaceChildren();
+
       if (!matches.length) {
-        const empty = document.createElement('p');
-        empty.className = 'blog-empty';
-        empty.textContent = 'Coba istilah yang lebih umum atau kembali ke kategori utama.';
-        results.append(empty);
+        results.append(createQuickTopics('Coba istilah yang lebih umum, atau buka kategori berikut.'));
       } else {
-        for (const article of matches) {
+        const list = document.createElement('div');
+        list.className = 'search-result-list';
+
+        matches.forEach((article, index) => {
           const link = document.createElement('a');
-          link.className = 'reading-row';
+          link.className = 'search-result-card';
           link.href = article.href;
+          link.dataset.category = article.categorySlug;
+
+          const figure = document.createElement('figure');
+          const image = document.createElement('img');
+          image.src = article.cover;
+          image.alt = article.coverAlt;
+          image.width = 1200;
+          image.height = 720;
+          image.loading = index === 0 ? 'eager' : 'lazy';
+          image.decoding = 'async';
+          figure.append(image);
+
+          const body = document.createElement('div');
+          body.className = 'search-result-card__body';
+          const meta = document.createElement('div');
+          meta.className = 'search-result-card__meta';
           const category = document.createElement('span');
           category.textContent = article.category;
-          const body = document.createElement('div');
+          const time = document.createElement('small');
+          time.textContent = article.readingTime;
+          meta.append(category, time);
+
           const title = document.createElement('h3');
           title.textContent = article.title;
           const dek = document.createElement('p');
           dek.textContent = article.dek;
-          body.append(title, dek);
-          const time = document.createElement('small');
-          time.textContent = article.readingTime;
-          link.append(category, body, time);
-          results.append(link);
-        }
+          const footer = document.createElement('div');
+          footer.className = 'search-result-card__footer';
+          const author = document.createElement('small');
+          author.textContent = article.author;
+          const read = document.createElement('span');
+          read.textContent = 'Baca artikel →';
+          footer.append(author, read);
+
+          body.append(meta, title, dek, footer);
+          link.append(figure, body);
+          list.append(link);
+        });
+
+        results.append(list);
       }
     }
   </script>

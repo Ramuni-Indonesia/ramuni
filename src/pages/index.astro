@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
+import DecisionFlow3D from '../components/product/DecisionFlow3D.astro';
+import MuniMascot3D from '../components/MuniMascot3D.astro';
+import { releaseGates } from '../config/release';
 import { industries, launchCta, products, solutions } from '../data/site';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
@@ -12,7 +15,20 @@ const homepagePains = [
   { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan' },
   { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis' },
 ];
-const mascotSrc = '/website-original/ramuni-mascot-muni-manyar.webp';
+const mascotSrc = releaseGates.mascotExplorationEnabled
+  ? '/website-original/mascot/ramuni-mascot-3d-guide.webp'
+  : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotStories = releaseGates.mascotExplorationEnabled ? [
+  { src: '/website-original/ramuni-mascot-muni-manyar.webp', label: 'Mengajak', text: 'Muni memperkenalkan pertanyaan yang paling dekat dengan pekerjaan hari ini.', mode: '2D' },
+  { src: '/website-original/mascot/ramuni-mascot-3d-guide.webp', label: 'Menunjuk', text: 'Muni mengarahkan perhatian ke sinyal yang perlu dibuka lebih dulu.', mode: '3D' },
+  { src: '/website-original/mascot/ramuni-mascot-3d-evidence.webp', label: 'Memeriksa', text: 'Muni mengingatkan agar keputusan tetap melihat periode dan bukti.', mode: '3D' },
+] : [];
+const companionTitle = releaseGates.mascotExplorationEnabled
+  ? 'Putar Muni untuk melihat pendamping RAMUNI dalam 3D.'
+  : 'Visual keputusan mengikuti alur, bukan sekadar menjadi hiasan.';
+const companionBody = releaseGates.mascotExplorationEnabled
+  ? 'Model prosedural ini memakai bentuk 3D nyata, dimuat saat mendekati layar, dan tetap menempatkan Catatan, Bukti, serta Arah sebagai inti cerita.'
+  : 'Putar model untuk melihat hubungan Catatan, Bukti, dan Arah sebelum menentukan perhatian berikutnya.';
 
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
@@ -116,6 +132,30 @@ const schema = [
           <b data-workflow-state>01 / 05</b>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section companion-stage chapter" data-chapter="Pendamping" aria-labelledby="companion-title">
+    <div class="container companion-stage__layout">
+      <div class="companion-stage__copy reveal">
+        <p class="section-kicker">Pendamping visual RAMUNI</p>
+        <h2 id="companion-title">{companionTitle}</h2>
+        <p>{companionBody}</p>
+        <div class="companion-stage__legend" aria-label="Tahap keputusan"><span>Catatan</span><span>Bukti</span><span>Arah</span></div>
+      </div>
+      <div class="companion-stage__model reveal">
+        {releaseGates.mascotExplorationEnabled
+          ? <MuniMascot3D label="Model 3D Muni si Manyar, pendamping visual RAMUNI" />
+          : <DecisionFlow3D />}
+      </div>
+      {mascotStories.length > 0 && <div class="mascot-story" aria-label="Peran Muni di halaman RAMUNI">
+        {mascotStories.map((item, index) => (
+          <article class="mascot-story__card reveal" style={`--i:${index}`}>
+            <figure><img src={item.src} width="384" height="384" alt={`Muni si Manyar dalam pose ${item.label.toLowerCase()}`} loading="lazy" decoding="async" /><span>{item.mode}</span></figure>
+            <div><strong>{item.label}</strong><p>{item.text}</p></div>
+          </article>
+        ))}
+      </div>}
     </div>
   </section>
 

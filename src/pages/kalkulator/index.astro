@@ -4,9 +4,6 @@ import { releaseGates } from '../../config/release';
 import { calculatorEntries } from '../../data/calculators';
 import '../../styles/tools-resource-pages.css';
 
-const mascotSrc = releaseGates.mascotExplorationEnabled
-  ? '/website-original/ramuni-mascot-muni-manyar.webp'
-  : '/website-original/ramuni-mascot-problem-section.webp';
 const calculatorUrl = new URL('/kalkulator/', Astro.site || Astro.url.origin).toString();
 const schema = [
   {
@@ -62,7 +59,6 @@ const schema = [
             <article><small>Stok</small><strong>Kapan perlu pesan ulang?</strong><i style="--v:46%"></i></article>
             <article><small>Kas</small><strong>Uang masuk dan keluar</strong><i style="--v:61%"></i></article>
           </div>
-          <img class="tools-hero__mascot" src={mascotSrc} width="720" height="720" alt="" decoding="async" />
         </figure>
       </div>
     </header>
@@ -71,10 +67,10 @@ const schema = [
       <div class="container">
         <div class="tools-section-head reveal"><p class="section-kicker">Pilih pertanyaan</p><h2 id="calculator-list-title">Apa yang sedang ingin Anda periksa?</h2><p>Mulai dari masalah nyata. Setiap kalkulator menjelaskan input, rumus, arti hasil, dan langkah pemeriksaan berikutnya.</p></div>
         <div class="tools-catalog__grid">
-          {calculatorEntries.map(([slug, calculator], index) => <a class:list={['tool-card', `tool-card--${calculator.category.toLowerCase()}`, 'reveal']} href={`/kalkulator/${slug}`} style={`--i:${index}`}>
+          {calculatorEntries.map(([slug, calculator], index) => <a class:list={['tool-card', `tool-card--${calculator.category.toLowerCase()}`, `tool-card--${slug}`, 'reveal']} href={`/kalkulator/${slug}`} style={`--i:${index}`}>
             <div class="tool-card__top"><span>{String(index + 1).padStart(2, '0')}</span><small>{calculator.category}</small></div>
             <div class="tool-card__visual" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-            <div class="tool-card__copy"><h2>{calculator.title}</h2><p>{calculator.intent}</p><small>{calculator.formula}</small></div>
+            <div class="tool-card__copy"><h3>{calculator.title}</h3><p>{calculator.intent}</p><small>{calculator.formula}</small></div>
             <b>Gunakan kalkulator <i aria-hidden="true">&rarr;</i></b>
           </a>)}
         </div>

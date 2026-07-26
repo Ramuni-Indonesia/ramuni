@@ -347,7 +347,7 @@
   color: var(--teal);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .lead-dialog {
     width: min(100% - 20px, 620px);
     overflow: auto;

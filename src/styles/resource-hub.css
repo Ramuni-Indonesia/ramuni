@@ -3,7 +3,7 @@
 .resource-hub-hero{position:relative;padding:clamp(54px,7vw,104px) 0 clamp(82px,10vw,142px);background:var(--rice);overflow:hidden}
 .resource-hub-hero::after{content:"";position:absolute;right:-11vw;bottom:-22vw;width:min(52vw,720px);aspect-ratio:1;border:1px solid var(--ink-10);border-radius:50%;pointer-events:none}
 .resource-hub-hero__grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:clamp(46px,8vw,112px);align-items:end}
-.resource-hub-hero__copy h1{max-width:11ch;margin-top:18px;font-size:clamp(3.8rem,7.7vw,8.3rem);line-height:.88;letter-spacing:-.072em}
+.resource-hub-hero__copy h1{max-width:14ch;margin-top:18px;font-size:var(--type-display);line-height:.92;letter-spacing:-.06em}
 .resource-hub-hero__copy .lede{max-width:56ch;margin-top:28px;font-size:clamp(1.05rem,1.55vw,1.28rem);line-height:1.65}
 .resource-hub-hero__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;padding-top:18px;border-top:1px solid var(--ink-20)}
 .resource-hub-hero__links a{padding:9px 13px;border:1px solid var(--ink-20);border-radius:999px;color:var(--ink);font-size:.78rem;font-weight:800;text-decoration:none;transition:transform var(--fast),background var(--fast),border-color var(--fast)}
@@ -126,7 +126,7 @@
 /* Resource density and purpose pass. */
 .resource-hub-hero{padding:clamp(44px,5vw,72px) 0 clamp(64px,7vw,96px)}
 .resource-hub-hero__grid{align-items:center}
-.resource-hub-hero__copy h1{font-size:clamp(3.35rem,6.2vw,6.65rem);line-height:.92}
+.resource-hub-hero__copy h1{font-size:var(--type-display);line-height:.92}
 .resource-navigator{min-height:500px}
 .resource-navigator__panels{margin-top:clamp(32px,4vw,52px)}
 .resource-library{padding-top:clamp(68px,8vw,108px)}

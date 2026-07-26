@@ -9,7 +9,11 @@ interface Props {
   secondaryHref?: string;
   theme?: 'teal' | 'yellow' | 'ink';
   headingId?: string;
+  mascot?: 'welcome2d' | 'guide3d' | 'evidence3d';
 }
+
+import { mascots } from '../data/mascots';
+import { releaseGates } from '../config/release';
 
 const {
   eyebrow = 'Langkah berikutnya',
@@ -21,7 +25,9 @@ const {
   secondaryHref = '/produk',
   theme = 'teal',
   headingId,
+  mascot = 'guide3d',
 } = Astro.props;
+const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
 
 const stages = [
   { label: 'Catatan', title: 'Mulai dari satu pertanyaan', text: 'Pilih angka atau kejadian usaha yang paling perlu dipahami.' },
@@ -45,7 +51,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
   <div class="mascot-decision__visual" aria-label="Alur interaktif dari catatan menuju arah keputusan">
     <div class="mascot-decision__mascot" aria-hidden="true">
       <span class="mascot-decision__orbit"></span>
-      <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" />
+      <img src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
     </div>
     <div class="mascot-decision__workspace">
       <div class="mascot-decision__tabs" role="group" aria-label="Tahap membaca kondisi usaha">
@@ -106,7 +112,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
   .mascot-decision__workspace{position:relative;z-index:2;min-width:0;border:1px solid var(--ink);background:var(--rice);color:var(--ink);box-shadow:14px 14px 0 rgb(11 48 69/.36);transform:rotateY(-3deg) rotateX(1deg);transform-origin:left center}.mascot-decision__tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--ink)}.mascot-decision__tabs button{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;min-height:54px;border:0;border-right:1px solid var(--ink-10);padding:10px 12px;background:transparent;color:var(--ink);font:inherit;text-align:left;cursor:pointer}.mascot-decision__tabs button:last-child{border-right:0}.mascot-decision__tabs button.is-active{background:var(--yellow)}.mascot-decision__tabs small{color:var(--teal);font-size:.56rem;font-weight:800}.mascot-decision__tabs span{font-size:.7rem;font-weight:800}
   .mascot-decision__cards{min-height:270px;padding:clamp(22px,4vw,38px)}.mascot-decision__cards article{min-height:210px}.mascot-decision__cards article[hidden]{display:none}.mascot-decision__cards article.is-active{display:grid;align-content:end;animation:mascot-card-in .38s var(--ease) both}.mascot-decision__cards small{color:var(--teal);font-size:.65rem;font-weight:800;text-transform:uppercase}.mascot-decision__cards strong{max-width:17ch;margin-top:14px;font-size:clamp(1.35rem,2.5vw,2.15rem);line-height:1.1}.mascot-decision__cards p{max-width:38ch;margin:14px 0 0;color:var(--ink-72);font-size:.82rem}.mascot-decision__cards article>div{display:flex;gap:6px;margin-top:24px}.mascot-decision__cards article>div i{display:block;width:30%;height:7px;background:var(--teal)}.mascot-decision__cards article>div i:nth-child(2){width:22%;background:var(--yellow)}.mascot-decision__cards article>div i:nth-child(3){width:14%;background:var(--ink)}.mascot-decision__workspace footer{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-top:1px solid var(--ink-10);font-size:.6rem;font-weight:800}.mascot-decision__workspace footer span{display:flex;align-items:center;gap:7px}.mascot-decision__workspace footer i{width:7px;height:7px;border-radius:50%;background:var(--teal)}
   @media(prefers-reduced-motion:no-preference){.mascot-decision__mascot{animation:mascot-guide-float 4.8s ease-in-out infinite}.mascot-decision__orbit{animation:mascot-orbit 12s linear infinite}@keyframes mascot-card-in{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}@keyframes mascot-guide-float{50%{transform:translateY(8px) rotate(1deg)}}@keyframes mascot-orbit{to{transform:rotate(344deg)}}}
-  @media(max-width:960px){.mascot-decision{grid-template-columns:1fr}.mascot-decision__copy{max-width:740px}.mascot-decision__visual{width:min(100%,760px);justify-self:center}}
+  @media(max-width:1080px){.mascot-decision{grid-template-columns:1fr}.mascot-decision__copy{max-width:740px}.mascot-decision__visual{width:min(100%,760px);justify-self:center}}
   @media(max-width:620px){.mascot-decision{padding:28px 18px}.mascot-decision__copy h2{font-size:clamp(2rem,10vw,3rem)}.mascot-decision__copy .button-row,.mascot-decision__copy .button{width:100%}.mascot-decision__copy .button{justify-content:center}.mascot-decision__visual{grid-template-columns:1fr;min-height:0;padding-top:120px}.mascot-decision__mascot{position:absolute;z-index:4;top:0;right:4px;margin:0;transform:rotate(3deg)}.mascot-decision__mascot img{width:170px}.mascot-decision__orbit{inset:16% 0 8%}.mascot-decision__workspace{box-shadow:7px 7px 0 rgb(11 48 69/.32);transform:none}.mascot-decision__tabs button{grid-template-columns:1fr;gap:2px;text-align:center}.mascot-decision__cards{min-height:250px;padding:24px 18px}.mascot-decision__workspace footer strong{display:none}}
   @media(prefers-reduced-motion:reduce){.mascot-decision *{animation:none!important;transition:none!important}.mascot-decision__workspace,.mascot-decision__mascot,.mascot-decision__orbit{transform:none!important}}
 </style>

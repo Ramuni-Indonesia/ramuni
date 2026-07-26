@@ -1,5 +1,6 @@
 ---
 import { releaseGates } from '../../config/release';
+import { mascots } from '../../data/mascots';
 
 interface Props {
   id: string;
@@ -26,7 +27,7 @@ const {
 } = Astro.props;
 
 const mascotSrc = releaseGates.mascotExplorationEnabled
-  ? '/website-original/ramuni-mascot-muni-manyar.webp'
+  ? mascots.evidence3d.src
   : '/website-original/ramuni-mascot-problem-section.webp';
 
 const signals = [
@@ -108,7 +109,7 @@ const signals = [
       ))}
     </div>
 
-    <img class="blog-decision-cta__mascot" src={mascotSrc} width="720" height="720" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <img class="blog-decision-cta__mascot" src={mascotSrc} width="384" height="384" alt="" aria-hidden="true" loading="lazy" decoding="async" />
   </div>
 </div>
 

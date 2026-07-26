@@ -1568,7 +1568,7 @@
  * compositions give each product family a different reading rhythm while the
  * shared mobile layout below remains predictable and accessible.
  */
-@media (min-width: 961px) {
+@media (min-width: 1081px) {
   /* Signals: a compact priority rail beside a fixed question. */
   .pd-page[data-layout='signals'] .pd-problem__layout {
     grid-template-columns: minmax(330px, 0.88fr) minmax(0, 1.12fr);
@@ -2021,13 +2021,13 @@
   }
 
   @keyframes pd-visual-enter {
-    from { opacity: 0; transform: translateY(22px) scale(0.985); box-shadow: 0 0 0 var(--ink); }
-    to { opacity: 1; transform: none; box-shadow: 12px 12px 0 var(--ink); }
+    from { transform: translateY(18px) scale(0.985); box-shadow: 0 0 0 var(--ink); }
+    to { transform: none; box-shadow: 12px 12px 0 var(--ink); }
   }
 
   @keyframes pd-row-enter {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: none; }
+    from { transform: translateY(12px); }
+    to { transform: none; }
   }
 
   @keyframes pd-line-grow {
@@ -2057,7 +2057,7 @@
   @keyframes pd-copy-breathe { 0%,100% { opacity: .88; } 50% { opacity: 1; } }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .pd-hero__layout,
   .pd-problem__layout,
   .pd-example__layout,
@@ -2422,5 +2422,5 @@
 .pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:12ch;font-size:clamp(2.5rem,4.35vw,4.8rem);line-height:1;white-space:normal}
 .pd-hero__canvas{width:100%;justify-self:stretch}
 @media(max-width:1100px){.pd-hero__layout{grid-template-columns:minmax(280px,.82fr) minmax(440px,1.18fr);gap:34px}.pd-hero__canvas :where(.product-canvas__panel){padding-inline:24px}}
-@media(max-width:960px){.pd-hero__layout{grid-template-columns:minmax(0,1fr)}.pd-hero__copy{width:min(100%,760px)}.pd-hero__canvas{width:min(100%,820px)}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:13ch}}
+@media(max-width:1080px){.pd-hero__layout{grid-template-columns:minmax(0,1fr)}.pd-hero__copy{width:min(100%,760px)}.pd-hero__canvas{width:min(100%,820px);justify-self:center}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{max-width:13ch}}
 @media(max-width:740px){.pd-hero__copy{max-width:100%}.pd-hero h1,.pd-page[data-product='asisten-ai'] .pd-hero h1{font-size:clamp(2.35rem,11vw,3.65rem)}}

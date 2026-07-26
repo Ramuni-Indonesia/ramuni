@@ -222,7 +222,8 @@
   .solution-problem-lab:has(input[value='0']:checked) [data-panel='0'],
   .solution-problem-lab:has(input[value='1']:checked) [data-panel='1'],
   .solution-problem-lab:has(input[value='2']:checked) [data-panel='2'],
-  .solution-problem-lab:has(input[value='3']:checked) [data-panel='3'] {
+  .solution-problem-lab:has(input[value='3']:checked) [data-panel='3'],
+  .solution-problem-lab:has(input[value='4']:checked) [data-panel='4'] {
     display: grid;
   }
 }
@@ -306,7 +307,7 @@
 .company-page__principle-rail li:nth-child(3) .company-page__principle-visual i:nth-child(odd){background:var(--yellow)}
 .company-page__principle-rail li:nth-child(4) .company-page__principle-visual{width:92%}
 @media(prefers-reduced-motion:no-preference){.company-page__principle-rail li.reveal.is-visible .company-page__principle-visual i{animation:company-principle-grow 620ms var(--ease) both}@keyframes company-principle-grow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}}
-@media(max-width:960px){.company-page__principle-rail li:nth-child(n){grid-column:span 6}}
+@media(max-width:1080px){.company-page__principle-rail li:nth-child(n){grid-column:span 6}}
 @media(max-width:640px){.company-page__principle-rail li:nth-child(n){grid-column:1/-1;min-height:230px}}
 @media(prefers-reduced-motion:reduce){.company-page__principle-rail li,.company-page__principle-visual i{animation:none;transition:none}}
 
@@ -459,7 +460,7 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .product-hub .catalog-hero__layout,
   .solution-problem-lab,
   .industry-lens__layout {

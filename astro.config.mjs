@@ -20,6 +20,7 @@ const isGatedPage = (page) => {
   if (!calculatorReviewApproved && /^\/kalkulator\/[^/]+\/$/.test(pathname)) return true;
   if (!resourceReviewApproved && /^\/(panduan|kamus-bisnis|template)\/$/.test(pathname)) return true;
   if (!resourceReviewApproved && /^\/(panduan|kamus-bisnis|template)\/[^/]+\/$/.test(pathname)) return true;
+  if (!resourceReviewApproved && /^\/blog\/penulis\/[^/]+\/$/.test(pathname)) return true;
   return false;
 };
 
@@ -29,7 +30,7 @@ export default defineConfig({
   integrations: [sitemap({
     filter: (page) => publicEnvironment.indexingEnabled && ![
       '/demo', '/early-access', '/harga', '/terima-kasih', '/masuk', '/maintenance', '/404', '/500',
-      '/blog/cari', '/blog/tag', '/blog/kategori', '/blog/penulis', '/blog/reviewer', '/privasi', '/syarat-penggunaan',
+      '/blog/cari', '/blog/tag', '/blog/kategori', '/blog/reviewer', '/privasi', '/syarat-penggunaan',
       '/kebijakan-cookie', '/pemrosesan-data', '/status', '/bantuan',
       '/blog/ai-business-companion-umkm', '/blog/arus-kas-umkm-ringan', '/blog/panduan-membaca-stok-harian',
     ].some((path) => page.includes(path)) && !isGatedPage(page),

@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
+import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import { industries, products, roles } from '../../data/site';
 import { releaseGates } from '../../config/release';
@@ -117,8 +119,8 @@ const closingLinks = role.slug === 'kasir'
   : [{ label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' }];
 ---
 <BaseLayout title={'RAMUNI untuk ' + role.title} description={role.summary} noindex={!releaseGates.claimPagesIndexable}>
-  <div class="container audience-breadcrumb"><nav class="breadcrumbs"><a href="/">Beranda</a><span>/</span><a href="/untuk">Untuk Tim</a><span>/</span><span>{role.title}</span></nav></div>
-  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk" />
+  <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
+  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk" visual="guide" visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
 
   <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
     <div class="container audience-split">
@@ -152,10 +154,21 @@ const closingLinks = role.slug === 'kasir'
   </section>
 
   <section class="section" id="alert-dan-ai" aria-labelledby="alerts-title">
-    <div class="container audience-signal-board">
-      <div class="reveal"><strong id="alerts-title">Peringatan yang relevan</strong>{context.alerts.map((alert) => <p>{alert}</p>)}</div>
-      <div class="reveal"><strong>Pertanyaan AI</strong>{context.questions.map((question) => <p>{question}</p>)}</div>
-      <div class="reveal"><strong>Batas AI untuk {role.title}</strong>{context.aiBoundary.map((item) => <p>{item}</p>)}</div>
+    <div class="container">
+      <AudienceContextBoard
+        id="alerts"
+        eyebrow={'Ruang kerja ' + role.title}
+        title="Pilih konteks sebelum menentukan tindak lanjut."
+        description="Buka satu sudut pandang pada satu waktu agar peringatan, pertanyaan, dan batas penggunaan tidak tercampur."
+        panes={[
+          { label: 'Peringatan', title: 'Mulai dari perubahan yang perlu diperiksa.', items: context.alerts },
+          { label: 'Pertanyaan', title: 'Gunakan pertanyaan untuk menelusuri alasan.', items: context.questions },
+          { label: 'Batas AI', title: 'Keputusan dan tindakan tetap berada pada manusia.', items: context.aiBoundary },
+        ]}
+        note={'Contoh ini membantu ' + role.title + ' membaca konteks. RAMUNI tidak menyetujui keputusan atau mengubah data secara otomatis.'}
+        mascot="guide3d"
+        variant="role"
+      />
     </div>
   </section>
 
@@ -191,6 +204,19 @@ const closingLinks = role.slug === 'kasir'
   </section>
 
   <section class="section surface" id="cta" aria-labelledby="role-cta-title">
-    <div class="container audience-closing reveal"><div><h2 id="role-cta-title">{context.headings.closing}</h2><p>Gunakan data sintetis untuk menilai alur tanpa membagikan data bisnis sensitif.</p></div><div class="button-row">{closingLinks.map((link) => <a class={link.className} href={link.href}>{link.label}</a>)}</div></div>
+    <div class="container reveal">
+      <MascotDecisionCTA
+        headingId="role-cta-title"
+        eyebrow={'Langkah berikutnya untuk ' + role.title}
+        title={context.headings.closing}
+        body="Gunakan data sintetis untuk menilai alur, memeriksa bukti, dan membahas tindakan tanpa membagikan data bisnis sensitif."
+        primaryLabel={closingLinks[0]?.label}
+        primaryHref={closingLinks[0]?.href}
+        secondaryLabel={closingLinks[1]?.label}
+        secondaryHref={closingLinks[1]?.href}
+        theme="yellow"
+        mascot="guide3d"
+      />
+    </div>
   </section>
 </BaseLayout>

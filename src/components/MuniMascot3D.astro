@@ -1,0 +1,106 @@
+---
+interface Props {
+  class?: string;
+  label?: string;
+  posterSrc?: string;
+  interactive?: boolean;
+}
+
+const {
+  class: className = '',
+  label = 'Model 3D Muni si Manyar, companion RAMUNI',
+  posterSrc = '/website-original/ramuni-mascot-muni-manyar.webp',
+  interactive = true,
+} = Astro.props;
+---
+
+<div
+  class:list={['muni-mascot-3d', className]}
+  data-muni-mascot-3d
+  data-interactive={interactive ? 'true' : 'false'}
+  data-model-state="poster"
+>
+  <img
+    class="muni-mascot-3d__poster"
+    src={posterSrc}
+    width="720"
+    height="720"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+  />
+  <canvas role="img" aria-label={label}></canvas>
+  <span class="muni-mascot-3d__hint" aria-hidden="true">{interactive ? 'Geser untuk melihat Muni' : 'Muni si Manyar'}</span>
+  <noscript><img src={posterSrc} width="720" height="720" alt={label} loading="lazy" /></noscript>
+</div>
+
+<script>
+  const bindMuniMascotLoaders = () => {
+    document.querySelectorAll<HTMLElement>('[data-muni-mascot-3d]').forEach((host) => {
+      if (host.dataset.loaderBound === 'true') return;
+      host.dataset.loaderBound = 'true';
+
+      const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (saveData || reduceMotion) {
+        host.dataset.modelState = 'fallback';
+        return;
+      }
+
+      let requested = false;
+      let loaderObserver: IntersectionObserver | undefined;
+      const loadModel = async () => {
+        if (requested || !host.isConnected) return;
+        requested = true;
+        host.dataset.modelState = 'loading';
+        try {
+          const { initMuniMascot3D } = await import('../three/initMuniMascot3D');
+          if (!host.isConnected) return;
+          const controller = initMuniMascot3D(host);
+          if (!controller) host.dataset.modelState = 'fallback';
+        } catch {
+          host.dataset.modelState = 'fallback';
+        }
+      };
+
+      const stopPendingLoad = () => loaderObserver?.disconnect();
+      window.addEventListener('pagehide', stopPendingLoad, { once: true });
+      document.addEventListener('astro:before-swap', stopPendingLoad, { once: true });
+
+      if (!('IntersectionObserver' in window)) {
+        void loadModel();
+        return;
+      }
+
+      loaderObserver = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        loaderObserver?.disconnect();
+        void loadModel();
+      }, { rootMargin: '260px 0px' });
+      loaderObserver.observe(host);
+    });
+  };
+
+  bindMuniMascotLoaders();
+  document.addEventListener('astro:page-load', bindMuniMascotLoaders);
+</script>
+
+<style>
+  .muni-mascot-3d{position:relative;isolation:isolate;width:100%;min-width:0;max-width:100%;min-height:360px;overflow:hidden;border:1px solid rgb(11 48 69/.18);background:#f4f0e7;contain:layout paint;container-type:inline-size}
+  .muni-mascot-3d::before{content:"";position:absolute;z-index:0;inset:8% 14% 12%;border:1px solid rgb(11 48 69/.12);border-radius:50%;pointer-events:none}
+  .muni-mascot-3d::after{content:"";position:absolute;z-index:0;left:20%;right:20%;bottom:8%;height:8%;border-radius:50%;background:rgb(11 48 69/.1);filter:blur(14px);pointer-events:none}
+  .muni-mascot-3d canvas{position:relative;z-index:2;display:block;width:100%;height:100%;min-height:360px;opacity:0;touch-action:pan-y;transition:opacity .4s cubic-bezier(.22,1,.36,1)}
+  .muni-mascot-3d[data-interactive="true"] canvas{cursor:grab}
+  .muni-mascot-3d[data-dragging="true"] canvas{cursor:grabbing}
+  .muni-mascot-3d[data-model-state="ready"] canvas{opacity:1}
+  .muni-mascot-3d__poster{position:absolute;z-index:1;inset:4% 10% 3%;width:80%;height:93%;object-fit:contain;opacity:.94;transition:opacity .25s linear,transform .45s cubic-bezier(.16,1,.3,1)}
+  .muni-mascot-3d[data-model-state="loading"] .muni-mascot-3d__poster{transform:scale(.985)}
+  .muni-mascot-3d[data-model-state="ready"] .muni-mascot-3d__poster{opacity:0;transform:scale(.97);pointer-events:none}
+  .muni-mascot-3d__hint{position:absolute;z-index:3;right:14px;bottom:14px;padding:7px 9px;border:1px solid rgb(11 48 69/.18);background:rgb(244 240 231/.9);color:#0b3045;font-size:.62rem;font-weight:800;letter-spacing:.04em;pointer-events:none;transition:opacity .2s cubic-bezier(.22,1,.36,1)}
+  .muni-mascot-3d:not([data-model-state="ready"]) .muni-mascot-3d__hint{opacity:0}
+  .muni-mascot-3d noscript img{display:block;width:100%;height:100%;min-height:360px;padding:24px;object-fit:contain}
+  @container (max-width:420px){.muni-mascot-3d canvas,.muni-mascot-3d noscript img{min-height:320px}.muni-mascot-3d__poster{inset:6% 6% 4%;width:88%;height:90%}.muni-mascot-3d__hint{display:none}}
+  @media(max-width:740px){.muni-mascot-3d,.muni-mascot-3d canvas,.muni-mascot-3d noscript img{min-height:310px}.muni-mascot-3d__hint{display:none}}
+  @media(prefers-reduced-motion:reduce){.muni-mascot-3d canvas,.muni-mascot-3d__poster,.muni-mascot-3d__hint{transition:none}.muni-mascot-3d canvas{cursor:default!important}.muni-mascot-3d__hint{display:none}}
+</style>

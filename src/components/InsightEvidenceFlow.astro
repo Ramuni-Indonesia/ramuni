@@ -1,5 +1,6 @@
 ---
 import { releaseGates } from '../config/release';
+import { mascots } from '../data/mascots';
 
 interface Props {
   context: 'Produk' | 'Solusi';
@@ -21,7 +22,7 @@ const {
 
 const evidence = sources.slice(0, 3);
 const mascotEnabled = releaseGates.mascotExplorationEnabled;
-const mascotSrc = mascotEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
+const mascotSrc = mascotEnabled ? mascots.evidence3d.src : '/website-original/ramuni-mascot-problem-section.webp';
 const mascotLabel = mascotEnabled
   ? 'Muni si Manyar mengingatkan untuk memeriksa bukti'
   : 'Ilustrasi catatan usaha yang dihubungkan untuk diperiksa';
@@ -33,7 +34,7 @@ const mascotLabel = mascotEnabled
     <h3>{title}</h3>
     <p>{prompt}</p>
     <div class="evidence-flow__mascot" data-mascot-card role="img" aria-label={mascotLabel}>
-      <img src={mascotSrc} width="720" height="720" alt="" loading="lazy" decoding="async" />
+      <img src={mascotSrc} width="384" height="384" alt="" loading="lazy" decoding="async" />
       <strong>Periksa bukti sebelum menentukan langkah.</strong>
     </div>
   </figcaption>

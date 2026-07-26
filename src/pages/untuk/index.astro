@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import { industries, products, roles } from '../../data/site';
+import '../../styles/role-hub.css';
 
 const roleViews: Record<string, { lens: string; primary: string; handoff: string; proof: string; ai: string; industries: string[]; products: string[] }> = {
   'pemilik-usaha': { lens: 'Kesehatan bisnis', primary: 'Melihat perubahan omzet, kas, stok, dan tim dari satu layar.', handoff: 'Memberi persetujuan setelah alasan dan bukti terlihat.', proof: 'Periode, sumber data, dan pemilik tindak lanjut.', ai: 'AI merangkum dan memberi pertanyaan lanjutan. Keputusan tetap di pemilik.', industries: ['retail', 'distributor', 'jasa'], products: ['dashboard-bisnis', 'laporan-insight', 'asisten-ai'] },
@@ -23,7 +24,7 @@ const collaborationFlow = [
 ];
 ---
 <BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat bagaimana pemilik usaha, admin toko, kasir, dan supervisor memakai satu sumber pemahaman dengan akses yang berbeda.">
-  <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman. Setiap peran tetap punya batas." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Coba Simulasi Gratis" secondaryHref="/tour-produk-gratis" />
+  <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman. Setiap peran tetap punya batas." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Coba Simulasi Gratis" secondaryHref="/tour-produk-gratis" visual="guide" visualLabel="Peta peran" visualTitle="Masalah diarahkan kepada orang yang punya wewenang." />
   <section class="section dark-surface role-hub__selector" id="daftar-peran" aria-labelledby="role-selector-title">
     <div class="container role-hub__selector-layout">
       <div class="role-hub__sticky reveal">
@@ -87,7 +88,3 @@ const collaborationFlow = [
     <div class="container reveal"><div><p class="eyebrow">Siapkan tim</p><h2 id="role-cta-title">Lihat RAMUNI dari tanggung jawab tim Anda.</h2><p>Mulai dari satu peran yang paling penting, lalu cocokkan batas akses, data, dan tindak lanjutnya.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/panduan">Baca Panduan</a></div></div>
   </section>
 </BaseLayout>
-<style>
-  .role-hub__selector{overflow:hidden}.role-hub__selector-layout,.role-hub__split,.role-hub__ai-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(44px,9vw,130px)}
-  .role-hub__sticky{position:sticky;top:104px;align-self:start}.role-hub__sticky .eyebrow{color:var(--yellow);margin-bottom:18px}.role-hub__sticky>p:last-of-type{margin-top:24px;color:rgb(255 255 255/.66)}
-</style>

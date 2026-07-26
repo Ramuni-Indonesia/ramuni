@@ -264,7 +264,7 @@
   font-size: clamp(2.1rem, 5vw, 3.8rem);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .ramuni-calculator__intro,
   .ramuni-calculator__workspace,
   .ramuni-calculator--embedded .ramuni-calculator__workspace {

@@ -5,7 +5,8 @@ const desktopItems = desktopNav
   ? [...desktopNav.querySelectorAll(':scope > a:not(.button), :scope > details > summary')]
   : [];
 const desktopIndex = (node) => desktopItems.findIndex((item) => item === node);
-const desktopHover = window.matchMedia('(min-width: 961px) and (hover: hover)');
+const desktopHover = window.matchMedia('(min-width: 1101px) and (hover: hover)');
+const desktopLayout = window.matchMedia('(min-width: 1101px)');
 let hoverCloseTimer;
 const closeDesktopGroups = () => groups.forEach((group) => {
   group.removeAttribute('open');
@@ -128,4 +129,11 @@ if (mobile instanceof HTMLDetailsElement) {
       first.focus();
     }
   });
+  const closeMobileAtDesktop = () => {
+    if (!desktopLayout.matches) return;
+    mobile.removeAttribute('open');
+    document.body.classList.remove('menu-open');
+  };
+  desktopLayout.addEventListener?.('change', closeMobileAtDesktop);
+  closeMobileAtDesktop();
 }
