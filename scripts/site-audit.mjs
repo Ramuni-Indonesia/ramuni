@@ -57,9 +57,9 @@ const DESCRIPTION_MIN = 50;
 const DESCRIPTION_MAX = 180;
 const PERFORMANCE_BUDGETS = Object.freeze({
   // HTML is delivered per route, so the route-level cap is the PSI-sensitive
-  // guard. The 58 kB ceiling leaves room for the homepage's accessible,
+  // guard. The 60 kB ceiling leaves room for accessible, server-rendered
   // server-rendered visual narratives while keeping raw HTML deliberately lean.
-  html: { perFile: 59_000, total: 3_200_000 },
+  html: { perFile: 60_000, total: 3_200_000 },
   // CSS is code-split. A site-wide sum over every chunk is not a page payload,
   // so the route-level linkedStylesheets cap below is the meaningful guard.
   css: { perFile: 110_000, total: null },

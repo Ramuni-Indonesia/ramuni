@@ -6,21 +6,22 @@ interface Props {
 }
 
 const { visual } = Astro.props;
+const visualId = `sd-visual-${visual.kind}`;
 ---
-<figure class={`sd-visual sd-visual--${visual.kind}`} aria-labelledby={`visual-${visual.kind}-title`}>
+<figure class={`sd-visual sd-visual--${visual.kind}`} aria-labelledby={`${visualId}-title`}>
   <figcaption class="sd-visual__head">
     <span>{visual.label}</span>
-    <strong id={`visual-${visual.kind}-title`}>{visual.title}</strong>
+    <strong id={`${visualId}-title`}>{visual.title}</strong>
     <small>{visual.period}</small>
   </figcaption>
 
   <div class="sd-visual__tabs" role="group" aria-label="Mode pembacaan visual">
-    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="pattern" checked /><span>Pola</span></label>
-    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="evidence" /><span>Bukti</span></label>
-    <label><input type="radio" name={`sd-visual-${visual.kind}`} value="step" /><span>Langkah</span></label>
+    <label><input type="radio" name={visualId} value="pattern" checked aria-controls={`${visualId}-pattern`} /><span>Pola</span></label>
+    <label><input type="radio" name={visualId} value="evidence" aria-controls={`${visualId}-evidence`} /><span>Bukti</span></label>
+    <label><input type="radio" name={visualId} value="step" aria-controls={`${visualId}-step`} /><span>Langkah</span></label>
   </div>
 
-  <div class="sd-visual__pane sd-visual__pane--pattern" data-visual-pane="pattern">
+  <div id={`${visualId}-pattern`} class="sd-visual__pane sd-visual__pane--pattern" data-visual-pane="pattern" role="region" aria-label="Pola visual">
 
   {visual.kind === 'revenue' && (
     <div class="sd-revenue" aria-hidden="true">
@@ -77,7 +78,7 @@ const { visual } = Astro.props;
 
   </div>
 
-  <dl class="sd-visual__metrics sd-visual__pane" data-visual-pane="evidence">
+  <dl id={`${visualId}-evidence`} class="sd-visual__metrics sd-visual__pane" data-visual-pane="evidence">
     {visual.metrics.map((metric, index) => (
       <div class={metric.tone ? `is-${metric.tone}` : ''}>
         <dt>Bukti {String(index + 1).padStart(2, '0')} · {metric.label}</dt><dd>{metric.value}</dd><small>{metric.note}</small>
@@ -85,7 +86,7 @@ const { visual } = Astro.props;
     ))}
   </dl>
 
-  <ol class="sd-visual__next sd-visual__pane" data-visual-pane="step">
+  <ol id={`${visualId}-step`} class="sd-visual__next sd-visual__pane" data-visual-pane="step">
     <li><span>01</span><div><strong>Samakan periode</strong><small>{visual.period}</small></div></li>
     <li><span>02</span><div><strong>Periksa sumber paling menonjol</strong><small>{visual.metrics.find((metric) => metric.tone === 'warning')?.label ?? visual.metrics[0]?.label}</small></div></li>
     <li><span>03</span><div><strong>Bawa ke keputusan manual</strong><small>Pengguna tetap menentukan tindakan setelah bukti dibaca.</small></div></li>

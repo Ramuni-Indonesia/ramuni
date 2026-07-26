@@ -24,7 +24,7 @@ const { entries } = Astro.props;
     <legend class="sr-only">Pilih konteks masalah usaha</legend>
     {entries.map((entry, index) => (
       <label>
-        <input type="radio" name="solution-map-problem" value={index} checked={index === 0} />
+        <input type="radio" name="solution-map-problem" value={index} checked={index === 0} aria-controls={`solution-map-panel-${index}`} />
         <span>{String(index + 1).padStart(2, '0')}</span>
         <strong>{entry.label}</strong>
       </label>
@@ -37,7 +37,7 @@ const { entries } = Astro.props;
       <img src="/website-original/ramuni-mascot-muni-manyar.webp" alt="" width="360" height="360" loading="eager" decoding="async" />
     </div>
     {entries.map((entry, index) => (
-      <article class="solution-map__panel" data-map-panel={index}>
+      <article id={`solution-map-panel-${index}`} class="solution-map__panel" data-map-panel={index} role="region" aria-label={`Alur ${entry.label}`}>
         <span>Gejala</span>
         <h2>{entry.text}</h2>
         <div class="solution-map__route" aria-hidden="true"><i></i><i></i><i></i></div>
