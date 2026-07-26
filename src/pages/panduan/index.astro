@@ -74,7 +74,7 @@ const schema = [
     <header class="learning-hero">
       <div class="container learning-hero__grid">
         <div class="learning-hero__copy reveal is-visible">
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span aria-current="page">Panduan</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Panduan</span></nav>
           <p class="eyebrow">Panduan bisnis praktis</p>
           <h1>Mulai dari pertanyaan yang mengganggu pekerjaan hari ini.</h1>
           <p class="lede">Pilih satu masalah, lihat angka yang perlu diperiksa, lalu tentukan langkah kecil berikutnya. Tidak perlu membaca semuanya sekaligus.</p>
@@ -92,7 +92,7 @@ const schema = [
               <small>{guide.question}</small>
               <h2>{guide.title}</h2>
               <ol>{guide.signals.map((signal, signalIndex) => <li><span>0{signalIndex + 1}</span><strong>{signal}</strong></li>)}</ol>
-              <a href={`/panduan/${guide.slug}`}>Buka alur lengkap <span aria-hidden="true">→</span></a>
+              <a href={`/panduan/${guide.slug}/`}>Buka alur lengkap <span aria-hidden="true">→</span></a>
             </section>)}
           </div>
           <footer><span>Catatan</span><strong>→</strong><span>Bukti</span><strong>→</strong><span>Langkah</span></footer>
@@ -107,7 +107,7 @@ const schema = [
           <p>Setiap panduan berhenti pada pemeriksaan manusia. Angka contoh hanya membantu menjelaskan urutan, bukan menggambarkan hasil usaha tertentu.</p>
         </div>
         <div class="learning-guide-deck">
-          {guides.map((guide, index) => <a id={`panduan-${guide.visual === 'stock' ? 'stok' : guide.visual === 'cash' ? 'kas' : 'ai'}`} class:list={['learning-guide-card', `learning-guide-card--${guide.visual}`, 'reveal']} href={`/panduan/${guide.slug}`} style={`--i:${index}`}>
+          {guides.map((guide, index) => <a id={`panduan-${guide.visual === 'stock' ? 'stok' : guide.visual === 'cash' ? 'kas' : 'ai'}`} class:list={['learning-guide-card', `learning-guide-card--${guide.visual}`, 'reveal']} href={`/panduan/${guide.slug}/`} style={`--i:${index}`}>
             <div class="learning-guide-card__visual" aria-hidden="true"><span>0{index + 1}</span><i></i><i></i><i></i><b></b></div>
             <div class="learning-guide-card__copy"><small>{guide.question} · {guide.time}</small><h3>{guide.title}</h3><p>{guide.text}</p><ul>{guide.signals.map((signal) => <li>{signal}</li>)}</ul><strong>Baca panduan <span aria-hidden="true">→</span></strong></div>
           </a>)}
@@ -117,7 +117,7 @@ const schema = [
 
     <section class="section learning-method" aria-labelledby="guide-method-title">
       <div class="container learning-method__grid">
-        <div class="learning-method__copy reveal"><p class="section-kicker">Cara memakai panduan</p><h2 id="guide-method-title">Berhenti pada bukti, bukan dugaan.</h2><p>Panduan RAMUNI tidak menggantikan catatan usaha. Gunakan sebagai urutan pemeriksaan agar diskusi dengan tim tidak melompat langsung ke kesimpulan.</p><a class="text-link" href="/blog/metodologi-fact-check">Lihat cara kami memeriksa materi</a></div>
+        <div class="learning-method__copy reveal"><p class="section-kicker">Cara memakai panduan</p><h2 id="guide-method-title">Berhenti pada bukti, bukan dugaan.</h2><p>Panduan RAMUNI tidak menggantikan catatan usaha. Gunakan sebagai urutan pemeriksaan agar diskusi dengan tim tidak melompat langsung ke kesimpulan.</p><a class="text-link" href="/blog/metodologi-fact-check/">Lihat cara kami memeriksa materi</a></div>
         <ol class="learning-method__rail">
           <li class="reveal"><span>01</span><div><h3>Samakan konteks</h3><p>Tentukan pertanyaan, periode, dan satuan yang sedang dibahas.</p></div></li>
           <li class="reveal"><span>02</span><div><h3>Buka catatan</h3><p>Bandingkan perubahan dengan transaksi, bukti, atau kejadian yang relevan.</p></div></li>
@@ -129,8 +129,8 @@ const schema = [
     <section class="section learning-close-stage">
       <div class="container learning-close reveal">
         <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
-        <div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan. Pilih alat yang paling dekat.</h2><p>Gunakan kalkulator untuk memeriksa hitungan atau template untuk merapikan catatan sebelum membaca panduan lagi.</p><div class="button-row"><a class="button button--primary" href="/kalkulator">Buka kalkulator</a><a class="button button--secondary" href="/template">Lihat template</a></div></div>
-        <div class="learning-close__cards"><a href="/kalkulator/reorder-stok"><small>Untuk stok</small><strong>Hitung titik pemeriksaan</strong><span>→</span></a><a href="/template/arus-kas-sederhana"><small>Untuk kas</small><strong>Rapikan uang masuk dan keluar</strong><span>→</span></a></div>
+        <div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan. Pilih alat yang paling dekat.</h2><p>Gunakan kalkulator untuk memeriksa hitungan atau template untuk merapikan catatan sebelum membaca panduan lagi.</p><div class="button-row"><a class="button button--primary" href="/kalkulator/">Buka kalkulator</a><a class="button button--secondary" href="/template/">Lihat template</a></div></div>
+        <div class="learning-close__cards"><a href="/kalkulator/reorder-stok/"><small>Untuk stok</small><strong>Hitung titik pemeriksaan</strong><span>→</span></a><a href="/template/arus-kas-sederhana/"><small>Untuk kas</small><strong>Rapikan uang masuk dan keluar</strong><span>→</span></a></div>
       </div>
     </section>
   </div>

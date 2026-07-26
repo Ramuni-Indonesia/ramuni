@@ -16,7 +16,7 @@ const articles = (await getCollection('blog'))
     author: post.data.authorName,
     cover: post.data.cover,
     coverAlt: post.data.coverAlt,
-    href: `/blog/${post.id}`,
+    href: `/blog/${post.id}/`,
     readingTime: post.data.readingTime,
   }));
 
@@ -39,13 +39,13 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
 <BaseLayout title="Cari Artikel | Blog RAMUNI" description="Cari artikel praktis di Blog RAMUNI." noindex={true}>
   <header class="search-page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span aria-current="page">Cari</span></nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span aria-current="page">Cari</span></nav>
       <div class="search-hero-layout">
         <div class="search-hero-copy">
           <p class="eyebrow">Pencarian Blog</p>
           <h1>Cari jawaban praktis.</h1>
           <p class="lede">Mulai dari satu persoalan usaha. RAMUNI akan membantu menemukan artikel yang paling dekat dengan topik tersebut.</p>
-          <form class="blog-search search-page-form" action="/blog/cari" method="get" role="search">
+          <form class="blog-search search-page-form" action="/blog/cari/" method="get" role="search">
             <label for="search-query">Topik yang ingin dipahami</label>
             <div class="search-line"><input id="search-query" name="q" type="search" placeholder="Contoh: arus kas, stok, pelanggan" enterkeyhint="search" /><button type="submit">Cari</button></div>
             <small>Jangan masukkan nama pelanggan, transaksi, atau data usaha sensitif.</small>
@@ -75,7 +75,7 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
           <div class="search-empty__copy"><span>Belum menulis kata kunci?</span><p>Mulai dari salah satu topik yang sudah memiliki artikel.</p></div>
           <nav class="search-topic-grid" aria-label="Topik cepat blog RAMUNI">
             {quickTopics.map((topic, index) => (
-              <a class="search-topic-card" href={`/blog/kategori/${topic.slug}`}>
+              <a class="search-topic-card" href={`/blog/kategori/${topic.slug}/`}>
                 <span>0{index + 1}</span>
                 <strong>{topic.title}</strong>
                 <p>Mulai dari “{topic.firstTitle}”.</p>
@@ -112,7 +112,7 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
       quickTopics.forEach((topic, index) => {
         const link = document.createElement('a');
         link.className = 'search-topic-card';
-        link.href = `/blog/kategori/${topic.slug}`;
+        link.href = `/blog/kategori/${topic.slug}/`;
 
         const number = document.createElement('span');
         number.textContent = `0${index + 1}`;

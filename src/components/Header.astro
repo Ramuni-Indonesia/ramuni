@@ -4,13 +4,19 @@ import { navigationIconAttributes } from '../data/capabilityIcons';
 import '../styles/forms-conversion.css';
 const path = Astro.url.pathname;
 const isHome = path === '/';
-const current = (href: string) => path === href || path.startsWith(`${href}/`);
-const exactCurrent = (href: string) => path === href;
+const routePath = (href: string) => href === '/' ? '/' : href.replace(/\/+$/, '');
+const exactCurrent = (href: string) => routePath(path) === routePath(href);
+const current = (href: string) => {
+  const target = routePath(href);
+  const currentPath = routePath(path);
+  return currentPath === target || (target !== '/' && currentPath.startsWith(`${target}/`));
+};
+const matchesRoute = (href: string, route: string) => routePath(href) === route;
 const isMegaGroup = (item: (typeof headerNavigation)[number]): item is MegaNavigationGroup => 'columns' in item;
-const publicHeaderNavigation = headerNavigation.filter((item) => item.href !== '/harga');
-const publicHref = (href: string) => href === '/demo' ? '/tour-produk-gratis' : href;
-const publicActions = (actions: { label: string; href: string }[] = []) => actions.filter((action) => action.href !== '/harga');
-const isPublicNavigationLink = (href: string) => href !== '/harga' && href !== '/status';
+const publicHeaderNavigation = headerNavigation.filter((item) => !matchesRoute(item.href, '/harga'));
+const publicHref = (href: string) => matchesRoute(href, '/demo') ? '/tour-produk-gratis/' : href;
+const publicActions = (actions: { label: string; href: string }[] = []) => actions.filter((action) => !matchesRoute(action.href, '/harga'));
+const isPublicNavigationLink = (href: string) => !matchesRoute(href, '/harga') && !matchesRoute(href, '/status');
 const groupId = (label: string) => `nav-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const groupClass = (label: string) => `mega-menu mega-menu--${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const megaCopy: Record<string, { title: string; description: string; featuredTitle?: string; featuredText?: string; featuredCta?: string }> = {
@@ -31,13 +37,13 @@ const megaCopy: Record<string, { title: string; description: string; featuredTit
   },
 };
 const linkDescriptionOverrides: Record<string, string> = {
-  '/solusi/naikkan-omzet': 'Cari produk, waktu, dan pelanggan yang memengaruhi omzet.',
-  '/solusi/pahami-pelanggan': 'Kenali pembelian berulang dari riwayat yang tersedia.',
-  '/solusi/laporan-bisnis-otomatis': 'Samakan periode, rumus, dan sumber laporan.',
-  '/bantuan': 'Temukan panduan dan jalur bantuan.',
+  '/solusi/naikkan-omzet/': 'Cari produk, waktu, dan pelanggan yang memengaruhi omzet.',
+  '/solusi/pahami-pelanggan/': 'Kenali pembelian berulang dari riwayat yang tersedia.',
+  '/solusi/laporan-bisnis-otomatis/': 'Samakan periode, rumus, dan sumber laporan.',
+  '/bantuan/': 'Temukan panduan dan jalur bantuan.',
 };
 const linkLabelOverrides: Record<string, string> = {
-  '/solusi/laporan-bisnis-otomatis': 'Laporan Bisnis',
+  '/solusi/laporan-bisnis-otomatis/': 'Laporan Bisnis',
 };
 const actionLabelOverrides: Record<string, string> = { '/demo': 'Lihat cara kerja' };
 const groupActive = (item: MegaNavigationGroup) => {
@@ -46,7 +52,7 @@ const groupActive = (item: MegaNavigationGroup) => {
 };
 ---
 <header class="site-header">
-  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Lihat cara RAMUNI membaca stok, penjualan, dan kas.</span><span class="announcement-short">Coba RAMUNI dengan data contoh.</span><a href="/tour-produk-gratis">Coba simulasi</a></div></div>}
+  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Lihat cara RAMUNI membaca stok, penjualan, dan kas.</span><span class="announcement-short">Coba RAMUNI dengan data contoh.</span><a href="/tour-produk-gratis/">Coba simulasi</a></div></div>}
   <div class="container nav-shell">
     <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color-tight.webp" width="1187" height="355" alt="RAMUNI" /></a>
     <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -61,7 +67,7 @@ const groupActive = (item: MegaNavigationGroup) => {
                   <a class="mega-hub-link" href={publicHref(item.href)} aria-current={exactCurrent(publicHref(item.href)) ? 'page' : undefined}>Buka {item.label}</a>
                   {publicActions(item.actions).map((action) => <a href={publicHref(action.href)}>{actionLabelOverrides[action.href] || action.label}</a>)}
                 </div>
-                {item.featured && item.featured.href !== '/harga' && <a class="mega-feature" href={publicHref(item.featured.href)}><span>{item.featured.eyebrow}</span><strong>{megaCopy[item.label]?.featuredTitle || item.featured.title}</strong><small>{megaCopy[item.label]?.featuredText || item.featured.text}</small><b>{megaCopy[item.label]?.featuredCta || item.featured.cta}</b></a>}
+                {item.featured && !matchesRoute(item.featured.href, '/harga') && <a class="mega-feature" href={publicHref(item.featured.href)}><span>{item.featured.eyebrow}</span><strong>{megaCopy[item.label]?.featuredTitle || item.featured.title}</strong><small>{megaCopy[item.label]?.featuredText || item.featured.text}</small><b>{megaCopy[item.label]?.featuredCta || item.featured.cta}</b></a>}
               </div>
               <div class="mega-columns">
                 {item.columns.map((column) => (
@@ -93,12 +99,12 @@ const groupActive = (item: MegaNavigationGroup) => {
                       {column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} aria-current={exactCurrent(publicHref(link.href)) && publicHref(link.href) !== publicHref(item.href) ? 'page' : undefined} {...navigationIconAttributes(publicHref(link.href))}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
                     </section>
                   ))}
-                  {item.featured && item.featured.href !== '/harga' && <a class="mobile-feature" href={publicHref(item.featured.href)}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}
+                  {item.featured && !matchesRoute(item.featured.href, '/harga') && <a class="mobile-feature" href={publicHref(item.featured.href)}>{megaCopy[item.label]?.featuredCta || item.featured.cta}</a>}
                 </div>
               </details>
             ) : <a href={publicHref(item.href)} aria-current={current(publicHref(item.href)) ? 'page' : undefined}>{item.label}</a>
           ))}
-          <a href="https://wa.me/message/K35W6X6WT7YMJ1">Kontak</a><a href="/kebijakan-cookie">Pengaturan cookie</a>
+          <a href="https://wa.me/message/K35W6X6WT7YMJ1">Kontak</a><a href="/kebijakan-cookie/">Pengaturan cookie</a>
         </nav>
         <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
       </div>

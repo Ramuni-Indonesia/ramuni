@@ -12,7 +12,7 @@ const catalog = {
     topics: ['Stok minimum', 'Pergerakan barang', 'Stock opname'],
     start: 'Mulai dari saldo terakhir dan tanggal pemeriksaan fisik. Lalu bandingkan dengan penjualan pada periode yang sama.',
     steps: ['Cek saldo terakhir', 'Bandingkan laju keluar', 'Tentukan barang yang diperiksa'],
-    cta: ['Ingin melihat alur pemeriksaan stok?', 'Lihat Inventori', '/produk/inventori'],
+    cta: ['Ingin melihat alur pemeriksaan stok?', 'Lihat Inventori', '/produk/inventori/'],
   },
   'keuangan-umkm': {
     name: 'Keuangan UMKM',
@@ -21,7 +21,7 @@ const catalog = {
     topics: ['Arus kas', 'Biaya usaha', 'Laba dan margin'],
     start: 'Catat uang yang benar-benar masuk dan keluar. Jangan campur dengan penjualan yang belum dibayar.',
     steps: ['Pisahkan kas dan omzet', 'Kelompokkan pengeluaran', 'Periksa perubahan terbesar'],
-    cta: ['Baca perjalanan uang dalam satu alur.', 'Pelajari Keuangan', '/produk/keuangan'],
+    cta: ['Baca perjalanan uang dalam satu alur.', 'Pelajari Keuangan', '/produk/keuangan/'],
   },
   'ai-untuk-umkm': {
     name: 'AI untuk UMKM',
@@ -30,7 +30,7 @@ const catalog = {
     topics: ['Batas AI', 'Kualitas data', 'Pemeriksaan manusia'],
     start: 'Mulai dari pertanyaan yang sempit, sebutkan periode, lalu buka angka yang dipakai untuk menyusun jawaban.',
     steps: ['Tulis pertanyaan sempit', 'Buka data pendukung', 'Periksa sebelum bertindak'],
-    cta: ['Lihat cara AI menjelaskan, bukan bertindak.', 'Pelajari Asisten AI', '/produk/asisten-ai'],
+    cta: ['Lihat cara AI menjelaskan, bukan bertindak.', 'Pelajari Asisten AI', '/produk/asisten-ai/'],
   },
 } as const;
 
@@ -50,7 +50,7 @@ const meta = catalog[key] || {
   topics: [],
   start: 'Pilih artikel yang paling dekat dengan pekerjaan Anda hari ini.',
   steps: ['Pilih satu masalah', 'Baca konteksnya', 'Periksa langkah berikutnya'],
-  cta: ['Lihat cara RAMUNI membaca konteks bisnis.', 'Coba Simulasi Gratis', '/tour-produk-gratis'],
+  cta: ['Lihat cara RAMUNI membaca konteks bisnis.', 'Coba Simulasi Gratis', '/tour-produk-gratis/'],
 };
 const sortedPosts = [...posts].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featured = sortedPosts[0];
@@ -69,17 +69,17 @@ const schema = [
 ---
 <BaseLayout title={`${meta.name} | Blog RAMUNI`} description={meta.introduction} noindex={isThin} schema={schema}>
   <header class="category-hero"><div class="container category-masthead">
-    <div class="category-masthead__top"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><span>{meta.name}</span></nav><span class="category-masthead__edition">Panduan praktis / 2026</span></div>
+    <div class="category-masthead__top"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>{meta.name}</span></nav><span class="category-masthead__edition">Panduan praktis / 2026</span></div>
     <div class="category-masthead__title"><p class="eyebrow">Kategori Blog</p><h1>{meta.name}</h1></div>
     <div class="category-masthead__brief"><p class="lede">{meta.introduction}</p><blockquote><span>Mulai dari satu pertanyaan</span><strong>{meta.question}</strong></blockquote></div>
     <div class="category-topics" aria-label="Cakupan topik">{meta.topics.map((topic) => <span>{topic}</span>)}</div>
   </div></header>
   {isThin && <div class="container"><p class="taxonomy-status taxonomy-status--standalone"><strong>Koleksi sedang bertambah.</strong> Kami menampilkan bacaan yang sudah tersedia sambil melengkapi artikel pendukung.</p></div>}
   {featured && <section class="section surface category-featured"><div class="container category-featured__layout">
-    <div class="category-featured__copy"><p class="section-kicker">Mulai dari sini</p><h2><a href={`/blog/${featured.id}`}>{featured.data.title}</a></h2><p>{featured.data.dek}</p><div class="category-featured__meta"><span>{featured.data.authorName}</span><span>{featured.data.readingTime}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span></div><a class="text-link" href={`/blog/${featured.id}`}>Baca artikel</a></div>
+    <div class="category-featured__copy"><p class="section-kicker">Mulai dari sini</p><h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2><p>{featured.data.dek}</p><div class="category-featured__meta"><span>{featured.data.authorName}</span><span>{featured.data.readingTime}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span></div><a class="text-link" href={`/blog/${featured.id}/`}>Baca artikel</a></div>
     <figure><img src={featured.data.cover} width="1200" height="720" alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></figure>
   </div></section>}
   <section class="section category-start"><div class="container category-route"><div class="category-route__head"><p class="section-kicker">Jalur pemula</p><h2>Mulai dengan urutan yang bisa diperiksa.</h2><p>{meta.start}</p></div><ol class="category-route__track">{meta.steps.map((step, index) => <li><span>0{index + 1}</span><strong>{step}</strong></li>)}</ol></div></section>
-  {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
-  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta[0]}</h2><p>Gunakan data sintetis tanpa mengirim catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta[2]}>{meta.cta[1]}</a><a class="button button--secondary" href="/blog">Kembali ke Blog</a></div></div></section>
+  {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
+  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta[0]}</h2><p>Gunakan data sintetis tanpa mengirim catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta[2]}>{meta.cta[1]}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
 </BaseLayout>

@@ -1,6 +1,6 @@
 export const launchCta = {
   label: 'Coba Simulasi Gratis',
-  href: '/tour-produk-gratis',
+  href: '/tour-produk-gratis/',
 };
 
 export interface NavigationLink {
@@ -44,7 +44,7 @@ export interface FooterNavigationGroup {
 export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink> = [
   {
     label: 'Produk',
-    href: '/produk',
+    href: '/produk/',
     eyebrow: 'Produk',
     title: 'Modul untuk angka yang mulai sulit dibaca.',
     description: 'Mulai dari catatan, laporan, atau pertanyaan yang paling sering muncul di tim.',
@@ -52,25 +52,25 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'AI & Insight',
         links: [
-          { label: 'Asisten AI', href: '/produk/asisten-ai', description: 'Tanya kondisi usaha. Pada versi awal, AI hanya membaca data.' },
-          { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis', description: 'Lihat prioritas sebelum membuka detail angka.' },
-          { label: 'Laporan & Insight', href: '/produk/laporan-insight', description: 'Ringkas harian dan mingguan dengan periode jelas.' },
+          { label: 'Asisten AI', href: '/produk/asisten-ai/', description: 'Tanya kondisi usaha. Pada versi awal, AI hanya membaca data.' },
+          { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', description: 'Lihat prioritas sebelum membuka detail angka.' },
+          { label: 'Laporan & Insight', href: '/produk/laporan-insight/', description: 'Ringkas harian dan mingguan dengan periode jelas.' },
         ],
       },
       {
         label: 'Operasional',
         links: [
-          { label: 'Penjualan', href: '/produk/penjualan', description: 'Baca perubahan transaksi, produk, dan pembayaran.' },
-          { label: 'Inventori', href: '/produk/inventori', description: 'Pantau saldo, pergerakan, dan batas stok.' },
-          { label: 'Keuangan', href: '/produk/keuangan', description: 'Pisahkan omzet, biaya, laba, dan kas.' },
-          { label: 'Pelanggan', href: '/produk/pelanggan', description: 'Kenali riwayat dan pola pembelian yang tersedia.' },
+          { label: 'Penjualan', href: '/produk/penjualan/', description: 'Baca perubahan transaksi, produk, dan pembayaran.' },
+          { label: 'Inventori', href: '/produk/inventori/', description: 'Pantau saldo, pergerakan, dan batas stok.' },
+          { label: 'Keuangan', href: '/produk/keuangan/', description: 'Pisahkan omzet, biaya, laba, dan kas.' },
+          { label: 'Pelanggan', href: '/produk/pelanggan/', description: 'Kenali riwayat dan pola pembelian yang tersedia.' },
         ],
       },
       {
         label: 'Pondasi',
         links: [
-          { label: 'Integrasi', href: '/produk/integrasi', description: 'Lihat jalur data dan status tiap metode.' },
-          { label: 'Semua Produk', href: '/produk', description: 'Buka katalog produk RAMUNI.' },
+          { label: 'Integrasi', href: '/produk/integrasi/', description: 'Lihat jalur data dan status tiap metode.' },
+          { label: 'Semua Produk', href: '/produk/', description: 'Buka katalog produk RAMUNI.' },
         ],
       },
     ],
@@ -78,13 +78,13 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       eyebrow: 'Mulai di sini',
       title: 'Belum tahu modul yang dibutuhkan?',
       text: 'Mulai dari masalah bisnis, lalu pilih modul yang relevan.',
-      href: '/produk',
+      href: '/produk/',
       cta: 'Lihat semua produk',
     },
   },
   {
     label: 'Solusi',
-    href: '/solusi',
+    href: '/solusi/',
     eyebrow: 'Solusi',
     title: 'Cari dari masalah yang terasa hari ini.',
     description: 'Omzet, stok, kas, pelanggan, dan laporan dibaca dari konteks usaha Anda.',
@@ -92,31 +92,31 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'Berdasarkan tujuan',
         links: [
-          { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet', description: 'Telusuri perubahan penjualan tanpa janji hasil.' },
-          { label: 'Kelola Stok', href: '/solusi/kelola-stok', description: 'Prioritaskan stok yang perlu diperiksa.' },
-          { label: 'Pantau Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas', description: 'Baca omzet, biaya, laba, dan kas bersama.' },
-          { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan', description: 'Lihat pola pembelian tanpa tindak lanjut otomatis.' },
-          { label: 'Laporan Bisnis', href: '/solusi/laporan-bisnis-otomatis', description: 'Rapikan rekap dengan periode dan rumus yang sama.' },
+          { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet/', description: 'Telusuri perubahan penjualan tanpa janji hasil.' },
+          { label: 'Kelola Stok', href: '/solusi/kelola-stok/', description: 'Prioritaskan stok yang perlu diperiksa.' },
+          { label: 'Pantau Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas/', description: 'Baca omzet, biaya, laba, dan kas bersama.' },
+          { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan/', description: 'Lihat pola pembelian tanpa tindak lanjut otomatis.' },
+          { label: 'Laporan Bisnis', href: '/solusi/laporan-bisnis-otomatis/', description: 'Rapikan rekap dengan periode dan rumus yang sama.' },
         ],
       },
       {
         label: 'Berdasarkan industri',
         links: [
-          { label: 'Retail', href: '/industri/retail', description: 'SKU cepat, stok, dan ritme transaksi.' },
-          { label: 'F&B', href: '/industri/fnb', description: 'Menu, bahan, jam ramai, dan bahan terbuang.' },
-          { label: 'Distributor', href: '/industri/distributor', description: 'Pesanan besar, pelanggan yang kembali, dan piutang.' },
-          { label: 'Reseller Online', href: '/industri/reseller-online', description: 'Kanal jual, margin produk, dan stok.' },
-          { label: 'Jasa', href: '/industri/jasa', description: 'Layanan, biaya, pelanggan, dan periode.' },
-          { label: 'Manufaktur Kecil', href: '/industri/manufaktur-kecil', description: 'Barang jadi, bahan, dan biaya produksi.' },
+          { label: 'Retail', href: '/industri/retail/', description: 'SKU cepat, stok, dan ritme transaksi.' },
+          { label: 'F&B', href: '/industri/fnb/', description: 'Menu, bahan, jam ramai, dan bahan terbuang.' },
+          { label: 'Distributor', href: '/industri/distributor/', description: 'Pesanan besar, pelanggan yang kembali, dan piutang.' },
+          { label: 'Reseller Online', href: '/industri/reseller-online/', description: 'Kanal jual, margin produk, dan stok.' },
+          { label: 'Jasa', href: '/industri/jasa/', description: 'Layanan, biaya, pelanggan, dan periode.' },
+          { label: 'Manufaktur Kecil', href: '/industri/manufaktur-kecil/', description: 'Barang jadi, bahan, dan biaya produksi.' },
         ],
       },
       {
         label: 'Berdasarkan peran',
         links: [
-          { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha', description: 'Kesehatan bisnis, tim, dan keputusan.' },
-          { label: 'Admin Toko', href: '/untuk/admin-toko', description: 'Data produk, transaksi, dan koreksi.' },
-          { label: 'Kasir', href: '/untuk/kasir', description: 'Alur transaksi dan bantuan pemulihan.' },
-          { label: 'Supervisor', href: '/untuk/supervisor', description: 'Pengecualian, laporan, dan tindak lanjut.' },
+          { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha/', description: 'Kesehatan bisnis, tim, dan keputusan.' },
+          { label: 'Admin Toko', href: '/untuk/admin-toko/', description: 'Data produk, transaksi, dan koreksi.' },
+          { label: 'Kasir', href: '/untuk/kasir/', description: 'Alur transaksi dan bantuan pemulihan.' },
+          { label: 'Supervisor', href: '/untuk/supervisor/', description: 'Pengecualian, laporan, dan tindak lanjut.' },
         ],
       },
     ],
@@ -124,13 +124,13 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       eyebrow: 'Lihat semua',
       title: 'Semua solusi bisnis',
       text: 'Bandingkan masalah, modul terkait, dan langkah awal yang aman.',
-      href: '/solusi',
+      href: '/solusi/',
       cta: 'Buka solusi',
     },
   },
   {
     label: 'Sumber Daya',
-    href: '/sumber-daya',
+    href: '/sumber-daya/',
     eyebrow: 'Belajar praktis',
     title: 'Baca, hitung, dan pahami istilah.',
     description: 'Panduan praktis untuk membantu Anda membaca angka usaha.',
@@ -138,26 +138,26 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'Baca',
         links: [
-          { label: 'Blog', href: '/blog', description: 'Artikel praktis untuk membaca bisnis.' },
-          { label: 'Panduan', href: '/panduan', description: 'Langkah kerja ringan untuk UMKM.' },
-          { label: 'Kamus Bisnis', href: '/kamus-bisnis', description: 'Istilah bisnis dalam bahasa sederhana.' },
+          { label: 'Blog', href: '/blog/', description: 'Artikel praktis untuk membaca bisnis.' },
+          { label: 'Panduan', href: '/panduan/', description: 'Langkah kerja ringan untuk UMKM.' },
+          { label: 'Kamus Bisnis', href: '/kamus-bisnis/', description: 'Istilah bisnis dalam bahasa sederhana.' },
         ],
       },
       {
         label: 'Pakai',
         links: [
-          { label: 'Template', href: '/template', description: 'Template sederhana untuk pekerjaan rutin usaha.' },
-          { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha', description: 'Hitung laba edukatif di browser.' },
-          { label: 'Kalkulator HPP', href: '/kalkulator/hpp', description: 'Periksa biaya barang terjual.' },
-          { label: 'Kalkulator Reorder Stok', href: '/kalkulator/reorder-stok', description: 'Tentukan titik cek stok berikutnya.' },
+          { label: 'Template', href: '/template/', description: 'Template sederhana untuk pekerjaan rutin usaha.' },
+          { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha/', description: 'Hitung laba edukatif di browser.' },
+          { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', description: 'Periksa biaya barang terjual.' },
+          { label: 'Kalkulator Reorder Stok', href: '/kalkulator/reorder-stok/', description: 'Tentukan titik cek stok berikutnya.' },
         ],
       },
       {
         label: 'Bantuan',
         links: [
-          { label: 'Bantuan', href: '/bantuan', description: 'Cari jawaban penggunaan RAMUNI.' },
-          { label: 'Keamanan', href: '/keamanan', description: 'Pelajari cara RAMUNI menjaga data dan akses.' },
-          { label: 'Status', href: '/status', description: 'Lihat kondisi layanan RAMUNI.' },
+          { label: 'Bantuan', href: '/bantuan/', description: 'Cari jawaban penggunaan RAMUNI.' },
+          { label: 'Keamanan', href: '/keamanan/', description: 'Pelajari cara RAMUNI menjaga data dan akses.' },
+          { label: 'Status', href: '/status/', description: 'Lihat kondisi layanan RAMUNI.' },
         ],
       },
     ],
@@ -165,76 +165,76 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       eyebrow: 'Pilihan editor',
       title: 'AI Business Companion untuk UMKM',
       text: 'Pahami cara RAMUNI membaca data tanpa mengambil alih keputusan.',
-      href: '/blog/ai-business-companion-umkm',
+      href: '/blog/ai-business-companion-umkm/',
       cta: 'Baca artikel',
     },
   },
-  { label: 'Tentang', href: '/tentang' },
+  { label: 'Tentang', href: '/tentang/' },
 ];
 
 export const accountNavigation: NavigationLink[] = [
-  { label: 'Masuk', href: '/masuk' },
+  { label: 'Masuk', href: '/masuk/' },
 ];
 
 export const footerNavigation: FooterNavigationGroup[] = [
   {
     label: 'Produk',
     links: [
-      { label: 'Asisten AI', href: '/produk/asisten-ai' },
-      { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis' },
-      { label: 'Penjualan', href: '/produk/penjualan' },
-      { label: 'Inventori', href: '/produk/inventori' },
-      { label: 'Keuangan', href: '/produk/keuangan' },
-      { label: 'Semua Produk', href: '/produk' },
+      { label: 'Asisten AI', href: '/produk/asisten-ai/' },
+      { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/' },
+      { label: 'Penjualan', href: '/produk/penjualan/' },
+      { label: 'Inventori', href: '/produk/inventori/' },
+      { label: 'Keuangan', href: '/produk/keuangan/' },
+      { label: 'Semua Produk', href: '/produk/' },
     ],
   },
   {
     label: 'Solusi',
     links: [
-      { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet' },
-      { label: 'Kelola Stok', href: '/solusi/kelola-stok' },
-      { label: 'Pantau Laba', href: '/solusi/pantau-laba-dan-arus-kas' },
-      { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan' },
-      { label: 'Retail', href: '/industri/retail' },
-      { label: 'F&B', href: '/industri/fnb' },
-      { label: 'Distributor', href: '/industri/distributor' },
-      { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha' },
+      { label: 'Naikkan Omzet', href: '/solusi/naikkan-omzet/' },
+      { label: 'Kelola Stok', href: '/solusi/kelola-stok/' },
+      { label: 'Pantau Laba', href: '/solusi/pantau-laba-dan-arus-kas/' },
+      { label: 'Pahami Pelanggan', href: '/solusi/pahami-pelanggan/' },
+      { label: 'Retail', href: '/industri/retail/' },
+      { label: 'F&B', href: '/industri/fnb/' },
+      { label: 'Distributor', href: '/industri/distributor/' },
+      { label: 'Pemilik Usaha', href: '/untuk/pemilik-usaha/' },
     ],
   },
   {
     label: 'Sumber Daya',
     links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Panduan', href: '/panduan' },
-      { label: 'Template', href: '/template' },
-      { label: 'Kalkulator', href: '/kalkulator' },
-      { label: 'Kamus Bisnis', href: '/kamus-bisnis' },
-      { label: 'Bantuan', href: '/bantuan' },
+      { label: 'Blog', href: '/blog/' },
+      { label: 'Panduan', href: '/panduan/' },
+      { label: 'Template', href: '/template/' },
+      { label: 'Kalkulator', href: '/kalkulator/' },
+      { label: 'Kamus Bisnis', href: '/kamus-bisnis/' },
+      { label: 'Bantuan', href: '/bantuan/' },
     ],
   },
   {
     label: 'Perusahaan',
     links: [
-      { label: 'Tentang', href: '/tentang' },
+      { label: 'Tentang', href: '/tentang/' },
       { label: 'Kontak', href: 'https://wa.me/message/K35W6X6WT7YMJ1' },
-      { label: 'Keamanan', href: '/keamanan' },
-      { label: 'Status', href: '/status' },
+      { label: 'Keamanan', href: '/keamanan/' },
+      { label: 'Status', href: '/status/' },
     ],
   },
   {
     label: 'Akun',
     links: [
-      { label: 'Masuk', href: '/masuk' },
-      { label: 'Coba Simulasi Gratis', href: '/tour-produk-gratis' },
+      { label: 'Masuk', href: '/masuk/' },
+      { label: 'Coba Simulasi Gratis', href: '/tour-produk-gratis/' },
     ],
   },
   {
     label: 'Legal',
     links: [
-      { label: 'Privasi', href: '/privasi' },
-      { label: 'Syarat Penggunaan', href: '/syarat-penggunaan' },
-      { label: 'Kebijakan Cookie', href: '/kebijakan-cookie' },
-      { label: 'Pemrosesan Data', href: '/pemrosesan-data' },
+      { label: 'Privasi', href: '/privasi/' },
+      { label: 'Syarat Penggunaan', href: '/syarat-penggunaan/' },
+      { label: 'Kebijakan Cookie', href: '/kebijakan-cookie/' },
+      { label: 'Pemrosesan Data', href: '/pemrosesan-data/' },
     ],
   },
 ];
@@ -441,10 +441,10 @@ export interface RolePage {
 }
 
 export const roles: RolePage[] = [
-  { slug: 'pemilik-usaha', title: 'Pemilik Usaha', summary: 'Lihat kesehatan bisnis lintas modul tanpa kehilangan kendali atas tim dan keputusan.', responsibilities: ['Menentukan prioritas usaha', 'Memantau kesehatan penjualan dan kas', 'Menjaga akses serta langganan'], friction: ['Ringkasan datang terlambat', 'Data berbeda antar tim', 'Penyebab perubahan sulit ditelusuri'], priorities: ['Insight lintas modul', 'Perbandingan periode', 'Peringatan yang perlu tindakan'], permissions: 'Dapat melihat, mengatur, menyetujui, mengekspor, dan mengelola tagihan sesuai kebijakan akun.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis' },
-  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Dapat melihat, membuat, dan mengedit data operasional sesuai cakupan. Persetujuan, ekspor, dan tagihan mengikuti akses pemilik.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis' },
-  { slug: 'kasir', title: 'Kasir', summary: 'Selesaikan alur penjualan yang diizinkan dengan cepat dan panduan pemulihan yang jelas.', responsibilities: ['Mencatat transaksi', 'Memeriksa pembayaran', 'Meminta bantuan saat alur gagal'], friction: ['Langkah transaksi terlalu panjang', 'Status pembayaran membingungkan', 'Panduan pemulihan sulit ditemukan'], priorities: ['Transaksi aktif', 'Status pembayaran', 'Bantuan sesuai situasi'], permissions: 'Fokus pada melihat dan membuat transaksi yang diizinkan. Persetujuan, ekspor, dan tagihan tidak tersedia.', ctaLabel: 'Buka Panduan Kasir', ctaHref: '/bantuan' },
-  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Dapat melihat kegiatan operasional, meninjau, dan mengekspor sesuai kebijakan. Tagihan tetap dikelola pemilik usaha.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis' },
+  { slug: 'pemilik-usaha', title: 'Pemilik Usaha', summary: 'Lihat kesehatan bisnis lintas modul tanpa kehilangan kendali atas tim dan keputusan.', responsibilities: ['Menentukan prioritas usaha', 'Memantau kesehatan penjualan dan kas', 'Menjaga akses serta langganan'], friction: ['Ringkasan datang terlambat', 'Data berbeda antar tim', 'Penyebab perubahan sulit ditelusuri'], priorities: ['Insight lintas modul', 'Perbandingan periode', 'Peringatan yang perlu tindakan'], permissions: 'Dapat melihat, mengatur, menyetujui, mengekspor, dan mengelola tagihan sesuai kebijakan akun.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Dapat melihat, membuat, dan mengedit data operasional sesuai cakupan. Persetujuan, ekspor, dan tagihan mengikuti akses pemilik.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'kasir', title: 'Kasir', summary: 'Selesaikan alur penjualan yang diizinkan dengan cepat dan panduan pemulihan yang jelas.', responsibilities: ['Mencatat transaksi', 'Memeriksa pembayaran', 'Meminta bantuan saat alur gagal'], friction: ['Langkah transaksi terlalu panjang', 'Status pembayaran membingungkan', 'Panduan pemulihan sulit ditemukan'], priorities: ['Transaksi aktif', 'Status pembayaran', 'Bantuan sesuai situasi'], permissions: 'Fokus pada melihat dan membuat transaksi yang diizinkan. Persetujuan, ekspor, dan tagihan tidak tersedia.', ctaLabel: 'Buka Panduan Kasir', ctaHref: '/bantuan/' },
+  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Dapat melihat kegiatan operasional, meninjau, dan mengekspor sesuai kebijakan. Tagihan tetap dikelola pemilik usaha.', ctaLabel: 'Coba Simulasi Gratis', ctaHref: '/tour-produk-gratis/' },
 ];
 
 export const industries = [
@@ -468,8 +468,8 @@ export const blogCategories = [
 ];
 
 export const resources = [
-  { href: '/panduan', title: 'Panduan', text: 'Pelajari langkah praktis untuk memahami masalah bisnis.' },
-  { href: '/template', title: 'Template', text: 'Siapkan catatan bisnis dengan struktur yang lebih konsisten.' },
-  { href: '/kalkulator', title: 'Kalkulator', text: 'Hitung indikator dasar langsung di browser.' },
-  { href: '/kamus-bisnis', title: 'Kamus Bisnis', text: 'Pahami istilah bisnis dalam bahasa yang lebih sederhana.' },
+  { href: '/panduan/', title: 'Panduan', text: 'Pelajari langkah praktis untuk memahami masalah bisnis.' },
+  { href: '/template/', title: 'Template', text: 'Siapkan catatan bisnis dengan struktur yang lebih konsisten.' },
+  { href: '/kalkulator/', title: 'Kalkulator', text: 'Hitung indikator dasar langsung di browser.' },
+  { href: '/kamus-bisnis/', title: 'Kamus Bisnis', text: 'Pahami istilah bisnis dalam bahasa yang lebih sederhana.' },
 ];

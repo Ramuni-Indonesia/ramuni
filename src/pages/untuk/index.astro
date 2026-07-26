@@ -24,7 +24,7 @@ const collaborationFlow = [
 ];
 ---
 <BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat bagaimana pemilik usaha, admin toko, kasir, dan supervisor memakai satu sumber pemahaman dengan akses yang berbeda.">
-  <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman. Setiap peran tetap punya batas." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Coba Simulasi Gratis" secondaryHref="/tour-produk-gratis" visual="guide" visualLabel="Peta peran" visualTitle="Masalah diarahkan kepada orang yang punya wewenang." />
+  <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman. Setiap peran tetap punya batas." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Coba Simulasi Gratis" secondaryHref="/tour-produk-gratis/" visual="guide" visualLabel="Peta peran" visualTitle="Masalah diarahkan kepada orang yang punya wewenang." />
   <section class="section dark-surface role-hub__selector" id="daftar-peran" aria-labelledby="role-selector-title">
     <div class="container role-hub__selector-layout">
       <div class="role-hub__sticky reveal">
@@ -35,7 +35,7 @@ const collaborationFlow = [
       </div>
       <nav class="role-hub__roles" aria-label="Daftar peran tim">
         {roles.map((role, index) => (
-          <a class="role-hub__role reveal" style={`--i:${index}`} href={`/untuk/${role.slug}`}>
+          <a class="role-hub__role reveal" style={`--i:${index}`} href={`/untuk/${role.slug}/`}>
             <span>{roleViews[role.slug].lens}</span>
             <div><strong>{role.title}</strong><p>{role.summary}</p></div>
             <b aria-hidden="true">↗</b>
@@ -79,12 +79,12 @@ const collaborationFlow = [
     <div class="container">
       <div class="role-hub__intro reveal"><p class="eyebrow">Tautan terkait</p><h2 id="related-title">Lanjutkan dari peran ke alur nyata.</h2><p class="lede">Pilih produk atau industri yang paling dekat dengan tugas tim hari ini.</p></div>
       <div class="role-hub__related-grid">
-        {roles.map((role, index) => { const view = roleViews[role.slug]; const relatedProducts = products.filter((product) => view.products.includes(product.slug)); const relatedIndustries = industries.filter((industry) => view.industries.includes(industry.slug)); return <article class="role-hub__related-card reveal" style={`--i:${index}`}><h3>{role.title}</h3><p>{view.handoff}</p><div><strong>Produk</strong>{relatedProducts.map((product) => <a href={`/produk/${product.slug}`}>{product.title}</a>)}</div><div><strong>Industri</strong>{relatedIndustries.map((industry) => <a href={`/industri/${industry.slug}`}>{industry.title}</a>)}</div></article>; })}
+        {roles.map((role, index) => { const view = roleViews[role.slug]; const relatedProducts = products.filter((product) => view.products.includes(product.slug)); const relatedIndustries = industries.filter((industry) => view.industries.includes(industry.slug)); return <article class="role-hub__related-card reveal" style={`--i:${index}`}><h3>{role.title}</h3><p>{view.handoff}</p><div><strong>Produk</strong>{relatedProducts.map((product) => <a href={`/produk/${product.slug}/`}>{product.title}</a>)}</div><div><strong>Industri</strong>{relatedIndustries.map((industry) => <a href={`/industri/${industry.slug}/`}>{industry.title}</a>)}</div></article>; })}
       </div>
     </div>
   </section>
 
   <section class="section role-hub__closing" id="cta" aria-labelledby="role-cta-title">
-    <div class="container reveal"><div><p class="eyebrow">Siapkan tim</p><h2 id="role-cta-title">Lihat RAMUNI dari tanggung jawab tim Anda.</h2><p>Mulai dari satu peran yang paling penting, lalu cocokkan batas akses, data, dan tindak lanjutnya.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="/panduan">Baca Panduan</a></div></div>
+    <div class="container reveal"><div><p class="eyebrow">Siapkan tim</p><h2 id="role-cta-title">Lihat RAMUNI dari tanggung jawab tim Anda.</h2><p>Mulai dari satu peran yang paling penting, lalu cocokkan batas akses, data, dan tindak lanjutnya.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a><a class="button button--secondary" href="/panduan/">Baca Panduan</a></div></div>
   </section>
 </BaseLayout>

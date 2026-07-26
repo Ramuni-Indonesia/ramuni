@@ -38,10 +38,10 @@ const problems = [
 ];
 
 const readingPaths = [
-  { title: 'Rapikan catatan', text: 'Mulai dari istilah, periode, dan angka yang paling sering membingungkan.', href: '/blog/kategori/operasional-bisnis' },
-  { title: 'Baca perubahan', text: 'Bandingkan penjualan, stok, atau kas dengan periode yang setara.', href: '/blog/kategori/stok-inventori' },
-  { title: 'Periksa sebelum bertindak', text: 'Gunakan bukti dan batas AI sebelum memilih langkah berikutnya.', href: '/blog/kategori/ai-untuk-umkm' },
-].filter((item) => publishedCategories.has(item.href.split('/').pop() || ''));
+  { title: 'Rapikan catatan', text: 'Mulai dari istilah, periode, dan angka yang paling sering membingungkan.', href: '/blog/kategori/operasional-bisnis/' },
+  { title: 'Baca perubahan', text: 'Bandingkan penjualan, stok, atau kas dengan periode yang setara.', href: '/blog/kategori/stok-inventori/' },
+  { title: 'Periksa sebelum bertindak', text: 'Gunakan bukti dan batas AI sebelum memilih langkah berikutnya.', href: '/blog/kategori/ai-untuk-umkm/' },
+].filter((item) => publishedCategories.has(item.href.replace(/\/+$/, '').split('/').pop() || ''));
 
 const schema = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, dan AI untuk UMKM.' },
@@ -60,9 +60,9 @@ const schema = [
         <h1>Angka usaha punya cerita.</h1>
         <p class="lede">Kami membantu Anda menemukan ceritanya: stok mana yang perlu dicek, ke mana kas bergerak, dan kapan jawaban AI harus diperiksa lagi.</p>
         <nav class="blog-hero-topics" aria-label="Topik utama blog RAMUNI">
-          <a href="/blog/kategori/stok-inventori">Stok</a>
-          <a href="/blog/kategori/keuangan-umkm">Arus kas</a>
-          <a href="/blog/kategori/ai-untuk-umkm">AI untuk UMKM</a>
+          <a href="/blog/kategori/stok-inventori/">Stok</a>
+          <a href="/blog/kategori/keuangan-umkm/">Arus kas</a>
+          <a href="/blog/kategori/ai-untuk-umkm/">AI untuk UMKM</a>
         </nav>
       </div>
       <div class="blog-hero-side reveal is-visible">
@@ -75,7 +75,7 @@ const schema = [
           <ol><li><b>01</b><span>Pilih catatan</span></li><li><b>02</b><span>Bandingkan</span></li><li><b>03</b><span>Periksa konteks</span></li></ol>
         </div>
         <p class="blog-hero-note"><span>Untuk pemilik usaha</span> Baca satu topik, cek angkanya, lalu tentukan langkah kecil berikutnya.</p>
-        <form class="blog-search" action="/blog/cari" method="get" role="search">
+        <form class="blog-search" action="/blog/cari/" method="get" role="search">
           <label for="blog-query">Apa yang ingin Anda pahami?</label>
           <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Coba cari: stok menipis" /><button type="submit">Cari</button></div>
           <small>Hindari nama pelanggan dan data transaksi.</small>
@@ -85,7 +85,7 @@ const schema = [
   </section>
 
   {featured && <section class="section surface blog-featured-stage" aria-labelledby="featured-heading">
-    <a class="container featured-story reveal" href={`/blog/${featured.id}`} aria-labelledby="featured-heading">
+    <a class="container featured-story reveal" href={`/blog/${featured.id}/`} aria-labelledby="featured-heading">
       <div class="featured-visual"><img src={featured.data.cover} width="1200" height="720" alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></div>
       <div class="featured-copy">
         <div class="featured-index"><span>Pilihan editor</span><b>01</b></div>
@@ -111,7 +111,7 @@ const schema = [
     <div class="container blog-problem-layout">
       <div class="blog-section-lead reveal"><h2 id="problem-heading">Pertanyaan bisnis yang dekat dengan keseharian.</h2><p>Pilih masalah yang ingin Anda pahami lebih dulu.</p></div>
       <div class="blog-question-deck" aria-label="Pilih pertanyaan bisnis">
-        {problems.map((problem, index) => <a class="blog-question-card reveal" href={`/blog/kategori/${problem.slug}`} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['blog-question-signal', `blog-question-signal--${problem.slug}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><strong>{problem.question}</strong><small>{problem.label}</small></a>)}
+        {problems.map((problem, index) => <a class="blog-question-card reveal" href={`/blog/kategori/${problem.slug}/`} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['blog-question-signal', `blog-question-signal--${problem.slug}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><strong>{problem.question}</strong><small>{problem.label}</small></a>)}
       </div>
     </div>
   </section>
@@ -120,7 +120,7 @@ const schema = [
     <div class="container blog-topic-map">
       <div class="blog-topic-map__head reveal"><p class="section-kicker">Peta topik</p><h2 id="category-heading">Masuk dari masalah yang sedang terasa.</h2><p>Tidak perlu membaca semuanya. Pilih satu topik yang dekat dengan pekerjaan hari ini.</p></div>
       <div class="category-index">
-        {categories.map((category, index) => <a class="category-index-row reveal" href={`/blog/kategori/${category.slug}`} style={`--i:${index}`}><b>0{index + 1}</b><div><h3>{category.name}</h3><p>{category.description}</p></div><StoryMicroVisual categorySlug={category.slug} compact inline /><div><span>{category.question}</span><small>{category.count} artikel <i aria-hidden="true">&rarr;</i></small></div></a>)}
+        {categories.map((category, index) => <a class="category-index-row reveal" href={`/blog/kategori/${category.slug}/`} style={`--i:${index}`}><b>0{index + 1}</b><div><h3>{category.name}</h3><p>{category.description}</p></div><StoryMicroVisual categorySlug={category.slug} compact inline /><div><span>{category.question}</span><small>{category.count} artikel <i aria-hidden="true">&rarr;</i></small></div></a>)}
       </div>
     </div>
   </section>
@@ -129,7 +129,7 @@ const schema = [
     <div class="container blog-latest-layout">
       <div class="blog-latest-head reveal"><p class="section-kicker">Terbit terbaru</p><h2 id="latest-heading">Bacaan berikutnya, dipilih dari kebutuhan nyata.</h2><p>Setiap artikel dimulai dari satu pertanyaan usaha, bukan istilah teknis.</p></div>
       <div class="editorial-cards">
-        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={post.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{post.data.category}</span><b>0{index + 2}</b></div><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
+        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}/`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={post.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{post.data.category}</span><b>0{index + 2}</b></div><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
       </div>
     </div>
   </section>
@@ -138,11 +138,11 @@ const schema = [
     <div class="container editorial-trust-manifesto">
       <div class="editorial-trust-manifesto__copy reveal"><p class="section-kicker">Kepercayaan editorial</p><h2 id="trust-heading">Artikel yang baik menunjukkan sumber dan batasnya.</h2><p>Kami menandai status artikel, menjelaskan cara pemeriksaan, dan membuka jalur koreksi.</p></div>
       <nav class="editorial-policy-grid" aria-label="Kebijakan editorial blog">
-        <a href="/blog/kebijakan-editorial"><span>01</span><strong>Kebijakan editorial</strong><i>&rarr;</i></a>
-        <a href="/blog/metodologi-fact-check"><span>02</span><strong>Metodologi pengecekan fakta</strong><i>&rarr;</i></a>
-        <a href="/blog/kebijakan-sumber"><span>03</span><strong>Kebijakan sumber</strong><i>&rarr;</i></a>
-        <a href="/blog/kebijakan-pembaruan"><span>04</span><strong>Kebijakan pembaruan</strong><i>&rarr;</i></a>
-        <a href="/blog/koreksi"><span>05</span><strong>Koreksi</strong><i>&rarr;</i></a>
+        <a href="/blog/kebijakan-editorial/"><span>01</span><strong>Kebijakan editorial</strong><i>&rarr;</i></a>
+        <a href="/blog/metodologi-fact-check/"><span>02</span><strong>Metodologi pengecekan fakta</strong><i>&rarr;</i></a>
+        <a href="/blog/kebijakan-sumber/"><span>03</span><strong>Kebijakan sumber</strong><i>&rarr;</i></a>
+        <a href="/blog/kebijakan-pembaruan/"><span>04</span><strong>Kebijakan pembaruan</strong><i>&rarr;</i></a>
+        <a href="/blog/koreksi/"><span>05</span><strong>Koreksi</strong><i>&rarr;</i></a>
       </nav>
     </div>
   </section>
@@ -154,7 +154,7 @@ const schema = [
         title="Punya satu angka usaha yang membingungkan?"
         text="Lihat contoh cara RAMUNI mengubah catatan menjadi pertanyaan yang bisa diperiksa."
         secondaryLabel="Pelajari Produk"
-        secondaryHref="/produk"
+        secondaryHref="/produk/"
       />
     </div>
   </section>

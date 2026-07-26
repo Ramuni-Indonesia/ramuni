@@ -12,17 +12,17 @@ const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ram
 const featuredPost = posts.find((post) => post.data.featured) || posts[0];
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const resourceFormats = [
-  { href: '/panduan', title: 'Panduan', text: 'Ikuti langkah berurutan saat Anda belum tahu harus mulai memeriksa dari mana.', fit: 'Untuk memahami proses', visual: 'guide' },
-  { href: '/template', title: 'Template', text: 'Pakai struktur siap isi agar review rutin tidak dimulai dari halaman kosong.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
-  { href: '/kalkulator', title: 'Kalkulator', text: 'Uji laba, HPP, atau titik pesan ulang dengan rumus yang ditampilkan terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
-  { href: '/kamus-bisnis', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
+  { href: '/panduan/', title: 'Panduan', text: 'Ikuti langkah berurutan saat Anda belum tahu harus mulai memeriksa dari mana.', fit: 'Untuk memahami proses', visual: 'guide' },
+  { href: '/template/', title: 'Template', text: 'Pakai struktur siap isi agar review rutin tidak dimulai dari halaman kosong.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
+  { href: '/kalkulator/', title: 'Kalkulator', text: 'Uji laba, HPP, atau titik pesan ulang dengan rumus yang ditampilkan terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
+  { href: '/kamus-bisnis/', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
 ];
 
 const paths = [
-  { question: 'Stok berubah, tetapi penyebabnya belum terlihat', href: '/panduan/membaca-stok-harian', label: 'Baca panduan stok', visual: 'stock' },
-  { question: 'Omzet naik, tetapi laba belum terasa', href: '/kalkulator/laba-usaha', label: 'Periksa laba sederhana', visual: 'profit' },
-  { question: 'Istilah di laporan masih membingungkan', href: '/kamus-bisnis', label: 'Cari istilah bisnis', visual: 'terms' },
-  { question: 'Review mingguan belum punya urutan tetap', href: '/template', label: 'Lihat struktur template', visual: 'weekly' },
+  { question: 'Stok berubah, tetapi penyebabnya belum terlihat', href: '/panduan/membaca-stok-harian/', label: 'Baca panduan stok', visual: 'stock' },
+  { question: 'Omzet naik, tetapi laba belum terasa', href: '/kalkulator/laba-usaha/', label: 'Periksa laba sederhana', visual: 'profit' },
+  { question: 'Istilah di laporan masih membingungkan', href: '/kamus-bisnis/', label: 'Cari istilah bisnis', visual: 'terms' },
+  { question: 'Review mingguan belum punya urutan tetap', href: '/template/', label: 'Lihat struktur template', visual: 'weekly' },
 ];
 
 const modes = [
@@ -32,9 +32,9 @@ const modes = [
 ];
 
 const standards = [
-  { number: '01', title: 'Sumber terlihat', text: 'Definisi, periode, dan rujukan ditulis agar pembaca dapat memeriksanya.', href: '/blog/kebijakan-sumber' },
-  { number: '02', title: 'Contoh diberi konteks', text: 'Data contoh tidak ditampilkan sebagai hasil usaha nyata atau janji produk.', href: '/blog/metodologi-fact-check' },
-  { number: '03', title: 'Pembaruan tercatat', text: 'Perubahan penting memiliki tanggal, ringkasan, dan jalur koreksi.', href: '/blog/kebijakan-pembaruan' },
+  { number: '01', title: 'Sumber terlihat', text: 'Definisi, periode, dan rujukan ditulis agar pembaca dapat memeriksanya.', href: '/blog/kebijakan-sumber/' },
+  { number: '02', title: 'Contoh diberi konteks', text: 'Data contoh tidak ditampilkan sebagai hasil usaha nyata atau janji produk.', href: '/blog/metodologi-fact-check/' },
+  { number: '03', title: 'Pembaruan tercatat', text: 'Perubahan penting memiliki tanggal, ringkasan, dan jalur koreksi.', href: '/blog/kebijakan-pembaruan/' },
 ];
 
 const schema = [
@@ -76,7 +76,7 @@ const schema = [
           <h1>Cari jawaban untuk angka usaha.</h1>
           <p class="lede">Baca artikel, coba alat sederhana, lalu periksa sumber dan batasnya sebelum menentukan langkah.</p>
           <nav class="resource-hub-hero__links" aria-label="Pintasan sumber daya">
-            <a href="/blog">Artikel</a><a href="/panduan">Panduan</a><a href="/template">Template</a><a href="/kalkulator">Kalkulator</a><a href="/kamus-bisnis">Kamus</a>
+            <a href="/blog/">Artikel</a><a href="/panduan/">Panduan</a><a href="/template/">Template</a><a href="/kalkulator/">Kalkulator</a><a href="/kamus-bisnis/">Kamus</a>
           </nav>
         </div>
 
@@ -105,7 +105,7 @@ const schema = [
             <p>Tidak ada urutan wajib. Mulai dari artikel jika butuh konteks, atau langsung buka alat jika pertanyaannya sudah jelas.</p>
           </div>
           <div class="resource-library__grid">
-            {featuredPost && <a class="resource-featured-article reveal" href={`/blog/${featuredPost.id}`}>
+            {featuredPost && <a class="resource-featured-article reveal" href={`/blog/${featuredPost.id}/`}>
               <figure><img src={featuredPost.data.cover} width="1200" height="720" alt={featuredPost.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={featuredPost.data.categorySlug} compact /></figure>
               <div><span>Artikel pilihan</span><h3>{featuredPost.data.title}</h3><p>{featuredPost.data.dek}</p><small>{formatDate(featuredPost.data.updatedAt || featuredPost.data.publishedAt)} · {featuredPost.data.readingTime}</small><b>Baca artikel <i aria-hidden="true">&rarr;</i></b></div>
             </a>}
@@ -130,16 +130,16 @@ const schema = [
 
       <section class="section resource-editorial" aria-labelledby="resource-editorial-title">
         <div class="container resource-editorial__layout">
-          <div class="resource-editorial__statement reveal"><p class="section-kicker">Standar editorial</p><h2 id="resource-editorial-title">Materi yang berguna harus bisa diperiksa.</h2><p>Kami menunjukkan sumber, contoh yang diberi batas, dan riwayat pembaruan. Jika ada yang kurang tepat, jalur koreksi selalu tersedia.</p><a class="text-link" href="/blog/kebijakan-editorial">Baca kebijakan editorial</a></div>
+          <div class="resource-editorial__statement reveal"><p class="section-kicker">Standar editorial</p><h2 id="resource-editorial-title">Materi yang berguna harus bisa diperiksa.</h2><p>Kami menunjukkan sumber, contoh yang diberi batas, dan riwayat pembaruan. Jika ada yang kurang tepat, jalur koreksi selalu tersedia.</p><a class="text-link" href="/blog/kebijakan-editorial/">Baca kebijakan editorial</a></div>
           <ol class="resource-editorial__standards">
             {standards.map((standard) => <li class="reveal"><a href={standard.href}><span>{standard.number}</span><div><h3>{standard.title}</h3><p>{standard.text}</p></div><i aria-hidden="true">&rarr;</i></a></li>)}
           </ol>
-          <nav class="resource-editorial__policies" aria-label="Kebijakan editorial"><a href="/blog/metodologi-fact-check">Pengecekan fakta</a><a href="/blog/kebijakan-sumber">Sumber</a><a href="/blog/kebijakan-pembaruan">Pembaruan</a><a href="/blog/koreksi">Koreksi</a></nav>
+          <nav class="resource-editorial__policies" aria-label="Kebijakan editorial"><a href="/blog/metodologi-fact-check/">Pengecekan fakta</a><a href="/blog/kebijakan-sumber/">Sumber</a><a href="/blog/kebijakan-pembaruan/">Pembaruan</a><a href="/blog/koreksi/">Koreksi</a></nav>
         </div>
       </section>
 
       <section class="section resource-close-stage">
-        <div class="container resource-close reveal"><div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan usaha.</h2><p>Mulai dari artikel jika butuh penjelasan, atau buka simulasi dengan data contoh.</p></div><div class="button-row"><a class="button button--primary" href="/blog">Jelajahi Artikel</a><a class="button button--secondary" href="/tour-produk-gratis">Coba Simulasi Gratis</a></div></div>
+        <div class="container resource-close reveal"><div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan usaha.</h2><p>Mulai dari artikel jika butuh penjelasan, atau buka simulasi dengan data contoh.</p></div><div class="button-row"><a class="button button--primary" href="/blog/">Jelajahi Artikel</a><a class="button button--secondary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a></div></div>
       </section>
     </div>
   </div>

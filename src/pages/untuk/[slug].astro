@@ -91,36 +91,44 @@ export function getStaticPaths() {
 
 const { role } = Astro.props;
 const context = roleContext[role.slug];
+const roleSeo: Record<string, { title: string; description: string }> = {
+  'pemilik-usaha': { title: 'Dashboard untuk Pemilik Usaha | RAMUNI', description: 'Bantu pemilik UMKM membaca perubahan penjualan, stok, kas, dan pekerjaan tim sebelum menentukan prioritas serta penanggung jawab.' },
+  'admin-toko': { title: 'Sistem Kerja Admin Toko UMKM | RAMUNI', description: 'Bantu admin toko merapikan produk, pelanggan, transaksi, biaya, dan koreksi dengan batas akses serta jejak yang dapat diperiksa.' },
+  kasir: { title: 'Aplikasi Kasir dengan Alur Aman | RAMUNI', description: 'Bantu kasir menyelesaikan transaksi, memeriksa status pembayaran, dan meneruskan masalah tanpa mengulang input atau mengambil akses lain.' },
+  supervisor: { title: 'Dashboard Supervisor Operasional | RAMUNI', description: 'Bantu supervisor UMKM melihat masalah berulang, meninjau laporan, dan meneruskan keputusan kepada pemilik bersama bukti pendukung.' },
+};
+const seo = roleSeo[role.slug] || { title: `RAMUNI untuk ${role.title}`, description: role.summary };
+const canonicalPath = `/untuk/${role.slug}/`;
 const relevantProducts = products.filter((product) => product.roles.includes(role.title)).slice(0, 4);
 const relatedIndustries = industries.filter((industry) => context.industrySlugs.includes(industry.slug));
 const roleHelpLinks: Record<string, { label: string; href: string }[]> = {
   'pemilik-usaha': [
-    { label: 'Atur batas akses tim', href: '/keamanan' },
-    { label: 'Siapkan pertanyaan untuk demo', href: '/panduan' },
+    { label: 'Atur batas akses tim', href: '/keamanan/' },
+    { label: 'Siapkan pertanyaan untuk demo', href: '/panduan/' },
   ],
   'admin-toko': [
-    { label: 'Panduan merapikan data awal', href: '/panduan' },
+    { label: 'Panduan merapikan data awal', href: '/panduan/' },
     { label: 'Hubungi dukungan untuk kendala impor', href: 'https://wa.me/message/K35W6X6WT7YMJ1' },
   ],
   kasir: [
-    { label: 'Cari langkah pemulihan transaksi', href: '/bantuan' },
-    { label: 'Minta akses melalui Pemilik Usaha', href: '/untuk/pemilik-usaha' },
+    { label: 'Cari langkah pemulihan transaksi', href: '/bantuan/' },
+    { label: 'Minta akses melalui Pemilik Usaha', href: '/untuk/pemilik-usaha/' },
   ],
   supervisor: [
-    { label: 'Panduan membaca tindak lanjut tim', href: '/panduan' },
-    { label: 'Periksa status layanan', href: '/status' },
+    { label: 'Panduan membaca tindak lanjut tim', href: '/panduan/' },
+    { label: 'Periksa status layanan', href: '/status/' },
   ],
 };
 const closingLinks = role.slug === 'kasir'
   ? [
-      { label: 'Buka Pusat Bantuan', href: '/bantuan', className: 'button button--primary' },
-      { label: 'Lihat Peran Pemilik', href: '/untuk/pemilik-usaha', className: 'button button--secondary' },
+      { label: 'Buka Pusat Bantuan', href: '/bantuan/', className: 'button button--primary' },
+      { label: 'Lihat Peran Pemilik', href: '/untuk/pemilik-usaha/', className: 'button button--secondary' },
     ]
   : [{ label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' }];
 ---
-<BaseLayout title={'RAMUNI untuk ' + role.title} description={role.summary} noindex={!releaseGates.claimPagesIndexable}>
-  <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
-  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk" visual="guide" visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
+<BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable}>
+  <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
+  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" visual="guide" visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
 
   <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
     <div class="container audience-split">
@@ -187,8 +195,8 @@ const closingLinks = role.slug === 'kasir'
     <div class="container audience-split">
       <div class="audience-section-heading reveal"><h2 id="related-title">{context.headings.related}</h2></div>
       <div>
-        <div class="audience-module-list">{relevantProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}</div>
-        <div class="audience-related reveal"><strong>Konteks industri</strong><div>{relatedIndustries.map((industry) => <a href={'/industri/' + industry.slug}>{industry.title}</a>)}</div></div>
+        <div class="audience-module-list">{relevantProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug + '/'}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}</div>
+        <div class="audience-related reveal"><strong>Konteks industri</strong><div>{relatedIndustries.map((industry) => <a href={'/industri/' + industry.slug + '/'}>{industry.title}</a>)}</div></div>
         <div class="audience-related reveal"><strong>Panduan untuk {role.title}</strong><div>{roleHelpLinks[role.slug].map((link) => <a href={link.href}>{link.label}</a>)}</div></div>
       </div>
     </div>

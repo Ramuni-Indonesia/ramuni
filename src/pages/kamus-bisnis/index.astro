@@ -47,7 +47,7 @@ const schema = [
     <header class="learning-hero learning-glossary-hero">
       <div class="container learning-hero__grid">
         <div class="learning-hero__copy reveal is-visible">
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span aria-current="page">Kamus Bisnis</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Kamus Bisnis</span></nav>
           <p class="eyebrow">Kamus bisnis UMKM</p>
           <h1>Pahami istilah sebelum membandingkan angkanya.</h1>
           <p class="lede">Cari arti singkat, lihat contoh, lalu hubungkan istilah itu dengan catatan usaha yang tepat.</p>
@@ -58,10 +58,10 @@ const schema = [
           <header><span>Peta istilah</span><small>Angka saling terhubung</small></header>
           <div class="glossary-map__stage">
             <div class="glossary-map__orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-            <a href="/kamus-bisnis/omzet" class="glossary-map__node glossary-map__node--revenue"><small>Penjualan</small><strong>Omzet</strong></a>
-            <a href="/kamus-bisnis/hpp" class="glossary-map__node glossary-map__node--cost"><small>Biaya barang</small><strong>HPP</strong></a>
-            <a href="/kamus-bisnis/arus-kas" class="glossary-map__node glossary-map__node--cash"><small>Waktu uang</small><strong>Arus kas</strong></a>
-            <a href="/kamus-bisnis/stok-pengaman" class="glossary-map__node glossary-map__node--stock"><small>Cadangan</small><strong>Stok pengaman</strong></a>
+            <a href="/kamus-bisnis/omzet/" class="glossary-map__node glossary-map__node--revenue"><small>Penjualan</small><strong>Omzet</strong></a>
+            <a href="/kamus-bisnis/hpp/" class="glossary-map__node glossary-map__node--cost"><small>Biaya barang</small><strong>HPP</strong></a>
+            <a href="/kamus-bisnis/arus-kas/" class="glossary-map__node glossary-map__node--cash"><small>Waktu uang</small><strong>Arus kas</strong></a>
+            <a href="/kamus-bisnis/stok-pengaman/" class="glossary-map__node glossary-map__node--stock"><small>Cadangan</small><strong>Stok pengaman</strong></a>
             <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="Muni membantu menghubungkan istilah bisnis" decoding="async" />
           </div>
           <footer><span>Definisi</span><strong>→</strong><span>Contoh</span><strong>→</strong><span>Penggunaan</span></footer>
@@ -79,11 +79,11 @@ const schema = [
           <p aria-live="polite" data-glossary-status>{terms.length} istilah tersedia.</p>
         </div>
         <div class="glossary-ledger">
-          {terms.map((term, index) => <a class="glossary-ledger__row reveal" href={`/kamus-bisnis/${term.slug}`} data-glossary-term data-category={term.category.toLowerCase()} data-search={`${term.title} ${term.category} ${term.text} ${term.use} ${term.links.join(' ')}`.toLowerCase()} style={`--i:${index}`}>
+          {terms.map((term, index) => <a class="glossary-ledger__row reveal" href={`/kamus-bisnis/${term.slug}/`} data-glossary-term data-category={term.category.toLowerCase()} data-search={`${term.title} ${term.category} ${term.text} ${term.use} ${term.links.join(' ')}`.toLowerCase()} style={`--i:${index}`}>
             <span>{String(index + 1).padStart(2, '0')}</span><div><small>{term.category}</small><h3>{term.title}</h3></div><div><p>{term.text}</p><strong>{term.use}</strong></div><div class="glossary-ledger__links" aria-hidden="true">{term.links.map((link) => <i>{link}</i>)}</div><b>Baca arti <i aria-hidden="true">→</i></b>
           </a>)}
         </div>
-        <div class="glossary-empty" data-glossary-empty hidden><strong>Istilah belum ditemukan.</strong><p>Coba kata yang lebih singkat, atau buka seluruh sumber daya untuk mencari konteks yang lebih luas.</p><a class="text-link" href="/sumber-daya">Buka Sumber Daya</a></div>
+        <div class="glossary-empty" data-glossary-empty hidden><strong>Istilah belum ditemukan.</strong><p>Coba kata yang lebih singkat, atau buka seluruh sumber daya untuk mencari konteks yang lebih luas.</p><a class="text-link" href="/sumber-daya/">Buka Sumber Daya</a></div>
       </div>
     </section>
 
@@ -91,9 +91,9 @@ const schema = [
       <div class="container learning-method__grid">
         <div class="learning-method__copy reveal"><p class="section-kicker">Hubungkan istilah</p><h2 id="glossary-bridge-title">Satu angka jarang berdiri sendiri.</h2><p>Omzet perlu dibaca bersama biaya. Stok perlu dibaca bersama laju penjualan. Arus kas perlu dibaca bersama waktu pembayaran.</p></div>
         <div class="glossary-connection-rail">
-          <a href="/panduan/memahami-arus-kas"><span>01</span><div><small>Arus kas + waktu</small><strong>Lihat kenapa uang belum tentu sudah tersedia.</strong></div><i aria-hidden="true">→</i></a>
-          <a href="/kalkulator/hpp"><span>02</span><div><small>HPP + persediaan</small><strong>Periksa biaya barang dalam periode yang sama.</strong></div><i aria-hidden="true">→</i></a>
-          <a href="/panduan/membaca-stok-harian"><span>03</span><div><small>Stok + penjualan</small><strong>Hubungkan saldo dengan laju barang keluar.</strong></div><i aria-hidden="true">→</i></a>
+          <a href="/panduan/memahami-arus-kas/"><span>01</span><div><small>Arus kas + waktu</small><strong>Lihat kenapa uang belum tentu sudah tersedia.</strong></div><i aria-hidden="true">→</i></a>
+          <a href="/kalkulator/hpp/"><span>02</span><div><small>HPP + persediaan</small><strong>Periksa biaya barang dalam periode yang sama.</strong></div><i aria-hidden="true">→</i></a>
+          <a href="/panduan/membaca-stok-harian/"><span>03</span><div><small>Stok + penjualan</small><strong>Hubungkan saldo dengan laju barang keluar.</strong></div><i aria-hidden="true">→</i></a>
         </div>
       </div>
     </section>
@@ -101,7 +101,7 @@ const schema = [
     <section class="section learning-close-stage">
       <div class="container learning-close learning-close--compact reveal">
         <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
-        <div><p class="section-kicker">Sudah paham istilahnya?</p><h2>Coba istilah itu dengan angka contoh.</h2><p>Buka kalkulator untuk melihat rumusnya atau panduan untuk mengikuti urutan pemeriksaan.</p><div class="button-row"><a class="button button--primary" href="/kalkulator">Buka kalkulator</a><a class="button button--secondary" href="/panduan">Baca panduan</a></div></div>
+        <div><p class="section-kicker">Sudah paham istilahnya?</p><h2>Coba istilah itu dengan angka contoh.</h2><p>Buka kalkulator untuk melihat rumusnya atau panduan untuk mengikuti urutan pemeriksaan.</p><div class="button-row"><a class="button button--primary" href="/kalkulator/">Buka kalkulator</a><a class="button button--secondary" href="/panduan/">Baca panduan</a></div></div>
       </div>
     </section>
   </div>

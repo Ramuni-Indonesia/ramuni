@@ -40,7 +40,7 @@ const schema = [
     <header class="template-library-hero">
       <div class="container template-library-hero__grid">
         <div>
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya">Sumber Daya</a><span>/</span><span aria-current="page">Template</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Template</span></nav>
           <p class="eyebrow">Template kerja gratis</p>
           <h1>Catatan yang siap dipakai, bukan sekadar file kosong.</h1>
           <p class="lede">Tiga format CSV untuk pekerjaan rutin usaha. Setiap template dilengkapi contoh sintetis, arti kolom, dan cara memeriksanya.</p>
@@ -60,7 +60,7 @@ const schema = [
           <p>Pratinjau isi sebelum mengunduh. File dapat dibuka di aplikasi spreadsheet yang mendukung CSV.</p>
         </div>
         <div class="template-catalog">
-          {templateEntries.map(([, template], index) => <a class="template-catalog__card reveal" style={`--i:${index}`} href={`/template/${template.slug}`}>
+          {templateEntries.map(([, template], index) => <a class="template-catalog__card reveal" style={`--i:${index}`} href={`/template/${template.slug}/`}>
             <div class="template-catalog__visual" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span>{Array.from({ length: 5 }, (_, line) => <i style={`--line:${line}`} />)}</div>
             <div class="template-catalog__copy">
               <small>{template.eyebrow} · {template.cadence}</small>
@@ -88,7 +88,7 @@ const schema = [
     <section class="section dark-surface template-library-note">
       <div class="container template-library-note__grid">
         <div><p class="section-kicker">Privasi dari awal</p><h2>File diproses di perangkat Anda.</h2></div>
-        <div><p>Unduhan tidak meminta akun. Saat memakai template, hindari menulis kata sandi, nomor identitas, atau data pribadi pelanggan yang tidak diperlukan.</p><a class="text-link" href="/keamanan">Baca pendekatan keamanan RAMUNI</a></div>
+        <div><p>Unduhan tidak meminta akun. Saat memakai template, hindari menulis kata sandi, nomor identitas, atau data pribadi pelanggan yang tidak diperlukan.</p><a class="text-link" href="/keamanan/">Baca pendekatan keamanan RAMUNI</a></div>
       </div>
     </section>
   </div>

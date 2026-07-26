@@ -478,9 +478,10 @@ for (const [route, page] of pages) {
   for (const match of page.html.matchAll(/href="([^"]+)"/gi)) {
     const href = match[1];
     if (!href.startsWith('/') || href.startsWith('//')) continue;
-    const target = href.split(/[?#]/)[0] || '/';
+    const rawTarget = href.split(/[?#]/)[0] || '/';
+    const target = normalizeRoute(rawTarget);
     if (ignoredPrefixes.some((prefix) => target.startsWith(prefix))) continue;
-    if (!pages.has(target) && !assetPaths.has(target)) failures.push(`${route}: broken internal link ${href}`);
+    if (!pages.has(target) && !assetPaths.has(rawTarget)) failures.push(`${route}: broken internal link ${href}`);
   }
 }
 

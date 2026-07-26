@@ -60,8 +60,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh warung: pendapatan Rp12,5 juta dan biaya Rp8,75 juta',
     nextSteps: ['Pisahkan biaya tetap dan biaya variabel.', 'Bandingkan margin, bukan hanya nominal laba.', 'Catat biaya yang perlu ditinjau minggu depan.'],
     related: [
-      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas', text: 'Lihat kenapa laba dan kas bisa berbeda.' },
-      { label: 'Kamus omzet', href: '/kamus-bisnis/omzet', text: 'Samakan dulu arti omzet sebelum menghitung laba.' },
+      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Lihat kenapa laba dan kas bisa berbeda.' },
+      { label: 'Kamus omzet', href: '/kamus-bisnis/omzet/', text: 'Samakan dulu arti omzet sebelum menghitung laba.' },
     ],
   },
   hpp: {
@@ -88,8 +88,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh toko: stok awal Rp4 juta, pembelian Rp6,5 juta, stok akhir Rp3,2 juta',
     nextSteps: ['Cek stok rusak, retur, dan koreksi manual.', 'Samakan periode HPP dengan periode penjualan.', 'Lanjutkan ke kalkulator margin bila data penjualan sudah ada.'],
     related: [
-      { label: 'Kalkulator margin', href: '/kalkulator/margin-laba-kotor', text: 'Baca HPP bersama nilai penjualan.' },
-      { label: 'Kamus HPP', href: '/kamus-bisnis/hpp', text: 'Pahami arti HPP sebelum membandingkan margin.' },
+      { label: 'Kalkulator margin', href: '/kalkulator/margin-laba-kotor/', text: 'Baca HPP bersama nilai penjualan.' },
+      { label: 'Kamus HPP', href: '/kamus-bisnis/hpp/', text: 'Pahami arti HPP sebelum membandingkan margin.' },
     ],
   },
   'reorder-stok': {
@@ -116,8 +116,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh barang laris: 18 unit per hari, lead time 4 hari, cadangan 25 unit',
     nextSteps: ['Pisahkan produk cepat dan lambat bergerak.', 'Cek lead time pemasok yang sering berubah.', 'Gunakan template stok agar pemeriksaan berikutnya punya jejak.'],
     related: [
-      { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian', text: 'Susun urutan membaca stok sebelum pesan ulang.' },
-      { label: 'Template stok', href: '/template/stok-harian', text: 'Catat stok harian dengan format sederhana.' },
+      { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian/', text: 'Susun urutan membaca stok sebelum pesan ulang.' },
+      { label: 'Template stok', href: '/template/stok-harian/', text: 'Catat stok harian dengan format sederhana.' },
     ],
   },
   'margin-laba-kotor': {
@@ -143,8 +143,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh produk: penjualan Rp15 juta dan HPP Rp9,75 juta',
     nextSteps: ['Cari produk dengan margin turun.', 'Bandingkan perubahan HPP dan diskon.', 'Jangan membaca margin tanpa volume penjualan.'],
     related: [
-      { label: 'Kalkulator HPP', href: '/kalkulator/hpp', text: 'Hitung HPP sebelum membaca margin.' },
-      { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet', text: 'Lihat omzet bersama produk dan pelanggan.' },
+      { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', text: 'Hitung HPP sebelum membaca margin.' },
+      { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet/', text: 'Lihat omzet bersama produk dan pelanggan.' },
     ],
   },
   'titik-impas': {
@@ -171,8 +171,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh produksi kecil: biaya tetap Rp3 juta, harga Rp35 ribu, biaya variabel Rp22 ribu',
     nextSteps: ['Cek apakah target unit realistis.', 'Uji skenario harga dan biaya bahan.', 'Pisahkan biaya tetap dari biaya variabel.'],
     related: [
-      { label: 'Kalkulator laba', href: '/kalkulator/laba-usaha', text: 'Lanjutkan ke laba periode setelah titik impas diketahui.' },
-      { label: 'Kamus HPP', href: '/kamus-bisnis/hpp', text: 'Samakan definisi biaya barang terlebih dahulu.' },
+      { label: 'Kalkulator laba', href: '/kalkulator/laba-usaha/', text: 'Lanjutkan ke laba periode setelah titik impas diketahui.' },
+      { label: 'Kamus HPP', href: '/kamus-bisnis/hpp/', text: 'Samakan definisi biaya barang terlebih dahulu.' },
     ],
   },
   'arus-kas-bersih': {
@@ -198,8 +198,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh usaha jasa: uang masuk Rp9,5 juta dan uang keluar Rp11,2 juta',
     nextSteps: ['Pisahkan kas dari laba.', 'Cek piutang yang belum masuk.', 'Gunakan template arus kas agar tanggal pembayaran terlihat.'],
     related: [
-      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas', text: 'Pelajari cara membaca uang masuk dan keluar.' },
-      { label: 'Template arus kas', href: '/template/arus-kas-sederhana', text: 'Catat arus kas sederhana dengan format siap isi.' },
+      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Pelajari cara membaca uang masuk dan keluar.' },
+      { label: 'Template arus kas', href: '/template/arus-kas-sederhana/', text: 'Catat arus kas sederhana dengan format siap isi.' },
     ],
   },
   'nilai-transaksi-rata-rata': {
@@ -225,8 +225,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh retail: omzet Rp18 juta dari 420 transaksi',
     nextSteps: ['Bandingkan dengan jumlah transaksi harian.', 'Cek produk yang sering dibeli bersama.', 'Baca kembali omzet bersama margin dan stok.'],
     related: [
-      { label: 'Kamus omzet', href: '/kamus-bisnis/omzet', text: 'Pahami omzet sebelum menilai rata-rata transaksi.' },
-      { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet', text: 'Hubungkan omzet dengan produk, waktu, dan pelanggan.' },
+      { label: 'Kamus omzet', href: '/kamus-bisnis/omzet/', text: 'Pahami omzet sebelum menilai rata-rata transaksi.' },
+      { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet/', text: 'Hubungkan omzet dengan produk, waktu, dan pelanggan.' },
     ],
   },
 };

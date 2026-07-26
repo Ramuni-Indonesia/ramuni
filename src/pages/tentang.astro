@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import { releaseGates } from '../config/release';
 import '../styles/section-variance.css';
 import '../styles/other-pages-refinement.css';
 
@@ -10,14 +11,41 @@ const principles = [
   ['Bukti terlihat', 'Periode, sumber, dan batas jawaban tidak disembunyikan.'],
   ['Manusia menyetujui', 'AI tidak mengambil alih keputusan atau aksi berisiko.'],
 ];
+
+const dailyRhythm = [
+  ['Sebelum mulai', 'Pemilik melihat stok, penjualan, dan pekerjaan yang perlu perhatian lebih dulu.'],
+  ['Saat usaha berjalan', 'Tim mencatat perubahan tanpa kehilangan alasan di balik koreksi.'],
+  ['Ketika mengevaluasi', 'Angka dibandingkan pada periode yang sama sebelum langkah berikutnya dipilih.'],
+];
+
+const mascotSrc = releaseGates.mascotExplorationEnabled
+  ? '/website-original/ramuni-mascot-muni-manyar.webp'
+  : '/website-original/ramuni-mascot-problem-section.webp';
 ---
 <BaseLayout title="Tentang RAMUNI" description="Misi, sudut pandang, prinsip produk, batas saat ini, dan cara RAMUNI memvalidasi kebutuhan UMKM Indonesia.">
-  <PageHero eyebrow="Tentang RAMUNI" title="Bantu pemilik usaha memahami angka sebelum mengambil keputusan." description="Nama RAMUNI berasal dari Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membuat data usaha lebih mudah dibaca tanpa meminta Anda menjadi analis." primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis" secondaryLabel="Pelajari Produk" secondaryHref="/produk" />
+  <PageHero eyebrow="Tentang RAMUNI" title="Bantu pemilik usaha memahami angka sebelum mengambil keputusan." description="Nama RAMUNI berasal dari Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membuat data usaha lebih mudah dibaca tanpa meminta Anda menjadi analis." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Pelajari Produk" secondaryHref="/produk/" />
 
-  <section class="section company-page__problem" id="masalah" aria-labelledby="problem-title">
-    <div class="container company-page__editorial">
-      <div class="company-page__heading reveal"><h2 id="problem-title">Banyak catatan belum tentu memberi arah.</h2></div>
-      <div class="company-page__statement reveal"><p>Penjualan, stok, biaya, dan pelanggan sering hidup di tempat berbeda. Saat keputusan perlu dibuat, tim masih menyatukan konteks secara manual.</p><strong>RAMUNI berangkat dari kebutuhan untuk melihat arti di balik angka, bukan sekadar menambah dashboard.</strong></div>
+  <section class="section company-story" id="masalah" aria-labelledby="story-title">
+    <div class="container company-story__layout">
+      <div class="company-story__copy reveal">
+        <p class="eyebrow">Berangkat dari keseharian usaha</p>
+        <h2 id="story-title">Banyak catatan belum tentu memberi arah.</h2>
+        <p>Penjualan, stok, biaya, dan pelanggan sering berada di tempat berbeda. RAMUNI berangkat dari kebutuhan untuk menyatukan konteks itu sebelum pemilik dan tim menentukan langkah.</p>
+        <strong>Bukan menambah dashboard. Membantu orang memahami apa yang perlu diperiksa.</strong>
+      </div>
+      <figure class="company-story__scene reveal">
+        <div class="company-story__scene-top"><span>Contoh ritme UMKM</span><small>Data tidak dikirim dari halaman ini</small></div>
+        <ol>
+          {dailyRhythm.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div><strong>{item[0]}</strong><p>{item[1]}</p></div>
+            </li>
+          ))}
+        </ol>
+        <img src={mascotSrc} width="720" height="720" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+        <figcaption>Bahasa, contoh, dan prioritas dimulai dari pekerjaan yang dekat dengan pemilik usaha dan tim operasional.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -36,28 +64,83 @@ const principles = [
     </div>
   </section>
 
-  <section class="section company-page__serve" id="untuk-siapa" aria-labelledby="serve-title">
-    <div class="container company-page__split">
-      <div class="company-page__heading reveal"><h2 id="serve-title">Dibuat dekat dengan ritme UMKM Indonesia.</h2><p>Bahasa, contoh, dan prioritas dimulai dari kebutuhan pemilik usaha dan tim operasional.</p></div>
-      <dl class="company-page__boundary reveal">
-        <div><dt>Yang kami bantu</dt><dd>Menyatukan konteks, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</dd></div>
-        <div><dt>Yang tidak kami janjikan</dt><dd>Keputusan otomatis, hasil bisnis tertentu, atau cakupan enterprise yang belum tersedia.</dd></div>
-        <div><dt>Tahap saat ini</dt><dd>Tahap uji coba; kami masih mencocokkan fitur dengan kebutuhan usaha.</dd></div>
-      </dl>
-    </div>
-  </section>
-
   <section class="section surface company-page__validation" id="cara-bekerja" aria-labelledby="validation-title">
-    <div class="container company-page__split">
+    <div class="container company-method">
       <div class="company-page__heading reveal"><p class="eyebrow">Cara kami bekerja</p><h2 id="validation-title">Kami menguji sebelum menjanjikan.</h2><p>Informasi baru kami terbitkan setelah isi, tanggal, dan persetujuannya diperiksa.</p></div>
-      <ol class="company-page__timeline">
-        <li class="reveal"><span>01</span><div><strong>Dengar</strong><p>Pahami pekerjaan, keputusan, dan batas data pengguna.</p></div></li>
-        <li class="reveal"><span>02</span><div><strong>Uji</strong><p>Gunakan contoh sintetis untuk memeriksa alur dan bahasa.</p></div></li>
-        <li class="reveal"><span>03</span><div><strong>Verifikasi</strong><p>Cocokkan kemampuan dengan implementasi dan bukti rilis.</p></div></li>
-        <li class="reveal"><span>04</span><div><strong>Publikasikan</strong><p>Sampaikan status dan batas dengan bahasa yang jujur.</p></div></li>
-      </ol>
+      <div class="company-method__body">
+        <ol class="company-page__timeline">
+          <li class="reveal"><span>01</span><div><strong>Dengar</strong><p>Pahami pekerjaan, keputusan, dan batas data pengguna.</p></div></li>
+          <li class="reveal"><span>02</span><div><strong>Uji</strong><p>Gunakan contoh sintetis untuk memeriksa alur dan bahasa.</p></div></li>
+          <li class="reveal"><span>03</span><div><strong>Verifikasi</strong><p>Cocokkan kemampuan dengan implementasi dan bukti rilis.</p></div></li>
+          <li class="reveal"><span>04</span><div><strong>Publikasikan</strong><p>Sampaikan status dan batas dengan bahasa yang jujur.</p></div></li>
+        </ol>
+        <aside class="company-method__boundary reveal" aria-label="Batas RAMUNI saat ini">
+          <span>Batas saat ini</span>
+          <h3>Masih dalam tahap uji coba.</h3>
+          <p>Kami membantu menyatukan konteks, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</p>
+          <p>Kami tidak menjanjikan keputusan otomatis, hasil bisnis tertentu, atau cakupan yang belum tersedia.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section class="section company-page__close"><div class="container company-page__closing reveal"><div><h2>Lihat apakah cara berpikir RAMUNI sesuai kebutuhan usaha Anda.</h2><p>Simulasi memakai data sintetis dan tidak membutuhkan data bisnis sensitif.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><a class="button button--secondary" href="https://wa.me/message/K35W6X6WT7YMJ1">Hubungi Kami</a></div></div></section>
+  <section class="section company-page__close"><div class="container company-page__closing reveal"><div><h2>Lihat apakah cara berpikir RAMUNI sesuai kebutuhan usaha Anda.</h2><p>Simulasi memakai data sintetis dan tidak membutuhkan data bisnis sensitif.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a><a class="button button--secondary" href="https://wa.me/message/K35W6X6WT7YMJ1">Hubungi Kami</a></div></div></section>
 </BaseLayout>
+
+<style>
+  .company-story{overflow:hidden}
+  .company-story__layout{display:grid;grid-template-columns:minmax(0,.76fr) minmax(520px,1.24fr);gap:clamp(42px,7vw,104px);align-items:center}
+  .company-story__copy{display:grid;gap:22px;min-width:0}
+  .company-story__copy .eyebrow{margin:0;color:var(--teal)}
+  .company-story__copy h2{max-width:13ch}
+  .company-story__copy>p:not(.eyebrow){max-width:46ch;color:var(--ink-72);font-size:1.05rem;line-height:1.7}
+  .company-story__copy>strong{max-width:25ch;padding-top:22px;border-top:1px solid var(--ink);font-size:clamp(1.22rem,2vw,1.72rem);line-height:1.32}
+  .company-story__scene{position:relative;min-width:0;margin:0;padding:24px 24px 116px;border:1px solid var(--ink);background:var(--rice);box-shadow:14px 14px 0 var(--yellow);overflow:hidden;isolation:isolate}
+  .company-story__scene::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:44px 44px;opacity:.45}
+  .company-story__scene-top{display:flex;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--ink)}
+  .company-story__scene-top span{color:var(--teal);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .company-story__scene-top small{color:var(--ink-56);font-size:.68rem;text-align:right}
+  .company-story__scene ol{position:relative;z-index:1;display:grid;gap:10px;list-style:none;margin:22px 0 0;padding:0;width:min(78%,510px)}
+  .company-story__scene li{display:grid;grid-template-columns:38px minmax(0,1fr);gap:14px;padding:16px 18px;border:1px solid var(--ink);background:rgb(255 255 255/.94)}
+  .company-story__scene li:nth-child(2){margin-left:8%;background:var(--yellow)}
+  .company-story__scene li:nth-child(3){margin-left:16%;background:var(--ink);color:var(--white)}
+  .company-story__scene li>span{color:var(--teal);font-size:.68rem;font-weight:800}
+  .company-story__scene li:nth-child(3)>span{color:var(--yellow)}
+  .company-story__scene li strong{font-size:.92rem}
+  .company-story__scene li p{margin-top:5px;color:var(--ink-72);font-size:.78rem;line-height:1.45}
+  .company-story__scene li:nth-child(3) p{color:rgb(255 255 255/.72)}
+  .company-story__scene img{position:absolute;z-index:0;right:-50px;bottom:22px;width:250px;height:250px;object-fit:contain;filter:drop-shadow(0 18px 20px rgb(11 48 69/.18));pointer-events:none}
+  .company-story__scene figcaption{position:absolute;z-index:2;left:24px;right:24px;bottom:22px;max-width:52ch;padding:13px 15px;background:var(--teal);color:var(--white);font-size:.76rem;line-height:1.5}
+  .company-method{display:grid;gap:clamp(38px,6vw,72px)}
+  .company-method>.company-page__heading{max-width:760px}
+  .company-method__body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:clamp(24px,5vw,68px);align-items:start}
+  .company-method__body .company-page__timeline{margin-top:0}
+  .company-method__boundary{position:sticky;top:112px;display:grid;gap:15px;padding:28px;border:1px solid var(--ink);background:var(--ink);color:var(--white);box-shadow:10px 10px 0 var(--yellow)}
+  .company-method__boundary>span{color:var(--yellow);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .company-method__boundary h3{font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.15}
+  .company-method__boundary p{color:rgb(255 255 255/.72);font-size:.9rem;line-height:1.55}
+  @media(max-width:1080px){
+    .company-story__layout,.company-method__body{grid-template-columns:1fr}
+    .company-story__scene{width:min(780px,100%)}
+    .company-method__boundary{position:static;grid-template-columns:minmax(180px,.5fr) 1fr;align-items:start}
+    .company-method__boundary>span,.company-method__boundary h3{grid-column:1}
+    .company-method__boundary p{grid-column:2}
+  }
+  @media(max-width:680px){
+    .company-story__copy h2{max-width:100%}
+    .company-story__scene{padding:18px 18px 174px;box-shadow:8px 8px 0 var(--yellow)}
+    .company-story__scene-top{display:grid}
+    .company-story__scene-top small{text-align:left}
+    .company-story__scene ol{width:100%}
+    .company-story__scene li:nth-child(n){margin-left:0;padding:14px}
+    .company-story__scene img{right:-34px;bottom:34px;width:178px;height:178px;opacity:.82}
+    .company-story__scene figcaption{left:18px;right:18px;bottom:18px;max-width:calc(100% - 112px)}
+    .company-method__boundary{grid-template-columns:1fr;box-shadow:7px 7px 0 var(--yellow)}
+    .company-method__boundary>span,.company-method__boundary h3,.company-method__boundary p{grid-column:auto}
+  }
+  @media(prefers-reduced-motion:no-preference){
+    .company-story__scene img{animation:company-story-mascot 5.8s ease-in-out infinite}
+    @keyframes company-story-mascot{50%{transform:translateY(-7px) rotate(-1deg)}}
+  }
+  @media(prefers-reduced-motion:reduce){.company-story__scene img{animation:none}}
+</style>

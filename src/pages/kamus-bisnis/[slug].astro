@@ -16,9 +16,9 @@ export function getStaticPaths() {
     contrast: { title: 'Jangan tertukar dengan omzet', text: 'Omzet mencatat nilai penjualan. Arus kas menunjukkan kapan uang benar-benar diterima atau dibayarkan.' },
     visual: ['Uang masuk', 'Waktu', 'Uang keluar'],
     related: [
-      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas' },
-      { title: 'Template arus kas sederhana', type: 'Template', href: '/template/arus-kas-sederhana' },
-      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet' },
+      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas/' },
+      { title: 'Template arus kas sederhana', type: 'Template', href: '/template/arus-kas-sederhana/' },
+      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet/' },
     ],
   },
   hpp: {
@@ -32,9 +32,9 @@ export function getStaticPaths() {
     contrast: { title: 'Jangan tertukar dengan seluruh biaya usaha', text: 'HPP berhubungan dengan barang yang terjual. Biaya sewa, administrasi, atau pemasaran dapat dicatat di kelompok biaya lain.' },
     visual: ['Stok awal + pembelian', 'Kurangi stok akhir', 'Perkiraan HPP'],
     related: [
-      { title: 'Kalkulator HPP sederhana', type: 'Kalkulator', href: '/kalkulator/hpp' },
-      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian' },
-      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet' },
+      { title: 'Kalkulator HPP sederhana', type: 'Kalkulator', href: '/kalkulator/hpp/' },
+      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian/' },
+      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet/' },
     ],
   },
   omzet: {
@@ -48,9 +48,9 @@ export function getStaticPaths() {
     contrast: { title: 'Jangan tertukar dengan laba', text: 'Laba adalah selisih antara pendapatan dan biaya pada periode yang sama. Omzet masih berada sebelum pengurangan biaya.' },
     visual: ['Nilai transaksi', 'Kurangi biaya', 'Periksa laba'],
     related: [
-      { title: 'Kalkulator laba usaha', type: 'Kalkulator', href: '/kalkulator/laba-usaha' },
-      { title: 'Arti HPP', type: 'Kamus', href: '/kamus-bisnis/hpp' },
-      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas' },
+      { title: 'Kalkulator laba usaha', type: 'Kalkulator', href: '/kalkulator/laba-usaha/' },
+      { title: 'Arti HPP', type: 'Kamus', href: '/kamus-bisnis/hpp/' },
+      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas/' },
     ],
   },
   'stok-pengaman': {
@@ -64,9 +64,9 @@ export function getStaticPaths() {
     contrast: { title: 'Jangan ditetapkan tanpa catatan', text: 'Cadangan yang terlalu besar dapat menahan uang dalam stok. Periksa pemakaian, waktu tunggu, dan perubahan permintaan secara berkala.' },
     visual: ['Pemakaian harian', 'Waktu tunggu', 'Cadangan'],
     related: [
-      { title: 'Kalkulator titik reorder', type: 'Kalkulator', href: '/kalkulator/reorder-stok' },
-      { title: 'Panduan membaca stok', type: 'Panduan', href: '/panduan/membaca-stok-harian' },
-      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian' },
+      { title: 'Kalkulator titik reorder', type: 'Kalkulator', href: '/kalkulator/reorder-stok/' },
+      { title: 'Panduan membaca stok', type: 'Panduan', href: '/panduan/membaca-stok-harian/' },
+      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian/' },
     ],
   },
   };
@@ -109,7 +109,7 @@ const schema = [
     <header class="glossary-detail-hero">
       <div class="container glossary-detail-hero__grid">
         <div class="glossary-detail-hero__copy reveal is-visible">
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis">Kamus Bisnis</a><span>/</span><span aria-current="page">{term.title}</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis/">Kamus Bisnis</a><span>/</span><span aria-current="page">{term.title}</span></nav>
           <p class="eyebrow">Kamus bisnis · {term.category}</p>
           <h1>{term.title}</h1>
           <p class="glossary-detail-hero__definition">{term.definition}</p>
@@ -144,7 +144,7 @@ const schema = [
     <section class="section learning-close-stage">
       <div class="container learning-close learning-close--compact reveal">
         <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
-        <div><p class="section-kicker">Cari istilah lain</p><h2>Samakan bahasa sebelum menyamakan keputusan.</h2><p>Kembali ke kamus untuk mencari istilah lain, atau buka panduan jika Anda sudah memiliki pertanyaan usaha yang ingin diperiksa.</p><div class="button-row"><a class="button button--primary" href="/kamus-bisnis">Buka kamus</a><a class="button button--secondary" href="/panduan">Pilih panduan</a></div></div>
+        <div><p class="section-kicker">Cari istilah lain</p><h2>Samakan bahasa sebelum menyamakan keputusan.</h2><p>Kembali ke kamus untuk mencari istilah lain, atau buka panduan jika Anda sudah memiliki pertanyaan usaha yang ingin diperiksa.</p><div class="button-row"><a class="button button--primary" href="/kamus-bisnis/">Buka kamus</a><a class="button button--secondary" href="/panduan/">Pilih panduan</a></div></div>
       </div>
     </section>
   </article>

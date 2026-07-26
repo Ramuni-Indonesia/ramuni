@@ -46,7 +46,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Jangan masukkan data pelanggan ke demo atau formulir publik.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'naikkan-omzet'],
-    resourceHrefs: ['/panduan', '/kalkulator'],
+    resourceHrefs: ['/panduan/', '/kalkulator/'],
     exampleMetrics: [
       { label: 'Stok contoh saat diperiksa', value: '8 unit', note: 'Di bawah batas contoh 10 unit.' },
       { label: 'Penjualan contoh hari ini', value: '12 unit', note: 'Dipakai untuk membaca kecepatan stok, bukan proyeksi.' },
@@ -74,7 +74,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Demo dan contoh F&B memakai data sintetis. Jangan memasukkan data pelanggan atau transaksi sensitif ke formulir publik.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
-    resourceHrefs: ['/panduan', '/kalkulator'],
+    resourceHrefs: ['/panduan/', '/kalkulator/'],
     exampleMetrics: [
       { label: 'Pesanan menu contoh', value: '18 porsi', note: 'Dicatat pada periode makan siang.' },
       { label: 'Stok bahan contoh', value: '11 porsi', note: 'Menunjukkan kebutuhan pemeriksaan sebelum jam ramai.' },
@@ -102,7 +102,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Riwayat pelanggan harus dibatasi sesuai akses dan tidak dipakai untuk pesan otomatis tanpa persetujuan.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
     solutionSlugs: ['pahami-pelanggan', 'pantau-laba-dan-arus-kas'],
-    resourceHrefs: ['/panduan', '/kamus-bisnis'],
+    resourceHrefs: ['/panduan/', '/kamus-bisnis/'],
     exampleMetrics: [
       { label: 'Pesanan aktif contoh', value: '14 pesanan', note: 'Enam di antaranya menunggu pemeriksaan pembayaran.' },
       { label: 'Stok produk utama', value: '32 karton', note: 'Dibandingkan dengan pesanan yang sudah tercatat.' },
@@ -130,7 +130,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Klaim integrasi dan penggunaan data kanal hanya boleh aktif setelah dukungan operasionalnya jelas.',
     roleSlugs: ['pemilik-usaha', 'admin-toko'],
     solutionSlugs: ['naikkan-omzet', 'pahami-pelanggan'],
-    resourceHrefs: ['/kalkulator', '/template'],
+    resourceHrefs: ['/kalkulator/', '/template/'],
     exampleMetrics: [
       { label: 'Penjualan produk contoh', value: '24 unit', note: 'Gabungan catatan dari kanal yang sudah dimasukkan.' },
       { label: 'Harga jual contoh', value: 'Rp85 ribu', note: 'Dibandingkan dengan HPP yang diketahui.' },
@@ -158,7 +158,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Informasi pelanggan tidak boleh masuk URL, formulir publik, atau catatan yang dapat dilihat umum.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
     solutionSlugs: ['pantau-laba-dan-arus-kas', 'pahami-pelanggan'],
-    resourceHrefs: ['/kalkulator', '/kamus-bisnis'],
+    resourceHrefs: ['/kalkulator/', '/kamus-bisnis/'],
     exampleMetrics: [
       { label: 'Pendapatan layanan contoh', value: 'Rp4,8 juta', note: 'Nilai sintetis untuk satu periode mingguan.' },
       { label: 'Biaya pendukung contoh', value: 'Rp1,6 juta', note: 'Dikelompokkan pada periode yang sama.' },
@@ -186,7 +186,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau demo website.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
-    resourceHrefs: ['/panduan', '/template'],
+    resourceHrefs: ['/panduan/', '/template/'],
     exampleMetrics: [
       { label: 'Barang jadi contoh', value: '26 unit', note: 'Saldo sintetis sebelum jadwal produksi berikutnya.' },
       { label: 'Penjualan contoh', value: '19 unit', note: 'Dicatat untuk periode tujuh hari.' },
@@ -216,8 +216,8 @@ const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.incl
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
-  <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis" secondaryLabel="Semua Industri" secondaryHref="/industri" visual="evidence" visualLabel={industry.title} visualTitle="Contoh tampilan memakai data sintetis dan batas fitur yang dijelaskan." />
+  <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba Simulasi Gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualLabel={industry.title} visualTitle="Contoh tampilan memakai data sintetis dan batas fitur yang dijelaskan." />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
@@ -272,12 +272,12 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
   <section class="section" id="modul-peran" aria-labelledby="modules-title">
     <div class="container audience-split">
       <div class="audience-section-heading reveal"><h2 id="modules-title">{headings.modules}</h2><p class="lede">Mulai dari catatan yang paling sering dipakai tim.</p></div>
-      <div class="audience-module-list">{supportingProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug}><strong>{product.title}</strong><span>{product.safety}</span></a>)}</div>
+      <div class="audience-module-list">{supportingProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug + '/'}><strong>{product.title}</strong><span>{product.safety}</span></a>)}</div>
     </div>
-    <div class="container audience-related reveal"><strong>Peran yang biasanya terlibat</strong><div>{relevantRoles.map((role) => <a href={'/untuk/' + role.slug}>{role.title}</a>)}</div></div>
+    <div class="container audience-related reveal"><strong>Peran yang biasanya terlibat</strong><div>{relevantRoles.map((role) => <a href={'/untuk/' + role.slug + '/'}>{role.title}</a>)}</div></div>
     <nav class="container audience-related reveal" aria-label={`Tautan lanjutan untuk ${industry.title}`}>
       <strong>Lanjutkan dari kebutuhan usaha</strong>
-      <div>{relatedSolutions.map((solution) => <a href={'/solusi/' + solution.slug}>{solution.title}</a>)}</div>
+      <div>{relatedSolutions.map((solution) => <a href={'/solusi/' + solution.slug + '/'}>{solution.title}</a>)}</div>
       <strong>Sumber daya terkait</strong>
       <div>{relatedResources.map((resource) => <a href={resource.href}>{resource.title}</a>)}</div>
     </nav>
@@ -308,9 +308,9 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
         body="Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi sebelum menentukan langkah."
         primaryLabel="Coba Simulasi Gratis"
-        primaryHref="/tour-produk-gratis"
+        primaryHref="/tour-produk-gratis/"
         secondaryLabel="Lihat Solusi"
-        secondaryHref="/solusi"
+        secondaryHref="/solusi/"
         theme="teal"
         mascot="evidence3d"
       />

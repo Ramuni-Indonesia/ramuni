@@ -55,7 +55,7 @@ const schema = [
     <header class="tool-detail-hero">
       <div class="container tool-detail-hero__grid">
         <div class="tool-detail-hero__copy reveal is-visible">
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kalkulator">Kalkulator</a><span>/</span><span aria-current="page">{calculator.title}</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kalkulator/">Kalkulator</a><span>/</span><span aria-current="page">{calculator.title}</span></nav>
           <p class="eyebrow">{calculator.category} · kalkulator gratis</p>
           <h1>{calculator.title}</h1>
           <p class="lede">{calculator.decision}</p>
@@ -88,7 +88,7 @@ const schema = [
         <div class="tools-section-head reveal"><p class="section-kicker">Jangan baca sendirian</p><h2 id="calculator-related-title">Hubungkan hasil dengan catatan usaha.</h2><p>Gunakan materi terkait untuk memeriksa definisi, sumber angka, dan kejadian pada periode yang sama.</p></div>
         <div class="tool-related__grid">
           {calculator.related.map((item, index) => <a class="reveal" href={item.href}><span>{String(index + 1).padStart(2, '0')}</span><h3>{item.label}</h3><p>{item.text}</p><b>Buka materi <i aria-hidden="true">&rarr;</i></b></a>)}
-          <a class="reveal" href="/kalkulator"><span>03</span><h3>Kalkulator lainnya</h3><p>Bandingkan laba, stok, kas, margin, dan penjualan dari sudut yang berbeda.</p><b>Lihat semua <i aria-hidden="true">&rarr;</i></b></a>
+          <a class="reveal" href="/kalkulator/"><span>03</span><h3>Kalkulator lainnya</h3><p>Bandingkan laba, stok, kas, margin, dan penjualan dari sudut yang berbeda.</p><b>Lihat semua <i aria-hidden="true">&rarr;</i></b></a>
         </div>
       </div>
     </section>

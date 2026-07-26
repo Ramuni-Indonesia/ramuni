@@ -33,9 +33,9 @@ const hasVerifiedReviewer = Boolean(
 );
 
 const cta = {
-  'early-access': { title: 'Coba cara membaca masalah usaha ini.', text: 'Gunakan data contoh tanpa membuat akun.', label: 'Coba langkahnya', href: '/tour-produk-gratis' },
-  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Simulasi memakai data contoh, bukan data bisnis Anda.', label: 'Coba simulasi', href: '/tour-produk-gratis' },
-  product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk' },
+  'early-access': { title: 'Coba cara membaca masalah usaha ini.', text: 'Gunakan data contoh tanpa membuat akun.', label: 'Coba langkahnya', href: '/tour-produk-gratis/' },
+  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Simulasi memakai data contoh, bukan data bisnis Anda.', label: 'Coba simulasi', href: '/tour-produk-gratis/' },
+  product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk/' },
 }[post.data.ctaType];
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString();
@@ -70,14 +70,14 @@ const schema = [
   <article>
     <header class="article-hero">
       <div class="container article-head">
-        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
-        <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}`}>{post.data.category}</a>
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
+        <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a>
         <h1>{post.data.title}</h1>
         <p class="article-dek">{post.data.dek}</p>
         <div class="article-trust-row" aria-label="Akuntabilitas artikel">
-          <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}`}>{post.data.authorName}</a></div>
-          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/penulis/${post.data.reviewerSlug}`}>{post.data.reviewerName}</a></div>}
-          <div><span>Koreksi</span><a href="/blog/koreksi">Sampaikan perbaikan</a></div>
+          <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}/`}>{post.data.authorName}</a></div>
+          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/penulis/${post.data.reviewerSlug}/`}>{post.data.reviewerName}</a></div>}
+          <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
@@ -105,20 +105,20 @@ const schema = [
 
           <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>
 
-          <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt="" /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}`}>Lihat profil editorial</a></div></section>
+          <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt="" /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}/`}>Lihat profil editorial</a></div></section>
 
         </div>
 
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><small>Pilih bagian yang paling Anda butuhkan.</small><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
-          <div class="article-rail-note"><span>Cara artikel disusun</span><p>Sumber, koreksi, dan riwayat pembaruan tersedia untuk membantu pembaca memeriksa konteks.</p><a href="/blog/kebijakan-editorial">Lihat standar editorial</a></div>
+          <div class="article-rail-note"><span>Cara artikel disusun</span><p>Sumber, koreksi, dan riwayat pembaruan tersedia untuk membantu pembaca memeriksa konteks.</p><a href="/blog/kebijakan-editorial/">Lihat standar editorial</a></div>
           <div class="article-rail-next"><strong>Setelah selesai membaca</strong><p>Lanjutkan ke alur catatan, bukti, dan arah.</p><a href="#article-next-step">Lihat langkah berikutnya &darr;</a></div>
         </aside>
       </div>
     </section>
   </article>
 
-  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
+  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={related.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <section class="section blog-close-stage" aria-labelledby="article-next-step-heading">
     <div class="container reveal">

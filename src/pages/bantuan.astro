@@ -1,35 +1,130 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-const collections=[['Mulai menggunakan RAMUNI','Persiapan bisnis, data awal, dan langkah pertama.'],['Produk, stok, dan penjualan','Fondasi katalog, transaksi, dan pergerakan stok.'],['Laporan dan Asisten AI','Cara membaca insight, sumber, periode, dan batas jawaban.'],['Tim, akses, dan persetujuan','Peran, akses, koreksi, dan persetujuan.'],['Keamanan dan privasi','Data sensitif, izin, dan batas kanal publik.'],['Pemecahan masalah','Pemulihan masalah tanpa membuka data sensitif.']];
+
+const collections = [
+  { no: '01', title: 'Mulai menggunakan RAMUNI', text: 'Persiapan bisnis, data awal, dan langkah pertama sebelum tim mulai bekerja.', tags: ['persiapan', 'data awal', 'mulai'] },
+  { no: '02', title: 'Produk, stok, dan penjualan', text: 'Fondasi katalog, transaksi, koreksi, dan pergerakan stok harian.', tags: ['produk', 'stok', 'transaksi'] },
+  { no: '03', title: 'Laporan dan Asisten AI', text: 'Cara membaca insight, sumber, periode, serta batas jawaban yang perlu diperiksa.', tags: ['laporan', 'insight', 'AI'] },
+  { no: '04', title: 'Tim, akses, dan persetujuan', text: 'Peran, batas akses, koreksi data, dan keputusan yang membutuhkan persetujuan.', tags: ['tim', 'akses', 'izin'] },
+  { no: '05', title: 'Keamanan dan privasi', text: 'Data sensitif, kredensial, izin, serta batas informasi di kanal publik.', tags: ['keamanan', 'privasi', 'data'] },
+  { no: '06', title: 'Pemecahan masalah', text: 'Susun kronologi dan langkah yang sudah dicoba tanpa membuka data sensitif.', tags: ['masalah', 'pemulihan', 'dukungan'] },
+];
+
+const roles = [
+  ['Pemilik Usaha', 'Insight, kontrol tim, dan keputusan', '/untuk/pemilik-usaha/'],
+  ['Admin Toko', 'Data, koreksi, dan tugas operasional', '/untuk/admin-toko/'],
+  ['Kasir', 'Transaksi dan panduan pemulihan', '/untuk/kasir/'],
+  ['Supervisor', 'Pengecualian, laporan, dan tindak lanjut', '/untuk/supervisor/'],
+];
 ---
+
 <BaseLayout title="Pusat Bantuan RAMUNI" description="Peta topik bantuan, batas keamanan, dan jalur dukungan RAMUNI untuk pekerjaan umum pengguna." noindex={true}>
-  <PageHero eyebrow="Pusat Bantuan" title="Temukan langkah kerja, bukan sekadar daftar fitur." description="Mulai dari topik atau tanggung jawab yang paling dekat dengan pekerjaan Anda. Jika jawabannya tidak ada di halaman ini, hubungi tim RAMUNI dengan konteks minimum yang aman." primaryLabel="Hubungi Dukungan" primaryHref="https://wa.me/message/K35W6X6WT7YMJ1" secondaryLabel="Baca Keamanan" secondaryHref="/keamanan" />
-  <section class="section surface support-page__search" id="pencarian" aria-labelledby="search-title"><div class="container support-page__search-layout"><div class="support-page__heading reveal"><h2 id="search-title">Mulai dari topik yang tersedia.</h2><p>Ketik kebutuhan singkat, lalu daftar koleksi di bawah akan menyesuaikan tanpa mengirim data ke server.</p></div><form class="support-page__search-state reveal" role="search" data-help-search><label for="help-search">Cari koleksi bantuan</label><div><input id="help-search" type="search" placeholder="Contoh: koreksi stok" autocomplete="off" data-help-search-input /><button type="reset">Reset</button></div><small data-help-search-status aria-live="polite">6 koleksi tersedia.</small></form></div></section>
-  <section class="section support-page__collections" id="koleksi" aria-labelledby="collections-title"><div class="container support-page__split"><div class="support-page__heading reveal"><p class="eyebrow">Koleksi bantuan</p><h2 id="collections-title">Disusun mengikuti pekerjaan pengguna.</h2><p>Enam kelompok topik ini membantu Anda menentukan rujukan atau konteks yang perlu disampaikan kepada dukungan.</p></div><ol class="support-page__index">{collections.map((item,index)=><li class="reveal" data-help-topic={`${item[0]} ${item[1]}`}><span>{String(index+1).padStart(2,'0')}</span><div><strong>{item[0]}</strong><p>{item[1]}</p></div><small>Peta topik</small></li>)}</ol></div></section>
-  <section class="section dark-surface support-page__roles" id="berdasarkan-peran" aria-labelledby="roles-title"><div class="container"><div class="support-page__heading reveal"><h2 id="roles-title">Mulai dari tanggung jawab Anda.</h2></div><nav class="support-page__role-rail" aria-label="Bantuan berdasarkan peran"><a class="reveal" href="/untuk/pemilik-usaha"><strong>Pemilik Usaha</strong><span>Insight, kontrol tim, dan keputusan</span></a><a class="reveal" href="/untuk/admin-toko"><strong>Admin Toko</strong><span>Data, koreksi, dan tugas operasional</span></a><a class="reveal" href="/untuk/kasir"><strong>Kasir</strong><span>Transaksi dan panduan pemulihan</span></a><a class="reveal" href="/untuk/supervisor"><strong>Supervisor</strong><span>Pengecualian, laporan, dan tindak lanjut</span></a></nav></div></section>
-  <section class="section surface support-page__empty" id="artikel" aria-labelledby="articles-title"><div class="container support-page__split"><div class="support-page__heading reveal"><h2 id="articles-title">Gunakan rujukan yang tersedia sekarang.</h2></div><div class="support-page__empty-state reveal"><strong>Artikel edukasi ada di Blog RAMUNI.</strong><p>Blog membahas stok, arus kas, dan AI untuk UMKM. Untuk masalah akun atau operasi produk, sampaikan konteks singkat melalui kanal dukungan.</p><a class="text-link" href="/blog">Baca artikel bisnis di Blog RAMUNI</a></div></div></section>
-  <section class="section support-page__escalation" id="eskalasi" aria-labelledby="escalation-title"><div class="container support-page__split"><div class="support-page__heading reveal"><p class="eyebrow">Eskalasi</p><h2 id="escalation-title">Sampaikan masalah tanpa mengirim data sensitif.</h2><p>Jangan kirim password, token, data pelanggan, transaksi rinci, atau kredensial melalui formulir publik.</p></div><div class="support-page__contact-ledger reveal"><a href="/keamanan"><strong>Baca keamanan</strong><span>Pahami batas AI, akses, dan pengungkapan data.</span></a><a href="https://wa.me/message/K35W6X6WT7YMJ1"><strong>Hubungi RAMUNI</strong><span>Kirim konteks minimum yang aman untuk ditindaklanjuti.</span></a></div></div></section>
-  <section class="section surface support-page__notice"><div class="container support-page__closing reveal"><div><h2>Butuh jawaban untuk kondisi tertentu?</h2><p>Kirim jenis masalah, peran Anda, dan langkah yang sudah dicoba. Hindari password, token, data pelanggan, dan rincian transaksi.</p></div><a class="button button--primary" href="https://wa.me/message/K35W6X6WT7YMJ1">Hubungi Dukungan</a></div></section>
+  <div class="support-hub">
+    <PageHero eyebrow="Pusat Bantuan" title="Mulai dari masalah yang sedang menghambat pekerjaan." description="Cari kelompok topik yang paling dekat, siapkan konteks minimum yang aman, lalu pilih rujukan atau jalur dukungan yang tersedia." primaryLabel="Cari Topik" primaryHref="#pencarian" secondaryLabel="Hubungi Dukungan" secondaryHref="https://wa.me/message/K35W6X6WT7YMJ1" visual="guide" visualLabel="Alur bantuan" visualTitle="Kenali masalah, periksa rujukan, lalu sampaikan konteks yang aman." />
+
+    <section class="section surface search-panel" id="pencarian" aria-labelledby="search-title">
+      <div class="container search-panel__layout">
+        <div class="section-copy reveal">
+          <p class="eyebrow">Temukan titik mulai</p>
+          <h2 id="search-title">Apa yang ingin Anda selesaikan?</h2>
+          <p>Pencarian hanya menyaring enam kelompok di halaman ini. Teks yang diketik tidak dikirim ke server.</p>
+          <div class="quick-search" aria-label="Contoh pencarian"><span>Coba:</span><button type="button" data-help-query="stok">stok</button><button type="button" data-help-query="akses">akses tim</button><button type="button" data-help-query="laporan">laporan</button></div>
+        </div>
+        <form class="search-box reveal" role="search" data-help-search>
+          <label for="help-search">Cari kelompok topik</label>
+          <div><input id="help-search" type="search" placeholder="Contoh: koreksi stok" autocomplete="off" data-help-search-input /><button type="reset">Reset</button></div>
+          <small data-help-search-status aria-live="polite">6 kelompok topik tersedia.</small>
+        </form>
+      </div>
+      <div class="container help-journey" aria-label="Alur menggunakan pusat bantuan">
+        <article class="reveal"><span>01</span><div><strong>Kenali pekerjaan</strong><p>Pilih topik atau peran yang paling dekat.</p></div></article>
+        <article class="reveal"><span>02</span><div><strong>Siapkan konteks</strong><p>Catat gejala, waktu, dan langkah yang sudah dicoba.</p></div></article>
+        <article class="reveal"><span>03</span><div><strong>Gunakan jalur aman</strong><p>Baca rujukan atau hubungi dukungan tanpa mengirim rahasia.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section topic-map" id="koleksi" aria-labelledby="collections-title">
+      <div class="container">
+        <header class="topic-map__heading reveal"><div><p class="eyebrow">Peta bantuan</p><h2 id="collections-title">Pilih berdasarkan pekerjaan, bukan nama fitur.</h2></div><p>Setiap kelompok membantu menyusun pertanyaan yang lebih jelas sebelum membuka rujukan atau menghubungi tim RAMUNI.</p></header>
+        <ol class="topic-grid">
+          {collections.map((item, index) => <li class="topic-card reveal" style={`--i:${index}`} data-help-topic={`${item.title} ${item.text} ${item.tags.join(' ')}`}>
+            <div class="topic-card__top"><span>{item.no}</span><small>Peta topik</small></div>
+            <div><h3>{item.title}</h3><p>{item.text}</p></div>
+            <ul aria-label={`Kata kunci ${item.title}`}>{item.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </li>)}
+        </ol>
+        <div class="no-result" data-help-empty hidden><strong>Belum ada kelompok yang cocok.</strong><p>Coba istilah yang lebih singkat seperti “stok”, “akses”, “laporan”, atau “keamanan”.</p></div>
+      </div>
+    </section>
+
+    <section class="section dark-surface role-route" id="berdasarkan-peran" aria-labelledby="roles-title">
+      <div class="container role-route__layout">
+        <div class="section-copy reveal"><p class="eyebrow">Lewat tanggung jawab</p><h2 id="roles-title">Tidak tahu nama topiknya? Mulai dari peran Anda.</h2><p>Halaman peran membantu memetakan pekerjaan, batas akses, dan tindak lanjut yang relevan.</p></div>
+        <nav class="role-grid" aria-label="Bantuan berdasarkan peran">{roles.map(([title, text, href], index) => <a class="reveal" style={`--i:${index}`} href={href}><span>0{index + 1}</span><div><strong>{title}</strong><small>{text}</small></div><b aria-hidden="true">↗</b></a>)}</nav>
+      </div>
+    </section>
+
+    <section class="section safe-escalation" id="eskalasi" aria-labelledby="escalation-title">
+      <div class="container safe-escalation__layout">
+        <div class="section-copy reveal"><p class="eyebrow">Sebelum menghubungi dukungan</p><h2 id="escalation-title">Konteks yang jelas membantu. Data sensitif tidak diperlukan.</h2><p>Gunakan gambaran umum yang cukup untuk memahami masalah. Jangan menyalin rahasia atau rincian data bisnis ke kanal publik.</p><a class="text-link" href="/keamanan/">Baca kebijakan keamanan RAMUNI</a></div>
+        <div class="safety-board reveal">
+          <div class="safety-board__column"><span>Aman untuk disiapkan</span><ul><li>Peran dan pekerjaan yang dilakukan</li><li>Gejala umum serta waktu kejadian</li><li>Langkah yang sudah dicoba</li><li>Pesan kesalahan tanpa data pribadi</li></ul></div>
+          <div class="safety-board__column safety-board__column--avoid"><span>Jangan dikirim</span><ul><li>Password, token, atau kredensial</li><li>Data pelanggan atau karyawan</li><li>Rincian transaksi dan laporan asli</li><li>Kunci akses atau rahasia sistem</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface next-route" aria-labelledby="next-title">
+      <div class="container next-route__layout reveal">
+        <div><p class="eyebrow">Rujukan berikutnya</p><h2 id="next-title">Pilih jalur sesuai kebutuhan Anda.</h2></div>
+        <div class="next-options">
+          <a href="/blog/"><span>Belajar konsep bisnis</span><strong>Baca Blog RAMUNI</strong><small>Artikel tentang stok, arus kas, operasi, dan penggunaan AI untuk UMKM.</small></a>
+          <a href="https://wa.me/message/K35W6X6WT7YMJ1"><span>Masalah spesifik</span><strong>Hubungi Dukungan</strong><small>Kirim peran, gejala umum, waktu kejadian, dan langkah yang sudah dicoba.</small></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script>
-    document.querySelectorAll<HTMLFormElement>('[data-help-search]').forEach((form) => {
-      const input = form.querySelector<HTMLInputElement>('[data-help-search-input]');
-      const status = form.querySelector<HTMLElement>('[data-help-search-status]');
-      const topics = Array.from(document.querySelectorAll<HTMLElement>('[data-help-topic]'));
-      const update = () => {
-        const query = (input?.value || '').trim().toLowerCase();
-        let visible = 0;
-        topics.forEach((topic) => {
-          const match = !query || (topic.dataset.helpTopic || '').toLowerCase().includes(query);
-          topic.hidden = !match;
-          if (match) visible += 1;
-        });
-        if (status) status.textContent = query ? visible + ' koleksi cocok untuk "' + query + '".' : topics.length + ' koleksi tersedia.';
-      };
-      input?.addEventListener('input', update);
-      form.addEventListener('reset', () => setTimeout(update, 0));
-      form.addEventListener('submit', (event) => event.preventDefault());
-      update();
-    });
+    const setupHelpSearch = () => {
+      document.querySelectorAll<HTMLFormElement>('[data-help-search]').forEach((form) => {
+        if (form.dataset.ready === 'true') return;
+        form.dataset.ready = 'true';
+        const input = form.querySelector<HTMLInputElement>('[data-help-search-input]');
+        const status = form.querySelector<HTMLElement>('[data-help-search-status]');
+        const topics = Array.from(document.querySelectorAll<HTMLElement>('[data-help-topic]'));
+        const empty = document.querySelector<HTMLElement>('[data-help-empty]');
+        const update = () => {
+          const query = (input?.value || '').trim().toLowerCase();
+          let visible = 0;
+          topics.forEach((topic) => { const match = !query || (topic.dataset.helpTopic || '').toLowerCase().includes(query); topic.hidden = !match; if (match) visible += 1; });
+          if (empty) empty.hidden = visible !== 0;
+          if (status) status.textContent = query ? visible + ' kelompok cocok untuk “' + query + '”.' : topics.length + ' kelompok topik tersedia.';
+        };
+        input?.addEventListener('input', update);
+        form.addEventListener('reset', () => setTimeout(update, 0));
+        form.addEventListener('submit', (event) => event.preventDefault());
+        document.querySelectorAll<HTMLButtonElement>('[data-help-query]').forEach((button) => button.addEventListener('click', () => { if (!input) return; input.value = button.dataset.helpQuery || ''; update(); input.focus(); }));
+        update();
+      });
+    };
+    setupHelpSearch();
+    document.addEventListener('astro:page-load', setupHelpSearch);
   </script>
+
+  <style>
+    .support-hub{overflow:clip}.section-copy{display:grid;gap:20px}.section-copy>p:last-of-type{max-width:54ch;color:var(--ink-72)}.dark-surface .section-copy>p:last-child{color:rgb(255 255 255/.68)}
+    .search-panel__layout{display:grid;grid-template-columns:minmax(0,.82fr) minmax(480px,1.18fr);gap:clamp(44px,8vw,120px);align-items:center}.quick-search{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.quick-search>span{margin-right:4px;color:var(--ink-56);font-size:.72rem;font-weight:800;text-transform:uppercase}.quick-search button{border:1px solid var(--ink-18);border-radius:999px;background:transparent;padding:7px 12px;color:var(--ink);font:inherit;font-size:.78rem;font-weight:700;cursor:pointer}.quick-search button:hover,.quick-search button:focus-visible{border-color:var(--teal);background:rgb(14 154 148/.08)}
+    .search-box{position:relative;background:var(--ink);color:var(--white);padding:clamp(30px,5vw,56px);box-shadow:14px 14px 0 var(--yellow)}.search-box::before{content:"";position:absolute;inset:14px;border:1px solid rgb(255 255 255/.12);pointer-events:none}.search-box label,.search-box small{position:relative;display:block}.search-box label{margin-bottom:18px;font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.search-box>div{position:relative;display:flex;gap:14px;border-bottom:1px solid rgb(255 255 255/.45)}.search-box input{flex:1;min-width:0;border:0;background:transparent;color:var(--white);padding:14px 0;font:inherit;font-size:clamp(1rem,2vw,1.25rem);outline:none}.search-box input::placeholder{color:rgb(255 255 255/.46)}.search-box>div:focus-within{border-color:var(--yellow);outline:3px solid var(--yellow);outline-offset:7px}.search-box button{border:0;background:transparent;color:var(--yellow);font:inherit;font-weight:800;cursor:pointer}.search-box small{margin-top:16px;color:rgb(255 255 255/.62)}
+    .help-journey{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(58px,8vw,104px);border-block:1px solid var(--ink)}.help-journey article{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:28px clamp(18px,3vw,36px);border-right:1px solid var(--ink-18)}.help-journey article:last-child{border-right:0}.help-journey span{color:var(--teal);font-size:.7rem;font-weight:800}.help-journey strong{display:block;margin-bottom:7px}.help-journey p{color:var(--ink-64);font-size:.88rem}
+    .topic-map__heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.65fr);gap:clamp(40px,8vw,112px);align-items:end;margin-bottom:clamp(44px,6vw,72px)}.topic-map__heading>p{max-width:52ch;color:var(--ink-72)}.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}.topic-card{display:grid;gap:30px;min-width:0;min-height:320px;padding:clamp(24px,4vw,40px);border:1px solid var(--ink-18);background:var(--rice);transition:transform var(--fast),border-color var(--fast),box-shadow var(--fast)}.topic-card:nth-child(3n+2){background:rgb(239 205 84/.16)}.topic-card:nth-child(3n){background:rgb(14 154 148/.08)}.topic-card:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:8px 8px 0 var(--ink)}.topic-card__top{display:flex;justify-content:space-between;align-items:center}.topic-card__top span{display:grid;place-items:center;width:42px;height:42px;background:var(--ink);color:var(--yellow);font-size:.76rem;font-weight:800}.topic-card__top small{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase}.topic-card h3{max-width:22ch;font-size:clamp(1.25rem,2vw,1.7rem)}.topic-card p{max-width:54ch;margin-top:12px;color:var(--ink-72)}.topic-card>ul{display:flex;align-items:end;flex-wrap:wrap;gap:7px;list-style:none;margin:0;padding:0}.topic-card>ul li{border:1px solid var(--ink-18);border-radius:999px;padding:6px 10px;color:var(--ink-64);font-size:.7rem;font-weight:700}.no-result{margin-top:18px;padding:30px;border:1px dashed var(--ink-28);text-align:center}.no-result p{margin-top:7px;color:var(--ink-64)}
+    .role-route__layout,.safe-escalation__layout{display:grid;grid-template-columns:minmax(0,.75fr) minmax(480px,1.25fr);gap:clamp(52px,9vw,132px);align-items:start}.role-route .section-copy{position:sticky;top:128px}.role-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgb(255 255 255/.32);border-left:1px solid rgb(255 255 255/.18)}.role-grid a{display:grid;grid-template-columns:auto 1fr auto;gap:18px;min-height:190px;padding:28px;border-right:1px solid rgb(255 255 255/.18);border-bottom:1px solid rgb(255 255 255/.18);color:var(--white);text-decoration:none;transition:background var(--fast),color var(--fast)}.role-grid a:hover{background:var(--yellow);color:var(--ink)}.role-grid a>span{color:var(--yellow);font-size:.68rem;font-weight:800}.role-grid strong{display:block}.role-grid small{display:block;margin-top:12px;color:rgb(255 255 255/.62);line-height:1.55}.role-grid a:hover small{color:var(--ink-72)}
+    .safety-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--ink)}.safety-board__column{padding:clamp(25px,4vw,38px)}.safety-board__column+ .safety-board__column{border-left:1px solid var(--ink)}.safety-board__column>span{display:inline-block;margin-bottom:28px;padding:7px 10px;background:var(--teal);color:var(--white);font-size:.68rem;font-weight:800;text-transform:uppercase}.safety-board__column--avoid>span{background:var(--yellow);color:var(--ink)}.safety-board ul{list-style:none;margin:0;padding:0}.safety-board li{position:relative;padding:15px 0 15px 28px;border-top:1px solid var(--ink-10);color:var(--ink-72);font-size:.9rem}.safety-board li::before{position:absolute;left:0;color:var(--teal);font-weight:900;content:"✓"}.safety-board__column--avoid li::before{color:#a44736;content:"×"}
+    .next-route__layout{display:grid;grid-template-columns:minmax(0,.62fr) minmax(520px,1.38fr);gap:clamp(46px,8vw,112px)}.next-route__layout>div:first-child{display:grid;gap:15px;align-content:start}.next-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block:1px solid var(--ink)}.next-options a{display:grid;align-content:start;min-height:250px;padding:30px;color:var(--ink);text-decoration:none}.next-options a+ a{border-left:1px solid var(--ink)}.next-options a:hover{background:var(--yellow)}.next-options span{color:var(--teal);font-size:.68rem;font-weight:800;text-transform:uppercase}.next-options strong{margin-top:30px;font-size:clamp(1.2rem,2vw,1.65rem)}.next-options small{margin-top:14px;color:var(--ink-64);line-height:1.55}
+    @media(max-width:1080px){.search-panel__layout,.role-route__layout,.safe-escalation__layout,.next-route__layout{grid-template-columns:1fr}.search-box{width:min(780px,100%)}.topic-map__heading{grid-template-columns:1fr;gap:22px}.role-route .section-copy{position:static;max-width:760px}}
+    @media(max-width:800px){.help-journey,.topic-grid,.role-grid,.safety-board,.next-options{grid-template-columns:1fr}.help-journey article{border-right:0;border-bottom:1px solid var(--ink-18)}.topic-card{min-height:0}.role-grid a{min-height:150px}.safety-board__column+ .safety-board__column,.next-options a+ a{border-top:1px solid var(--ink);border-left:0}.next-options a{min-height:210px}}
+    @media(max-width:520px){.search-box{padding:28px 22px;box-shadow:8px 8px 0 var(--yellow)}.help-journey article{padding-inline:0}.topic-card,.role-grid a,.safety-board__column,.next-options a{padding:24px 20px}}
+    @media(prefers-reduced-motion:reduce){.topic-card{transition:none}.topic-card:hover{transform:none}}
+  </style>
 </BaseLayout>

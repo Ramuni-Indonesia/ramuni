@@ -12,6 +12,9 @@ const capabilityIconPaths: Record<string, string> = {
   'product-integrasi': '/website-original/icons/ramuni-icon-product-integrasi.webp',
   'solution-naikkan-omzet': '/website-original/icons/ramuni-icon-solution-naikkan-omzet.webp',
   'solution-kelola-stok': '/website-original/icons/ramuni-icon-solution-kelola-stok.webp',
+  'solution-pantau-laba-dan-arus-kas': '/website-original/icons/ramuni-icon-solution-pantau-laba-dan-arus-kas.webp',
+  'solution-pahami-pelanggan': '/website-original/icons/ramuni-icon-solution-pahami-pelanggan.webp',
+  'solution-laporan-bisnis-otomatis': '/website-original/icons/ramuni-icon-solution-laporan-bisnis-otomatis.webp',
 };
 
 const navigationIconKeys: Record<string, string> = {

@@ -22,7 +22,7 @@ const solutionFaq = [
 
 const problemMapEntries = painClusters.map((cluster, index) => ({
   ...cluster,
-  href: `/solusi/${solutions[index].slug}`,
+  href: `/solusi/${solutions[index].slug}/`,
 }));
 ---
 <BaseLayout title="Solusi AI Bisnis untuk UMKM | RAMUNI" description="Mulai dari masalah penjualan, stok, laba, pelanggan, atau laporan dan lihat bagaimana RAMUNI membantu menyusun konteksnya.">
@@ -33,7 +33,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
           <p class="section-kicker">Solusi bisnis</p>
           <h1>Pilih masalahnya, bukan modulnya.</h1>
           <p class="lede">Pilih masalah usaha, lalu lihat angka apa yang perlu diperiksa.</p>
-          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis">Coba Simulasi Gratis</a><span>Gunakan data contoh. Keputusan tetap di tangan Anda.</span></div>
+          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a><span>Gunakan data contoh. Keputusan tetap di tangan Anda.</span></div>
         </div>
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
       </div>
@@ -62,7 +62,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
                   {cluster.bars.map((bar, barIndex) => <i style={`--bar:${bar}%;--delay:${barIndex * 55}ms`}></i>)}
                 </div>
                 <p>{cluster.prompt}</p>
-                <a href={`/solusi/${solutions[index].slug}`}>Buka alur {cluster.label.toLowerCase()}</a>
+                <a href={`/solusi/${solutions[index].slug}/`}>Buka alur {cluster.label.toLowerCase()}</a>
               </article>
             ))}
           </div>
@@ -75,7 +75,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         <header><p class="section-kicker">Lima konteks</p><h2 id="solution-directory-title">Mulai dari gejala yang paling dekat.</h2><p>Buka alur untuk melihat dampak, modul terkait, dan tindakan yang aman.</p></header>
         <div class="solution-stories">
           {solutions.map((solution, index) => (
-            <a class="solution-story reveal" data-solution-card={solution.slug} style={`--i:${index}`} href={`/solusi/${solution.slug}`}>
+            <a class="solution-story reveal" data-solution-card={solution.slug} style={`--i:${index}`} href={`/solusi/${solution.slug}/`}>
               <span class="solution-story__mark" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><i></i><i></i><i></i></span>
               <div><h3>{solution.title}</h3><p>{solution.symptoms[0]}</p></div>
               <dl><div><dt>Jika dibiarkan</dt><dd>Keputusan mengandalkan asumsi atau catatan yang terlambat.</dd></div><div><dt>Arah yang dicari</dt><dd>{solution.outcome}</dd></div></dl>
@@ -94,7 +94,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
       <div class="container solution-combinations__layout">
         <header><p class="section-kicker">Modul bekerja bersama</p><h2 id="solution-combinations-title">Tidak ada satu modul untuk semua masalah.</h2></header>
         <div class="combination-lines">
-          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}`}><i class="combination-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
+          {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}/`}><i class="combination-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
         </div>
       </div>
     </section>
@@ -111,7 +111,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
     <section class="section industry-crosslinks" aria-labelledby="industry-crosslinks-title">
       <div class="container industry-crosslinks__layout">
         <header><h2 id="industry-crosslinks-title">Masalah yang sama, konteks yang berbeda.</h2><p>Lihat pertanyaan awal berdasarkan ritme operasional usaha Anda.</p></header>
-        <nav aria-label="Solusi berdasarkan industri">{industries.map((industry) => <a href={`/industri/${industry.slug}`}><strong>{industry.title}</strong><span>{industry.question}</span></a>)}</nav>
+        <nav aria-label="Solusi berdasarkan industri">{industries.map((industry) => <a href={`/industri/${industry.slug}/`}><strong>{industry.title}</strong><span>{industry.question}</span></a>)}</nav>
       </div>
     </section>
 

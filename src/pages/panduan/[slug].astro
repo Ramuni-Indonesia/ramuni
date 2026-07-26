@@ -20,9 +20,9 @@ export function getStaticPaths() {
       { title: 'Catat keputusan berikutnya', text: 'Tentukan produk yang perlu dihitung ulang, dipindahkan, atau disiapkan untuk pemesanan.', cue: 'Tindak lanjut' },
     ],
     related: [
-      { type: 'Kalkulator', title: 'Titik reorder stok', text: 'Perkirakan batas stok untuk mulai memeriksa pemesanan.', href: '/kalkulator/reorder-stok' },
-      { type: 'Template', title: 'Stok harian', text: 'Catat saldo awal, barang masuk, barang keluar, dan alasan selisih.', href: '/template/stok-harian' },
-      { type: 'Kamus', title: 'Stok pengaman', text: 'Pahami fungsi cadangan stok dan batas penggunaannya.', href: '/kamus-bisnis/stok-pengaman' },
+      { type: 'Kalkulator', title: 'Titik reorder stok', text: 'Perkirakan batas stok untuk mulai memeriksa pemesanan.', href: '/kalkulator/reorder-stok/' },
+      { type: 'Template', title: 'Stok harian', text: 'Catat saldo awal, barang masuk, barang keluar, dan alasan selisih.', href: '/template/stok-harian/' },
+      { type: 'Kamus', title: 'Stok pengaman', text: 'Pahami fungsi cadangan stok dan batas penggunaannya.', href: '/kamus-bisnis/stok-pengaman/' },
     ],
   },
   'memahami-arus-kas': {
@@ -40,9 +40,9 @@ export function getStaticPaths() {
       { title: 'Periksa perubahan yang tidak biasa', text: 'Bandingkan arus bersih dengan perubahan saldo dan telusuri selisih yang belum memiliki catatan.', cue: 'Selisih' },
     ],
     related: [
-      { type: 'Template', title: 'Arus kas sederhana', text: 'Susun uang masuk dan keluar sesuai waktu terjadinya.', href: '/template/arus-kas-sederhana' },
-      { type: 'Kalkulator', title: 'Laba usaha', text: 'Bandingkan pendapatan dan biaya tanpa mencampurnya dengan kas.', href: '/kalkulator/laba-usaha' },
-      { type: 'Kamus', title: 'Arus kas', text: 'Lihat definisi, contoh, dan istilah yang sering tertukar.', href: '/kamus-bisnis/arus-kas' },
+      { type: 'Template', title: 'Arus kas sederhana', text: 'Susun uang masuk dan keluar sesuai waktu terjadinya.', href: '/template/arus-kas-sederhana/' },
+      { type: 'Kalkulator', title: 'Laba usaha', text: 'Bandingkan pendapatan dan biaya tanpa mencampurnya dengan kas.', href: '/kalkulator/laba-usaha/' },
+      { type: 'Kamus', title: 'Arus kas', text: 'Lihat definisi, contoh, dan istilah yang sering tertukar.', href: '/kamus-bisnis/arus-kas/' },
     ],
   },
   'menilai-insight-ai': {
@@ -60,9 +60,9 @@ export function getStaticPaths() {
       { title: 'Nilai batas dan tindakan', text: 'Catat asumsi yang tersisa, lalu tentukan pemeriksaan manusia sebelum mengambil tindakan.', cue: 'Batas' },
     ],
     related: [
-      { type: 'Artikel', title: 'Metodologi pengecekan fakta', text: 'Lihat cara klaim, sumber, dan contoh diperiksa.', href: '/blog/metodologi-fact-check' },
-      { type: 'Artikel', title: 'Kebijakan sumber', text: 'Pahami jenis sumber dan cara rujukan ditampilkan.', href: '/blog/kebijakan-sumber' },
-      { type: 'Produk', title: 'Asisten AI', text: 'Lihat peran, bukti, dan batas Asisten AI RAMUNI.', href: '/produk/asisten-ai' },
+      { type: 'Artikel', title: 'Metodologi pengecekan fakta', text: 'Lihat cara klaim, sumber, dan contoh diperiksa.', href: '/blog/metodologi-fact-check/' },
+      { type: 'Artikel', title: 'Kebijakan sumber', text: 'Pahami jenis sumber dan cara rujukan ditampilkan.', href: '/blog/kebijakan-sumber/' },
+      { type: 'Produk', title: 'Asisten AI', text: 'Lihat peran, bukti, dan batas Asisten AI RAMUNI.', href: '/produk/asisten-ai/' },
     ],
   },
   };
@@ -105,7 +105,7 @@ const schema = [
     <header class="learning-detail-hero">
       <div class="container learning-detail-hero__grid">
         <div class="learning-detail-hero__copy reveal is-visible">
-          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/panduan">Panduan</a><span>/</span><span aria-current="page">{guide.title}</span></nav>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/panduan/">Panduan</a><span>/</span><span aria-current="page">{guide.title}</span></nav>
           <p class="eyebrow">Panduan praktis · {guide.time}</p>
           <h1>{guide.title}</h1>
           <p class="learning-detail-hero__question">{guide.query}</p>
@@ -149,7 +149,7 @@ const schema = [
     <section class="section learning-close-stage">
       <div class="container learning-close learning-close--compact reveal">
         <div class="learning-close__mascot" aria-hidden="true"><span></span><img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" loading="lazy" decoding="async" /></div>
-        <div><p class="section-kicker">Selesai membaca</p><h2>Simpan pertanyaannya, bukan hanya jawabannya.</h2><p>Catat data yang dipakai, keputusan kecil yang dibuat, dan waktu untuk memeriksa hasilnya lagi.</p><div class="button-row"><a class="button button--primary" href="/template/evaluasi-mingguan">Pakai template evaluasi</a><a class="button button--secondary" href="/panduan">Panduan lainnya</a></div></div>
+        <div><p class="section-kicker">Selesai membaca</p><h2>Simpan pertanyaannya, bukan hanya jawabannya.</h2><p>Catat data yang dipakai, keputusan kecil yang dibuat, dan waktu untuk memeriksa hasilnya lagi.</p><div class="button-row"><a class="button button--primary" href="/template/evaluasi-mingguan/">Pakai template evaluasi</a><a class="button button--secondary" href="/panduan/">Panduan lainnya</a></div></div>
       </div>
     </section>
   </article>
