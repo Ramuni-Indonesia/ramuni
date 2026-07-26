@@ -11,8 +11,8 @@ export const mascots = {
   },
   working2d: {
     src: '/website-original/mascot/ramuni-mascot-working-dashboard.webp',
-    width: 640,
-    height: 640,
+    width: 560,
+    height: 560,
   },
   guide3d: {
     src: '/website-original/mascot/ramuni-mascot-3d-guide.webp',

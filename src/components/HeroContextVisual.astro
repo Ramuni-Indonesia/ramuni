@@ -26,8 +26,8 @@ const profiles: Record<HeroContextScene, { mode: SceneMode; eyebrow: string; hea
 };
 const profile = profiles[scene] ?? profiles['industry-hub'];
 const sceneDashboardMap: Record<HeroContextScene, DashboardVisualKey> = {
-  'industry-hub': 'sales', retail: 'sales', fnb: 'inventory', distributor: 'inventory', 'reseller-online': 'sales', jasa: 'cash', 'manufaktur-kecil': 'inventory',
-  'role-hub': 'ai', 'pemilik-usaha': 'ai', 'admin-toko': 'inventory', kasir: 'sales', supervisor: 'cash', support: 'ai',
+  'industry-hub': 'productPerformance', retail: 'productPerformance', fnb: 'productOperations', distributor: 'productOperations', 'reseller-online': 'productPerformance', jasa: 'productPerformance', 'manufaktur-kecil': 'productOperations',
+  'role-hub': 'productOverview', 'pemilik-usaha': 'productOverview', 'admin-toko': 'productOperations', kasir: 'productPerformance', supervisor: 'productOperations', support: 'ai',
 };
 const dashboard = dashboardVisuals[sceneDashboardMap[scene] || 'ai'];
 const levels = [78, 34, 62, 48];
@@ -37,10 +37,13 @@ const levels = [78, 34, 62, 48];
   <figcaption>
     <span>{label || profile.eyebrow}</span>
     <strong id={'hero-context-' + scene}>{title || profile.headline}</strong>
-    <small>Data contoh, bukan data pelanggan</small>
+    <small>{dashboard.type === 'product-screenshot' ? 'Tampilan produk dengan data demo' : 'Data contoh, bukan data pelanggan'}</small>
   </figcaption>
   <div class="hero-context__image">
-    <img src={dashboard.src} width="1280" height="853" alt={dashboard.alt} decoding="async" fetchpriority="high" />
+    <picture>
+      {'mobileSrc' in dashboard && <source media="(max-width: 620px)" srcset={dashboard.mobileSrc} width={dashboard.mobileWidth} height={dashboard.mobileHeight} />}
+      <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={dashboard.alt} decoding="async" fetchpriority="high" />
+    </picture>
   </div>
   <div class="hero-context__screen" aria-hidden="true">
     <header><span>{profile.eyebrow}</span><b>Ruang usaha contoh</b></header>
@@ -56,7 +59,7 @@ const levels = [78, 34, 62, 48];
 <style>
   .hero-context{position:relative;min-height:520px;margin:0;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);overflow:hidden;isolation:isolate}
   .hero-context::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:44px 44px;opacity:.46}
-  .hero-context__image{position:absolute;inset:32px 28px 106px;border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.16);overflow:hidden}.hero-context__image img{display:block;width:100%;height:100%;object-fit:cover}
+  .hero-context__image{position:absolute;inset:32px 28px 106px;border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.16);overflow:hidden}.hero-context__image picture{display:block;width:100%;height:100%}.hero-context__image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
   .hero-context__screen{display:none}
   .hero-context__screen header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--ink-10);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.hero-context__screen header span{color:var(--teal)}
   .hero-context figcaption{position:absolute;z-index:3;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.95);color:var(--ink);backdrop-filter:blur(10px)}

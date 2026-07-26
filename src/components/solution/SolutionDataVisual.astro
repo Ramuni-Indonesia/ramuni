@@ -27,8 +27,11 @@ const visualId = `sd-visual-${visual.kind}`;
   <div id={`${visualId}-pattern`} class="sd-visual__pane sd-visual__pane--pattern" data-visual-pane="pattern" role="region" aria-label="Pola visual">
 
   <div class="sd-visual__dashboard-image">
-    <img src={dashboardVisual.src} width="1280" height="853" alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
-    <span>Visual dashboard sintetis</span>
+    <picture>
+      {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
+      <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
+    </picture>
+    <span>{dashboardVisual.badge}</span>
   </div>
 
   {visual.kind === 'revenue' && (
@@ -102,5 +105,5 @@ const visualId = `sd-visual-${visual.kind}`;
 </figure>
 
 <style>
-  .sd-visual__dashboard-image{position:relative;min-width:0;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__dashboard-image img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}.sd-visual__dashboard-image span{position:absolute;left:14px;bottom:14px;padding:8px 10px;background:rgb(11 48 69/.9);color:var(--white);font-size:.62rem;font-weight:800}.sd-visual__dashboard-image~*{display:none!important}
+  .sd-visual__dashboard-image{position:relative;min-width:0;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__dashboard-image picture{display:block}.sd-visual__dashboard-image img{display:block;width:100%;height:auto;object-fit:cover;object-position:top}.sd-visual__dashboard-image span{position:absolute;left:14px;bottom:14px;padding:8px 10px;background:rgb(11 48 69/.9);color:var(--white);font-size:.62rem;font-weight:800}.sd-visual__dashboard-image~*{display:none!important}
 </style>

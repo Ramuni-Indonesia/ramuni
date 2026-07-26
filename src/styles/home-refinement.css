@@ -358,6 +358,7 @@
 .dashboard-gallery__head h2{max-width:11ch}
 .dashboard-gallery__head>div:last-child>strong{display:block;font-size:clamp(1.65rem,3vw,3.1rem);line-height:1.05;letter-spacing:-.045em}
 .dashboard-gallery__head>div:last-child p{margin:20px 0;color:var(--ink-72)}
+.dashboard-product-shot{position:relative;margin:0 0 clamp(36px,6vw,76px);border:1px solid var(--ink);background:var(--white);box-shadow:14px 14px 0 var(--ink);overflow:hidden}.dashboard-product-shot picture,.dashboard-product-shot img{display:block;width:100%}.dashboard-product-shot img{height:auto}.dashboard-product-shot figcaption{display:flex;gap:20px;align-items:center;padding:18px 20px;border-top:1px solid var(--ink-10)}.dashboard-product-shot figcaption>div{display:grid;gap:6px;min-width:0}.dashboard-product-shot figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.dashboard-product-shot figcaption strong{font-size:.92rem}.dashboard-product-shot figcaption small{color:var(--ink-56);font-size:.72rem}
 .dashboard-gallery .signal-spread{grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);width:100%}
 .dashboard-gallery .signal-spread__notes{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:clamp(40px,6vw,88px)}
 .dashboard-gallery .signal-story--lead .signal-visual{aspect-ratio:16/10}
@@ -500,12 +501,16 @@
 }
 
 @media(max-width:680px){
+  .dashboard-product-shot{box-shadow:8px 8px 0 var(--ink)}
+  .dashboard-product-shot figcaption{align-items:flex-start;gap:14px;padding:16px}
   .problem-canvas{padding:18px 14px}
   .problem-canvas__core{width:min(220px,72vw);margin-bottom:22px}
   .problem-constellation,.solution-paths{grid-template-columns:1fr}
   .problem-point:nth-child(n){min-height:94px}
   .module-cell:nth-child(n),.answer-tile:nth-child(n),.solution-path:nth-child(n){min-height:0}
 }
+
+@media(max-width:420px){.dashboard-product-shot figcaption{display:grid;grid-template-columns:112px minmax(0,1fr)}.dashboard-product-shot figcaption>div{align-self:center}}
 
 /* Large tablets in landscape keep the desktop hero composition. */
 @media(min-width:961px) and (max-width:1200px){

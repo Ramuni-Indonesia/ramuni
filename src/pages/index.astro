@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimatedMuniWork from '../components/AnimatedMuniWork.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { releaseGates } from '../config/release';
 import { industries, launchCta, products, solutions } from '../data/site';
+import { dashboardVisuals } from '../data/dashboardVisuals';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
@@ -14,13 +16,14 @@ const homepagePains = [
   { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis/' },
 ];
 const mascotSrc = releaseGates.mascotExplorationEnabled
-  ? '/website-original/mascot/ramuni-mascot-3d-guide.webp'
+  ? '/website-original/mascot/ramuni-mascot-working-dashboard.webp'
   : '/website-original/ramuni-mascot-problem-section.webp';
 const companionSteps = [
   ['Catatan', 'Sumber usaha dikumpulkan tanpa menutupi data yang belum lengkap.'],
   ['Bukti', 'Periode, perubahan, dan angka pendukung tetap bisa ditelusuri.'],
   ['Arah', 'RAMUNI membantu memilih perhatian berikutnya. Keputusan tetap milik Anda.'],
 ];
+const productDashboard = dashboardVisuals.productOverview;
 
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
@@ -149,6 +152,16 @@ const schema = [
         <div><p class="section-kicker">Bukan sekadar grafik</p><h2>Pertanyaan datang dulu.</h2></div>
         <div><strong>Angka menjelaskan setelahnya.</strong><p>RAMUNI merangkum perubahan dalam bahasa sehari-hari, lalu membuka konteks yang perlu Anda periksa.</p><a class="text-link" href="/produk/dashboard-bisnis/">Pelajari Dashboard Bisnis</a></div>
       </header>
+      <figure class="dashboard-product-shot reveal">
+        <picture>
+          <source media="(max-width: 620px)" srcset={productDashboard.mobileSrc} width={productDashboard.mobileWidth} height={productDashboard.mobileHeight} />
+          <img src={productDashboard.src} width={productDashboard.width} height={productDashboard.height} alt={productDashboard.alt} loading="lazy" decoding="async" />
+        </picture>
+        <figcaption>
+          <AnimatedMuniWork />
+          <div><span>Tampilan produk · data demo</span><strong>Satu ringkasan untuk penjualan, kas, stok, pelanggan, aktivitas, dan wawasan.</strong><small>Angka di layar adalah fixture pengujian, bukan data pelanggan.</small></div>
+        </figcaption>
+      </figure>
       <div class="signal-spread" role="group" aria-label="Contoh tema insight RAMUNI">
         <figure class="signal-story signal-story--lead reveal" style="--i:0">
           <div class="signal-story__frame signal-visual signal-visual--stock" role="img" aria-label="Ilustrasi laju penjualan dibandingkan dengan sisa stok">

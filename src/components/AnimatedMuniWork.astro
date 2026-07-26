@@ -1,0 +1,79 @@
+---
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const {
+  class: className = '',
+  label = 'Muni sedang membaca dashboard dan menandai informasi yang perlu diperiksa',
+} = Astro.props;
+---
+
+<span
+  class:list={['animated-muni-work', className]}
+  role="img"
+  aria-label={label}
+  data-animated-muni-work
+></span>
+
+<script>
+  const bindAnimatedMuniWork = () => {
+    document.querySelectorAll<HTMLElement>('[data-animated-muni-work]').forEach((mascot) => {
+      if (mascot.dataset.bound === 'true') return;
+      mascot.dataset.bound = 'true';
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+      let inView = false;
+
+      const update = () => {
+        const canAnimate = inView && !document.hidden && !reducedMotion.matches && !saveData;
+        mascot.dataset.animate = canAnimate ? 'true' : 'false';
+      };
+
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry?.isIntersecting ?? false;
+        update();
+      }, { rootMargin: '120px 0px', threshold: 0.08 });
+
+      observer.observe(mascot);
+      document.addEventListener('visibilitychange', update);
+      reducedMotion.addEventListener?.('change', update);
+    });
+  };
+
+  bindAnimatedMuniWork();
+  document.addEventListener('astro:page-load', bindAnimatedMuniWork);
+</script>
+
+<style>
+  .animated-muni-work{
+    display:block;
+    width:var(--animated-muni-size,148px);
+    aspect-ratio:1;
+    flex:0 0 auto;
+    border:1px solid rgb(11 48 69/.18);
+    background-color:var(--rice);
+    background-image:url('/website-original/mascot/ramuni-mascot-working-sprite.webp');
+    background-repeat:no-repeat;
+    background-size:200% 200%;
+    background-position:0 0;
+    box-shadow:7px 7px 0 var(--yellow);
+    contain:strict;
+    animation:muni-work-sequence 3.8s steps(1,end) infinite;
+    animation-play-state:paused;
+  }
+
+  .animated-muni-work[data-animate='true']{animation-play-state:running}
+
+  @keyframes muni-work-sequence{
+    0%,24.99%{background-position:0 0}
+    25%,49.99%{background-position:100% 0}
+    50%,74.99%{background-position:0 100%}
+    75%,100%{background-position:100% 100%}
+  }
+
+  @media(max-width:680px){.animated-muni-work{--animated-muni-size:112px;box-shadow:5px 5px 0 var(--yellow)}}
+  @media(prefers-reduced-motion:reduce){.animated-muni-work{animation:none}}
+</style>
