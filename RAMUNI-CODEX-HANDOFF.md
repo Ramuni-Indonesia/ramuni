@@ -45,6 +45,16 @@ This handoff lets Codex on the MeetsIn server continue the RAMUNI Astro marketin
 - This batch did not require new raster generation. The HashMicro native image route was therefore not invoked.
 - Human browser QA is still required at 1440, 1194, 1024, 834, 768, 390, and 360 widths because the local Chromium runner hangs on this host. Keep `overflow-x` safety guards, but inspect those widths for any visually clipped source element before public launch.
 
+### Staging activation for the responsive continuation
+
+- Activated staging release `20260726T113149Z-a8966cc7a92b` from local commit `a8966cc7a92bf4e56860cd257879cb39f6961b3a`.
+- Artifact SHA-256: `815d9f4bbc2c13a2ccd7aa4d213bc02d79fbcc91c01b65cee943e154e2d67280`.
+- The atomic document-root symlink now resolves to `/var/www/ramuni-staging/releases/20260726T113149Z-a8966cc7a92b`; the release health script passed against the local origin with the exact expected release ID.
+- Public staging returns HTTP/2 200, `Cache-Control: no-store`, `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, Cloudflare `DYNAMIC`, HSTS, CSP, and HTTP/3 advertisement. `/healthz` reports the same release, source SHA, artifact digest, and deployment timestamp.
+- Staging sitemap endpoints `/sitemap.xml` and `/sitemap-index.xml` return 404. `/demo/`, `/early-access/`, and `/harga/` return 301 to `/tour-produk-gratis`. Product, solution, blog, and contact routes resolve through their canonical trailing-slash redirects to HTTP 200.
+- A representative asset at `assets-staging.ramuni.id` returns HTTP/2 200 with the intended public cache and stale-response directives. R2 synchronization completed before activation with 29 uploaded and 34 unchanged objects.
+- GitHub publication is still pending because this host has no usable non-interactive HTTPS credential and no authorized SSH route. The local `main` is ahead of `origin/main`; do not use plaintext credentials from chat or history.
+
 ## Resource tools and navigation continuation — local commit pending GitHub authentication
 
 - Implemented on local `main`: `0650b80` (`feat: expand resource tools and navigation`). The commit is ready but could not be pushed because the server has no usable GitHub HTTPS credential and no authorized SSH key. Do not place a PAT in a command or repository file; restore the server credential helper, then push the existing local commits.
