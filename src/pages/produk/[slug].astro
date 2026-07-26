@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   return (await listProductRouteModels()).map((model) => ({ params: { slug: model.product.slug }, props: model }));
 }
 
-const { product, detail, seo, cmsSnapshotId } = Astro.props as ProductRouteModel;
+const { product, detail, seo: cmsSeo, cmsSnapshotId } = Astro.props as ProductRouteModel;
 
 if (!detail) {
   throw new Error(`Product detail content is missing for ${product.slug}`);
@@ -32,7 +32,11 @@ const productSeo: Record<string, { title: string; description: string }> = {
   'laporan-insight': { title: 'Laporan Bisnis UMKM | RAMUNI', description: 'Susun ringkasan harian dan mingguan dari sumber serta periode yang sama agar laporan bisnis UMKM lebih konsisten dan mudah ditelusuri.' },
   integrasi: { title: 'Integrasi Data Bisnis UMKM | RAMUNI', description: 'Siapkan impor dan integrasi data usaha dengan pemetaan, validasi, status pembaruan, serta batas yang jelas sebelum data dipakai.' },
 };
-const seo = productSeo[product.slug] || { title: `${product.title} untuk UMKM | RAMUNI`, description: detail.heroLead };
+const defaultSeo = productSeo[product.slug] || { title: `${product.title} untuk UMKM | RAMUNI`, description: detail.heroLead };
+const seo = {
+  title: cmsSeo?.title || defaultSeo.title,
+  description: cmsSeo?.description || defaultSeo.description,
+};
 
 const relatedProducts = detail.relatedProductSlugs.flatMap((slug) => {
   const related = products.find((entry) => entry.slug === slug);
