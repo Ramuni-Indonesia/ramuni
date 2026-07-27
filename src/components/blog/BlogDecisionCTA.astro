@@ -123,6 +123,57 @@ const signals = [
       const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-signal-tab]'));
       const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-signal-panel]'));
       const mascotImage = root.querySelector<HTMLImageElement>('[data-blog-mascot]');
+      let mascotRequest = 0;
+
+      const swapMascot = async (src?: string) => {
+        const request = ++mascotRequest;
+        if (!mascotImage) return false;
+        mascotImage.dataset.transitioning = 'false';
+        if (!src) return false;
+        if (mascotImage.dataset.currentSrc === src) return true;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = src;
+        try {
+          await preload.decode();
+        } catch {
+          return false;
+        }
+        if (request !== mascotRequest) return false;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+          const fadedOut = new Promise<void>((resolve) => {
+            let timeout = 0;
+            const finish = () => {
+              window.clearTimeout(timeout);
+              mascotImage.removeEventListener('transitionend', onTransitionEnd);
+              resolve();
+            };
+            const onTransitionEnd = (event: TransitionEvent) => {
+              if (event.propertyName === 'opacity') finish();
+            };
+            mascotImage.addEventListener('transitionend', onTransitionEnd);
+            timeout = window.setTimeout(finish, 240);
+          });
+          mascotImage.dataset.transitioning = 'true';
+          await fadedOut;
+          if (request !== mascotRequest) return false;
+        }
+
+        mascotImage.src = src;
+        mascotImage.dataset.currentSrc = src;
+        if (!reduceMotion) {
+          await new Promise<void>((resolve) => {
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+          });
+          if (request !== mascotRequest) return false;
+          mascotImage.dataset.transitioning = 'false';
+        }
+        return true;
+      };
+
+      if (mascotImage) mascotImage.dataset.currentSrc = mascotImage.getAttribute('src') || '';
 
       const selectTab = (nextTab: HTMLButtonElement) => {
         const key = nextTab.dataset.signalTab;
@@ -134,7 +185,12 @@ const signals = [
         panels.forEach((panel) => {
           panel.hidden = panel.dataset.signalPanel !== key;
         });
-        if (mascotImage && nextTab.dataset.mascotSrc) mascotImage.src = nextTab.dataset.mascotSrc;
+        void swapMascot(nextTab.dataset.mascotSrc).then((isCurrent) => {
+          if (!isCurrent) return;
+          root.dataset.stateChanging = 'false';
+          void root.offsetWidth;
+          root.dataset.stateChanging = 'true';
+        });
       };
 
       tabs.forEach((tab, index) => {

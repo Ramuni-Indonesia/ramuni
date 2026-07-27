@@ -5,7 +5,157 @@ export type MuniMascot3DController = {
   destroy: () => void;
 };
 
+type MuniPose = {
+  name: string;
+  rootYaw: number;
+  rootPitch: number;
+  rootRoll: number;
+  rootLift: number;
+  headYaw: number;
+  headPitch: number;
+  headRoll: number;
+  leftWing: number;
+  rightWing: number;
+  leftForeWing: number;
+  rightForeWing: number;
+  leftTip: number;
+  rightTip: number;
+  tail: number;
+};
+
+type MascotFocusDetail = {
+  index?: number;
+  targetX?: number;
+  targetY?: number;
+};
+
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const damp = (current: number, target: number, speed: number, delta: number) => (
+  THREE.MathUtils.damp(current, target, speed, delta)
+);
+
+const NEUTRAL_POSE: MuniPose = {
+  name: 'welcome',
+  rootYaw: -0.1,
+  rootPitch: -0.02,
+  rootRoll: 0,
+  rootLift: 0,
+  headYaw: 0,
+  headPitch: 0,
+  headRoll: -0.025,
+  leftWing: -0.24,
+  rightWing: 0.24,
+  leftForeWing: 0,
+  rightForeWing: 0,
+  leftTip: -0.06,
+  rightTip: 0.06,
+  tail: 0,
+};
+
+const CARD_POSES: readonly MuniPose[] = [
+  {
+    ...NEUTRAL_POSE,
+    name: 'point-left-high',
+    rootYaw: -0.18,
+    rootRoll: 0.025,
+    rootLift: 0.035,
+    headYaw: -0.2,
+    headPitch: -0.06,
+    headRoll: -0.08,
+    leftWing: -2.12,
+    leftForeWing: 0.16,
+    leftTip: -0.2,
+    rightWing: 0.18,
+    tail: 0.07,
+  },
+  {
+    ...NEUTRAL_POSE,
+    name: 'point-right-high',
+    rootYaw: 0.13,
+    rootRoll: -0.02,
+    rootLift: 0.045,
+    headYaw: 0.22,
+    headPitch: -0.07,
+    headRoll: 0.07,
+    rightWing: 2.12,
+    rightForeWing: -0.16,
+    rightTip: 0.2,
+    leftWing: -0.18,
+    tail: -0.07,
+  },
+  {
+    ...NEUTRAL_POSE,
+    name: 'present-right',
+    rootYaw: 0.16,
+    rootRoll: -0.018,
+    headYaw: 0.24,
+    headRoll: 0.045,
+    rightWing: 1.52,
+    rightForeWing: -0.12,
+    rightTip: 0.18,
+    leftWing: -0.16,
+    tail: -0.05,
+  },
+  {
+    ...NEUTRAL_POSE,
+    name: 'present-right-low',
+    rootYaw: 0.12,
+    rootPitch: 0.025,
+    rootRoll: -0.03,
+    rootLift: -0.015,
+    headYaw: 0.2,
+    headPitch: 0.1,
+    headRoll: 0.05,
+    rightWing: 0.92,
+    rightForeWing: -0.08,
+    rightTip: 0.14,
+    leftWing: -0.18,
+    tail: -0.045,
+  },
+  {
+    ...NEUTRAL_POSE,
+    name: 'present-left-low',
+    rootYaw: -0.16,
+    rootPitch: 0.02,
+    rootRoll: 0.03,
+    rootLift: -0.01,
+    headYaw: -0.22,
+    headPitch: 0.09,
+    headRoll: -0.055,
+    leftWing: -0.94,
+    leftForeWing: 0.08,
+    leftTip: -0.14,
+    rightWing: 0.18,
+    tail: 0.05,
+  },
+];
+
+const createFocusPose = (index: number, targetX: number, targetY: number): MuniPose => {
+  const basePose = CARD_POSES[index] ?? NEUTRAL_POSE;
+  const horizontal = clamp(targetX, -1, 1);
+  const vertical = clamp(targetY, -1, 1);
+  if (Math.abs(horizontal) < 0.14) return basePose;
+
+  const side = horizontal < 0 ? -1 : 1;
+  const reach = vertical < -0.2 ? 2.12 : vertical > 0.22 ? 0.92 : 1.5;
+  return {
+    ...basePose,
+    name: `card-${index + 1}-${side < 0 ? 'left' : 'right'}-${vertical < -0.2 ? 'high' : vertical > 0.22 ? 'low' : 'middle'}`,
+    rootYaw: horizontal * 0.16,
+    rootPitch: vertical * 0.035,
+    rootRoll: horizontal * -0.025,
+    headYaw: horizontal * 0.24,
+    headPitch: vertical * 0.12,
+    headRoll: horizontal * 0.08,
+    leftWing: side < 0 ? -reach : -0.18,
+    rightWing: side > 0 ? reach : 0.18,
+    leftForeWing: side < 0 ? 0.12 : 0,
+    rightForeWing: side > 0 ? -0.12 : 0,
+    leftTip: side < 0 ? -0.18 : -0.04,
+    rightTip: side > 0 ? 0.18 : 0.04,
+    tail: horizontal * -0.3,
+  };
+};
 
 export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | undefined {
   if (host.dataset.modelReady === 'true') return;
@@ -16,21 +166,21 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   let reducedMotion = motionQuery.matches;
   const allowsInteraction = host.dataset.interactive !== 'false';
+  const focusTarget = host.closest<HTMLElement>('[data-problem-mascot]') ?? host;
   let destroyed = false;
   let active = true;
   let visible = !document.hidden;
-  let dragging = false;
-  let pointerId: number | null = null;
-  let pointerX = 0;
-  let pointerY = 0;
   let pointerYaw = 0;
   let pointerPitch = 0;
-  let dragYaw = 0;
-  let dragPitch = 0;
-  let scrollYaw = 0;
+  let focusX = 0;
+  let focusY = 0;
+  let scrollTurn = 0;
   let scrollPitch = 0;
   let scrollLift = 0;
   let scrollFrame = 0;
+  let poseIndex = -1;
+  let poseAge = 10;
+  let targetPose = NEUTRAL_POSE;
   let elapsed = 0;
   let lastFrame = performance.now();
 
@@ -52,34 +202,66 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.04;
+  renderer.toneMappingExposure = 0.94;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(31, 1, 0.1, 30);
-  camera.position.set(0, 0.02, 5.45);
-  camera.lookAt(0, 0.06, 0);
+  const camera = new THREE.OrthographicCamera(-1.9, 1.9, 1.9, -1.9, 0.1, 30);
+  camera.position.set(0, 0.04, 5.2);
+  camera.lookAt(0, 0.02, 0);
 
   scene.add(createMuniMascotLights());
   const mascot = createMuniMascotModel();
   scene.add(mascot.root);
 
-  const shadowGeometry = new THREE.CircleGeometry(0.84, 36);
+  const shadowGeometry = new THREE.CircleGeometry(0.78, 36);
   const shadowMaterial = new THREE.MeshBasicMaterial({
     color: 0x0b3045,
     transparent: true,
-    opacity: 0.13,
+    opacity: 0.1,
     depthWrite: false,
   });
   const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
-  shadow.name = 'Muni contact shadow';
-  shadow.position.set(0, -1.56, -0.14);
-  shadow.scale.set(1, 0.24, 1);
+  shadow.name = 'Muni soft contact shadow';
+  shadow.position.set(0, -1.48, -0.18);
+  shadow.scale.set(1, 0.2, 1);
   scene.add(shadow);
 
   const renderScene = () => {
     renderer.render(scene, camera);
     if (host.dataset.modelState !== 'ready') host.dataset.modelState = 'ready';
   };
+
+  const applyFocus = (index: number, targetX = 0, targetY = 0) => {
+    const nextIndex = clamp(Math.round(index), 0, CARD_POSES.length - 1);
+    const nextFocusX = clamp(targetX, -1, 1);
+    const nextFocusY = clamp(targetY, -1, 1);
+    const focusChanged = Math.abs(nextFocusX - focusX) > 0.08 || Math.abs(nextFocusY - focusY) > 0.08;
+    if (nextIndex !== poseIndex || focusChanged) {
+      poseIndex = nextIndex;
+      poseAge = 0;
+      targetPose = createFocusPose(nextIndex, nextFocusX, nextFocusY);
+      host.dataset.mascotPose = targetPose.name;
+    }
+    focusX = nextFocusX;
+    focusY = nextFocusY;
+  };
+
+  const onMascotFocus = (event: Event) => {
+    const detail = (event as CustomEvent<MascotFocusDetail>).detail;
+    if (!detail || typeof detail.index !== 'number') return;
+    applyFocus(detail.index, detail.targetX, detail.targetY);
+  };
+
+  const initialFocus = Number(focusTarget.dataset.activeProblem);
+  const initialTargetX = Number(focusTarget.dataset.mascotTargetX);
+  const initialTargetY = Number(focusTarget.dataset.mascotTargetY);
+  if (Number.isFinite(initialFocus)) {
+    applyFocus(
+      initialFocus,
+      Number.isFinite(initialTargetX) ? initialTargetX : 0,
+      Number.isFinite(initialTargetY) ? initialTargetY : 0,
+    );
+  }
 
   const updateScrollState = () => {
     scrollFrame = 0;
@@ -88,9 +270,9 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     const viewportHeight = Math.max(1, window.innerHeight);
     const progress = clamp((viewportHeight - bounds.top) / (viewportHeight + bounds.height), 0, 1);
     const centered = progress - 0.5;
-    scrollYaw = centered * 0.66;
-    scrollPitch = centered * -0.14;
-    scrollLift = Math.sin(progress * Math.PI) * 0.08;
+    scrollTurn = centered * 0.1;
+    scrollPitch = centered * -0.035;
+    scrollLift = Math.sin(progress * Math.PI) * 0.04;
     host.style.setProperty('--muni-scroll-progress', progress.toFixed(3));
   };
 
@@ -104,11 +286,13 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     const width = Math.max(1, host.clientWidth);
     const height = Math.max(1, host.clientHeight);
     renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    const halfFovTangent = Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5));
-    const distanceForHeight = 3.68 / (2 * halfFovTangent);
-    const distanceForWidth = 2.5 / (2 * halfFovTangent * camera.aspect);
-    camera.position.z = Math.max(distanceForHeight, distanceForWidth);
+    const aspect = width / height;
+    const halfHeight = Math.max(1.88, 1.72 / Math.max(0.55, aspect));
+    const halfWidth = halfHeight * aspect;
+    camera.left = -halfWidth;
+    camera.right = halfWidth;
+    camera.top = halfHeight;
+    camera.bottom = -halfHeight;
     camera.updateProjectionMatrix();
     updateScrollState();
     renderScene();
@@ -119,38 +303,131 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     const delta = Math.min((time - lastFrame) / 1000, 0.05);
     lastFrame = time;
     elapsed += delta;
+    poseAge += delta;
 
-    const idleYaw = Math.sin(elapsed * 0.48) * 0.085;
-    const idlePitch = Math.sin(elapsed * 0.72) * 0.018;
-    const targetYaw = -0.26 + scrollYaw + pointerYaw + dragYaw + idleYaw;
-    const targetPitch = -0.035 + scrollPitch + pointerPitch + dragPitch + idlePitch;
-    const damping = 1 - Math.exp(-delta * 7.6);
-    mascot.root.rotation.x += (targetPitch - mascot.root.rotation.x) * damping;
-    mascot.root.rotation.y += (targetYaw - mascot.root.rotation.y) * damping;
+    const breathe = Math.sin(elapsed * 1.48);
+    const float = Math.sin(elapsed * 0.9);
+    const settledGesture = clamp(poseAge / 0.72, 0, 1);
+    const gestureEase = 1 - Math.pow(1 - settledGesture, 3);
+    const pointingWave = gestureEase * Math.sin(elapsed * 1.7) * 0.022;
+    const idleYaw = Math.sin(elapsed * 0.42) * 0.018;
+    const idleHead = Math.sin(elapsed * 0.64) * 0.02;
+    const rigDamping = 6.8;
+    const rootDamping = 5.6;
 
-    const breathe = Math.sin(elapsed * 1.65);
-    const float = Math.sin(elapsed * 1.08);
-    mascot.root.position.y = float * 0.035 + scrollLift;
-    mascot.parts.body.scale.set(1 - breathe * 0.008, 1 + breathe * 0.014, 1 - breathe * 0.008);
-    mascot.parts.head.rotation.x = Math.sin(elapsed * 0.92) * 0.025;
-    mascot.parts.head.rotation.z = Math.sin(elapsed * 0.66) * 0.032;
-    mascot.parts.leftWing.rotation.z = 0.46 + Math.sin(elapsed * 1.28) * 0.085;
-    mascot.parts.rightWing.rotation.z = -0.2 - Math.sin(elapsed * 1.28 + 0.7) * 0.06;
-    mascot.parts.tail.rotation.z = Math.sin(elapsed * 0.88) * 0.055;
-    mascot.parts.feet.rotation.z = Math.sin(elapsed * 0.82) * 0.012;
+    const rootYaw = targetPose.rootYaw + scrollTurn + pointerYaw + idleYaw;
+    const rootPitchTarget = targetPose.rootPitch + scrollPitch + pointerPitch;
+    mascot.root.rotation.x = damp(mascot.root.rotation.x, rootPitchTarget, rootDamping, delta);
+    mascot.root.rotation.y = damp(mascot.root.rotation.y, rootYaw, rootDamping, delta);
+    mascot.root.rotation.z = damp(mascot.root.rotation.z, targetPose.rootRoll, rootDamping, delta);
+    mascot.root.position.y = damp(
+      mascot.root.position.y,
+      targetPose.rootLift + scrollLift + float * 0.022,
+      5.2,
+      delta,
+    );
 
-    const blinkPhase = elapsed % 4.7;
-    const blink = blinkPhase > 4.5 ? Math.max(0.08, 1 - Math.sin(((blinkPhase - 4.5) / 0.2) * Math.PI) * 0.92) : 1;
-    mascot.parts.eyes.scale.y += (blink - mascot.parts.eyes.scale.y) * Math.min(1, delta * 34);
-    const pupilX = clamp(pointerYaw * 0.16 + scrollYaw * 0.04, -0.035, 0.035);
-    const pupilY = clamp(-pointerPitch * 0.12, -0.02, 0.02);
-    mascot.parts.leftPupil.position.x = -0.23 + pupilX;
-    mascot.parts.rightPupil.position.x = 0.27 + pupilX;
-    mascot.parts.leftPupil.position.y = -0.01 + pupilY;
-    mascot.parts.rightPupil.position.y = -0.01 + pupilY;
+    mascot.parts.body.scale.x = damp(mascot.parts.body.scale.x, 1 - breathe * 0.006, 5.5, delta);
+    mascot.parts.body.scale.y = damp(mascot.parts.body.scale.y, 1 + breathe * 0.011, 5.5, delta);
+    mascot.parts.body.scale.z = damp(mascot.parts.body.scale.z, 1 - breathe * 0.006, 5.5, delta);
 
-    shadow.scale.x = 1 - float * 0.045;
-    shadowMaterial.opacity = 0.13 - float * 0.015 - scrollLift * 0.1;
+    mascot.parts.head.rotation.x = damp(
+      mascot.parts.head.rotation.x,
+      targetPose.headPitch + focusY * -0.055 + idleHead * 0.35,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.head.rotation.y = damp(
+      mascot.parts.head.rotation.y,
+      targetPose.headYaw + focusX * 0.11,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.head.rotation.z = damp(
+      mascot.parts.head.rotation.z,
+      targetPose.headRoll + idleHead,
+      rigDamping,
+      delta,
+    );
+
+    const pointsLeft = targetPose.leftWing < -0.7;
+    const pointsRight = targetPose.rightWing > 0.7;
+    mascot.parts.leftWing.root.rotation.z = damp(
+      mascot.parts.leftWing.root.rotation.z,
+      targetPose.leftWing + (pointsLeft ? -pointingWave : 0),
+      rigDamping,
+      delta,
+    );
+    mascot.parts.rightWing.root.rotation.z = damp(
+      mascot.parts.rightWing.root.rotation.z,
+      targetPose.rightWing + (pointsRight ? pointingWave : 0),
+      rigDamping,
+      delta,
+    );
+    mascot.parts.leftWing.foreWing.rotation.z = damp(
+      mascot.parts.leftWing.foreWing.rotation.z,
+      targetPose.leftForeWing,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.rightWing.foreWing.rotation.z = damp(
+      mascot.parts.rightWing.foreWing.rotation.z,
+      targetPose.rightForeWing,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.leftWing.tip.rotation.z = damp(
+      mascot.parts.leftWing.tip.rotation.z,
+      targetPose.leftTip,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.rightWing.tip.rotation.z = damp(
+      mascot.parts.rightWing.tip.rotation.z,
+      targetPose.rightTip,
+      rigDamping,
+      delta,
+    );
+    mascot.parts.tail.rotation.z = damp(
+      mascot.parts.tail.rotation.z,
+      targetPose.tail + Math.sin(elapsed * 0.78) * 0.035,
+      5.2,
+      delta,
+    );
+    mascot.parts.feet.rotation.z = damp(
+      mascot.parts.feet.rotation.z,
+      Math.sin(elapsed * 0.7) * 0.006,
+      5,
+      delta,
+    );
+
+    const blinkPhase = elapsed % 6.1;
+    let blink = 1;
+    if (blinkPhase > 5.72 && blinkPhase < 5.88) {
+      blink = Math.max(0.1, 1 - Math.sin(((blinkPhase - 5.72) / 0.16) * Math.PI) * 0.92);
+    } else if (blinkPhase > 5.96) {
+      blink = Math.max(0.16, 1 - Math.sin(((blinkPhase - 5.96) / 0.14) * Math.PI) * 0.86);
+    }
+    mascot.parts.eyes.scale.y = damp(mascot.parts.eyes.scale.y, blink, 28, delta);
+
+    const pupilX = clamp(focusX * 0.035 + pointerYaw * 0.13, -0.045, 0.045);
+    const pupilY = clamp(focusY * -0.022 - pointerPitch * 0.18, -0.027, 0.027);
+    mascot.parts.leftPupil.position.x = -0.22 + pupilX;
+    mascot.parts.rightPupil.position.x = 0.24 + pupilX;
+    mascot.parts.leftPupil.position.y = -0.005 + pupilY;
+    mascot.parts.rightPupil.position.y = -0.005 + pupilY;
+
+    const greeting = poseAge < 0.5 ? Math.sin((poseAge / 0.5) * Math.PI) : 0;
+    mascot.parts.beakLower.rotation.x = damp(
+      mascot.parts.beakLower.rotation.x,
+      -0.08 - greeting * 0.07,
+      10,
+      delta,
+    );
+    mascot.parts.beakUpper.rotation.x = damp(mascot.parts.beakUpper.rotation.x, 0.03, 10, delta);
+
+    shadow.scale.x = 1 - float * 0.035 - Math.abs(targetPose.rootLift) * 0.08;
+    shadowMaterial.opacity = clamp(0.1 - float * 0.01 - scrollLift * 0.08, 0.065, 0.12);
     renderScene();
   };
 
@@ -179,69 +456,24 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     syncLoop();
   };
 
-  const finishDrag = () => {
-    if (!dragging) return;
-    dragging = false;
-    host.dataset.dragging = 'false';
-    if (pointerId !== null && canvas.hasPointerCapture(pointerId)) {
-      try {
-        canvas.releasePointerCapture(pointerId);
-      } catch {
-        // Pointer capture may already be gone after a system gesture.
-      }
-    }
-    pointerId = null;
-  };
-
   const onMotionPreferenceChange = (event: MediaQueryListEvent) => {
     reducedMotion = event.matches;
-    if (reducedMotion) finishDrag();
     lastFrame = performance.now();
     syncLoop();
   };
 
-  const onPointerDown = (event: PointerEvent) => {
-    if (!allowsInteraction || reducedMotion || event.button !== 0) return;
-    dragging = true;
-    pointerId = event.pointerId;
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    try {
-      canvas.setPointerCapture(event.pointerId);
-    } catch {
-      dragging = false;
-      pointerId = null;
-      return;
-    }
-    host.dataset.dragging = 'true';
-  };
-
   const onPointerMove = (event: PointerEvent) => {
     if (!allowsInteraction || reducedMotion) return;
-    if (dragging && event.pointerId === pointerId) {
-      const deltaX = event.clientX - pointerX;
-      const deltaY = event.clientY - pointerY;
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-      dragYaw = clamp(dragYaw + deltaX * 0.008, -1.2, 1.2);
-      dragPitch = clamp(dragPitch + deltaY * 0.005, -0.22, 0.18);
-      return;
-    }
     const bounds = host.getBoundingClientRect();
     const x = clamp((event.clientX - bounds.left) / Math.max(1, bounds.width) - 0.5, -0.5, 0.5);
     const y = clamp((event.clientY - bounds.top) / Math.max(1, bounds.height) - 0.5, -0.5, 0.5);
-    pointerYaw = x * 0.34;
-    pointerPitch = y * 0.14;
+    pointerYaw = x * 0.12;
+    pointerPitch = y * 0.06;
   };
 
   const onPointerLeave = () => {
-    if (dragging) return;
     pointerYaw = 0;
     pointerPitch = 0;
-  };
-
-  const onPointerUp = (event: PointerEvent) => {
-    if (event.pointerId === pointerId) finishDrag();
   };
 
   const destroy = () => {
@@ -254,17 +486,13 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     window.removeEventListener('scroll', requestScrollUpdate);
     document.removeEventListener('visibilitychange', onVisibilityChange);
     motionQuery.removeEventListener('change', onMotionPreferenceChange);
+    focusTarget.removeEventListener('ramuni:mascot-focus', onMascotFocus);
     window.removeEventListener('pagehide', destroy);
     document.removeEventListener('astro:before-swap', destroy);
-    canvas.removeEventListener('pointerdown', onPointerDown);
-    canvas.removeEventListener('pointermove', onPointerMove);
-    canvas.removeEventListener('pointerleave', onPointerLeave);
-    canvas.removeEventListener('pointerup', onPointerUp);
-    canvas.removeEventListener('pointercancel', onPointerUp);
-    canvas.removeEventListener('lostpointercapture', finishDrag);
+    host.removeEventListener('pointermove', onPointerMove);
+    host.removeEventListener('pointerleave', onPointerLeave);
     canvas.removeEventListener('webglcontextlost', onContextLost);
     if (scrollFrame) cancelAnimationFrame(scrollFrame);
-    finishDrag();
 
     const geometries = new Set<THREE.BufferGeometry>();
     const materials = new Set<THREE.Material>();
@@ -279,6 +507,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     renderer.dispose();
     renderer.forceContextLoss();
     host.style.removeProperty('--muni-scroll-progress');
+    delete host.dataset.mascotPose;
     delete host.dataset.modelReady;
     if (host.isConnected) host.dataset.modelState = 'fallback';
   };
@@ -291,16 +520,13 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
 
   document.addEventListener('visibilitychange', onVisibilityChange);
   motionQuery.addEventListener('change', onMotionPreferenceChange);
+  focusTarget.addEventListener('ramuni:mascot-focus', onMascotFocus);
   window.addEventListener('scroll', requestScrollUpdate, { passive: true });
   window.addEventListener('pagehide', destroy, { once: true });
   document.addEventListener('astro:before-swap', destroy, { once: true });
   canvas.addEventListener('webglcontextlost', onContextLost, { once: true });
-  canvas.addEventListener('pointerdown', onPointerDown);
-  canvas.addEventListener('pointermove', onPointerMove);
-  canvas.addEventListener('pointerleave', onPointerLeave);
-  canvas.addEventListener('pointerup', onPointerUp);
-  canvas.addEventListener('pointercancel', onPointerUp);
-  canvas.addEventListener('lostpointercapture', finishDrag);
+  host.addEventListener('pointermove', onPointerMove);
+  host.addEventListener('pointerleave', onPointerLeave);
 
   resize();
   updateScrollState();

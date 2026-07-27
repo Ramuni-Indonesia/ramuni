@@ -46,13 +46,13 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
     <p class="eyebrow">{eyebrow}</p>
     <h2 id={safeId + '-title'}>{title}</h2>
     <p>{description}</p>
-    <div class="audience-context__mascot" data-parallax data-parallax-distance="-6" data-parallax-rotate="-0.35" role="img" aria-label={mascotAlt}>
+    <div class="audience-context__mascot" role="img" aria-label={mascotAlt}>
       <img data-audience-mascot src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
       <span>Data sintetis · pengguna tetap memutuskan</span>
     </div>
   </div>
 
-  <div class="audience-context__workspace" data-parallax data-parallax-distance="6">
+  <div class="audience-context__workspace">
     <div class="audience-context__tabs" role="tablist" aria-label={'Mode tampilan ' + title}>
       {visiblePanes.map((pane, index) => (
         <button
@@ -123,6 +123,57 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
       const activeLabel = board.querySelector<HTMLElement>('[data-audience-active-label]');
       const activeTitle = board.querySelector<HTMLElement>('[data-audience-active-title]');
       const mascotImage = board.querySelector<HTMLImageElement>('[data-audience-mascot]');
+      let mascotRequest = 0;
+
+      const swapMascot = async (src?: string) => {
+        const request = ++mascotRequest;
+        if (!mascotImage) return false;
+        mascotImage.dataset.transitioning = 'false';
+        if (!src) return false;
+        if (mascotImage.dataset.currentSrc === src) return true;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.src = src;
+        try {
+          await preload.decode();
+        } catch {
+          return false;
+        }
+        if (request !== mascotRequest) return false;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+          const fadedOut = new Promise<void>((resolve) => {
+            let timeout = 0;
+            const finish = () => {
+              window.clearTimeout(timeout);
+              mascotImage.removeEventListener('transitionend', onTransitionEnd);
+              resolve();
+            };
+            const onTransitionEnd = (event: TransitionEvent) => {
+              if (event.propertyName === 'opacity') finish();
+            };
+            mascotImage.addEventListener('transitionend', onTransitionEnd);
+            timeout = window.setTimeout(finish, 240);
+          });
+          mascotImage.dataset.transitioning = 'true';
+          await fadedOut;
+          if (request !== mascotRequest) return false;
+        }
+
+        mascotImage.src = src;
+        mascotImage.dataset.currentSrc = src;
+        if (!reduceMotion) {
+          await new Promise<void>((resolve) => {
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+          });
+          if (request !== mascotRequest) return false;
+          mascotImage.dataset.transitioning = 'false';
+        }
+        return true;
+      };
+
+      if (mascotImage) mascotImage.dataset.currentSrc = mascotImage.getAttribute('src') || '';
 
       const activate = (nextIndex: number) => {
         tabs.forEach((tab, index) => {
@@ -141,7 +192,12 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
           activeLabel.textContent = activeTab.textContent?.replace(/^\s*\d+\s*/, '').trim() || '';
         }
         if (activeTab && activeTitle) activeTitle.textContent = activeTab.dataset.title || '';
-        if (activeTab?.dataset.mascotSrc && mascotImage) mascotImage.src = activeTab.dataset.mascotSrc;
+        void swapMascot(activeTab?.dataset.mascotSrc).then((isCurrent) => {
+          if (!isCurrent) return;
+          board.dataset.stateChanging = 'false';
+          void board.offsetWidth;
+          board.dataset.stateChanging = 'true';
+        });
         board.dataset.activeIndex = String(nextIndex);
       };
 
@@ -175,7 +231,8 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
   .audience-context__copy>p:not(.eyebrow){max-width:38ch;color:var(--ink-72);font-size:clamp(.98rem,1.2vw,1.08rem);line-height:1.65;text-wrap:pretty}
   .audience-context__mascot{position:relative;width:min(250px,72%);margin-top:10px;padding:10px;border:1px solid var(--ink);background:var(--white);box-shadow:8px 8px 0 var(--yellow);overflow:hidden}
   .audience-context--industry .audience-context__mascot{box-shadow:8px 8px 0 var(--teal)}
-  .audience-context__mascot img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;transform-origin:50% 80%}
+  .audience-context__mascot img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;transform-origin:50% 80%;transition:opacity 180ms var(--ease),transform 180ms var(--ease)}
+  .audience-context__mascot img[data-transitioning='true']{opacity:0;transform:translateY(3px)}
   .audience-context__mascot span{position:absolute;left:10px;right:10px;bottom:10px;padding:9px 11px;background:rgb(11 48 69/.9);color:var(--white);font-size:.63rem;font-weight:800;line-height:1.35}
   .audience-context__workspace{min-width:0;display:grid;grid-template-columns:190px minmax(0,1fr);border:1px solid var(--ink);background:var(--white);box-shadow:12px 12px 0 var(--ink)}
   .audience-context__tabs{display:grid;align-content:stretch;border-right:1px solid var(--ink-10);background:var(--rice)}
@@ -205,9 +262,9 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
   .audience-context__screen footer{display:grid;gap:7px;margin:0 clamp(18px,3vw,32px) clamp(18px,3vw,28px);padding:14px 16px;background:var(--ink);color:var(--white)}
   .audience-context__screen footer p{margin:0;color:rgb(255 255 255/.72);font-size:.78rem;line-height:1.45;text-wrap:pretty}
   @media(prefers-reduced-motion:no-preference){
-    .audience-context__mascot img{animation:audience-mascot-breathe 5.8s ease-in-out infinite}
+    .audience-context[data-state-changing='true'] .audience-context__mascot img{animation:audience-mascot-state 360ms var(--ease) both}
     .audience-context__panel.is-active li{animation:audience-context-item-in 360ms var(--ease) both;animation-delay:calc(var(--i) * 45ms)}
-    @keyframes audience-mascot-breathe{50%{transform:translateY(-4px) rotate(-1.5deg) scale(1.025)}}
+    @keyframes audience-mascot-state{from{transform:translateY(5px) rotate(-1deg)}to{transform:none}}
     @keyframes audience-context-item-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   }
   @media(max-width:980px){

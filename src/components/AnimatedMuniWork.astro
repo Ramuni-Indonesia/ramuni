@@ -16,13 +16,9 @@ const {
   aria-label={label}
   data-animated-muni-work
   data-animate="false"
-  data-parallax
-  data-parallax-distance="-10"
-  data-parallax-rotate="-0.45"
 >
   <video
     muted
-    loop
     playsinline
     preload="metadata"
     poster="/website-original/mascot/ramuni-mascot-work-loop-poster.webp"
@@ -46,14 +42,22 @@ const {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
       let inView = false;
+      let hasPlayed = false;
 
       const update = () => {
         const canAnimate = inView && !document.hidden && !reducedMotion.matches && !saveData;
         mascot.dataset.animate = canAnimate ? 'true' : 'false';
-        if (canAnimate) {
+        if (canAnimate && !hasPlayed) {
+          hasPlayed = true;
+          video.playbackRate = 0.86;
+          video.currentTime = 0;
           void video.play().catch(() => undefined);
         } else {
           video.pause();
+          if (!inView || document.hidden || reducedMotion.matches) {
+            hasPlayed = false;
+            video.currentTime = 0;
+          }
         }
       };
 
@@ -80,6 +84,7 @@ const {
 
 <style>
   .animated-muni-work{
+    position:relative;
     display:block;
     width:var(--animated-muni-size,148px);
     aspect-ratio:188/211;
@@ -91,11 +96,36 @@ const {
     contain:paint;
   }
 
+  .animated-muni-work::after{
+    content:'Memeriksa bukti';
+    position:absolute;
+    z-index:2;
+    left:10px;
+    bottom:10px;
+    padding:6px 8px;
+    background:rgb(11 48 69/.9);
+    color:var(--white);
+    font-size:.5rem;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    opacity:0;
+    transform:translateY(6px);
+    pointer-events:none;
+  }
+
   .animated-muni-work video{
     display:block;
     width:100%;
     height:100%;
     object-fit:cover;
+  }
+
+  @media(prefers-reduced-motion:no-preference){
+    .animated-muni-work[data-animate='true']{animation:muni-work-attend 7.2s cubic-bezier(.22,1,.36,1) both}
+    .animated-muni-work[data-animate='true']::after{animation:muni-work-label 6s 1.2s cubic-bezier(.22,1,.36,1) both}
+    @keyframes muni-work-attend{0%{transform:translateY(10px)}12%,68%{transform:none}78%{transform:translateY(-3px)}100%{transform:none}}
+    @keyframes muni-work-label{0%{opacity:0;transform:translateY(6px)}10%,58%{opacity:1;transform:none}78%,100%{opacity:0;transform:none}}
   }
 
   @media(max-width:680px){.animated-muni-work{--animated-muni-size:112px;box-shadow:5px 5px 0 var(--yellow)}}
@@ -104,5 +134,6 @@ const {
     .animated-muni-work{
       background:var(--rice) url('/website-original/mascot/ramuni-mascot-work-loop-poster.webp') center/cover no-repeat;
     }
+    .animated-muni-work::after{display:none}
   }
 </style>

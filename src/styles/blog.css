@@ -548,13 +548,14 @@
 .blog-decision-cta__panel li{display:grid;grid-template-columns:18px 20px 1fr;gap:8px;align-items:center;color:var(--ink-72);font-size:.78rem;font-weight:800}
 .blog-decision-cta__panel li i{width:12px;height:12px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px var(--yellow-18)}
 .blog-decision-cta__panel li small{font-size:.66rem;color:var(--teal);font-weight:900;font-variant-numeric:tabular-nums}
-.blog-decision-cta__mascot{position:absolute;right:clamp(-54px,-4vw,-22px);bottom:clamp(-78px,-6vw,-34px);z-index:0;width:min(46%,300px);height:auto;filter:drop-shadow(0 22px 44px rgb(0 0 0/.18));pointer-events:none}
+.blog-decision-cta__mascot{position:absolute;right:clamp(-54px,-4vw,-22px);bottom:clamp(-78px,-6vw,-34px);z-index:0;width:min(46%,300px);height:auto;filter:drop-shadow(0 22px 44px rgb(0 0 0/.18));pointer-events:none;transition:opacity 180ms var(--ease),transform 240ms var(--ease)}
+.blog-decision-cta__mascot[data-transitioning='true']{opacity:0;transform:translateY(5px)}
 
 @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){
   .blog-decision-cta__panel:not([hidden]){animation:decision-panel-in 360ms var(--ease) both}
-  .blog-decision-cta__mascot{animation:decision-mascot-float 5.8s ease-in-out infinite}
+  .blog-decision-cta[data-state-changing='true'] .blog-decision-cta__mascot{animation:decision-mascot-state 340ms var(--ease) both}
   @keyframes decision-panel-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
-  @keyframes decision-mascot-float{50%{transform:translateY(-8px) rotate(1deg)}}
+  @keyframes decision-mascot-state{from{transform:translateY(8px) rotate(-1deg)}to{transform:none}}
 }
 @media(max-width:960px){
   .blog-decision-cta{grid-template-columns:1fr}.blog-decision-cta__visual{min-height:430px}
@@ -565,6 +566,6 @@
   .blog-decision-cta__visual{min-height:0;padding:16px}.blog-decision-cta__tabs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.blog-decision-cta__tabs button{min-width:138px;scroll-snap-align:start}.blog-decision-cta__panel{max-width:100%;margin-top:8px}.blog-decision-cta__mascot{right:-36px;bottom:-46px;width:160px;opacity:.22}
 }
 @media(prefers-reduced-motion:reduce){
-  .blog-decision-cta__panel,.blog-decision-cta__mascot{animation:none!important}
+  .blog-decision-cta__panel,.blog-decision-cta__mascot{animation:none!important;transition:none!important}
 }
 @media(min-width:961px) and (max-width:1200px){.blog-hero-grid{grid-template-columns:minmax(260px,1.08fr) minmax(340px,.72fr);gap:clamp(24px,3vw,40px)}}

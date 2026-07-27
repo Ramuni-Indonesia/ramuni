@@ -42,19 +42,17 @@
 
       document.querySelectorAll<HTMLElement>('.pd-page .product-canvas, .product-catalog .product-canvas').forEach((canvas) => {
         gsap.fromTo(canvas,
-          { opacity: 0.72, rotateX: 5, rotateY: -4, y: 28, transformPerspective: 1100, transformOrigin: '50% 70%' },
+          { opacity: 0.78, y: 18 },
           {
             immediateRender: false,
             opacity: 1,
-            rotateX: 0,
-            rotateY: 0,
             y: 0,
-            ease: 'power2.out',
+            duration: 0.62,
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: canvas,
               start: 'top 88%',
-              end: 'top 42%',
-              scrub: 0.7,
+              once: true,
             },
           },
         );

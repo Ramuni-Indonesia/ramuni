@@ -62,10 +62,8 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
 
 const problemCanvas = document.querySelector('.problem-canvas');
 const problemMascot = document.querySelector('[data-problem-mascot]');
-const desktopMascotMotion = window.matchMedia('(min-width: 1281px) and (hover: hover)');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (problemCanvas && problemMascot && desktopMascotMotion.matches && !reducedMotion.matches) {
-  let frame = 0;
+if (problemCanvas && problemMascot && !reducedMotion.matches) {
   const problemPoints = Array.from(problemCanvas.querySelectorAll('.problem-point'));
   let canvasVisible = false;
   let activeProblemIndex = -1;
@@ -82,11 +80,19 @@ if (problemCanvas && problemMascot && desktopMascotMotion.matches && !reducedMot
     const deltaX = pointBounds.left + pointBounds.width / 2 - (mascotBounds.left + mascotBounds.width / 2);
     const deltaY = pointBounds.top + pointBounds.height / 2 - (mascotBounds.top + mascotBounds.height / 2);
     const direction = Math.max(-1, Math.min(1, deltaX / Math.max(1, problemCanvas.clientWidth * .34)));
+    const targetX = Math.max(-1, Math.min(1, deltaX / Math.max(1, problemCanvas.clientWidth * .5)));
+    const targetY = Math.max(-1, Math.min(1, deltaY / Math.max(1, problemCanvas.clientHeight * .5)));
+    problemMascot.dataset.activeProblem = String(index);
+    problemMascot.dataset.mascotTargetX = targetX.toFixed(3);
+    problemMascot.dataset.mascotTargetY = targetY.toFixed(3);
     problemMascot.style.setProperty('--mascot-look-x', `${(direction * 9).toFixed(1)}px`);
     problemMascot.style.setProperty('--mascot-look-y', `${Math.max(-5, Math.min(5, deltaY / 38)).toFixed(1)}px`);
     problemMascot.style.setProperty('--mascot-tilt', `${(direction * 2.4).toFixed(1)}deg`);
     problemMascot.style.setProperty('--mascot-ry', `${(direction * 5).toFixed(1)}deg`);
     problemMascot.style.setProperty('--mascot-shadow', String(1 - Math.abs(direction) * .08));
+    problemMascot.dispatchEvent(new CustomEvent('ramuni:mascot-focus', {
+      detail: { index, targetX, targetY },
+    }));
   };
 
   const updateProblemScroll = () => {
@@ -113,32 +119,29 @@ if (problemCanvas && problemMascot && desktopMascotMotion.matches && !reducedMot
     });
   };
 
-  const handlePointerMove = (event) => {
-    if (frame) cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      const bounds = problemCanvas.getBoundingClientRect();
-      const x = ((event.clientX - bounds.left) / bounds.width - .5) * 14;
-      const y = ((event.clientY - bounds.top) / bounds.height - .5) * 10;
-      problemMascot.style.setProperty('--mascot-x', `${x.toFixed(1)}px`);
-      problemMascot.style.setProperty('--mascot-y', `${y.toFixed(1)}px`);
-    });
-  };
-  const handlePointerLeave = () => {
-    problemMascot.style.setProperty('--mascot-x', '0px');
-    problemMascot.style.setProperty('--mascot-y', '0px');
-  };
+  const pointBindings = problemPoints.map((point, index) => {
+    const handleIntent = () => focusProblem(index);
+    const handleLeave = () => updateProblemScroll();
+    point.addEventListener('mouseenter', handleIntent);
+    point.addEventListener('focus', handleIntent);
+    point.addEventListener('mouseleave', handleLeave);
+    point.addEventListener('blur', handleLeave);
+    return { point, handleIntent, handleLeave };
+  });
+
   const cleanupProblemMotion = () => {
     visibilityObserver.disconnect();
     window.removeEventListener('scroll', handleScroll);
-    problemCanvas.removeEventListener('pointermove', handlePointerMove);
-    problemCanvas.removeEventListener('pointerleave', handlePointerLeave);
-    if (frame) cancelAnimationFrame(frame);
+    pointBindings.forEach(({ point, handleIntent, handleLeave }) => {
+      point.removeEventListener('mouseenter', handleIntent);
+      point.removeEventListener('focus', handleIntent);
+      point.removeEventListener('mouseleave', handleLeave);
+      point.removeEventListener('blur', handleLeave);
+    });
     if (scrollFrame) cancelAnimationFrame(scrollFrame);
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  problemCanvas.addEventListener('pointermove', handlePointerMove);
-  problemCanvas.addEventListener('pointerleave', handlePointerLeave);
   window.addEventListener('pagehide', cleanupProblemMotion, { once: true });
   document.addEventListener('astro:before-swap', cleanupProblemMotion, { once: true });
 }

@@ -70,6 +70,9 @@ const PERFORMANCE_BUDGETS = Object.freeze({
   // Image delivery is route-specific and most editorial/product media is lazy.
   // Audit individual files here, then enforce per-route referenced payload below.
   image: { perFile: 100_000, total: null },
+  // Short hero motion remains useful only while each source stays deliberately
+  // small; route-level selected video payload is checked separately below.
+  video: { perFile: 180_000, total: null },
   font: { perFile: 20_000, total: 60_000 },
 });
 const DASH_MARKER = /[\u2013\u2014\u00c2\u00e2]/;
@@ -103,6 +106,7 @@ async function auditPerformanceBudgets() {
     ['css', (file) => file.endsWith('.css')],
     ['js', (file) => file.endsWith('.js')],
     ['image', (file) => /\.(?:avif|gif|ico|jpe?g|png|svg|webp)$/i.test(file)],
+    ['video', (file) => /\.(?:mp4|webm)$/i.test(file)],
     ['font', (file) => /\.(?:otf|ttf|woff2?)$/i.test(file)],
   ];
 
@@ -198,6 +202,44 @@ async function auditLinkedImages() {
     }
     if (total > routeLimit) failures.push(`performance budget: ${route} references ${formatBytes(total)} of images; route limit is ${formatBytes(routeLimit)}`);
     if (eagerTotal > eagerRouteLimit) failures.push(`performance budget: ${route} eagerly loads ${formatBytes(eagerTotal)} of images; eager route limit is ${formatBytes(eagerRouteLimit)}`);
+  }
+}
+
+async function auditLinkedVideos() {
+  const selectedRouteLimit = 260_000;
+  const offeredRouteLimit = 520_000;
+  for (const [route, page] of pages) {
+    if (page.isRedirect) continue;
+    const selectedPaths = new Set();
+    const offeredPaths = new Set();
+
+    for (const match of page.html.matchAll(/<video\b[^>]*>([\s\S]*?)<\/video>/gi)) {
+      const sources = [...match[1].matchAll(/<source\b[^>]*\ssrc="([^"]+)"[^>]*>/gi)]
+        .map((sourceMatch) => localAssetPath(sourceMatch[1], siteOrigin))
+        .filter(Boolean);
+      const candidates = [];
+      for (const pathname of new Set(sources)) {
+        const file = files.find((candidate) => `/${relative(root, candidate).split(sep).join('/')}` === pathname);
+        if (!file) continue;
+        const size = (await readFile(file)).byteLength;
+        candidates.push({ pathname, size });
+        offeredPaths.add(pathname);
+      }
+      candidates.sort((a, b) => b.size - a.size);
+      if (candidates[0]) selectedPaths.add(candidates[0].pathname);
+    }
+
+    const sizeFor = async (pathname) => {
+      const file = files.find((candidate) => `/${relative(root, candidate).split(sep).join('/')}` === pathname);
+      return file ? (await readFile(file)).byteLength : 0;
+    };
+    let selectedTotal = 0;
+    let offeredTotal = 0;
+    for (const pathname of selectedPaths) selectedTotal += await sizeFor(pathname);
+    for (const pathname of offeredPaths) offeredTotal += await sizeFor(pathname);
+
+    if (selectedTotal > selectedRouteLimit) failures.push(`performance budget: ${route} selects ${formatBytes(selectedTotal)} of video; route limit is ${formatBytes(selectedRouteLimit)}`);
+    if (offeredTotal > offeredRouteLimit) failures.push(`performance budget: ${route} offers ${formatBytes(offeredTotal)} of video sources; route limit is ${formatBytes(offeredRouteLimit)}`);
   }
 }
 
@@ -593,6 +635,7 @@ await auditPerformanceBudgets();
 await auditLinkedStylesheets();
 await auditInitialJavaScript();
 await auditLinkedImages();
+await auditLinkedVideos();
 
 if (failures.length) {
   console.error(failures.join('\n'));

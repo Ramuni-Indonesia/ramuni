@@ -22,7 +22,6 @@
   min-height:560px;
   display:grid;
   place-items:center;
-  perspective:1200px;
 }
 
 .home-hero-proof{
@@ -35,8 +34,7 @@
   border-radius:24px;
   background:var(--white);
   box-shadow:0 28px 70px rgb(11 48 69/.2),8px 10px 0 rgb(22 140 140/.22);
-  transform-origin:50% 70%;
-  transition:transform 560ms cubic-bezier(.22,1,.36,1),box-shadow 560ms cubic-bezier(.22,1,.36,1);
+  transition:box-shadow 220ms cubic-bezier(.22,1,.36,1);
 }
 
 .home-hero-proof__head,
@@ -87,6 +85,9 @@
   pointer-events:none;
   filter:drop-shadow(0 22px 26px rgb(11 48 69/.18));
 }
+
+.home-decision-demo .direction-fold__yellow,
+.home-decision-demo .visual-note--evidence{animation:none}
 
 .workflow-stage{
   overflow:hidden;
@@ -176,9 +177,14 @@
 .workflow-focus>b{align-self:start;color:var(--teal);font-size:.72rem;letter-spacing:.08em}
 
 @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){
-  .home-decision-demo:hover .home-hero-proof{transform:rotateX(1deg) rotateY(-1.5deg) translateY(-4px);box-shadow:0 34px 86px rgb(11 48 69/.24),10px 12px 0 rgb(22 140 140/.26)}
+  .home-decision-demo[data-story-active='true'] .home-hero-proof{animation:hero-proof-settle 7.2s cubic-bezier(.22,1,.36,1) both}
+  .home-decision-demo[data-story-active='true'] .visual-note--evidence{animation:hero-story-note 6.5s .7s cubic-bezier(.22,1,.36,1) both}
+  .home-decision-demo[data-story-active='true'] .direction-fold__yellow{animation:hero-story-fold 7.2s cubic-bezier(.22,1,.36,1) both}
   .workflow-focus[data-changing="true"]>div:nth-child(2){animation:workflow-copy-in 360ms var(--ease) both}
   .workflow-focus[data-changing="true"] .workflow-focus__signal i{animation:workflow-bar-in 480ms var(--ease) both}
+  @keyframes hero-proof-settle{0%{box-shadow:0 20px 54px rgb(11 48 69/.16),5px 7px 0 rgb(22 140 140/.18)}18%,100%{box-shadow:0 28px 70px rgb(11 48 69/.2),8px 10px 0 rgb(22 140 140/.22)}}
+  @keyframes hero-story-note{0%{opacity:0;transform:translateY(10px)}10%,68%{opacity:1;transform:none}84%,100%{opacity:.76;transform:none}}
+  @keyframes hero-story-fold{0%,24%{transform:scaleX(.28);transform-origin:left}43%,100%{transform:scaleX(1);transform-origin:left}}
   @keyframes workflow-copy-in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
   @keyframes workflow-bar-in{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
 }

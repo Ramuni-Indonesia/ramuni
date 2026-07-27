@@ -5,7 +5,6 @@ import MuniMascot3D from '../components/MuniMascot3D.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
-import { mascots } from '../data/mascots';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
@@ -16,7 +15,6 @@ const homepagePains = [
   { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan/' },
   { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis/' },
 ];
-const problemMascot = mascots.guide3d;
 const companionSteps = [
   ['Catatan', 'Sumber usaha dikumpulkan tanpa menutupi data yang belum lengkap.'],
   ['Bukti', 'Periode, perubahan, dan angka pendukung tetap bisa ditelusuri.'],
@@ -82,11 +80,11 @@ const schema = [
         <p>Penjualan, stok, biaya, dan pelanggan sering dibaca terpisah. RAMUNI membantu melihat hubungan yang perlu diperiksa.</p>
       </header>
       <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
-        <div class="problem-canvas__core" data-problem-mascot data-parallax data-parallax-distance="8" data-parallax-axis="y">
+        <div class="problem-canvas__core" data-problem-mascot>
           <span>Catatan yang terhubung</span>
           <MuniMascot3D
             class="problem-canvas__mascot-model"
-            posterSrc={problemMascot.src}
+            posterSrc="/website-original/mascot/ramuni-mascot-dashboard-guide-hashmicro.webp"
             label="Interpretasi 3D Muni yang menghubungkan catatan usaha"
           />
           <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
