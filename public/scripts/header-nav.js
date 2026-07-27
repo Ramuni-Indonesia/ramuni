@@ -52,9 +52,14 @@ const unlockPageScroll = () => {
   document.body.style.width = savedStyle.width;
   document.body.style.overflow = savedStyle.overflow;
   const restoreY = lockedScrollY;
-  scrollRestoreFrame = window.requestAnimationFrame(() => {
+  const restoreScrollPosition = () => {
     window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
-  });
+  };
+  // Restore immediately so a busy main thread cannot expose a jump toward the
+  // top of the page while the closing animation settles. Repeat on the next
+  // frame to win over native details/focus scroll anchoring.
+  restoreScrollPosition();
+  scrollRestoreFrame = window.requestAnimationFrame(restoreScrollPosition);
 };
 
 const openMobileMenu = () => {
