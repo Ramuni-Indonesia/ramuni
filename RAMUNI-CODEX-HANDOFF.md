@@ -162,6 +162,7 @@ Final runtime verification for `e6783e85ac667115b5e8d773f73b5b1191b98439`:
 
 - Atomic staging deploy completed as release `20260727T103720Z-e6783e85ac66` with artifact SHA-256 `5437cf4af9a2d75f58c0c6822c05184513174396585fb06554b0cd61476b9e9b`.
 - Node 22 Astro check completed with 0 errors, warnings, or hints; the staging build produced 98 pages and the full site audit passed.
+- Production-mode build produced 97 pages and the full site audit passed with production indexing enabled, production canonical domain, production sitemap generation, schema contracts, and asset budgets.
 - `npm audit` reported zero vulnerabilities, `node --check public/scripts/header-nav.js` passed, and `git diff --check` passed.
 - Live health and representative homepage, product, solution, resource, blog archive/pagination/article, and contact routes returned HTTP 200.
 - Live staging remains fail-closed: HTML carries `noindex,follow`, HTTP carries `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, responses carry `Cache-Control: no-store`, and all checked sitemap endpoints return 404.
