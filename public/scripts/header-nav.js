@@ -53,11 +53,11 @@ const unlockPageScroll = () => {
   document.body.style.overflow = savedStyle.overflow;
   const restoreY = lockedScrollY;
   const restoreScrollPosition = () => {
-    window.scrollTo({ top: restoreY, left: 0, behavior: 'auto' });
+    window.scrollTo({ top: restoreY, left: 0, behavior: 'instant' });
   };
-  // Restore immediately so a busy main thread cannot expose a jump toward the
-  // top of the page while the closing animation settles. Repeat on the next
-  // frame to win over native details/focus scroll anchoring.
+  // `auto` inherits the site's smooth-scroll rule and visibly travels from the
+  // top of the page. `instant` restores the locked position without that jump;
+  // the next-frame repeat wins over native details/focus scroll anchoring.
   restoreScrollPosition();
   scrollRestoreFrame = window.requestAnimationFrame(restoreScrollPosition);
 };
@@ -96,12 +96,14 @@ const closeMobileMenu = ({ animate = true, returnFocus = false } = {}) => {
     if (didFinish) return;
     didFinish = true;
     window.clearTimeout(mobileCloseTimer);
+    const restoreFocusToSummary = returnFocus || document.activeElement === mobileSummary;
+    if (restoreFocusToSummary && mobileSummary instanceof HTMLElement) mobileSummary.blur();
     mobile.removeAttribute('open');
     mobile.dataset.menuState = 'closed';
     if (mobilePanel instanceof HTMLElement) mobilePanel.style.pointerEvents = '';
     mobile.querySelectorAll('.mobile-panel details[open]').forEach((item) => item.removeAttribute('open'));
     unlockPageScroll();
-    if (returnFocus && mobileSummary instanceof HTMLElement) mobileSummary.focus();
+    if (restoreFocusToSummary && mobileSummary instanceof HTMLElement) mobileSummary.focus({ preventScroll: true });
   };
   if (!animate || reducedMotion.matches || !(mobilePanel instanceof HTMLElement) || typeof mobilePanel.animate !== 'function') {
     finish();
