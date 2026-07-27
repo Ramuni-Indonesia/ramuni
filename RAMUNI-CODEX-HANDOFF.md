@@ -12,13 +12,13 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `d780245f9e92c2e2c5bf4ef1b2e92706cf41fa4b` (`docs: record visual blog release evidence`).
+- Published runtime commit: `e6783e85ac667115b5e8d773f73b5b1191b98439` (`fix: restore mobile menu scroll instantly`).
 - The visual and blog architecture batch is commit `cceaf41` (`feat: refine visuals and expand blog architecture`); it is included in the published runtime commit above.
 - Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T081841Z-d780245f9e92`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T081841Z-d780245f9e92`.
-- Deployed artifact SHA-256: `554f6722062abee26f2d69ad7b7a127766667fd791a6022c6ef9c6a0de462254`.
+- Active staging release: `20260727T103720Z-e6783e85ac66`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T103720Z-e6783e85ac66`.
+- Deployed artifact SHA-256: `5437cf4af9a2d75f58c0c6822c05184513174396585fb06554b0cd61476b9e9b`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -158,7 +158,18 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 - After release verification, the temporary interactive-motion worktree/branch, 31 MiB of build backups, and canonical `node_modules`, `dist`, and `.astro` output were removed. The cleanup reclaimed roughly 760 MiB by apparent size while preserving all published commits in `main`.
 
-Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
+Final runtime verification for `e6783e85ac667115b5e8d773f73b5b1191b98439`:
+
+- Atomic staging deploy completed as release `20260727T103720Z-e6783e85ac66` with artifact SHA-256 `5437cf4af9a2d75f58c0c6822c05184513174396585fb06554b0cd61476b9e9b`.
+- Node 22 Astro check completed with 0 errors, warnings, or hints; the staging build produced 98 pages and the full site audit passed.
+- `npm audit` reported zero vulnerabilities, `node --check public/scripts/header-nav.js` passed, and `git diff --check` passed.
+- Live health and representative homepage, product, solution, resource, blog archive/pagination/article, and contact routes returned HTTP 200.
+- Live staging remains fail-closed: HTML carries `noindex,follow`, HTTP carries `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, responses carry `Cache-Control: no-store`, and all checked sitemap endpoints return 404.
+- Docker Playwright rendered homepage, product, solution, resource, and blog routes at 375x812, 768x1024, and 1440x1200. All 15 route/viewport combinations had document width equal to viewport width, no page-level horizontal overflow, a visible WhatsApp control, and an in-bounds header.
+- The live mobile/tablet interaction audit opened the menu after scrolling to 900 px, kept the sticky header and menu panel aligned, then restored the first closed sample directly to `scrollY = 900` with no smooth 0-to-900 travel. Reveal content remained at opacity 1 after enter/leave/return sampling.
+- The responsive screenshots were manually reviewed for homepage, product, solution, resource, blog, and open-menu states. The tested compositions were centered, unclipped, and visually coherent at all three widths.
+
+Browser automation is now available through the pinned Docker Playwright runner. Fresh screenshots and interaction evidence exist for 375, 768, and 1440 px. Production promotion should still include human QA at 390, 1024, and 1194 px plus a real-user or lab Core Web Vitals run, because the current evidence is a staging render audit rather than production PSI/RUM. Continue checking:
 
 - horizontal overflow and right-side tablet gutters;
 - sticky navbar shape after scroll;
