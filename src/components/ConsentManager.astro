@@ -28,6 +28,7 @@
     try { localStorage.setItem(storageKey, JSON.stringify({ ...choice, savedAt: new Date().toISOString() })); } catch { /* Choice still applies for this page view. */ }
     window.dispatchEvent(new CustomEvent('ramuni:consent', { detail: choice }));
     if (banner instanceof HTMLElement) banner.hidden = true;
+    document.body.classList.remove('consent-banner-open');
     if (dialog instanceof HTMLDialogElement) dialog.close();
   };
   const openSettings = () => {
@@ -47,5 +48,8 @@
     const marketing = dialog.querySelector('input[name="marketing"]');
     publish({ essential: true, analytics: analytics instanceof HTMLInputElement && analytics.checked, marketing: marketing instanceof HTMLInputElement && marketing.checked });
   });
-  if (!readChoice() && banner instanceof HTMLElement) banner.hidden = false;
+  if (!readChoice() && banner instanceof HTMLElement) {
+    banner.hidden = false;
+    document.body.classList.add('consent-banner-open');
+  }
 </script>

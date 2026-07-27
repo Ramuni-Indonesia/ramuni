@@ -60,7 +60,7 @@ export const solutionDetails: SolutionDetail[] = [
     heroTitle: 'Temukan apa yang mengubah omzet sebelum menentukan langkah.',
     heroText: 'RAMUNI memecah total penjualan menjadi pola produk, waktu, stok, dan pelanggan yang dapat ditelusuri.',
     heroOutcome: 'Hasilnya bukan janji omzet naik, melainkan alasan yang lebih kuat untuk memilih tindakan.',
-    ctaLabel: 'Lihat Demo Analisis Omzet',
+    ctaLabel: 'Minta Contoh Analisis Omzet',
     layout: 'split',
     visual: {
       kind: 'revenue',
@@ -110,8 +110,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'RAMUNI menunjukkan pola dan sumber. Keputusan harga, stok, dan promosi tetap dibuat pengguna.',
     },
     capabilities: [
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Demo dengan data sintetis', text: 'Transaksi dan produk yang membentuk perubahan.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Demo dengan data sintetis', text: 'Perubahan utama sebelum grafik lengkap.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi dan produk yang membentuk perubahan.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur · data sintetis', text: 'Perubahan utama sebelum grafik lengkap.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Jawaban dapat ditelusuri', text: 'Membantu menyusun pertanyaan lanjutan tanpa menjalankan tindakan.' },
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Pola pembelian hanya tampil ketika datanya tersedia dan boleh dipakai.' },
     ],
@@ -132,7 +132,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah promosi selalu menjadi langkah berikutnya?', answer: 'Tidak. Periksa perubahan produk, waktu, stok, dan data yang hilang sebelum memilih promosi.' },
     ],
     closingTitle: 'Bawa satu perubahan omzet yang ingin Anda jelaskan.',
-    closingText: 'Demo memakai data sintetis. Anda dapat melihat alur analisis tanpa mengirim data usaha sensitif.',
+    closingText: 'Tour memakai data sintetis agar alur analisis dapat dibahas tanpa mengirim data usaha sensitif.',
   },
   {
     slug: 'kelola-stok',
@@ -192,8 +192,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Perkiraan tidak menggantikan stock opname. Jumlah pesanan tetap ditentukan pengguna.',
     },
     capabilities: [
-      { title: 'Inventori', href: '/produk/inventori/', status: 'Demo dengan data sintetis', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Demo dengan data sintetis', text: 'Laju produk terjual pada periode yang dipilih.' },
+      { title: 'Inventori', href: '/produk/inventori/', status: 'Preview alur · data sintetis', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Laju produk terjual pada periode yang dipilih.' },
       { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Daftar barang yang perlu diperiksa beserta sumbernya.' },
     ],
     industries: [
@@ -213,7 +213,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah RAMUNI membuat pesanan ke pemasok?', answer: 'Tidak pada alur ini. Tim memeriksa rekomendasi dan menentukan jumlah serta waktu pemesanan.' },
     ],
     closingTitle: 'Mulai dari barang yang paling sering keluar.',
-    closingText: 'Bawa lima sampai sepuluh SKU ke demo sintetis untuk melihat bagaimana prioritas dibentuk.',
+    closingText: 'Bawa lima sampai sepuluh SKU ke tour dengan data sintetis untuk melihat bagaimana prioritas dibentuk.',
   },
   {
     slug: 'pantau-laba-dan-arus-kas',
@@ -273,8 +273,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Rumus harus disepakati tim. Gunakan akuntan untuk kebutuhan akuntansi dan pajak profesional.',
     },
     capabilities: [
-      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Demo dengan data sintetis', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Demo dengan data sintetis', text: 'Transaksi yang membentuk nilai omzet.' },
+      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Preview alur · data sintetis', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi yang membentuk nilai omzet.' },
       { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Ringkasan masih disiapkan', text: 'Perbandingan angka pada periode yang sama.' },
     ],
     industries: [
@@ -294,7 +294,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah ringkasan ini menggantikan akuntan?', answer: 'Tidak. RAMUNI membantu membaca catatan operasional dan bukan pengganti nasihat pajak atau akuntansi profesional.' },
     ],
     closingTitle: 'Lihat angka mana yang benar-benar mengubah kas.',
-    closingText: 'Demo memperlihatkan perbedaan omzet, laba, dan pembayaran masuk dengan data sintetis.',
+    closingText: 'Tour memperlihatkan perbedaan omzet, laba, dan pembayaran masuk memakai data sintetis.',
   },
   {
     slug: 'pahami-pelanggan',
@@ -355,7 +355,7 @@ export const solutionDetails: SolutionDetail[] = [
     },
     capabilities: [
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Riwayat dan pola pembelian yang boleh dipakai.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Demo dengan data sintetis', text: 'Transaksi yang terhubung dengan pelanggan.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi yang terhubung dengan pelanggan.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Tidak mengirim pesan otomatis', text: 'Membantu membaca konteks tanpa mengirim pesan.' },
     ],
     industries: [
@@ -436,7 +436,7 @@ export const solutionDetails: SolutionDetail[] = [
     },
     capabilities: [
       { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Ringkasan harian dan mingguan dari aturan yang sama.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Demo dengan data sintetis', text: 'Perubahan utama sebelum detail.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur · data sintetis', text: 'Perubahan utama sebelum detail.' },
       { title: 'Notifikasi', status: 'Belum tersedia pada preview', text: 'Kanal email, WhatsApp, dan push tidak diklaim aktif.' },
     ],
     industries: [
@@ -456,7 +456,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Bagaimana jika angka antar tim berbeda?', answer: 'Periksa definisi metrik, batas periode, dan waktu pembaruan sebelum membahas hasil.' },
     ],
     closingTitle: 'Bawa satu laporan yang paling sering terlambat.',
-    closingText: 'Demo menunjukkan bagaimana aturan, bukti, dan persetujuan manusia membentuk ringkasan mingguan.',
+    closingText: 'Tour menunjukkan bagaimana aturan, bukti, dan persetujuan manusia membentuk ringkasan mingguan.',
   },
 ];
 

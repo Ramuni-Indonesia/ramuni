@@ -6,15 +6,16 @@ interface ProblemEntry {
   href: string;
 }
 
-import { dashboardVisuals } from '../../data/dashboardVisuals';
+import { getSolutionContextVisual, getSolutionDashboardVisual } from '../../data/dashboardVisuals';
 
 interface Props {
   entries: ProblemEntry[];
 }
 
 const { entries } = Astro.props;
-const visualKeys = ['productPerformance', 'productOperations', 'productPerformance', 'productOverview', 'productOverview'] as const;
-const visuals = visualKeys.map((key) => dashboardVisuals[key]);
+const solutionSlugs = entries.map((entry) => entry.href.split('/').filter(Boolean).at(-1) || '');
+const visuals = solutionSlugs.map((slug) => getSolutionDashboardVisual(slug));
+const contexts = solutionSlugs.map((slug) => getSolutionContextVisual(slug));
 const destinations = entries.map((entry) => ({ href: entry.href, label: entry.label.toLowerCase() }));
 ---
 
@@ -35,14 +36,26 @@ const destinations = entries.map((entry) => ({ href: entry.href, label: entry.la
           aria-labelledby={`solution-map-tab-${index}`}
           aria-hidden={index === 0 ? 'false' : 'true'}
         >
-          <img
-            src={visuals[index].src}
-            width={visuals[index].width}
-            height={visuals[index].height}
-            alt={visuals[index].alt}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            decoding="async"
-          />
+          <div class="solution-map__media">
+            <img
+              class="solution-map__dashboard"
+              src={visuals[index].src}
+              width={visuals[index].width}
+              height={visuals[index].height}
+              alt={visuals[index].alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+            <img
+              class="solution-map__context"
+              src={contexts[index].src}
+              width={contexts[index].width}
+              height={contexts[index].height}
+              alt={contexts[index].alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </div>
           <footer><span>{entry.label}</span><strong>{entry.prompt}</strong></footer>
         </article>
       ))}
@@ -121,11 +134,10 @@ const destinations = entries.map((entry) => ({ href: entry.href, label: entry.la
   .solution-map__workspace{display:grid;grid-template-columns:minmax(0,1.46fr) minmax(230px,.54fr);min-height:430px}
   .solution-map__screens{position:relative;min-width:0;background:var(--rice);overflow:hidden}
   .solution-map__panel{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;opacity:0;visibility:hidden;transform:translate3d(12px,0,0);transition:opacity 240ms cubic-bezier(.22,1,.36,1),transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s 320ms}
-  .solution-map__panel.is-active{opacity:1;visibility:visible;transform:none;transition-delay:0s}.solution-map__panel img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}.solution-map__panel footer{display:grid;gap:5px;padding:12px 14px;border-top:1px solid var(--ink-10);background:var(--white)}.solution-map__panel footer span{color:var(--teal);font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-map__panel footer strong{font-size:.68rem;line-height:1.45}
+  .solution-map__panel.is-active{opacity:1;visibility:visible;transform:none;transition-delay:0s}.solution-map__media{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(128px,.52fr);min-height:0;background:var(--rice)}.solution-map__media img{display:block;width:100%;height:100%;min-height:0}.solution-map__dashboard{object-fit:contain;object-position:top center}.solution-map__context{border-left:1px solid var(--ink-10);object-fit:cover;object-position:center}.solution-map__panel footer{display:grid;gap:5px;padding:12px 14px;border-top:1px solid var(--ink-10);background:var(--white)}.solution-map__panel footer span{color:var(--teal);font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-map__panel footer strong{font-size:.68rem;line-height:1.45}
   .solution-map__controls{display:flex;flex-direction:column;min-width:0;border-left:1px solid var(--ink-10)}
   .solution-map__controls button{flex:1;display:grid;align-content:center;gap:5px;min-width:0;padding:13px 14px;border:0;border-bottom:1px solid var(--ink-10);background:var(--white);color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:background-color 150ms cubic-bezier(.22,1,.36,1),padding 220ms cubic-bezier(.22,1,.36,1)}.solution-map__controls button span{color:var(--teal);font-size:.53rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.solution-map__controls button strong{font-size:.7rem;line-height:1.35}.solution-map__controls button[aria-selected='true']{padding-left:20px;background:var(--yellow)}.solution-map__controls button[aria-selected='true'] span{color:var(--ink)}.solution-map__controls button:focus-visible{position:relative;z-index:2;outline:3px solid var(--teal);outline-offset:-3px}
   .solution-map__link{display:block;padding:13px 14px;background:var(--ink);color:var(--white);font-size:.66rem;font-weight:800;text-decoration:none}.solution-map__link:hover,.solution-map__link:focus-visible{color:var(--yellow)}
-  @media(max-width:720px){.solution-map{box-shadow:0 18px 38px rgb(11 48 69/.13)}.solution-map__head{display:grid}.solution-map__workspace{grid-template-columns:1fr;min-height:0}.solution-map__screens{aspect-ratio:16/10}.solution-map__controls{display:grid;grid-template-columns:1fr 1fr;border-left:0;border-top:1px solid var(--ink-10)}.solution-map__controls button{min-height:104px}.solution-map__controls button:nth-child(odd){border-right:1px solid var(--ink-10)}.solution-map__link{grid-column:1/-1}.solution-map__controls button[aria-selected='true']{padding-left:14px}}
-  @media(max-width:460px){.solution-map__controls{grid-template-columns:1fr}.solution-map__controls button:nth-child(odd){border-right:0}}
+  @media(max-width:720px){.solution-map{box-shadow:0 18px 38px rgb(11 48 69/.13)}.solution-map__head{display:grid}.solution-map__workspace{grid-template-columns:1fr;min-height:0}.solution-map__screens{aspect-ratio:16/10}.solution-map__media{grid-template-columns:minmax(0,1.42fr) minmax(96px,.58fr)}.solution-map__controls{display:grid;grid-template-columns:1fr 1fr;border-left:0;border-top:1px solid var(--ink-10)}.solution-map__controls button{min-height:72px;padding:10px 12px}.solution-map__controls button:nth-child(odd){border-right:1px solid var(--ink-10)}.solution-map__controls button strong{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:.64rem}.solution-map__link{grid-column:1/-1}.solution-map__controls button[aria-selected='true']{padding-left:12px}}
   @media(prefers-reduced-motion:reduce){.solution-map__panel,.solution-map__controls button{transition:none}}
 </style>

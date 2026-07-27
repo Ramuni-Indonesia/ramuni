@@ -9,6 +9,7 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
+import { solutionNarratives } from '../../data/pageNarratives';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
 
@@ -17,6 +18,16 @@ export async function getStaticPaths() {
 }
 
 const { solution, cmsSnapshotId } = Astro.props as SolutionRouteModel;
+const narrative = solutionNarratives[solution.slug];
+const impactItems = narrative?.impact.map(([title, text]) => ({ title, text })) || solution.impact;
+const onboardingItems = narrative?.onboarding.map(([title, text]) => ({ title, text })) || solution.onboarding;
+const solutionCtas: Record<string, string> = {
+  'naikkan-omzet': 'Minta contoh analisis omzet',
+  'kelola-stok': 'Minta contoh analisis stok',
+  'pantau-laba-dan-arus-kas': 'Minta contoh analisis arus kas',
+  'pahami-pelanggan': 'Minta contoh analisis pelanggan',
+  'laporan-bisnis-otomatis': 'Minta contoh laporan mingguan',
+};
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -43,7 +54,7 @@ const faqSchema = {
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href="/tour-produk-gratis/">{solution.ctaLabel}</a>
+            <a class="button button--primary" href="/tour-produk-gratis/">{solutionCtas[solution.slug] || 'Minta tour produk gratis'}</a>
           </div>
         </div>
         <div class="sd-hero__visual reveal is-visible">
@@ -57,7 +68,7 @@ const faqSchema = {
         <div class="sd-problem__overview">
           <header class="sd-problem__heading reveal">
             <p class="section-kicker">Kenali masalahnya</p>
-            <h2 id="problem-title">Apakah ini terjadi di usaha Anda?</h2>
+            <h2 id="problem-title">{narrative?.symptomHeading || 'Apakah ini terjadi di usaha Anda?'}</h2>
             <p>Cocokkan gejala dengan catatan yang tersedia. Satu tanda belum cukup untuk menyimpulkan penyebab.</p>
           </header>
           <ol class="sd-symptoms">
@@ -65,7 +76,7 @@ const faqSchema = {
           </ol>
         </div>
         <div class="sd-impact" aria-label="Dampak bisnis">
-          {solution.impact.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Dampak {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
+          {impactItems.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Sudut {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
         </div>
         <InsightEvidenceFlow
           context="Solusi"
@@ -84,7 +95,7 @@ const faqSchema = {
       <div class="container">
         <header class="sd-section-heading reveal">
           <p class="section-kicker">Cara kerja</p>
-          <h2 id="workflow-title">Dari catatan usaha ke keputusan yang tetap Anda pegang.</h2>
+          <h2 id="workflow-title">{narrative?.comparisonHeading || 'Dari catatan usaha ke keputusan yang tetap Anda pegang.'}</h2>
           <p>Setiap tahap menyimpan jalur kembali ke periode, sumber, dan konteks yang dipakai.</p>
         </header>
         <SolutionWorkflow steps={solution.workflow} />
@@ -99,8 +110,8 @@ const faqSchema = {
       <div class="container sd-capabilities__layout">
         <header class="reveal">
           <p class="section-kicker">Cakupan dan status</p>
-          <h2 id="capabilities-title">Modul yang membantu alur ini.</h2>
-          <p>Lihat bagian yang dapat dicoba saat demo dan yang masih disiapkan.</p>
+          <h2 id="capabilities-title">{narrative?.moduleHeading || 'Modul yang membantu alur ini.'}</h2>
+          <p>Lihat bagian yang ditampilkan pada preview dan bagian yang masih disiapkan.</p>
         </header>
         <div class="sd-capability-list">
           {solution.capabilities.map((capability, index) => (
@@ -122,7 +133,7 @@ const faqSchema = {
       <div class="container">
         <header class="sd-section-heading reveal">
           <p class="section-kicker">Konteks usaha</p>
-          <h2 id="context-title">Masalah yang sama muncul dengan ritme berbeda.</h2>
+          <h2 id="context-title">{narrative?.industryHeading || 'Masalah yang sama muncul dengan ritme berbeda.'}</h2>
           <p>Contoh berikut memakai data rekaan. Kecocokannya bergantung pada data dan cara kerja usaha Anda.</p>
         </header>
         <nav class="sd-industry-list" aria-label="Contoh berdasarkan industri">
@@ -137,8 +148,8 @@ const faqSchema = {
       <div class="container sd-start__layout">
         <div class="sd-start__steps reveal">
           <p class="section-kicker">Mulai tanpa proyek besar</p>
-          <h2 id="start-title">Siapkan satu kasus yang memang perlu dijelaskan.</h2>
-          <ol>{solution.onboarding.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+          <h2 id="start-title">{narrative?.onboardingHeading || 'Siapkan satu kasus yang memang perlu dijelaskan.'}</h2>
+          <ol>{onboardingItems.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
         </div>
         <aside class="sd-resource reveal" aria-labelledby="resource-title">
           <span>{solution.resource.type}</span>
@@ -159,7 +170,7 @@ const faqSchema = {
       <div class="container sd-close-visual reveal">
         <MascotDecisionCTA
           eyebrow="Langkah berikutnya"
-          title={solution.closingTitle}
+          title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="/solusi/"

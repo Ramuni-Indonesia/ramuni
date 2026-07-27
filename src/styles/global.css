@@ -222,7 +222,7 @@ body.menu-open .site-header{position:fixed;inset:0 0 auto;width:100%}body.menu-o
 /* Consent remains inert until explicit choice; no tracker is loaded here. */
 .consent-banner{position:fixed;z-index:1000;left:50%;bottom:20px;transform:translateX(-50%);width:min(calc(100% - 32px),980px);padding:20px 22px;background:var(--white);border:1px solid var(--ink-20);box-shadow:0 22px 70px rgb(11 48 69/.2);display:flex;align-items:center;justify-content:space-between;gap:28px}.consent-banner[hidden]{display:none}.consent-banner p{margin-top:6px;color:var(--ink-72);font-size:.86rem}.consent-actions{display:flex;gap:10px;flex:0 0 auto}
 .consent-dialog{width:min(calc(100% - 32px),680px);border:0;padding:0;background:var(--white);color:var(--ink);box-shadow:0 28px 90px rgb(11 48 69/.34)}.consent-dialog::backdrop{background:rgb(11 48 69/.68)}.consent-dialog form{padding:clamp(24px,5vw,44px)}.consent-dialog__head{display:flex;justify-content:space-between;gap:24px;align-items:start}.consent-dialog__head span{color:var(--teal);font-size:.72rem;font-weight:800}.consent-dialog__head h2{margin-top:8px;font-size:clamp(1.7rem,4vw,2.8rem)}.consent-dialog__head>button{border:0;background:transparent;color:var(--ink);font-weight:800;padding:8px}.consent-dialog form>p{margin:20px 0;color:var(--ink-72)}.consent-choice{display:flex;justify-content:space-between;gap:22px;align-items:center;padding:18px 0;border-top:1px solid var(--ink-10)}.consent-choice strong,.consent-choice small{display:block}.consent-choice small{margin-top:5px;color:var(--ink-72)}.consent-choice input{width:22px;height:22px;accent-color:var(--teal)}.consent-dialog__actions{display:flex;justify-content:flex-end;gap:10px;padding-top:22px;border-top:1px solid var(--ink-10)}body.menu-open{overflow:hidden}
-@media(max-width:740px){.consent-banner{left:16px;right:16px;width:auto;max-width:none;transform:none;align-items:stretch;flex-direction:column}.consent-actions,.consent-dialog__actions{display:grid}.consent-actions .button,.consent-dialog__actions .button{width:100%}}
+@media(max-width:740px){.consent-banner{left:12px;right:12px;width:auto;max-width:none;padding:14px;bottom:10px;transform:none;align-items:stretch;flex-direction:column;gap:12px}.consent-banner>div>strong{font-size:.86rem}.consent-banner p{margin-top:4px;font-size:.74rem;line-height:1.45}.consent-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.consent-dialog__actions{display:grid}.consent-actions .button,.consent-dialog__actions .button{width:100%;min-height:44px;padding:10px 12px;font-size:.74rem}body.consent-banner-open .floating-actions{visibility:hidden;pointer-events:none}}
 
 /* Cross-page responsive type and card guardrails. */
 @media(max-width:740px){
@@ -272,7 +272,7 @@ body.menu-open .site-header{position:fixed;inset:0 0 auto;width:100%}body.menu-o
 .breadcrumbs [aria-hidden="true"]{color:var(--ink-32)}
 .audience-breadcrumb{display:block;padding-top:22px}
 .consent-banner>div{min-width:0}.consent-banner p{overflow-wrap:anywhere}
-@media(max-width:740px){.consent-banner{padding:16px;bottom:12px}}
+@media(max-width:740px){.consent-banner{padding:14px;bottom:10px}}
 
 /* HashMicro-generated capability pictograms, rendered only for available assets. */
 [data-capability-icon='product-asisten-ai']{--capability-icon-image:url('/website-original/icons/ramuni-icon-product-asisten-ai.webp')}
