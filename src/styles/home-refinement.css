@@ -569,7 +569,7 @@
   width:min(100%,780px);
   min-height:0;
   display:block;
-  padding:22px 44px 58px 0;
+  padding:22px 0 0;
 }
 
 .home-decision-demo .home-hero-proof{
@@ -625,12 +625,13 @@
   z-index:3;
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  width:calc(100% - 44px);
+  width:100%;
   margin-top:12px;
   border-top:1px solid var(--ink-20);
 }
 
 .home-hero-story span{
+  position:relative;
   min-height:42px;
   display:flex;
   align-items:center;
@@ -643,21 +644,15 @@
 
 .home-hero-story b{color:var(--teal);font-size:.58rem}
 
-.animated-muni-work.home-hero-mascot{
-  --animated-muni-size:116px;
-  position:absolute;
-  z-index:4;
-  right:0;
-  bottom:8px;
-  border:0;
-  border-radius:30px;
-  background:transparent;
-  box-shadow:none;
-  filter:drop-shadow(0 16px 18px rgb(11 48 69/.18));
-  pointer-events:none;
+.home-hero-story span::after{content:'';position:absolute;left:0;right:12px;top:-1px;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left}
+@media(prefers-reduced-motion:no-preference){
+  .home-hero-story__step--overview::after{animation:home-proof-step-overview 12s linear infinite}
+  .home-hero-story__step--performance::after{animation:home-proof-step-performance 12s linear infinite}
+  .home-hero-story__step--operations::after{animation:home-proof-step-operations 12s linear infinite}
+  @keyframes home-proof-step-overview{0%{transform:scaleX(0)}27%{transform:scaleX(1)}33%,94%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+  @keyframes home-proof-step-performance{0%,33%{transform:scaleX(0)}60%{transform:scaleX(1)}66%,100%{transform:scaleX(0)}}
+  @keyframes home-proof-step-operations{0%,68%{transform:scaleX(0)}94%{transform:scaleX(1)}100%{transform:scaleX(0)}}
 }
-
-.animated-muni-work.home-hero-mascot::after{display:none}
 
 .business-proof{
   display:grid;

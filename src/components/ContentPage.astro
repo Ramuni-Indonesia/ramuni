@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 interface Item { title: string; text: string; href?: string; }
 interface Props { title: string; description: string; eyebrow?: string; items: Item[]; ctaLabel?: string; ctaHref?: string; noindex?: boolean; }
-const { title, description, eyebrow, items, ctaLabel = 'Coba Simulasi Gratis', ctaHref = '/tour-produk-gratis/', noindex = false } = Astro.props;
+const { title, description, eyebrow, items, ctaLabel = 'Minta tour produk gratis', ctaHref = '/tour-produk-gratis/', noindex = false } = Astro.props;
 ---
 <BaseLayout title={title} description={description} noindex={noindex}>
   <section class="policy-hero"><div class="container"><p class="eyebrow">{eyebrow || 'Dokumen RAMUNI'}</p><h1>{title}</h1><p class="lede">{description}</p></div></section>

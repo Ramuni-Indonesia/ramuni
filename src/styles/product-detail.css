@@ -2309,3 +2309,11 @@
 @media(max-width:1200px){.pd-hero__layout{grid-template-columns:minmax(0,1fr)}.pd-hero__copy{width:min(100%,760px)}.pd-hero__canvas{width:min(100%,820px);justify-self:center}.pd-hero__canvas :where(.product-canvas__panel){padding-inline:24px}.pd-hero h1{max-width:13ch}}
 @media(min-width:961px) and (max-width:1200px){.pd-hero__layout{grid-template-columns:minmax(260px,.72fr) minmax(430px,1.28fr);gap:clamp(24px,3vw,40px)}.pd-hero__copy{width:auto;max-width:620px}.pd-hero__canvas{width:100%;justify-self:stretch}.pd-hero__canvas :where(.product-canvas__panel){padding-inline:clamp(18px,2vw,24px)}}
 @media(max-width:740px){.pd-hero__copy{max-width:100%}.pd-hero h1{font-size:clamp(2.35rem,11vw,3.65rem)}}
+
+/* Outcome-led product hero with explicit preview disclosure. */
+.pd-module-name{font-size:.72rem;font-weight:800;color:var(--ink);letter-spacing:.01em}
+.pd-hero__meta{flex-wrap:wrap}
+.pd-hero h1{max-width:16ch;font-size:clamp(2.45rem,4.1vw,4.5rem);text-wrap:balance}
+.pd-hero__disclosure{max-width:56ch;margin-top:16px;color:var(--ink-56);font-size:.7rem;line-height:1.5}
+.pd-hero__canvas .product-canvas{box-shadow:none}
+@media(max-width:740px){.pd-status-label{order:3}.pd-hero h1{max-width:15ch;font-size:clamp(2.25rem,10vw,3.35rem)}}

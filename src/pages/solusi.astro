@@ -36,41 +36,10 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         <div class="solution-hub-hero__copy">
           <p class="section-kicker">Solusi bisnis</p>
           <h1>Pilih masalahnya, bukan modulnya.</h1>
-          <p class="lede">Pilih masalah usaha, lalu lihat contoh dashboard dan konteks yang membantu membedakan gejala dari penyebabnya.</p>
-          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a></div>
+          <p class="lede">Pilih perubahan yang Anda lihat: omzet, stok, kas, pelanggan, atau laporan. RAMUNI menunjukkan data yang perlu dibandingkan sebelum Anda bertindak.</p>
+          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/">Minta tour produk gratis</a></div>
         </div>
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
-      </div>
-    </section>
-
-    <section class="section pain-clusters" aria-labelledby="pain-clusters-title">
-      <div class="container">
-        <h2 id="pain-clusters-title">Di mana keputusan mulai tersendat?</h2>
-        <p class="pain-clusters__intro">Pilih satu gejala. Lihat urutan yang perlu diperiksa sebelum menentukan langkah.</p>
-        <fieldset class="solution-problem-lab reveal">
-          <legend class="sr-only">Pilih masalah bisnis</legend>
-          <div class="solution-problem-lab__choices">
-            {painClusters.map((cluster, index) => (
-              <label>
-                <input type="radio" name="solution-problem" value={index} checked={index === 0} />
-                <span>{cluster.label}</span>
-                <small>{cluster.text}</small>
-              </label>
-            ))}
-          </div>
-          <div class="solution-problem-lab__stage" aria-live="polite">
-            {painClusters.map((cluster, index) => (
-              <article class="solution-problem-lab__panel" data-panel={index}>
-                <header><span>Contoh pola sintetis</span><strong>{cluster.label}</strong></header>
-                <div class="solution-problem-lab__bars" aria-hidden="true">
-                  {cluster.bars.map((bar, barIndex) => <i style={`--bar:${bar}%;--delay:${barIndex * 55}ms`}></i>)}
-                </div>
-                <p>{cluster.prompt}</p>
-                <a href={`/solusi/${solutions[index].slug}/`}>Buka alur {cluster.label.toLowerCase()}</a>
-              </article>
-            ))}
-          </div>
-        </fieldset>
       </div>
     </section>
 

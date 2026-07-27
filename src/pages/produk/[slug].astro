@@ -33,6 +33,18 @@ const productSeo: Record<string, { title: string; description: string }> = {
   integrasi: { title: 'Integrasi Data Bisnis UMKM | RAMUNI', description: 'Siapkan impor dan integrasi data usaha dengan pemetaan, validasi, status pembaruan, serta batas yang jelas sebelum data dipakai.' },
 };
 const defaultSeo = productSeo[product.slug] || { title: `${product.title} untuk UMKM | RAMUNI`, description: detail.heroLead };
+const productHeroTitles: Record<string, string> = {
+  'asisten-ai': 'Ajukan pertanyaan bisnis, lalu buka dasar jawabannya.',
+  'dashboard-bisnis': 'Tahu apa yang perlu diperhatikan sebelum membuka semua angka.',
+  'katalog-produk': 'Rapikan identitas produk agar transaksi dan laporan bicara hal yang sama.',
+  penjualan: 'Lihat apa yang mendorong perubahan omzet.',
+  inventori: 'Tahu stok mana yang perlu dicek lebih dulu.',
+  keuangan: 'Pisahkan omzet, laba, dan kas sebelum menilai usaha.',
+  pelanggan: 'Kenali pelanggan yang kembali dari riwayat pembelian.',
+  'laporan-insight': 'Tutup hari dan minggu dengan angka dari sumber yang sama.',
+  integrasi: 'Masukkan data dengan pemetaan dan status yang jelas.',
+};
+const heroTitle = productHeroTitles[product.slug] || detail.outcome;
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
   description: cmsSeo?.description || defaultSeo.description,
@@ -112,14 +124,16 @@ const structuredData = [
         <div class="pd-hero__copy reveal is-visible">
           <div class="pd-hero__meta">
             <span class="pd-product-glyph" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
-            <span class="pd-status-label">Simulasi tersedia</span>
+            <span class="pd-module-name">{product.title}</span>
+            <span class="pd-status-label">Preview produk · data demo</span>
           </div>
-          <h1 id="product-title">{product.title}</h1>
+          <h1 id="product-title">{heroTitle}</h1>
           <p class="pd-hero__lead">{detail.heroLead}</p>
           <div class="button-row">
-            <a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a>
+            <a class="button button--primary" href="/tour-produk-gratis/">Minta tour {product.title}</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
+          <p class="pd-hero__disclosure">Preview memakai data contoh. Ketersediaan tiap kemampuan dijelaskan pada bagian status di bawah.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />

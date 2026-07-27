@@ -35,7 +35,7 @@ const hubFrames = [
           src={frame.src}
           width={frame.width}
           height={frame.height}
-          alt={index === 0 ? frame.alt : ''}
+          alt={frame.alt}
           decoding="async"
           fetchpriority={index === 0 ? 'high' : undefined}
         />

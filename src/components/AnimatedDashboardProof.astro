@@ -62,7 +62,7 @@ const {
     object-fit:contain;
     object-position:top center;
     opacity:0;
-    transform:translate3d(0,10px,0) scale(1.015);
+    transform:translate3d(10px,0,0);
   }
 
   .animated-dashboard-proof__frame--overview{opacity:1;transform:none}
@@ -74,22 +74,22 @@ const {
 
     @keyframes dashboard-overview{
       0%,27%{opacity:1;transform:none}
-      33%,94%{opacity:0;transform:translate3d(-8px,0,0) scale(1.012)}
+      33%,94%{opacity:0;transform:translate3d(-10px,0,0)}
       100%{opacity:1;transform:none}
     }
     @keyframes dashboard-performance{
-      0%,27%,66%,100%{opacity:0;transform:translate3d(8px,10px,0) scale(1.015)}
+      0%,27%,66%,100%{opacity:0;transform:translate3d(10px,0,0)}
       34%,60%{opacity:1;transform:none}
     }
     @keyframes dashboard-operations{
-      0%,60%,100%{opacity:0;transform:translate3d(8px,10px,0) scale(1.015)}
+      0%,60%,100%{opacity:0;transform:translate3d(10px,0,0)}
       68%,94%{opacity:1;transform:none}
     }
   }
 
   @media(max-width:680px){
     .animated-dashboard-proof{aspect-ratio:16/10}
-    .animated-dashboard-proof__frame{object-fit:cover;object-position:top left}
+    .animated-dashboard-proof__frame{object-fit:contain;object-position:top center}
   }
 
   @media(prefers-reduced-motion:reduce){

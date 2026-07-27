@@ -19,10 +19,10 @@ const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
   ['Apakah AI menjalankan transaksi otomatis?', 'Tidak pada versi awal. AI hanya membaca dan menjelaskan. Tindakan berisiko tetap membutuhkan persetujuan manusia.'],
   ['Data apa yang dibutuhkan?', 'Mulai dari data operasional yang tersedia. Jalur input dan ketersediaannya akan dijelaskan sebelum proses dimulai.'],
-  ['Apakah saya bisa langsung mencoba?', 'Anda dapat mencoba simulasi publik dengan data contoh. Akses produk untuk kebutuhan usaha diajukan terpisah dan akan dijelaskan sebelum proses dimulai.'],
+  ['Apakah saya bisa langsung mencoba?', 'Anda dapat melihat contoh tampilan dengan data demo, lalu meminta tour yang sesuai kebutuhan usaha. Akses produk diajukan terpisah.'],
   ['Apakah harga sudah tersedia?', 'Harga belum diumumkan. Kami akan menampilkannya setelah isi setiap paket ditetapkan.'],
   ['Apakah RAMUNI cocok untuk semua industri?', 'Kami cocokkan dulu cara kerja usaha Anda dengan fitur yang sudah siap. Contoh awal tersedia untuk enam jenis usaha.'],
-  ['Bagaimana keamanan data dijaga?', 'RAMUNI membatasi akses berdasarkan peran. Detail keamanan akan dipublikasikan setelah pengujian selesai.'],
+  ['Bagaimana keamanan data dijaga?', 'Preview menunjukkan rancangan akses berdasarkan peran. Ketersediaan dan cakupannya akan dijelaskan sebelum penggunaan.'],
   ['Apakah demo memakai data asli?', 'Tidak. Demo publik memakai data sintetis dan tidak meminta data bisnis sensitif.'],
 ];
 
@@ -57,8 +57,8 @@ const schema = [
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
         <h1>Pahami bisnis Anda. Tahu langkah berikutnya.</h1>
-        <p class="lede">RAMUNI membantu Anda membaca catatan usaha dan melihat hal yang perlu diperiksa.</p>
-        <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="/tour-produk-gratis/">Lihat cara kerjanya</a></div>
+        <p class="lede">RAMUNI menyatukan penjualan, stok, kas, dan pelanggan dalam satu dashboard, lalu menunjukkan perubahan beserta sumber angka yang perlu diperiksa.</p>
+        <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard contoh</a></div>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
@@ -126,7 +126,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section dashboard-stage dashboard-stage--editorial chapter" data-chapter="Dashboard">
+  <section id="dashboard-product-proof" class="section dashboard-stage dashboard-stage--editorial chapter" data-chapter="Dashboard">
     <div class="container dashboard-gallery">
       <header class="dashboard-gallery__head reveal">
         <div><p class="section-kicker">Bukan sekadar grafik</p><h2>Pertanyaan datang dulu.</h2></div>
@@ -252,8 +252,8 @@ const schema = [
 
   <section class="section pricing-stage chapter" data-chapter="Akses">
     <div class="container pricing-composition">
-      <div class="pricing-word reveal">Akses<br />Coba</div>
-      <div class="pricing-copy reveal"><h2>Mulai dari simulasi, lanjut jika cocok.</h2><p>Coba alur RAMUNI dengan data contoh. Harga dan cakupan akses akan dijelaskan sebelum Anda membuat keputusan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a></div></div>
+      <div class="pricing-word reveal">Tour<br />Produk</div>
+      <div class="pricing-copy reveal"><h2>Mulai dari tour, lanjut jika cocok.</h2><p>Minta alur tour RAMUNI dengan data contoh. Harga dan cakupan akses akan dijelaskan sebelum Anda membuat keputusan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Minta tour produk gratis</a></div></div>
     </div>
   </section>
 
@@ -278,7 +278,7 @@ const schema = [
     <div class="container closing-composition reveal">
       <p>Meramu insight. Memberi arah.</p>
       <h2>Pilih satu masalah. Mulai dari sana.</h2>
-      <a class="button button--primary" href="/tour-produk-gratis/">Coba Simulasi Gratis</a>
+      <a class="button button--primary" href="/tour-produk-gratis/">Minta tour produk gratis</a>
     </div>
   </section>
   <script is:inline type="module" src="/scripts/home-interactions.js"></script>

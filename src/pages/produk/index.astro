@@ -17,10 +17,10 @@ const productFamilyVisuals = {
   ecosystem: dashboardVisuals.productPerformance,
 } as const;
 const sharedCapabilities = [
-  { title: 'Akses sesuai peran', text: 'Pemilik, supervisor, admin, dan kasir melihat ruang kerja yang sesuai tanggung jawabnya.' },
-  { title: 'Jejak perubahan', text: 'Koreksi penting tetap memiliki waktu, alasan, dan pelaku yang dapat diperiksa.' },
+  { title: 'Rancangan akses per peran', text: 'Preview menunjukkan ruang kerja pemilik, supervisor, admin, dan kasir. Ketersediaannya akan dijelaskan sebelum penggunaan.' },
+  { title: 'Rancangan jejak perubahan', text: 'Preview memperlihatkan bagaimana waktu, alasan, dan pelaku koreksi dapat diperiksa.' },
   { title: 'Bukti di balik insight', text: 'Ringkasan membawa pengguna kembali ke metrik, periode, dan catatan sumber.' },
-  { title: 'Impor dan ekspor terkontrol', text: 'Jalur data ditampilkan bersama status ketersediaan dan hasil validasinya.' },
+  { title: 'Rancangan impor dan ekspor', text: 'Jalur data ditampilkan bersama status ketersediaan dan hasil validasinya.' },
 ];
 
 const productFaq = [
@@ -40,7 +40,7 @@ const productFaq = [
         <div class="catalog-hero__aside reveal is-visible">
           <p>RAMUNI menyatukan catatan usaha, menunjukkan perubahan yang perlu dibuka, lalu membawa Anda kembali ke sumber angkanya.</p>
           <div class="button-row">
-            <a class="button button--primary" href="/tour-produk-gratis/">Lihat simulasi produk</a>
+            <a class="button button--primary" href="/tour-produk-gratis/">Minta tour produk</a>
             <a class="button button--secondary" href="#product-system-connected">Cara RAMUNI membaca data</a>
           </div>
         </div>
@@ -154,7 +154,7 @@ const productFaq = [
 
     <section class="section product-capabilities" aria-labelledby="capabilities-title">
       <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Prinsip yang menjaga setiap modul tetap dapat diperiksa.</h2><p>Akses, jejak perubahan, dan sumber angka dirancang tetap jelas saat lebih banyak anggota tim terlibat.</p></header>
+        <header><h2 id="capabilities-title">Prinsip yang menjaga setiap modul tetap dapat diperiksa.</h2><p>Preview memperlihatkan rancangan akses, jejak perubahan, dan sumber angka. Cakupan akhirnya akan dijelaskan sebelum penggunaan.</p></header>
         <div class="capability-folds">
           {sharedCapabilities.map((item, index) => (
             <article class="capability-fold reveal" style={`--i:${index}`}>
@@ -188,7 +188,7 @@ const productFaq = [
     <section class="section product-trust" aria-labelledby="product-trust-title">
       <div class="container product-trust__layout">
         <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">RAMUNI membantu membaca. Keputusan tetap di tangan Anda.</h2></div>
-        <div class="product-trust__copy"><p>RAMUNI memisahkan akses tiap peran, menunjukkan sumber jawaban, dan pada versi awal membatasi AI hanya untuk membaca data.</p><a href="/keamanan/">Pelajari keamanan dan batas AI</a></div>
+        <div class="product-trust__copy"><p>Preview menunjukkan rancangan akses tiap peran, sumber jawaban, dan batas AI yang direncanakan. Ketersediaannya belum dinyatakan sebagai fitur publik.</p><a href="/keamanan/">Pelajari keamanan dan batas AI</a></div>
       </div>
     </section>
 

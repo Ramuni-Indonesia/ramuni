@@ -59,7 +59,7 @@
 
 @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){
   .sd-visual{animation:sd-visual-enter 760ms var(--ease) both}.sd-revenue__column i{animation:sd-grow-y 800ms var(--ease) both}.sd-revenue__column:nth-child(2) i{animation-delay:100ms}.sd-revenue__column:nth-child(3) i{animation-delay:180ms}.sd-stock__row i::after,.sd-cash__step i::after{animation:sd-grow-x 820ms var(--ease) both}.sd-stock__row:nth-child(2) i::after,.sd-cash__step:nth-child(2) i::after{animation-delay:100ms}.sd-stock__row:nth-child(3) i::after,.sd-cash__step:nth-child(3) i::after{animation-delay:180ms}.sd-customer__line{animation:sd-grow-x 850ms 180ms var(--ease) both}.sd-customer__event{animation:sd-event 560ms var(--ease) both;animation-delay:calc(var(--i) * 110ms + 250ms)}.sd-report__item{animation:sd-report-line 560ms var(--ease) both}.sd-report__item:nth-child(3){animation-delay:90ms}.sd-report__item:nth-child(4){animation-delay:180ms}.sd-workflow__step::after{content:'';position:absolute;left:24px;right:24px;bottom:0;height:3px;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform 520ms var(--ease)}.sd-workflow__step:hover::after{transform:scaleX(1)}
-  @keyframes sd-visual-enter{from{transform:translateY(18px);box-shadow:0 0 0 var(--ink)}to{transform:none;box-shadow:14px 14px 0 var(--ink)}}
+  @keyframes sd-visual-enter{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
   @keyframes sd-grow-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}@keyframes sd-grow-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes sd-event{from{transform:translateY(12px)}to{transform:none}}@keyframes sd-report-line{from{transform:translateX(-12px)}to{transform:none}}
 }
 

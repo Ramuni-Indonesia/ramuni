@@ -1,6 +1,5 @@
 ---
 import AnimatedDashboardProof from './AnimatedDashboardProof.astro';
-import AnimatedMuniWork from './AnimatedMuniWork.astro';
 ---
 
 <div class="ramuni-hero-visual home-decision-demo">
@@ -16,14 +15,9 @@ import AnimatedMuniWork from './AnimatedMuniWork.astro';
     </figcaption>
   </figure>
 
-  <div class="home-hero-story" aria-label="Alur membaca dashboard">
-    <span><b>01</b> Ringkasan</span>
-    <span><b>02</b> Perubahan</span>
-    <span><b>03</b> Perlu perhatian</span>
+  <div class="home-hero-story" aria-label="Tampilan dashboard yang berganti otomatis">
+    <span class="home-hero-story__step home-hero-story__step--overview"><b>01</b> Ringkasan</span>
+    <span class="home-hero-story__step home-hero-story__step--performance"><b>02</b> Perubahan</span>
+    <span class="home-hero-story__step home-hero-story__step--operations"><b>03</b> Perlu perhatian</span>
   </div>
-
-  <AnimatedMuniWork
-    class="home-hero-mascot"
-    label="Muni bergerak sambil menunjuk tampilan dashboard RAMUNI"
-  />
 </div>
