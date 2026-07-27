@@ -1,79 +1,33 @@
 ---
-import { releaseGates } from '../config/release';
-import { mascots } from '../data/mascots';
-
-const heroVisual = releaseGates.mascotExplorationEnabled ? mascots.guide3d : mascots.decisionVisual;
-const heroVisualAlt = releaseGates.mascotExplorationEnabled
-  ? 'Muni si Manyar menunjuk ke contoh dashboard RAMUNI'
-  : 'Sculpture abstrak Catatan, Bukti, dan Arah di samping contoh dashboard RAMUNI';
+import AnimatedDashboardProof from './AnimatedDashboardProof.astro';
+import AnimatedMuniWork from './AnimatedMuniWork.astro';
 ---
-<div class="ramuni-hero-visual home-decision-demo" aria-label="Contoh interaktif ruang kerja RAMUNI dengan data sintetis">
+
+<div class="ramuni-hero-visual home-decision-demo" aria-label="Tampilan dashboard RAMUNI dengan data demo dan Muni yang sedang bekerja">
   <div class="direction-fold" aria-hidden="true">
     <span class="direction-fold__ink"></span>
     <span class="direction-fold__teal"></span>
     <span class="direction-fold__yellow"></span>
   </div>
-  <div class="decision-window">
-    <header class="decision-window__head">
-      <span>Ruang usaha / data sintetis</span>
-      <b><i aria-hidden="true"></i>Diperbarui 09.15</b>
-    </header>
-    <div class="decision-window__tabs" role="tablist" aria-label="Pilih sinyal usaha">
-      <button type="button" role="tab" aria-selected="true" aria-controls="signal-stock" id="tab-stock" data-signal-tab="stock">Stok</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="signal-sales" id="tab-sales" data-signal-tab="sales" tabindex="-1">Penjualan</button>
-      <button type="button" role="tab" aria-selected="false" aria-controls="signal-cash" id="tab-cash" data-signal-tab="cash" tabindex="-1">Kas</button>
-    </div>
-    <div class="decision-window__question">
-      <span>Pertanyaan pagi ini</span>
-      <strong>Apa yang perlu saya cek lebih dulu?</strong>
-    </div>
-    <div class="decision-window__panels">
-      <article class="decision-window__panel" id="signal-stock" role="tabpanel" aria-labelledby="tab-stock" data-signal-panel="stock">
-        <div class="decision-window__priority"><div class="priority-index"><span>Prioritas</span><strong>01</strong></div><div><strong class="decision-window__title">Stok Kopi Susu perlu diperiksa.</strong><p>Laju penjualan pagi lebih cepat dari catatan stok. Cek bahan sebelum jam ramai.</p></div></div>
-        <dl class="decision-window__signals"><div><dt>Penjualan</dt><dd>Naik</dd><small>pagi ini</small></div><div><dt>Sisa stok</dt><dd>24</dd><small>porsi tercatat</small></div><div><dt>Berikutnya</dt><dd>Cek</dd><small>bahan utama</small></div></dl>
-      </article>
-      <article class="decision-window__panel" id="signal-sales" role="tabpanel" aria-labelledby="tab-sales" data-signal-panel="sales" hidden>
-        <div class="decision-window__priority"><div class="priority-index"><span>Prioritas</span><strong>02</strong></div><div><strong class="decision-window__title">Penjualan sore melemah pada dua hari.</strong><p>Bandingkan jumlah transaksi dan nilai belanja sebelum mengubah promosi.</p></div></div>
-        <dl class="decision-window__signals"><div><dt>Periode</dt><dd>2 hari</dd><small>data contoh</small></div><div><dt>Transaksi</dt><dd>Turun</dd><small>pukul 15-17</small></div><div><dt>Berikutnya</dt><dd>Bandingkan</dd><small>produk terjual</small></div></dl>
-      </article>
-      <article class="decision-window__panel" id="signal-cash" role="tabpanel" aria-labelledby="tab-cash" data-signal-panel="cash" hidden>
-        <div class="decision-window__priority"><div class="priority-index"><span>Prioritas</span><strong>03</strong></div><div><strong class="decision-window__title">Omzet dan kas bergerak berbeda.</strong><p>Periksa biaya dan pembayaran tertunda sebelum menilai kondisi usaha.</p></div></div>
-        <dl class="decision-window__signals"><div><dt>Omzet</dt><dd>Stabil</dd><small>pekan ini</small></div><div><dt>Kas masuk</dt><dd>Tertunda</dd><small>data contoh</small></div><div><dt>Berikutnya</dt><dd>Telusuri</dd><small>jatuh tempo</small></div></dl>
-      </article>
-    </div>
-    <footer class="decision-window__foot">
-      <span><i aria-hidden="true"></i>Bukti tersedia</span>
-      <span>Data contoh, bukan hasil pelanggan</span>
-      <b>Periksa data</b>
-    </footer>
-  </div>
-  <img class="home-decision-demo__mascot" src={heroVisual.src} width={heroVisual.width} height={heroVisual.height} alt={heroVisualAlt} decoding="async" fetchpriority="high" />
-  <div class="visual-note visual-note--evidence" aria-hidden="true"><span>03 sumber dibaca</span><strong>Penjualan / Stok / Biaya</strong></div>
-  <div class="visual-note visual-note--boundary" aria-hidden="true"><span>Batas tindakan</span><strong>AI membaca. Anda memutuskan.</strong></div>
-</div>
 
-<script>
-  document.querySelectorAll<HTMLElement>('.home-decision-demo').forEach((demo) => {
-    const tabs = Array.from(demo.querySelectorAll<HTMLButtonElement>('[data-signal-tab]'));
-    const panels = Array.from(demo.querySelectorAll<HTMLElement>('[data-signal-panel]'));
-    const activate = (tab: HTMLButtonElement) => {
-      const key = tab.dataset.signalTab;
-      tabs.forEach((item) => {
-        const active = item === tab;
-        item.setAttribute('aria-selected', String(active));
-        item.tabIndex = active ? 0 : -1;
-      });
-      panels.forEach((panel) => { panel.hidden = panel.dataset.signalPanel !== key; });
-    };
-    tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => activate(tab));
-      tab.addEventListener('keydown', (event) => {
-        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-        event.preventDefault();
-        const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
-        tabs[next].focus();
-        activate(tabs[next]);
-      });
-    });
-  });
-</script>
+  <figure class="home-hero-proof">
+    <header class="home-hero-proof__head">
+      <span>Dashboard RAMUNI</span>
+      <strong><i aria-hidden="true"></i>Data demo</strong>
+    </header>
+    <AnimatedDashboardProof class="home-hero-proof__dashboard" />
+    <figcaption>
+      <span>Tampilan produk · data demo</span>
+      <strong>Ringkasan usaha bergerak dari sinyal utama ke aktivitas yang perlu diperiksa.</strong>
+    </figcaption>
+  </figure>
+
+  <AnimatedMuniWork
+    class="home-hero-proof__mascot"
+    label="Muni bergerak sambil memeriksa catatan dan dashboard RAMUNI"
+  />
+  <div class="visual-note visual-note--evidence" aria-hidden="true">
+    <span>Bukti produk</span>
+    <strong>Diambil dari dashboard RAMUNI SaaS</strong>
+  </div>
+</div>

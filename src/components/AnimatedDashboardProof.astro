@@ -1,0 +1,102 @@
+---
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const {
+  class: className = '',
+  label = 'Dashboard RAMUNI dengan data demo bergerak dari ringkasan ke aktivitas usaha',
+} = Astro.props;
+---
+
+<span
+  class:list={['animated-dashboard-proof', className]}
+  role="img"
+  aria-label={label}
+  data-animated-dashboard-proof
+  data-animate="false"
+>
+  <video
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm" type="video/webm" />
+    <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4" type="video/mp4" />
+  </video>
+</span>
+
+<script>
+  const bindAnimatedDashboardProof = () => {
+    document.querySelectorAll<HTMLElement>('[data-animated-dashboard-proof]').forEach((proof) => {
+      if (proof.dataset.bound === 'true') return;
+      proof.dataset.bound = 'true';
+
+      const video = proof.querySelector<HTMLVideoElement>('video');
+      if (!video) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+      let inView = false;
+
+      const update = () => {
+        const canAnimate = inView && !document.hidden && !reducedMotion.matches && !saveData;
+        proof.dataset.animate = canAnimate ? 'true' : 'false';
+        if (canAnimate) {
+          void video.play().catch(() => undefined);
+        } else {
+          video.pause();
+        }
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        inView = true;
+        update();
+        return;
+      }
+
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry?.isIntersecting ?? false;
+        update();
+      }, { rootMargin: '160px 0px', threshold: 0.08 });
+
+      observer.observe(proof);
+      document.addEventListener('visibilitychange', update);
+      reducedMotion.addEventListener?.('change', update);
+    });
+  };
+
+  bindAnimatedDashboardProof();
+  document.addEventListener('astro:page-load', bindAnimatedDashboardProof);
+</script>
+
+<style>
+  .animated-dashboard-proof{
+    display:block;
+    width:100%;
+    aspect-ratio:60/29;
+    overflow:hidden;
+    background:var(--rice);
+    contain:paint;
+  }
+
+  .animated-dashboard-proof video{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top;
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .animated-dashboard-proof video{visibility:hidden}
+    .animated-dashboard-proof{
+      background:var(--rice) url('/website-original/product-screens/ramuni-product-dashboard-overview.webp') top center/cover no-repeat;
+    }
+  }
+</style>

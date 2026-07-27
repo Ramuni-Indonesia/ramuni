@@ -104,16 +104,9 @@
   line-height: 1;
 }
 
-.pd-hero__audience {
-  max-width: 52ch;
-  margin-top: 24px;
-  font-weight: 700;
-  line-height: 1.55;
-}
-
 .pd-hero__lead {
   max-width: 54ch;
-  margin-top: 14px;
+  margin-top: 24px;
   color: var(--ink-72);
 }
 
@@ -2028,7 +2021,6 @@
     white-space: normal;
   }
 
-  .pd-hero__audience,
   .pd-hero__lead {
     font-size: 0.94rem;
   }

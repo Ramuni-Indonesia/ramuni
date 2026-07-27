@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedMuniWork from '../components/AnimatedMuniWork.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
-import { releaseGates } from '../config/release';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
+import { mascots } from '../data/mascots';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
@@ -15,9 +15,7 @@ const homepagePains = [
   { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan/' },
   { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis/' },
 ];
-const mascotSrc = releaseGates.mascotExplorationEnabled
-  ? '/website-original/mascot/ramuni-mascot-working-dashboard.webp'
-  : '/website-original/ramuni-mascot-problem-section.webp';
+const problemMascot = mascots.guide3d;
 const companionSteps = [
   ['Catatan', 'Sumber usaha dikumpulkan tanpa menutupi data yang belum lengkap.'],
   ['Bukti', 'Periode, perubahan, dan angka pendukung tetap bisa ditelusuri.'],
@@ -85,7 +83,7 @@ const schema = [
       <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
         <div class="problem-canvas__core reveal" aria-hidden="true" data-problem-mascot>
           <span>Catatan yang terhubung</span>
-          <img src={mascotSrc} width="720" height="720" alt="" loading="lazy" decoding="async" />
+          <img src={problemMascot.src} width={problemMascot.width} height={problemMascot.height} alt="" loading="lazy" decoding="async" />
           <i></i><i></i><i></i>
         </div>
         <nav class="problem-constellation">
