@@ -12,12 +12,12 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `be8688d7e56e23aa9a69b3a721e5de54098df038` (`fix: keep staging builds writable and warning-free`).
-- Interactive mascot/parallax implementation commit immediately below it: `59e661e188e76c47d36c8701292c5e159f72d523` (`feat: add interactive mascot and contextual parallax`).
+- Published runtime commit: `eae937c0b60fdf57561fea3a35a270e3e394c058` (`fix: contain scroll sections across responsive layouts`).
+- Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T034641Z-be8688d7e56e`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T034641Z-be8688d7e56e`.
-- Deployed artifact SHA-256: `1ee2d43a2370247ccd2ff9bd370220a44ee27630bd0357c38c815f8e3fe1e855`.
+- Active staging release: `20260727T052756Z-eae937c0b60f`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T052756Z-eae937c0b60f`.
+- Deployed artifact SHA-256: `0feddabdda90824c267e801773812d9cad2fc3aef309df071028f45ffd595b2c`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -53,6 +53,8 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
 - Normalized heading scale, text measures, mobile/tablet card behavior, CTA layout, and reveal-motion guardrails.
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
+- Product and solution chapters now create local paint boundaries with `overflow: clip` and `isolation: isolate`; sticky headings and transformed visuals cannot paint into the following section.
+- The product problem, solution problem, and solution scenario sticky headings are structurally bounded by dedicated overview wrappers. Touch/coarse-pointer layouts disable these sticky states, and grid children receive `min-width: 0` overflow protection.
 - Product, solution, industry, and role pages now use contextual real RAMUNI product screenshots where the seeded dashboard evidence supports the claim; unsupported AI/import-specific flows retain explicitly conceptual visuals.
 - Real product screenshots are cropped from local product evidence that uses demo fixtures, not production tenant or customer data. Public labels say `Tampilan produk · data demo`.
 - The homepage hero now combines a looping real RAMUNI seeded/demo dashboard video with a separate looping Muni work video. Both use WebM plus MP4 fallbacks and pause offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
@@ -123,6 +125,7 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - `/solusi/` remains below the enforced 64 KiB route HTML budget after externalizing the shared parallax runtime; linked CSS and total compressed JavaScript budgets also pass.
+- Post-rewrite route sizes for the latest release are 63,381 bytes for `/solusi/`, 63,221 bytes for `/produk/`, and 63,923 bytes for `/blog/arus-kas-umkm-ringan/`.
 - R2 sync uploaded/replaced five objects and left 80 existing objects unchanged. The sync now compares both hash and remote `Content-Type`, so unchanged video bytes are re-uploaded when metadata is wrong.
 - Live staging returned HTTP 200 for homepage, product hub/details, solution hub/details, industry, role, and article routes.
 - The two mascot video sources and two dashboard video sources return HTTP 200 with `video/webm` or `video/mp4` from `assets-staging.ramuni.id`; stale Cloudflare entries were purged after the R2 metadata correction.
@@ -137,8 +140,8 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260727T034641Z-be8688d7e56e` and artifact `1ee2d43a2370247ccd2ff9bd370220a44ee27630bd0357c38c815f8e3fe1e855`.
-- Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the new public script was synchronized to R2 and the active release reports commit `be8688d7e56e23aa9a69b3a721e5de54098df038`.
+- Deployment health check passed for release `20260727T052756Z-eae937c0b60f` and artifact `0feddabdda90824c267e801773812d9cad2fc3aef309df071028f45ffd595b2c`.
+- Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the active release reports commit `eae937c0b60fdf57561fea3a35a270e3e394c058`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 - After release verification, the temporary interactive-motion worktree/branch, 31 MiB of build backups, and canonical `node_modules`, `dist`, and `.astro` output were removed. The cleanup reclaimed roughly 760 MiB by apparent size while preserving all published commits in `main`.
 
