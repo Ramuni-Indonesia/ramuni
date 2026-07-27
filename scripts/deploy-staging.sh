@@ -56,6 +56,9 @@ if [[ -n $(git status --porcelain) ]]; then
 fi
 
 echo "Building staging artifact from $(git rev-parse --short=12 HEAD)..."
+if [[ -d dist ]]; then
+  sudo chown -R "$(id -u):$(id -g)" dist
+fi
 npm ci --force
 npm run check
 ramuni_r2_env_file=${RAMUNI_R2_ENV_FILE:-/home/meetsin/.config/ramuni/r2.env}
