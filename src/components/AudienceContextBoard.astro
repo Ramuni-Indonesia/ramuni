@@ -46,13 +46,13 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
     <p class="eyebrow">{eyebrow}</p>
     <h2 id={safeId + '-title'}>{title}</h2>
     <p>{description}</p>
-    <div class="audience-context__mascot" role="img" aria-label={mascotAlt}>
+    <div class="audience-context__mascot" data-parallax data-parallax-distance="-6" data-parallax-rotate="-0.35" role="img" aria-label={mascotAlt}>
       <img data-audience-mascot src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
       <span>Data sintetis · pengguna tetap memutuskan</span>
     </div>
   </div>
 
-  <div class="audience-context__workspace">
+  <div class="audience-context__workspace" data-parallax data-parallax-distance="6">
     <div class="audience-context__tabs" role="tablist" aria-label={'Mode tampilan ' + title}>
       {visiblePanes.map((pane, index) => (
         <button

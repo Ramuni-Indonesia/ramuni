@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedMuniWork from '../components/AnimatedMuniWork.astro';
+import MuniMascot3D from '../components/MuniMascot3D.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
@@ -81,10 +82,14 @@ const schema = [
         <p>Penjualan, stok, biaya, dan pelanggan sering dibaca terpisah. RAMUNI membantu melihat hubungan yang perlu diperiksa.</p>
       </header>
       <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
-        <div class="problem-canvas__core reveal" aria-hidden="true" data-problem-mascot>
+        <div class="problem-canvas__core" data-problem-mascot data-parallax data-parallax-distance="8" data-parallax-axis="y">
           <span>Catatan yang terhubung</span>
-          <img src={problemMascot.src} width={problemMascot.width} height={problemMascot.height} alt="" loading="lazy" decoding="async" />
-          <i></i><i></i><i></i>
+          <MuniMascot3D
+            class="problem-canvas__mascot-model"
+            posterSrc={problemMascot.src}
+            label="Interpretasi 3D Muni yang menghubungkan catatan usaha"
+          />
+          <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
         </div>
         <nav class="problem-constellation">
           {homepagePains.map((pain, i) => <a class="problem-point reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}

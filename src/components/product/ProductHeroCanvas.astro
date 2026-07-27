@@ -116,14 +116,14 @@ const uid = `product-canvas-${slug}`;
     <section class="product-canvas__panel is-active" data-canvas-panel="overview" aria-label="Ringkasan contoh">
       {dashboardVisual ? (
         <div class="product-canvas__proof-grid">
-          <div class="product-canvas__image-preview">
+          <div class="product-canvas__image-preview" data-parallax data-parallax-distance="6">
             <picture>
               {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
               <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
             </picture>
             <span>{dashboardVisual.badge}</span>
           </div>
-          <figure class="product-canvas__context-image">
+          <figure class="product-canvas__context-image" data-parallax data-parallax-distance="-8" data-parallax-rotate="-0.35">
             <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" fetchpriority="high" />
           </figure>
         </div>

@@ -53,7 +53,7 @@ const instanceId = `mascot-decision-${(headingId || title).toLowerCase().replace
     <div class="mascot-decision__mascot" aria-hidden="true">
       <img data-decision-mascot src={stageMascots[0].src} width={stageMascots[0].width} height={stageMascots[0].height} alt="" loading="lazy" decoding="async" />
     </div>
-    <div class="mascot-decision__workspace">
+    <div class="mascot-decision__workspace" data-parallax data-parallax-distance="5">
       <div class="mascot-decision__tabs" role="group" aria-label="Tahap membaca kondisi usaha">
         {stages.map((stage, index) => (
           <button type="button" id={`${instanceId}-tab-${index}`} data-decision-tab={index} data-mascot-src={stageMascots[index].src} class:list={{ 'is-active': index === 0 }} aria-pressed={index === 0 ? 'true' : 'false'} aria-controls={`${instanceId}-panel-${index}`}>

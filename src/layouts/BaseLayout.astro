@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import ConsentManager from '../components/ConsentManager.astro';
 import LeadPrompt from '../components/LeadPrompt.astro';
 import FloatingContact from '../components/FloatingContact.astro';
+import ParallaxMotion from '../components/ParallaxMotion.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
 
@@ -155,6 +156,7 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     {chrome && !leadPromptExcluded && <LeadPrompt />}
     {chrome && <FloatingContact />}
     <ConsentManager />
+    <ParallaxMotion />
     <script>
       const nodes = document.querySelectorAll('.reveal');
       nodes.forEach((node) => {

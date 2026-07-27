@@ -28,14 +28,14 @@ const visualId = `sd-visual-${visual.kind}`;
   <div id={`${visualId}-pattern`} class="sd-visual__pane sd-visual__pane--pattern" data-visual-pane="pattern" role="region" aria-label="Pola visual">
 
   <div class="sd-visual__proof-grid">
-    <div class="sd-visual__dashboard-image">
+    <div class="sd-visual__dashboard-image" data-parallax data-parallax-distance="6">
       <picture>
         {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
         <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
       </picture>
       <span>{dashboardVisual.badge}</span>
     </div>
-    <figure class="sd-visual__context-image">
+    <figure class="sd-visual__context-image" data-parallax data-parallax-distance="-8" data-parallax-rotate="-0.35">
       <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" fetchpriority="high" />
     </figure>
   </div>

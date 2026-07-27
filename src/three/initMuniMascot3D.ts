@@ -23,8 +23,14 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   let pointerId: number | null = null;
   let pointerX = 0;
   let pointerY = 0;
-  let targetPitch = -0.035;
-  let targetYaw = -0.26;
+  let pointerYaw = 0;
+  let pointerPitch = 0;
+  let dragYaw = 0;
+  let dragPitch = 0;
+  let scrollYaw = 0;
+  let scrollPitch = 0;
+  let scrollLift = 0;
+  let scrollFrame = 0;
   let elapsed = 0;
   let lastFrame = performance.now();
 
@@ -57,7 +63,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   const mascot = createMuniMascotModel();
   scene.add(mascot.root);
 
-  const shadowGeometry = new THREE.CircleGeometry(0.82, 32);
+  const shadowGeometry = new THREE.CircleGeometry(0.84, 36);
   const shadowMaterial = new THREE.MeshBasicMaterial({
     color: 0x0b3045,
     transparent: true,
@@ -75,6 +81,24 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     if (host.dataset.modelState !== 'ready') host.dataset.modelState = 'ready';
   };
 
+  const updateScrollState = () => {
+    scrollFrame = 0;
+    if (destroyed || !active) return;
+    const bounds = host.getBoundingClientRect();
+    const viewportHeight = Math.max(1, window.innerHeight);
+    const progress = clamp((viewportHeight - bounds.top) / (viewportHeight + bounds.height), 0, 1);
+    const centered = progress - 0.5;
+    scrollYaw = centered * 0.66;
+    scrollPitch = centered * -0.14;
+    scrollLift = Math.sin(progress * Math.PI) * 0.08;
+    host.style.setProperty('--muni-scroll-progress', progress.toFixed(3));
+  };
+
+  const requestScrollUpdate = () => {
+    if (scrollFrame || destroyed) return;
+    scrollFrame = requestAnimationFrame(updateScrollState);
+  };
+
   const resize = () => {
     if (destroyed) return;
     const width = Math.max(1, host.clientWidth);
@@ -86,6 +110,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     const distanceForWidth = 2.5 / (2 * halfFovTangent * camera.aspect);
     camera.position.z = Math.max(distanceForHeight, distanceForWidth);
     camera.updateProjectionMatrix();
+    updateScrollState();
     renderScene();
   };
 
@@ -95,17 +120,37 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     lastFrame = time;
     elapsed += delta;
 
-    if (!dragging) targetYaw += delta * 0.115;
-    if (Math.abs(targetYaw) > Math.PI * 8) {
-      targetYaw %= Math.PI * 2;
-      mascot.root.rotation.y %= Math.PI * 2;
-    }
-    const damping = 1 - Math.exp(-delta * 8.2);
+    const idleYaw = Math.sin(elapsed * 0.48) * 0.085;
+    const idlePitch = Math.sin(elapsed * 0.72) * 0.018;
+    const targetYaw = -0.26 + scrollYaw + pointerYaw + dragYaw + idleYaw;
+    const targetPitch = -0.035 + scrollPitch + pointerPitch + dragPitch + idlePitch;
+    const damping = 1 - Math.exp(-delta * 7.6);
     mascot.root.rotation.x += (targetPitch - mascot.root.rotation.x) * damping;
     mascot.root.rotation.y += (targetYaw - mascot.root.rotation.y) * damping;
-    mascot.root.position.y = Math.sin(elapsed * 1.05) * 0.025;
-    shadow.scale.x = 1 - Math.sin(elapsed * 1.05) * 0.035;
-    shadow.material.opacity = 0.13 - Math.sin(elapsed * 1.05) * 0.012;
+
+    const breathe = Math.sin(elapsed * 1.65);
+    const float = Math.sin(elapsed * 1.08);
+    mascot.root.position.y = float * 0.035 + scrollLift;
+    mascot.parts.body.scale.set(1 - breathe * 0.008, 1 + breathe * 0.014, 1 - breathe * 0.008);
+    mascot.parts.head.rotation.x = Math.sin(elapsed * 0.92) * 0.025;
+    mascot.parts.head.rotation.z = Math.sin(elapsed * 0.66) * 0.032;
+    mascot.parts.leftWing.rotation.z = 0.46 + Math.sin(elapsed * 1.28) * 0.085;
+    mascot.parts.rightWing.rotation.z = -0.2 - Math.sin(elapsed * 1.28 + 0.7) * 0.06;
+    mascot.parts.tail.rotation.z = Math.sin(elapsed * 0.88) * 0.055;
+    mascot.parts.feet.rotation.z = Math.sin(elapsed * 0.82) * 0.012;
+
+    const blinkPhase = elapsed % 4.7;
+    const blink = blinkPhase > 4.5 ? Math.max(0.08, 1 - Math.sin(((blinkPhase - 4.5) / 0.2) * Math.PI) * 0.92) : 1;
+    mascot.parts.eyes.scale.y += (blink - mascot.parts.eyes.scale.y) * Math.min(1, delta * 34);
+    const pupilX = clamp(pointerYaw * 0.16 + scrollYaw * 0.04, -0.035, 0.035);
+    const pupilY = clamp(-pointerPitch * 0.12, -0.02, 0.02);
+    mascot.parts.leftPupil.position.x = -0.23 + pupilX;
+    mascot.parts.rightPupil.position.x = 0.27 + pupilX;
+    mascot.parts.leftPupil.position.y = -0.01 + pupilY;
+    mascot.parts.rightPupil.position.y = -0.01 + pupilY;
+
+    shadow.scale.x = 1 - float * 0.045;
+    shadowMaterial.opacity = 0.13 - float * 0.015 - scrollLift * 0.1;
     renderScene();
   };
 
@@ -120,6 +165,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   const viewObserver = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver((entries) => {
     active = entries[0]?.isIntersecting ?? false;
     lastFrame = performance.now();
+    if (active) updateScrollState();
     syncLoop();
   }, { rootMargin: '180px 0px' });
   viewObserver?.observe(host);
@@ -129,13 +175,6 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
 
   const onVisibilityChange = () => {
     visible = !document.hidden;
-    lastFrame = performance.now();
-    syncLoop();
-  };
-
-  const onMotionPreferenceChange = (event: MediaQueryListEvent) => {
-    reducedMotion = event.matches;
-    if (reducedMotion) finishDrag();
     lastFrame = performance.now();
     syncLoop();
   };
@@ -152,6 +191,13 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
       }
     }
     pointerId = null;
+  };
+
+  const onMotionPreferenceChange = (event: MediaQueryListEvent) => {
+    reducedMotion = event.matches;
+    if (reducedMotion) finishDrag();
+    lastFrame = performance.now();
+    syncLoop();
   };
 
   const onPointerDown = (event: PointerEvent) => {
@@ -171,13 +217,27 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   };
 
   const onPointerMove = (event: PointerEvent) => {
-    if (!dragging || event.pointerId !== pointerId) return;
-    const deltaX = event.clientX - pointerX;
-    const deltaY = event.clientY - pointerY;
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    targetYaw += deltaX * 0.009;
-    targetPitch = clamp(targetPitch + deltaY * 0.006, -0.28, 0.22);
+    if (!allowsInteraction || reducedMotion) return;
+    if (dragging && event.pointerId === pointerId) {
+      const deltaX = event.clientX - pointerX;
+      const deltaY = event.clientY - pointerY;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      dragYaw = clamp(dragYaw + deltaX * 0.008, -1.2, 1.2);
+      dragPitch = clamp(dragPitch + deltaY * 0.005, -0.22, 0.18);
+      return;
+    }
+    const bounds = host.getBoundingClientRect();
+    const x = clamp((event.clientX - bounds.left) / Math.max(1, bounds.width) - 0.5, -0.5, 0.5);
+    const y = clamp((event.clientY - bounds.top) / Math.max(1, bounds.height) - 0.5, -0.5, 0.5);
+    pointerYaw = x * 0.34;
+    pointerPitch = y * 0.14;
+  };
+
+  const onPointerLeave = () => {
+    if (dragging) return;
+    pointerYaw = 0;
+    pointerPitch = 0;
   };
 
   const onPointerUp = (event: PointerEvent) => {
@@ -191,15 +251,19 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     resizeObserver?.disconnect();
     viewObserver?.disconnect();
     window.removeEventListener('resize', onWindowResize);
+    window.removeEventListener('scroll', requestScrollUpdate);
     document.removeEventListener('visibilitychange', onVisibilityChange);
     motionQuery.removeEventListener('change', onMotionPreferenceChange);
     window.removeEventListener('pagehide', destroy);
     document.removeEventListener('astro:before-swap', destroy);
     canvas.removeEventListener('pointerdown', onPointerDown);
     canvas.removeEventListener('pointermove', onPointerMove);
+    canvas.removeEventListener('pointerleave', onPointerLeave);
     canvas.removeEventListener('pointerup', onPointerUp);
     canvas.removeEventListener('pointercancel', onPointerUp);
+    canvas.removeEventListener('lostpointercapture', finishDrag);
     canvas.removeEventListener('webglcontextlost', onContextLost);
+    if (scrollFrame) cancelAnimationFrame(scrollFrame);
     finishDrag();
 
     const geometries = new Set<THREE.BufferGeometry>();
@@ -214,6 +278,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     materials.forEach((objectMaterial) => objectMaterial.dispose());
     renderer.dispose();
     renderer.forceContextLoss();
+    host.style.removeProperty('--muni-scroll-progress');
     delete host.dataset.modelReady;
     if (host.isConnected) host.dataset.modelState = 'fallback';
   };
@@ -226,15 +291,19 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
 
   document.addEventListener('visibilitychange', onVisibilityChange);
   motionQuery.addEventListener('change', onMotionPreferenceChange);
+  window.addEventListener('scroll', requestScrollUpdate, { passive: true });
   window.addEventListener('pagehide', destroy, { once: true });
   document.addEventListener('astro:before-swap', destroy, { once: true });
   canvas.addEventListener('webglcontextlost', onContextLost, { once: true });
   canvas.addEventListener('pointerdown', onPointerDown);
   canvas.addEventListener('pointermove', onPointerMove);
+  canvas.addEventListener('pointerleave', onPointerLeave);
   canvas.addEventListener('pointerup', onPointerUp);
   canvas.addEventListener('pointercancel', onPointerUp);
+  canvas.addEventListener('lostpointercapture', finishDrag);
 
   resize();
+  updateScrollState();
   syncLoop();
 
   return { destroy };

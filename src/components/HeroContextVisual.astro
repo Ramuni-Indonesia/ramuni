@@ -39,7 +39,7 @@ const levels = [78, 34, 62, 48];
     <strong id={'hero-context-' + scene}>{title || profile.headline}</strong>
     <small>{dashboard.type === 'product-screenshot' ? 'Tampilan produk dengan data demo' : 'Data contoh, bukan data pelanggan'}</small>
   </figcaption>
-  <div class="hero-context__image">
+  <div class="hero-context__image" data-parallax data-parallax-distance="7">
     <picture>
       {'mobileSrc' in dashboard && <source media="(max-width: 620px)" srcset={dashboard.mobileSrc} width={dashboard.mobileWidth} height={dashboard.mobileHeight} />}
       <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={dashboard.alt} decoding="async" fetchpriority="high" />
@@ -53,7 +53,7 @@ const levels = [78, 34, 62, 48];
     {profile.mode === 'roles' && <div class="hero-context__roles">{profile.rows.map((row, index) => <article class:list={{ 'is-primary': index === 0 }}><span>{row}</span><strong>{profile.values[index]}</strong></article>)}</div>}
     {profile.mode === 'support' && <div class="hero-context__support"><div><i></i><span>{profile.rows[0]}</span><b>{profile.values[0]}</b></div><ol>{profile.rows.slice(1).map((row, index) => <li><small>0{index + 1}</small><strong>{row}</strong><span>{profile.values[index + 1]}</span></li>)}</ol></div>}
   </div>
-  <div class="hero-context__tokens" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="hero-context__tokens" data-parallax data-parallax-distance="-12" data-parallax-rotate="0.45" aria-hidden="true"><i></i><i></i><i></i></div>
 </figure>
 
 <style>
