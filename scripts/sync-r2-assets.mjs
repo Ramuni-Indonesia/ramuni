@@ -14,10 +14,12 @@ const MIME_TYPES = new Map([
   ['.jpg', 'image/jpeg'],
   ['.js', 'text/javascript; charset=utf-8'],
   ['.json', 'application/json; charset=utf-8'],
+  ['.mp4', 'video/mp4'],
   ['.png', 'image/png'],
   ['.svg', 'image/svg+xml'],
   ['.txt', 'text/plain; charset=utf-8'],
   ['.webp', 'image/webp'],
+  ['.webm', 'video/webm'],
   ['.woff', 'font/woff'],
   ['.woff2', 'font/woff2'],
 ]);
@@ -54,15 +56,18 @@ await runPool(jobs, parsedArgs.concurrency, async ({ absolutePath, key }) => {
   const body = await readFile(absolutePath);
   const localEtag = createHash('md5').update(body).digest('hex');
   const localSha256 = createHash('sha256').update(body).digest('hex');
+  const contentType = contentTypeForKey(key);
   const remote = await headObject(key);
 
-  if (remote?.sha256 === localSha256 || remote?.etag === localEtag) {
+  const contentMatches = normalizeContentType(remote?.contentType) === normalizeContentType(contentType);
+  const contentHashMatches = remote?.sha256 === localSha256 || remote?.etag === localEtag;
+  if (contentHashMatches && contentMatches) {
     skipped += 1;
     console.log(`skip ${key}`);
     return;
   }
 
-  await putObject(key, body, localSha256);
+  await putObject(key, body, localSha256, contentType);
   uploaded += 1;
   console.log(`upload ${key}`);
 });
@@ -76,12 +81,12 @@ async function headObject(key) {
   return {
     etag: response.headers.get('etag')?.replaceAll('"', '') ?? null,
     sha256: response.headers.get('x-amz-meta-sha256'),
+    contentType: response.headers.get('content-type'),
   };
 }
 
-async function putObject(key, body, sha256) {
+async function putObject(key, body, sha256, contentType = contentTypeForKey(key)) {
   const extension = path.extname(key).toLowerCase();
-  const contentType = MIME_TYPES.get(extension) ?? 'application/octet-stream';
   const cacheControl = extension === '.txt'
     ? 'public, max-age=3600'
     : 'public, max-age=604800, stale-while-revalidate=2592000, stale-if-error=86400';
@@ -91,6 +96,14 @@ async function putObject(key, body, sha256) {
     'x-amz-meta-sha256': sha256,
   });
   if (!response.ok) throw new Error(`PUT ${key} failed with HTTP ${response.status}: ${await response.text()}`);
+}
+
+function contentTypeForKey(key) {
+  return MIME_TYPES.get(path.extname(key).toLowerCase()) ?? 'application/octet-stream';
+}
+
+function normalizeContentType(value) {
+  return value?.trim().toLowerCase() ?? null;
 }
 
 async function signedFetch(method, key, body, extraHeaders = {}) {

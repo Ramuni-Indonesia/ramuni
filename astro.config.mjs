@@ -31,7 +31,7 @@ export default defineConfig({
     filter: (page) => publicEnvironment.indexingEnabled && ![
       '/demo', '/early-access', '/harga', '/terima-kasih', '/masuk', '/maintenance', '/404', '/500',
       '/blog/cari', '/blog/tag', '/blog/kategori', '/blog/reviewer', '/privasi', '/syarat-penggunaan',
-      '/kebijakan-cookie', '/pemrosesan-data', '/status', '/bantuan',
+      '/pemrosesan-data', '/status', '/bantuan',
       '/blog/ai-business-companion-umkm', '/blog/arus-kas-umkm-ringan', '/blog/panduan-membaca-stok-harian',
     ].some((path) => page.includes(path)) && !isGatedPage(page),
   })],

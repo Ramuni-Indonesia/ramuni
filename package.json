@@ -15,6 +15,7 @@
     "test:content-gateway": "node scripts/test-content-gateway.mjs",
     "test:cms-candidate-render": "node scripts/test-cms-candidate-render.mjs",
     "test:cms-provider": "node --test test/cms-build-provider.test.mjs",
+    "test:r2-sync": "node --test test/sync-r2-assets.test.mjs",
     "audit": "node scripts/site-audit.mjs",
     "r2:sync": "node scripts/sync-r2-assets.mjs",
     "assets:cdn": "node scripts/rewrite-cdn-assets.mjs"

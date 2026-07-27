@@ -43,7 +43,7 @@ const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
 const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
-const leadPromptExcluded = /^\/(?:kontak|demo|harga|masuk|terima-kasih|privasi|pemrosesan-data|syarat-penggunaan|kebijakan-cookie|keamanan|status|maintenance|404|500)(?:\/|$)/.test(pathname);
+const leadPromptExcluded = /^\/(?:kontak|demo|harga|masuk|terima-kasih|privasi|pemrosesan-data|syarat-penggunaan|keamanan|status|maintenance|404|500)(?:\/|$)/.test(pathname);
 const inferredPageType = pageType
   || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
   || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)

@@ -233,7 +233,6 @@ export const footerNavigation: FooterNavigationGroup[] = [
     links: [
       { label: 'Privasi', href: '/privasi/' },
       { label: 'Syarat Penggunaan', href: '/syarat-penggunaan/' },
-      { label: 'Kebijakan Cookie', href: '/kebijakan-cookie/' },
       { label: 'Pemrosesan Data', href: '/pemrosesan-data/' },
     ],
   },
