@@ -3,10 +3,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
+import ProductDashboardChapter from '../../components/product/ProductDashboardChapter.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { products } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
+import { productNarratives } from '../../data/pageNarratives';
 import { listProductRouteModels, type ProductRouteModel } from '../../content-gateway/site-records';
 import { releaseGates } from '../../config/release';
 import '../../styles/product-detail.css';
@@ -45,6 +47,7 @@ const productHeroTitles: Record<string, string> = {
   integrasi: 'Masukkan data dengan pemetaan dan status yang jelas.',
 };
 const heroTitle = productHeroTitles[product.slug] || detail.outcome;
+const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
   description: cmsSeo?.description || defaultSeo.description,
@@ -146,7 +149,7 @@ const structuredData = [
         <div class="pd-problem__overview">
           <header>
             <span>Situasi awal</span>
-            <h2 id="product-problem-title">Masalahnya terlihat sederhana. Jejaknya sering tersebar.</h2>
+            <h2 id="product-problem-title">{narrative?.problemHeading || 'Masalahnya terlihat sederhana. Jejaknya sering tersebar.'}</h2>
             <p>Tiga situasi ini sering muncul sebagai satu masalah. Buka satu per satu agar penyebabnya tidak tercampur.</p>
           </header>
           <ol>
@@ -191,7 +194,7 @@ const structuredData = [
           </div>
         </div>
         <header class="pd-section-heading">
-          <h2 id="product-benefits-title">Dari informasi ke keputusan yang lebih jelas.</h2>
+          <h2 id="product-benefits-title">{narrative?.featureHeading || 'Dari informasi ke keputusan yang lebih jelas.'}</h2>
           <p>Setiap manfaat menjawab satu hal: apa artinya bagi pekerjaan Anda.</p>
         </header>
         <div class="pd-benefit-grid">
@@ -210,7 +213,7 @@ const structuredData = [
     <section id="product-workflow" class="pd-workflow" data-section-id="product-workflow" data-analytics-id="product_workflow" aria-labelledby="product-workflow-title">
       <div class="container pd-workflow__layout">
         <header>
-          <h2 id="product-workflow-title">Empat langkah dari data ke tindakan.</h2>
+          <h2 id="product-workflow-title">{narrative?.workflowHeading || 'Empat langkah dari data ke tindakan.'}</h2>
           <p>Urutannya tetap dapat diperiksa pada setiap tahap.</p>
         </header>
         <ol class="pd-workflow__steps reveal">
@@ -223,6 +226,8 @@ const structuredData = [
         </ol>
       </div>
     </section>
+
+    <ProductDashboardChapter slug={product.slug} title={product.title} />
 
     <section id="product-capabilities" class="pd-capabilities" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
       <div class="container pd-capabilities__layout">
@@ -261,7 +266,7 @@ const structuredData = [
       <div class="container pd-roles__layout">
         <header>
           <span>Untuk siapa</span>
-          <h2 id="product-roles-title">Satu konteks, tanggung jawab yang berbeda.</h2>
+          <h2 id="product-roles-title">{narrative?.roleHeading || 'Satu konteks, tanggung jawab yang berbeda.'}</h2>
           <p>Setiap peran masuk dari pekerjaan yang memang perlu mereka periksa.</p>
         </header>
         <nav class="pd-role-track" data-count={detail.roles.length} aria-label={`Kegunaan ${product.title} berdasarkan peran`}>
@@ -280,7 +285,7 @@ const structuredData = [
     <section id="product-industries" class="pd-industries" data-section-id="product-industries" data-analytics-id="product_industry_examples" aria-labelledby="product-industries-title">
       <div class="container">
         <header class="pd-section-heading">
-          <h2 id="product-industries-title">Pertanyaannya berubah mengikuti cara usaha bekerja.</h2>
+          <h2 id="product-industries-title">{narrative?.industryHeading || 'Pertanyaannya berubah mengikuti cara usaha bekerja.'}</h2>
           <p>Contoh berikut menunjukkan konteks pemakaian, bukan klaim hasil atau ketersediaan fitur khusus industri.</p>
         </header>
         <div class="pd-industry-spread">
