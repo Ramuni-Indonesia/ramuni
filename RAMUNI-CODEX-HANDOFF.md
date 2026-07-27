@@ -169,6 +169,7 @@ Final runtime verification for `e6783e85ac667115b5e8d773f73b5b1191b98439`:
 - Docker Playwright rendered homepage, product, solution, resource, and blog routes at 375x812, 768x1024, and 1440x1200. All 15 route/viewport combinations had document width equal to viewport width, no page-level horizontal overflow, a visible WhatsApp control, and an in-bounds header.
 - The live mobile/tablet interaction audit opened the menu after scrolling to 900 px, kept the sticky header and menu panel aligned, then restored the first closed sample directly to `scrollY = 900` with no smooth 0-to-900 travel. Reveal content remained at opacity 1 after enter/leave/return sampling.
 - The responsive screenshots were manually reviewed for homepage, product, solution, resource, blog, and open-menu states. The tested compositions were centered, unclipped, and visually coherent at all three widths.
+- After verification, canonical `node_modules`, `dist`, `.astro`, Docker Playwright screenshots/results, and the listed temporary PNG files were removed; no local server remained on port 4322.
 
 Browser automation is now available through the pinned Docker Playwright runner. Fresh screenshots and interaction evidence exist for 375, 768, and 1440 px. Production promotion should still include human QA at 390, 1024, and 1194 px plus a real-user or lab Core Web Vitals run, because the current evidence is a staging render audit rather than production PSI/RUM. Continue checking:
 
