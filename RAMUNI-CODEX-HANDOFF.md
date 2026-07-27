@@ -12,12 +12,12 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `eae937c0b60fdf57561fea3a35a270e3e394c058` (`fix: contain scroll sections across responsive layouts`).
+- Published runtime commit: `10cd1218e99edb00b4927d4b03986801e4594831` (`fix: redesign help navigation icon`).
 - Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T052756Z-eae937c0b60f`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T052756Z-eae937c0b60f`.
-- Deployed artifact SHA-256: `0feddabdda90824c267e801773812d9cad2fc3aef309df071028f45ffd595b2c`.
+- Active staging release: `20260727T054211Z-10cd1218e99e`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T054211Z-10cd1218e99e`.
+- Deployed artifact SHA-256: `32406c904b5f07e7902779ce3107f36cfd8ba09c3b074f99a8972e4f3dc28d82`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -51,6 +51,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 ## What is implemented
 
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
+- The mega-menu help icon now uses a compact RAMUNI-colored question-and-reply composition instead of the generic headset illustration; it remains readable at the 34–38 px navigation sizes.
 - Normalized heading scale, text measures, mobile/tablet card behavior, CTA layout, and reveal-motion guardrails.
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
 - Product and solution chapters now create local paint boundaries with `overflow: clip` and `isolation: isolate`; sticky headings and transformed visuals cannot paint into the following section.
@@ -140,8 +141,9 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260727T052756Z-eae937c0b60f` and artifact `0feddabdda90824c267e801773812d9cad2fc3aef309df071028f45ffd595b2c`.
-- Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the active release reports commit `eae937c0b60fdf57561fea3a35a270e3e394c058`.
+- Deployment health check passed for release `20260727T054211Z-10cd1218e99e` and artifact `32406c904b5f07e7902779ce3107f36cfd8ba09c3b074f99a8972e4f3dc28d82`.
+- Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the active release reports commit `10cd1218e99edb00b4927d4b03986801e4594831`.
+- The redesigned help SVG returns HTTP 200 with `image/svg+xml` from `assets-staging.ramuni.id` and was the only R2 object changed in this release.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 - After release verification, the temporary interactive-motion worktree/branch, 31 MiB of build backups, and canonical `node_modules`, `dist`, and `.astro` output were removed. The cleanup reclaimed roughly 760 MiB by apparent size while preserving all published commits in `main`.
 
