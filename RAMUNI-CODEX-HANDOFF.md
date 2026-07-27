@@ -24,7 +24,7 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 ## Repository workflow
 
 - The user authorized direct commits and pushes to `main`; the old mandatory PR/merge workflow is cancelled for this repository.
-- Before implementation, use `git pull --ff-only origin main` from a clean worktree. Never commit blindly from the canonical checkout while it contains content-gateway WIP.
+- Before implementation, use `git pull --ff-only origin main` from a clean worktree. The canonical checkout is currently clean and synchronized; re-check it before every new batch because preserved gateway work remains in separate stashes/worktrees.
 - Run the release gates before pushing runtime changes. Push the tested commit first, then deploy exactly that SHA and verify staging.
 - Documentation-only commits do not require redeployment.
 - Do not mix `/home/meetsin/internal/ramuni-saas-source`, `/home/meetsin/internal/ramuni-cms`, or `/home/meetsin/internal/ramuni-handoff` into this marketing repository.
@@ -136,7 +136,7 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
 - Deployment health check passed for release `20260727T021458Z-e12eaef59cb8` and artifact `ee084e520ef4f9a65283b64a2045d30e2c11f81ce00a0483a2d7c601aa2c062c`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
-- An earlier visual worktree was cleaned after its release. For this release, clean the active visual-motion worktree only after the canonical checkout is safely fast-forwarded and this handoff is published.
+- After release verification, the canonical checkout was fast-forwarded cleanly to `main`. The merged visual-motion and old docs worktrees plus their local branches were removed, reclaiming about 394 MiB including 352 MiB `node_modules`, 8.6 MiB `dist`, 13 MiB disposable generation outputs, Astro cache, and the old docs checkout.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
@@ -158,23 +158,22 @@ Browser automation is currently unreliable on this host. Chromium, Firefox, Play
 
 ## Preserved content-gateway WIP
 
-The canonical checkout is not a safe release source until this work is reconciled:
+The canonical checkout is clean at published `main`, but the following gateway stashes/worktree remain intentionally preserved and must be reviewed independently:
 
 - `/home/meetsin/internal/ramuni-source`
 - stash `ramuni-content-gateway-live-wip-pre-release-20260726`
 - stash `ramuni-content-gateway-wip-pre-release-20260726`
 - stash `ramuni-canonical-staged-wip-before-sync-20260726T1740Z`
 - `/home/meetsin/internal/ramuni-source-cms-provider`
-- `/home/meetsin/internal/ramuni-source-marketing-gateway`
 
 Do not apply, pop, drop, overwrite, or commit these changes before reviewing their unique files and overlap with published `main`. Preserve the stashes until the dedicated gateway worktrees have been reconciled and tested.
 
 Latest read-only gateway audit:
 
-- The canonical checkout contains almost the full older release staged plus gateway wiring in `src/pages/produk/[slug].astro` and `src/pages/solusi/[slug].astro`; it is not safe for pull, reset, or commit.
-- `stash@{0}` combines the older release snapshot with live gateway WIP. `stash@{1}` is an earlier gateway implementation. Keep both until their behavior is compared with the provider branch, especially the older `artifact-publisher.mjs` path.
+- The canonical checkout is clean and synchronized at the current published `main`.
+- Three named stashes remain. Keep all three until their behavior is compared with the provider branch, especially the older `artifact-publisher.mjs` path.
 - Continue gateway development only from `/home/meetsin/internal/ramuni-source-cms-provider`. It has local commit `2538ffd` plus dirty provider/build-runner/config/server/store/package refinements that still need rebase and testing.
-- The obsolete clean worktree `/home/meetsin/internal/ramuni-source-marketing-gateway` had no unique commits and was removed after audit. Its local branch may be deleted separately after confirming it is not referenced.
+- The obsolete clean marketing-gateway, docs, and visual-motion worktrees have been removed. The dirty CMS provider worktree remains untouched.
 
 ## Remaining visual-content backlog after this release
 
