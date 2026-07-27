@@ -53,6 +53,8 @@ const signals = [
     steps: ['Pilih tindakan', 'Cek ulang hasil'],
   },
 ];
+const controlHash = [...id].reduce((hash, char) => ((hash * 31) + char.charCodeAt(0)) >>> 0, 7).toString(36);
+const controlId = `bd-${controlHash}`;
 ---
 
 <div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]} data-blog-decision-cta>
@@ -75,11 +77,11 @@ const signals = [
     <div class="blog-decision-cta__tabs" role="tablist" aria-label="Tahap membaca angka usaha">
       {signals.map((signal, index) => (
         <button
-          id={`${id}-tab-${signal.key}`}
+          id={`${controlId}-t-${signal.key}`}
           type="button"
           role="tab"
           aria-selected={index === 0 ? 'true' : 'false'}
-          aria-controls={`${id}-panel-${signal.key}`}
+          aria-controls={`${controlId}-p-${signal.key}`}
           tabindex={index === 0 ? 0 : -1}
           data-signal-tab={signal.key}
           data-mascot-src={mascotStates[index].src}
@@ -93,10 +95,10 @@ const signals = [
     <div class="blog-decision-cta__panels">
       {signals.map((signal, index) => (
         <div
-          id={`${id}-panel-${signal.key}`}
+          id={`${controlId}-p-${signal.key}`}
           class="blog-decision-cta__panel"
           role="tabpanel"
-          aria-labelledby={`${id}-tab-${signal.key}`}
+          aria-labelledby={`${controlId}-t-${signal.key}`}
           data-signal-panel={signal.key}
           hidden={index !== 0}
         >
