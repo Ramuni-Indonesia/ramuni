@@ -54,14 +54,16 @@ const faqSchema = {
 
     <section class="section sd-problem" aria-labelledby="problem-title">
       <div class="container sd-problem__grid">
-        <header class="sd-problem__heading reveal">
-          <p class="section-kicker">Kenali masalahnya</p>
-          <h2 id="problem-title">Apakah ini terjadi di usaha Anda?</h2>
-          <p>Cocokkan gejala dengan catatan yang tersedia. Satu tanda belum cukup untuk menyimpulkan penyebab.</p>
-        </header>
-        <ol class="sd-symptoms">
-          {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
-        </ol>
+        <div class="sd-problem__overview">
+          <header class="sd-problem__heading reveal">
+            <p class="section-kicker">Kenali masalahnya</p>
+            <h2 id="problem-title">Apakah ini terjadi di usaha Anda?</h2>
+            <p>Cocokkan gejala dengan catatan yang tersedia. Satu tanda belum cukup untuk menyimpulkan penyebab.</p>
+          </header>
+          <ol class="sd-symptoms">
+            {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
+          </ol>
+        </div>
         <div class="sd-impact" aria-label="Dampak bisnis">
           {solution.impact.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Dampak {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
         </div>

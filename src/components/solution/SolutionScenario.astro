@@ -8,18 +8,20 @@ interface Props {
 const { scenario } = Astro.props;
 ---
 <div class="sd-scenario">
-  <header class="sd-scenario__intro reveal">
-    <p class="section-kicker">{scenario.eyebrow}</p>
-    <h2 id="scenario-title">{scenario.title}</h2>
-    <p>{scenario.context}</p>
-  </header>
-  <div class="sd-scenario__board reveal">
-    <dl>
-      {scenario.rows.map((row) => (
-        <div><dt>{row.label}</dt><dd>{row.value}</dd><small>{row.note}</small></div>
-      ))}
-    </dl>
-    <div class="sd-scenario__finding"><span>Temuan</span><strong>{scenario.finding}</strong></div>
+  <div class="sd-scenario__overview">
+    <header class="sd-scenario__intro reveal">
+      <p class="section-kicker">{scenario.eyebrow}</p>
+      <h2 id="scenario-title">{scenario.title}</h2>
+      <p>{scenario.context}</p>
+    </header>
+    <div class="sd-scenario__board reveal">
+      <dl>
+        {scenario.rows.map((row) => (
+          <div><dt>{row.label}</dt><dd>{row.value}</dd><small>{row.note}</small></div>
+        ))}
+      </dl>
+      <div class="sd-scenario__finding"><span>Temuan</span><strong>{scenario.finding}</strong></div>
+    </div>
   </div>
   <div class="sd-scenario__receipt reveal">
     <div><span>Bukti yang dibuka</span><ul>{scenario.evidence.map((item) => <li>{item}</li>)}</ul></div>

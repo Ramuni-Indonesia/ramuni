@@ -876,6 +876,12 @@
   gap: clamp(42px, 6vw, 76px);
 }
 
+.pd-problem__overview {
+  display: grid;
+  gap: clamp(42px, 6vw, 76px);
+  align-items: start;
+}
+
 .pd-problem header {
   max-width: 820px;
 }
@@ -1558,7 +1564,7 @@
  */
 @media (min-width: 1081px) {
   /* Signals: a compact priority rail beside a fixed question. */
-  .pd-page[data-layout='signals'] .pd-problem__layout {
+  .pd-page[data-layout='signals'] .pd-problem__overview {
     grid-template-columns: minmax(330px, 0.88fr) minmax(0, 1.12fr);
     align-items: start;
   }
@@ -1611,7 +1617,7 @@
   }
 
   /* Ledger: scan the problem statements like an operational record. */
-  .pd-page[data-layout='ledger'] .pd-problem__layout {
+  .pd-page[data-layout='ledger'] .pd-problem__overview {
     grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     align-items: end;
   }
@@ -1910,6 +1916,8 @@
 @media (max-width: 1200px) {
   .pd-hero__layout,
   .pd-problem__layout,
+  .pd-page[data-layout='signals'] .pd-problem__overview,
+  .pd-page[data-layout='ledger'] .pd-problem__overview,
   .pd-example__layout,
   .pd-workflow__layout,
   .pd-capabilities__layout,

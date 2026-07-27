@@ -129,19 +129,21 @@ const structuredData = [
 
     <section id="product-problem" class="pd-problem" data-section-id="product-problem" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
       <div class="container pd-problem__layout">
-        <header>
-          <span>Situasi awal</span>
-          <h2 id="product-problem-title">Masalahnya terlihat sederhana. Jejaknya sering tersebar.</h2>
-          <p>Tiga situasi ini sering muncul sebagai satu masalah. Buka satu per satu agar penyebabnya tidak tercampur.</p>
-        </header>
-        <ol>
-          {detail.problems.map((problem, index) => (
-            <li class="reveal" style={`--i:${index}`}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <p>{problem}</p>
-            </li>
-          ))}
-        </ol>
+        <div class="pd-problem__overview">
+          <header>
+            <span>Situasi awal</span>
+            <h2 id="product-problem-title">Masalahnya terlihat sederhana. Jejaknya sering tersebar.</h2>
+            <p>Tiga situasi ini sering muncul sebagai satu masalah. Buka satu per satu agar penyebabnya tidak tercampur.</p>
+          </header>
+          <ol>
+            {detail.problems.map((problem, index) => (
+              <li class="reveal" style={`--i:${index}`}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p>{problem}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
         <InsightEvidenceFlow
           context="Produk"
           title="Pilih satu catatan, lalu lihat hubungannya."
