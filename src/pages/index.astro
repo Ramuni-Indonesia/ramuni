@@ -1,20 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedMuniWork from '../components/AnimatedMuniWork.astro';
-import MuniMascot3D from '../components/MuniMascot3D.astro';
+import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
-const homepagePains = [
-  { text: 'Omzet berubah tanpa alasan yang terlihat', href: '/solusi/naikkan-omzet/' },
-  { text: 'Stok habis saat permintaan naik', href: '/solusi/kelola-stok/' },
-  { text: 'Laba terasa berbeda dari kas', href: '/solusi/pantau-laba-dan-arus-kas/' },
-  { text: 'Pelanggan lama tidak kembali', href: '/solusi/pahami-pelanggan/' },
-  { text: 'Rekap datang setelah keputusan dibuat', href: '/solusi/laporan-bisnis-otomatis/' },
-];
 const companionSteps = [
   ['Catatan', 'Sumber usaha dikumpulkan tanpa menutupi data yang belum lengkap.'],
   ['Bukti', 'Periode, perubahan, dan angka pendukung tetap bisa ditelusuri.'],
@@ -26,7 +19,7 @@ const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
   ['Apakah AI menjalankan transaksi otomatis?', 'Tidak pada versi awal. AI hanya membaca dan menjelaskan. Tindakan berisiko tetap membutuhkan persetujuan manusia.'],
   ['Data apa yang dibutuhkan?', 'Mulai dari data operasional yang tersedia. Jalur input dan ketersediaannya akan dijelaskan sebelum proses dimulai.'],
-  ['Apakah saya bisa langsung mencoba?', 'Ya. Gunakan simulasi gratis dengan data contoh. Untuk mencoba sesuai kebutuhan usaha, ajukan akses coba.'],
+  ['Apakah saya bisa langsung mencoba?', 'Anda dapat mencoba simulasi publik dengan data contoh. Akses produk untuk kebutuhan usaha diajukan terpisah dan akan dijelaskan sebelum proses dimulai.'],
   ['Apakah harga sudah tersedia?', 'Harga belum diumumkan. Kami akan menampilkannya setelah isi setiap paket ditetapkan.'],
   ['Apakah RAMUNI cocok untuk semua industri?', 'Kami cocokkan dulu cara kerja usaha Anda dengan fitur yang sudah siap. Contoh awal tersedia untuk enam jenis usaha.'],
   ['Bagaimana keamanan data dijaga?', 'RAMUNI membatasi akses berdasarkan peran. Detail keamanan akan dipublikasikan setelah pengujian selesai.'],
@@ -72,38 +65,14 @@ const schema = [
     <div class="hero-rule" aria-hidden="true"><span></span></div>
   </section>
 
-  <aside class="site-foundation" aria-label="Teknologi yang digunakan pada situs RAMUNI">
-    <div class="container site-foundation__inner">
-      <p><span>Teknologi situs</span><strong>Fondasi teknis yang benar-benar digunakan RAMUNI.</strong></p>
-      <ul aria-label="Daftar teknologi situs">
-        <li>Astro</li><li>TypeScript</li><li>Three.js</li><li>Cloudflare</li><li>Node.js</li>
-      </ul>
-      <small>Daftar ini menjelaskan teknologi situs-bukan pelanggan, sponsor, partner, atau bentuk dukungan. Nama produk tetap merupakan merek pemiliknya masing-masing.</small>
-    </div>
-  </aside>
-
   <section class="section problem-chapter chapter" data-chapter="Masalah">
     <div class="container problem-landscape">
       <header class="problem-landscape__head reveal">
-        <p class="section-kicker">Masalahnya bukan kekurangan data.</p>
-        <h2>Catatan ada di mana-mana. Masalahnya bersembunyi di antaranya.</h2>
-        <p>Penjualan, stok, biaya, dan pelanggan sering dibaca terpisah. RAMUNI membantu melihat hubungan yang perlu diperiksa.</p>
+        <p class="section-kicker">Satu angka jarang bercerita lengkap.</p>
+        <h2>Lihat hubungan yang sulit terbaca saat data masih terpisah.</h2>
+        <p>Pilih situasi yang paling dekat dengan usaha Anda. Contoh dashboard akan menunjukkan konteks yang perlu dibuka, bukan memberi jawaban tanpa dasar.</p>
       </header>
-      <div class="problem-canvas" aria-label="Lima masalah usaha yang bisa ditelusuri">
-        <div class="problem-canvas__core" data-problem-mascot>
-          <span>Catatan yang terhubung</span>
-          <MuniMascot3D
-            class="problem-canvas__mascot-model"
-            posterSrc="/website-original/mascot/ramuni-mascot-dashboard-guide-hashmicro.webp"
-            label="Interpretasi 3D Muni yang menghubungkan catatan usaha"
-          />
-          <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-        </div>
-        <nav class="problem-constellation">
-          {homepagePains.map((pain, i) => <a class="problem-point reveal" href={pain.href} style={`--i:${i}`}><span>0{i + 1}</span><p>{pain.text}</p><b>Telusuri</b></a>)}
-        </nav>
-        <div class="problem-canvas__axis" aria-hidden="true"><span>Terlihat di catatan</span><span>Perlu ditelusuri</span></div>
-      </div>
+      <HomepageProblemProof />
     </div>
   </section>
 
@@ -294,6 +263,16 @@ const schema = [
       <div class="faq-list">{faq.map(([question, answer]) => <details class="reveal"><summary>{question}</summary><p>{answer}</p></details>)}</div>
     </div>
   </section>
+
+  <aside class="site-foundation" aria-label="Teknologi yang digunakan pada situs RAMUNI">
+    <div class="container site-foundation__inner">
+      <p><span>Teknologi situs</span><strong>Fondasi teknis yang benar-benar digunakan RAMUNI.</strong></p>
+      <ul aria-label="Daftar teknologi situs">
+        <li>Astro</li><li>TypeScript</li><li>Cloudflare</li><li>Node.js</li>
+      </ul>
+      <small>Daftar ini menjelaskan teknologi situs, bukan pelanggan, sponsor, partner, atau bentuk dukungan. Nama produk tetap merupakan merek pemiliknya masing-masing.</small>
+    </div>
+  </aside>
 
   <section class="section closing-stage chapter" data-chapter="Penutup">
     <div class="container closing-composition reveal">

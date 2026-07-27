@@ -1,0 +1,133 @@
+---
+import AnimatedMuniWork from './AnimatedMuniWork.astro';
+import { dashboardVisuals } from '../data/dashboardVisuals';
+
+const stories = [
+  {
+    label: 'Penjualan',
+    question: 'Omzet berubah. Bagian mana yang perlu dibuka dulu?',
+    answer: 'Bandingkan hari, jumlah transaksi, dan produk yang berubah.',
+    href: '/solusi/naikkan-omzet/',
+    visual: dashboardVisuals.productPerformance,
+  },
+  {
+    label: 'Stok',
+    question: 'Barang apa yang berisiko habis saat permintaan naik?',
+    answer: 'Lihat sisa stok bersama laju penjualan dan aktivitas terbaru.',
+    href: '/solusi/kelola-stok/',
+    visual: dashboardVisuals.productOperations,
+  },
+  {
+    label: 'Kas',
+    question: 'Usaha ramai, tetapi mengapa kas terasa seret?',
+    answer: 'Pisahkan omzet, biaya, laba, dan pergerakan kas pada periode yang sama.',
+    href: '/solusi/pantau-laba-dan-arus-kas/',
+    visual: dashboardVisuals.productOverview,
+  },
+];
+---
+
+<div class="business-proof" data-business-proof>
+  <figure class="business-proof__stage reveal">
+    <img
+      class="business-proof__context"
+      src="/website-original/context/ramuni-context-umkm-signal-workspace.webp"
+      width="1200"
+      height="675"
+      alt="Meja kerja usaha kecil dengan catatan penjualan, rak stok, kalkulator, dan tanda pemeriksaan"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="business-proof__screen">
+      <header><span>Contoh cara membaca</span><b>Data demo</b></header>
+      {stories.map((story, index) => (
+        <div
+          class:list={['business-proof__panel', { 'is-active': index === 0 }]}
+          role="tabpanel"
+          id={`business-panel-${index}`}
+          aria-labelledby={`business-tab-${index}`}
+          data-business-panel={String(index)}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <img
+            src={story.visual.src}
+            width={story.visual.width}
+            height={story.visual.height}
+            alt={story.visual.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+      <footer><span data-business-label>Penjualan</span><strong data-business-answer>{stories[0].answer}</strong></footer>
+    </div>
+    <AnimatedMuniWork class="business-proof__mascot" label="Muni bergerak sambil membantu membaca contoh dashboard" />
+  </figure>
+
+  <div class="business-proof__questions reveal" role="tablist" aria-label="Pilih masalah usaha">
+    {stories.map((story, index) => (
+      <button
+        type="button"
+        role="tab"
+        id={`business-tab-${index}`}
+        aria-controls={`business-panel-${index}`}
+        aria-selected={index === 0 ? 'true' : 'false'}
+        tabindex={index === 0 ? 0 : -1}
+        data-business-tab={String(index)}
+        data-answer={story.answer}
+      >
+        <span>0{index + 1} / {story.label}</span>
+        <strong>{story.question}</strong>
+      </button>
+    ))}
+    <div class="business-proof__more">
+      <span>Masalah lain</span>
+      <a href="/solusi/pahami-pelanggan/">Pelanggan lama tidak kembali</a>
+      <a href="/solusi/laporan-bisnis-otomatis/">Rekap selesai terlalu lambat</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const bindBusinessProof = () => {
+    document.querySelectorAll<HTMLElement>('[data-business-proof]').forEach((root) => {
+      if (root.dataset.bound === 'true') return;
+      root.dataset.bound = 'true';
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-business-tab]'));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-business-panel]'));
+      const label = root.querySelector<HTMLElement>('[data-business-label]');
+      const answer = root.querySelector<HTMLElement>('[data-business-answer]');
+
+      const activate = (tab: HTMLButtonElement) => {
+        const index = Number(tab.dataset.businessTab || 0);
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach((panel, panelIndex) => {
+          const active = panelIndex === index;
+          panel.classList.toggle('is-active', active);
+          panel.setAttribute('aria-hidden', String(!active));
+        });
+        if (label) label.textContent = tab.querySelector('span')?.textContent?.split('/').pop()?.trim() || '';
+        if (answer) answer.textContent = tab.dataset.answer || '';
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', (event) => {
+          if (!['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+          event.preventDefault();
+          const forward = event.key === 'ArrowDown' || event.key === 'ArrowRight';
+          const next = forward ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+          tabs[next]?.focus();
+          if (tabs[next]) activate(tabs[next]);
+        });
+      });
+    });
+  };
+
+  bindBusinessProof();
+  document.addEventListener('astro:page-load', bindBusinessProof);
+</script>

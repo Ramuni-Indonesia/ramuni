@@ -6,65 +6,126 @@ interface ProblemEntry {
   href: string;
 }
 
-import { mascots } from '../../data/mascots';
-import { releaseGates } from '../../config/release';
+import { dashboardVisuals } from '../../data/dashboardVisuals';
 
 interface Props {
   entries: ProblemEntry[];
 }
 
 const { entries } = Astro.props;
-const visualAsset = releaseGates.mascotExplorationEnabled ? mascots.guide3d : mascots.decisionVisual;
+const visualKeys = ['productPerformance', 'productOperations', 'productPerformance', 'productOverview', 'productOverview'] as const;
+const visuals = visualKeys.map((key) => dashboardVisuals[key]);
+const destinations = entries.map((entry) => ({ href: entry.href, label: entry.label.toLowerCase() }));
 ---
 
-<figure class="solution-map" aria-labelledby="solution-map-title">
+<figure class="solution-map" aria-labelledby="solution-map-title" data-map-destinations={JSON.stringify(destinations)}>
   <figcaption class="solution-map__head">
-    <span>Petakan satu gejala</span>
-    <strong id="solution-map-title">Dari masalah ke bukti yang perlu diperiksa</strong>
-    <small>Alur interaktif · tanpa data usaha</small>
+    <div><span>Contoh pembacaan</span><strong id="solution-map-title">Pilih gejala, lalu lihat konteks pada dashboard</strong></div>
+    <small>Tampilan produk · data demo</small>
   </figcaption>
 
-  <fieldset class="solution-map__controls">
-    <legend class="sr-only">Pilih konteks masalah usaha</legend>
-    {entries.map((entry, index) => (
-      <label>
-        <input type="radio" name="solution-map-problem" value={index} checked={index === 0} aria-controls={`solution-map-panel-${index}`} />
-        <span>{String(index + 1).padStart(2, '0')}</span>
-        <strong>{entry.label}</strong>
-      </label>
-    ))}
-  </fieldset>
-
-  <div class="solution-map__stage" aria-live="polite">
-    <div class="solution-map__mascot" aria-hidden="true">
-      <span></span>
-      <img src={visualAsset.src} alt="" width={visualAsset.width} height={visualAsset.height} loading="eager" decoding="async" />
+  <div class="solution-map__workspace">
+    <div class="solution-map__screens" aria-live="polite">
+      {entries.map((entry, index) => (
+        <article
+          id={`solution-map-panel-${index}`}
+          class:list={['solution-map__panel', { 'is-active': index === 0 }]}
+          data-map-panel={index}
+          role="tabpanel"
+          aria-labelledby={`solution-map-tab-${index}`}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <img
+            src={visuals[index].src}
+            width={visuals[index].width}
+            height={visuals[index].height}
+            alt={visuals[index].alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+          <footer><span>{entry.label}</span><strong>{entry.prompt}</strong></footer>
+        </article>
+      ))}
     </div>
-    {entries.map((entry, index) => (
-      <article id={`solution-map-panel-${index}`} class="solution-map__panel" data-map-panel={index} role="region" aria-label={`Alur ${entry.label}`}>
-        <span>Gejala</span>
-        <h2>{entry.text}</h2>
-        <div class="solution-map__route" aria-hidden="true"><i></i><i></i><i></i></div>
-        <dl>
-          <div><dt>Catatan</dt><dd>Pilih periode dan sumber yang sebanding.</dd></div>
-          <div><dt>Bukti</dt><dd>{entry.prompt}</dd></div>
-          <div><dt>Arah</dt><dd>Buka alur sebelum menentukan tindakan.</dd></div>
-        </dl>
-        <a href={entry.href}>Lihat alur {entry.label.toLowerCase()}</a>
-      </article>
-    ))}
+
+    <div class="solution-map__controls" role="tablist" aria-label="Pilih masalah usaha">
+      {entries.map((entry, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`solution-map-tab-${index}`}
+          aria-controls={`solution-map-panel-${index}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          tabindex={index === 0 ? 0 : -1}
+          data-map-tab={index}
+        >
+          <span>{String(index + 1).padStart(2, '0')} / {entry.label}</span>
+          <strong>{entry.text}</strong>
+        </button>
+      ))}
+      <a class="solution-map__link" data-map-link href={entries[0]?.href}>Buka alur {entries[0]?.label.toLowerCase()}</a>
+    </div>
   </div>
 </figure>
 
+<script>
+  const bindSolutionMap = () => {
+    document.querySelectorAll<HTMLElement>('.solution-map').forEach((root) => {
+      if (root.dataset.bound === 'true') return;
+      root.dataset.bound = 'true';
+      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-map-tab]'));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-map-panel]'));
+      const link = root.querySelector<HTMLAnchorElement>('[data-map-link]');
+      const destinations = JSON.parse(root.dataset.mapDestinations || '[]') as Array<{ href: string; label: string }>;
+
+      const activate = (tab: HTMLButtonElement) => {
+        const index = Number(tab.dataset.mapTab || 0);
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach((panel, panelIndex) => {
+          const active = panelIndex === index;
+          panel.classList.toggle('is-active', active);
+          panel.setAttribute('aria-hidden', String(!active));
+        });
+        if (link && destinations[index]) {
+          link.href = destinations[index].href;
+          link.textContent = `Buka alur ${destinations[index].label}`;
+        }
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab));
+        tab.addEventListener('keydown', (event) => {
+          if (!['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+          event.preventDefault();
+          const forward = event.key === 'ArrowDown' || event.key === 'ArrowRight';
+          const next = forward ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+          tabs[next]?.focus();
+          if (tabs[next]) activate(tabs[next]);
+        });
+      });
+    });
+  };
+
+  bindSolutionMap();
+  document.addEventListener('astro:page-load', bindSolutionMap);
+</script>
+
 <style>
-  .solution-map{position:relative;min-width:0;margin:0;border:1px solid var(--ink);background:var(--white);box-shadow:12px 12px 0 var(--ink);overflow:hidden}
-  .solution-map__head{display:grid;grid-template-columns:1fr auto;gap:6px 20px;padding:17px 20px;border-bottom:1px solid var(--ink-10)}
-  .solution-map__head span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.solution-map__head strong{grid-row:2;max-width:30ch;line-height:1.3}.solution-map__head small{grid-column:2;grid-row:1/3;align-self:center;color:var(--ink-72);font-size:.64rem}
-  .solution-map__controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:0;padding:0;border:0;border-bottom:1px solid var(--ink-10)}
-  .solution-map__controls label{position:relative;display:grid;grid-template-columns:auto 1fr;gap:5px 9px;align-items:center;min-width:0;padding:13px 14px;border-right:1px solid var(--ink-10);cursor:pointer;transition:background-color .25s ease,color .25s ease}.solution-map__controls label:last-child{border-right:0}.solution-map__controls input{position:absolute;inline-size:1px;block-size:1px;opacity:0}.solution-map__controls span{color:var(--teal);font-size:.6rem;font-weight:800}.solution-map__controls strong{min-width:0;font-size:.72rem;overflow-wrap:break-word}.solution-map__controls label:has(input:checked){background:var(--ink);color:var(--white)}.solution-map__controls label:has(input:focus-visible){outline:3px solid var(--yellow);outline-offset:-3px}.solution-map__controls label:has(input:checked) span{color:var(--yellow)}
-  .solution-map__stage{position:relative;display:grid;grid-template-columns:.56fr 1.44fr;min-height:340px;background:var(--rice);overflow:hidden}.solution-map__mascot{position:relative;display:grid;place-items:end center;min-width:0;background:var(--yellow)}.solution-map__mascot::before{content:"";position:absolute;inset:24px;border:1px solid rgb(11 48 69/.22);border-radius:50%}.solution-map__mascot span{position:absolute;top:28px;left:24px;width:54px;height:54px;border:1px solid var(--ink);background:var(--white);transform:rotate(8deg)}.solution-map__mascot span::before,.solution-map__mascot span::after{content:"";position:absolute;background:var(--teal)}.solution-map__mascot span::before{left:12px;right:12px;top:17px;height:2px;box-shadow:0 8px 0 var(--ink)}.solution-map__mascot span::after{right:-10px;bottom:-10px;width:20px;height:20px;background:var(--white);border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}.solution-map__mascot img{position:relative;z-index:1;width:min(118%,260px);height:auto;object-fit:contain;transform:translateY(18px)}
-  .solution-map__panel{display:none;min-width:0;padding:clamp(24px,4vw,42px)}.solution-map__panel:first-of-type{display:block}.solution-map:has(input[value="0"]:checked) [data-map-panel="0"],.solution-map:has(input[value="1"]:checked) [data-map-panel="1"],.solution-map:has(input[value="2"]:checked) [data-map-panel="2"],.solution-map:has(input[value="3"]:checked) [data-map-panel="3"],.solution-map:has(input[value="4"]:checked) [data-map-panel="4"]{display:block}.solution-map:has(input:not([value="0"]):checked) [data-map-panel="0"]{display:none}.solution-map__panel>span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.solution-map__panel h2{max-width:16ch;margin-top:12px;font-size:clamp(1.25rem,2.3vw,2rem);line-height:1.08}.solution-map__route{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:24px}.solution-map__route i{height:4px;background:var(--teal)}.solution-map__route i:nth-child(2){background:var(--yellow)}.solution-map__route i:nth-child(3){background:var(--ink)}.solution-map__panel dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:18px 0 0;background:var(--ink-10)}.solution-map__panel dl>div{padding:13px;background:var(--white)}.solution-map__panel dt{color:var(--teal);font-size:.62rem;font-weight:800}.solution-map__panel dd{margin:7px 0 0;color:var(--ink-72);font-size:.69rem;line-height:1.45}.solution-map__panel>a{display:inline-block;margin-top:20px;color:var(--teal);font-size:.76rem;font-weight:800}
-  @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.solution-map__panel{animation:solution-map-enter .38s cubic-bezier(.16,1,.3,1) both}@keyframes solution-map-enter{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}}
-  @media(max-width:720px){.solution-map{box-shadow:7px 7px 0 var(--ink)}.solution-map__head{grid-template-columns:1fr}.solution-map__head small{grid-column:1;grid-row:auto}.solution-map__controls{grid-template-columns:repeat(2,1fr)}.solution-map__controls label:nth-child(even){border-right:0}.solution-map__controls label:nth-child(n+3){border-top:1px solid var(--ink-10)}.solution-map__stage{grid-template-columns:1fr}.solution-map__mascot{min-height:190px;place-items:end}.solution-map__mascot::before{inset:20px 26%}.solution-map__mascot img{width:190px}.solution-map__panel h2{max-width:none}.solution-map__panel dl{grid-template-columns:1fr}.solution-map__panel dl>div{display:grid;grid-template-columns:64px 1fr;gap:10px}.solution-map__panel dd{margin:0}}
-  @media(prefers-reduced-motion:reduce){.solution-map__controls label,.solution-map__panel,.solution-map__mascot img{animation:none!important;transition:none!important;transform:none!important}}
+  .solution-map{min-width:0;margin:0;border:1px solid var(--ink-20);background:var(--white);box-shadow:0 24px 58px rgb(11 48 69/.14);overflow:hidden}
+  .solution-map__head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 18px;border-bottom:1px solid var(--ink-10)}
+  .solution-map__head>div{display:grid;gap:4px}.solution-map__head span{color:var(--teal);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-map__head strong{font-size:.78rem}.solution-map__head small{color:var(--ink-72);font-size:.6rem;font-weight:700}
+  .solution-map__workspace{display:grid;grid-template-columns:minmax(0,1.46fr) minmax(230px,.54fr);min-height:430px}
+  .solution-map__screens{position:relative;min-width:0;background:var(--rice);overflow:hidden}
+  .solution-map__panel{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;opacity:0;visibility:hidden;transform:translate3d(12px,0,0);transition:opacity 240ms cubic-bezier(.22,1,.36,1),transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s 320ms}
+  .solution-map__panel.is-active{opacity:1;visibility:visible;transform:none;transition-delay:0s}.solution-map__panel img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}.solution-map__panel footer{display:grid;gap:5px;padding:12px 14px;border-top:1px solid var(--ink-10);background:var(--white)}.solution-map__panel footer span{color:var(--teal);font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-map__panel footer strong{font-size:.68rem;line-height:1.45}
+  .solution-map__controls{display:flex;flex-direction:column;min-width:0;border-left:1px solid var(--ink-10)}
+  .solution-map__controls button{flex:1;display:grid;align-content:center;gap:5px;min-width:0;padding:13px 14px;border:0;border-bottom:1px solid var(--ink-10);background:var(--white);color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:background-color 150ms cubic-bezier(.22,1,.36,1),padding 220ms cubic-bezier(.22,1,.36,1)}.solution-map__controls button span{color:var(--teal);font-size:.53rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.solution-map__controls button strong{font-size:.7rem;line-height:1.35}.solution-map__controls button[aria-selected='true']{padding-left:20px;background:var(--yellow)}.solution-map__controls button[aria-selected='true'] span{color:var(--ink)}.solution-map__controls button:focus-visible{position:relative;z-index:2;outline:3px solid var(--teal);outline-offset:-3px}
+  .solution-map__link{display:block;padding:13px 14px;background:var(--ink);color:var(--white);font-size:.66rem;font-weight:800;text-decoration:none}.solution-map__link:hover,.solution-map__link:focus-visible{color:var(--yellow)}
+  @media(max-width:720px){.solution-map{box-shadow:0 18px 38px rgb(11 48 69/.13)}.solution-map__head{display:grid}.solution-map__workspace{grid-template-columns:1fr;min-height:0}.solution-map__screens{aspect-ratio:16/10}.solution-map__controls{display:grid;grid-template-columns:1fr 1fr;border-left:0;border-top:1px solid var(--ink-10)}.solution-map__controls button{min-height:104px}.solution-map__controls button:nth-child(odd){border-right:1px solid var(--ink-10)}.solution-map__link{grid-column:1/-1}.solution-map__controls button[aria-selected='true']{padding-left:14px}}
+  @media(max-width:460px){.solution-map__controls{grid-template-columns:1fr}.solution-map__controls button:nth-child(odd){border-right:0}}
+  @media(prefers-reduced-motion:reduce){.solution-map__panel,.solution-map__controls button{transition:none}}
 </style>

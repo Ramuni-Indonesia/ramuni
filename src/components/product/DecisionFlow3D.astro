@@ -1,107 +1,70 @@
 ---
-import { mascots } from '../../data/mascots';
-
 const stages = [
-  ['catatan', 'Catatan', 'Pilih satu kejadian', mascots.working2d.src],
-  ['bukti', 'Bukti', 'Samakan periode', mascots.evidence3d.src],
-  ['arah', 'Arah', 'Manusia memutuskan', mascots.guide3d.src],
+  {
+    key: 'data',
+    label: 'Data usaha',
+    title: 'Transaksi, stok, biaya, pelanggan',
+    note: 'Catatan masuk dengan periode dan sumber yang jelas.',
+  },
+  {
+    key: 'change',
+    label: 'Perubahan',
+    title: 'Angka dibandingkan',
+    note: 'RAMUNI menandai selisih yang layak dibuka lebih dulu.',
+  },
+  {
+    key: 'source',
+    label: 'Sumber',
+    title: 'Dasar temuan ditampilkan',
+    note: 'Pengguna dapat kembali ke catatan yang membentuk ringkasan.',
+  },
+  {
+    key: 'action',
+    label: 'Tindakan manusia',
+    title: 'Anda memilih langkah',
+    note: 'Sistem membantu membaca; keputusan tidak dijalankan otomatis.',
+  },
 ] as const;
 ---
 
-<div class="decision-workbench" data-decision-flow-3d data-active-stage="catatan">
-  <header><span>Catatan → Bukti → Arah</span></header>
-  <div class="decision-workbench__scene" role="group" aria-label="Tahap membaca keputusan">
-    {stages.map(([key, label, title, mascotSrc], index) => (
-      <button type="button" data-decision-tab={key} data-mascot-src={mascotSrc} aria-pressed={index === 0 ? 'true' : 'false'}>
-        <span>0{index + 1}</span><strong>{label}</strong><small>{title}</small>
-      </button>
+<div class="decision-path" aria-label="Alur RAMUNI dari data usaha hingga tindakan manusia">
+  <ol class="decision-path__steps">
+    {stages.map((stage, index) => (
+      <li class:list={['decision-path__step', index === stages.length - 1 && 'decision-path__step--human']}>
+        <span class="decision-path__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+        <div class="decision-path__copy">
+          <small>{stage.label}</small>
+          <strong>{stage.title}</strong>
+          <p>{stage.note}</p>
+        </div>
+        {index < stages.length - 1 && <i class="decision-path__connector" aria-hidden="true"><b></b><b></b><b></b></i>}
+      </li>
     ))}
-    <i aria-hidden="true"></i><i aria-hidden="true"></i>
-    <img class="decision-workbench__mascot" data-decision-mascot src={stages[0][3]} width="512" height="512" alt="" aria-hidden="true" loading="lazy" decoding="async" />
-  </div>
-  <footer><strong>Kendali tetap pada Anda</strong></footer>
+  </ol>
+  <p class="decision-path__boundary"><span aria-hidden="true">✓</span> Setiap tahap mempertahankan periode, waktu pembaruan, dan asal data.</p>
 </div>
 
-<script>
-  const initialiseDecisionWorkbenches = () => {
-    document.querySelectorAll<HTMLElement>('[data-decision-flow-3d]').forEach((root) => {
-      if (root.dataset.ready === 'true') return;
-      root.dataset.ready = 'true';
-      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-decision-tab]'));
-      const mascot = root.querySelector<HTMLImageElement>('[data-decision-mascot]');
-      let mascotRequest = 0;
-      const swapMascot = async (src?: string) => {
-        const request = ++mascotRequest;
-        if (!mascot) return false;
-        mascot.dataset.transitioning = 'false';
-        if (!src) return false;
-        if (mascot.dataset.currentSrc === src) return true;
-        const preload = new Image();
-        preload.decoding = 'async';
-        preload.src = src;
-        try {
-          await preload.decode();
-        } catch {
-          return false;
-        }
-        if (request !== mascotRequest) return false;
-
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reduceMotion) {
-          const fadedOut = new Promise<void>((resolve) => {
-            let timeout = 0;
-            const finish = () => {
-              window.clearTimeout(timeout);
-              mascot.removeEventListener('transitionend', onTransitionEnd);
-              resolve();
-            };
-            const onTransitionEnd = (event: TransitionEvent) => {
-              if (event.propertyName === 'opacity') finish();
-            };
-            mascot.addEventListener('transitionend', onTransitionEnd);
-            timeout = window.setTimeout(finish, 260);
-          });
-          mascot.dataset.transitioning = 'true';
-          await fadedOut;
-          if (request !== mascotRequest) return false;
-        }
-
-        mascot.src = src;
-        mascot.dataset.currentSrc = src;
-        if (!reduceMotion) {
-          await new Promise<void>((resolve) => {
-            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
-          });
-          if (request !== mascotRequest) return false;
-          mascot.dataset.transitioning = 'false';
-        }
-        return true;
-      };
-      if (mascot) mascot.dataset.currentSrc = mascot.getAttribute('src') || '';
-      tabs.forEach((tab) => tab.addEventListener('click', () => {
-        root.dataset.activeStage = tab.dataset.decisionTab || '';
-        tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
-        void swapMascot(tab.dataset.mascotSrc).then((isCurrent) => {
-          if (!isCurrent) return;
-          root.dataset.stateChanging = 'false';
-          void root.offsetWidth;
-          root.dataset.stateChanging = 'true';
-        });
-      }));
-    });
-  };
-  initialiseDecisionWorkbenches();
-  document.addEventListener('astro:page-load', initialiseDecisionWorkbenches);
-</script>
-
 <style>
-  .decision-workbench{position:relative;min-height:420px;border:1px solid rgb(255 255 255/.28);background:var(--rice);color:var(--ink);overflow:hidden;isolation:isolate}
-  .decision-workbench::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:42px 42px;opacity:.45}
-  .decision-workbench>header,.decision-workbench>footer{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 16px;background:rgb(255 255 255/.94);font-size:.64rem;font-weight:800}.decision-workbench>header{border-bottom:1px solid var(--ink-10);letter-spacing:.05em;text-transform:uppercase}.decision-workbench>header span{color:var(--teal)}.decision-workbench>header small{font:inherit;color:var(--ink-56)}.decision-workbench>footer{border-top:1px solid var(--ink-10)}.decision-workbench>footer span{color:var(--teal)}
-  .decision-workbench__scene{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:center;min-height:310px;padding:38px 30px}
-  .decision-workbench__mascot{position:absolute;z-index:4;right:8px;bottom:2px;width:clamp(86px,10vw,128px);height:auto;object-fit:contain;filter:drop-shadow(0 10px 12px rgb(11 48 69/.16));pointer-events:none;transition:opacity .2s var(--ease),transform .28s var(--ease)}.decision-workbench__mascot[data-transitioning='true']{opacity:0;transform:translateY(4px)}
-  .decision-workbench__scene>button{position:relative;z-index:2;display:grid;align-content:end;min-height:190px;border:1px solid var(--ink);padding:20px;background:var(--white);color:var(--ink);font:inherit;text-align:left;box-shadow:10px 10px 0 rgb(11 48 69/.16);cursor:pointer;transition:transform .25s var(--ease),background .25s var(--ease)}.decision-workbench__scene>button:nth-child(2){transform:translateY(-16px)}.decision-workbench__scene>button:nth-child(3){transform:translateY(-32px)}.decision-workbench__scene>button[aria-pressed='true']{background:var(--yellow);transform:translateY(-8px)}.decision-workbench__scene>button span{color:var(--teal);font-size:.62rem;font-weight:800}.decision-workbench__scene>button strong{margin-top:36px;font-size:1.35rem}.decision-workbench__scene>button small{margin-top:8px;color:var(--ink-72);font-size:.66rem}.decision-workbench__scene>i{position:absolute;z-index:1;top:50%;width:20%;height:2px;background:var(--teal)}.decision-workbench__scene>i:nth-of-type(1){left:28%}.decision-workbench__scene>i:nth-of-type(2){right:28%}
-  @media(max-width:740px){.decision-workbench{min-height:390px}.decision-workbench__scene{grid-template-columns:1fr;gap:8px;padding:20px 16px 110px}.decision-workbench__scene>button,.decision-workbench__scene>button:nth-child(n){min-height:72px;transform:none;box-shadow:6px 6px 0 rgb(11 48 69/.14)}.decision-workbench__scene>button strong{margin-top:10px}.decision-workbench__scene>i{display:none}.decision-workbench__mascot{right:50%;width:96px;transform:translateX(50%)}.decision-workbench__mascot[data-transitioning='true']{transform:translateX(50%) translateY(4px)}.decision-workbench>header small{display:none}}
-  @media(prefers-reduced-motion:no-preference) and (min-width:741px){.decision-workbench[data-state-changing='true'] .decision-workbench__mascot{animation:decision-workbench-mascot-in 320ms var(--ease) both}@keyframes decision-workbench-mascot-in{from{transform:translateY(8px)}to{transform:none}}}
-  @media(prefers-reduced-motion:reduce){.decision-workbench *{transition:none!important;transform:none!important}}
+  .decision-path{min-width:0;border-block:1px solid rgb(11 48 69/.2);background:var(--rice);color:var(--ink)}
+  .decision-path__steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;margin:0;padding:0}
+  .decision-path__step{position:relative;display:grid;grid-template-rows:auto 1fr;min-width:0;min-height:282px;padding:22px clamp(18px,2.4vw,32px) 28px;border-right:1px solid rgb(11 48 69/.16)}
+  .decision-path__step:last-child{border-right:0}
+  .decision-path__step--human{background:var(--yellow)}
+  .decision-path__index{font-size:.68rem;font-weight:800;letter-spacing:.08em;color:var(--teal)}
+  .decision-path__copy{align-self:end;display:grid;gap:10px}
+  .decision-path__copy small{font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--teal)}
+  .decision-path__copy strong{max-width:17ch;font-size:clamp(1.05rem,1.7vw,1.38rem);line-height:1.22}
+  .decision-path__copy p{max-width:30ch;color:var(--ink-72);font-size:.82rem;line-height:1.58}
+  .decision-path__connector{position:absolute;z-index:2;top:44px;right:-16px;display:flex;align-items:center;justify-content:center;gap:3px;width:31px;height:31px;border:1px solid var(--ink);border-radius:50%;background:var(--white)}
+  .decision-path__connector b{width:3px;height:3px;border-radius:50%;background:var(--teal)}
+  .decision-path__boundary{display:flex;align-items:center;gap:10px;margin:0;padding:16px clamp(18px,2.4vw,32px);border-top:1px solid rgb(11 48 69/.16);background:var(--ink);color:rgb(255 255 255/.74);font-size:.76rem;font-weight:700}
+  .decision-path__boundary span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--yellow);color:var(--ink);font-size:.72rem}
+  @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){
+    .decision-path__connector b{animation:decision-path-pulse 1.8s var(--ease) infinite}
+    .decision-path__connector b:nth-child(2){animation-delay:120ms}.decision-path__connector b:nth-child(3){animation-delay:240ms}
+    @keyframes decision-path-pulse{0%,60%,100%{opacity:.32;transform:translateX(-2px)}30%{opacity:1;transform:translateX(2px)}}
+  }
+  @media(max-width:960px){.decision-path__steps{grid-template-columns:repeat(2,minmax(0,1fr))}.decision-path__step:nth-child(2){border-right:0}.decision-path__step:nth-child(-n+2){border-bottom:1px solid rgb(11 48 69/.16)}.decision-path__step:nth-child(2) .decision-path__connector{display:none}}
+  @media(max-width:620px){.decision-path__steps{grid-template-columns:1fr}.decision-path__step{grid-template-columns:42px 1fr;grid-template-rows:auto;min-height:0;padding:22px;border-right:0;border-bottom:1px solid rgb(11 48 69/.16)}.decision-path__step:nth-child(n){border-bottom:1px solid rgb(11 48 69/.16)}.decision-path__step:last-child{border-bottom:0}.decision-path__copy{align-self:start}.decision-path__connector{display:none}.decision-path__boundary{align-items:flex-start;line-height:1.5}}
+  @media(prefers-reduced-motion:reduce){.decision-path *{animation:none!important;transition:none!important}}
 </style>

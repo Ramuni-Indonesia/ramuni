@@ -1,5 +1,5 @@
 ---
-title: "Data Pelanggan yang Perlu Dicatat UMKM-dan yang Tidak"
+title: "Data Pelanggan yang Perlu Dicatat UMKM dan yang Tidak"
 description: "Panduan menentukan data pelanggan minimum untuk transaksi, layanan, dan analisis UMKM dengan batas privasi yang jelas."
 dek: "Catat data karena ada tujuan, bukan karena kolomnya tersedia. Semakin sensitif datanya, semakin kuat alasan dan perlindungan yang dibutuhkan."
 cover: "/website-original/dashboards/ramuni-dashboard-sales-customer.webp"
