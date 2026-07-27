@@ -33,9 +33,9 @@ const articleResources = {
     secondary: { label: 'Kenali Asisten AI RAMUNI', href: '/produk/asisten-ai/' },
   },
   'arus-kas-umkm-ringan': {
-    title: 'Lanjutkan dari penjelasan ke catatan.',
+    title: 'Buka catatan.',
     text: 'Hitung selisih kas di artikel, lalu gunakan template agar tanggal uang masuk dan keluar tetap dapat diperiksa.',
-    primary: { label: 'Buka template arus kas', href: '/template/arus-kas-sederhana/' },
+    primary: { label: 'Template arus kas', href: '/template/arus-kas-sederhana/' },
     secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
   },
   'panduan-membaca-stok-harian': {
@@ -60,17 +60,27 @@ const cta = {
 }[post.data.ctaType];
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString();
+const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
+const organizationId = `${siteOrigin}/#organization`;
+const authorUrl = new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString();
+const articleImage = new URL(post.data.cover, Astro.site || Astro.url.origin).toString();
+const articleIndexable = post.data.reviewStatus === 'reviewed' && !post.data.noindex;
 const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${articleUrl}#article`,
+    url: articleUrl,
     headline: post.data.title,
     description: post.data.description,
-    image: new URL(post.data.cover, Astro.site || Astro.url.origin).toString(),
+    image: articleImage,
+    inLanguage: 'id-ID',
+    articleSection: post.data.category,
+    keywords: post.data.tags,
     datePublished: post.data.publishedAt.toISOString(),
     dateModified: updatedAt.toISOString(),
-    author: { '@type': author.profileType === 'person' ? 'Person' : 'Organization', name: author.name, url: new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString() },
-    publisher: { '@type': 'Organization', name: 'RAMUNI', logo: { '@type': 'ImageObject', url: new URL('/brand/ramuni-mark-color.webp', Astro.site || Astro.url.origin).toString() } },
+    author: { '@type': author.profileType === 'person' ? 'Person' : 'Organization', '@id': `${authorUrl}#author`, name: author.name, url: authorUrl },
+    publisher: { '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', logo: { '@type': 'ImageObject', url: new URL('/brand/ramuni-mark-color.webp', Astro.site || Astro.url.origin).toString() } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
   },
   {
@@ -85,7 +95,7 @@ const schema = [
   },
 ];
 ---
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={post.data.noindex} schema={schema} ogType="article">
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={!articleIndexable} schema={schema} ogType="article" keywords={post.data.tags}>
   {embeddedCalculator && <style is:inline set:html={calculatorWidgetStyles} />}
   <div class="article-reading-progress" role="progressbar" aria-label="Progres membaca artikel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-reading-progress><i></i></div>
   <article>
@@ -139,7 +149,6 @@ const schema = [
 
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
-          {articleResource && <div class="article-rail-tool"><span>Tools terkait</span><strong>{articleResource.title}</strong><a href={articleResource.primary.href}>{articleResource.primary.label}</a></div>}
         </aside>
       </div>
     </section>

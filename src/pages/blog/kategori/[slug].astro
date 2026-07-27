@@ -2,60 +2,39 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../../../components/blog/StoryMicroVisual.astro';
+import { getBlogCategory, type BlogCategoryMeta } from '../../../data/blogTaxonomy';
+import { getVisibleBlogPosts, isBlogCategoryIndexable } from '../../../lib/blog';
+import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
 
-const catalog = {
-  'stok-inventori': {
-    name: 'Stok & Inventori',
-    introduction: 'Stok bukan hanya angka sisa. Pelajari saldo, laju keluar, koreksi, dan waktu pembaruan secara bersamaan agar barang yang perlu dicek terlihat lebih awal.',
-    question: 'Barang mana yang perlu diperiksa hari ini?',
-    topics: ['Stok minimum', 'Pergerakan barang', 'Stock opname'],
-    start: 'Mulai dari saldo terakhir dan tanggal pemeriksaan fisik. Lalu bandingkan dengan penjualan pada periode yang sama.',
-    steps: ['Cek saldo terakhir', 'Bandingkan laju keluar', 'Tentukan barang yang diperiksa'],
-    cta: ['Ingin melihat alur pemeriksaan stok?', 'Lihat Inventori', '/produk/inventori/'],
-  },
-  'keuangan-umkm': {
-    name: 'Keuangan UMKM',
-    introduction: 'Pisahkan omzet, biaya, laba, dan kas sebelum menarik kesimpulan. Setiap contoh memakai periode yang jelas dan tidak menggantikan saran akuntansi atau pajak.',
-    question: 'Mengapa kas berubah dan apa yang perlu diperiksa?',
-    topics: ['Arus kas', 'Biaya usaha', 'Laba dan margin'],
-    start: 'Catat uang yang benar-benar masuk dan keluar. Jangan campur dengan penjualan yang belum dibayar.',
-    steps: ['Pisahkan kas dan omzet', 'Kelompokkan pengeluaran', 'Periksa perubahan terbesar'],
-    cta: ['Baca perjalanan uang dalam satu alur.', 'Pelajari Keuangan', '/produk/keuangan/'],
-  },
-  'ai-untuk-umkm': {
-    name: 'AI untuk UMKM',
-    introduction: 'Pakai AI untuk membantu membaca catatan bisnis, bukan menggantikan keputusan. Pelajari kualitas input, bukti, ketidakpastian, izin akses, dan pemeriksaan manusia.',
-    question: 'Kapan hasil AI perlu diperiksa manusia?',
-    topics: ['Batas AI', 'Kualitas data', 'Pemeriksaan manusia'],
-    start: 'Mulai dari pertanyaan yang sempit, sebutkan periode, lalu buka angka yang dipakai untuk menyusun jawaban.',
-    steps: ['Tulis pertanyaan sempit', 'Buka data pendukung', 'Periksa sebelum bertindak'],
-    cta: ['Lihat cara AI menjelaskan, bukan bertindak.', 'Pelajari Asisten AI', '/produk/asisten-ai/'],
-  },
-} as const;
-
 export async function getStaticPaths() {
-  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
-  const slugs = [...new Set(posts.map((post) => post.data.categorySlug))];
-  return slugs.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.categorySlug === slug) } }));
+  const collection = await getCollection('blog');
+  const routePosts = getVisibleBlogPosts(collection);
+  const archivePosts = getVisibleBlogPosts(collection, !releaseGates.siteIndexable);
+  const slugs = [...new Set(routePosts.map((post) => post.data.categorySlug))];
+  return slugs.map((slug) => ({
+    params: { slug },
+    props: { posts: archivePosts.filter((post) => post.data.categorySlug === slug) },
+  }));
 }
 
 const { slug } = Astro.params;
 const { posts } = Astro.props;
-const key = slug as keyof typeof catalog;
-const meta = catalog[key] || {
+const meta: BlogCategoryMeta = getBlogCategory(slug || '') || {
+  slug: slug || 'kategori',
   name: posts[0]?.data.category || 'Kategori Blog',
+  description: 'Artikel praktis untuk membaca satu masalah bisnis secara bertahap.',
   introduction: 'Artikel praktis untuk membaca satu masalah bisnis secara bertahap.',
   question: 'Apa yang ingin Anda pahami lebih dulu?',
   topics: [],
   start: 'Pilih artikel yang paling dekat dengan pekerjaan Anda hari ini.',
   steps: ['Pilih satu masalah', 'Baca konteksnya', 'Periksa langkah berikutnya'],
-  cta: ['Lihat cara RAMUNI membaca konteks bisnis.', 'Coba Simulasi Gratis', '/tour-produk-gratis/'],
+  cta: { title: 'Lihat cara RAMUNI membaca konteks bisnis.', label: 'Coba Simulasi Gratis', href: '/tour-produk-gratis/' },
 };
-const sortedPosts = [...posts].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const sortedPosts = getVisibleBlogPosts(posts);
 const featured = sortedPosts[0];
 const articleList = sortedPosts.slice(1);
-const isThin = sortedPosts.length < 3;
+const isThin = !isBlogCategoryIndexable(sortedPosts);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const categoryUrl = new URL(`/blog/kategori/${slug}/`, Astro.site || Astro.url.origin).toString();
 const schema = [
@@ -65,9 +44,15 @@ const schema = [
     { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
     { '@type': 'ListItem', position: 3, name: meta.name, item: categoryUrl },
   ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: `Artikel ${meta.name}`, numberOfItems: sortedPosts.length, itemListElement: sortedPosts.map((post, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: post.data.title,
+    url: new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString(),
+  })) },
 ];
 ---
-<BaseLayout title={`${meta.name} | Blog RAMUNI`} description={meta.introduction} noindex={isThin} schema={schema}>
+<BaseLayout title={`${meta.name} | Blog RAMUNI`} description={meta.introduction} pageType="CollectionPage" noindex={isThin} schema={schema}>
   <header class="category-hero"><div class="container category-masthead">
     <div class="category-masthead__top"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>{meta.name}</span></nav><span class="category-masthead__edition">Panduan praktis / 2026</span></div>
     <div class="category-masthead__title"><p class="eyebrow">Kategori Blog</p><h1>{meta.name}</h1></div>
@@ -81,5 +66,5 @@ const schema = [
   </div></section>}
   <section class="section category-start"><div class="container category-route"><div class="category-route__head"><p class="section-kicker">Jalur pemula</p><h2>Mulai dengan urutan yang bisa diperiksa.</h2><p>{meta.start}</p></div><ol class="category-route__track">{meta.steps.map((step, index) => <li><span>0{index + 1}</span><strong>{step}</strong></li>)}</ol></div></section>
   {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
-  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta[0]}</h2><p>Gunakan data sintetis tanpa mengirim catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta[2]}>{meta.cta[1]}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
+  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta.title}</h2><p>Gunakan data sintetis tanpa mengirim catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta.href}>{meta.cta.label}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
 </BaseLayout>

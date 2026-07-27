@@ -43,7 +43,7 @@ const {
 
       const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
       const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const compactQuery = window.matchMedia('(max-width: 739px)');
+      const compactQuery = window.matchMedia('(max-width: 1200px), (hover: none), (pointer: coarse)');
       let requested = false;
       let lifecycleId = 0;
       let modelController: { destroy: () => void } | undefined;

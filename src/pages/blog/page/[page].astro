@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import BlogArticleGrid from '../../../components/blog/BlogArticleGrid.astro';
+import BlogDecisionCTA from '../../../components/blog/BlogDecisionCTA.astro';
+import BlogPagination from '../../../components/blog/BlogPagination.astro';
+import { getBlogPageHref, getBlogPageTitle, getVisibleBlogPosts, paginateBlogPosts } from '../../../lib/blog';
+import { releaseGates } from '../../../config/release';
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const posts = getVisibleBlogPosts(await getCollection('blog'), !releaseGates.siteIndexable);
+  const { totalPages } = paginateBlogPosts(posts, 1);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => index + 2)
+    .map((pageNumber) => ({ params: { page: String(pageNumber) }, props: { posts, pageNumber } }));
+}
+
+const { posts, pageNumber } = Astro.props;
+const currentPage = Number(pageNumber || Astro.params.page || 1);
+const page = paginateBlogPosts(posts, currentPage);
+const canonical = getBlogPageHref(page.currentPage);
+const pageTitle = getBlogPageTitle(page.currentPage);
+const pageDescription = `Artikel RAMUNI halaman ${page.currentPage}: panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, operasional, dan AI untuk UMKM.`;
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: pageTitle,
+    url: new URL(canonical, Astro.site || Astro.url.origin).toString(),
+    description: pageDescription,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Blog RAMUNI', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: `Halaman ${page.currentPage}`, item: new URL(canonical, Astro.site || Astro.url.origin).toString() },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Artikel RAMUNI halaman ${page.currentPage}`,
+    numberOfItems: page.items.length,
+    itemListElement: page.items.map((post, index) => ({
+      '@type': 'ListItem',
+      position: page.startPosition + index,
+      name: post.data.title,
+      url: new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString(),
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={`${pageTitle} | RAMUNI`}
+  description={pageDescription}
+  canonical={canonical}
+  pageType="CollectionPage"
+  schema={schema}
+  previousPage={page.currentPage > 1 ? getBlogPageHref(page.currentPage - 1) : undefined}
+  nextPage={page.currentPage < page.totalPages ? getBlogPageHref(page.currentPage + 1) : undefined}
+>
+  <header class="category-hero blog-page-archive-hero">
+    <div class="container category-masthead">
+      <div class="category-masthead__top">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Halaman {page.currentPage}</span></nav>
+        <span class="category-masthead__edition">Arsip artikel / halaman {page.currentPage} dari {page.totalPages}</span>
+      </div>
+      <div class="category-masthead__title"><p class="eyebrow">Arsip Blog RAMUNI</p><h1>Artikel bisnis halaman {page.currentPage}.</h1></div>
+      <div class="category-masthead__brief"><p class="lede">Lanjutkan membaca panduan praktis untuk memahami catatan usaha, memilih pertanyaan yang tepat, dan memeriksa langkah berikutnya dengan data contoh.</p><blockquote><span>Mulai dari satu kebutuhan</span><strong>Pilih artikel yang paling dekat dengan pekerjaan hari ini.</strong></blockquote></div>
+    </div>
+  </header>
+
+  <section class="section blog-latest-stage" aria-labelledby="archive-heading">
+    <div class="container blog-latest-layout">
+      <div class="blog-latest-head reveal"><p class="section-kicker">Arsip artikel</p><h2 id="archive-heading">Bacaan lanjutan yang tetap mudah ditelusuri.</h2><p>Gunakan tautan halaman untuk melanjutkan tanpa kehilangan urutan artikel.</p></div>
+      <BlogArticleGrid posts={page.items} startPosition={page.startPosition} />
+      <BlogPagination currentPage={page.currentPage} totalPages={page.totalPages} />
+    </div>
+  </section>
+
+  <section class="section blog-close-stage" aria-labelledby={`blog-page-${page.currentPage}-cta-heading`}>
+    <div class="container reveal">
+      <BlogDecisionCTA
+        id={`blog-page-${page.currentPage}-cta`}
+        title="Butuh membaca angka dari satu masalah?"
+        text="Mulai dari kategori atau tour produk dengan data contoh, lalu pilih langkah kecil yang bisa diperiksa."
+        secondaryLabel="Kembali ke Blog"
+        secondaryHref="/blog/"
+      />
+    </div>
+  </section>
+</BaseLayout>

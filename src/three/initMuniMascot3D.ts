@@ -205,12 +205,13 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
   renderer.toneMappingExposure = 0.94;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1.9, 1.9, 1.9, -1.9, 0.1, 30);
-  camera.position.set(0, 0.04, 5.2);
-  camera.lookAt(0, 0.02, 0);
+  const camera = new THREE.PerspectiveCamera(31, 1, 0.1, 30);
+  camera.position.set(0, 0.08, 6.15);
+  camera.lookAt(0, 0.03, 0);
 
   scene.add(createMuniMascotLights());
   const mascot = createMuniMascotModel();
+  mascot.root.scale.setScalar(1.08);
   scene.add(mascot.root);
 
   const shadowGeometry = new THREE.CircleGeometry(0.78, 36);
@@ -286,13 +287,7 @@ export function initMuniMascot3D(host: HTMLElement): MuniMascot3DController | un
     const width = Math.max(1, host.clientWidth);
     const height = Math.max(1, host.clientHeight);
     renderer.setSize(width, height, false);
-    const aspect = width / height;
-    const halfHeight = Math.max(1.88, 1.72 / Math.max(0.55, aspect));
-    const halfWidth = halfHeight * aspect;
-    camera.left = -halfWidth;
-    camera.right = halfWidth;
-    camera.top = halfHeight;
-    camera.bottom = -halfHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
     updateScrollState();
     renderScene();

@@ -1,0 +1,59 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  label?: string;
+}
+
+const { currentPage, totalPages, label = 'Navigasi halaman artikel' } = Astro.props;
+const hrefForPage = (page: number) => page <= 1 ? '/blog/' : `/blog/page/${page}/`;
+
+const visiblePages = [...new Set([
+  1,
+  currentPage - 2,
+  currentPage - 1,
+  currentPage,
+  currentPage + 1,
+  currentPage + 2,
+  totalPages,
+].filter((page) => page >= 1 && page <= totalPages))].sort((a, b) => a - b);
+
+const pageItems: Array<number | string> = [];
+visiblePages.forEach((page, index) => {
+  const previous = visiblePages[index - 1];
+  if (previous && page - previous > 1) pageItems.push(`ellipsis-${previous}`);
+  pageItems.push(page);
+});
+---
+
+{totalPages > 1 && (
+  <nav class="blog-pagination" aria-label={label}>
+    <a
+      class:list={['blog-pagination__direction', currentPage === 1 && 'is-disabled']}
+      href={currentPage > 1 ? hrefForPage(currentPage - 1) : undefined}
+      aria-disabled={currentPage === 1 ? 'true' : undefined}
+      tabindex={currentPage === 1 ? -1 : undefined}
+    >
+      <span aria-hidden="true">&larr;</span> Sebelumnya
+    </a>
+    <ol class="blog-pagination__pages">
+      {pageItems.map((item) => typeof item === 'number' ? (
+        <li>
+          <a
+            href={hrefForPage(item)}
+            aria-current={item === currentPage ? 'page' : undefined}
+            aria-label={`Halaman ${item}`}
+          >{item}</a>
+        </li>
+      ) : <li class="blog-pagination__ellipsis" aria-hidden="true">&hellip;</li>)}
+    </ol>
+    <a
+      class:list={['blog-pagination__direction', currentPage === totalPages && 'is-disabled']}
+      href={currentPage < totalPages ? hrefForPage(currentPage + 1) : undefined}
+      aria-disabled={currentPage === totalPages ? 'true' : undefined}
+      tabindex={currentPage === totalPages ? -1 : undefined}
+    >
+      Berikutnya <span aria-hidden="true">&rarr;</span>
+    </a>
+  </nav>
+)}

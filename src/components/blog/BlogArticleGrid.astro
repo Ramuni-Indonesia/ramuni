@@ -1,0 +1,48 @@
+---
+import type { BlogPost } from '../../lib/blog';
+import StoryMicroVisual from './StoryMicroVisual.astro';
+
+interface Props {
+  posts: BlogPost[];
+  startPosition?: number;
+  emptyMessage?: string;
+}
+
+const {
+  posts,
+  startPosition = 1,
+  emptyMessage = 'Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.',
+} = Astro.props;
+
+const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(value);
+---
+
+{posts.length ? (
+  <div class="editorial-cards">
+    {posts.map((post, index) => (
+      <a class="editorial-card reveal" href={`/blog/${post.id}/`} style={`--i:${index}`}>
+        <figure>
+          <img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" />
+          <StoryMicroVisual categorySlug={post.data.categorySlug} compact />
+        </figure>
+        <div>
+          <div class="editorial-card__top">
+            <span>{post.data.category}</span>
+            <b>{String(startPosition + index).padStart(2, '0')}</b>
+          </div>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.dek}</p>
+          <small>
+            <span>{post.data.readingTime}</span>
+            <span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span>
+          </small>
+          <i class="editorial-card__read">Baca artikel &rarr;</i>
+        </div>
+      </a>
+    ))}
+  </div>
+) : <p class="blog-empty">{emptyMessage}</p>}

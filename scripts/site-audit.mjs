@@ -2,6 +2,12 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolvePublicEnvironment } from '../src/config/public-environment.mjs';
+import {
+  SITEMAP_CHILD_FILES,
+  SITEMAP_INDEX_FILES,
+  normalizeSitemapPath,
+  sitemapGroupForPath,
+} from './sitemap-policy.mjs';
 import { gzipSync } from 'node:zlib';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
@@ -87,6 +93,18 @@ const DUMMY_BLOG_ROUTES = new Set([
   '/blog/ai-business-companion-umkm',
   '/blog/arus-kas-umkm-ringan',
   '/blog/panduan-membaca-stok-harian',
+]);
+const EDITORIAL_TRUST_ROUTES = new Set([
+  '/blog/kebijakan-editorial',
+  '/blog/metodologi-fact-check',
+  '/blog/kebijakan-sumber',
+  '/blog/kebijakan-pembaruan',
+  '/blog/koreksi',
+]);
+const SENSITIVE_BLOG_CATEGORIES = new Set([
+  'ai-untuk-umkm',
+  'keuangan-umkm',
+  'operasional-bisnis',
 ]);
 
 function routeFor(file) {
@@ -292,6 +310,34 @@ function registerUnique(map, value, route, label) {
   else map.set(value, route);
 }
 
+function isBlogArticleRoute(route) {
+  return /^\/blog\/[^/]+$/.test(route) && !EDITORIAL_TRUST_ROUTES.has(route);
+}
+
+function classSegment(html, className) {
+  const pattern = new RegExp(`<([a-z][a-z0-9-]*)\\b(?=[^>]*\\bclass=["'][^"']*\\b${className}\\b)[^>]*>([\\s\\S]*?)<\\/\\1>`, 'i');
+  return html.match(pattern)?.[2] || '';
+}
+
+function anchorHrefs(html) {
+  return [...html.matchAll(/<a\b[^>]*\shref="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
+}
+
+function articleSourceRecord(path, body) {
+  const frontmatter = body.match(/^---\n([\s\S]*?)\n---/m)?.[1] || '';
+  const field = (name) => frontmatter.match(new RegExp(`^${name}:\\s*(?:"([^"]*)"|'([^']*)'|([^\\n#]+))`, 'm'))?.slice(1).find(Boolean)?.trim() || '';
+  const rel = relative(join(sourceRoot, 'content', 'blog'), path).split(sep).join('/').replace(/\.(?:md|mdx)$/i, '');
+  return {
+    route: `/blog/${rel}`,
+    reviewStatus: field('reviewStatus'),
+    noindex: field('noindex'),
+    categorySlug: field('categorySlug'),
+    reviewerName: field('reviewerName'),
+    reviewerSlug: field('reviewerSlug'),
+    hasStructuredSources: !/^sources:\s*\[\s*\]/m.test(frontmatter) && /^sources:/m.test(frontmatter),
+  };
+}
+
 function getAttribute(tag, name) {
   const match = tag.match(new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, 'i'));
   return match ? (match[1] ?? match[2] ?? match[3] ?? '').trim() : null;
@@ -484,6 +530,7 @@ function expectedPageType(route) {
   if (route === '/tentang') return 'AboutPage';
   if (route === '/kontak') return 'ContactPage';
   if (/^\/(sumber-daya|panduan|template|kalkulator|kamus-bisnis)$/.test(route)) return 'CollectionPage';
+  if (/^\/blog(?:\/page\/\d+|\/kategori\/[^/]+)?$/.test(route)) return 'CollectionPage';
   return 'WebPage';
 }
 
@@ -507,10 +554,25 @@ for (const [route, page] of pages) {
   const posting = schemaEntity(page, 'BlogPosting');
   if (posting) {
     if (!equivalentUrl(posting.mainEntityOfPage?.['@id'], page.canonical)) failures.push(`${route}: BlogPosting mainEntityOfPage must match canonical`);
+    if (!posting.headline || !posting.description || !posting.image) failures.push(`${route}: BlogPosting requires headline, description, and image`);
+    if (!posting.author?.['@type'] || !posting.author?.name) failures.push(`${route}: BlogPosting requires a named author entity`);
+    if (posting.publisher?.['@type'] !== 'Organization' || !posting.publisher?.name || !posting.publisher?.logo?.url) failures.push(`${route}: BlogPosting requires an Organization publisher with logo`);
     const published = Date.parse(posting.datePublished);
     const modified = Date.parse(posting.dateModified);
     if (!Number.isFinite(published) || !Number.isFinite(modified)) failures.push(`${route}: BlogPosting dates must be valid`);
     else if (modified < published) failures.push(`${route}: BlogPosting dateModified precedes datePublished`);
+  }
+
+  if (isBlogArticleRoute(route) && !page.noindex) {
+    requireSchemaTypes(route, page, ['BlogPosting', 'BreadcrumbList']);
+    const articleContent = classSegment(page.html, 'article-content');
+    const contextualLinks = anchorHrefs(articleContent);
+    const contextualInternalLinks = contextualLinks.filter((href) => href.startsWith('/') && !href.startsWith('//'));
+    if (contextualInternalLinks.length < 2) failures.push(`${route}: indexable article requires at least two contextual internal links in the article body`);
+
+    const sourceList = classSegment(page.html, 'source-list');
+    const sourceLinks = anchorHrefs(sourceList).filter((href) => /^https:\/\//i.test(href));
+    if (sourceLinks.length < 1) failures.push(`${route}: indexable article requires at least one HTTPS source link in the structured source list`);
   }
 
   for (const type of ['WebApplication', 'CollectionPage']) {
@@ -547,6 +609,18 @@ for (const [route, page] of pages) {
   }
 }
 
+for (const file of sourceFiles.filter((path) => /[\\/]content[\\/]blog[\\/].*\.(?:md|mdx)$/i.test(path))) {
+  const source = articleSourceRecord(file, await readFile(file, 'utf8'));
+  const page = pages.get(normalizeRoute(source.route));
+  if (!page || page.noindex) continue;
+  if (source.reviewStatus !== 'reviewed') failures.push(`${source.route}: indexable article source must have reviewStatus: reviewed`);
+  if (source.noindex !== 'false') failures.push(`${source.route}: indexable article source must explicitly set noindex: false`);
+  if (!source.hasStructuredSources) failures.push(`${source.route}: indexable article source requires structured sources`);
+  if (SENSITIVE_BLOG_CATEGORIES.has(source.categorySlug) && (!source.reviewerName || !source.reviewerSlug)) {
+    failures.push(`${source.route}: sensitive indexable article requires reviewerName and reviewerSlug`);
+  }
+}
+
 const ignoredPrefixes = ['/api/', '/admin/', '/preview/'];
 for (const [route, page] of pages) {
   if (page.isRedirect) continue;
@@ -560,25 +634,68 @@ for (const [route, page] of pages) {
   }
 }
 
-const sitemapFiles = files.filter((file) => /sitemap-\d+\.xml$/.test(file));
-const sitemapUrls = new Set();
-for (const file of sitemapFiles) {
-  const xml = await readFile(file, 'utf8');
-  for (const match of xml.matchAll(/<loc>https?:\/\/[^/]+([^<]*)<\/loc>/g)) {
-    sitemapUrls.add(normalizeRoute(match[1] || '/'));
+const rootSitemapFiles = files.filter((file) => {
+  const rel = relative(root, file).split(sep).join('/');
+  return !rel.includes('/') && /^sitemap(?:-[a-z0-9-]+)?\.xml$/i.test(rel);
+}).map((file) => relative(root, file).split(sep).join('/'));
+const rootSitemapSet = new Set(rootSitemapFiles);
+const sitemapUrls = new Map();
+
+function sitemapLocPaths(xml, sourceFile) {
+  const routes = [];
+  for (const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    try {
+      const loc = new URL(match[1]);
+      if (loc.protocol !== 'https:') failures.push(`${sourceFile}: sitemap URL must use HTTPS (${loc.href})`);
+      if (loc.origin !== siteOrigin) failures.push(`${sourceFile}: sitemap URL must use the canonical site origin (${loc.href})`);
+      if (loc.search || loc.hash) failures.push(`${sourceFile}: sitemap URL must not include query or hash (${loc.href})`);
+      routes.push(normalizeRoute(loc.pathname));
+    } catch {
+      failures.push(`${sourceFile}: invalid sitemap URL ${match[1]}`);
+    }
+  }
+  return routes;
+}
+
+if (publicEnvironment.indexingEnabled) {
+  for (const file of [...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES]) {
+    if (!rootSitemapSet.has(file)) failures.push(`sitemap: missing ${file}`);
+  }
+  for (const file of rootSitemapFiles) {
+    if (![...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES].includes(file)) failures.push(`sitemap: unexpected file ${file}`);
+  }
+
+  const expectedChildRoutes = new Set(SITEMAP_CHILD_FILES.map((file) => normalizeRoute(`/${file}`)));
+  for (const indexFile of SITEMAP_INDEX_FILES) {
+    if (!rootSitemapSet.has(indexFile)) continue;
+    const xml = await readFile(join(root, indexFile), 'utf8');
+    const locs = new Set(sitemapLocPaths(xml, indexFile));
+    for (const route of expectedChildRoutes) if (!locs.has(route)) failures.push(`${indexFile}: missing child sitemap ${route}`);
+    for (const route of locs) if (!expectedChildRoutes.has(route)) failures.push(`${indexFile}: unexpected child sitemap ${route}`);
+  }
+
+  for (const file of SITEMAP_CHILD_FILES) {
+    if (!rootSitemapSet.has(file)) continue;
+    const expectedGroup = file.match(/^sitemap-([a-z]+)\.xml$/)?.[1];
+    const xml = await readFile(join(root, file), 'utf8');
+    for (const route of sitemapLocPaths(xml, file)) {
+      const page = pages.get(route);
+      const previous = sitemapUrls.get(route);
+      if (previous) failures.push(`sitemap: duplicate URL ${route} in ${previous} and ${file}`);
+      sitemapUrls.set(route, file);
+      if (!page) failures.push(`${file}: missing page ${route}`);
+      else if (page.noindex) failures.push(`${file}: noindex page included ${route}`);
+      else if (sitemapGroupForPath(normalizeSitemapPath(route)) !== expectedGroup) failures.push(`${file}: wrong group for ${route}`);
+    }
   }
 }
-for (const route of sitemapUrls) {
-  const page = pages.get(route);
-  if (!page) failures.push(`sitemap: missing page ${route}`);
-  else if (page.noindex) failures.push(`sitemap: noindex page included ${route}`);
-}
+
 for (const [route, page] of pages) {
   if (!page.noindex && !sitemapUrls.has(normalizeRoute(route))) failures.push(`${route}: indexable canonical page missing from sitemap`);
   if (!publicEnvironment.indexingEnabled && !page.noindex) failures.push(`${route}: non-production build must remain noindex`);
 }
 
-if (!publicEnvironment.indexingEnabled && sitemapUrls.size > 0) failures.push('sitemap: non-production build must not expose URLs');
+if (!publicEnvironment.indexingEnabled && rootSitemapFiles.length > 0) failures.push('sitemap: non-production build must not expose sitemap files');
 
 for (const route of DUMMY_BLOG_ROUTES) {
   const page = pages.get(route);

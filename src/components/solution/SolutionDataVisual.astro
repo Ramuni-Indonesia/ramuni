@@ -37,11 +37,12 @@ const visualId = `sd-visual-${visual.kind}`;
     </div>
     <figure class="sd-visual__context-image">
       <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" fetchpriority="high" />
+      <figcaption>Ilustrasi konteks</figcaption>
     </figure>
   </div>
 
   {visual.kind === 'revenue' && (
-    <div class="sd-revenue" aria-hidden="true">
+    <div class="sd-revenue sd-visual__pattern-chart" role="img" aria-label="Pola pendapatan contoh berdasarkan metrik solusi">
       {visual.metrics.map((metric, index) => (
         <div class={`sd-revenue__column ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--level:${[82, 54, 67][index]}%`}>
           <span>{metric.value}</span><i></i><b>{metric.label}</b>
@@ -51,7 +52,7 @@ const visualId = `sd-visual-${visual.kind}`;
   )}
 
   {visual.kind === 'stock' && (
-    <div class="sd-stock" aria-hidden="true">
+    <div class="sd-stock sd-visual__pattern-chart" role="img" aria-label="Pola stok contoh berdasarkan metrik solusi">
       {visual.metrics.map((metric, index) => (
         <div class={`sd-stock__row ${metric.tone ? `is-${metric.tone}` : ''}`}>
           <span>{String(index + 1).padStart(2, '0')}</span><b>{metric.label}</b><i style={`--level:${[36, 70, 55][index]}%`}></i><strong>{metric.value}</strong>
@@ -61,7 +62,7 @@ const visualId = `sd-visual-${visual.kind}`;
   )}
 
   {visual.kind === 'cash' && (
-    <div class="sd-cash" aria-hidden="true">
+    <div class="sd-cash sd-visual__pattern-chart" role="img" aria-label="Pola arus kas contoh berdasarkan metrik solusi">
       {visual.metrics.map((metric, index) => (
         <div class={`sd-cash__step ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--level:${[100, 62, 48][index]}%`}>
           <span>{metric.label}</span><i></i><strong>{metric.value}</strong>
@@ -71,7 +72,7 @@ const visualId = `sd-visual-${visual.kind}`;
   )}
 
   {visual.kind === 'customer' && (
-    <div class="sd-customer" aria-hidden="true">
+    <div class="sd-customer sd-visual__pattern-chart" role="img" aria-label="Pola pelanggan contoh berdasarkan metrik solusi">
       <i class="sd-customer__line"></i>
       {visual.metrics.map((metric, index) => (
         <div class={`sd-customer__event ${metric.tone ? `is-${metric.tone}` : ''}`} style={`--i:${index}`}>
@@ -82,7 +83,7 @@ const visualId = `sd-visual-${visual.kind}`;
   )}
 
   {visual.kind === 'report' && (
-    <div class="sd-report" aria-hidden="true">
+    <div class="sd-report sd-visual__pattern-chart" role="img" aria-label="Pola laporan contoh berdasarkan metrik solusi">
       <div class="sd-report__rule"><span></span><span></span><span></span></div>
       {visual.metrics.map((metric, index) => (
         <div class={`sd-report__item ${metric.tone ? `is-${metric.tone}` : ''}`}>
@@ -111,9 +112,11 @@ const visualId = `sd-visual-${visual.kind}`;
 </figure>
 
 <style>
-  .sd-visual__proof-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(150px,.7fr);gap:12px;padding:14px;background:var(--white)}
-  .sd-visual__dashboard-image{position:relative;min-width:0;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__dashboard-image picture{display:block}.sd-visual__dashboard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}.sd-visual__dashboard-image span{position:absolute;left:12px;bottom:12px;padding:7px 9px;background:rgb(11 48 69/.9);color:var(--white);font-size:.6rem;font-weight:800}
-  .sd-visual__context-image{min-width:0;margin:0;overflow:hidden;border:1px solid var(--ink-10);background:var(--rice)}.sd-visual__context-image img{display:block;width:100%;height:100%;object-fit:cover}
-  .sd-visual__proof-grid+*{display:none!important}
-  @media(max-width:680px){.sd-visual__proof-grid{grid-template-columns:1fr}.sd-visual__context-image{max-height:160px}}
+  .sd-visual__pane--pattern{display:grid;gap:12px;padding:12px;background:var(--white)}
+  .sd-visual__proof-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(150px,.78fr);gap:12px;background:var(--white)}
+  .sd-visual__dashboard-image{position:relative;min-width:0;aspect-ratio:16/9;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__dashboard-image picture{display:block;height:100%}.sd-visual__dashboard-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}.sd-visual__dashboard-image span{position:absolute;left:12px;bottom:12px;padding:7px 9px;background:rgb(11 48 69/.9);color:var(--white);font-size:.6rem;font-weight:800}
+  .sd-visual__context-image{position:relative;min-width:0;margin:0;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--ink-10);background:var(--rice)}.sd-visual__context-image img{display:block;width:100%;height:100%;object-fit:cover}.sd-visual__context-image figcaption{position:absolute;left:10px;bottom:10px;padding:6px 8px;background:rgb(244 240 231/.94);color:var(--ink);font-size:.58rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  .sd-visual__pattern-chart{min-height:190px;border:1px solid var(--ink-10)}
+  .sd-revenue.sd-visual__pattern-chart{height:210px;min-height:210px;padding-block:24px 18px}.sd-stock.sd-visual__pattern-chart{padding-block:18px}.sd-cash.sd-visual__pattern-chart,.sd-customer.sd-visual__pattern-chart,.sd-report.sd-visual__pattern-chart{min-height:210px}
+  @media(max-width:680px){.sd-visual__proof-grid{grid-template-columns:1fr}.sd-visual__context-image{max-height:170px}.sd-visual__pattern-chart,.sd-revenue.sd-visual__pattern-chart,.sd-cash.sd-visual__pattern-chart,.sd-customer.sd-visual__pattern-chart,.sd-report.sd-visual__pattern-chart{min-height:170px}.sd-revenue.sd-visual__pattern-chart{height:190px}.sd-stock__row{grid-template-columns:24px 78px 1fr auto;gap:8px}}
 </style>

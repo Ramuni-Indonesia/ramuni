@@ -22,6 +22,8 @@ interface Props {
   pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
   keywords?: string | string[];
   chrome?: boolean;
+  previousPage?: string;
+  nextPage?: string;
 }
 
 const {
@@ -38,9 +40,13 @@ const {
   pageType,
   keywords = ['RAMUNI', 'AI Business Companion', 'UMKM Indonesia', 'stok usaha', 'penjualan UMKM', 'arus kas usaha'],
   chrome = true,
+  previousPage,
+  nextPage,
 } = Astro.props;
 const absoluteCanonical = new URL(canonical, Astro.site || Astro.url.origin).toString();
 const absoluteImage = new URL(image, Astro.site || Astro.url.origin).toString();
+const absolutePreviousPage = previousPage ? new URL(previousPage, Astro.site || Astro.url.origin).toString() : undefined;
+const absoluteNextPage = nextPage ? new URL(nextPage, Astro.site || Astro.url.origin).toString() : undefined;
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
 const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
@@ -121,6 +127,8 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     <meta name="keywords" content={keywordContent} />
     <meta name="robots" content={effectiveNoindex ? 'noindex,follow' : 'index,follow'} />
     <link rel="canonical" href={absoluteCanonical} />
+    {absolutePreviousPage && <link rel="prev" href={absolutePreviousPage} />}
+    {absoluteNextPage && <link rel="next" href={absoluteNextPage} />}
     <link rel="alternate" hreflang="id-ID" href={absoluteCanonical} />
     <link rel="alternate" hreflang="x-default" href={absoluteCanonical} />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

@@ -3,31 +3,23 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
+import BlogArticleGrid from '../../components/blog/BlogArticleGrid.astro';
+import BlogPagination from '../../components/blog/BlogPagination.astro';
 import { releaseGates } from '../../config/release';
+import { blogCategories } from '../../data/blogTaxonomy';
+import { getBlogPageHref, getVisibleBlogPosts, paginateBlogPosts } from '../../lib/blog';
 import '../../styles/blog.css';
 
-const posts = (await getCollection('blog'))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const posts = getVisibleBlogPosts(await getCollection('blog'), !releaseGates.siteIndexable);
 const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
 
 const featured = posts.find((post) => post.data.featured) || posts[0];
-const latest = posts.filter((post) => post.id !== featured?.id);
+const page = paginateBlogPosts(posts, 1);
+const latest = page.items.filter((post) => post.id !== featured?.id);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const publishedCategories = new Set(posts.map((post) => post.data.categorySlug));
 
-const categoryCatalog = [
-  { slug: 'penjualan-omzet', name: 'Penjualan & Omzet', description: 'Baca pola transaksi, produk terlaris, dan waktu ramai tanpa laporan yang rumit.', question: 'Produk mana yang mendorong omzet minggu ini?' },
-  { slug: 'stok-inventori', name: 'Stok & Inventori', description: 'Pahami stok bergerak dan risiko kosong sebelum terlambat.', question: 'Barang mana yang perlu dicek hari ini?' },
-  { slug: 'keuangan-umkm', name: 'Keuangan UMKM', description: 'Baca arus kas, biaya, dan margin dengan bahasa yang lebih ringan.', question: 'Mengapa kas terasa turun?' },
-  { slug: 'pelanggan-crm', name: 'Pelanggan & CRM', description: 'Kenali pelanggan yang kembali belanja dan yang mulai pasif.', question: 'Siapa yang belum kembali belanja?' },
-  { slug: 'operasional-bisnis', name: 'Operasional Bisnis', description: 'Rapikan cara melihat aktivitas harian, laporan, dan keputusan tim.', question: 'Pekerjaan mana yang sering berulang?' },
-  { slug: 'ai-untuk-umkm', name: 'AI untuk UMKM', description: 'Pakai AI sebagai pendamping baca konteks, bukan pengganti keputusan.', question: 'Kapan hasil AI perlu dicek manusia?' },
-  { slug: 'strategi-per-industri', name: 'Strategi per Industri', description: 'Temukan pertanyaan yang relevan untuk ritme usaha yang berbeda.', question: 'Apa sinyal penting di jenis usaha saya?' },
-  { slug: 'panduan-ramuni', name: 'Panduan RAMUNI', description: 'Pelajari konsep RAMUNI dengan status fitur yang jelas.', question: 'Apa yang sudah tersedia dan apa yang belum?' },
-];
-
-const categories = categoryCatalog
+const categories = blogCategories
   .map((category) => ({ ...category, count: posts.filter((post) => post.data.categorySlug === category.slug).length }))
   .filter((category) => category.count > 0);
 
@@ -49,9 +41,22 @@ const schema = [
     { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
     { '@type': 'ListItem', position: 2, name: 'Blog RAMUNI', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
   ] },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Artikel terbaru RAMUNI', numberOfItems: page.totalItems, itemListElement: page.items.map((post, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: post.data.title,
+    url: new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString(),
+  })) },
 ];
 ---
-<BaseLayout title="Blog Bisnis UMKM | RAMUNI" description="Panduan praktis untuk memahami penjualan, stok, keuangan, pelanggan, dan penggunaan AI yang aman untuk UMKM." schema={schema}>
+<BaseLayout
+  title="Blog Bisnis UMKM | RAMUNI"
+  description="Panduan praktis untuk memahami penjualan, stok, keuangan, pelanggan, dan penggunaan AI yang aman untuk UMKM."
+  pageType="CollectionPage"
+  noindex={releaseGates.siteIndexable && page.totalItems === 0}
+  schema={schema}
+  nextPage={page.totalPages > 1 ? getBlogPageHref(2) : undefined}
+>
   <section class="blog-hero">
     <div class="container blog-hero-grid">
       <div class="reveal is-visible">
@@ -128,9 +133,8 @@ const schema = [
   <section class="section blog-latest-stage" aria-labelledby="latest-heading">
     <div class="container blog-latest-layout">
       <div class="blog-latest-head reveal"><p class="section-kicker">Terbit terbaru</p><h2 id="latest-heading">Bacaan berikutnya, dipilih dari kebutuhan nyata.</h2><p>Setiap artikel dimulai dari satu pertanyaan usaha, bukan istilah teknis.</p></div>
-      <div class="editorial-cards">
-        {latest.length ? latest.map((post, index) => <a class="editorial-card reveal" href={`/blog/${post.id}/`} style={`--i:${index}`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /><StoryMicroVisual categorySlug={post.data.categorySlug} compact /></figure><div><div class="editorial-card__top"><span>{post.data.category}</span><b>0{index + 2}</b></div><h3>{post.data.title}</h3><p>{post.data.dek}</p><small><span>{post.data.readingTime}</span><span>{formatDate(post.data.updatedAt || post.data.publishedAt)}</span></small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>) : <p class="blog-empty">Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.</p>}
-      </div>
+      <BlogArticleGrid posts={latest} startPosition={featured ? 2 : 1} />
+      <BlogPagination currentPage={page.currentPage} totalPages={page.totalPages} />
     </div>
   </section>
 

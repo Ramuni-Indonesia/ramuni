@@ -19,6 +19,7 @@ const {
 >
   <video
     muted
+    loop
     playsinline
     preload="metadata"
     poster="/website-original/mascot/ramuni-mascot-work-loop-poster.webp"
@@ -42,20 +43,15 @@ const {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
       let inView = false;
-      let hasPlayed = false;
-
       const update = () => {
         const canAnimate = inView && !document.hidden && !reducedMotion.matches && !saveData;
         mascot.dataset.animate = canAnimate ? 'true' : 'false';
-        if (canAnimate && !hasPlayed) {
-          hasPlayed = true;
-          video.playbackRate = 0.86;
-          video.currentTime = 0;
+        if (canAnimate) {
+          video.playbackRate = 1;
           void video.play().catch(() => undefined);
         } else {
           video.pause();
           if (!inView || document.hidden || reducedMotion.matches) {
-            hasPlayed = false;
             video.currentTime = 0;
           }
         }
@@ -89,9 +85,10 @@ const {
     width:var(--animated-muni-size,148px);
     aspect-ratio:188/211;
     flex:0 0 auto;
-    border:1px solid rgb(11 48 69/.18);
+    border:1px solid rgb(11 48 69/.12);
+    border-radius:24px;
     background-color:var(--rice);
-    box-shadow:7px 7px 0 var(--yellow);
+    box-shadow:0 18px 42px rgb(11 48 69/.14);
     overflow:hidden;
     contain:paint;
   }
@@ -122,13 +119,11 @@ const {
   }
 
   @media(prefers-reduced-motion:no-preference){
-    .animated-muni-work[data-animate='true']{animation:muni-work-attend 7.2s cubic-bezier(.22,1,.36,1) both}
     .animated-muni-work[data-animate='true']::after{animation:muni-work-label 6s 1.2s cubic-bezier(.22,1,.36,1) both}
-    @keyframes muni-work-attend{0%{transform:translateY(10px)}12%,68%{transform:none}78%{transform:translateY(-3px)}100%{transform:none}}
     @keyframes muni-work-label{0%{opacity:0;transform:translateY(6px)}10%,58%{opacity:1;transform:none}78%,100%{opacity:0;transform:none}}
   }
 
-  @media(max-width:680px){.animated-muni-work{--animated-muni-size:112px;box-shadow:5px 5px 0 var(--yellow)}}
+  @media(max-width:680px){.animated-muni-work{--animated-muni-size:112px;border-radius:18px;box-shadow:0 14px 30px rgb(11 48 69/.13)}}
   @media(prefers-reduced-motion:reduce){
     .animated-muni-work video{visibility:hidden}
     .animated-muni-work{

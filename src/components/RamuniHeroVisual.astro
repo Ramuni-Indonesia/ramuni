@@ -10,24 +10,25 @@ import AnimatedMuniWork from './AnimatedMuniWork.astro';
     <span class="direction-fold__yellow"></span>
   </div>
 
-  <figure class="home-hero-proof">
-    <header class="home-hero-proof__head">
-      <span>Dashboard RAMUNI</span>
-      <strong><i aria-hidden="true"></i>Data demo</strong>
-    </header>
-    <AnimatedDashboardProof class="home-hero-proof__dashboard" />
-    <figcaption>
-      <span>Tampilan produk · data demo</span>
-      <strong>Catatan masuk, bukti diperiksa, lalu perhatian berikutnya menjadi lebih jelas.</strong>
-    </figcaption>
-  </figure>
+  <div class="home-hero-proof-grid">
+    <figure class="home-hero-proof">
+      <header class="home-hero-proof__head">
+        <span>Dashboard RAMUNI</span>
+        <strong><i aria-hidden="true"></i>Data demo</strong>
+      </header>
+      <AnimatedDashboardProof class="home-hero-proof__dashboard" />
+      <figcaption>
+        <span>Tampilan produk · data demo</span>
+        <strong>Catatan masuk, bukti diperiksa, lalu perhatian berikutnya menjadi lebih jelas.</strong>
+      </figcaption>
+    </figure>
 
-  <AnimatedMuniWork
-    class="home-hero-proof__mascot"
-    label="Muni bergerak sambil memeriksa catatan dan dashboard RAMUNI"
-  />
-  <div class="visual-note visual-note--evidence" aria-hidden="true">
-    <span>Alur insight</span>
-    <strong>Catatan → bukti → arah</strong>
+    <aside class="home-hero-companion" aria-label="Muni membantu membaca dashboard">
+      <AnimatedMuniWork
+        class="home-hero-proof__mascot"
+        label="Muni bergerak sambil memeriksa catatan dan dashboard RAMUNI"
+      />
+      <p><span>Muni membantu membaca</span><strong>Bukti dulu, baru arah.</strong></p>
+    </aside>
   </div>
 </div>
