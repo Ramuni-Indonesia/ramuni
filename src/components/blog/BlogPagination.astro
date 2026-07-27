@@ -57,3 +57,10 @@ visiblePages.forEach((page, index) => {
     </a>
   </nav>
 )}
+
+<style>
+  .blog-pagination{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;margin-top:clamp(42px,6vw,72px);padding-top:22px;border-top:1px solid var(--ink)}
+  .blog-pagination__direction{display:flex;min-height:44px;align-items:center;gap:8px;color:var(--ink);font-size:.8rem;font-weight:800;text-decoration:none}.blog-pagination__direction:last-child{justify-self:end}.blog-pagination__direction:is(:hover,:focus-visible){color:var(--teal)}.blog-pagination__direction.is-disabled{color:var(--ink-40);pointer-events:none}
+  .blog-pagination__pages{display:flex;justify-content:center;gap:8px;margin:0;padding:0;list-style:none}.blog-pagination__pages a,.blog-pagination__ellipsis{display:grid;width:40px;min-height:40px;place-items:center}.blog-pagination__pages a{border:1px solid var(--ink-20);color:var(--ink);font-weight:800;text-decoration:none}.blog-pagination__pages a:is(:hover,:focus-visible){border-color:var(--teal);color:var(--teal)}.blog-pagination__pages a[aria-current='page']{background:var(--ink);color:var(--white)}
+  @media(max-width:740px){.blog-pagination{grid-template-columns:1fr 1fr}.blog-pagination__pages{grid-column:1/-1}.blog-pagination__direction:last-child{grid-column:2}}
+</style>

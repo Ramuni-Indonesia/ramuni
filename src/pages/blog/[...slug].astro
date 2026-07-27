@@ -129,7 +129,7 @@ const schema = [
 
           {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}
 
-          {articleResource && <aside class="article-resource-bridge" aria-labelledby="article-resource-title">
+          {articleResource && !embeddedCalculator && <aside class="article-resource-bridge" aria-labelledby="article-resource-title">
             <div><span>Gunakan bersama artikel</span><h2 id="article-resource-title">{articleResource.title}</h2><p>{articleResource.text}</p></div>
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
@@ -209,8 +209,8 @@ const schema = [
 
 </BaseLayout>
 
-<style is:global>
+{articleResource && !embeddedCalculator && <style is:global>
   .article-resource-bridge{display:grid;grid-template-columns:1fr minmax(260px,.72fr);gap:clamp(26px,5vw,58px);margin:clamp(48px,7vw,76px) 0;padding:clamp(26px,4vw,42px);background:var(--rice);border-top:4px solid var(--teal)}
-  .article-resource-bridge>div>span{color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.article-resource-bridge h2{max-width:16ch;margin-top:10px;font-size:clamp(1.65rem,3vw,2.8rem)}.article-resource-bridge>div>p{max-width:48ch;margin-top:14px;color:var(--ink-72)}.article-resource-bridge nav{border-top:1px solid var(--ink)}.article-resource-bridge nav a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 0;border-bottom:1px solid var(--ink-10);color:var(--ink);font-size:.82rem;font-weight:800;text-decoration:none}.article-resource-bridge nav i{color:var(--teal);font-style:normal}.article-rail-tool{display:grid;gap:9px;margin-top:28px;padding:18px;background:var(--rice);border-left:3px solid var(--teal)}.article-rail-tool span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase}.article-rail-tool strong{font-size:.9rem;line-height:1.4}.article-rail-tool a{color:var(--ink);font-size:.78rem;font-weight:800;text-decoration:none}
+  .article-resource-bridge>div>span{color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.article-resource-bridge h2{max-width:16ch;margin-top:10px;font-size:clamp(1.65rem,3vw,2.8rem)}.article-resource-bridge>div>p{max-width:48ch;margin-top:14px;color:var(--ink-72)}.article-resource-bridge nav{border-top:1px solid var(--ink)}.article-resource-bridge nav a{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 0;border-bottom:1px solid var(--ink-10);color:var(--ink);font-size:.82rem;font-weight:800;text-decoration:none}.article-resource-bridge nav i{color:var(--teal);font-style:normal}
   @media(max-width:960px){.article-resource-bridge{grid-template-columns:1fr}}
-</style>
+</style>}
