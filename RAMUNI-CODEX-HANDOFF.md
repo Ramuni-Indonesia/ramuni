@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-07-26 Asia/Jakarta
+Snapshot date: 2026-07-27 Asia/Jakarta
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -12,11 +12,12 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `97db759f4163457880fe187686ad0f6d9a04fe04` (`feat: add real product visuals and mascot motion`).
+- Published runtime commit: `e12eaef59cb855c0e8080468b328ed7c5686d99b` (`fix: ship reliable motion assets and cleaner support navigation`).
+- Visual motion commits immediately below it: `82dbffd` (`feat: animate real product proof and contextual heroes`) and `13754bc` (`fix: keep solution hub within release budget`).
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260726T184251Z-97db759f4163`.
-- Active release path: `/var/www/ramuni-staging/releases/20260726T184251Z-97db759f4163`.
-- Deployed artifact SHA-256: `c511a07b2d13d1beec7343a99a6dc75312f323daadea9183366effbe13667f5d`.
+- Active staging release: `20260727T021458Z-e12eaef59cb8`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T021458Z-e12eaef59cb8`.
+- Deployed artifact SHA-256: `ee084e520ef4f9a65283b64a2045d30e2c11f81ce00a0483a2d7c601aa2c062c`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -54,7 +55,8 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
 - Product, solution, industry, and role pages now use contextual real RAMUNI product screenshots where the seeded dashboard evidence supports the claim; unsupported AI/import-specific flows retain explicitly conceptual visuals.
 - Real product screenshots are cropped from local product evidence that uses demo fixtures, not production tenant or customer data. Public labels say `Tampilan produk · data demo`.
-- Home and product flows include brand-safe mascot/decision visuals. The homepage dashboard caption now includes a four-frame Muni working animation generated through the native HashMicro gateway; it pauses offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
+- The homepage hero now combines a looping real RAMUNI seeded/demo dashboard video with a separate looping Muni work video. Both use WebM plus MP4 fallbacks and pause offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
+- The homepage problem section uses the larger centered `guide3d` raster with the mascot layer above the surrounding cards. It is approved only as a static 3D-look image, not as a rigged 3D identity model.
 - Pricing remains hidden. `/tour-produk-gratis/` is the focused conversion form without the normal navbar/footer.
 - `/demo`, `/early-access`, and `/harga` redirect in one hop to `/tour-produk-gratis/`.
 - All official WhatsApp contact links use `https://wa.me/message/K35W6X6WT7YMJ1`.
@@ -73,6 +75,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Internal links use trailing-slash canonical routes. Header/footer matching and solution-icon routing follow the same convention.
 - All nine product icons and all five solution icons are available. The latest three solution icons are `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`; their optimized WebP files are committed and synchronized to R2.
 - Product detail, solution detail, industry, role, help, and selected blog pages now select dashboard art by context instead of repeating one generic shell.
+- Product and solution detail heroes pair truthful RAMUNI seeded/demo dashboard evidence with one of four contextual HashMicro-generated illustrations: AI/import, sales/customer, stock/operations, or cash/report. Conceptual art is not labelled as product UI.
 - Four web-optimized synthetic dashboards cover AI/evidence, inventory/reorder, cash flow, and sales/customer contexts.
 - Blog article layout now uses a wider reading area with a useful TOC/tools rail; AI, cash-flow, and stock articles have distinct contextual dashboards and relevant tool/resource routes.
 - The old large WebGL mascot block was removed. `DecisionFlow3D.astro` is now a lighter 2.5D workbench whose small mascot accent changes by step.
@@ -94,23 +97,33 @@ Useful visual components and assets:
 - `public/website-original/dashboards/ramuni-dashboard-sales-customer.webp`
 - `public/website-original/mascot/ramuni-mascot-working-dashboard.webp`
 - `public/website-original/mascot/ramuni-mascot-working-sprite.webp`
+- `public/website-original/mascot/ramuni-mascot-work-loop.webm`
+- `public/website-original/mascot/ramuni-mascot-work-loop.mp4`
+- `public/website-original/mascot/ramuni-mascot-work-loop-poster.webp`
 - `public/website-original/product-screens/ramuni-product-dashboard-overview.webp`
+- `public/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm`
+- `public/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4`
 - `public/website-original/product-screens/ramuni-product-dashboard-performance.webp`
 - `public/website-original/product-screens/ramuni-product-dashboard-operations.webp`
 - `public/website-original/product-screens/ramuni-product-dashboard-mobile.webp`
+- `public/website-original/context/ramuni-context-ai-import.webp`
+- `public/website-original/context/ramuni-context-sales-customer.webp`
+- `public/website-original/context/ramuni-context-stock-operations.webp`
+- `public/website-original/context/ramuni-context-cash-report.webp`
 
 The current real screenshots show the implemented RAMUNI seeded/demo dashboard, not a real customer account. New route-specific captures for Sales, Inventory, Finance, Customers, Reports, and Import remain blocked on this host because Playwright Chromium hangs at `chromium.launch()`, including a minimal local HTML test. Use the existing evidence or run the fixture capture pipeline on a healthy Playwright runner; never substitute fabricated customer screens.
 
 ## Latest validation evidence
 
 - Astro check with Node `22.23.1`: 110 files, zero diagnostics.
-- Staging build: 87 pages.
+- Staging build: 86 pages. The obsolete `/kebijakan-cookie/` route and its public navigation links were removed; the consent preference dialog and footer `Kelola Cookie` control remain available.
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - `/solusi/` remains below the enforced 64 KiB route HTML budget after the product-preview refinement.
-- R2 sync uploaded five new assets and left 71 existing objects unchanged.
+- R2 sync uploaded/replaced five objects and left 80 existing objects unchanged. The sync now compares both hash and remote `Content-Type`, so unchanged video bytes are re-uploaded when metadata is wrong.
 - Live staging returned HTTP 200 for homepage, product hub/details, solution hub/details, industry, role, and article routes.
-- New screenshot and sprite assets return HTTP 200 with `image/webp` from `assets-staging.ramuni.id`.
+- The two mascot video sources and two dashboard video sources return HTTP 200 with `video/webm` or `video/mp4` from `assets-staging.ramuni.id`; stale Cloudflare entries were purged after the R2 metadata correction.
+- The redesigned help icon uses an explicit support-headset glyph in the mega menu and returns HTTP 200 with `image/svg+xml`.
 - Live HTML contains the real product overview, three product-family previews, the solution product preview, and the animated Muni component.
 - The four earlier synthetic dashboards remain available for flows without a truthful real screenshot; they are still labelled conceptual/synthetic.
 - A stale negative Cloudflare cache entry initially kept `ramuni-mascot-working-dashboard.webp` at 404 after upload. The exact URL was purged successfully and now returns HTTP 200 with `image/webp`.
@@ -121,9 +134,9 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Representative staging routes return HTTP 200.
 - The three latest solution icons return HTTP 200 from the CDN with the expected optimized WebP sizes.
 - Nginx config test passed before reload. Active config: `/etc/nginx/sites-available/staging.ramuni.id`; backup: `/etc/nginx/sites-available/staging.ramuni.id.bak-20260726T1338Z`.
-- Deployment health check passed for release `20260726T184251Z-97db759f4163` and artifact `c511a07b2d13d1beec7343a99a6dc75312f323daadea9183366effbe13667f5d`.
+- Deployment health check passed for release `20260727T021458Z-e12eaef59cb8` and artifact `ee084e520ef4f9a65283b64a2045d30e2c11f81ce00a0483a2d7c601aa2c062c`.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
-- Post-release cleanup moved the visual worktree's generated `node_modules` (352 MiB), `dist` (8 MiB), `.astro`, disposable `outputs` (2.9 MiB), and temporary build log to the system trash after release verification. The published assets remain in Git/R2; the reviewed clean visual worktree and its merged branch were then removed.
+- An earlier visual worktree was cleaned after its release. For this release, clean the active visual-motion worktree only after the canonical checkout is safely fast-forwarded and this handoff is published.
 
 Browser automation is currently unreliable on this host. Chromium, Firefox, Playwright, and CLI screenshot attempts hang before a trustworthy render. Static responsive and route checks passed, but do not claim fresh screenshot or PSI evidence for this release. Human visual QA is still required at 390, 1024, 1194, and 1440px before production promotion, especially for:
 
@@ -150,6 +163,7 @@ The canonical checkout is not a safe release source until this work is reconcile
 - `/home/meetsin/internal/ramuni-source`
 - stash `ramuni-content-gateway-live-wip-pre-release-20260726`
 - stash `ramuni-content-gateway-wip-pre-release-20260726`
+- stash `ramuni-canonical-staged-wip-before-sync-20260726T1740Z`
 - `/home/meetsin/internal/ramuni-source-cms-provider`
 - `/home/meetsin/internal/ramuni-source-marketing-gateway`
 
