@@ -12,13 +12,13 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `4feb693e26a8e19eb5ec93cd66ceb40c175c2817` (`fix: keep staging blog routes within budgets`).
+- Published runtime commit: `d780245f9e92c2e2c5bf4ef1b2e92706cf41fa4b` (`docs: record visual blog release evidence`).
 - The visual and blog architecture batch is commit `cceaf41` (`feat: refine visuals and expand blog architecture`); it is included in the published runtime commit above.
 - Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T072714Z-4feb693e26a8`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T072714Z-4feb693e26a8`.
-- Deployed artifact SHA-256: `065e7e275437ebc332daa4050e22b214c712188c5f6fbdef27eeabe6765fb8fa`.
+- Active staging release: `20260727T081841Z-d780245f9e92`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T081841Z-d780245f9e92`.
+- Deployed artifact SHA-256: `554f6722062abee26f2d69ad7b7a127766667fd791a6022c6ef9c6a0de462254`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -90,6 +90,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Blog archives now use one shared eight-category taxonomy and crawlable six-item pagination at `/blog/page/[page]/`. Pagination pages have self-canonicals, `prev`/`next` links, `CollectionPage`, `BreadcrumbList`, and `ItemList` schema.
 - Production blog archives expose only articles that are both `reviewed` and indexable. Staging can preview `needs-review` drafts, while category routes remain buildable so preview links do not break.
 - Eight new practical UMKM articles cover daily omzet, profitable products, weekly sales comparison, returning customers, customer data, weekly business review, SKU hygiene, and the difference between omzet, laba, and cash flow. Each includes contextual internal links, authoritative external sources, related content, and a dashboard visual. They remain `needs-review` plus `noindex` until editorial approval.
+- The three earlier preview articles now also cite authoritative NIST or Ikatan Akuntan Indonesia references with explicit editorial boundaries. All eleven preview articles therefore have at least one authoritative external source while remaining `needs-review` and `noindex`.
 - Production sitemap output is split into `sitemap-pages.xml`, `sitemap-products.xml`, `sitemap-solutions.xml`, `sitemap-industries.xml`, `sitemap-blog.xml`, and `sitemap-resources.xml`, referenced by both `sitemap.xml` and `sitemap-index.xml`. Staging produces no sitemap files and nginx returns 404 for sitemap endpoints.
 - The old large WebGL mascot block was removed. `DecisionFlow3D.astro` is now a lighter 2.5D workbench whose small mascot accent changes by step.
 - The staging deploy script now repairs ownership of generated `dist/` output before building, preventing stale root-owned artifacts from blocking atomic releases.
@@ -153,7 +154,7 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the active release reports commit `10cd1218e99edb00b4927d4b03986801e4594831`.
 - The redesigned help SVG returns HTTP 200 with `image/svg+xml` from `assets-staging.ramuni.id` and was the only R2 object changed in this release.
 - Cloudflare had retained the preceding 645-byte help SVG after the new object was published. The exact URL was purged successfully; the live 623-byte object now matches the repository SHA-256 `76bf74a23b2fd77df35b96a86370f8d632950d3d096272b3f97a38d668950651`.
-- The current staging health check reports release `20260727T072714Z-4feb693e26a8` healthy. Live HTML responses remain `Cache-Control: no-store` with `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
+- The current staging health check reports release `20260727T081841Z-d780245f9e92` healthy. Live HTML responses remain `Cache-Control: no-store` with `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 - After release verification, the temporary interactive-motion worktree/branch, 31 MiB of build backups, and canonical `node_modules`, `dist`, and `.astro` output were removed. The cleanup reclaimed roughly 760 MiB by apparent size while preserving all published commits in `main`.
 
