@@ -21,7 +21,12 @@ takeaways:
   - "Pisahkan arus masuk dan keluar sebelum membaca detail lain."
   - "Cari perubahan yang tidak biasa, bukan hanya saldo akhir."
   - "Gunakan pertanyaan bisnis agar laporan lebih mudah ditindaklanjuti."
-sources: []
+sources:
+  - title: "PSAK 207: Laporan Arus Kas"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/PSAK-Umum/8"
+    accessedAt: 2026-07-27
+    note: "Rujukan standar akuntansi Indonesia untuk laporan arus kas; contoh artikel disederhanakan untuk edukasi dan bukan panduan penyusunan laporan keuangan resmi."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat pajak, akuntansi, atau keuangan untuk usaha tertentu."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:

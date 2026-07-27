@@ -21,7 +21,12 @@ takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."
   - "Produk yang terlihat aman dapat tetap berisiko saat jam ramai."
   - "Catat keputusan berikutnya agar tim memiliki konteks yang sama."
-sources: []
+sources:
+  - title: "PSAK 202: Persediaan"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/PSAK-Umum/16"
+    accessedAt: 2026-07-27
+    note: "Rujukan standar akuntansi Indonesia mengenai persediaan; langkah pemeriksaan stok harian dalam artikel adalah panduan operasional sederhana, bukan penerapan PSAK 202."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:
   - "arus-kas-umkm-ringan"

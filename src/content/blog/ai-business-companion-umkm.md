@@ -21,7 +21,12 @@ takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."
   - "Jawaban yang berguna perlu dapat ditelusuri ke data pendukung."
   - "Data yang belum lengkap harus disertai batas dan ketidakpastian."
-sources: []
+sources:
+  - title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
+    publisher: "National Institute of Standards and Technology"
+    url: "https://www.nist.gov/itl/ai-risk-management-framework"
+    accessedAt: 2026-07-27
+    note: "Rujukan kerangka manajemen risiko AI untuk transparansi, pengukuran risiko, dan pengawasan manusia; artikel ini menerapkannya sebagai prinsip edukatif, bukan penilaian kepatuhan."
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
 related:

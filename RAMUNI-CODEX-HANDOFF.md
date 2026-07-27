@@ -12,12 +12,13 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `10cd1218e99edb00b4927d4b03986801e4594831` (`fix: redesign help navigation icon`).
+- Published runtime commit: `4feb693e26a8e19eb5ec93cd66ceb40c175c2817` (`fix: keep staging blog routes within budgets`).
+- The visual and blog architecture batch is commit `cceaf41` (`feat: refine visuals and expand blog architecture`); it is included in the published runtime commit above.
 - Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
 - Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T054211Z-10cd1218e99e`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T054211Z-10cd1218e99e`.
-- Deployed artifact SHA-256: `32406c904b5f07e7902779ce3107f36cfd8ba09c3b074f99a8972e4f3dc28d82`.
+- Active staging release: `20260727T072714Z-4feb693e26a8`.
+- Active release path: `/var/www/ramuni-staging/releases/20260727T072714Z-4feb693e26a8`.
+- Deployed artifact SHA-256: `065e7e275437ebc332daa4050e22b214c712188c5f6fbdef27eeabe6765fb8fa`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -51,6 +52,7 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 ## What is implemented
 
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
+- The floating contact action now uses the recognizable WhatsApp glyph instead of the RAMUNI mark, retains an accessible WhatsApp dialog label, and points to the approved RAMUNI WhatsApp channel.
 - The mega-menu help icon now uses a compact RAMUNI-colored question-and-reply composition instead of the generic headset illustration; it remains readable at the 34–38 px navigation sizes.
 - Normalized heading scale, text measures, mobile/tablet card behavior, CTA layout, and reveal-motion guardrails.
 - Product, solution, role, industry, resource, template, calculator, blog, help, security, about, contact, and error journeys have visual/component-based treatments rather than relying only on long text blocks.
@@ -72,6 +74,8 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Decorative reveal, hover, mascot, orbit, and data motion is gated away from touch/tablet and coarse-pointer devices; reveal observers settle once instead of flickering during repeated scroll.
 - Reusable hero/dashboard/evidence/CTA visual layers now opt into a lightweight contextual parallax controller. It runs only above 1200px on fine-pointer devices, uses `IntersectionObserver` plus one requestAnimationFrame loop, and resets on reduced-motion, Save-Data, breakpoint changes, hidden tabs, and page swaps. Tablet/mobile keep stable static composition.
 - The homepage proof frame now uses a softer brand-tinted border, rounded geometry, and layered shadow instead of the previous rigid black offset frame.
+- The homepage proof no longer uses the fixed-coordinate dashboard spotlight that created an artificial highlighted box. The seeded dashboard and Muni work videos now loop in normal-flow compositions, while ornamental movement remains restrained and desktop-only.
+- The homepage technology strip is explicitly labelled `Teknologi situs`; it does not imply that listed technologies are customers, sponsors, partners, or endorsements.
 - Homepage companion art now uses one web-specific HashMicro-generated `catatan -> bukti -> arah` visual. The redundant overlaid mascot/caption and the obsolete `ramuni-decision-landscape.webp` asset were removed.
 - `MascotDecisionCTA` is flatter and smaller, with no orbit decoration or forced 3D tilt. Product/solution visual animations now run only on fine-pointer desktop.
 - Tablet/touch headers are opaque without backdrop blur; blur is limited to fine-pointer desktop above 1200px. A hidden-before-clip overflow fallback protects older Safari while modern browsers retain sticky-safe `overflow-x: clip`.
@@ -83,6 +87,10 @@ The official logo stays static: no rotation, gradient, glow, shadow, distortion,
 - Product and solution detail heroes pair truthful RAMUNI seeded/demo dashboard evidence with one of four contextual HashMicro-generated illustrations: AI/import, sales/customer, stock/operations, or cash/report. Conceptual art is not labelled as product UI.
 - Four web-optimized synthetic dashboards cover AI/evidence, inventory/reorder, cash flow, and sales/customer contexts.
 - Blog article layout now uses a wider reading area with a useful TOC/tools rail; AI, cash-flow, and stock articles have distinct contextual dashboards and relevant tool/resource routes.
+- Blog archives now use one shared eight-category taxonomy and crawlable six-item pagination at `/blog/page/[page]/`. Pagination pages have self-canonicals, `prev`/`next` links, `CollectionPage`, `BreadcrumbList`, and `ItemList` schema.
+- Production blog archives expose only articles that are both `reviewed` and indexable. Staging can preview `needs-review` drafts, while category routes remain buildable so preview links do not break.
+- Eight new practical UMKM articles cover daily omzet, profitable products, weekly sales comparison, returning customers, customer data, weekly business review, SKU hygiene, and the difference between omzet, laba, and cash flow. Each includes contextual internal links, authoritative external sources, related content, and a dashboard visual. They remain `needs-review` plus `noindex` until editorial approval.
+- Production sitemap output is split into `sitemap-pages.xml`, `sitemap-products.xml`, `sitemap-solutions.xml`, `sitemap-industries.xml`, `sitemap-blog.xml`, and `sitemap-resources.xml`, referenced by both `sitemap.xml` and `sitemap-index.xml`. Staging produces no sitemap files and nginx returns 404 for sitemap endpoints.
 - The old large WebGL mascot block was removed. `DecisionFlow3D.astro` is now a lighter 2.5D workbench whose small mascot accent changes by step.
 - The staging deploy script now repairs ownership of generated `dist/` output before building, preventing stale root-owned artifacts from blocking atomic releases.
 - Repository-wide audit still found one verifiable mascot identity only: Muni si Manyar. `Ruda`, the third mascot, approved turnaround masters, and GLB/GLTF/FBX/OBJ/Rive/Lottie/GIF sources were not present in active repos, archives, or Git history. Do not invent identities or call the procedural Three.js primitive an approved 3D model.
@@ -121,12 +129,12 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 
 ## Latest validation evidence
 
-- Astro check with Node `22.23.1`: 111 files, zero errors, warnings, or hints.
-- Staging build: 86 pages. The obsolete `/kebijakan-cookie/` route and its public navigation links were removed; the consent preference dialog and footer `Kelola Cookie` control remain available.
+- Astro check with Node `22.23.1` exited successfully with no diagnostics.
+- Production build: 97 pages; staging build: 98 pages because staging includes crawlable preview pagination for the unapproved article set. The obsolete `/kebijakan-cookie/` route and its public navigation links remain removed; the consent preference dialog and footer `Kelola Cookie` control remain available.
 - Full metadata, social, schema, accessibility, content-marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed.
 - `npm audit`: zero vulnerabilities.
 - `/solusi/` remains below the enforced 64 KiB route HTML budget after externalizing the shared parallax runtime; linked CSS and total compressed JavaScript budgets also pass.
-- Post-rewrite route sizes for the latest release are 63,381 bytes for `/solusi/`, 63,221 bytes for `/produk/`, and 63,923 bytes for `/blog/arus-kas-umkm-ringan/`.
+- Fresh staging route sizes are 63,514 bytes for `/solusi/`, 63,133 bytes for `/produk/`, and 62,290 bytes for `/blog/arus-kas-umkm-ringan/`; all remain below the enforced 64,000-byte route HTML budget.
 - R2 sync uploaded/replaced five objects and left 80 existing objects unchanged. The sync now compares both hash and remote `Content-Type`, so unchanged video bytes are re-uploaded when metadata is wrong.
 - Live staging returned HTTP 200 for homepage, product hub/details, solution hub/details, industry, role, and article routes.
 - The two mascot video sources and two dashboard video sources return HTTP 200 with `video/webm` or `video/mp4` from `assets-staging.ramuni.id`; stale Cloudflare entries were purged after the R2 metadata correction.
@@ -144,6 +152,8 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 - Deployment health check passed for release `20260727T054211Z-10cd1218e99e` and artifact `32406c904b5f07e7902779ce3107f36cfd8ba09c3b074f99a8972e4f3dc28d82`.
 - Live homepage HTML contains the lazy Muni 3D host and `/scripts/parallax-motion.js`; the active release reports commit `10cd1218e99edb00b4927d4b03986801e4594831`.
 - The redesigned help SVG returns HTTP 200 with `image/svg+xml` from `assets-staging.ramuni.id` and was the only R2 object changed in this release.
+- Cloudflare had retained the preceding 645-byte help SVG after the new object was published. The exact URL was purged successfully; the live 623-byte object now matches the repository SHA-256 `76bf74a23b2fd77df35b96a86370f8d632950d3d096272b3f97a38d668950651`.
+- The current staging health check reports release `20260727T072714Z-4feb693e26a8` healthy. Live HTML responses remain `Cache-Control: no-store` with `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
 - Live homepage contains the new companion asset, live header JavaScript uses the 1201px fine-pointer desktop threshold, and the new CDN asset returns HTTP 200 at 24,450 bytes.
 - After release verification, the temporary interactive-motion worktree/branch, 31 MiB of build backups, and canonical `node_modules`, `dist`, and `.astro` output were removed. The cleanup reclaimed roughly 760 MiB by apparent size while preserving all published commits in `main`.
 
@@ -192,6 +202,7 @@ The current batch materially increases real product evidence and motion, but sev
 - If the brand truly has three different mascot characters, obtain and document approved master assets, names, and usage roles. The repository currently proves only Muni si Manyar with multiple poses/styles.
 - A precise animated 3D mascot requires approved front/side/back turnaround art and preferably a rigged `.glb`. The current procedural Three.js primitive is not an identity model and should not be presented as one.
 - Continue differentiating tool cards and article imagery only where the topic benefits from it, while preserving the passing route CSS/image budgets.
+- The eight new article drafts require named editorial review before changing `reviewStatus` to `reviewed` or allowing production indexation; they intentionally remain absent from the production archive and sitemap.
 - Run human visual QA at the listed responsive widths before production promotion because browser automation remains unreliable on this host.
 - Keep new raster generation on the native HashMicro plugin and keep disposable source outputs outside the published tree.
 
