@@ -82,11 +82,11 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
             <div class="solution-directory__preview-media">
               <picture>
                 <source media="(max-width: 620px)" srcset={solutionPreview.mobileSrc} width={solutionPreview.mobileWidth} height={solutionPreview.mobileHeight} />
-                <img src={solutionPreview.src} width={solutionPreview.width} height={solutionPreview.height} alt={solutionPreview.alt} loading="lazy" decoding="async" />
+                <img src={solutionPreview.src} width={solutionPreview.width} height={solutionPreview.height} alt="Dashboard RAMUNI dengan data demo." loading="lazy" decoding="async" />
               </picture>
-              <img class="solution-directory__preview-context" src={solutionPreviewContext.src} width={solutionPreviewContext.width} height={solutionPreviewContext.height} alt={solutionPreviewContext.alt} loading="lazy" decoding="async" />
+              <img class="solution-directory__preview-context" src={solutionPreviewContext.src} width={solutionPreviewContext.width} height={solutionPreviewContext.height} alt="" loading="lazy" decoding="async" aria-hidden="true" />
             </div>
-            <figcaption><span>{solutionPreview.badge}</span><strong>Dashboard nyata ditemani konteks usaha, bukan satu gambar template untuk semua solusi.</strong></figcaption>
+            <figcaption><span>{solutionPreview.badge}</span></figcaption>
           </figure>
           <div class="solution-stories">
             {solutions.map((solution, index) => (
