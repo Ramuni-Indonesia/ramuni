@@ -220,6 +220,22 @@ The current batch materially increases real product evidence and motion, but sev
 - Run human visual QA at the listed responsive widths before production promotion because browser automation remains unreliable on this host.
 - Keep new raster generation on the native HashMicro plugin and keep disposable source outputs outside the published tree.
 
+## Product-first visual and CRO release, 2026-07-27
+
+- Published commits: `7a90b8a` (product-first homepage/product/solution hubs), `da82b1e` (cleaner dashboard motion, outcome-led product heroes, honest CTA copy, and claim safeguards), `73f4700` (contextual dashboard chapters on all nine product detail routes), and `2f3851f` (homepage HTML-budget correction).
+- Homepage hero now keeps the verified seeded/demo dashboard as the dominant visual, removes the mascot that sat below the frame, removes zoom motion, preserves the complete dashboard on mobile, and synchronizes a restrained three-stage progress rail with the dashboard frames. Muni remains available later as a supporting ornament instead of competing with the product proof.
+- Homepage problem proof uses `public/website-original/context/ramuni-context-umkm-signal-workspace.webp`, generated through the native HashMicro image plugin and paired with verified RAMUNI demo dashboard evidence.
+- Product and solution detail heroes are outcome-led and label screenshots as preview/data demo. Solution detail visual animation no longer overwrites the new soft shadow with the obsolete hard black offset shadow.
+- Every product detail route now includes a contextual dashboard chapter with route-specific explanatory copy, a verified seeded/demo screenshot, a three-step reading guide, and an explicit availability disclaimer.
+- The duplicate solution problem selector was removed. The solution hero remains the primary selector, followed by one dashboard-led directory instead of immediately asking visitors to make the same choice again.
+- Conversion copy now matches the actual destination: `Minta tour produk gratis` replaces `Coba Simulasi Gratis` across shared CTAs and representative marketing routes. Homepage secondary CTA scrolls to the dashboard example instead of opening the same request form.
+- Unverified access, audit-trail, import/export, and AI-boundary statements on homepage/product hub were softened into preview/rancangan language. No customer logos, result claims, partnerships, or technology endorsements were invented.
+- Node 22 Astro check passed with 0 errors, warnings, or hints. Staging build produced 98 pages; production-mode build produced 97 pages. Both full site audits passed. `npm audit` reported zero vulnerabilities and `git diff --check` passed.
+- Atomic staging release: `20260727T130240Z-2f3851f138a2`; commit `2f3851f138a2`; artifact SHA-256 `0060787cbdc0032957d7ec4a657153268ee1981318cd1e5b0c0bc61405f5da62`.
+- Live verification returned HTTP 200 for `/healthz`, `/`, `/produk/`, `/produk/inventori/`, `/solusi/`, `/blog/`, and `/tour-produk-gratis/`. All carry `Cache-Control: no-store` and HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
+- The current audit used live headers plus source/CSS review. No new browser screenshots were claimed in this batch; fresh 390/768/1024/1194/1440 visual QA remains appropriate before production promotion.
+- Two unrelated tracking/GTM work-in-progress groups discovered during the release were preserved instead of mixed into this visual/CRO release: `preserve-unrelated-tracking-wip-20260727` and `preserve-unrelated-tracking-docs-wip-20260727`. Review them together before applying either stash.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
