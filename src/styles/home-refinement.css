@@ -881,7 +881,7 @@
 .business-proof__questions>button{min-height:124px;padding:18px;border-right:1px solid var(--ink-20)}
 .business-proof__questions>button:nth-child(3){border-right:0}
 .business-proof__questions>button[aria-selected='true']{padding-left:18px}
-.business-proof__more{grid-column:1/-1;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 18px;border-top:1px solid var(--ink-20)}
+.business-proof__more{grid-column:1/-1;grid-template-columns:auto 1fr;align-items:center;gap:16px;padding:14px 18px;border-top:1px solid var(--ink-20)}
 
 @media(max-width:960px){
   .home-hero .hero-copy{justify-items:start;text-align:left}

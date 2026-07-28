@@ -87,8 +87,7 @@ const stories = [
   </div>
   <div class="business-proof__more">
     <span>Langkah berikutnya</span>
-    <a href={stories[0].href} data-business-active-link>Buka solusi Penjualan</a>
-    <a href="/solusi/">Lihat semua masalah usaha</a>
+    <a href={stories[0].href} data-business-active-link>Buka solusi terkait</a>
   </div>
 </div>
 
@@ -105,7 +104,6 @@ const stories = [
 
       const activate = (tab: HTMLButtonElement) => {
         const index = Number(tab.dataset.businessTab || 0);
-        const activeLabel = tab.querySelector('span')?.textContent?.split('/').pop()?.trim() || '';
         tabs.forEach((item) => {
           const active = item === tab;
           item.setAttribute('aria-selected', String(active));
@@ -116,12 +114,9 @@ const stories = [
           panel.classList.toggle('is-active', active);
           panel.setAttribute('aria-hidden', String(!active));
         });
-        if (label) label.textContent = activeLabel;
+        if (label) label.textContent = tab.querySelector('span')?.textContent?.split('/').pop()?.trim() || '';
         if (answer) answer.textContent = tab.dataset.answer || '';
-        if (activeLink) {
-          activeLink.href = tab.dataset.href || '/solusi/';
-          activeLink.textContent = activeLabel ? `Buka solusi ${activeLabel}` : 'Buka solusi terkait';
-        }
+        if (activeLink) activeLink.href = tab.dataset.href || '/solusi/';
       };
 
       tabs.forEach((tab, index) => {
