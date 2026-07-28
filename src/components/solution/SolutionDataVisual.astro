@@ -1,6 +1,6 @@
 ---
 import type { SolutionDetail } from '../../data/solutionDetails';
-import { getSolutionContextVisual, getSolutionDashboardVisual } from '../../data/dashboardVisuals';
+import { getSolutionDashboardVisual } from '../../data/dashboardVisuals';
 
 interface Props {
   visual: SolutionDetail['visual'];
@@ -9,43 +9,36 @@ interface Props {
 
 const { visual, slug = '' } = Astro.props;
 const dashboardVisual = getSolutionDashboardVisual(slug);
-const contextVisual = getSolutionContextVisual(slug);
 const warningMetric = visual.metrics.find((metric) => metric.tone === 'warning') || visual.metrics[0];
 ---
 
-<figure class={`sd-visual sd-visual--${visual.kind}`}>
-  <header class="sd-visual__head">
+<figure class={`solution-proof solution-proof--${visual.kind}`}>
+  <header class="solution-proof__head">
     <div><span>{visual.label}</span><strong>{visual.title}</strong></div>
-    <small>Dashboard umum RAMUNI · data demo</small>
+    <small>Dashboard RAMUNI · data demo</small>
   </header>
 
-  <div class="sd-visual__media">
-    <picture class="sd-visual__dashboard">
-      {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
-      <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
-    </picture>
-    <div class="sd-visual__context">
-      <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" loading="eager" />
-      <span>Ilustrasi konteks, bukan UI produk</span>
-    </div>
-  </div>
-  <figcaption class="sd-visual__reading">
+  <picture class="solution-proof__dashboard" style={`--solution-dashboard-ratio:${dashboardVisual.width}/${dashboardVisual.height}`}>
+    {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
+    <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
+  </picture>
+
+  <figcaption class="solution-proof__reading">
     <ol aria-label="Cara membaca contoh visual">
       <li><span>01 / Pola</span><strong>{visual.period}</strong></li>
       <li><span>02 / Bukti</span><strong>{warningMetric?.label}: {warningMetric?.value}</strong><small>{warningMetric?.note}</small></li>
-      <li><span>03 / Tindakan</span><strong>Pengguna membuka sumber lalu menentukan langkah.</strong></li>
+      <li><span>03 / Tindakan</span><strong>Buka sumber, lalu tentukan langkah.</strong></li>
     </ol>
   </figcaption>
 </figure>
 
 <style>
-  .sd-visual{container-type:inline-size;min-width:0;margin:0;border:1px solid rgb(11 48 69/.16);border-radius:22px;background:var(--white);box-shadow:0 24px 58px rgb(11 48 69/.14);overflow:hidden}
-  .sd-visual__head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 17px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white)}
-  .sd-visual__head>div{display:grid;gap:3px}.sd-visual__head span{color:var(--yellow);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.sd-visual__head strong{font-size:.72rem}.sd-visual__head small{color:rgb(255 255 255/.66);font-size:.58rem;font-weight:700}
-  .sd-visual__media{display:grid;grid-template-columns:minmax(0,1.52fr) minmax(150px,.48fr);aspect-ratio:1280/650;background:var(--rice);overflow:hidden}.sd-visual__dashboard{display:block;min-width:0;overflow:hidden}.sd-visual__dashboard img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}
-  .sd-visual__reading{padding:0;border-top:1px solid var(--ink-10);background:var(--white)}.sd-visual__reading ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none}.sd-visual__reading li{display:grid;align-content:start;gap:6px;min-width:0;padding:14px 16px;border-right:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-right:0}.sd-visual__reading span{color:var(--teal);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.sd-visual__reading strong{font-size:.63rem;line-height:1.45}.sd-visual__reading small{color:var(--ink-56);font-size:.54rem;line-height:1.4}
-  .sd-visual__context{display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;border-left:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__context img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}.sd-visual__context span{padding:8px 10px;border-top:1px solid var(--ink-10);background:var(--white);color:var(--ink);font-size:.52rem;font-weight:800;line-height:1.35;text-transform:uppercase;letter-spacing:.06em}
-  @media(max-width:720px){.sd-visual{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}.sd-visual__head small{display:none}.sd-visual__media{grid-template-columns:1fr;aspect-ratio:auto}.sd-visual__dashboard{aspect-ratio:4/3}.sd-visual__context{min-height:150px;max-height:190px;border-left:0;border-top:1px solid var(--ink-10)}.sd-visual__reading ol{grid-template-columns:1fr}.sd-visual__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-bottom:0}}
-  @container(max-width:480px){.sd-visual__media{grid-template-columns:1fr;aspect-ratio:auto}.sd-visual__dashboard{aspect-ratio:4/3}.sd-visual__context{min-height:132px;max-height:172px;border-left:0;border-top:1px solid var(--ink-10)}.sd-visual__reading ol{grid-template-columns:1fr}.sd-visual__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-bottom:0}}
-  @media(prefers-reduced-motion:reduce){.sd-visual *{animation:none!important;transition:none!important}}
+  .solution-proof{container-type:inline-size;min-width:0;margin:0;border:1px solid rgb(11 48 69/.18);background:var(--white);overflow:hidden}
+  .solution-proof__head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 17px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white)}
+  .solution-proof__head>div{display:grid;gap:3px}.solution-proof__head span{color:var(--yellow);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-proof__head strong{font-size:.72rem}.solution-proof__head small{color:rgb(255 255 255/.66);font-size:.58rem;font-weight:700}
+  .solution-proof__dashboard{display:block;min-width:0;aspect-ratio:var(--solution-dashboard-ratio);overflow:hidden;background:var(--rice)}.solution-proof__dashboard img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center;transform:none}
+  .solution-proof__reading{padding:0;border-top:1px solid var(--ink-10);background:var(--white)}.solution-proof__reading ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none}.solution-proof__reading li{display:grid;align-content:start;gap:6px;min-width:0;padding:14px 16px;border-right:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-right:0}.solution-proof__reading span{color:var(--teal);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.solution-proof__reading strong{font-size:.63rem;line-height:1.45}.solution-proof__reading small{color:var(--ink-56);font-size:.54rem;line-height:1.4}
+  @media(max-width:720px){.solution-proof{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}.solution-proof__head small{display:none}.solution-proof__dashboard{aspect-ratio:4/3}.solution-proof__reading ol{grid-template-columns:1fr}.solution-proof__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-bottom:0}}
+  @container(max-width:480px){.solution-proof__dashboard{aspect-ratio:4/3}.solution-proof__reading ol{grid-template-columns:1fr}.solution-proof__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-bottom:0}}
+  @media(prefers-reduced-motion:reduce){.solution-proof *{animation:none!important;transition:none!important}}
 </style>

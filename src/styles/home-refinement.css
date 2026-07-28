@@ -862,7 +862,7 @@
 .home-hero .lede{max-width:64ch}
 .home-hero .hero-copy .button-row{justify-content:center}
 .home-decision-demo{width:min(100%,1120px);padding:0;justify-self:center}
-.home-decision-demo .home-hero-proof{border-radius:26px;box-shadow:0 34px 84px rgb(11 48 69/.16)}
+.home-decision-demo .home-hero-proof{border-radius:0;box-shadow:none}
 .home-decision-demo .home-hero-proof figcaption{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;padding:15px 18px}
 .home-decision-demo .home-hero-proof figcaption small{max-width:34ch;text-align:right}
 .home-hero-story{margin-top:14px}

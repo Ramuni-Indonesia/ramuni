@@ -1,5 +1,5 @@
 export const launchCta = {
-  label: 'Minta tour produk gratis',
+  label: 'Bahas tour produk gratis',
   href: '/tour-produk-gratis/',
 };
 

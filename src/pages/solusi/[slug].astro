@@ -23,11 +23,11 @@ const narrative = solutionNarratives[solution.slug];
 const impactItems = narrative?.impact.map(([title, text]) => ({ title, text })) || solution.impact;
 const onboardingItems = narrative?.onboarding.map(([title, text]) => ({ title, text })) || solution.onboarding;
 const solutionCtas: Record<string, string> = {
-  'naikkan-omzet': 'Minta tour alur omzet',
-  'kelola-stok': 'Minta tour alur stok',
-  'pantau-laba-dan-arus-kas': 'Minta tour alur kas',
-  'pahami-pelanggan': 'Minta tour alur pelanggan',
-  'laporan-bisnis-otomatis': 'Minta tour alur laporan',
+  'naikkan-omzet': 'Bahas alur omzet',
+  'kelola-stok': 'Bahas alur stok',
+  'pantau-laba-dan-arus-kas': 'Bahas alur kas',
+  'pahami-pelanggan': 'Bahas alur pelanggan',
+  'laporan-bisnis-otomatis': 'Bahas alur laporan',
 };
 const solutionIntents: Record<string, string> = {
   'naikkan-omzet': 'sales',
@@ -64,7 +64,7 @@ const faqSchema = {
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href={tourHref}>{solutionCtas[solution.slug] || 'Minta tour produk gratis'}</a>
+            <a class="button button--primary" href={tourHref}>{solutionCtas[solution.slug] || 'Bahas tour produk gratis'}</a>
             <a class="button button--secondary" href="#workflow-title">Lihat cara kerja</a>
           </div>
         </div>
@@ -107,7 +107,7 @@ const faqSchema = {
         <header class="sd-section-heading reveal">
           <p class="section-kicker">Cara kerja</p>
           <h2 id="workflow-title">{narrative?.comparisonHeading || 'Dari catatan usaha ke keputusan yang tetap Anda pegang.'}</h2>
-          <p>Setiap tahap menyimpan jalur kembali ke periode, sumber, dan konteks yang dipakai.</p>
+          <p>Anda tetap bisa melihat periode dan angka yang dipakai pada setiap tahap.</p>
         </header>
         <SolutionWorkflow steps={solution.workflow} />
       </div>
@@ -183,7 +183,7 @@ const faqSchema = {
           eyebrow="Langkah berikutnya"
           title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
-          primaryLabel={solutionCtas[solution.slug] || 'Minta tour produk gratis'}
+          primaryLabel={solutionCtas[solution.slug] || 'Bahas tour produk gratis'}
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="/solusi/"

@@ -6,7 +6,7 @@ interface Props {
 
 const {
   class: className = '',
-  label = 'Tiga tampilan dashboard RAMUNI dengan data demo: ringkasan usaha, performa, dan aktivitas operasional',
+  label = 'Tampilan dashboard RAMUNI dengan data demo: ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
 } = Astro.props;
 ---
 
@@ -16,28 +16,12 @@ const {
   aria-label={label}
 >
   <img
-    class="animated-dashboard-proof__frame animated-dashboard-proof__frame--overview"
+    class="animated-dashboard-proof__frame"
     src="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
     width="1280"
     height="618"
     alt=""
     fetchpriority="high"
-    decoding="async"
-  />
-  <img
-    class="animated-dashboard-proof__frame animated-dashboard-proof__frame--performance"
-    src="/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-    width="1280"
-    height="854"
-    alt=""
-    decoding="async"
-  />
-  <img
-    class="animated-dashboard-proof__frame animated-dashboard-proof__frame--operations"
-    src="/website-original/product-screens/ramuni-product-dashboard-operations.webp"
-    width="1280"
-    height="854"
-    alt=""
     decoding="async"
   />
 </span>
@@ -61,32 +45,8 @@ const {
     height:100%;
     object-fit:contain;
     object-position:top center;
-    opacity:0;
+    opacity:1;
     transform:none;
-  }
-
-  .animated-dashboard-proof__frame--overview{opacity:1}
-  .animated-dashboard-proof__frame--performance,
-  .animated-dashboard-proof__frame--operations{object-fit:cover;object-position:top center}
-
-  @media(prefers-reduced-motion:no-preference){
-    .animated-dashboard-proof__frame--overview{animation:dashboard-overview 12s cubic-bezier(.22,1,.36,1) infinite}
-    .animated-dashboard-proof__frame--performance{animation:dashboard-performance 12s cubic-bezier(.22,1,.36,1) infinite}
-    .animated-dashboard-proof__frame--operations{animation:dashboard-operations 12s cubic-bezier(.22,1,.36,1) infinite}
-
-    @keyframes dashboard-overview{
-      0%,27%{opacity:1}
-      33%,94%{opacity:0}
-      100%{opacity:1}
-    }
-    @keyframes dashboard-performance{
-      0%,27%,66%,100%{opacity:0}
-      34%,60%{opacity:1}
-    }
-    @keyframes dashboard-operations{
-      0%,60%,100%{opacity:0}
-      68%,94%{opacity:1}
-    }
   }
 
   @media(max-width:680px){
@@ -94,7 +54,4 @@ const {
     .animated-dashboard-proof__frame{object-fit:contain;object-position:top center}
   }
 
-  @media(prefers-reduced-motion:reduce){
-    .animated-dashboard-proof__frame:not(.animated-dashboard-proof__frame--overview){display:none}
-  }
 </style>

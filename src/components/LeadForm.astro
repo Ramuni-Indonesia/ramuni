@@ -23,7 +23,7 @@ const consentVersion = '2026-07-25';
   <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value={consentVersion} />
   <input type="hidden" name="firstTouchAttribution" data-attribution-field="first" />
   <input type="hidden" name="lastTouchAttribution" data-attribution-field="last" />
-  {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{submitLabel || labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Lanjutkan lewat WhatsApp.</strong><a class="button button--primary" href="https://wa.me/message/K35W6X6WT7YMJ1" target="_blank" rel="noopener noreferrer">Hubungi tim RAMUNI</a></div>}
+  {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{submitLabel || labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Tour dibahas langsung lewat WhatsApp.</strong><p>Pilih satu masalah usaha. Tim RAMUNI akan menunjukkan contoh alur dengan data demo dan menjelaskan batas fiturnya.</p><a class="button button--primary" href="https://wa.me/message/K35W6X6WT7YMJ1" target="_blank" rel="noopener noreferrer">Bahas tour lewat WhatsApp</a></div>}
 </form>
 <script>
   const preselectLeadIntent = () => {

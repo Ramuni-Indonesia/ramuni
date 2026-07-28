@@ -41,7 +41,7 @@ const productFaq = [
         <div class="catalog-hero__aside reveal is-visible">
           <p>Preview RAMUNI memperlihatkan bagaimana catatan usaha dapat dibaca bersama, perubahan penting dibuka, lalu sumber angkanya ditelusuri.</p>
           <div class="button-row">
-            <a class="button button--primary" href="/tour-produk-gratis/">Minta tour produk</a>
+            <a class="button button--primary" href="/tour-produk-gratis/">Bahas tour produk</a>
             <a class="button button--secondary" href="#product-system-connected">Cara RAMUNI membaca data</a>
           </div>
         </div>
@@ -55,7 +55,7 @@ const productFaq = [
       <div class="container">
         <p class="section-kicker">Sistem yang terhubung</p>
         <div class="product-system__heading">
-          <h2 id="product-system-title">Dari catatan usaha ke langkah yang bisa dipertanggungjawabkan.</h2>
+          <h2 id="product-system-title">Tahu angka mana yang perlu dicek sebelum mengambil keputusan.</h2>
           <p>RAMUNI tidak berhenti pada grafik. Setiap sorotan tetap membawa periode dan sumber agar Anda tahu alasan sebelum bertindak.</p>
         </div>
         <div id="product-direction-model" class="product-direction-model reveal">
@@ -70,10 +70,9 @@ const productFaq = [
           <p class="section-kicker">Keluarga produk</p>
           <h2 id="product-catalog-title">Pilih dari pertanyaan bisnis Anda.</h2>
           <p>Halaman tiap modul menjelaskan manfaat, contoh tampilan, dan batas kemampuannya tanpa menganggap semua fitur sudah tersedia.</p>
-          <div class="product-status-guide" aria-label="Keterangan status produk">
-            <span><strong>Preview produk</strong> tampilan dengan data demo, bukan akun pelanggan.</span>
-            <span><strong>Belum diverifikasi</strong> belum dinyatakan tersedia untuk publik.</span>
-            <span><strong>Status per metode</strong> setiap jalur integrasi diperiksa terpisah.</span>
+          <div class="product-status-guide" aria-label="Yang dapat dilihat sekarang">
+            <span><strong>Yang dapat dilihat sekarang</strong> tampilan RAMUNI dengan data demo serta contoh alur penjualan, stok, kas, pelanggan, dan laporan.</span>
+            <span><strong>Status kemampuan</strong> dijelaskan pada tiap halaman dan saat tour sebelum Anda memilih langkah berikutnya.</span>
           </div>
         </header>
         <div class="product-families">
@@ -97,7 +96,7 @@ const productFaq = [
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}/`}>
                 <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
-                <span class="availability-label">Belum diverifikasi</span>
+                <span class="availability-label">Buka modul</span>
               </a>
             ))}
           </section>
@@ -121,7 +120,7 @@ const productFaq = [
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}/`}>
                 <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{product.title}</strong><small>{product.question}</small></span>
-                <span class="availability-label">Belum diverifikasi</span>
+                <span class="availability-label">Buka modul</span>
               </a>
             ))}
           </section>

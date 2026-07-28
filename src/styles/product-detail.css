@@ -157,7 +157,7 @@
 }
 
 .pd-hero__canvas { min-width: 0; }
-.pd-hero__canvas .product-canvas { box-shadow: 10px 10px 0 var(--ink); }
+.pd-hero__canvas .product-canvas { box-shadow: none; }
 
 .pd-close .button-row { display: flex; flex-wrap: wrap; }
 
