@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-07-27 Asia/Jakarta
+Snapshot date: 2026-07-28 Asia/Jakarta
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -12,13 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `e6783e85ac667115b5e8d773f73b5b1191b98439` (`fix: restore mobile menu scroll instantly`).
-- The visual and blog architecture batch is commit `cceaf41` (`feat: refine visuals and expand blog architecture`); it is included in the published runtime commit above.
-- Interactive mascot/motion implementation commits included below it: `81fa3dd7e3ea59a1f825644ec68c2410f0910195` and sticky-boundary/legal-disclosure commit `f1a7560068799db3ea8b1483028847ba65b52ac6`.
-- Mobile navigation commits included in current main: `e456e8a` and `9319c17`; the header remains fixed while the menu scrolls independently and restores body position safely.
-- Active staging release: `20260727T103720Z-e6783e85ac66`.
-- Active release path: `/var/www/ramuni-staging/releases/20260727T103720Z-e6783e85ac66`.
-- Deployed artifact SHA-256: `5437cf4af9a2d75f58c0c6822c05184513174396585fb06554b0cd61476b9e9b`.
+- Published runtime commit: `5e398584a4ef9baad4ff6e33b36b3dd90b84ad41` (`refine contextual conversion journeys`).
+- The product-first visual baseline is commit `69992d05b3f21736f699bce2a453f92e1dbd31f8`; the contextual CRO, mascot release-gate, and editorial cleanup are included in the published runtime commit above.
+- Active staging release: `20260728T124139Z-5e398584a4ef`.
+- Active release path: `/var/www/ramuni-staging/releases/20260728T124139Z-5e398584a4ef`.
+- Deployed artifact SHA-256: `8b04be120b778d90c791e0dc91dd45fba49b6ee0f554bdf9e8ac2a71a665ed65`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -80,6 +78,10 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - The homepage technology strip is explicitly labelled `Teknologi situs`; it does not imply that listed technologies are customers, sponsors, partners, or endorsements.
 - Homepage companion art now uses one web-specific HashMicro-generated `catatan -> bukti -> arah` visual. The redundant overlaid mascot/caption and the obsolete `ramuni-decision-landscape.webp` asset were removed.
 - `MascotDecisionCTA` is flatter and smaller, with no orbit decoration or forced 3D tilt. Product/solution visual animations now run only on fine-pointer desktop.
+- Product and solution hub/detail closing journeys now use `TourEvidenceCTA`: one contextual visual, one concrete tour promise, and a short three-point reading guide. This replaces the repeated mascot decision widget on those journeys and keeps Muni as a supporting asset rather than a conversion gate.
+- Product hub copy explicitly frames the dashboard as a preview, and product detail heroes surface capability-review status beside the primary conversion path.
+- Blog articles keep one contextual inline CTA and no longer repeat the interactive decision CTA after related articles. Unmapped future articles render no arbitrary AI context visual instead of silently inheriting an unrelated illustration.
+- Mascot exploration remains available for development, preview, and staging review, but a non-development local/unknown production build no longer enables it implicitly. Production still requires the explicit mascot approval flag.
 - Tablet/touch headers are opaque without backdrop blur; blur is limited to fine-pointer desktop above 1200px. A hidden-before-clip overflow fallback protects older Safari while modern browsers retain sticky-safe `overflow-x: clip`.
 - Product/solution GSAP scroll motion now runs only above 1200px on fine-pointer hover devices and reverts when motion preferences or the device breakpoint changes. Reveal settling is animation-name agnostic, and reveal-linked industry keyframes no longer start from zero opacity.
 - Nine product pages and four role pages have unique SEO metadata; role pages have explicit self-canonicals.
@@ -128,7 +130,7 @@ Useful visual components and assets:
 - `public/website-original/context/ramuni-context-stock-operations.webp`
 - `public/website-original/context/ramuni-context-cash-report.webp`
 
-The current real screenshots show the implemented RAMUNI seeded/demo dashboard, not a real customer account. New route-specific captures for Sales, Inventory, Finance, Customers, Reports, and Import remain blocked on this host because Playwright Chromium hangs at `chromium.launch()`, including a minimal local HTML test. Use the existing evidence or run the fixture capture pipeline on a healthy Playwright runner; never substitute fabricated customer screens.
+The current real screenshots show the implemented RAMUNI seeded/demo dashboard, not a real customer account. The pinned Docker Playwright runner now works for marketing-site visual QA, but route-specific SaaS fixture captures for Sales, Inventory, Finance, Customers, Reports, and Import have not been produced or verified. Use the existing evidence until that separate authenticated fixture-capture pipeline is run; never substitute fabricated customer screens.
 
 ## Latest validation evidence
 
@@ -215,7 +217,7 @@ Latest read-only gateway audit:
 The current batch materially increases real product evidence and motion, but several requested items require source assets or a healthy capture runner:
 
 - Capture route-specific seeded screens for Sales, Inventory, Finance, Customers, Reports, and Import on a runner where Chromium launches successfully; map them only after verifying the route/version.
-- If the brand truly has three different mascot characters, obtain and document approved master assets, names, and usage roles. The repository currently proves only Muni si Manyar with multiple poses/styles.
+- Creative Studio now contains Muni si Manyar, Si Ramu, and Kancil Cermat as three documented Phase 1 alternatives. Obtain written route approval plus originality, trademark/IP, ownership, and named-owner review before treating any route as a final master or combining them into one character system.
 - A precise animated 3D mascot requires approved front/side/back turnaround art and preferably a rigged `.glb`. The current procedural Three.js primitive is not an identity model and should not be presented as one.
 - Continue differentiating tool cards and article imagery only where the topic benefits from it, while preserving the passing route CSS/image budgets.
 - The eight new article drafts require named editorial review before changing `reviewStatus` to `reviewed` or allowing production indexation; they intentionally remain absent from the production archive and sitemap.
@@ -237,6 +239,19 @@ The current batch materially increases real product evidence and motion, but sev
 - Live verification returned HTTP 200 for `/healthz`, `/`, `/produk/`, `/produk/inventori/`, `/solusi/`, `/blog/`, and `/tour-produk-gratis/`. All carry `Cache-Control: no-store` and HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
 - The current audit used live headers plus source/CSS review. No new browser screenshots were claimed in this batch; fresh 390/768/1024/1194/1440 visual QA remains appropriate before production promotion.
 - Two unrelated tracking/GTM work-in-progress groups discovered during the release were preserved instead of mixed into this visual/CRO release: `preserve-unrelated-tracking-wip-20260727` and `preserve-unrelated-tracking-docs-wip-20260727`. Review them together before applying either stash.
+
+## Contextual conversion release, 2026-07-28
+
+- Published and deployed commit: `5e398584a4ef9baad4ff6e33b36b3dd90b84ad41` (`refine contextual conversion journeys`).
+- Atomic staging release: `20260728T124139Z-5e398584a4ef`; artifact SHA-256 `8b04be120b778d90c791e0dc91dd45fba49b6ee0f554bdf9e8ac2a71a665ed65`.
+- Product and solution hub/detail closing sections use contextual visual evidence instead of repeating the same mascot state widget. Primary CTAs keep route-specific tour intent and secondary paths return to the relevant comparison hub.
+- Product preview language and capability status are visible near conversion points. Blog articles retain the contextual inline CTA, remove the redundant final interactive CTA, and fail closed when an article has no approved context-visual mapping.
+- The mascot release gate no longer treats an unknown non-development environment as approval. The three Creative Studio Phase 1 routes remain alternatives and were not copied into visitor-facing decision stages.
+- Node 22 Astro check covered 119 files with 0 errors, warnings, or hints. Staging build produced 98 pages. Full metadata, social preview, schema, accessibility, content marker, internal-link, sitemap/noindex, robots, encoding, and asset-budget audit passed. `npm audit` reported 0 vulnerabilities.
+- Focused Docker Playwright checks covered product hub/detail and solution hub/detail at 375, 768, 1024, and 1440 px. All 16 route/viewport combinations had no horizontal overflow, loaded the contextual image, exposed the primary CTA, and contained `noindex,follow`. Manual screenshot review found one low-contrast mobile secondary CTA; it was fixed and the staging build/audit were repeated.
+- R2 synchronization uploaded one changed script and left 87 existing objects unchanged. Representative contextual images, product screenshots, and the updated script return HTTP 200 with the expected content types.
+- Live `/healthz`, homepage, product hub/detail, solution hub/detail, blog archive/article, tour, and contact returned HTTP 200. `/demo/`, `/early-access/`, and `/harga/` redirect once to `/tour-produk-gratis/`. Staging HTML remains `noindex,follow`; HTTP remains `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` with `Cache-Control: no-store`; all checked sitemap endpoints return 404.
+- After deployment verification, canonical `node_modules`, `dist`, `.astro`, and the temporary Docker Playwright scripts/screenshots under `outputs/ramuni-visual-audit` were removed. Published releases, R2 objects, preserved stashes, unrelated repositories, and the dirty Creative Studio review worktree were not altered.
 
 ## Next continuation workflow
 
