@@ -13,5 +13,5 @@ export const releaseGates = {
     import.meta.env.DEV
     || publicEnvironment.name === 'preview'
     || publicEnvironment.name === 'staging'
-    || (publicEnvironment.isProduction && import.meta.env.PUBLIC_MASCOT_EXPLORATION_APPROVED === 'true'),
+    || import.meta.env.PUBLIC_MASCOT_EXPLORATION_APPROVED === 'true',
 } as const;

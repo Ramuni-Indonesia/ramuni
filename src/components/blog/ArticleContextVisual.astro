@@ -98,22 +98,24 @@ const variants = {
   },
 } as const;
 
-const visual = variants[articleId as keyof typeof variants] || variants['ai-business-companion-umkm'];
-const dashboard = dashboardVisuals[visual.dashboard as DashboardVisualKey];
+const visual = variants[articleId as keyof typeof variants];
+const dashboard = visual ? dashboardVisuals[visual.dashboard as DashboardVisualKey] : null;
 ---
 
-<figure class:list={['article-context-visual', `article-context-visual--${visual.kind}`]}>
-  <figcaption>
-    <span>{visual.label}</span>
-    <strong>{visual.title}</strong>
-    <p>{visual.description}</p>
-  </figcaption>
+{visual && dashboard && (
+  <figure class:list={['article-context-visual', `article-context-visual--${visual.kind}`]}>
+    <figcaption>
+      <span>{visual.label}</span>
+      <strong>{visual.title}</strong>
+      <p>{visual.description}</p>
+    </figcaption>
 
-  <div class="article-context-visual__stage">
-    <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={visual.alt} loading="lazy" decoding="async" />
-    <span>{dashboard.badge}</span>
-  </div>
-</figure>
+    <div class="article-context-visual__stage">
+      <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={visual.alt} loading="lazy" decoding="async" />
+      <span>{dashboard.badge}</span>
+    </div>
+  </figure>
+)}
 
 <style is:global>
   .article-context-visual{display:grid;grid-template-columns:minmax(210px,.58fr) minmax(0,1.42fr);gap:clamp(24px,5vw,56px);align-items:stretch;margin:0 0 clamp(46px,7vw,76px);padding-block:clamp(26px,4vw,40px);border-block:1px solid var(--ink)}

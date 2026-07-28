@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
+import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
-import { dashboardVisuals } from '../../data/dashboardVisuals';
+import { dashboardVisuals, heroContextVisuals } from '../../data/dashboardVisuals';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
@@ -16,6 +16,7 @@ const productFamilyVisuals = {
   operations: dashboardVisuals.productOperations,
   ecosystem: dashboardVisuals.productPerformance,
 } as const;
+const productCloseVisual = heroContextVisuals.aiImport;
 const sharedCapabilities = [
   { title: 'Rancangan akses per peran', text: 'Preview menunjukkan ruang kerja pemilik, supervisor, admin, dan kasir. Ketersediaannya akan dijelaskan sebelum penggunaan.' },
   { title: 'Rancangan jejak perubahan', text: 'Preview memperlihatkan bagaimana waktu, alasan, dan pelaku koreksi dapat diperiksa.' },
@@ -35,7 +36,7 @@ const productFaq = [
       <div class="container catalog-hero__layout">
         <div class="reveal is-visible">
           <p class="section-kicker">Produk RAMUNI</p>
-          <h1>Baca penjualan, stok, dan kas dalam satu layar.</h1>
+          <h1>Lihat contoh penjualan, stok, dan kas dalam satu layar.</h1>
         </div>
         <div class="catalog-hero__aside reveal is-visible">
           <p>Preview RAMUNI memperlihatkan bagaimana catatan usaha dapat dibaca bersama, perubahan penting dibuka, lalu sumber angkanya ditelusuri.</p>
@@ -201,11 +202,13 @@ const productFaq = [
 
     <section class="section product-close">
       <div class="container">
-        <MascotDecisionCTA
+        <TourEvidenceCTA
           eyebrow="Mulai dari satu alur"
           title="Mulai dari alur yang paling penting."
-          body="Gunakan data contoh untuk melihat modul yang paling dekat dengan masalah usaha Anda."
-          theme="yellow"
+          body="Gunakan data contoh untuk melihat modul yang paling dekat dengan masalah usaha Anda, lalu bahas batas dan statusnya sebelum akses diberikan."
+          visual={productCloseVisual}
+          visualBadge="Ilustrasi alur produk · data contoh"
+          points={['Pilih satu pertanyaan usaha', 'Lihat modul yang terkait', 'Bahas status sebelum akses']}
         />
       </div>
     </section>

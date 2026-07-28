@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
+import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductDashboardChapter from '../../components/product/ProductDashboardChapter.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
+import { getProductContextVisual } from '../../data/dashboardVisuals';
 import { products } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
@@ -59,6 +60,7 @@ const tourIntentByProduct: Record<string, string> = {
   integrasi: 'overview',
 };
 const tourHref = `/tour-produk-gratis/?intent=${tourIntentByProduct[product.slug] || 'overview'}`;
+const closingVisual = getProductContextVisual(product.slug);
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
@@ -148,6 +150,7 @@ const structuredData = [
             <a class="button button--primary" href={tourHref}>Minta tour {product.title}</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
+          <p class="pd-hero__availability">Kemampuan pada halaman ini masih ditinjau. Status setiap bagian tersedia di bawah.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />
@@ -341,7 +344,19 @@ const structuredData = [
 
     <section id="product-next-step" class="pd-close" data-section-id="product-next-step" data-analytics-id="product_final_cta" aria-labelledby="product-next-step-title">
       <div class="container">
-        <MascotDecisionCTA headingId="product-next-step-title" title={detail.closing} body={detail.outcome} />
+        <TourEvidenceCTA
+          headingId="product-next-step-title"
+          eyebrow="Tour produk"
+          title={detail.closing}
+          body={`${detail.outcome} Tour memakai data contoh agar cara kerja dan batas ${product.title} bisa dibahas sebelum akses.`}
+          primaryLabel={`Minta tour ${product.title}`}
+          primaryHref={tourHref}
+          secondaryLabel="Bandingkan Produk"
+          secondaryHref="/produk/"
+          visual={closingVisual}
+          visualBadge="Visual konteks · bukan akun pelanggan"
+          points={[`Mulai dari ${product.title}`, 'Lihat contoh data yang bisa ditelusuri', 'Sepakati batas sebelum akses']}
+        />
       </div>
     </section>
   </article>

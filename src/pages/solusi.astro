@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MascotDecisionCTA from '../components/MascotDecisionCTA.astro';
+import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
@@ -9,6 +9,7 @@ import '../styles/other-pages-refinement.css';
 
 const solutionPreview = dashboardVisuals.productPerformance;
 const solutionPreviewContext = heroContextVisuals.salesCustomer;
+const solutionCloseVisual = heroContextVisuals.cashReport;
 
 const painClusters = [
   { label: 'Penjualan', text: 'Omzet berubah, tetapi pemicunya belum jelas.', prompt: 'Bandingkan produk dan waktu sebelum mengubah promosi.', bars: [42, 66, 51, 82, 57] },
@@ -109,7 +110,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
 
     <section class="section surface solution-hub-close" aria-labelledby="solution-hub-close-title">
       <div class="container">
-        <MascotDecisionCTA
+        <TourEvidenceCTA
           headingId="solution-hub-close-title"
           eyebrow="Petakan sebelum memilih"
           title="Petakan masalah tanpa membuka data sensitif."
@@ -117,6 +118,9 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="#solution-directory"
           theme="ink"
+          visual={solutionCloseVisual}
+          visualBadge="Ilustrasi konteks solusi · data contoh"
+          points={['Pilih gejala utama', 'Cocokkan modul terkait', 'Buka bukti sebelum bertindak']}
         />
       </div>
     </section>

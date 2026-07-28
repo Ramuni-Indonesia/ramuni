@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
+import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
 import SolutionManualGap from '../../components/solution/SolutionManualGap.astro';
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
+import { getSolutionContextVisual } from '../../data/dashboardVisuals';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { solutionNarratives } from '../../data/pageNarratives';
@@ -36,6 +37,7 @@ const solutionIntents: Record<string, string> = {
   'laporan-bisnis-otomatis': 'report',
 };
 const tourHref = `/tour-produk-gratis/?intent=${solutionIntents[solution.slug] || 'overview'}`;
+const closingVisual = getSolutionContextVisual(solution.slug);
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -177,13 +179,18 @@ const faqSchema = {
         </div>
       </div>
       <div class="container sd-close-visual reveal">
-        <MascotDecisionCTA
+        <TourEvidenceCTA
           eyebrow="Langkah berikutnya"
           title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
+          primaryLabel={solutionCtas[solution.slug] || 'Minta tour produk gratis'}
+          primaryHref={tourHref}
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="/solusi/"
           theme="ink"
+          visual={closingVisual}
+          visualBadge="Visual konteks · data contoh"
+          points={['Mulai dari gejala utama', 'Lihat modul yang berkaitan', 'Tentukan pemeriksaan berikutnya']}
         />
       </div>
     </section>

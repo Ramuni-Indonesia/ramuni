@@ -1,0 +1,87 @@
+---
+type Visual = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  headingId?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  visual: Visual;
+  visualBadge?: string;
+  points?: string[];
+  theme?: 'rice' | 'ink' | 'teal';
+}
+
+const {
+  eyebrow = 'Langkah berikutnya',
+  title,
+  body,
+  headingId,
+  primaryLabel = 'Minta tour produk gratis',
+  primaryHref = '/tour-produk-gratis/',
+  secondaryLabel,
+  secondaryHref,
+  visual,
+  visualBadge = 'Visual konteks · data contoh',
+  points = ['Pilih satu kasus usaha', 'Lihat data contoh yang relevan', 'Bahas batas dan langkah aman'],
+  theme = 'rice',
+} = Astro.props;
+---
+
+<aside class:list={['tour-evidence-cta', `tour-evidence-cta--${theme}`]} aria-label="Ajakan untuk melihat tour RAMUNI">
+  <div class="tour-evidence-cta__copy">
+    <p>{eyebrow}</p>
+    <h2 id={headingId}>{title}</h2>
+    <p>{body}</p>
+    <div class="tour-evidence-cta__actions">
+      <a class="button button--primary" href={primaryHref}>{primaryLabel}</a>
+      {secondaryLabel && secondaryHref && <a class="button button--secondary" href={secondaryHref}>{secondaryLabel}</a>}
+    </div>
+  </div>
+
+  <figure class="tour-evidence-cta__visual">
+    <img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" />
+    <figcaption>
+      <span>{visualBadge}</span>
+      <ol>
+        {points.slice(0, 3).map((point, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><small>{point}</small></li>)}
+      </ol>
+    </figcaption>
+  </figure>
+</aside>
+
+<style>
+  .tour-evidence-cta{display:grid;grid-template-columns:minmax(0,.82fr) minmax(420px,1.18fr);gap:clamp(28px,5vw,72px);align-items:center;padding:clamp(28px,5vw,62px);overflow:hidden;border:1px solid var(--ink-10);background:var(--rice);color:var(--ink)}
+  .tour-evidence-cta--ink{border-color:rgb(255 255 255/.16);background:var(--ink);color:var(--white)}
+  .tour-evidence-cta--teal{border-color:rgb(255 255 255/.18);background:var(--teal);color:var(--white)}
+  .tour-evidence-cta__copy{min-width:0}
+  .tour-evidence-cta__copy>p:first-child{margin:0;color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .tour-evidence-cta--ink .tour-evidence-cta__copy>p:first-child,.tour-evidence-cta--teal .tour-evidence-cta__copy>p:first-child{color:var(--yellow)}
+  .tour-evidence-cta__copy h2{max-width:18ch;margin:16px 0 0;font-size:var(--type-h2);line-height:1.04;text-wrap:balance}
+  .tour-evidence-cta__copy>p:not(:first-child){max-width:49ch;margin:20px 0 0;color:var(--ink-72);line-height:1.65;text-wrap:pretty}
+  .tour-evidence-cta--ink .tour-evidence-cta__copy>p:not(:first-child),.tour-evidence-cta--teal .tour-evidence-cta__copy>p:not(:first-child){color:rgb(255 255 255/.74)}
+  .tour-evidence-cta__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .tour-evidence-cta--rice .button--secondary{border-color:var(--ink);color:var(--ink)}
+  .tour-evidence-cta--ink .button--secondary,.tour-evidence-cta--teal .button--secondary{border-color:rgb(255 255 255/.46);color:var(--white)}
+  .tour-evidence-cta__visual{position:relative;min-width:0;margin:0;overflow:hidden;border:1px solid var(--ink);background:var(--white);box-shadow:12px 12px 0 color-mix(in srgb,var(--yellow) 76%,transparent)}
+  .tour-evidence-cta--ink .tour-evidence-cta__visual,.tour-evidence-cta--teal .tour-evidence-cta__visual{box-shadow:12px 12px 0 rgb(255 255 255/.16)}
+  .tour-evidence-cta__visual img{display:block;width:100%;height:auto;aspect-ratio:1.55;object-fit:cover}
+  .tour-evidence-cta__visual figcaption{display:grid;grid-template-columns:minmax(150px,.48fr) minmax(0,1fr);gap:1px;background:var(--ink-10);color:var(--ink)}
+  .tour-evidence-cta__visual figcaption>span{display:grid;align-content:center;padding:16px;background:var(--ink);color:var(--white);font-size:.67rem;font-weight:800;letter-spacing:.04em}
+  .tour-evidence-cta__visual ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none;background:var(--white)}
+  .tour-evidence-cta__visual li{display:grid;gap:8px;min-width:0;padding:15px;border-right:1px solid var(--ink-10)}
+  .tour-evidence-cta__visual li:last-child{border-right:0}
+  .tour-evidence-cta__visual b{color:var(--teal);font-size:.6rem}
+  .tour-evidence-cta__visual small{font-size:.72rem;font-weight:800;line-height:1.35;text-wrap:pretty}
+  @media(max-width:960px){.tour-evidence-cta{grid-template-columns:1fr}.tour-evidence-cta__copy{max-width:720px}.tour-evidence-cta__visual{width:min(100%,760px);justify-self:center}}
+  @media(max-width:680px){.tour-evidence-cta{padding:28px 18px}.tour-evidence-cta__copy h2{font-size:clamp(2rem,10vw,3rem)}.tour-evidence-cta__actions,.tour-evidence-cta__actions .button{width:100%}.tour-evidence-cta__actions .button{justify-content:center}.tour-evidence-cta__visual{box-shadow:7px 7px 0 color-mix(in srgb,var(--yellow) 76%,transparent)}.tour-evidence-cta__visual figcaption{grid-template-columns:1fr}.tour-evidence-cta__visual ol{grid-template-columns:1fr}.tour-evidence-cta__visual li{border-right:0;border-bottom:1px solid var(--ink-10)}.tour-evidence-cta__visual li:last-child{border-bottom:0}}
+</style>

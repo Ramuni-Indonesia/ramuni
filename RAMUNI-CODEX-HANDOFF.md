@@ -49,6 +49,8 @@ Final brand language:
 
 The official logo stays static: no rotation, gradient, glow, shadow, distortion, or 3D transformation. Decorative 2D/3D visuals may express `catatan -> bukti -> arah` without changing the logo. Never invent customer logos, metrics, testimonials, integrations, certifications, reviewers, sources, or hard claims. Use practical Bahasa Indonesia for UMKM owners.
 
+Additional mascot source of truth is available in the isolated RAMUNI Creative Studio review worktree at `/home/meetsin/internal/ramuni-worktrees/creative-studio-brand-assets-20260727`. Its `docs/brand/RAMUNI-BRAND-MASCOT-ASSET-HANDOVER.md` and `docs/brand/RAMUNI-MASCOT-PHASE-1-SERVER-BRIEF.md` define Muni si Manyar, Si Ramu, and Kancil Cermat as three alternative Phase 1 exploration routes. They are not three approved expressions or workflow states. Route A/Muni remains only a working recommendation for staging tests. Do not copy the three routes into visitor-facing decision stages or production until originality, trademark/IP, ownership, named-owner review, and written route approval are recorded.
+
 ## What is implemented
 
 - Responsive navbar, mega menu, hamburger behavior, larger brand lockups, footer, floating contact, and scroll-to-top behavior.
