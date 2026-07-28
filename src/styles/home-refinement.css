@@ -139,10 +139,10 @@
 }
 
 .workflow-explorer .workflow-node:last-child{border-right:0}
-.workflow-explorer .workflow-node[aria-selected="true"]{background:var(--ink);color:var(--white)}
-.workflow-explorer .workflow-node[aria-selected="true"] span{color:var(--yellow)}
-.workflow-explorer .workflow-node[aria-selected="true"] p{color:rgb(255 255 255/.7)}
-.workflow-explorer .workflow-node:hover:not([aria-selected="true"]){background:var(--yellow)}
+.workflow-explorer .workflow-node[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.workflow-explorer .workflow-node[aria-pressed="true"] span{color:var(--yellow)}
+.workflow-explorer .workflow-node[aria-pressed="true"] p{color:rgb(255 255 255/.7)}
+.workflow-explorer .workflow-node:hover:not([aria-pressed="true"]){background:var(--yellow)}
 .workflow-explorer .workflow-node:active{transform:translateY(1px)}
 .workflow-explorer .workflow-node:focus-visible{position:relative;z-index:2;outline:3px solid var(--teal);outline-offset:-4px}
 
@@ -444,7 +444,7 @@
 .industry-room__question{display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,6vw,78px)}
 .industry-room__question>span{color:var(--yellow);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.industry-room__question h3{max-width:18ch;margin:22px 0 44px;font-size:clamp(2rem,4.5vw,4.8rem)}.industry-room__question a{width:max-content;color:var(--yellow);font-weight:700;text-underline-offset:7px}
 .industry-switcher{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid rgb(255 255 255/.28)}
-.industry-switcher button{min-height:72px;padding:12px;border:0;border-right:1px solid rgb(255 255 255/.18);background:transparent;color:rgb(255 255 255/.68);font-size:.74rem;font-weight:800}.industry-switcher button:last-child{border-right:0}.industry-switcher button[aria-selected='true']{background:var(--teal);color:var(--white)}.industry-switcher button:hover{color:var(--yellow)}
+.industry-switcher button{min-height:72px;padding:12px;border:0;border-right:1px solid rgb(255 255 255/.18);background:transparent;color:rgb(255 255 255/.68);font-size:.74rem;font-weight:800}.industry-switcher button:last-child{border-right:0}.industry-switcher button[aria-pressed='true']{background:var(--teal);color:var(--white)}.industry-switcher button:hover{color:var(--yellow)}
 
 .start-journey__head{display:flex;justify-content:space-between;gap:42px;align-items:end;margin-bottom:clamp(44px,6vw,76px)}
 .start-journey__head>p:last-child{color:var(--ink-72);max-width:35ch}.start-steps--horizontal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:0;padding-top:64px;position:relative}.start-steps--horizontal::before{content:'';position:absolute;left:0;right:0;top:25px;height:2px;background:var(--ink)}
@@ -644,20 +644,6 @@
 
 .home-hero-story b{color:var(--teal);font-size:.58rem}
 
-.home-hero-guide{
-  position:absolute;
-  z-index:4;
-  right:-72px;
-  top:48%;
-  width:92px;
-  aspect-ratio:376/422;
-  background:url('/website-original/mascot/ramuni-mascot-work-loop-poster.webp') center/cover no-repeat;
-  filter:drop-shadow(0 12px 14px rgb(11 48 69/.15));
-  transform:translateY(-50%);
-  pointer-events:none;
-}
-@media(prefers-reduced-motion:no-preference){.home-hero-guide{animation:home-hero-guide-breathe 4.8s cubic-bezier(.22,1,.36,1) infinite}@keyframes home-hero-guide-breathe{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 6px))}}}
-
 .home-hero-story span::after{content:'';position:absolute;left:0;right:12px;top:-1px;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left}
 @media(prefers-reduced-motion:no-preference){
   .home-hero-story__step--overview::after{animation:home-proof-step-overview 12s linear infinite}
@@ -823,7 +809,6 @@
   .home-hero::after{display:none}
   .home-decision-demo{padding-right:0}
   .home-hero-story{width:100%}
-  .home-hero-guide{display:none}
   .business-proof{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:28px}
   .animated-muni-work.business-proof__mascot{--animated-muni-size:96px}
 }
@@ -896,7 +881,7 @@
 .business-proof__questions>button{min-height:124px;padding:18px;border-right:1px solid var(--ink-20)}
 .business-proof__questions>button:nth-child(3){border-right:0}
 .business-proof__questions>button[aria-selected='true']{padding-left:18px}
-.business-proof__more{grid-column:1/-1;grid-template-columns:auto 1fr 1fr;align-items:center;gap:16px;padding:14px 18px;border-top:1px solid var(--ink-20)}
+.business-proof__more{grid-column:1/-1;grid-template-columns:auto 1fr;align-items:center;gap:16px;padding:14px 18px;border-top:1px solid var(--ink-20)}
 
 @media(max-width:960px){
   .home-hero .hero-copy{justify-items:start;text-align:left}
@@ -904,8 +889,8 @@
   .home-hero h1{max-width:16ch;font-size:clamp(3rem,8vw,4.75rem)}
   .home-decision-demo{padding:0}
   .business-proof__stage{grid-template-columns:1fr;grid-template-rows:auto auto auto}
-  .business-proof__context{grid-column:1;grid-row:1;aspect-ratio:16/9}
-  .business-proof__screen{grid-column:1;grid-row:2;border-left:0;border-top:1px solid var(--ink-20)}
+  .business-proof__screen{grid-column:1;grid-row:1;border-left:0;border-bottom:1px solid var(--ink-20)}
+  .business-proof__context{grid-column:1;grid-row:2;height:clamp(132px,22vw,188px);aspect-ratio:auto;object-position:center 58%}
   .business-proof__guide{grid-column:1;grid-row:3}
 }
 
@@ -920,4 +905,26 @@
   .business-proof__guide{padding:12px}.animated-muni-work.business-proof__mascot{--animated-muni-size:68px}.business-proof__guide p strong{font-size:.7rem}
   .business-proof__questions{grid-template-columns:1fr}.business-proof__questions>button{min-height:0;padding:16px;border-right:0}.business-proof__questions>button:nth-child(3){border-bottom:1px solid var(--ink-20)}.business-proof__questions>button[aria-selected='true']{padding-left:16px}
   .business-proof__more{grid-template-columns:1fr;gap:9px;padding:16px}
+}
+
+/* Wide screens keep the value proposition and product proof in one glance.
+   The dashboard remains the dominant asset and no card floats over it. */
+@media(min-width:961px){
+  .home-hero{padding-block:clamp(34px,4vw,58px) clamp(54px,6vw,84px)}
+  .home-hero .hero-composition{grid-template-columns:minmax(320px,.76fr) minmax(0,1.24fr);gap:clamp(34px,4vw,68px);align-items:center}
+  .home-hero .hero-copy{width:auto;justify-items:start;margin:0;text-align:left}
+  .home-hero h1{max-width:12ch;font-size:clamp(3rem,4.45vw,4.75rem);line-height:1.01}
+  .home-hero .lede{max-width:48ch}
+  .home-hero .hero-copy .button-row{justify-content:flex-start}
+  .home-decision-demo{width:100%;justify-self:stretch}
+}
+
+@media(prefers-reduced-motion:no-preference) and (min-width:961px) and (hover:hover) and (pointer:fine){
+  .home-hero-story__step--overview{animation:home-story-overview 12s linear infinite!important}
+  .home-hero-story__step--performance{animation:home-story-performance 12s linear infinite!important}
+  .home-hero-story__step--operations{animation:home-story-operations 12s linear infinite!important}
+  .home-hero-story span::after{display:block}
+  @keyframes home-story-overview{0%,28%,100%{color:var(--ink);background:var(--yellow)}34%,94%{color:var(--ink-72);background:transparent}}
+  @keyframes home-story-performance{0%,28%,66%,100%{color:var(--ink-72);background:transparent}34%,60%{color:var(--ink);background:var(--yellow)}}
+  @keyframes home-story-operations{0%,60%,100%{color:var(--ink-72);background:transparent}68%,94%{color:var(--ink);background:var(--yellow)}}
 }

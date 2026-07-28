@@ -47,6 +47,18 @@ const productHeroTitles: Record<string, string> = {
   integrasi: 'Masukkan data dengan pemetaan dan status yang jelas.',
 };
 const heroTitle = productHeroTitles[product.slug] || detail.outcome;
+const tourIntentByProduct: Record<string, string> = {
+  'asisten-ai': 'overview',
+  'dashboard-bisnis': 'overview',
+  'katalog-produk': 'catalog',
+  penjualan: 'sales',
+  inventori: 'stock',
+  keuangan: 'finance',
+  pelanggan: 'customer',
+  'laporan-insight': 'report',
+  integrasi: 'overview',
+};
+const tourHref = `/tour-produk-gratis/?intent=${tourIntentByProduct[product.slug] || 'overview'}`;
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
@@ -133,10 +145,9 @@ const structuredData = [
           <h1 id="product-title">{heroTitle}</h1>
           <p class="pd-hero__lead">{detail.heroLead}</p>
           <div class="button-row">
-            <a class="button button--primary" href="/tour-produk-gratis/">Minta tour {product.title}</a>
+            <a class="button button--primary" href={tourHref}>Minta tour {product.title}</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
-          <p class="pd-hero__disclosure">Preview memakai data contoh. Ketersediaan tiap kemampuan dijelaskan pada bagian status di bawah.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />

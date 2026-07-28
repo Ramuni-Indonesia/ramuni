@@ -61,7 +61,10 @@ const stories = [
       ))}
       <footer><span data-business-label>Penjualan</span><strong data-business-answer>{stories[0].answer}</strong></footer>
     </div>
-    <AnimatedMuniWork class="business-proof__mascot" label="Muni bergerak sambil membantu membaca contoh dashboard" />
+    <figcaption class="business-proof__guide">
+      <AnimatedMuniWork class="business-proof__mascot" label="Muni bergerak sambil membantu membaca contoh dashboard" />
+      <p><span>Muni sedang memeriksa</span><strong>Pilih gejala di bawah. Dashboard akan berganti ke konteks yang perlu dibuka.</strong></p>
+    </figcaption>
   </figure>
 
   <div class="business-proof__questions reveal" role="tablist" aria-label="Pilih masalah usaha">
@@ -80,11 +83,10 @@ const stories = [
         <strong>{story.question}</strong>
       </button>
     ))}
-    <div class="business-proof__more">
-      <span>Masalah lain</span>
-      <a href="/solusi/pahami-pelanggan/">Pelanggan lama tidak kembali</a>
-      <a href="/solusi/laporan-bisnis-otomatis/">Rekap selesai terlalu lambat</a>
-    </div>
+  </div>
+  <div class="business-proof__more">
+    <span>Masalah lain</span>
+    <a href="/solusi/">Lihat semua masalah usaha</a>
   </div>
 </div>
 

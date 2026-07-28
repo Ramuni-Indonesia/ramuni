@@ -14,6 +14,11 @@ export const mascots = {
     width: 560,
     height: 560,
   },
+  workLoop2d: {
+    src: '/website-original/mascot/ramuni-mascot-work-loop-poster.webp',
+    width: 376,
+    height: 422,
+  },
   guide3d: {
     src: '/website-original/mascot/ramuni-mascot-3d-guide.webp',
     width: 384,

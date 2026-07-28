@@ -50,25 +50,25 @@ const hubFrames = [
   </figure>
 ) : (
   <figure class="product-canvas product-canvas--detail-proof">
-    <figcaption class="product-canvas__caption">
-      <span><i aria-hidden="true"></i> Dashboard RAMUNI</span>
+    <header class="product-canvas__caption">
+      <span><i aria-hidden="true"></i> {title}</span>
       <strong>{dashboardVisual.badge}</strong>
-    </figcaption>
-    <picture class="product-canvas__detail-media">
-      {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
-      <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
-    </picture>
-    <div class="product-canvas__detail-reading">
-      <figure class="product-canvas__detail-context">
+    </header>
+    <div class="product-canvas__detail-media">
+      <picture class="product-canvas__detail-screen">
+        {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
+        <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
+      </picture>
+      <div class="product-canvas__detail-context">
         <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" />
-        <figcaption>Konteks penggunaan</figcaption>
-      </figure>
-      <div class="product-canvas__detail-copy">
-        <span>Pertanyaan yang dibantu</span>
-        <strong>{question}</strong>
-        <small>Tampilan ini memperlihatkan dashboard RAMUNI secara umum. Data di layar adalah fixture pengujian, bukan data pelanggan atau bukti bahwa seluruh fitur {title} sudah tersedia.</small>
+        <span>Ilustrasi konteks, bukan UI produk</span>
       </div>
     </div>
+    <figcaption class="product-canvas__detail-copy">
+      <span>Pertanyaan yang dibantu</span>
+      <strong>{question}</strong>
+      <small>Dashboard ini memakai data demo dan memperlihatkan tampilan RAMUNI secara umum, bukan bukti bahwa seluruh fitur {title} sudah tersedia.</small>
+    </figcaption>
   </figure>
 )}
 
@@ -84,11 +84,11 @@ const hubFrames = [
   .product-canvas__hub-reading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--white);color:var(--ink)}
   .product-canvas__hub-reading>span{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;min-width:0;padding:17px 20px;border-right:1px solid var(--ink-10)}
   .product-canvas__hub-reading>span:last-child{border-right:0}.product-canvas__hub-reading b{grid-row:1/3;color:var(--teal);font-size:.65rem}.product-canvas__hub-reading strong{font-size:.8rem}.product-canvas__hub-reading small{color:var(--ink-72);font-size:.68rem;line-height:1.45}
-  .product-canvas--detail-proof{border:1px solid rgb(11 48 69/.16);border-radius:22px;box-shadow:0 24px 58px rgb(11 48 69/.14)}
-  .product-canvas__detail-media{display:block;aspect-ratio:1280/650;background:var(--rice);overflow:hidden}.product-canvas__detail-media img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}
-  .product-canvas__detail-reading{display:grid;grid-template-columns:minmax(116px,.34fr) minmax(0,1.66fr);border-top:1px solid var(--ink-10)}
-  .product-canvas__detail-context{position:relative;min-width:0;min-height:118px;margin:0;border-right:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.product-canvas__detail-context img{display:block;width:100%;height:100%;object-fit:cover}.product-canvas__detail-context figcaption{position:absolute;left:8px;bottom:8px;padding:5px 7px;background:rgb(244 240 231/.94);font-size:.48rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-  .product-canvas__detail-copy{display:grid;grid-template-columns:auto minmax(160px,.8fr) minmax(220px,1.2fr);gap:12px 18px;align-items:start;padding:14px 16px}.product-canvas__detail-copy span{color:var(--teal);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.product-canvas__detail-copy strong{font-size:.7rem;line-height:1.45}.product-canvas__detail-copy small{color:var(--ink-56);font-size:.58rem;line-height:1.45}
+  .product-canvas--detail-proof{container-type:inline-size;border:1px solid rgb(11 48 69/.16);border-radius:22px;box-shadow:0 24px 58px rgb(11 48 69/.14)}
+  .product-canvas__detail-media{display:grid;grid-template-columns:minmax(0,1.56fr) minmax(150px,.44fr);aspect-ratio:1280/650;background:var(--rice);overflow:hidden}
+  .product-canvas__detail-screen{display:block;min-width:0;overflow:hidden}.product-canvas__detail-screen img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}
+  .product-canvas__detail-context{display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;border-left:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.product-canvas__detail-context img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}.product-canvas__detail-context span{padding:8px 10px;border-top:1px solid var(--ink-10);background:var(--white);font-size:.49rem;font-weight:800;line-height:1.35;text-transform:uppercase;letter-spacing:.06em}
+  .product-canvas__detail-copy{display:grid;grid-template-columns:auto minmax(170px,.8fr) minmax(230px,1.2fr);gap:12px 18px;align-items:start;padding:15px 17px;border-top:1px solid var(--ink-10)}.product-canvas__detail-copy span{color:var(--teal);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.product-canvas__detail-copy strong{font-size:.7rem;line-height:1.45}.product-canvas__detail-copy small{color:var(--ink-56);font-size:.58rem;line-height:1.45}
   @media(prefers-reduced-motion:no-preference){
     .product-canvas__hub-frame--1{animation:product-hub-frame-1 13s cubic-bezier(.22,1,.36,1) infinite}
     .product-canvas__hub-frame--2{animation:product-hub-frame-2 13s cubic-bezier(.22,1,.36,1) infinite}
@@ -102,7 +102,8 @@ const hubFrames = [
     .product-canvas__caption strong{display:none}
     .product-canvas__hub-reading{grid-template-columns:1fr}.product-canvas__hub-reading>span{border-right:0;border-bottom:1px solid var(--ink-10)}.product-canvas__hub-reading>span:last-child{border-bottom:0}
     .product-canvas__hub-frame--2,.product-canvas__hub-frame--3{object-fit:contain}
-    .product-canvas__detail-media{aspect-ratio:4/3}.product-canvas__detail-reading{grid-template-columns:1fr}.product-canvas__detail-context{min-height:128px;max-height:150px;border-right:0;border-bottom:1px solid var(--ink-10)}.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}
+    .product-canvas__detail-media{grid-template-columns:1fr;aspect-ratio:auto}.product-canvas__detail-screen{aspect-ratio:4/3}.product-canvas__detail-context{min-height:150px;max-height:190px;border-left:0;border-top:1px solid var(--ink-10)}.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}
   }
+  @container(max-width:480px){.product-canvas__detail-media{grid-template-columns:1fr;aspect-ratio:auto}.product-canvas__detail-screen{aspect-ratio:4/3}.product-canvas__detail-context{min-height:132px;max-height:172px;border-left:0;border-top:1px solid var(--ink-10)}.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}}
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}.product-canvas__hub-frame:not(.product-canvas__hub-frame--1){display:none}}
 </style>

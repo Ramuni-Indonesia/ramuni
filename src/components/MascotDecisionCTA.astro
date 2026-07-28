@@ -31,8 +31,8 @@ const fallbackMascot = releaseGates.mascotExplorationEnabled ? mascots[mascot] :
 
 const stages = [
   { label: 'Catatan', title: 'Mulai dari satu pertanyaan', text: 'Pilih angka atau kejadian usaha yang paling perlu dipahami.', mascot: 'working2d' as const },
-  { label: 'Bukti', title: 'Periksa jejaknya', text: 'Lihat periode, sumber, dan catatan sebelum menyimpulkan.', mascot: 'evidence3d' as const },
-  { label: 'Arah', title: 'Tentukan langkah', text: 'Gunakan contoh alur untuk membahas pilihan tanpa menyerahkan kendali.', mascot: 'guide3d' as const },
+  { label: 'Bukti', title: 'Periksa jejaknya', text: 'Lihat periode, sumber, dan catatan sebelum menyimpulkan.', mascot: 'workLoop2d' as const },
+  { label: 'Arah', title: 'Tentukan langkah', text: 'Gunakan contoh alur untuk membahas pilihan tanpa menyerahkan kendali.', mascot: 'welcome2d' as const },
 ];
 const stageMascots = stages.map((stage) => releaseGates.mascotExplorationEnabled ? mascots[stage.mascot] : fallbackMascot);
 const instanceSeed = headingId || title;

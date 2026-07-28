@@ -9,5 +9,9 @@ export const releaseGates = {
   securityPageIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_SECURITY_REVIEW_APPROVED === 'true',
   calculatorPagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true',
   resourcePagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_RESOURCE_REVIEW_APPROVED === 'true',
-  mascotExplorationEnabled: !publicEnvironment.isProduction || import.meta.env.PUBLIC_MASCOT_EXPLORATION_APPROVED === 'true',
+  mascotExplorationEnabled:
+    import.meta.env.DEV
+    || publicEnvironment.name === 'preview'
+    || publicEnvironment.name === 'staging'
+    || (publicEnvironment.isProduction && import.meta.env.PUBLIC_MASCOT_EXPLORATION_APPROVED === 'true'),
 } as const;

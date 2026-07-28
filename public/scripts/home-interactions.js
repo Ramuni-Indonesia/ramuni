@@ -17,8 +17,7 @@ document.querySelectorAll('[data-workflow-explorer]').forEach((explorer) => {
     const index = Number(tab.dataset.workflowTab || 0);
     tabs.forEach((item) => {
       const active = item === tab;
-      item.setAttribute('aria-selected', String(active));
-      item.tabIndex = active ? 0 : -1;
+      item.setAttribute('aria-pressed', String(active));
     });
     if (!focus || !label || !title || !copy || !state) return;
     focus.dataset.changing = 'false';
@@ -47,7 +46,7 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
   const link = room.querySelector('[data-industry-link]');
   const name = room.querySelector('[data-industry-name]');
   const activate = (tab) => {
-    tabs.forEach((item) => item.setAttribute('aria-selected', String(item === tab)));
+    tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
     if (code) code.textContent = tab.dataset.code || '';
     if (scene) scene.dataset.scene = tab.dataset.scene || '';
     if (question) question.textContent = tab.dataset.question || '';

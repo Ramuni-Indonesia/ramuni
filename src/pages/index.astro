@@ -56,7 +56,7 @@ const schema = [
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
         <h1>Pahami bisnis Anda. Tahu langkah berikutnya.</h1>
-        <p class="lede">RAMUNI menyatukan penjualan, stok, kas, dan pelanggan dalam satu dashboard, lalu menunjukkan perubahan beserta sumber angka yang perlu diperiksa.</p>
+        <p class="lede">Preview RAMUNI memperlihatkan cara penjualan, stok, kas, dan pelanggan dibaca bersama, lalu mengarahkan Anda ke sumber angka yang perlu diperiksa.</p>
         <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard contoh</a></div>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
@@ -97,8 +97,8 @@ const schema = [
     <div class="container">
       <div class="section-intro reveal"><h2>Kumpulkan angka, pahami perubahan, lalu tentukan langkah.</h2><p>Pilih satu tahap untuk melihat apa yang terjadi di dalamnya.</p></div>
       <div class="workflow-explorer reveal" data-workflow-explorer>
-        <div class="workflow-track" role="tablist" aria-label="Alur RAMUNI">
-          {workflowStages.map(([title, text], i) => <button type="button" class="workflow-node" role="tab" aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></button>)}
+        <div class="workflow-track" role="group" aria-label="Alur RAMUNI">
+          {workflowStages.map(([title, text], i) => <button type="button" class="workflow-node" aria-pressed={i === 0 ? 'true' : 'false'} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></button>)}
         </div>
         <div class="workflow-focus" aria-live="polite">
           <div class="workflow-focus__signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -205,8 +205,8 @@ const schema = [
         <div class="industry-room__visual" aria-hidden="true"><div class="industry-room__chart" data-industry-scene data-scene="retail"><span></span><span></span><span></span><span></span></div><em data-industry-code>Retail</em><i></i><i></i><i></i><i></i><i></i></div>
         <div class="industry-room__question"><span>Pertanyaan contoh</span><h3 data-industry-question>{industries[0].question}</h3><a data-industry-link href={`/industri/${industries[0].slug}/`}>Lihat konteks <b data-industry-name>{industries[0].title}</b></a></div>
       </div>
-      <div class="industry-switcher" role="tablist" aria-label="Pilih jenis usaha">
-        {industries.map((industry, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}/`}>{industry.title}</button>)}
+      <div class="industry-switcher" role="group" aria-label="Pilih jenis usaha">
+        {industries.map((industry, i) => <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}/`}>{industry.title}</button>)}
       </div>
     </div>
   </section>

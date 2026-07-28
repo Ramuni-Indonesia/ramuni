@@ -79,11 +79,9 @@ const schema = [
           </div>
           <ol><li><b>01</b><span>Pilih catatan</span></li><li><b>02</b><span>Bandingkan</span></li><li><b>03</b><span>Periksa konteks</span></li></ol>
         </div>
-        <p class="blog-hero-note"><span>Untuk pemilik usaha</span> Baca satu topik, cek angkanya, lalu tentukan langkah kecil berikutnya.</p>
         <form class="blog-search" action="/blog/cari/" method="get" role="search">
-          <label for="blog-query">Apa yang ingin Anda pahami?</label>
-          <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Coba cari: stok menipis" /><button type="submit">Cari</button></div>
-          <small>Hindari nama pelanggan dan data transaksi.</small>
+          <label for="blog-query">Cari topik usaha</label>
+          <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Stok menipis" /><button type="submit">Cari</button></div>
         </form>
       </div>
     </div>
@@ -105,7 +103,7 @@ const schema = [
 
   {readingPaths.length > 0 && <section class="section blog-reading-path" aria-labelledby="reading-path-heading">
     <div class="container reading-journey">
-      <div class="reading-journey__head reveal"><p class="section-kicker">Jalur membaca</p><h2 id="reading-path-heading">Bacaan untuk mengubah angka menjadi langkah.</h2><p>Mulai dari catatan yang ada. Bandingkan perubahannya. Periksa sebelum memutuskan.</p></div>
+      <div class="reading-journey__head reveal"><p class="section-kicker">Jalur membaca</p><h2 id="reading-path-heading">Bacaan untuk mengubah angka menjadi langkah.</h2></div>
       <ol class="blog-reading-path__list">
         {readingPaths.map((path, index) => <li class="reveal" style={`--i:${index}`}><a href={path.href}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{path.title}</h3><p>{path.text}</p></div><b aria-hidden="true">Buka jalur <i>&rarr;</i></b></a></li>)}
       </ol>

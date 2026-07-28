@@ -14,37 +14,38 @@ const warningMetric = visual.metrics.find((metric) => metric.tone === 'warning')
 ---
 
 <figure class={`sd-visual sd-visual--${visual.kind}`}>
-  <figcaption class="sd-visual__head">
+  <header class="sd-visual__head">
     <div><span>{visual.label}</span><strong>{visual.title}</strong></div>
-    <small>{dashboardVisual.badge}</small>
-  </figcaption>
+    <small>Dashboard umum RAMUNI · data demo</small>
+  </header>
 
-  <picture class="sd-visual__dashboard">
-    {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
-    <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
-  </picture>
-
-  <div class="sd-visual__reading">
-    <figure class="sd-visual__context">
+  <div class="sd-visual__media">
+    <picture class="sd-visual__dashboard">
+      {'mobileSrc' in dashboardVisual && <source media="(max-width: 620px)" srcset={dashboardVisual.mobileSrc} width={dashboardVisual.mobileWidth} height={dashboardVisual.mobileHeight} />}
+      <img src={dashboardVisual.src} width={dashboardVisual.width} height={dashboardVisual.height} alt={dashboardVisual.alt} decoding="async" fetchpriority="high" />
+    </picture>
+    <div class="sd-visual__context">
       <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} decoding="async" loading="eager" />
-      <figcaption>Ilustrasi konteks usaha</figcaption>
-    </figure>
+      <span>Ilustrasi konteks, bukan UI produk</span>
+    </div>
+  </div>
+  <figcaption class="sd-visual__reading">
     <ol aria-label="Cara membaca contoh visual">
       <li><span>01 / Pola</span><strong>{visual.period}</strong></li>
       <li><span>02 / Bukti</span><strong>{warningMetric?.label}: {warningMetric?.value}</strong><small>{warningMetric?.note}</small></li>
       <li><span>03 / Tindakan</span><strong>Pengguna membuka sumber lalu menentukan langkah.</strong></li>
     </ol>
-  </div>
+  </figcaption>
 </figure>
 
 <style>
-  .sd-visual{min-width:0;margin:0;border:1px solid rgb(11 48 69/.16);border-radius:22px;background:var(--white);box-shadow:0 24px 58px rgb(11 48 69/.14);overflow:hidden}
+  .sd-visual{container-type:inline-size;min-width:0;margin:0;border:1px solid rgb(11 48 69/.16);border-radius:22px;background:var(--white);box-shadow:0 24px 58px rgb(11 48 69/.14);overflow:hidden}
   .sd-visual__head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 17px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white)}
   .sd-visual__head>div{display:grid;gap:3px}.sd-visual__head span{color:var(--yellow);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.sd-visual__head strong{font-size:.72rem}.sd-visual__head small{color:rgb(255 255 255/.66);font-size:.58rem;font-weight:700}
-  .sd-visual__dashboard{display:block;aspect-ratio:1280/650;background:var(--rice);overflow:hidden}.sd-visual__dashboard img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}
-  .sd-visual__reading{display:grid;grid-template-columns:minmax(150px,.42fr) minmax(0,1.58fr);border-top:1px solid var(--ink-10)}
-  .sd-visual__context{position:relative;min-width:0;min-height:170px;margin:0;border-right:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__context img{display:block;width:100%;height:100%;object-fit:cover}.sd-visual__context figcaption{position:absolute;left:10px;bottom:10px;padding:6px 8px;background:rgb(244 240 231/.94);color:var(--ink);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-  .sd-visual__reading ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;margin:0;padding:0}.sd-visual__reading li{display:flex;flex-direction:column;gap:7px;min-width:0;padding:15px;border-right:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-right:0;background:var(--yellow)}.sd-visual__reading li>span{color:var(--teal);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.sd-visual__reading li:last-child>span{color:var(--ink)}.sd-visual__reading li strong{font-size:.63rem;line-height:1.45}.sd-visual__reading li small{color:var(--ink-56);font-size:.55rem;line-height:1.4}
-  @media(max-width:720px){.sd-visual{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}.sd-visual__head small{display:none}.sd-visual__dashboard{aspect-ratio:4/3}.sd-visual__reading{grid-template-columns:1fr}.sd-visual__context{min-height:150px;max-height:180px;border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading ol{grid-template-columns:1fr}.sd-visual__reading li{border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-bottom:0}}
+  .sd-visual__media{display:grid;grid-template-columns:minmax(0,1.52fr) minmax(150px,.48fr);aspect-ratio:1280/650;background:var(--rice);overflow:hidden}.sd-visual__dashboard{display:block;min-width:0;overflow:hidden}.sd-visual__dashboard img{display:block;width:100%;height:100%;object-fit:contain;object-position:top center}
+  .sd-visual__reading{padding:0;border-top:1px solid var(--ink-10);background:var(--white)}.sd-visual__reading ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none}.sd-visual__reading li{display:grid;align-content:start;gap:6px;min-width:0;padding:14px 16px;border-right:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-right:0}.sd-visual__reading span{color:var(--teal);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.sd-visual__reading strong{font-size:.63rem;line-height:1.45}.sd-visual__reading small{color:var(--ink-56);font-size:.54rem;line-height:1.4}
+  .sd-visual__context{display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;border-left:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.sd-visual__context img{display:block;width:100%;height:100%;min-height:0;object-fit:cover}.sd-visual__context span{padding:8px 10px;border-top:1px solid var(--ink-10);background:var(--white);color:var(--ink);font-size:.52rem;font-weight:800;line-height:1.35;text-transform:uppercase;letter-spacing:.06em}
+  @media(max-width:720px){.sd-visual{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}.sd-visual__head small{display:none}.sd-visual__media{grid-template-columns:1fr;aspect-ratio:auto}.sd-visual__dashboard{aspect-ratio:4/3}.sd-visual__context{min-height:150px;max-height:190px;border-left:0;border-top:1px solid var(--ink-10)}.sd-visual__reading ol{grid-template-columns:1fr}.sd-visual__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-bottom:0}}
+  @container(max-width:480px){.sd-visual__media{grid-template-columns:1fr;aspect-ratio:auto}.sd-visual__dashboard{aspect-ratio:4/3}.sd-visual__context{min-height:132px;max-height:172px;border-left:0;border-top:1px solid var(--ink-10)}.sd-visual__reading ol{grid-template-columns:1fr}.sd-visual__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.sd-visual__reading li:last-child{border-bottom:0}}
   @media(prefers-reduced-motion:reduce){.sd-visual *{animation:none!important;transition:none!important}}
 </style>

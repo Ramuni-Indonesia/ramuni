@@ -26,18 +26,15 @@ const {
   description,
   panes,
   note,
-  mascot = 'guide3d',
   variant = 'role',
 } = Astro.props;
 const safeId = id.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
 const visiblePanes = panes.slice(0, 3).map((pane) => ({ ...pane, items: pane.items.slice(0, 4) }));
-const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots[mascot] : mascots.decisionVisual;
-const mascotStateKeys: MascotKey[] = [mascot, 'working2d', mascot === 'evidence3d' ? 'guide3d' : 'evidence3d'];
+const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots.working2d : mascots.decisionVisual;
+const mascotStateKeys: MascotKey[] = ['working2d', 'workLoop2d', 'welcome2d'];
 const mascotStateAssets = mascotStateKeys.map((key) => releaseGates.mascotExplorationEnabled ? mascots[key] : mascots.decisionVisual);
 const mascotAlt = releaseGates.mascotExplorationEnabled
-  ? mascot === 'evidence3d'
-    ? 'Muni si Manyar memeriksa bukti pada papan contoh'
-    : 'Muni si Manyar memandu alur kerja pada papan contoh'
+  ? 'Muni si Manyar memandu alur kerja pada papan contoh'
   : 'Sculpture abstrak Catatan, Bukti, dan Arah pada papan contoh';
 ---
 

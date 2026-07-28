@@ -62,10 +62,10 @@ const {
     object-fit:contain;
     object-position:top center;
     opacity:0;
-    transform:translate3d(10px,0,0);
+    transform:none;
   }
 
-  .animated-dashboard-proof__frame--overview{opacity:1;transform:none}
+  .animated-dashboard-proof__frame--overview{opacity:1}
   .animated-dashboard-proof__frame--performance,
   .animated-dashboard-proof__frame--operations{object-fit:cover;object-position:top center}
 
@@ -75,17 +75,17 @@ const {
     .animated-dashboard-proof__frame--operations{animation:dashboard-operations 12s cubic-bezier(.22,1,.36,1) infinite}
 
     @keyframes dashboard-overview{
-      0%,27%{opacity:1;transform:none}
-      33%,94%{opacity:0;transform:translate3d(-10px,0,0)}
-      100%{opacity:1;transform:none}
+      0%,27%{opacity:1}
+      33%,94%{opacity:0}
+      100%{opacity:1}
     }
     @keyframes dashboard-performance{
-      0%,27%,66%,100%{opacity:0;transform:translate3d(10px,0,0)}
-      34%,60%{opacity:1;transform:none}
+      0%,27%,66%,100%{opacity:0}
+      34%,60%{opacity:1}
     }
     @keyframes dashboard-operations{
-      0%,60%,100%{opacity:0;transform:translate3d(10px,0,0)}
-      68%,94%{opacity:1;transform:none}
+      0%,60%,100%{opacity:0}
+      68%,94%{opacity:1}
     }
   }
 

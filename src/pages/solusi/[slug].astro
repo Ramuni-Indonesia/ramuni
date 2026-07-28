@@ -22,12 +22,20 @@ const narrative = solutionNarratives[solution.slug];
 const impactItems = narrative?.impact.map(([title, text]) => ({ title, text })) || solution.impact;
 const onboardingItems = narrative?.onboarding.map(([title, text]) => ({ title, text })) || solution.onboarding;
 const solutionCtas: Record<string, string> = {
-  'naikkan-omzet': 'Minta contoh analisis omzet',
-  'kelola-stok': 'Minta contoh analisis stok',
-  'pantau-laba-dan-arus-kas': 'Minta contoh analisis arus kas',
-  'pahami-pelanggan': 'Minta contoh analisis pelanggan',
-  'laporan-bisnis-otomatis': 'Minta contoh laporan mingguan',
+  'naikkan-omzet': 'Minta tour alur omzet',
+  'kelola-stok': 'Minta tour alur stok',
+  'pantau-laba-dan-arus-kas': 'Minta tour alur kas',
+  'pahami-pelanggan': 'Minta tour alur pelanggan',
+  'laporan-bisnis-otomatis': 'Minta tour alur laporan',
 };
+const solutionIntents: Record<string, string> = {
+  'naikkan-omzet': 'sales',
+  'kelola-stok': 'stock',
+  'pantau-laba-dan-arus-kas': 'finance',
+  'pahami-pelanggan': 'customer',
+  'laporan-bisnis-otomatis': 'report',
+};
+const tourHref = `/tour-produk-gratis/?intent=${solutionIntents[solution.slug] || 'overview'}`;
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -54,7 +62,8 @@ const faqSchema = {
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href="/tour-produk-gratis/">{solutionCtas[solution.slug] || 'Minta tour produk gratis'}</a>
+            <a class="button button--primary" href={tourHref}>{solutionCtas[solution.slug] || 'Minta tour produk gratis'}</a>
+            <a class="button button--secondary" href="#workflow-title">Lihat cara kerja</a>
           </div>
         </div>
         <div class="sd-hero__visual reveal is-visible">
