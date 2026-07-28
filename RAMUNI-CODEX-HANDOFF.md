@@ -12,11 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `5e398584a4ef9baad4ff6e33b36b3dd90b84ad41` (`refine contextual conversion journeys`).
+- Published runtime commit: `9020d76ce089a4bdb5c63fb5ccdd5ed4efc40980` (`keep contact navigation lean`).
 - The product-first visual baseline is commit `69992d05b3f21736f699bce2a453f92e1dbd31f8`; the contextual CRO, mascot release-gate, and editorial cleanup are included in the published runtime commit above.
-- Active staging release: `20260728T124139Z-5e398584a4ef`.
-- Active release path: `/var/www/ramuni-staging/releases/20260728T124139Z-5e398584a4ef`.
-- Deployed artifact SHA-256: `8b04be120b778d90c791e0dc91dd45fba49b6ee0f554bdf9e8ac2a71a665ed65`.
+- Active staging release: `20260728T135133Z-9020d76ce089`.
+- Active release path: `/var/www/ramuni-staging/releases/20260728T135133Z-9020d76ce089`.
+- Deployed artifact SHA-256: `f20789971bd7a350804beceb1476a2cfcf6b11718485567158813cc7aca3c4b7`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -79,6 +79,8 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - Homepage companion art now uses one web-specific HashMicro-generated `catatan -> bukti -> arah` visual. The redundant overlaid mascot/caption and the obsolete `ramuni-decision-landscape.webp` asset were removed.
 - `MascotDecisionCTA` is flatter and smaller, with no orbit decoration or forced 3D tilt. Product/solution visual animations now run only on fine-pointer desktop.
 - Product and solution hub/detail closing journeys now use `TourEvidenceCTA`: one contextual visual, one concrete tour promise, and a short three-point reading guide. This replaces the repeated mascot decision widget on those journeys and keeps Muni as a supporting asset rather than a conversion gate.
+- Homepage problem tabs now update a direct solution link for the selected sales, stock, or cash context instead of dropping every visitor on the generic solution hub.
+- The footer now links `Kontak` to the internal contact route, so `/kontak/` is no longer orphaned. The separate floating contact control remains the approved WhatsApp action.
 - Product hub copy explicitly frames the dashboard as a preview, and product detail heroes surface capability-review status beside the primary conversion path.
 - Blog articles keep one contextual inline CTA and no longer repeat the interactive decision CTA after related articles. Unmapped future articles render no arbitrary AI context visual instead of silently inheriting an unrelated illustration.
 - Mascot exploration remains available for development, preview, and staging review, but a non-development local/unknown production build no longer enables it implicitly. Production still requires the explicit mascot approval flag.
@@ -252,6 +254,14 @@ The current batch materially increases real product evidence and motion, but sev
 - R2 synchronization uploaded one changed script and left 87 existing objects unchanged. Representative contextual images, product screenshots, and the updated script return HTTP 200 with the expected content types.
 - Live `/healthz`, homepage, product hub/detail, solution hub/detail, blog archive/article, tour, and contact returned HTTP 200. `/demo/`, `/early-access/`, and `/harga/` redirect once to `/tour-produk-gratis/`. Staging HTML remains `noindex,follow`; HTTP remains `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet` with `Cache-Control: no-store`; all checked sitemap endpoints return 404.
 - After deployment verification, canonical `node_modules`, `dist`, `.astro`, and the temporary Docker Playwright scripts/screenshots under `outputs/ramuni-visual-audit` were removed. Published releases, R2 objects, preserved stashes, unrelated repositories, and the dirty Creative Studio review worktree were not altered.
+
+## Final completion audit and contextual routing release, 2026-07-28
+
+- Published runtime commit: `9020d76ce089a4bdb5c63fb5ccdd5ed4efc40980`; atomic staging release: `20260728T135133Z-9020d76ce089`; artifact SHA-256: `f20789971bd7a350804beceb1476a2cfcf6b11718485567158813cc7aca3c4b7`.
+- The final multi-agent audit passed the product-first homepage, supporting-mascot role, contextual Product/Solution visual mapping, honest demo-data labelling, CRO hierarchy, responsive implementation, noindex staging, schema, canonical, and internal-link requirements.
+- The audit found two small conversion/SEO gaps and both were closed: homepage problem tabs now carry their selected solution destination, and the internal `/kontak/` route is linked from the footer while WhatsApp remains available through the approved floating contact action.
+- The release gate intentionally rejected an intermediate artifact that exceeded the 64 kB HTML budget after CDN rewriting. The markup was simplified without removing the contextual route, then the exact deploy sequence was repeated. Final Node 22 Astro check passed 119 files with 0 errors, warnings, or hints; staging built 98 pages; the full post-CDN site audit passed; `npm audit` reported 0 vulnerabilities; R2 reported 88 unchanged objects and no unnecessary upload.
+- Live health verification succeeded after the atomic switch. Staging remains `Cache-Control: no-store`, HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, HTML `noindex,follow`, and sitemap endpoints return 404.
 
 ## Next continuation workflow
 
