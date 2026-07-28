@@ -216,7 +216,8 @@ export const footerNavigation: FooterNavigationGroup[] = [
     label: 'Perusahaan',
     links: [
       { label: 'Tentang', href: '/tentang/' },
-      { label: 'Kontak', href: 'https://wa.me/message/K35W6X6WT7YMJ1' },
+      { label: 'Kontak', href: '/kontak/' },
+      { label: 'WhatsApp RAMUNI', href: 'https://wa.me/message/K35W6X6WT7YMJ1' },
       { label: 'Keamanan', href: '/keamanan/' },
       { label: 'Status', href: '/status/' },
     ],

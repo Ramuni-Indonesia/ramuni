@@ -78,6 +78,7 @@ const stories = [
         tabindex={index === 0 ? 0 : -1}
         data-business-tab={String(index)}
         data-answer={story.answer}
+        data-href={story.href}
       >
         <span>0{index + 1} / {story.label}</span>
         <strong>{story.question}</strong>
@@ -85,7 +86,8 @@ const stories = [
     ))}
   </div>
   <div class="business-proof__more">
-    <span>Masalah lain</span>
+    <span>Langkah berikutnya</span>
+    <a href={stories[0].href} data-business-active-link>Buka solusi Penjualan</a>
     <a href="/solusi/">Lihat semua masalah usaha</a>
   </div>
 </div>
@@ -99,9 +101,11 @@ const stories = [
       const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-business-panel]'));
       const label = root.querySelector<HTMLElement>('[data-business-label]');
       const answer = root.querySelector<HTMLElement>('[data-business-answer]');
+      const activeLink = root.querySelector<HTMLAnchorElement>('[data-business-active-link]');
 
       const activate = (tab: HTMLButtonElement) => {
         const index = Number(tab.dataset.businessTab || 0);
+        const activeLabel = tab.querySelector('span')?.textContent?.split('/').pop()?.trim() || '';
         tabs.forEach((item) => {
           const active = item === tab;
           item.setAttribute('aria-selected', String(active));
@@ -112,8 +116,12 @@ const stories = [
           panel.classList.toggle('is-active', active);
           panel.setAttribute('aria-hidden', String(!active));
         });
-        if (label) label.textContent = tab.querySelector('span')?.textContent?.split('/').pop()?.trim() || '';
+        if (label) label.textContent = activeLabel;
         if (answer) answer.textContent = tab.dataset.answer || '';
+        if (activeLink) {
+          activeLink.href = tab.dataset.href || '/solusi/';
+          activeLink.textContent = activeLabel ? `Buka solusi ${activeLabel}` : 'Buka solusi terkait';
+        }
       };
 
       tabs.forEach((tab, index) => {
