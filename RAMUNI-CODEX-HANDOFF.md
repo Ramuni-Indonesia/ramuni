@@ -12,11 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7` (`refine non product hero visuals`).
-- The contextual hero and free-trial baseline immediately before this batch is commit `92919d34b4c2c8164b69ddc6e866ae574f4986dc`.
-- Active staging release: `20260729T071536Z-e54a5cfeac65`.
-- Active release path: `/var/www/ramuni-staging/releases/20260729T071536Z-e54a5cfeac65`.
-- Deployed artifact SHA-256: `0b6d48a68e80c37ccbb474a6f41ee27f1ba265af85cd3dbf03914565ba3c4fdc`.
+- Published runtime commit: `440a233ce0becd0d4c6b5ad30cc20e7e6c1368ad` (`refine product motion and contextual visual journeys`).
+- The contextual hero and free-trial baseline immediately before this visual/CRO batch was commit `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7`.
+- Active staging release: `20260729T091116Z-440a233ce0be`.
+- Active release path: `/var/www/ramuni-staging/releases/20260729T091116Z-440a233ce0be`.
+- Deployed artifact SHA-256: `d3c9abf102acd1f5f351a1e468170c493ad5dd222d759241ca5aa3a1e6c7bae8`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -62,8 +62,8 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - Generic `PageHero` routes no longer infer a product dashboard from their layout mode. Industry, role, and help heroes now render contextual bars, ledgers, flows, role maps, or support journeys; real dashboards remain reserved for product and solution proof.
 - The calculator hub hero now uses the `catatan -> bukti -> arah` workspace visual rather than a mascot presenting a dashboard, so its visual matches the input/formula/result task.
 - Real product screenshots are cropped from local product evidence that uses demo fixtures, not production tenant or customer data. Public labels say `Tampilan produk · data demo`.
-- The homepage hero now combines a looping real RAMUNI seeded/demo dashboard video with a separate looping Muni work video. Both use WebM plus MP4 fallbacks and pause offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
-- The homepage problem section now uses a lazy procedural Three.js interpretation of Muni with breathing, blinking, head/wing/tail motion, pointer/touch drag, and restrained scroll-linked rotation. Mobile below 740px, Save-Data, reduced-motion, and WebGL failure keep the static poster fallback. This remains a decorative interpretation, not an approved rigged identity model.
+- The homepage hero uses a looping real RAMUNI dashboard overview video as the dominant product proof, with static poster fallback, reduced-motion handling, and a small supporting Muni ornament instead of a competing mascot/card column.
+- The homepage problem section is now an interactive problem selector using all three Creative Studio Phase 1 mascot assets for staging exploration: Muni si Manyar, Kancil Cermat, and Si Ramu. Treat them as preview alternatives only until written mascot approval is recorded.
 - Pricing remains hidden. `/tour-produk-gratis/` is the focused conversion form without the normal navbar/footer.
 - `/demo`, `/early-access`, and `/harga` redirect in one hop to `/tour-produk-gratis/`.
 - All official WhatsApp contact links use `https://wa.me/message/K35W6X6WT7YMJ1`.
@@ -93,6 +93,7 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - All nine product icons and all five solution icons are available. The latest three solution icons are `pantau-laba-dan-arus-kas`, `pahami-pelanggan`, and `laporan-bisnis-otomatis`; their optimized WebP files are committed and synchronized to R2.
 - Product detail, solution detail, industry, role, help, and selected blog pages now select dashboard art by context instead of repeating one generic shell.
 - Product and solution detail heroes pair truthful RAMUNI seeded/demo dashboard evidence with one of four contextual HashMicro-generated illustrations: AI/import, sales/customer, stock/operations, or cash/report. Conceptual art is not labelled as product UI.
+- Product, solution, industry, role, and help heroes now use contextual visuals by route. `/bantuan/` uses a support journey visual rather than a product dashboard, and the solution hub no longer mixes a dashboard with unrelated generated illustration side by side.
 - Four web-optimized synthetic dashboards cover AI/evidence, inventory/reorder, cash flow, and sales/customer contexts.
 - Blog article layout now uses a wider reading area with a useful TOC/tools rail; AI, cash-flow, and stock articles have distinct contextual dashboards and relevant tool/resource routes.
 - Blog archives now use one shared eight-category taxonomy and crawlable six-item pagination at `/blog/page/[page]/`. Pagination pages have self-canonicals, `prev`/`next` links, `CollectionPage`, `BreadcrumbList`, and `ItemList` schema.
@@ -123,6 +124,9 @@ Useful visual components and assets:
 - `public/website-original/mascot/ramuni-mascot-work-loop.webm`
 - `public/website-original/mascot/ramuni-mascot-work-loop.mp4`
 - `public/website-original/mascot/ramuni-mascot-work-loop-poster.webp`
+- `public/website-original/mascot/phase-1/muni-manyar-friendly-v2.webp`
+- `public/website-original/mascot/phase-1/kancil-cermat-friendly-v2.webp`
+- `public/website-original/mascot/phase-1/si-ramu-friendly-v2.webp`
 - `public/website-original/product-screens/ramuni-product-dashboard-overview.webp`
 - `public/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm`
 - `public/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4`
@@ -285,6 +289,19 @@ The current batch materially increases real product evidence and motion, but sev
 - Staging remains fail-closed: every checked HTML route returns `Cache-Control: no-store`, HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and HTML `noindex,follow`. `/robots.txt` returns 200 while the checked sitemap endpoints return 404.
 - The authentic full-dashboard WebP, three supporting real dashboard captures, `reveal.js`, lead/contact runtimes, and the WhatsApp mark return HTTP 200 from the staging CDN with the expected content types.
 - Fresh live Chromium layout QA covered nine representative routes at 375, 768, 1024, 1440, and 1920 px: 45 combinations, 0 failures, no horizontal overflow, no broken completed images, noindex present, header in bounds, and floating contact visible.
+
+## Product motion and contextual visual journeys release, 2026-07-29
+
+- Published runtime commit: `440a233ce0becd0d4c6b5ad30cc20e7e6c1368ad`; atomic staging release: `20260729T091116Z-440a233ce0be`; artifact SHA-256: `d3c9abf102acd1f5f351a1e468170c493ad5dd222d759241ca5aa3a1e6c7bae8`.
+- Homepage hero now uses the authentic RAMUNI dashboard video loop and avoids overlaid fake highlight cards. The dashboard scanline motion is bounded to the real frame height and pauses when the proof is not in view.
+- Homepage section two is a simpler problem selector with the three Creative Studio Phase 1 mascot preview assets. These remain staging exploration assets, not approved production mascot masters.
+- `HeroContextVisual` and supporting hero components route visuals by page context instead of forcing dashboard screenshots everywhere. Help uses a support flow; product and solution pages use verified dashboard evidence only where it supports the claim.
+- Floating WhatsApp consultation is compact: name, WhatsApp, email, need, and consent. Visitor-facing CTA copy is normalized to `Coba gratis`; role-permission copy is softened so it does not overclaim export, billing, approval, or unavailable account controls.
+- CMS article candidate propagation was fixed with `snapshotId: page.id`, and `test:cms-article-candidate-render` was added to keep article preview rendering covered.
+- Verification before commit: `git diff --check` passed; diff audit found no real secrets or fabricated customer/trusted claims; `npm audit --audit-level=high` reported zero vulnerabilities; Node 22 `npm run check`, `test:content-gateway`, `test:cms-candidate-render`, `test:cms-article-candidate-render`, and `npm run audit` all passed.
+- Deploy verification: the deploy script rebuilt with staging/noindex variables, synchronized the three Phase 1 mascot WebP assets to R2, rewrote CDN references, passed the full site audit across 98 HTML files, reported zero dependency vulnerabilities, compressed the release, switched the current symlink atomically, and passed local health verification.
+- Live verification: both loopback and public DNS health checks passed for `20260729T091116Z-440a233ce0be`. Representative live routes `/`, `/bantuan/`, `/produk/`, `/solusi/`, `/blog/`, and `/tour-produk-gratis/` returned HTTP 200 with `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml` and `/sitemap-index.xml` return 404.
+- No new raster image generation was run in this batch. If future generated visuals are needed, use the native HashMicro imagegen plugin only and save disposable outputs outside the published tree until reviewed.
 
 ## Next continuation workflow
 
