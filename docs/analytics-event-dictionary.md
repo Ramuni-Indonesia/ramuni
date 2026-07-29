@@ -6,7 +6,7 @@ The consent component stores a first-party choice and dispatches `ramuni:consent
 
 Enabled lead forms capture an allowlisted set of UTM parameters and advertising click IDs. The browser retains the first recorded touch and updates the last touch when a later attributed visit occurs. Both records are sanitized, limited in length, serialized into hidden form fields, and sent only with the lead submission. The receiving service must still validate these values before storage or use.
 
-After the configured lead endpoint returns a successful HTTP response, the form dispatches `ramuni:lead:accepted` with `leadType`, `attributionPresent`, and `acceptedAt`, then redirects to the matching thank-you page. This browser event contains no submitted form values. It is an integration signal, not proof of durable server storage and not yet mapped to a vendor conversion event.
+After the configured lead endpoint returns a successful HTTP response, the form dispatches `ramuni:lead:accepted` with `leadType`, `attributionPresent`, and `acceptedAt`, then redirects to the matching thank-you page. Calculator result and template download interactions dispatch `ramuni:calculator:used` and `ramuni:template:downloaded` with slug/type metadata only. These browser events contain no submitted form values, calculator inputs, or business records. They are integration signals and are not yet mapped to vendor conversion events.
 
 ## Event contract
 

@@ -1,0 +1,87 @@
+export interface ArticleJourney {
+  label: string;
+  productTitle: string;
+  productHref: string;
+  tourHref: string;
+  title: string;
+  text: string;
+  stages: [string, string, string, string];
+  metric: string;
+}
+
+const defaultJourney: ArticleJourney = {
+  label: 'Dashboard Bisnis',
+  productTitle: 'Dashboard Bisnis RAMUNI',
+  productHref: '/produk/dashboard-bisnis/',
+  tourHref: '/tour-produk-gratis/?intent=overview',
+  title: 'Lihat bagaimana catatan berubah menjadi arah yang bisa diperiksa.',
+  text: 'Buka contoh alur produk untuk melihat hubungan antara perubahan, angka pendukung, dan langkah berikutnya.',
+  stages: ['Catatan', 'Bandingkan', 'Telusuri', 'Tentukan'],
+  metric: 'Perubahan utama',
+};
+
+export const articleJourneys: Record<string, ArticleJourney> = {
+  'ai-untuk-umkm': {
+    label: 'Asisten AI',
+    productTitle: 'Asisten AI RAMUNI',
+    productHref: '/produk/asisten-ai/',
+    tourHref: '/tour-produk-gratis/?intent=overview',
+    title: 'Dari pertanyaan bisnis ke jawaban yang dasar angkanya tetap terlihat.',
+    text: 'Lihat contoh alur bertanya, memilih periode, membuka bukti, dan memeriksa jawaban sebelum bertindak.',
+    stages: ['Pertanyaan', 'Pilih data', 'Baca jawaban', 'Cek bukti'],
+    metric: 'Jawaban dapat ditelusuri',
+  },
+  'keuangan-umkm': {
+    label: 'Keuangan',
+    productTitle: 'Keuangan RAMUNI',
+    productHref: '/produk/keuangan/',
+    tourHref: '/tour-produk-gratis/?intent=finance',
+    title: 'Pisahkan omzet, laba, dan kas sebelum membaca arah usaha.',
+    text: 'Lihat bagaimana transaksi dan waktu pembayaran dirangkum tanpa mencampur definisi angkanya.',
+    stages: ['Transaksi', 'Kelompokkan', 'Bandingkan', 'Periksa kas'],
+    metric: 'Laba dan arus kas',
+  },
+  'stok-inventori': {
+    label: 'Inventori',
+    productTitle: 'Inventori RAMUNI',
+    productHref: '/produk/inventori/',
+    tourHref: '/tour-produk-gratis/?intent=stock',
+    title: 'Baca saldo stok bersama laju keluar dan waktu isi ulang.',
+    text: 'Lihat contoh alur dari mutasi barang menuju daftar stok yang perlu diperiksa lebih dulu.',
+    stages: ['Saldo', 'Mutasi', 'Laju keluar', 'Cek ulang'],
+    metric: 'Stok perlu perhatian',
+  },
+  'penjualan-omzet': {
+    label: 'Penjualan',
+    productTitle: 'Penjualan RAMUNI',
+    productHref: '/produk/penjualan/',
+    tourHref: '/tour-produk-gratis/?intent=sales',
+    title: 'Pecah perubahan omzet sampai produk dan waktunya terlihat.',
+    text: 'Lihat bagaimana transaksi dikelompokkan agar penyebab perubahan tidak berhenti pada satu angka total.',
+    stages: ['Transaksi', 'Kelompokkan', 'Bandingkan', 'Baca pendorong'],
+    metric: 'Pendorong omzet',
+  },
+  'pelanggan-crm': {
+    label: 'Pelanggan',
+    productTitle: 'Pelanggan RAMUNI',
+    productHref: '/produk/pelanggan/',
+    tourHref: '/tour-produk-gratis/?intent=customer',
+    title: 'Kenali pola pembelian tanpa melewati batas privasi pelanggan.',
+    text: 'Lihat contoh alur dari transaksi menuju pelanggan berulang, segmentasi sederhana, dan pemeriksaan izin.',
+    stages: ['Transaksi', 'Riwayat', 'Pola kembali', 'Cek izin'],
+    metric: 'Pelanggan berulang',
+  },
+  'operasional-bisnis': {
+    label: 'Laporan & Insight',
+    productTitle: 'Laporan Bisnis RAMUNI',
+    productHref: '/produk/laporan-insight/',
+    tourHref: '/tour-produk-gratis/?intent=report',
+    title: 'Ubah catatan harian menjadi bahan evaluasi yang lebih terarah.',
+    text: 'Lihat contoh alur menyatukan periode, menandai perubahan, membuka penyebab, dan mencatat tindak lanjut.',
+    stages: ['Kumpulkan', 'Ringkas', 'Jelaskan', 'Tindak lanjut'],
+    metric: 'Ringkasan periode',
+  },
+};
+
+export const getArticleJourney = (categorySlug: string): ArticleJourney =>
+  articleJourneys[categorySlug] || defaultJourney;

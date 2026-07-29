@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductDomainVisual from '../../components/product/ProductDomainVisual.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
-import ProductDashboardChapter from '../../components/product/ProductDashboardChapter.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
@@ -240,8 +239,6 @@ const structuredData = [
         </ol>
       </div>
     </section>
-
-    <ProductDashboardChapter slug={product.slug} title={product.title} />
 
     <section id="product-capabilities" class="pd-capabilities" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
       <div class="container pd-capabilities__layout">

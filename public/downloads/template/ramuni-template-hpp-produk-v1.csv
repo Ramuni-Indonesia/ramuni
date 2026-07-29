@@ -1,0 +1,4 @@
+produk_sku,komponen,kuantitas,satuan,harga_satuan,subtotal,hasil_unit,hpp_per_unit,catatan
+CONTOH-MINUMAN-01,Bahan utama,1000,ml,18,18000,10,3400,"Contoh format, bukan standar biaya"
+CONTOH-MINUMAN-01,Kemasan,10,unit,950,9500,10,3400,Periksa harga pemasok terbaru
+CONTOH-MINUMAN-01,Bahan pelengkap,10,unit,650,6500,10,3400,"Total contoh Rp34.000 per 10 unit"

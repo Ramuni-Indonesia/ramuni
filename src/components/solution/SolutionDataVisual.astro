@@ -1,7 +1,7 @@
 ---
-import DashboardMotion from '../DashboardMotion.astro';
+import MarketingDashboardCanvas from '../MarketingDashboardCanvas.astro';
 import type { SolutionDetail } from '../../data/solutionDetails';
-import { getSolutionDashboardVisual } from '../../data/dashboardVisuals';
+import { getSolutionMarketingDashboardContext } from '../../data/marketingDashboardContexts';
 
 interface Props {
   visual: SolutionDetail['visual'];
@@ -9,19 +9,18 @@ interface Props {
 }
 
 const { visual, slug = '' } = Astro.props;
-const dashboardVisual = getSolutionDashboardVisual(slug);
 const warningMetric = visual.metrics.find((metric) => metric.tone === 'warning') || visual.metrics[0];
-const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 'pantau-laba-dan-arus-kas', 'pahami-pelanggan'].includes(slug) ? 'performance' : 'overview';
+const dashboardContext = getSolutionMarketingDashboardContext(slug);
 ---
 
 <figure class={`solution-proof solution-proof--${visual.kind}`}>
   <header class="solution-proof__head">
     <div><span>{visual.label}</span><strong>{visual.title}</strong></div>
-    <small>{dashboardVisual.badge}</small>
+    <small>Visual moneysite · data rekaan</small>
   </header>
 
   <div class="solution-proof__dashboard">
-    <DashboardMotion focus={focus} label={dashboardVisual.alt} priority {...dashboardVisual} />
+    <MarketingDashboardCanvas context={dashboardContext} compact priority />
   </div>
 
   <figcaption class="solution-proof__reading">
@@ -37,7 +36,7 @@ const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 
   .solution-proof{container-type:inline-size;min-width:0;margin:0;border:1px solid rgb(11 48 69/.18);background:var(--white);overflow:hidden}
   .solution-proof__head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 17px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white)}
   .solution-proof__head>div{display:grid;gap:3px}.solution-proof__head span{color:var(--yellow);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.solution-proof__head strong{font-size:.72rem}.solution-proof__head small{color:rgb(255 255 255/.66);font-size:.58rem;font-weight:700}
-  .solution-proof__dashboard{display:block;min-width:0;padding:16px;overflow:hidden;background:linear-gradient(180deg,var(--rice),var(--white))}
+  .solution-proof__dashboard{display:block;min-width:0;padding:16px;overflow:hidden;background:var(--rice)}
   .solution-proof__reading{padding:0;border-top:1px solid var(--ink-10);background:var(--white)}.solution-proof__reading ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none}.solution-proof__reading li{display:grid;align-content:start;gap:6px;min-width:0;padding:14px 16px;border-right:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-right:0}.solution-proof__reading span{color:var(--teal);font-size:.52rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.solution-proof__reading strong{font-size:.63rem;line-height:1.45}.solution-proof__reading small{color:var(--ink-56);font-size:.54rem;line-height:1.4}
   @media(max-width:720px){.solution-proof{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}.solution-proof__dashboard{padding:10px}.solution-proof__head small{display:none}.solution-proof__reading ol{grid-template-columns:1fr}.solution-proof__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-bottom:0}}
   @container(max-width:480px){.solution-proof__reading ol{grid-template-columns:1fr}.solution-proof__reading li{padding:12px 14px;border-right:0;border-bottom:1px solid var(--ink-10)}.solution-proof__reading li:last-child{border-bottom:0}}

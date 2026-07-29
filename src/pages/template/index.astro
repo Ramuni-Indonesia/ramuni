@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { releaseGates } from '../../config/release';
 import { templateEntries } from '../../data/templates';
 import '../../styles/template-library.css';
@@ -10,7 +11,7 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Template Bisnis Gratis untuk UMKM',
-    description: 'Kumpulan template stok harian, arus kas sederhana, dan evaluasi mingguan dalam format CSV.',
+    description: 'Kumpulan template stok, stok opname, arus kas, penjualan harian, HPP produk, dan evaluasi mingguan dalam format CSV.',
     url: templateUrl,
     inLanguage: 'id-ID',
   },
@@ -35,7 +36,7 @@ const schema = [
 ];
 ---
 
-<BaseLayout title="Template Bisnis Gratis untuk UMKM" description="Unduh template stok harian, arus kas sederhana, dan evaluasi mingguan dalam format CSV. Lengkap dengan contoh, petunjuk kolom, serta batas penggunaan." noindex={!releaseGates.resourcePagesIndexable} pageType="CollectionPage" schema={schema} keywords={['template bisnis gratis', 'template UMKM', 'template stok', 'template arus kas', 'RAMUNI']}>
+<BaseLayout title="Template Bisnis Gratis untuk UMKM" description="Unduh template stok, stok opname, arus kas, penjualan harian, HPP produk, dan evaluasi mingguan dalam format CSV. Lengkap dengan contoh, petunjuk kolom, serta batas penggunaan." noindex={!releaseGates.resourcePagesIndexable} pageType="CollectionPage" schema={schema} keywords={['template bisnis gratis', 'template UMKM', 'template stok', 'template stok opname', 'template arus kas', 'template penjualan harian', 'template HPP produk', 'RAMUNI']}>
   <div class="template-library-page">
     <header class="template-library-hero">
       <div class="container template-library-hero__grid">
@@ -43,7 +44,7 @@ const schema = [
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Template</span></nav>
           <p class="eyebrow">Template kerja gratis</p>
           <h1>Catatan yang siap dipakai, bukan sekadar file kosong.</h1>
-          <p class="lede">Tiga format CSV untuk pekerjaan rutin usaha. Setiap template dilengkapi baris contoh, arti kolom, dan cara memeriksanya.</p>
+          <p class="lede">{templateEntries.length} format CSV untuk pekerjaan rutin usaha. Setiap template dilengkapi baris contoh, arti kolom, dan cara memeriksanya.</p>
         </div>
         <div class="template-library-hero__signal" aria-hidden="true">
           <div><span>01</span><i></i><strong>Catat</strong></div>
@@ -89,6 +90,23 @@ const schema = [
       <div class="container template-library-note__grid">
         <div><p class="section-kicker">Privasi dari awal</p><h2>File diproses di perangkat Anda.</h2></div>
         <div><p>Unduhan tidak meminta akun. Saat memakai template, hindari menulis kata sandi, nomor identitas, atau data pribadi pelanggan yang tidak diperlukan.</p><a class="text-link" href="/keamanan/">Baca pendekatan keamanan RAMUNI</a></div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Lanjutkan catatan template ke RAMUNI">
+      <div class="container">
+        <TourEvidenceCTA
+          eyebrow="Catatan sudah lebih rapi"
+          title="Lihat bagaimana RAMUNI membantu membacanya."
+          body="Mulai dari stok, penjualan, biaya, atau evaluasi mingguan yang sudah Anda catat. Tim RAMUNI membantu memilih alur yang paling dekat dengan masalah usaha Anda."
+          primaryLabel="Coba gratis"
+          primaryHref="/tour-produk-gratis/?intent=overview"
+          secondaryLabel="Lihat semua produk"
+          secondaryHref="/produk/"
+          visual={{ src: '/website-original/context/ramuni-context-stock-operations.webp', width: 1200, height: 800, alt: 'Ilustrasi catatan stok dan operasi yang dihubungkan ke langkah pemeriksaan' }}
+          visualBadge="Dari catatan ke arah"
+          points={['Pilih satu template', 'Isi catatan penting', 'Bahas langkah berikutnya']}
+        />
       </div>
     </section>
   </div>

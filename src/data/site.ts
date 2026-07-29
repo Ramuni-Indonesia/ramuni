@@ -149,6 +149,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
           { label: 'Template', href: '/template/', description: 'Template sederhana untuk pekerjaan rutin usaha.' },
           { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha/', description: 'Hitung laba edukatif di browser.' },
           { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', description: 'Periksa biaya barang terjual.' },
+          { label: 'Kalkulator Harga Jual', href: '/kalkulator/harga-jual/', description: 'Perkirakan harga dari HPP dan margin.' },
           { label: 'Kalkulator Reorder Stok', href: '/kalkulator/reorder-stok/', description: 'Tentukan titik cek stok berikutnya.' },
         ],
       },

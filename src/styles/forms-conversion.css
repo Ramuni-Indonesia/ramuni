@@ -229,9 +229,7 @@
 
 .floating-actions__contact {
   border: 1px solid rgb(255 255 255 / .28);
-  background:
-    radial-gradient(circle at 22% 18%, rgb(255 255 255 / .22), transparent 34%),
-    linear-gradient(135deg, #18a884 0%, #10765f 100%);
+  background: var(--teal);
   box-shadow: 0 16px 36px rgb(11 48 69 / .22);
 }
 

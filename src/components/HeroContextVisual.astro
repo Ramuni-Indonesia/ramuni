@@ -41,7 +41,7 @@ const mascotSrc = baseMascots[profile.mascot];
     </div>
   </div>
 
-  <img class="hero-context__mascot" src={mascotSrc} width="1024" height="1024" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+  <img class="hero-context__mascot" data-mascot-motion="guide" src={mascotSrc} width="1024" height="1024" alt="" loading="lazy" decoding="async" aria-hidden="true" />
 
   <figcaption>
     <span>{label || profile.eyebrow}</span>
@@ -65,12 +65,10 @@ const mascotSrc = baseMascots[profile.mascot];
 
   @media(prefers-reduced-motion:no-preference){
     .hero-context__image{animation:hero-context-image-drift 12s var(--ease) infinite alternate}
-    .hero-context__mascot{animation:hero-context-mascot-wave 5.8s var(--ease) infinite}
     .hero-context__soft-panel{animation:hero-context-panel-in .7s var(--ease) both}
     .hero-context__soft-panel li{animation:hero-context-chip-in .55s var(--ease) both}.hero-context__soft-panel li:nth-child(2){animation-delay:90ms}.hero-context__soft-panel li:nth-child(3){animation-delay:180ms}
   }
   @keyframes hero-context-image-drift{from{transform:scale(1.02) translate3d(-.6%,0,0)}to{transform:scale(1.07) translate3d(.8%,-.8%,0)}}
-  @keyframes hero-context-mascot-wave{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}48%{transform:translate3d(9px,-9px,0) rotate(1.2deg)}}
   @keyframes hero-context-panel-in{from{opacity:.35;transform:translate3d(18px,12px,0)}to{opacity:1;transform:none}}
   @keyframes hero-context-chip-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 

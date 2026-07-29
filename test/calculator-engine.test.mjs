@@ -1,0 +1,54 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { calculateBusinessMetric, shouldUseCautionNote } from '../src/lib/calculatorEngine.mjs';
+
+const regressionCases = [
+  ['laba-usaha', { income: 12500000, cost: 8750000 }, 3750000, 'money'],
+  ['hpp', { opening: 4000000, purchase: 6500000, closing: 3200000 }, 7300000, 'money'],
+  ['reorder-stok', { daily: 18, lead: 4, safety: 25 }, 97, 'unit'],
+  ['margin-laba-kotor', { sales: 15000000, cogs: 9750000 }, 35, 'percent'],
+  ['titik-impas', { fixed: 3000000, price: 35000, variable: 22000 }, 231, 'unit'],
+  ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
+  ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
+];
+
+for (const [kind, values, expected, format] of regressionCases) {
+  test(`keeps the ${kind} formula stable`, () => {
+    const result = calculateBusinessMetric(kind, values);
+    assert.equal(result.format, format);
+    assert.ok(Math.abs(result.value - expected) < 0.001);
+  });
+}
+
+test('calculates a target selling price from cost and margin', () => {
+  const result = calculateBusinessMetric('harga-jual', { unitCost: 25000, targetMargin: 35 });
+  assert.equal(result.format, 'money');
+  assert.ok(Math.abs(result.value - 38461.53846153846) < 0.001);
+});
+
+test('rejects an impossible target margin', () => {
+  const result = calculateBusinessMetric('harga-jual', { unitCost: 25000, targetMargin: 100 });
+  assert.equal(Number.isFinite(result.value), false);
+  assert.equal(shouldUseCautionNote('harga-jual', result.value), true);
+});
+
+test('calculates revenue change as a percentage', () => {
+  const result = calculateBusinessMetric('perubahan-omzet', { previousRevenue: 12000000, currentRevenue: 13800000 });
+  assert.equal(result.format, 'percent');
+  assert.equal(result.value, 15);
+});
+
+test('calculates simple cost per sellable portion', () => {
+  const result = calculateBusinessMetric('hpp-per-porsi', {
+    ingredientCost: 180000,
+    packagingCost: 40000,
+    directCost: 30000,
+    sellablePortions: 50,
+  });
+  assert.deepEqual(result, { value: 5000, format: 'money' });
+});
+
+test('rounds sales targets up to a whole transaction', () => {
+  const result = calculateBusinessMetric('target-penjualan', { revenueTarget: 10000000, averageTransaction: 85000 });
+  assert.deepEqual(result, { value: 118, format: 'unit', suffix: 'transaksi' });
+});

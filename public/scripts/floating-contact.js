@@ -10,30 +10,128 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const ensureChatStyles = () => new Promise((resolve) => {
-    const existing = document.querySelector('link[data-floating-contact-style]');
-    if (existing instanceof HTMLLinkElement) {
-      if (existing.sheet || existing.dataset.loaded === 'true') resolve();
-      else {
-        existing.addEventListener('load', resolve, { once: true });
-        existing.addEventListener('error', resolve, { once: true });
+  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v2';
+  const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
+  const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
+  let restoreFocusOnClose = false;
+  let chatStylePromise;
+  let chatStylesFailed = false;
+  let openingPromise;
+  let openingSource;
+
+  const ensureChatStyles = () => {
+    if (chatStylePromise) return chatStylePromise;
+    chatStylePromise = new Promise((resolve) => {
+      const existing = document.querySelector('link[data-floating-contact-style]');
+      if (existing instanceof HTMLLinkElement) {
+        if (existing.sheet || existing.dataset.loaded === 'true') resolve(true);
+        else if (existing.dataset.failed === 'true') {
+          chatStylesFailed = true;
+          resolve(false);
+        } else {
+          existing.addEventListener('load', () => resolve(true), { once: true });
+          existing.addEventListener('error', () => {
+            chatStylesFailed = true;
+            resolve(false);
+          }, { once: true });
+        }
+        return;
       }
-      return;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/styles/floating-contact-chat.css';
+      link.dataset.floatingContactStyle = 'true';
+      link.addEventListener('load', () => {
+        link.dataset.loaded = 'true';
+        resolve(true);
+      }, { once: true });
+      link.addEventListener('error', () => {
+        chatStylesFailed = true;
+        link.dataset.failed = 'true';
+        resolve(false);
+      }, { once: true });
+      document.head.append(link);
+    });
+    return chatStylePromise;
+  };
+
+  const storageGet = (key) => {
+    try { return sessionStorage.getItem(key); } catch { return null; }
+  };
+  const storageSet = (key, value) => {
+    try { sessionStorage.setItem(key, value); } catch { /* optional */ }
+  };
+  const isAutoOpenExcluded = () => {
+    const path = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
+    return storageGet(autoOpenKey) === 'true'
+      || excludedAutoPaths.some((prefix) => path.startsWith(prefix));
+  };
+  const hasAutoOpenBlocker = () => document.hidden
+    || document.body.classList.contains('menu-open')
+    || document.body.classList.contains('consent-banner-open')
+    || Boolean(document.querySelector('dialog[open]:not([data-contact-dialog])'));
+  const focusContactField = () => {
+    const firstField = dialog?.querySelector('.lead-form__step[data-active] input:not([type="hidden"]), .lead-form__step[data-active] textarea, .lead-form__step[data-active] button') || closeButton;
+    if (firstField instanceof HTMLElement) firstField.focus({ preventScroll: true });
+  };
+  const openContact = ({ modal = true, focus = true, source = 'manual' } = {}) => {
+    if (!(dialog instanceof HTMLDialogElement)) return Promise.resolve(false);
+    if (dialog.open) {
+      if (source === 'manual') {
+        restoreFocusOnClose = true;
+        openButton?.setAttribute('aria-expanded', 'true');
+        focusContactField();
+        return Promise.resolve(true);
+      }
+      return Promise.resolve(false);
     }
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/styles/floating-contact-chat.css';
-    link.dataset.floatingContactStyle = 'true';
-    link.addEventListener('load', () => {
-      link.dataset.loaded = 'true';
-      resolve();
-    }, { once: true });
-    link.addEventListener('error', resolve, { once: true });
-    document.head.append(link);
-  });
+    if (openingPromise) {
+      if (source === 'manual' && openingSource !== 'manual') {
+        return openingPromise.then(() => openContact({ modal, focus, source }));
+      }
+      return openingPromise;
+    }
+    if (typeof dialog.showModal !== 'function' || typeof dialog.show !== 'function') {
+      if (source === 'manual') window.location.assign(officialWhatsAppUrl);
+      return Promise.resolve(false);
+    }
+    openingSource = source;
+    openingPromise = (async () => {
+      const stylesReady = await ensureChatStyles();
+      if (!stylesReady) {
+        if (source === 'manual') window.location.assign(officialWhatsAppUrl);
+        return false;
+      }
+      if (dialog.open) {
+        if (source === 'manual' && focus) focusContactField();
+        return source === 'manual';
+      }
+      if (source === 'scroll-depth' && (isAutoOpenExcluded() || hasAutoOpenBlocker())) return false;
+      restoreFocusOnClose = source === 'manual';
+      openButton?.setAttribute('aria-expanded', 'true');
+      dialog.dataset.openSource = source;
+      try {
+        if (modal) dialog.showModal();
+        else dialog.show();
+      } catch {
+        delete dialog.dataset.openSource;
+        openButton?.setAttribute('aria-expanded', 'false');
+        return false;
+      }
+      storageSet(autoOpenKey, 'true');
+      if (focus) window.setTimeout(focusContactField, 0);
+      return true;
+    })().finally(() => {
+      openingPromise = undefined;
+      openingSource = undefined;
+    });
+    return openingPromise;
+  };
+
+  let scrollObserver;
   if (scrollButton instanceof HTMLButtonElement) {
     if (scrollSentinel instanceof HTMLElement && 'IntersectionObserver' in window) {
-      const scrollObserver = new IntersectionObserver(([entry]) => {
+      scrollObserver = new IntersectionObserver(([entry]) => {
         scrollButton.hidden = entry?.isIntersecting ?? true;
       }, { rootMargin: `-${Math.min(320, Math.round(window.innerHeight * 0.42))}px 0px 0px 0px`, threshold: 0 });
       scrollObserver.observe(scrollSentinel);
@@ -46,15 +144,60 @@ const initialiseFloatingContact = () => {
     });
   }
 
-  openButton?.addEventListener('click', async () => {
-    if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
-    await ensureChatStyles();
-    openButton.setAttribute('aria-expanded', 'true');
-    dialog.showModal();
-    window.setTimeout(() => {
-      const firstField = dialog.querySelector('input, select, textarea') || closeButton;
-      if (firstField instanceof HTMLElement) firstField.focus({ preventScroll: true });
-    }, 0);
+  let autoResizeObserver;
+  let bodyStateObserver;
+  let autoCheckFrame;
+  let autoTracking = false;
+  const isHalfwayDownPage = () => {
+    const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    const maxScroll = Math.max(0, pageHeight - window.innerHeight);
+    if (maxScroll < 360 || pageHeight <= 0) return false;
+    return window.scrollY / maxScroll >= 0.5;
+  };
+  const stopAutoTracking = () => {
+    if (!autoTracking) return;
+    autoTracking = false;
+    window.removeEventListener('scroll', scheduleAutoOpenCheck);
+    window.removeEventListener('resize', scheduleAutoOpenCheck);
+    document.removeEventListener('visibilitychange', scheduleAutoOpenCheck);
+    document.removeEventListener('close', scheduleAutoOpenCheck, true);
+    autoResizeObserver?.disconnect();
+    bodyStateObserver?.disconnect();
+    if (autoCheckFrame) window.cancelAnimationFrame(autoCheckFrame);
+    autoCheckFrame = undefined;
+  };
+  const checkAutoOpen = async () => {
+    autoCheckFrame = undefined;
+    if (isAutoOpenExcluded()) {
+      stopAutoTracking();
+      return;
+    }
+    if (!isHalfwayDownPage() || hasAutoOpenBlocker()) return;
+    const opened = await openContact({ modal: false, focus: false, source: 'scroll-depth' });
+    if (opened || isAutoOpenExcluded() || chatStylesFailed) stopAutoTracking();
+  };
+  function scheduleAutoOpenCheck() {
+    if (!autoTracking || autoCheckFrame) return;
+    autoCheckFrame = window.requestAnimationFrame(() => { void checkAutoOpen(); });
+  }
+  const setupAutoOpen = () => {
+    if (isAutoOpenExcluded()) return;
+    autoTracking = true;
+    window.addEventListener('scroll', scheduleAutoOpenCheck, { passive: true });
+    window.addEventListener('resize', scheduleAutoOpenCheck, { passive: true });
+    document.addEventListener('visibilitychange', scheduleAutoOpenCheck);
+    document.addEventListener('close', scheduleAutoOpenCheck, true);
+    autoResizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(scheduleAutoOpenCheck) : undefined;
+    autoResizeObserver?.observe(document.documentElement);
+    bodyStateObserver = typeof MutationObserver === 'function'
+      ? new MutationObserver(scheduleAutoOpenCheck)
+      : undefined;
+    bodyStateObserver?.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    scheduleAutoOpenCheck();
+  };
+
+  openButton?.addEventListener('click', () => {
+    void openContact({ modal: true, focus: true, source: 'manual' });
   });
 
   closeButton?.addEventListener('click', () => {
@@ -63,12 +206,28 @@ const initialiseFloatingContact = () => {
 
   dialog?.addEventListener('close', () => {
     openButton?.setAttribute('aria-expanded', 'false');
-    if (openButton instanceof HTMLElement) openButton.focus({ preventScroll: true });
+    delete dialog.dataset.openSource;
+    if (restoreFocusOnClose && openButton instanceof HTMLElement) openButton.focus({ preventScroll: true });
+    restoreFocusOnClose = false;
   });
 
   dialog?.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
+
+  dialog?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && dialog instanceof HTMLDialogElement && dialog.open) {
+      event.preventDefault();
+      dialog.close();
+    }
+  });
+
+  document.addEventListener('astro:before-swap', () => {
+    stopAutoTracking();
+    scrollObserver?.disconnect();
+  }, { once: true });
+
+  window.requestAnimationFrame(() => window.requestAnimationFrame(setupAutoOpen));
 };
 
 initialiseFloatingContact();

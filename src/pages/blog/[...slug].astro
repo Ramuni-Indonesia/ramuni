@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { render } from 'astro:content';
 import ArticleContextVisual from '../../components/blog/ArticleContextVisual.astro';
 import ArticleBodyBlocks from '../../components/blog/ArticleBodyBlocks.astro';
-import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
+import ArticleProductBridge from '../../components/blog/ArticleProductBridge.astro';
 import { getArticleHeadings, getBlogPosts } from '../../lib/blog';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
@@ -57,15 +57,6 @@ const hasVerifiedReviewer = Boolean(
   && post.data.reviewerSlug
   && post.data.reviewerSlug !== post.data.authorSlug,
 );
-
-const cta = {
-  'early-access': { title: 'Lihat cara RAMUNI membaca masalah usaha ini.', text: 'Sesi coba gratis menggunakan skenario sederhana dan tidak meminta catatan bisnis sensitif.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
-  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Sesi coba gratis dimulai dari skenario sederhana agar alurnya mudah dipahami.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
-  product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk/' },
-}[post.data.ctaType];
-const ctaSecondary = post.data.ctaType === 'product'
-  ? { label: 'Baca artikel lain', href: '/blog/' }
-  : { label: 'Lihat produk', href: '/produk/' };
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString();
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
@@ -144,19 +135,7 @@ const schema = [
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
 
-          <aside class="article-inline-decision" aria-label="Langkah berikutnya">
-            <BlogDecisionCTA
-              id={`article-decision-${post.id}`}
-              eyebrow="Dari bacaan ke langkah"
-              title={cta.title}
-              text={cta.text}
-              primaryLabel={cta.label}
-              primaryHref={cta.href}
-              secondaryLabel={ctaSecondary.label}
-              secondaryHref={ctaSecondary.href}
-              variant="article"
-            />
-          </aside>
+          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} />
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
             {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}

@@ -12,6 +12,8 @@ interface Props {
   secondaryLabel?: string;
   secondaryHref?: string;
   variant?: 'archive' | 'article';
+  stageLabels?: [string, string, string, string];
+  metricLabel?: string;
 }
 
 const {
@@ -24,6 +26,8 @@ const {
   secondaryLabel,
   secondaryHref,
   variant = 'archive',
+  stageLabels = ['Catatan', 'Bukti', 'Konteks', 'Arah'],
+  metricLabel = 'Contoh pembacaan',
 } = Astro.props;
 
 const mascotStates = releaseGates.mascotExplorationEnabled
@@ -33,24 +37,24 @@ const mascotStates = releaseGates.mascotExplorationEnabled
 const signals = [
   {
     key: 'catatan',
-    label: 'Catatan',
+    label: stageLabels[0],
     title: 'Mulai dari satu angka.',
     text: 'Pilih periode dan catatan yang ingin dipahami lebih dulu.',
-    steps: ['Pilih periode', 'Tandai perubahan'],
+    steps: [stageLabels[0], stageLabels[1]],
   },
   {
     key: 'bukti',
-    label: 'Bukti',
+    label: stageLabels[1],
     title: 'Periksa pembandingnya.',
     text: 'Lihat sumber dan konteks sebelum menarik kesimpulan.',
-    steps: ['Bandingkan catatan', 'Periksa konteks'],
+    steps: [stageLabels[1], stageLabels[2]],
   },
   {
     key: 'arah',
-    label: 'Arah',
+    label: stageLabels[3],
     title: 'Tentukan langkah kecil.',
     text: 'Catat tindakan yang bisa dicoba, lalu cek kembali hasilnya.',
-    steps: ['Pilih tindakan', 'Cek ulang hasil'],
+    steps: [stageLabels[2], stageLabels[3]],
   },
 ];
 const controlHash = [...id].reduce((hash, char) => ((hash * 31) + char.charCodeAt(0)) >>> 0, 7).toString(36);
@@ -71,7 +75,7 @@ const controlId = `bd-${controlHash}`;
   <div class="blog-decision-cta__visual" aria-label="Alur interaktif untuk membaca catatan, memeriksa bukti, dan menentukan arah.">
     <div class="blog-decision-cta__visual-head">
       <span>Jejak keputusan</span>
-      <small>Contoh pembacaan</small>
+      <small>{metricLabel}</small>
     </div>
 
     <div class="blog-decision-cta__tabs" role="tablist" aria-label="Tahap membaca angka usaha">
@@ -112,7 +116,7 @@ const controlId = `bd-${controlHash}`;
       ))}
     </div>
 
-    <img class="blog-decision-cta__mascot" data-blog-mascot src={mascotStates[0].src} width={mascotStates[0].width} height={mascotStates[0].height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <img class="blog-decision-cta__mascot" data-blog-mascot data-mascot-motion="observe" src={mascotStates[0].src} width={mascotStates[0].width} height={mascotStates[0].height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
   </div>
 </div>
 

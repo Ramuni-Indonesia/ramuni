@@ -12,6 +12,20 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+### Pending local batch — not yet published or deployed
+
+- Added a contextual product bridge to every article category, with a product route and a separate `Coba gratis` path.
+- Added route-specific animated evidence pipelines to product and solution detail content and reduced repeated generic dashboard chapters on routes where semantic flows explain the feature more honestly.
+- Expanded the free resource set to 11 browser-only calculators and 6 downloadable CSV templates. New calculator routes cover harga jual, perubahan omzet, HPP per porsi, and target penjualan; new templates cover penjualan harian, HPP produk, and stok opname.
+- Calculator formulas now use a small reusable engine with twelve passing local regression and validation tests covering all eleven calculators. Calculator inputs and template downloads dispatch privacy-safe first-party integration events without exposing entered business values.
+- Calculator and template hubs now close with contextual animated product bridges instead of ending only with resource links or privacy copy.
+- The floating WhatsApp consultation panel now presents one question bubble plus a single composer per step, uses RAMUNI brand surfaces, and removes the duplicated welcome panel that made the form look nested.
+- `TourEvidenceCTA` uses intrinsic contain framing and motion without zoom, reducing visual crop on product, solution, tool, and template CTAs.
+- Product and solution heroes now render nine context-aware, code-built marketing dashboard states instead of one repeated raster dashboard. The states use RAMUNI SaaS visual language, synthetic example data, explicit claim disclosure, tablet/mobile re-composition, and one shared finite motion controller that settles after approximately 6.4 seconds.
+- Repeated screenshot chapters were removed from product details because the contextual dashboard now appears in the hero and the lower page uses a separate evidence flow. Product-hub family visuals use lightweight code-built boards for insight and operations rather than repeated screenshots.
+- Astro check passed across 128 files with zero errors, warnings, or hints. All 12 calculator tests, the 127-page production build, the complete static/site/performance audit, and `npm audit --audit-level=high` passed.
+- Browser screenshot QA remains unavailable on this host because no Playwright browser binary is installed; the source/build/audit gates are green. The remaining release steps are commit, push, atomic staging deploy, and live noindex/cache/sitemap verification.
+
 - Published runtime commit: `056c40d18ab5` (`trim solution cards for release budget`), including visual CTA and editorial media commit `472b618590e6`.
 - Active staging release: `20260729T110110Z-056c40d18ab5`.
 - Active release path: `/var/www/ramuni-staging/releases/20260729T110110Z-056c40d18ab5`.
@@ -79,7 +93,7 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - `/demo`, `/early-access`, and `/harga` redirect in one hop to `/tour-produk-gratis/`.
 - All official WhatsApp contact links use `https://wa.me/message/K35W6X6WT7YMJ1`.
 - Visitor-facing internal editorial/release status labels were removed while metadata gates remain.
-- Seven practical calculator flows and real downloadable CSV template resources are present.
+- Eleven practical browser-only calculator flows and six real downloadable CSV template resources are present. The calculator engine has local formula tests, while public indexing remains release-gated pending subject review.
 - Help center has local search/filter behavior and accessible status messaging.
 - `/bantuan/`, `/keamanan/`, and `/tentang/` were redesigned in the latest release.
 - Product hub, solution hub, product detail, and solution detail heroes now keep their split composition from 961px through 1200px while the navbar independently stays in hamburger mode through 1200px.

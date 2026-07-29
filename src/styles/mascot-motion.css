@@ -1,0 +1,20 @@
+/* Lightweight mascot motion. Individual translate properties preserve any
+   component transform used for layout or state changes. The logo artwork is
+   never redrawn or distorted; the complete mascot only changes position. */
+[data-mascot-motion]{
+  transform-origin:50% 82%;
+  backface-visibility:hidden;
+}
+
+@media(prefers-reduced-motion:no-preference){
+  [data-mascot-motion][data-mascot-active='true']{
+    will-change:translate;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  [data-mascot-motion]{
+    animation:none!important;
+    translate:0 0!important;
+  }
+}

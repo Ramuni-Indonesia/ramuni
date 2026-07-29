@@ -6,6 +6,7 @@ import FloatingContact from '../components/FloatingContact.astro';
 import ParallaxMotion from '../components/ParallaxMotion.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
+import '../styles/mascot-motion.css';
 
 interface Props {
   title: string;
@@ -163,5 +164,6 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     <ConsentManager />
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>
+    <script is:inline src="/scripts/mascot-motion.js"></script>
   </body>
 </html>

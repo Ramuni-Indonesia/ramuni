@@ -6,15 +6,15 @@ Brand direction: Lipat Arah
 
 ## Current delivery
 
-- Current generated output contains 79 HTML pages: 77 `index.html` outputs including the homepage, plus `404.html` and `500.html`.
+- Static output page count is release-specific and must be refreshed after each production build. The current source includes the homepage, marketing route families, dynamic product/solution/resource/blog details, plus `404.html` and `500.html`.
 - Global layout includes final RAMUNI brand assets, self-hosted Plus Jakarta Sans WOFF2, metadata, canonical URLs, Open Graph, JSON-LD, sitemap, robots, web manifest, favicons, reduced-motion handling, and responsive navigation.
 - Navigation now exposes Produk, Solusi, Untuk Tim, Industri, Harga, and Sumber Daya from shared route data.
 - Product delivery includes one hub and nine data-driven product details.
 - Solution delivery includes one hub and five data-driven solution details.
 - Role delivery includes one hub and four role details.
 - Industry delivery includes one hub and six industry details.
-- Blog delivery includes the editorial homepage, three design-QA article examples, three thin category pages, one noindex author profile, noindex search, and five editorial trust pages. The example articles render for visual QA but are `noindex,follow` and excluded from the sitemap.
-- Resource delivery includes `/sumber-daya`, guide hub with three dummy guides, template hub, calculator hub with three calculators, and glossary hub with four terms.
+- Blog delivery includes the editorial homepage, eleven preview articles, crawlable archive pagination, category routes from the shared taxonomy, one noindex author profile, noindex search, and editorial trust pages. Preview articles render for review but remain `noindex,follow` until editorial approval.
+- Resource delivery includes `/sumber-daya`, guide hub with three preview guides, six downloadable CSV templates, eleven browser-only calculators with a unit-tested formula engine, and a shared-data glossary hub with 26 substantive educational terms pending editorial and subject review.
 - Conversion delivery includes early access, demo, contact, generic thank-you, and four typed thank-you pages.
 - Legal, status, help, login, 500, and maintenance routes are structural shells pending their owners or deployment environment.
 - `docs/url-map.csv` now uses all 25 required governance columns and records every current static route family and generated instance set.
@@ -29,6 +29,8 @@ Brand direction: Lipat Arah
 - Homepage hero and report sections use a website-specific RAMUNI composition: teal offset fields, restrained data modules, no tilt-driven hero card, and motivated stagger motion only. The Instagram package is not a source asset for these sections.
 - The final static audit now also checks static accessibility basics: accessible names for links and buttons, image alt and dimensions, form labels, dialog labels, duplicate IDs, heading skips, and content-marker hygiene.
 - Product detail pages now include real industry slug links, related modules, one educational resource path, and a semantic synthetic evidence figure.
+- Product and solution heroes now use a code-built, context-specific marketing dashboard for overview, sales, stock, finance, customer, report, AI, catalog, and import journeys. These are clearly labelled synthetic moneysite visuals, not verified customer results or guaranteed product screens.
+- Dashboard motion uses a shared intersection controller, runs one finite explanatory sequence, stops offscreen/when hidden, settles to a useful static state, and respects reduced motion plus Save-Data. Tablet and mobile recompose the dashboard instead of shrinking a desktop screenshot.
 - Solution detail pages now link related modules to product routes and include industry examples plus implementation expectations for each solution.
 - Role and industry pages now use role-specific support paths, Kasir avoids the demo funnel, industry-role mapping is not hard-coded, and industry pages include related solutions/resources plus synthetic example metrics.
 - Dummy guide details, glossary details, and the unavailable template hub are gated by `PUBLIC_RESOURCE_REVIEW_APPROVED`; they render as `noindex,follow` and stay out of the sitemap until substantive review is approved.

@@ -4,18 +4,16 @@ import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
-import DashboardMotion from '../../components/DashboardMotion.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
-import { dashboardVisuals, heroContextVisuals } from '../../data/dashboardVisuals';
+import { heroContextVisuals } from '../../data/dashboardVisuals';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
 const ecosystem = products.find((product) => product.slug === 'integrasi');
-const productFamilyVisuals = {
-  intelligence: dashboardVisuals.productOverview,
-  operations: dashboardVisuals.productOperations,
-  ecosystem: dashboardVisuals.productPerformance,
+const productFamilyBoards = {
+  intelligence: { label: 'Jawaban berbasis bukti', value: '3 sumber', note: '1 hal perlu dicek', bars: [42, 68, 54, 86], rows: ['Periode terlihat', 'Catatan asal dapat dibuka'] },
+  operations: { label: 'Prioritas operasional', value: '2 SKU', note: 'Stok perlu perhatian', bars: [82, 66, 48, 32], rows: ['Mutasi keluar terbaca', 'Cek fisik sebelum restock'] },
 } as const;
 const productCloseVisual = heroContextVisuals.aiImport;
 const sharedCapabilities = [
@@ -71,17 +69,17 @@ const productFaq = [
           <p class="section-kicker">Keluarga produk</p>
           <h2 id="product-catalog-title">Pilih dari pertanyaan bisnis Anda.</h2>
           <p>Halaman tiap modul menjelaskan manfaat, contoh tampilan, dan batas kemampuannya tanpa menganggap semua fitur sudah tersedia.</p>
-          <div class="product-status-guide" aria-label="Yang dapat dilihat sekarang">
-            <span><strong>Yang dapat dilihat sekarang</strong> tampilan RAMUNI serta contoh alur penjualan, stok, kas, pelanggan, dan laporan.</span>
-            <span><strong>Status kemampuan</strong> dijelaskan pada tiap halaman sebelum Anda memilih langkah berikutnya.</span>
-          </div>
         </header>
         <div class="product-families">
           <section class="product-family" aria-labelledby="family-intelligence">
             <h3 id="family-intelligence">Insight dan laporan</h3>
-            <figure class="product-family__visual reveal" style={`--product-family-ratio:${productFamilyVisuals.intelligence.width}/${productFamilyVisuals.intelligence.height}`}>
-              <DashboardMotion focus="overview" label={productFamilyVisuals.intelligence.alt} {...productFamilyVisuals.intelligence} />
-              <figcaption><span>{productFamilyVisuals.intelligence.badge}</span><strong>Ringkasan usaha dan insight dalam satu pandangan.</strong></figcaption>
+            <figure class="product-family__visual reveal">
+              <div class="product-family-board" role="img" aria-label="Contoh alur jawaban berbasis sumber">
+                <header><span>{productFamilyBoards.intelligence.label}</span><strong>{productFamilyBoards.intelligence.value}</strong></header>
+                <div class="product-family-board__plot">{productFamilyBoards.intelligence.bars.map((bar) => <i style={`--bar:${bar}%`}></i>)}</div>
+                <ol>{productFamilyBoards.intelligence.rows.map((row) => <li>{row}</li>)}</ol>
+              </div>
+              <figcaption><span>{productFamilyBoards.intelligence.note}</span><strong>Ringkasan usaha dan insight dalam satu pandangan.</strong></figcaption>
             </figure>
             {intelligence.map((product, index) => (
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}/`}>
@@ -93,9 +91,13 @@ const productFaq = [
           </section>
           <section class="product-family" aria-labelledby="family-operations">
             <h3 id="family-operations">Operasional</h3>
-            <figure class="product-family__visual reveal" style={`--product-family-ratio:${productFamilyVisuals.operations.width}/${productFamilyVisuals.operations.height}`}>
-              <DashboardMotion focus="operations" label={productFamilyVisuals.operations.alt} {...productFamilyVisuals.operations} />
-              <figcaption><span>{productFamilyVisuals.operations.badge}</span><strong>Aktivitas pembayaran, stok, dan biaya yang dapat ditinjau.</strong></figcaption>
+            <figure class="product-family__visual reveal">
+              <div class="product-family-board" role="img" aria-label="Contoh alur pemeriksaan stok">
+                <header><span>{productFamilyBoards.operations.label}</span><strong>{productFamilyBoards.operations.value}</strong></header>
+                <div class="product-family-board__plot">{productFamilyBoards.operations.bars.map((bar) => <i style={`--bar:${bar}%`}></i>)}</div>
+                <ol>{productFamilyBoards.operations.rows.map((row) => <li>{row}</li>)}</ol>
+              </div>
+              <figcaption><span>{productFamilyBoards.operations.note}</span><strong>Aktivitas pembayaran, stok, dan biaya yang dapat ditinjau.</strong></figcaption>
             </figure>
             {operations.map((product, index) => (
               <a class="product-row reveal" data-product-card={product.slug} style={`--i:${index}`} href={`/produk/${product.slug}/`}>
@@ -108,10 +110,6 @@ const productFaq = [
           {ecosystem && (
             <section class="product-family product-family--ecosystem" aria-labelledby="family-ecosystem">
               <h3 id="family-ecosystem">Jalur data</h3>
-              <figure class="product-family__visual reveal" style={`--product-family-ratio:${productFamilyVisuals.ecosystem.width}/${productFamilyVisuals.ecosystem.height}`}>
-                <DashboardMotion focus="performance" label={productFamilyVisuals.ecosystem.alt} {...productFamilyVisuals.ecosystem} />
-                <figcaption><span>{productFamilyVisuals.ecosystem.badge}</span><strong>Contoh indikator setelah catatan usaha diringkas.</strong></figcaption>
-              </figure>
               <a class="product-row" data-product-card={ecosystem.slug} href={`/produk/${ecosystem.slug}/`}>
                 <span class="product-row__mark" aria-hidden="true" {...capabilityIconAttributes('product', ecosystem.slug)}><i></i><i></i><i></i></span>
                 <span><strong>{ecosystem.title}</strong><small>{ecosystem.question}</small></span>
@@ -212,18 +210,19 @@ const productFaq = [
   .product-hub .product-catalog__layout{display:grid;gap:clamp(42px,6vw,72px)}
   .product-hub .product-catalog__intro{max-width:760px;position:static}
   .product-hub .product-catalog__intro>p:last-of-type{max-width:58ch;margin-top:18px;color:var(--ink-72)}
-  .product-status-guide{display:grid;gap:9px;margin-top:28px;padding-left:16px;border-left:3px solid var(--yellow)}
-  .product-status-guide span{color:var(--ink-72);font-size:.78rem;line-height:1.5}.product-status-guide strong{color:var(--ink)}
   .product-hub .product-families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
   .product-hub .product-family{min-width:0}
-  .product-hub .product-family--ecosystem{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.9fr) minmax(320px,1.1fr);column-gap:clamp(28px,4vw,56px);align-items:start}
-  .product-hub .product-family--ecosystem>h3{grid-column:1/-1}
+  .product-hub .product-family--ecosystem{grid-column:1/-1}
   .product-family__visual{position:relative;margin:18px 0 10px;background:transparent;overflow:visible}
+  .product-family-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.72fr);gap:14px;min-height:210px;padding:18px;border:1px solid var(--ink-10);background:var(--rice);font-variant-numeric:tabular-nums}
+  .product-family-board header{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--ink-10)}.product-family-board header span{max-width:24ch;color:var(--ink-72);font-size:.68rem;font-weight:800}.product-family-board header strong{font-size:1.2rem}
+  .product-family-board__plot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:8px;min-height:110px}.product-family-board__plot i{height:var(--bar);min-height:20px;background:var(--teal);transform-origin:bottom;transition:transform .38s var(--ease),background-color .38s ease}.product-family-board__plot i:last-child{background:var(--yellow)}
+  .product-family-board ol{display:grid;align-content:center;gap:10px;margin:0;padding:0;list-style:none}.product-family-board li{padding:9px 10px;border-left:3px solid var(--teal);background:var(--white);font-size:.66rem;font-weight:800;line-height:1.35}
+  .product-family__visual:hover .product-family-board__plot i{transform:scaleY(1.04)}
   .product-family__visual figcaption{display:grid;gap:7px;margin-top:12px;padding:13px 0;border-top:1px solid var(--ink-10);color:var(--ink)}
   .product-family__visual figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
   .product-family__visual figcaption strong{font-size:.9rem;line-height:1.4}
-  .product-family--ecosystem .product-family__visual{grid-column:2;grid-row:2/4;margin-top:18px}
-  .product-family--ecosystem .product-row{grid-column:1;grid-row:2;align-self:start;margin-top:18px}
+  .product-family--ecosystem .product-row{margin-top:18px}
   .product-hub .outcome-index__layout{display:grid;gap:clamp(34px,5vw,58px)}
   .product-hub .outcome-index__layout>div:first-child{max-width:720px}
   .product-hub .outcome-index__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border:1px solid var(--ink);background:var(--ink)}
@@ -268,9 +267,9 @@ const productFaq = [
   .product-faq details{border-top:1px solid var(--ink-10);padding:22px 0}.product-faq details:last-child{border-bottom:1px solid var(--ink-10)}
   .product-faq summary{cursor:pointer;font-weight:800}.product-faq details p{max-width:58ch;margin-top:14px;color:var(--ink-72)}
   @media (prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.capability-fold{animation:hub-rise .7s both;animation-delay:calc(var(--i,0)*70ms)}@keyframes hub-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}}
-  @media(max-width:1200px){.product-hub .catalog-hero__layout,.product-system__heading,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-hub .outcome-index__list,.role-paths__nav{grid-template-columns:repeat(2,minmax(0,1fr))}.product-hub .product-family--ecosystem{grid-template-columns:1fr}.product-family--ecosystem .product-family__visual,.product-family--ecosystem .product-row{grid-column:1;grid-row:auto}.product-family--ecosystem .product-row{margin-top:0}}
+  @media(max-width:1200px){.product-hub .catalog-hero__layout,.product-system__heading,.product-trust__layout,.product-faq__layout{grid-template-columns:1fr}.product-hub .outcome-index__list,.role-paths__nav{grid-template-columns:repeat(2,minmax(0,1fr))}.product-family--ecosystem .product-row{margin-top:0}}
   @media(min-width:961px) and (max-width:1200px){.product-hub .catalog-hero__layout{grid-template-columns:minmax(330px,1.08fr) minmax(360px,.92fr);gap:clamp(24px,3vw,40px)}}
   @media(max-width:1200px), (hover:none), (pointer:coarse){.product-hub .product-row:hover,.product-hub .product-row:focus-visible,.product-hub .outcome-index__list a:hover,.product-hub .outcome-index__list a:focus-visible,.capability-fold:hover::after,.role-paths__nav a:hover,.role-paths__nav a:focus-visible{transform:none}.product-hub .product-row:hover .product-row__mark,.product-hub .product-row:focus-visible .product-row__mark,.product-hub .outcome-index__list a:hover .outcome-glyph,.product-hub .outcome-index__list a:focus-visible .outcome-glyph{transform:none}}
-  @media(max-width:740px){.product-hub .catalog-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.product-hub .product-row{grid-template-columns:52px minmax(0,1fr);padding-inline:10px}.product-hub .product-row .availability-label{grid-column:2}.product-hub .product-families,.product-hub .outcome-index__list,.capability-folds,.role-paths__nav{grid-template-columns:1fr}.product-hub .product-family--ecosystem{grid-column:auto}.capability-fold:nth-child(2){margin-top:0}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:auto;padding:22px}.capability-fold h3{margin-top:24px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}
+  @media(max-width:740px){.product-hub .catalog-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.product-hub .product-row{grid-template-columns:52px minmax(0,1fr);padding-inline:10px}.product-hub .product-row .availability-label{grid-column:2}.product-hub .product-families,.product-hub .outcome-index__list,.capability-folds,.role-paths__nav{grid-template-columns:1fr}.product-hub .product-family--ecosystem{grid-column:auto}.product-family-board{grid-template-columns:1fr}.product-family-board__plot{min-height:96px}.capability-fold:nth-child(2){margin-top:0}.capability-fold:nth-child(4){grid-column:auto}.capability-fold{min-height:auto;padding:22px}.capability-fold h3{margin-top:24px}.role-paths__nav a{min-height:150px}.role-paths__nav span{margin-top:24px}}
   @media(prefers-reduced-motion:reduce){.product-row,.product-row__mark,.outcome-index__list a,.outcome-glyph,.capability-fold,.capability-fold::after,.role-paths__nav a{animation:none!important;transition:none!important;transform:none!important}}
 </style>

@@ -1,0 +1,28 @@
+---
+import BlogDecisionCTA from './BlogDecisionCTA.astro';
+import { getArticleJourney } from '../../data/articleJourneys';
+
+interface Props {
+  categorySlug: string;
+  articleId: string;
+}
+
+const { categorySlug, articleId } = Astro.props;
+const journey = getArticleJourney(categorySlug);
+---
+
+<aside class="article-inline-decision" aria-label={`Lanjut ke ${journey.productTitle}`}>
+  <BlogDecisionCTA
+    id={`article-product-${articleId}`}
+    eyebrow={`Lanjut ke ${journey.label}`}
+    title={journey.title}
+    text={journey.text}
+    primaryLabel={`Lihat ${journey.productTitle}`}
+    primaryHref={journey.productHref}
+    secondaryLabel="Coba gratis"
+    secondaryHref={journey.tourHref}
+    variant="article"
+    stageLabels={journey.stages}
+    metricLabel={journey.metric}
+  />
+</aside>

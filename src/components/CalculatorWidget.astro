@@ -33,7 +33,7 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       {calculator.fields.map((field) => <div class="ramuni-calculator__field">
         <label for={`${titleId}-${field.name}`}>{field.label}</label>
         <div class="ramuni-calculator__input">
-          <input id={`${titleId}-${field.name}`} name={field.name} type="number" min="0" step="any" inputmode="decimal" placeholder={field.placeholder} required />
+          <input id={`${titleId}-${field.name}`} name={field.name} type="number" min={field.min ?? 0} max={field.max} step={field.step ?? 'any'} inputmode="decimal" placeholder={field.placeholder} required />
           <span>{field.unit}</span>
         </div>
       </div>)}
@@ -66,6 +66,7 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
 </section>
 
 <script>
+  import { calculateBusinessMetric, shouldUseCautionNote } from '../lib/calculatorEngine.mjs';
   const formatNumber = (value: number) => new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format(value);
   document.querySelectorAll<HTMLElement>('[data-calculator-widget]').forEach((widget) => {
     if (widget.dataset.ready === 'true') return;
@@ -92,25 +93,20 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       if (!form.reportValidity()) return;
       const values = Object.fromEntries(Array.from(new FormData(form).entries()).map(([key, value]) => [key, Number(value)]));
       const kind = widget.dataset.calculatorWidget;
-      let value = 0;
-      if (kind === 'laba-usaha') value = values.income - values.cost;
-      if (kind === 'hpp') value = values.opening + values.purchase - values.closing;
-      if (kind === 'reorder-stok') value = values.daily * values.lead + values.safety;
-      if (kind === 'margin-laba-kotor') value = values.sales > 0 ? ((values.sales - values.cogs) / values.sales) * 100 : Number.NaN;
-      if (kind === 'titik-impas') value = values.price > values.variable ? Math.ceil(values.fixed / (values.price - values.variable)) : Number.NaN;
-      if (kind === 'arus-kas-bersih') value = values.cashIn - values.cashOut;
-      if (kind === 'nilai-transaksi-rata-rata') value = values.transactions > 0 ? values.revenue / values.transactions : Number.NaN;
-
-      const isPercentResult = kind === 'margin-laba-kotor';
-      const isUnitResult = kind === 'reorder-stok' || kind === 'titik-impas';
-      const isMoneyResult = !isPercentResult && !isUnitResult;
+      const calculation = calculateBusinessMetric(kind, values);
+      const value = calculation.value;
+      const isPercentResult = calculation.format === 'percent';
+      const isUnitResult = calculation.format === 'unit';
+      const isMoneyResult = calculation.format === 'money';
       const valid = Number.isFinite(value);
       result.textContent = valid
-        ? `${isMoneyResult ? 'Rp ' : ''}${formatNumber(value)}${isPercentResult ? '%' : isUnitResult ? ' unit' : ''}`
+        ? `${isMoneyResult ? 'Rp ' : ''}${formatNumber(value)}${isPercentResult ? '%' : isUnitResult ? ` ${calculation.suffix || 'unit'}` : ''}`
         : 'Periksa input';
-      const nonPositiveWarning = kind === 'reorder-stok' && value <= 0;
-      note.textContent = !valid || value < 0 || nonPositiveWarning ? notes.caution || '' : notes.positive || '';
+      note.textContent = shouldUseCautionNote(kind, value) ? notes.caution || '' : notes.positive || '';
       widget.dataset.hasResult = 'true';
+      window.dispatchEvent(new CustomEvent('ramuni:calculator:used', {
+        detail: { calculatorType: kind, pagePath: window.location.pathname },
+      }));
     });
 
     form.addEventListener('reset', () => {

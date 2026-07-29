@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { releaseGates } from '../../config/release';
 import { calculatorEntries } from '../../data/calculators';
 import '../../styles/tools-resource-pages.css';
@@ -10,7 +11,7 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Kalkulator Bisnis Gratis untuk UMKM',
-    description: 'Kumpulan kalkulator laba, HPP, margin, titik impas, arus kas, transaksi, dan reorder stok untuk UMKM.',
+    description: 'Kumpulan kalkulator laba, HPP, harga jual, margin, titik impas, arus kas, omzet, target transaksi, dan reorder stok untuk UMKM.',
     url: calculatorUrl,
   },
   {
@@ -35,7 +36,7 @@ const schema = [
 ---
 <BaseLayout
   title="Kalkulator Bisnis Gratis untuk UMKM"
-  description="Kalkulator bisnis gratis untuk menghitung laba, HPP, margin, titik impas, arus kas, nilai transaksi, dan reorder stok. Rumus terlihat dan data tetap di browser."
+  description="Kalkulator bisnis gratis untuk menghitung laba, HPP per porsi, harga jual, margin, titik impas, arus kas, perubahan omzet, target transaksi, dan reorder stok."
   noindex={!releaseGates.calculatorPagesIndexable}
   schema={schema}
   keywords={calculatorEntries.map(([, calculator]) => calculator.keyword)}
@@ -47,7 +48,7 @@ const schema = [
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Kalkulator</span></nav>
           <p class="eyebrow">Kalkulator bisnis gratis</p>
           <h1>Hitung angkanya. Lalu pahami artinya.</h1>
-          <p class="lede">Tujuh alat hitung untuk laba, stok, kas, dan penjualan. Rumus terlihat, contoh tersedia, dan data tidak dikirim ke server.</p>
+          <p class="lede">{calculatorEntries.length} alat hitung gratis untuk laba, stok, kas, harga, dan penjualan. Rumus terlihat, contoh tersedia, dan data tidak dikirim ke server.</p>
           <div class="button-row"><a class="button button--primary" href="#daftar-kalkulator">Pilih Kalkulator</a><a class="button button--secondary" href="/panduan/">Baca Panduan</a></div>
         </div>
         <figure class="tools-hero__lab reveal is-visible">
@@ -97,6 +98,23 @@ const schema = [
           <a href="/panduan/"><span>02</span><h3>Panduan praktis</h3><p>Ikuti urutan pemeriksaan saat penyebab perubahan belum terlihat.</p><b>Baca panduan</b></a>
           <a href="/kamus-bisnis/"><span>03</span><h3>Kamus bisnis</h3><p>Samakan arti omzet, HPP, arus kas, margin, dan stok.</p><b>Cari istilah</b></a>
         </div>
+      </div>
+    </section>
+
+    <section class="section tools-conversion" aria-label="Lanjutkan hasil kalkulator ke RAMUNI">
+      <div class="container">
+        <TourEvidenceCTA
+          eyebrow="Sesudah angkanya terlihat"
+          title="Bahas penyebabnya, bukan hanya hasil hitungnya."
+          body="Bawa satu angka yang ingin dipahami. RAMUNI membantu menyusunnya bersama catatan penjualan, stok, biaya, atau pelanggan yang relevan."
+          primaryLabel="Coba gratis"
+          primaryHref="/tour-produk-gratis/?intent=overview"
+          secondaryLabel="Lihat produk"
+          secondaryHref="/produk/"
+          visual={{ src: '/website-original/context/ramuni-context-cash-report.webp', width: 1200, height: 800, alt: 'Ilustrasi catatan kas dan laporan yang disusun menjadi urutan pemeriksaan' }}
+          visualBadge="Dari hitungan ke pemeriksaan"
+          points={['Bawa satu hasil', 'Hubungkan catatan', 'Pilih hal yang perlu dicek']}
+        />
       </div>
     </section>
   </div>

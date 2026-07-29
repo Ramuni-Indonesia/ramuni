@@ -1,0 +1,4 @@
+tanggal,sku,nama_barang,stok_catatan,stok_fisik,selisih,nilai_satuan,alasan,diperiksa_oleh
+2026-07-29,CONTOH-001,Kopi bubuk 250 g,24,22,-2,42000,"Satu rusak, satu belum diketahui",Rani
+2026-07-29,CONTOH-002,Teh melati 100 g,18,18,0,26000,Sesuai,Dimas
+2026-07-29,CONTOH-003,Gula aren 500 ml,11,12,1,35000,Penerimaan belum dicatat,Rani

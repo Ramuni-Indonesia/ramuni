@@ -5,13 +5,20 @@ export type CalculatorKey =
   | 'margin-laba-kotor'
   | 'titik-impas'
   | 'arus-kas-bersih'
-  | 'nilai-transaksi-rata-rata';
+  | 'nilai-transaksi-rata-rata'
+  | 'harga-jual'
+  | 'perubahan-omzet'
+  | 'hpp-per-porsi'
+  | 'target-penjualan';
 
 export interface CalculatorField {
   name: string;
   label: string;
   unit: string;
   placeholder?: string;
+  min?: number;
+  max?: number;
+  step?: number | 'any';
 }
 
 export interface CalculatorDefinition {
@@ -227,6 +234,116 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kamus omzet', href: '/kamus-bisnis/omzet/', text: 'Pahami omzet sebelum menilai rata-rata transaksi.' },
       { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet/', text: 'Hubungkan omzet dengan produk, waktu, dan pelanggan.' },
+    ],
+  },
+  'harga-jual': {
+    title: 'Kalkulator Harga Jual dari Target Margin',
+    shortTitle: 'Periksa harga jual target',
+    decision: 'Perkirakan harga jual dari HPP per unit dan target margin kotor.',
+    seoTitle: 'Kalkulator Harga Jual dan Margin Gratis untuk UMKM',
+    metaDescription: 'Kalkulator harga jual gratis untuk UMKM. Masukkan HPP per unit dan target margin untuk memperkirakan harga jual dengan rumus terbuka.',
+    keyword: 'kalkulator harga jual',
+    category: 'Laba',
+    intent: 'Saat menentukan harga tetapi belum yakin margin yang tersisa cukup.',
+    formula: 'Harga jual = HPP per unit / (1 - Target margin)',
+    formulaNote: 'Target margin harus di bawah 100%. Masukkan kemasan, fee, dan biaya variabel lain ke HPP bila ingin ikut diperhitungkan.',
+    resultLabel: 'Perkiraan harga jual',
+    emptyNote: 'Isi HPP per unit dan target margin untuk melihat perkiraan harga jual.',
+    positiveNote: 'Bandingkan harga ini dengan daya beli, harga pasar, volume, diskon, dan biaya lain sebelum menetapkannya.',
+    cautionNote: 'Target margin harus berada di antara 0 dan kurang dari 100 persen, serta HPP perlu lebih besar dari nol.',
+    fields: [
+      { name: 'unitCost', label: 'HPP per unit', unit: 'Rp', placeholder: '25000' },
+      { name: 'targetMargin', label: 'Target margin', unit: '%', placeholder: '35', max: 99.99 },
+    ],
+    example: { unitCost: 25000, targetMargin: 35 },
+    exampleLabel: 'Contoh produk: HPP Rp25 ribu dan target margin 35 persen',
+    nextSteps: ['Masukkan biaya kemasan dan fee yang memang ditanggung.', 'Uji dampak diskon terhadap margin akhir.', 'Bedakan target margin dari markup harga.'],
+    related: [
+      { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', text: 'Periksa HPP sebelum menentukan dasar harga.' },
+      { label: 'Kalkulator margin kotor', href: '/kalkulator/margin-laba-kotor/', text: 'Uji kembali margin dari harga jual yang dipilih.' },
+    ],
+  },
+  'perubahan-omzet': {
+    title: 'Kalkulator Perubahan Omzet',
+    shortTitle: 'Bandingkan perubahan omzet',
+    decision: 'Hitung perubahan omzet antara dua periode yang sebanding.',
+    seoTitle: 'Kalkulator Pertumbuhan Omzet Gratis untuk UMKM',
+    metaDescription: 'Kalkulator perubahan dan pertumbuhan omzet gratis untuk UMKM. Bandingkan omzet periode awal dan akhir dengan rumus persentase terbuka.',
+    keyword: 'kalkulator pertumbuhan omzet',
+    category: 'Penjualan',
+    intent: 'Saat ingin tahu seberapa besar omzet naik atau turun dibanding periode sebelumnya.',
+    formula: 'Perubahan omzet = (Omzet akhir - Omzet awal) / Omzet awal x 100%',
+    formulaNote: 'Gunakan periode dengan durasi, hari operasional, kanal, dan definisi omzet yang sama. Omzet awal tidak boleh nol.',
+    resultLabel: 'Perubahan omzet',
+    emptyNote: 'Isi omzet awal dan omzet akhir dari dua periode yang sebanding.',
+    positiveNote: 'Buka produk, waktu, transaksi, dan pelanggan yang membentuk perubahan sebelum menentukan tindakan.',
+    cautionNote: 'Omzet awal harus lebih besar dari nol. Jika hasil turun, periksa nominal dasar dan penyebabnya, bukan persentase saja.',
+    fields: [
+      { name: 'previousRevenue', label: 'Omzet periode awal', unit: 'Rp', placeholder: '12000000' },
+      { name: 'currentRevenue', label: 'Omzet periode akhir', unit: 'Rp', placeholder: '13800000' },
+    ],
+    example: { previousRevenue: 12000000, currentRevenue: 13800000 },
+    exampleLabel: 'Contoh mingguan: omzet naik dari Rp12 juta menjadi Rp13,8 juta',
+    nextSteps: ['Pastikan jumlah hari dan jam operasional setara.', 'Pisahkan perubahan jumlah transaksi dan nilai transaksi rata-rata.', 'Periksa diskon, retur, stok kosong, dan kanal penjualan.'],
+    related: [
+      { label: 'Kamus pertumbuhan penjualan', href: '/kamus-bisnis/pertumbuhan-penjualan/', text: 'Pahami cara membaca perubahan nominal dan persentase.' },
+      { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Lihat apakah perubahan datang dari nilai belanja per transaksi.' },
+    ],
+  },
+  'hpp-per-porsi': {
+    title: 'Kalkulator HPP per Porsi',
+    shortTitle: 'Periksa HPP per porsi',
+    decision: 'Bagi biaya satu batch dengan jumlah porsi yang benar-benar layak dijual.',
+    seoTitle: 'Kalkulator HPP per Porsi Gratis untuk Usaha Kuliner',
+    metaDescription: 'Kalkulator HPP per porsi gratis untuk usaha kuliner. Hitung bahan, kemasan, biaya variabel langsung, dan jumlah porsi layak jual.',
+    keyword: 'kalkulator HPP per porsi',
+    category: 'Laba',
+    intent: 'Saat biaya bahan terlihat kecil tetapi margin per menu tetap sulit dibaca.',
+    formula: 'HPP per porsi = (Bahan + Kemasan + Biaya variabel langsung) / Porsi layak jual',
+    formulaNote: 'Gunakan hasil porsi yang benar-benar dapat dijual. Susut dan produk gagal tidak boleh ikut memperbesar pembagi.',
+    resultLabel: 'Perkiraan HPP per porsi',
+    emptyNote: 'Isi biaya satu batch dan jumlah porsi layak jual.',
+    positiveNote: 'Lanjutkan dengan memeriksa harga jual, waste, dan biaya yang belum masuk ke batch.',
+    cautionNote: 'Jumlah porsi layak jual harus lebih dari nol. Periksa juga apakah semua biaya memakai batch yang sama.',
+    fields: [
+      { name: 'ingredientCost', label: 'Total biaya bahan', unit: 'Rp', placeholder: '180000' },
+      { name: 'packagingCost', label: 'Total biaya kemasan', unit: 'Rp', placeholder: '40000' },
+      { name: 'directCost', label: 'Biaya variabel langsung lain', unit: 'Rp', placeholder: '30000' },
+      { name: 'sellablePortions', label: 'Porsi layak jual', unit: 'porsi', placeholder: '50', min: 1, step: 1 },
+    ],
+    example: { ingredientCost: 180000, packagingCost: 40000, directCost: 30000, sellablePortions: 50 },
+    exampleLabel: 'Contoh dapur: total biaya Rp250 ribu menghasilkan 50 porsi layak jual',
+    nextSteps: ['Catat waste dan porsi gagal secara terpisah.', 'Masukkan biaya kemasan per batch yang sama.', 'Bandingkan HPP dengan harga jual dan target margin.'],
+    related: [
+      { label: 'Template HPP produk', href: '/template/hpp-produk/', text: 'Susun komponen biaya sebelum menghitung HPP per porsi.' },
+      { label: 'Kalkulator harga jual', href: '/kalkulator/harga-jual/', text: 'Perkirakan harga jual setelah HPP per porsi diketahui.' },
+    ],
+  },
+  'target-penjualan': {
+    title: 'Kalkulator Target Penjualan',
+    shortTitle: 'Periksa target transaksi',
+    decision: 'Ubah target omzet menjadi perkiraan jumlah transaksi yang perlu dicapai.',
+    seoTitle: 'Kalkulator Target Penjualan Gratis untuk UMKM',
+    metaDescription: 'Kalkulator target penjualan gratis untuk UMKM. Bagi target omzet dengan nilai transaksi rata-rata untuk memperkirakan kebutuhan transaksi.',
+    keyword: 'kalkulator target penjualan',
+    category: 'Penjualan',
+    intent: 'Saat target omzet sudah ada tetapi tim belum tahu berapa transaksi yang perlu dikejar.',
+    formula: 'Target transaksi = Target omzet / Nilai transaksi rata-rata',
+    formulaNote: 'Hasil dibulatkan ke atas. Angka ini bukan proyeksi permintaan dan tidak menjamin target omzet tercapai.',
+    resultLabel: 'Perkiraan transaksi yang dibutuhkan',
+    emptyNote: 'Isi target omzet dan nilai transaksi rata-rata.',
+    positiveNote: 'Bandingkan kebutuhan transaksi dengan kapasitas, jam operasional, stok, dan pola hari ramai.',
+    cautionNote: 'Target omzet dan nilai transaksi rata-rata harus lebih dari nol.',
+    fields: [
+      { name: 'revenueTarget', label: 'Target omzet', unit: 'Rp', placeholder: '10000000', min: 1 },
+      { name: 'averageTransaction', label: 'Nilai transaksi rata-rata', unit: 'Rp', placeholder: '85000', min: 1 },
+    ],
+    example: { revenueTarget: 10000000, averageTransaction: 85000 },
+    exampleLabel: 'Contoh mingguan: target Rp10 juta dengan rata-rata transaksi Rp85 ribu',
+    nextSteps: ['Bagi target transaksi ke jumlah hari operasional.', 'Periksa kapasitas layanan dan stok produk utama.', 'Jangan menaikkan target tanpa membaca pola permintaan.'],
+    related: [
+      { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Hitung nilai transaksi rata-rata dari data periode sebelumnya.' },
+      { label: 'Template penjualan harian', href: '/template/penjualan-harian/', text: 'Catat realisasi transaksi dan omzet per hari.' },
     ],
   },
 };

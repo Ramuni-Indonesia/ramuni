@@ -1,0 +1,57 @@
+/** @typedef {{ value: number, format: 'money' | 'percent' | 'unit' | 'number', suffix?: string }} CalculatorResult */
+
+/** @param {number} value @returns {CalculatorResult} */
+const money = (value) => ({ value, format: 'money' });
+/** @param {number} value @returns {CalculatorResult} */
+const percent = (value) => ({ value, format: 'percent' });
+/** @param {number} value @param {string} [suffix] @returns {CalculatorResult} */
+const unit = (value, suffix = 'unit') => ({ value, format: 'unit', suffix });
+
+/**
+ * Browser-only calculator engine. The function never stores or transmits input
+ * values; callers receive only the computed result and display format.
+ * @param {string | undefined} kind
+ * @param {Record<string, number>} values
+ * @returns {CalculatorResult}
+ */
+export const calculateBusinessMetric = (kind, values) => {
+  switch (kind) {
+    case 'laba-usaha':
+      return money(values.income - values.cost);
+    case 'hpp':
+      return money(values.opening + values.purchase - values.closing);
+    case 'reorder-stok':
+      return unit(values.daily * values.lead + values.safety);
+    case 'margin-laba-kotor':
+      return percent(values.sales > 0 ? ((values.sales - values.cogs) / values.sales) * 100 : Number.NaN);
+    case 'titik-impas':
+      return unit(values.price > values.variable ? Math.ceil(values.fixed / (values.price - values.variable)) : Number.NaN);
+    case 'arus-kas-bersih':
+      return money(values.cashIn - values.cashOut);
+    case 'nilai-transaksi-rata-rata':
+      return money(values.transactions > 0 ? values.revenue / values.transactions : Number.NaN);
+    case 'harga-jual':
+      return money(values.unitCost > 0 && values.targetMargin >= 0 && values.targetMargin < 100
+        ? values.unitCost / (1 - (values.targetMargin / 100))
+        : Number.NaN);
+    case 'perubahan-omzet':
+      return percent(values.previousRevenue > 0
+        ? ((values.currentRevenue - values.previousRevenue) / values.previousRevenue) * 100
+        : Number.NaN);
+    case 'hpp-per-porsi': {
+      const totalCost = values.ingredientCost + values.packagingCost + values.directCost;
+      return money(values.sellablePortions > 0 ? totalCost / values.sellablePortions : Number.NaN);
+    }
+    case 'target-penjualan':
+      return unit(values.revenueTarget > 0 && values.averageTransaction > 0
+        ? Math.ceil(values.revenueTarget / values.averageTransaction)
+        : Number.NaN, 'transaksi');
+    default:
+      return { value: Number.NaN, format: 'number' };
+  }
+};
+
+/** @param {string | undefined} kind @param {number} value */
+export const shouldUseCautionNote = (kind, value) => !Number.isFinite(value)
+  || value < 0
+  || (kind === 'reorder-stok' && value <= 0);

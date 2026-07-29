@@ -13,8 +13,8 @@ const featuredPost = posts.find((post) => post.data.featured) || posts[0];
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const resourceFormats = [
   { href: '/panduan/', title: 'Panduan', text: 'Ikuti langkah berurutan saat Anda belum tahu harus mulai memeriksa dari mana.', fit: 'Untuk memahami proses', visual: 'guide' },
-  { href: '/template/', title: 'Template', text: 'Pakai struktur siap isi agar review rutin tidak dimulai dari halaman kosong.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
-  { href: '/kalkulator/', title: 'Kalkulator', text: 'Uji laba, HPP, atau titik pesan ulang dengan rumus yang ditampilkan terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
+  { href: '/template/', title: 'Template', text: 'Pakai format siap isi untuk stok, opname, penjualan, arus kas, HPP, dan evaluasi mingguan.', fit: 'Untuk pekerjaan berulang', visual: 'template' },
+  { href: '/kalkulator/', title: 'Kalkulator', text: 'Uji laba, HPP, harga jual, target transaksi, arus kas, atau titik pesan ulang dengan rumus terbuka.', fit: 'Untuk memeriksa hitungan', visual: 'calculator' },
   { href: '/kamus-bisnis/', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
 ];
 

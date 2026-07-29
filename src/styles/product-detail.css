@@ -902,6 +902,42 @@
   font-style: normal;
 }
 
+@media (prefers-reduced-motion:no-preference) and (min-width: 961px) {
+  .pd-visual.is-visible .pd-sales-pulse__bars > span,
+  .pd-visual.is-visible .pd-money-balance__streams article i,
+  .pd-visual.is-visible .pd-ai-trace li,
+  .pd-visual.is-visible .pd-priority-board li,
+  .pd-visual.is-visible .pd-stock-ledger li,
+  .pd-visual.is-visible .pd-repeat-story__timeline span,
+  .pd-visual.is-visible .pd-report-stack li,
+  .pd-visual.is-visible .pd-data-pipeline li {
+    animation: pd-domain-step 5.8s calc(var(--domain-delay, 0) * 180ms) var(--ease) infinite;
+  }
+
+  .pd-visual.is-visible .pd-sales-pulse__bars > span,
+  .pd-visual.is-visible .pd-money-balance__streams article i {
+    animation-name: pd-domain-meter;
+    transform-origin: bottom;
+  }
+
+  .pd-visual.is-visible :is(.pd-ai-trace li:nth-child(2), .pd-priority-board li:nth-child(2), .pd-stock-ledger li:nth-child(2), .pd-repeat-story__timeline span:nth-child(2), .pd-report-stack li:nth-child(2), .pd-data-pipeline li:nth-child(2)),
+  .pd-visual.is-visible :is(.pd-sales-pulse__bars > span:nth-child(2), .pd-money-balance__streams article:nth-child(2) i) { --domain-delay: 1; }
+  .pd-visual.is-visible :is(.pd-ai-trace li:nth-child(3), .pd-priority-board li:nth-child(3), .pd-stock-ledger li:nth-child(3), .pd-repeat-story__timeline span:nth-child(3), .pd-report-stack li:nth-child(3), .pd-data-pipeline li:nth-child(3)),
+  .pd-visual.is-visible :is(.pd-sales-pulse__bars > span:nth-child(3), .pd-money-balance__streams article:nth-child(3) i) { --domain-delay: 2; }
+  .pd-visual.is-visible .pd-sales-pulse__bars > span:nth-child(4) { --domain-delay: 3; }
+  .pd-visual.is-visible .pd-sales-pulse__bars > span:nth-child(5) { --domain-delay: 4; }
+
+  @keyframes pd-domain-step {
+    0%, 66%, 100% { transform: translate3d(0,0,0); }
+    76%, 88% { transform: translate3d(6px,-4px,0); }
+  }
+
+  @keyframes pd-domain-meter {
+    0%, 64%, 100% { transform: scaleY(1); }
+    76%, 88% { transform: scaleY(.72); }
+  }
+}
+
 .pd-problem {
   background: var(--white);
 }

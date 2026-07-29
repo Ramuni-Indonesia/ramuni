@@ -85,7 +85,7 @@ const initialiseLeadForms = () => {
 
     const steps = Array.from(form.querySelectorAll('[data-form-step]'));
     const indicators = Array.from(form.querySelectorAll('[data-step-indicator]'));
-    const nextButton = form.querySelector('[data-progress-next]');
+    const nextButtons = Array.from(form.querySelectorAll('[data-progress-next]'));
     const backButton = form.querySelector('[data-progress-back]');
     const submitButton = form.querySelector('button[type="submit"]');
     const status = form.querySelector('.form-status');
@@ -104,12 +104,19 @@ const initialiseLeadForms = () => {
       status.dataset.state = state;
     };
     const fieldsForStep = (index) => Array.from(steps[index]?.querySelectorAll('input, select, textarea') || []);
+    const focusStep = (index) => {
+      const target = steps[index]?.querySelector('input:not([type="hidden"]), select, textarea, button:not([hidden])');
+      if (target instanceof HTMLElement) target.focus();
+    };
     const renderChatHistory = () => {
       if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
       chatHistory.replaceChildren();
       if (stepIndex > 0) {
         const nameReply = document.createElement('p');
-        nameReply.textContent = 'Nama sudah saya isi.';
+        const nameField = form.querySelector('input[name="name"]');
+        nameReply.textContent = nameField instanceof HTMLInputElement && nameField.value.trim()
+          ? nameField.value.trim()
+          : 'Nama sudah saya isi.';
         chatHistory.append(nameReply);
       }
       if (stepIndex > 1) {
@@ -123,12 +130,10 @@ const initialiseLeadForms = () => {
         chatHistory.append(emailReply);
       }
       if (stepIndex > 3) {
-        const intentField = form.querySelector('select[name="intent"]');
+        const needField = form.querySelector('textarea[name="need"]');
         const intentReply = document.createElement('p');
-        const intentLabel = intentField instanceof HTMLSelectElement
-          ? intentField.options[intentField.selectedIndex]?.textContent
-          : '';
-        intentReply.textContent = intentLabel ? 'Saya ingin membahas: ' + intentLabel + '.' : 'Kebutuhan usaha sudah saya pilih.';
+        const need = needField instanceof HTMLTextAreaElement ? needField.value.trim() : '';
+        intentReply.textContent = need || 'Kebutuhan usaha sudah saya tulis.';
         chatHistory.append(intentReply);
       }
     };
@@ -157,7 +162,9 @@ const initialiseLeadForms = () => {
         else indicator.removeAttribute('aria-current');
       });
       if (backButton instanceof HTMLButtonElement) backButton.hidden = stepIndex === 0;
-      if (nextButton instanceof HTMLButtonElement) nextButton.hidden = stepIndex === steps.length - 1;
+      nextButtons.forEach((button) => {
+        if (button instanceof HTMLButtonElement) button.hidden = stepIndex === steps.length - 1;
+      });
       if (submitButton instanceof HTMLButtonElement) submitButton.hidden = stepIndex !== steps.length - 1;
       renderChatHistory();
     };
@@ -165,18 +172,18 @@ const initialiseLeadForms = () => {
       if (!validate(fieldsForStep(stepIndex))) return false;
       stepIndex = Math.min(stepIndex + 1, steps.length - 1);
       renderStep();
-      fieldsForStep(stepIndex)[0]?.focus();
+      focusStep(stepIndex);
       return true;
     };
     renderStep();
 
-    nextButton?.addEventListener('click', () => {
+    nextButtons.forEach((button) => button.addEventListener('click', () => {
       advanceStep();
-    });
+    }));
     backButton?.addEventListener('click', () => {
       stepIndex = Math.max(stepIndex - 1, 0);
       renderStep();
-      fieldsForStep(stepIndex)[0]?.focus();
+      focusStep(stepIndex);
     });
     form.addEventListener('input', () => {
       if (form.dataset.submitting !== 'true') {

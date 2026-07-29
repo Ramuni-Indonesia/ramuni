@@ -1,76 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { releaseGates } from '../../config/release';
+import { glossaryTerms } from '../../data/glossaryTerms';
 import '../../styles/learning-resource-pages.css';
 
 export function getStaticPaths() {
-  const terms = {
-  'arus-kas': {
-    slug: 'arus-kas',
-    title: 'Arus kas',
-    short: 'Kas',
-    category: 'Keuangan',
-    definition: 'Pergerakan uang masuk dan keluar pada suatu periode.',
-    why: 'Membantu melihat apakah usaha memiliki uang yang cukup untuk menjalankan kegiatan hariannya.',
-    example: 'Penjualan bisa naik, tetapi arus kas tetap turun bila pembayaran belum diterima atau pengeluaran terjadi lebih dulu.',
-    contrast: { title: 'Jangan tertukar dengan omzet', text: 'Omzet mencatat nilai penjualan. Arus kas menunjukkan kapan uang benar-benar diterima atau dibayarkan.' },
-    visual: ['Uang masuk', 'Waktu', 'Uang keluar'],
-    related: [
-      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas/' },
-      { title: 'Template arus kas sederhana', type: 'Template', href: '/template/arus-kas-sederhana/' },
-      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet/' },
-    ],
-  },
-  hpp: {
-    slug: 'hpp',
-    title: 'Harga Pokok Penjualan',
-    short: 'HPP',
-    category: 'Keuangan',
-    definition: 'Biaya yang berkaitan dengan barang yang terjual.',
-    why: 'Membantu membaca laba kotor dengan definisi biaya yang konsisten dari satu periode ke periode berikutnya.',
-    example: 'Pada perhitungan sederhana, stok awal dan pembelian menambah barang tersedia, sedangkan stok akhir mengurangi barang yang dianggap terjual.',
-    contrast: { title: 'Jangan tertukar dengan seluruh biaya usaha', text: 'HPP berhubungan dengan barang yang terjual. Biaya sewa, administrasi, atau pemasaran dapat dicatat di kelompok biaya lain.' },
-    visual: ['Stok awal + pembelian', 'Kurangi stok akhir', 'Perkiraan HPP'],
-    related: [
-      { title: 'Kalkulator HPP sederhana', type: 'Kalkulator', href: '/kalkulator/hpp/' },
-      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian/' },
-      { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet/' },
-    ],
-  },
-  omzet: {
-    slug: 'omzet',
-    title: 'Omzet',
-    short: 'Omzet',
-    category: 'Penjualan',
-    definition: 'Nilai penjualan sebelum dikurangi biaya.',
-    why: 'Menunjukkan aktivitas penjualan, tetapi belum menjelaskan laba atau jumlah kas yang tersedia.',
-    example: 'Omzet Rp10 juta tidak berarti laba Rp10 juta karena biaya barang dan biaya usaha belum dikurangi. Angka ini juga belum tentu seluruhnya sudah diterima sebagai kas.',
-    contrast: { title: 'Jangan tertukar dengan laba', text: 'Laba adalah selisih antara pendapatan dan biaya pada periode yang sama. Omzet masih berada sebelum pengurangan biaya.' },
-    visual: ['Nilai transaksi', 'Kurangi biaya', 'Periksa laba'],
-    related: [
-      { title: 'Kalkulator laba usaha', type: 'Kalkulator', href: '/kalkulator/laba-usaha/' },
-      { title: 'Arti HPP', type: 'Kamus', href: '/kamus-bisnis/hpp/' },
-      { title: 'Panduan memahami arus kas', type: 'Panduan', href: '/panduan/memahami-arus-kas/' },
-    ],
-  },
-  'stok-pengaman': {
-    slug: 'stok-pengaman',
-    title: 'Stok pengaman',
-    short: 'Cadangan',
-    category: 'Stok',
-    definition: 'Cadangan stok untuk membantu menghadapi ketidakpastian permintaan atau pasokan.',
-    why: 'Membantu mengurangi risiko kehabisan stok, tetapi jumlahnya perlu disesuaikan dengan pola pemakaian dan waktu tunggu barang.',
-    example: 'Produk yang cepat bergerak atau membutuhkan waktu pengiriman lebih lama dapat memerlukan cadangan berbeda dari barang yang jarang terjual.',
-    contrast: { title: 'Jangan ditetapkan tanpa catatan', text: 'Cadangan yang terlalu besar dapat menahan uang dalam stok. Periksa pemakaian, waktu tunggu, dan perubahan permintaan secara berkala.' },
-    visual: ['Pemakaian harian', 'Waktu tunggu', 'Cadangan'],
-    related: [
-      { title: 'Kalkulator titik reorder', type: 'Kalkulator', href: '/kalkulator/reorder-stok/' },
-      { title: 'Panduan membaca stok', type: 'Panduan', href: '/panduan/membaca-stok-harian/' },
-      { title: 'Template stok harian', type: 'Template', href: '/template/stok-harian/' },
-    ],
-  },
-  };
-  return Object.entries(terms).map(([slug, term]) => ({ params: { slug }, props: { term } }));
+  return glossaryTerms.map((term) => ({ params: { slug: term.slug }, props: { term } }));
 }
 
 const { term } = Astro.props;
@@ -81,6 +16,7 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'DefinedTerm',
     name: term.title,
+    alternateName: term.short,
     description: term.definition,
     url: termUrl,
     inLanguage: 'id-ID',
@@ -134,9 +70,23 @@ const schema = [
       </div>
     </section>
 
+    <section class="section term-practical" id="cara-membaca" aria-labelledby="term-practical-title">
+      <div class="container term-practical__grid">
+        <article class="term-formula-card reveal">
+          <span>{term.formula ? 'Rumus sederhana' : 'Cara pakai sederhana'}</span>
+          <h2 id="term-practical-title">{term.formula ? term.formula : `Gunakan ${term.short} dengan konteks yang jelas.`}</h2>
+          <p>{term.formulaNote || 'Tidak semua istilah memiliki rumus tunggal. Tetapkan periode, sumber data, dan aturan pencatatan sebelum membandingkan angka.'}</p>
+        </article>
+        <div class="term-checklist reveal">
+          <p class="section-kicker">Saat membaca angka ini</p>
+          <ol>{term.checks.map((item, index) => <li><span>0{index + 1}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+        </div>
+      </div>
+    </section>
+
     <section class="section term-related" id="terkait" aria-labelledby="term-related-title">
       <div class="container">
-        <div class="learning-section-head reveal"><div><p class="section-kicker">Lanjut dari definisi</p><h2 id="term-related-title">Hubungkan istilah dengan catatan yang tepat.</h2></div><p>Gunakan panduan untuk mengikuti alur, kalkulator untuk memeriksa rumus, atau template untuk merapikan data dasarnya.</p></div>
+        <div class="learning-section-head reveal"><div><p class="section-kicker">Lanjut dari definisi</p><h2 id="term-related-title">Hubungkan istilah dengan catatan yang tepat.</h2></div><p>Buka istilah terkait, panduan, kalkulator, template, atau halaman produk yang sesuai dengan konteksnya.</p></div>
         <div class="term-related__rail">{term.related.map((item, index) => <a class="reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><small>{item.type}</small><strong>{item.title}</strong><i aria-hidden="true">→</i></a>)}</div>
       </div>
     </section>

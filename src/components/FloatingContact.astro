@@ -18,15 +18,8 @@ import LeadForm from './LeadForm.astro';
       <div><strong id="contact-dialog-title">Tim RAMUNI</strong><span class="contact-dialog__status">Online untuk membantu</span></div>
       <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">×</button>
     </header>
-    <div class="contact-dialog__conversation">
-      <div class="contact-dialog__message">
-        <span>RAMUNI</span>
-        <p>Halo! Ceritakan satu masalah usaha. Saya akan menanyakan kontak dan kebutuhan Anda secara bertahap.</p>
-        <small>Balasan diteruskan ke WhatsApp resmi RAMUNI.</small>
-      </div>
-    </div>
     <div class="contact-dialog__form">
-      <LeadForm kind="contact" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim dan buka WhatsApp" compact variant="chat" />
+      <LeadForm kind="contact" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim" compact variant="chat" />
     </div>
   </div>
 </dialog>

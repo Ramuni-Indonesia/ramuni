@@ -1,6 +1,6 @@
 ---
-import DashboardMotion from '../DashboardMotion.astro';
-import { getProductContextVisual, getProductDashboardVisual } from '../../data/dashboardVisuals';
+import MarketingDashboardCanvas from '../MarketingDashboardCanvas.astro';
+import { getProductMarketingDashboardContext } from '../../data/marketingDashboardContexts';
 
 interface Props {
   slug?: string;
@@ -14,21 +14,18 @@ const {
   question = 'Apa yang perlu diperhatikan hari ini?',
 } = Astro.props;
 
-const dashboardVisual = getProductDashboardVisual(slug);
-const contextVisual = getProductContextVisual(slug);
 const isHub = slug === 'hub';
-const usesContextHero = ['asisten-ai', 'integrasi'].includes(slug);
-const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview';
+const dashboardContext = getProductMarketingDashboardContext(slug);
 ---
 
 {isHub ? (
-  <figure class="product-canvas product-canvas--hub-proof" aria-label="Tampilan penuh dashboard RAMUNI">
+  <figure class="product-canvas product-canvas--hub-proof" aria-label="Dashboard moneysite RAMUNI berbasis konteks usaha">
     <figcaption class="product-canvas__caption">
-      <span><i aria-hidden="true"></i> Tampilan produk RAMUNI</span>
-      <strong>Tampilan RAMUNI</strong>
+      <span><i aria-hidden="true"></i> Simulasi ruang kerja RAMUNI</span>
+      <strong>Data rekaan</strong>
     </figcaption>
     <div class="product-canvas__hub-media">
-      <DashboardMotion focus="full" label={dashboardVisual.alt} priority {...dashboardVisual} />
+      <MarketingDashboardCanvas context={dashboardContext} priority />
     </div>
     <div class="product-canvas__hub-reading" aria-label="Cara membaca tampilan produk">
       <span><b>01</b><strong>Ringkasan</strong><small>Lihat kondisi utama tanpa membuka semua menu.</small></span>
@@ -40,19 +37,15 @@ const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'ope
   <figure class="product-canvas product-canvas--detail-proof">
     <header class="product-canvas__caption">
       <span><i aria-hidden="true"></i> {title}</span>
-      <strong>{dashboardVisual.badge}</strong>
+      <strong>Visual moneysite</strong>
     </header>
-    <div class:list={['product-canvas__detail-screen', { 'product-canvas__detail-screen--context': usesContextHero }] }>
-      {usesContextHero ? (
-        <img src={contextVisual.src} width={contextVisual.width} height={contextVisual.height} alt={contextVisual.alt} loading="eager" fetchpriority="high" decoding="async" />
-      ) : (
-        <DashboardMotion focus={focus} label={dashboardVisual.alt} priority {...dashboardVisual} />
-      )}
+    <div class="product-canvas__detail-screen">
+      <MarketingDashboardCanvas context={dashboardContext} compact priority />
     </div>
     <figcaption class="product-canvas__detail-copy">
       <span>Pertanyaan yang dibantu</span>
       <strong>{question}</strong>
-      <small>{usesContextHero ? 'Visual konteks alur, bukan tampilan produk.' : 'Contoh tampilan dashboard RAMUNI.'} Ketersediaan fitur {title} dijelaskan sebelum Anda memilih langkah berikutnya.</small>
+      <small>Dashboard moneysite berbasis data contoh dan referensi tampilan SaaS RAMUNI. Ketersediaan fitur {title} dijelaskan sebelum Anda memilih langkah berikutnya.</small>
     </figcaption>
   </figure>
 )}
@@ -62,14 +55,12 @@ const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'ope
   .product-canvas__caption{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 18px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white);font-size:.66rem;letter-spacing:.04em}
   .product-canvas__caption span{display:flex;align-items:center;gap:9px;font-weight:800}.product-canvas__caption i{width:8px;height:8px;border-radius:50%;background:var(--yellow)}.product-canvas__caption strong{color:rgb(255 255 255/.66);font-size:inherit}
   .product-canvas--hub-proof{border:0;box-shadow:none;background:var(--ink)}
-  .product-canvas__hub-media{position:relative;overflow:hidden;padding:18px;background:linear-gradient(180deg,var(--rice),var(--white))}
+  .product-canvas__hub-media{position:relative;overflow:hidden;padding:18px;background:var(--rice)}
   .product-canvas__hub-reading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--white);color:var(--ink)}
   .product-canvas__hub-reading>span{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;min-width:0;padding:17px 20px;border-right:1px solid var(--ink-10)}
   .product-canvas__hub-reading>span:last-child{border-right:0}.product-canvas__hub-reading b{grid-row:1/3;color:var(--teal);font-size:.65rem}.product-canvas__hub-reading strong{font-size:.8rem}.product-canvas__hub-reading small{color:var(--ink-72);font-size:.68rem;line-height:1.45}
   .product-canvas--detail-proof{container-type:inline-size;border:1px solid rgb(11 48 69/.18);border-radius:0;box-shadow:none;background:var(--white)}
-  .product-canvas__detail-screen{display:block;min-width:0;padding:16px;overflow:hidden;background:linear-gradient(180deg,var(--rice),var(--white))}
-  .product-canvas__detail-screen--context{display:grid;place-items:center;padding:0;background:var(--rice)}
-  .product-canvas__detail-screen--context img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover}
+  .product-canvas__detail-screen{display:block;min-width:0;padding:16px;overflow:hidden;background:var(--rice)}
   .product-canvas__detail-copy{display:grid;grid-template-columns:auto minmax(170px,.8fr) minmax(230px,1.2fr);gap:12px 18px;align-items:start;padding:15px 17px;border-top:1px solid var(--ink-10)}.product-canvas__detail-copy span{color:var(--teal);font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.product-canvas__detail-copy strong{font-size:.7rem;line-height:1.45}.product-canvas__detail-copy small{color:var(--ink-56);font-size:.58rem;line-height:1.45}
   @media(max-width:740px){
     .product-canvas--detail-proof{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}

@@ -1,0 +1,4 @@
+tanggal,kanal,jumlah_transaksi,penjualan_kotor,diskon,retur,penjualan_bersih,catatan
+2026-07-27,Toko,86,4250000,175000,0,4075000,Promo bundel sore
+2026-07-27,Marketplace,31,2150000,90000,125000,1935000,Satu pesanan diretur
+2026-07-28,Toko,74,3875000,120000,0,3755000,Jam operasional lebih pendek
