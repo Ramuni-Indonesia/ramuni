@@ -22,7 +22,7 @@ const isChat = variant === 'chat';
   {isProgressive && !isChat && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
     <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
   </ol>}
-  {isChat && <div class="lead-form__chat-history" data-chat-history aria-live="polite"></div>}
+  {isChat && <div class="lead-form__chat-history" data-chat-history aria-live="off" aria-label="Riwayat percakapan konsultasi"></div>}
   {isChat ? (
     <>
       <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
@@ -43,10 +43,10 @@ const isChat = variant === 'chat';
         <div class="chat-composer chat-composer--message"><div class="field field--context"><label class="visually-hidden" for={kind + '-' + location + '-need'}>Ceritakan singkat</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Tulis kebutuhan Anda..." required maxlength="2000"></textarea><small class="visually-hidden" id={kind + '-' + location + '-privacy'}>Jangan masukkan password, token, atau informasi sensitif.</small></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim kebutuhan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
       <fieldset class="lead-form__step" data-form-step="5" disabled={enabled ? undefined : true}>
-        <legend>Siap. Setelah ini kami buka WhatsApp resmi RAMUNI.</legend>
-        <p class="chat-consent">Dengan memilih tombol di bawah, Anda menyetujui tindak lanjut sesuai <a href="/privasi/">kebijakan privasi</a>.</p>
+        <legend>Siap. Kami buka WhatsApp resmi RAMUNI setelah pesan ini terkirim.</legend>
+        <p class="chat-note">Dengan melanjutkan, Anda menyetujui tindak lanjut sesuai <a href="/privasi/">kebijakan privasi</a>.</p>
         <input type="hidden" name="consent" value="yes" /><input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
-        <button class="chat-send chat-send--final" type="submit">Setuju &amp; buka WhatsApp</button>
+        <div class="chat-composer chat-composer--final"><button class="chat-send chat-send--final" type="submit">Buka WhatsApp</button></div>
       </fieldset>
       <p class="form-status" role="status" aria-live="polite"></p>
     </>

@@ -24,11 +24,14 @@ export interface MarketingDashboardRow {
 }
 
 export interface MarketingDashboardContext {
+  layout: 'standard' | 'ai' | 'operations';
   eyebrow: string;
   title: string;
   subtitle: string;
   status: string;
   primaryMetric: string;
+  question?: string;
+  response?: string;
   metrics: MarketingDashboardMetric[];
   bars: number[];
   segments: string[];
@@ -39,6 +42,7 @@ export interface MarketingDashboardContext {
 
 export const marketingDashboardContexts: Record<MarketingDashboardContextKey, MarketingDashboardContext> = {
   overview: {
+    layout: 'standard',
     eyebrow: 'Ringkasan usaha',
     title: 'Hari ini perlu cek apa dulu?',
     subtitle: 'Penjualan, kas, stok, dan pelanggan dibaca dalam satu ruang kerja.',
@@ -61,6 +65,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Buka dasar analisis sebelum menentukan tindakan.',
   },
   sales: {
+    layout: 'standard',
     eyebrow: 'Penjualan',
     title: 'Omzet naik karena jam dan produk apa?',
     subtitle: 'Transaksi dikelompokkan supaya penyebab perubahan tidak berhenti di total omzet.',
@@ -83,6 +88,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Bandingkan omzet dengan margin dan stok produk pendorong.',
   },
   stock: {
+    layout: 'operations',
     eyebrow: 'Inventori',
     title: 'Stok mana yang perlu dicek sebelum kosong?',
     subtitle: 'Saldo, mutasi, dan laju keluar dilihat bersama agar restock tidak menebak.',
@@ -105,6 +111,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Cek fisik SKU prioritas lalu putuskan restock.',
   },
   finance: {
+    layout: 'standard',
     eyebrow: 'Keuangan',
     title: 'Omzet, laba, dan kas tidak dibaca sebagai angka yang sama.',
     subtitle: 'Uang masuk, biaya, dan pembayaran tertunda dipisahkan sebelum menyimpulkan kondisi usaha.',
@@ -127,6 +134,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Pisahkan piutang sebelum membaca kas tersedia.',
   },
   customer: {
+    layout: 'standard',
     eyebrow: 'Pelanggan',
     title: 'Siapa yang kembali, dan kanal mana yang boleh dihubungi?',
     subtitle: 'Riwayat transaksi dibaca bersama izin tindak lanjut agar follow-up tetap aman.',
@@ -149,6 +157,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Gunakan riwayat untuk membaca pola, bukan mengirim pesan tanpa izin.',
   },
   report: {
+    layout: 'standard',
     eyebrow: 'Laporan',
     title: 'Apa perubahan penting minggu ini?',
     subtitle: 'Catatan harian diringkas menjadi bahan evaluasi yang bisa ditelusuri ulang.',
@@ -171,11 +180,14 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Pilih satu pemilik tindak lanjut untuk setiap perubahan.',
   },
   ai: {
+    layout: 'ai',
     eyebrow: 'Asisten AI',
     title: 'Jawaban AI tetap menunjukkan dasar bacaannya.',
     subtitle: 'Pertanyaan, sumber data, dan batas jawaban ditampilkan sebelum pengguna mengambil keputusan.',
     status: '3 sumber terbaca',
     primaryMetric: 'Jawaban berbasis bukti',
+    question: 'Stok mana yang perlu dicek sebelum jam ramai?',
+    response: 'Produk terlaris mendekati batas perhatian. Periksa stok fisik sebelum menerima pesanan berikutnya.',
     metrics: [
       { label: 'Pertanyaan aktif', value: '1', note: 'Stok sebelum jam ramai', tone: 'neutral' },
       { label: 'Sumber dipakai', value: '3', note: 'Penjualan, stok, kas', tone: 'good' },
@@ -193,6 +205,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Baca sumber jawaban sebelum mengikuti rekomendasi.',
   },
   catalog: {
+    layout: 'operations',
     eyebrow: 'Katalog produk',
     title: 'Nama, SKU, unit, dan HPP dibuat konsisten dulu.',
     subtitle: 'Produk yang sama tidak dibaca sebagai barang berbeda saat masuk ke transaksi.',
@@ -215,6 +228,7 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
     nextAction: 'Rapikan identitas sebelum membandingkan performa produk.',
   },
   integration: {
+    layout: 'operations',
     eyebrow: 'Import data',
     title: 'File masuk diperiksa sebelum menjadi catatan usaha.',
     subtitle: 'Kolom, format, dan baris bermasalah ditandai agar pengguna tahu apa yang perlu dibenahi.',

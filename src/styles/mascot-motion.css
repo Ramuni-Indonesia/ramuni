@@ -4,11 +4,12 @@
 [data-mascot-motion]{
   transform-origin:50% 82%;
   backface-visibility:hidden;
+  transform-box:fill-box;
 }
 
 @media(prefers-reduced-motion:no-preference){
   [data-mascot-motion][data-mascot-active='true']{
-    will-change:translate;
+    will-change:translate,rotate,scale;
   }
 }
 
@@ -16,5 +17,7 @@
   [data-mascot-motion]{
     animation:none!important;
     translate:0 0!important;
+    rotate:0deg!important;
+    scale:1!important;
   }
 }

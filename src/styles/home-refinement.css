@@ -121,7 +121,7 @@
   .answer-tile:nth-child(3){grid-column:1/-1}
   .home-hero .hero-composition{grid-template-columns:1fr}
   .home-hero h1{max-width:15ch}
-  .home-decision-demo{width:min(100%,820px);min-height:520px;justify-self:center}
+  .home-decision-demo{width:min(100%,820px);min-height:0;justify-self:center}
   .workflow-explorer .workflow-node{min-height:118px;padding-inline:16px}
 }
 
@@ -134,7 +134,7 @@
 
 @media(max-width:640px){
   .home-hero h1{max-width:13ch;font-size:clamp(2.4rem,11.8vw,2.75rem);line-height:1.01}
-  .home-decision-demo{min-height:430px;padding-inline:2px}
+  .home-decision-demo{min-height:0;padding-inline:2px}
   .workflow-explorer .workflow-track{
     grid-template-columns:1fr;
     overflow-x:visible;
@@ -492,12 +492,12 @@
 .home-hero-product figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 14px;align-items:baseline;padding:12px 150px 0 0;color:var(--ink-72)}
 .home-hero-product figcaption strong{color:var(--ink);font-size:.76rem}
 .home-hero-product figcaption span{font-size:.68rem}
-.home-hero-guide{position:absolute;right:18px;bottom:-48px;z-index:4;display:block;min-width:0;pointer-events:none}
-.home-hero-guide__mascot{--animated-muni-size:clamp(96px,9vw,132px);border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 14px 22px rgb(11 48 69/.15))}
+.home-hero-guide{position:absolute;right:12px;bottom:-118px;z-index:4;display:block;min-width:0;pointer-events:none}
+.home-hero-guide__mascot{--animated-muni-size:clamp(82px,7vw,104px);border:0;border-radius:0;background:transparent;box-shadow:none;filter:none}
 .home-hero-guide .animated-muni-work::after{display:none}
 
 @media(min-width:961px) and (max-width:1200px){
-  .home-hero-guide__mascot{--animated-muni-size:104px}
+  .home-hero-guide__mascot{--animated-muni-size:88px}
 }
 
 @media(max-width:960px){
@@ -508,9 +508,9 @@
   .home-decision-demo{width:100%;padding:0}
   .home-hero-product{padding-bottom:54px}
   .home-hero-product__viewport{border:0}
-  .home-hero-product figcaption{grid-template-columns:1fr;gap:3px;padding:12px 104px 0 2px}
-  .home-hero-guide{right:8px;bottom:-54px}
-  .home-hero-guide__mascot{--animated-muni-size:88px;border-radius:0}
+  .home-hero-product figcaption{grid-template-columns:1fr;gap:3px;padding:12px 86px 0 2px}
+  .home-hero-guide{right:0;bottom:-104px}
+  .home-hero-guide__mascot{--animated-muni-size:76px;border-radius:0}
 }
 
 @media(prefers-reduced-motion:reduce){

@@ -31,29 +31,32 @@ const bindMascotMotion = () => {
       motion = undefined;
       if (typeof node.animate !== 'function' || reducedMotion.matches || saveData) {
         node.style.translate = '0 0';
+        node.style.rotate = '0deg';
+        node.style.scale = '1';
         return;
       }
 
       const compact = compactViewport.matches;
       const mode = node.dataset.mascotMotion || 'observe';
-      const x = compact ? 2.5 : (mode === 'work' ? 5 : mode === 'guide' ? 4 : 3);
-      const y = compact ? 4.5 : (mode === 'work' ? 5 : mode === 'guide' ? 8 : 6);
-      const duration = compact ? 8200 : (mode === 'work' ? 6800 : mode === 'guide' ? 7800 : 8200);
+      const x = compact ? 4 : (mode === 'work' ? 10 : mode === 'guide' ? 9 : 6);
+      const y = compact ? 6 : (mode === 'work' ? 10 : mode === 'guide' ? 12 : 8);
+      const turn = compact ? 1.2 : (mode === 'work' ? 2.4 : mode === 'guide' ? 2.8 : 1.8);
+      const duration = compact ? 7600 : (mode === 'work' ? 6200 : mode === 'guide' ? 7000 : 7800);
       const keyframes = mode === 'work'
         ? [
-            { translate: '0 0' },
-            { translate: `${x * 0.35}px ${y * -0.6}px`, offset: 0.24 },
-            { translate: `${x}px ${y * -0.18}px`, offset: 0.48 },
-            { translate: `${x * -0.45}px ${y * -0.92}px`, offset: 0.72 },
-            { translate: '0 0' },
+            { translate: '0 0', rotate: '0deg', scale: 1 },
+            { translate: `${x * 0.35}px ${y * -0.75}px`, rotate: `${turn * -0.6}deg`, scale: 1.012, offset: 0.2 },
+            { translate: `${x}px ${y * -0.2}px`, rotate: `${turn}deg`, scale: 1.006, offset: 0.46 },
+            { translate: `${x * -0.55}px ${y * -1.04}px`, rotate: `${turn * -0.85}deg`, scale: 1.018, offset: 0.72 },
+            { translate: '0 0', rotate: '0deg', scale: 1 },
           ]
         : [
-            { translate: '0 0' },
-            { translate: `${x * -0.45}px ${y * -0.38}px`, offset: 0.18 },
-            { translate: `${x}px ${y * -1}px`, offset: 0.43 },
-            { translate: `${x * 0.25}px ${y * -0.42}px`, offset: 0.67 },
-            { translate: `${x * -0.32}px ${y * -0.7}px`, offset: 0.84 },
-            { translate: '0 0' },
+            { translate: '0 0', rotate: '0deg', scale: 1 },
+            { translate: `${x * -0.5}px ${y * -0.44}px`, rotate: `${turn * 0.55}deg`, scale: 1.006, offset: 0.16 },
+            { translate: `${x}px ${y * -1.04}px`, rotate: `${turn * -1}deg`, scale: 1.018, offset: 0.42 },
+            { translate: `${x * 0.35}px ${y * -0.5}px`, rotate: `${turn * 0.35}deg`, scale: 1.01, offset: 0.66 },
+            { translate: `${x * -0.36}px ${y * -0.76}px`, rotate: `${turn * 0.8}deg`, scale: 1.012, offset: 0.84 },
+            { translate: '0 0', rotate: '0deg', scale: 1 },
           ];
       try {
         motion = node.animate(keyframes, {
@@ -104,6 +107,8 @@ const bindMascotMotion = () => {
       delete node.dataset.mascotActive;
       delete node.dataset.mascotMotionBound;
       node.style.removeProperty('translate');
+      node.style.removeProperty('rotate');
+      node.style.removeProperty('scale');
     });
   });
 };

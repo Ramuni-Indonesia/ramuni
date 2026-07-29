@@ -4,6 +4,7 @@ const initialiseLeadForms = () => {
   const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
   const clickIdKeys = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id'];
   const piiPattern = /(?:[^\s@]+@[^\s@]+\.[^\s@]+)|(?:\+?\d[\d\s().-]{7,}\d)/i;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const clean = (value, max = 200) => String(value || '').replace(/[\u0000-\u001f\u007f<>]/g, '').trim().slice(0, max);
   const key = (value, fallback) => clean(value, 80).toLowerCase().replace(/&/g, ' and ').replace(/\+/g, ' plus ')
@@ -31,6 +32,18 @@ const initialiseLeadForms = () => {
     if (phone.startsWith('0')) phone = '+62' + phone.slice(1);
     if (phone.startsWith('62')) phone = '+' + phone;
     return /^\+[1-9]\d{7,14}$/.test(phone) ? phone : '';
+  };
+  const maskPhone = (value) => {
+    const digits = String(value || '').replace(/\D/g, '');
+    if (digits.length < 5) return 'Nomor WhatsApp sudah diisi.';
+    return `${digits.slice(0, 4)}••••${digits.slice(-3)}`;
+  };
+  const maskEmail = (value) => {
+    const [local = '', domain = ''] = String(value || '').trim().split('@');
+    if (!local || !domain) return 'Email sudah diisi.';
+    const visibleLocal = local.slice(0, Math.min(2, local.length));
+    const visibleDomain = domain.slice(0, 1);
+    return `${visibleLocal}••@${visibleDomain}••`;
   };
   const safeValue = (value, max = 200) => {
     const result = clean(value, max);
@@ -108,33 +121,52 @@ const initialiseLeadForms = () => {
       const target = steps[index]?.querySelector('input:not([type="hidden"]), select, textarea, button:not([hidden])');
       if (target instanceof HTMLElement) target.focus();
     };
+    const scrollChatToLatest = () => {
+      if (form.dataset.leadVariant !== 'chat') return;
+      const scrollContainer = form.closest('.contact-dialog__form');
+      if (!(scrollContainer instanceof HTMLElement)) return;
+      window.requestAnimationFrame(() => {
+        scrollContainer.scrollTo({
+          top: scrollContainer.scrollHeight,
+          behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        });
+      });
+    };
+    const appendChatMessage = (container, text, kind) => {
+      const message = document.createElement('p');
+      message.className = `lead-form__chat-message lead-form__chat-message--${kind}`;
+      message.textContent = text;
+      container.append(message);
+    };
+    const answerForStep = (index) => {
+      if (index === 0) {
+        const field = form.querySelector('input[name="name"]');
+        return field instanceof HTMLInputElement && field.value.trim() ? field.value.trim() : 'Nama sudah saya isi.';
+      }
+      if (index === 1) {
+        const field = form.querySelector('input[name="phone"]');
+        return field instanceof HTMLInputElement ? maskPhone(field.value) : 'Nomor WhatsApp sudah diisi.';
+      }
+      if (index === 2) {
+        const field = form.querySelector('input[name="email"]');
+        return field instanceof HTMLInputElement ? maskEmail(field.value) : 'Email sudah diisi.';
+      }
+      if (index === 3) {
+        const field = form.querySelector('textarea[name="need"]');
+        return field instanceof HTMLTextAreaElement && field.value.trim()
+          ? field.value.trim()
+          : 'Kebutuhan usaha sudah saya tulis.';
+      }
+      return '';
+    };
     const renderChatHistory = () => {
       if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
       chatHistory.replaceChildren();
-      if (stepIndex > 0) {
-        const nameReply = document.createElement('p');
-        const nameField = form.querySelector('input[name="name"]');
-        nameReply.textContent = nameField instanceof HTMLInputElement && nameField.value.trim()
-          ? nameField.value.trim()
-          : 'Nama sudah saya isi.';
-        chatHistory.append(nameReply);
-      }
-      if (stepIndex > 1) {
-        const phoneReply = document.createElement('p');
-        phoneReply.textContent = 'Nomor WhatsApp sudah siap.';
-        chatHistory.append(phoneReply);
-      }
-      if (stepIndex > 2) {
-        const emailReply = document.createElement('p');
-        emailReply.textContent = 'Email sudah saya isi.';
-        chatHistory.append(emailReply);
-      }
-      if (stepIndex > 3) {
-        const needField = form.querySelector('textarea[name="need"]');
-        const intentReply = document.createElement('p');
-        const need = needField instanceof HTMLTextAreaElement ? needField.value.trim() : '';
-        intentReply.textContent = need || 'Kebutuhan usaha sudah saya tulis.';
-        chatHistory.append(intentReply);
+      for (let index = 0; index < stepIndex; index += 1) {
+        const question = steps[index]?.querySelector('legend')?.textContent?.trim();
+        const answer = answerForStep(index);
+        if (question) appendChatMessage(chatHistory, question, 'agent');
+        if (answer) appendChatMessage(chatHistory, answer, 'visitor');
       }
     };
     const validate = (fields) => {
@@ -173,6 +205,7 @@ const initialiseLeadForms = () => {
       stepIndex = Math.min(stepIndex + 1, steps.length - 1);
       renderStep();
       focusStep(stepIndex);
+      scrollChatToLatest();
       return true;
     };
     renderStep();
@@ -184,6 +217,7 @@ const initialiseLeadForms = () => {
       stepIndex = Math.max(stepIndex - 1, 0);
       renderStep();
       focusStep(stepIndex);
+      scrollChatToLatest();
     });
     form.addEventListener('input', () => {
       if (form.dataset.submitting !== 'true') {

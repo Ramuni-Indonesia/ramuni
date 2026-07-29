@@ -3,17 +3,16 @@ import { marketingDashboardContexts, type MarketingDashboardContextKey } from '.
 
 interface Props {
   context?: MarketingDashboardContextKey;
-  compact?: boolean;
   priority?: boolean;
 }
 
-const { context = 'overview', compact = false, priority = false } = Astro.props;
+const { context = 'overview', priority = false } = Astro.props;
 const dashboard = marketingDashboardContexts[context] || marketingDashboardContexts.overview;
-const metricColumns = compact ? dashboard.metrics.slice(0, 3) : dashboard.metrics;
+const metricColumns = dashboard.metrics.slice(0, 3);
 ---
 
 <div
-  class:list={['marketing-dashboard', `marketing-dashboard--${context}`, { 'marketing-dashboard--compact': compact }]}
+  class:list={['marketing-dashboard', `marketing-dashboard--${context}`, `marketing-dashboard--${dashboard.layout}`]}
   role="group"
   aria-label={`Visual moneysite RAMUNI untuk konteks ${dashboard.eyebrow}`}
   data-marketing-dashboard
@@ -21,69 +20,74 @@ const metricColumns = compact ? dashboard.metrics.slice(0, 3) : dashboard.metric
   data-priority={priority ? 'true' : 'false'}
 >
   <header class="marketing-dashboard__topbar">
-    <div>
-      <span>RAMUNI / {dashboard.eyebrow}</span>
-      <strong>{dashboard.title}</strong>
-    </div>
+    <div><span>RAMUNI</span><strong>{dashboard.eyebrow}</strong></div>
     <small>{dashboard.status}</small>
   </header>
 
   <div class="marketing-dashboard__shell">
     <div class="marketing-dashboard__content">
-      <section class="marketing-dashboard__intro" aria-label="Ringkasan konteks dashboard">
-        <div>
-          <span>{dashboard.primaryMetric}</span>
-          <strong class="marketing-dashboard__title">{dashboard.subtitle}</strong>
-        </div>
-        <p>Visual moneysite · data contoh</p>
-      </section>
-
-      <section class="marketing-dashboard__metrics" aria-label="Indikator contoh">
-        {metricColumns.map((metric, index) => (
-          <article data-dashboard-metric={index} class:list={[`is-${metric.tone || 'neutral'}`, { 'is-active': index === 0 }]}>
-            <span>{metric.label}</span>
-            <strong>{metric.value}</strong>
-            <small>{metric.note}</small>
-          </article>
-        ))}
-      </section>
-
-      <div class="marketing-dashboard__main">
-        <section class="marketing-dashboard__chart" aria-label="Grafik contoh perubahan">
-          <header><span>Perubahan terbaca</span><small>{dashboard.segments[dashboard.segments.length - 1]}</small></header>
-          <div class="marketing-dashboard__bars">
-            {dashboard.bars.map((bar, index) => (
-              <span data-dashboard-bar={index} class:list={{ 'is-active': index === dashboard.bars.length - 1 }} style={`--bar:${bar}%;--i:${index}`}>
-                <i></i><small>{dashboard.segments[index]}</small>
-              </span>
+      {dashboard.layout === 'ai' ? (
+        <section class="marketing-dashboard__ai" aria-label="Contoh alur jawaban Asisten AI">
+          <div class="marketing-dashboard__ai-question">
+            <span>Pertanyaan usaha</span>
+            <strong>{dashboard.question || dashboard.subtitle}</strong>
+          </div>
+          <div class="marketing-dashboard__ai-answer">
+            <span>Jawaban RAMUNI</span>
+            <p>{dashboard.response || dashboard.insight}</p>
+          </div>
+          <aside class="marketing-dashboard__ai-evidence" aria-label="Sumber yang dipakai untuk jawaban">
+            <header><span>Sumber yang dibaca</span><small>{dashboard.status}</small></header>
+            <ol>
+              {dashboard.rows.map((row, index) => (
+                <li data-dashboard-row={index} class:list={[`is-${row.tone || 'neutral'}`, { 'is-active': index === 0 }]}>
+                  <div><strong>{row.label}</strong><small>{row.note}</small></div><b>{row.value}</b>
+                </li>
+              ))}
+            </ol>
+          </aside>
+          <p class="marketing-dashboard__ai-boundary"><b>Perlu diperiksa:</b> {dashboard.nextAction}</p>
+        </section>
+      ) : dashboard.layout === 'operations' ? (
+        <section class="marketing-dashboard__operations" aria-label="Contoh ruang kerja operasional">
+          <header><span>{dashboard.primaryMetric}</span><strong>{dashboard.subtitle}</strong></header>
+          <ol>
+            {dashboard.rows.map((row, index) => (
+              <li data-dashboard-row={index} class:list={[`is-${row.tone || 'neutral'}`, { 'is-active': index === 0 }]}>
+                <i aria-hidden="true"></i><div><strong>{row.label}</strong><small>{row.note}</small></div><b>{row.value}</b>
+              </li>
             ))}
+          </ol>
+          <div class="marketing-dashboard__operations-summary" aria-label="Ringkasan contoh">
+            {metricColumns.map((metric, index) => <span data-dashboard-metric={index} class:list={{ 'is-active': index === 0 }}><small>{metric.label}</small><strong>{metric.value}</strong></span>)}
           </div>
         </section>
-
-        <aside class="marketing-dashboard__insight" aria-label="Wawasan contoh RAMUNI">
-          <span>Wawasan RAMUNI</span>
-          <strong>{dashboard.insight}</strong>
-          <p>{dashboard.nextAction}</p>
-        </aside>
-      </div>
-
-      <section class="marketing-dashboard__activity" aria-label="Catatan contoh yang mendukung pembacaan">
-        <header><span>Catatan pendukung</span><small>Diperbarui 08.15</small></header>
-        <ol>
-          {dashboard.rows.map((row, index) => (
-            <li data-dashboard-row={index} class:list={[`is-${row.tone || 'neutral'}`, { 'is-active': index === 0 }]}>
-              <i aria-hidden="true"></i>
-              <div><strong>{row.label}</strong><small>{row.note}</small></div>
-              <b>{row.value}</b>
-            </li>
-          ))}
-        </ol>
-      </section>
+      ) : (
+        <>
+          <section class="marketing-dashboard__intro" aria-label="Ringkasan konteks dashboard">
+            <div><span>{dashboard.primaryMetric}</span><strong class="marketing-dashboard__title">{dashboard.subtitle}</strong></div>
+          </section>
+          <section class="marketing-dashboard__metrics" aria-label="Indikator contoh">
+            {metricColumns.map((metric, index) => (
+              <article data-dashboard-metric={index} class:list={[`is-${metric.tone || 'neutral'}`, { 'is-active': index === 0 }]}>
+                <span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.note}</small>
+              </article>
+            ))}
+          </section>
+          <div class="marketing-dashboard__main">
+            <section class="marketing-dashboard__chart" aria-label="Grafik contoh perubahan">
+              <header><span>Perubahan terbaca</span><small>{dashboard.segments[dashboard.segments.length - 1]}</small></header>
+              <div class="marketing-dashboard__bars">
+                {dashboard.bars.map((bar, index) => <span data-dashboard-bar={index} class:list={{ 'is-active': index === dashboard.bars.length - 1 }} style={`--bar:${bar}%`}><i></i><small>{dashboard.segments[index]}</small></span>)}
+              </div>
+            </section>
+            <aside class="marketing-dashboard__insight" aria-label="Wawasan contoh RAMUNI"><span>Wawasan RAMUNI</span><strong>{dashboard.insight}</strong><p>{dashboard.nextAction}</p></aside>
+          </div>
+        </>
+      )}
     </div>
   </div>
-  <p class="marketing-dashboard__disclosure">
-    Visual moneysite dengan data rekaan untuk menjelaskan alur, bukan hasil pelanggan atau janji fitur tersedia.
-  </p>
+  <p class="marketing-dashboard__disclosure">Data contoh untuk menjelaskan alur, bukan hasil pelanggan atau daftar fitur yang dijanjikan.</p>
 </div>
 
 <script>
@@ -236,20 +240,18 @@ const metricColumns = compact ? dashboard.metrics.slice(0, 3) : dashboard.metric
 </script>
 
 <style>
-  .marketing-dashboard{--md-watch:#b96f00;--md-good:#087f6a;position:relative;min-width:0;margin:0;overflow:hidden;border:1px solid rgb(11 48 69/.14);background:var(--white);color:var(--ink);contain:layout paint;font-variant-numeric:tabular-nums}
-  .marketing-dashboard__topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 18px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white)}
-  .marketing-dashboard__topbar>div{display:grid;gap:3px;min-width:0}.marketing-dashboard__topbar span{color:var(--yellow);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__topbar strong{min-width:0;font-size:clamp(.9rem,1.4vw,1.04rem);line-height:1.25;text-wrap:balance}.marketing-dashboard__topbar small{flex:0 0 auto;border:1px solid rgb(255 255 255/.16);border-radius:999px;padding:7px 10px;color:rgb(255 255 255/.74);font-size:.64rem;font-weight:800}
-  .marketing-dashboard__shell{min-height:560px;background:var(--rice)}
-  .marketing-dashboard__content{min-width:0;padding:clamp(14px,2vw,22px);display:grid;gap:clamp(12px,1.8vw,18px)}
-  .marketing-dashboard__intro{display:flex;align-items:start;justify-content:space-between;gap:18px}.marketing-dashboard__intro span{color:var(--teal);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__title{display:block;max-width:48ch;margin-top:5px;font-size:clamp(1rem,1.55vw,1.3rem);line-height:1.25;text-wrap:balance}.marketing-dashboard__intro p{margin:0;color:var(--ink-56);font-size:.64rem;font-weight:800;text-align:right}
-  .marketing-dashboard__metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.marketing-dashboard__metrics article{position:relative;display:grid;gap:8px;min-width:0;min-height:118px;align-content:space-between;border:1px solid var(--ink-10);border-radius:14px;background:var(--white);padding:14px;transition:border-color 220ms var(--ease),transform 220ms var(--ease),background 220ms var(--ease)}.marketing-dashboard__metrics article::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:transparent}.marketing-dashboard__metrics article.is-active{border-color:var(--teal);background:var(--teal-12);transform:translateY(-2px)}.marketing-dashboard__metrics article.is-active::before{background:var(--teal)}.marketing-dashboard__metrics span{color:var(--ink-72);font-size:.66rem;font-weight:900}.marketing-dashboard__metrics strong{font-size:clamp(1.15rem,2.1vw,1.7rem);line-height:1}.marketing-dashboard__metrics small{color:var(--ink-56);font-size:.64rem;line-height:1.35}.marketing-dashboard__metrics .is-good small,.marketing-dashboard__activity .is-good b{color:var(--md-good)}.marketing-dashboard__metrics .is-watch small,.marketing-dashboard__activity .is-watch b{color:var(--md-watch)}
-  .marketing-dashboard__main{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:12px;min-width:0}.marketing-dashboard__chart,.marketing-dashboard__insight,.marketing-dashboard__activity{min-width:0;border:1px solid var(--ink-10);border-radius:16px;background:var(--white)}.marketing-dashboard__chart{display:grid;grid-template-rows:auto minmax(180px,1fr);padding:16px}.marketing-dashboard__chart header,.marketing-dashboard__activity header{display:flex;align-items:center;justify-content:space-between;gap:12px}.marketing-dashboard__chart header span,.marketing-dashboard__activity header span{font-size:.7rem;font-weight:900}.marketing-dashboard__chart header small,.marketing-dashboard__activity header small{color:var(--ink-56);font-size:.64rem;font-weight:800}
-  .marketing-dashboard__bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));align-items:end;gap:8px;padding-top:22px}.marketing-dashboard__bars span{display:grid;gap:8px;align-items:end;min-width:0;height:100%;text-align:center}.marketing-dashboard__bars i{display:block;min-height:24px;height:var(--bar);border-radius:10px 10px 4px 4px;background:color-mix(in srgb,var(--teal) 26%,var(--ink));transform-origin:bottom;transition:background 260ms var(--ease),transform 260ms var(--ease)}.marketing-dashboard__bars .is-active i{background:var(--yellow);transform:scaleY(1.06)}.marketing-dashboard__bars small{color:var(--ink-56);font-size:.62rem;font-weight:800;white-space:nowrap}
-  .marketing-dashboard__insight{display:grid;align-content:start;gap:14px;padding:18px;background:var(--ink);color:var(--white)}.marketing-dashboard__insight span{color:var(--yellow);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__insight strong{font-size:clamp(1rem,1.55vw,1.35rem);line-height:1.25;text-wrap:balance}.marketing-dashboard__insight p{margin:0;color:rgb(255 255 255/.72);font-size:.74rem;line-height:1.55}
-  .marketing-dashboard__activity{padding:15px}.marketing-dashboard__activity ol{display:grid;gap:8px;margin:12px 0 0;padding:0;list-style:none}.marketing-dashboard__activity li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;min-width:0;border:1px solid transparent;border-radius:12px;padding:10px;background:var(--rice);transition:border-color 220ms var(--ease),background 220ms var(--ease),transform 220ms var(--ease)}.marketing-dashboard__activity li.is-active{border-color:var(--teal);background:var(--white);transform:translateX(3px)}.marketing-dashboard__activity li>i{width:28px;height:28px;border-radius:9px;background:var(--teal-12)}.marketing-dashboard__activity strong,.marketing-dashboard__activity small{display:block;min-width:0}.marketing-dashboard__activity strong{font-size:.7rem;line-height:1.35}.marketing-dashboard__activity small{margin-top:2px;color:var(--ink-56);font-size:.62rem;line-height:1.35}.marketing-dashboard__activity b{font-size:.66rem;white-space:nowrap}
-  .marketing-dashboard__disclosure{margin:0;padding:10px 16px;border-top:1px solid var(--ink-10);background:var(--white);color:var(--ink-56);font-size:.64rem;font-weight:700;line-height:1.5}
-  .marketing-dashboard--compact .marketing-dashboard__shell{min-height:500px}.marketing-dashboard--compact .marketing-dashboard__metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.marketing-dashboard--compact .marketing-dashboard__main{grid-template-columns:minmax(0,1fr)}.marketing-dashboard--compact .marketing-dashboard__insight{min-height:178px}
-  @media(max-width:960px){.marketing-dashboard__shell{min-height:0}.marketing-dashboard__metrics,.marketing-dashboard--compact .marketing-dashboard__metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.marketing-dashboard__main{grid-template-columns:1fr}.marketing-dashboard__chart{grid-template-rows:auto 170px}.marketing-dashboard__intro{display:grid}.marketing-dashboard__intro p{text-align:left}.marketing-dashboard__topbar small{display:none}}
-  @media(max-width:560px){.marketing-dashboard{border-radius:16px}.marketing-dashboard__content{padding:12px}.marketing-dashboard__metrics,.marketing-dashboard--compact .marketing-dashboard__metrics{grid-template-columns:1fr}.marketing-dashboard__metrics article{min-height:96px}.marketing-dashboard__bars{gap:5px}.marketing-dashboard__bars small{font-size:.58rem}.marketing-dashboard__activity li{grid-template-columns:24px minmax(0,1fr)}.marketing-dashboard__activity li b{grid-column:2}.marketing-dashboard__topbar{padding:13px 14px}.marketing-dashboard__topbar strong{font-size:.88rem}.marketing-dashboard__disclosure{padding:10px 12px;font-size:.62rem}}
+  .marketing-dashboard{--md-watch:#b96f00;--md-good:#087f6a;min-width:0;overflow:hidden;border:1px solid rgb(11 48 69/.14);background:var(--white);color:var(--ink);contain:layout paint;font-variant-numeric:tabular-nums}
+  .marketing-dashboard__topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 15px;background:var(--ink);color:var(--white)}
+  .marketing-dashboard__topbar>div{display:flex;align-items:baseline;gap:9px;min-width:0}.marketing-dashboard__topbar span{color:var(--yellow);font-size:.65rem;font-weight:900;letter-spacing:.08em}.marketing-dashboard__topbar strong{font-size:.78rem}.marketing-dashboard__topbar small{color:rgb(255 255 255/.74);font-size:.62rem;font-weight:800}
+  .marketing-dashboard__shell{background:var(--rice)}.marketing-dashboard__content{display:grid;gap:12px;min-width:0;padding:14px}.marketing-dashboard__disclosure{margin:0;padding:7px 14px;border-top:1px solid var(--ink-10);color:var(--ink-56);font-size:.62rem;font-weight:700;line-height:1.45}
+  .marketing-dashboard__intro span,.marketing-dashboard__operations>header span{color:var(--teal);font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__title{display:block;max-width:48ch;margin-top:4px;font-size:clamp(.96rem,1.45vw,1.22rem);line-height:1.25;text-wrap:balance}
+  .marketing-dashboard__metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.marketing-dashboard__metrics article{display:grid;align-content:space-between;gap:6px;min-width:0;min-height:78px;padding:10px;border:1px solid var(--ink-10);border-radius:12px;background:var(--white);transition:border-color 220ms var(--ease),background 220ms var(--ease),transform 220ms var(--ease)}.marketing-dashboard [data-dashboard-metric].is-active,.marketing-dashboard [data-dashboard-row].is-active{border-color:var(--teal);background:var(--teal-12);transform:translateY(-2px)}.marketing-dashboard__metrics span{color:var(--ink-72);font-size:.66rem;font-weight:900}.marketing-dashboard__metrics strong{font-size:clamp(1.08rem,2vw,1.55rem);line-height:1}.marketing-dashboard__metrics small{color:var(--ink-56);font-size:.61rem;line-height:1.3}
+  .marketing-dashboard__main{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(170px,.8fr);gap:12px;min-width:0}.marketing-dashboard__chart,.marketing-dashboard__insight{min-width:0;border:1px solid var(--ink-10);border-radius:12px}.marketing-dashboard__chart{display:grid;grid-template-rows:auto 116px;padding:12px;background:var(--white)}.marketing-dashboard__chart header{display:flex;justify-content:space-between;gap:12px}.marketing-dashboard__chart header span{font-size:.7rem;font-weight:900}.marketing-dashboard__chart header small{color:var(--ink-56);font-size:.62rem;font-weight:800}
+  .marketing-dashboard__bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));align-items:end;gap:7px;padding-top:12px}.marketing-dashboard__bars span{display:grid;align-items:end;gap:7px;height:100%;text-align:center}.marketing-dashboard__bars i{display:block;min-height:18px;height:var(--bar);border-radius:7px 7px 3px 3px;background:color-mix(in srgb,var(--teal) 26%,var(--ink));transform-origin:bottom;transition:background 260ms var(--ease),transform 260ms var(--ease)}.marketing-dashboard__bars .is-active i{background:var(--yellow);transform:scaleY(1.05)}.marketing-dashboard__bars small{color:var(--ink-56);font-size:.59rem;font-weight:800;white-space:nowrap}
+  .marketing-dashboard__insight{display:grid;align-content:start;gap:10px;padding:13px;background:var(--ink);color:var(--white)}.marketing-dashboard__insight span{color:var(--yellow);font-size:.63rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__insight strong{font-size:.82rem;line-height:1.35}.marketing-dashboard__insight p{display:none}
+  .marketing-dashboard__ai{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(190px,.88fr);gap:10px}.marketing-dashboard__ai-question,.marketing-dashboard__ai-answer,.marketing-dashboard__ai-evidence,.marketing-dashboard__ai-boundary{min-width:0;border:1px solid var(--ink-10);border-radius:12px;background:var(--white);padding:13px}.marketing-dashboard__ai-question{display:grid;align-content:start;gap:6px}.marketing-dashboard__ai-question span,.marketing-dashboard__ai-answer span,.marketing-dashboard__ai-evidence header span{color:var(--teal);font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.marketing-dashboard__ai-question strong{font-size:clamp(.94rem,1.5vw,1.18rem);line-height:1.3}.marketing-dashboard__ai-answer{grid-column:1;display:grid;gap:7px;background:var(--ink);color:var(--white)}.marketing-dashboard__ai-answer span{color:var(--yellow)}.marketing-dashboard__ai-answer p{margin:0;font-size:.79rem;line-height:1.5}.marketing-dashboard__ai-evidence{grid-column:2;grid-row:1/3}.marketing-dashboard__ai-evidence header{display:flex;justify-content:space-between;gap:8px}.marketing-dashboard__ai-evidence header small{color:var(--ink-56);font-size:.59rem;font-weight:800}.marketing-dashboard__ai-evidence ol{display:grid;gap:6px;margin:10px 0 0;padding:0;list-style:none}.marketing-dashboard__ai-evidence li{display:flex;justify-content:space-between;gap:8px;padding:7px;border:1px solid transparent;border-radius:8px;transition:border-color 220ms var(--ease),background 220ms var(--ease),transform 220ms var(--ease)}.marketing-dashboard__ai-evidence strong,.marketing-dashboard__ai-evidence small{display:block}.marketing-dashboard__ai-evidence strong{font-size:.66rem}.marketing-dashboard__ai-evidence small{margin-top:2px;color:var(--ink-56);font-size:.59rem}.marketing-dashboard__ai-evidence b{font-size:.62rem;text-align:right}.marketing-dashboard__ai-boundary{grid-column:1/-1;margin:0;padding-block:9px;color:var(--ink-72);font-size:.67rem}.marketing-dashboard__ai-boundary b{color:var(--ink)}
+  .marketing-dashboard__operations{display:grid;gap:11px}.marketing-dashboard__operations>header{display:grid;gap:4px}.marketing-dashboard__operations>header strong{max-width:54ch;font-size:clamp(.92rem,1.4vw,1.14rem);line-height:1.3}.marketing-dashboard__operations ol{display:grid;gap:7px;margin:0;padding:0;list-style:none}.marketing-dashboard__operations li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px;border:1px solid transparent;border-radius:10px;background:var(--white);transition:border-color 220ms var(--ease),background 220ms var(--ease),transform 220ms var(--ease)}.marketing-dashboard__operations li>i{width:24px;height:24px;border-radius:7px;background:var(--teal-12)}.marketing-dashboard__operations li strong,.marketing-dashboard__operations li small{display:block}.marketing-dashboard__operations li strong{font-size:.7rem}.marketing-dashboard__operations li small{margin-top:2px;color:var(--ink-56);font-size:.62rem}.marketing-dashboard__operations li b{font-size:.67rem;white-space:nowrap}.marketing-dashboard__operations-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--ink-10)}.marketing-dashboard__operations-summary span{display:grid;gap:4px;min-width:0;padding:10px;background:var(--white)}.marketing-dashboard__operations-summary small{color:var(--ink-56);font-size:.6rem;font-weight:800}.marketing-dashboard__operations-summary strong{font-size:.88rem}
+  @media(max-width:960px){.marketing-dashboard__metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.marketing-dashboard__main,.marketing-dashboard__ai{grid-template-columns:1fr}.marketing-dashboard__chart{grid-template-rows:auto 150px}.marketing-dashboard__ai-evidence{grid-column:1;grid-row:auto}.marketing-dashboard__topbar small{display:none}}
+  @media(max-width:560px){.marketing-dashboard{border-radius:14px}.marketing-dashboard__content{padding:11px}.marketing-dashboard__metrics,.marketing-dashboard__operations-summary{grid-template-columns:1fr}.marketing-dashboard__metrics article{min-height:76px}.marketing-dashboard__bars{gap:5px}.marketing-dashboard__bars small{font-size:.55rem}.marketing-dashboard__topbar{padding:10px 12px}.marketing-dashboard__disclosure{padding:8px 11px;font-size:.59rem}.marketing-dashboard__ai-question,.marketing-dashboard__ai-answer,.marketing-dashboard__ai-evidence{padding:11px}.marketing-dashboard__operations li{grid-template-columns:22px minmax(0,1fr)}.marketing-dashboard__operations li b{grid-column:2}}
   @media(prefers-reduced-motion:reduce){.marketing-dashboard *{animation:none!important;transition:none!important;transform:none!important}}
 </style>
