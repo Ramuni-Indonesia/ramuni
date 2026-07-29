@@ -345,6 +345,17 @@ The current batch materially increases real product evidence and motion, but sev
 - Cleanup after verification removed canonical `node_modules`, `dist`, and `.astro` build artifacts, reclaiming roughly 362 MiB while preserving the immutable staging release and published Git commits.
 - No new raster image generation was run in this batch. If future generated visuals are needed, use the native HashMicro imagegen plugin only and save disposable outputs outside the published tree until reviewed.
 
+## Compact dashboard and continuous consultation release, 2026-07-29
+
+- Published runtime commit: `7798c276b48a19157a7fb66a7b59618987497974` (`refine dashboard heroes and consultation chat`); atomic staging release: `20260729T144732Z-7798c276b48a`; artifact SHA-256: `d8a179a7d6138869de1ecc447b59c944b4757bcc9096a9d325e36f1f8d0346c6`.
+- Product and solution hero dashboards are shorter, flatter, and contextual. Duplicate visual headers, captions, and nested reading cards were removed. Asisten AI now explains a question-to-answer journey with visible sources and a manual-check boundary; stock, catalog, and import routes use an operational view instead of a generic KPI canvas.
+- Homepage hero uses a lightweight code-built dashboard with restrained state motion. Mascot motion is visibility-gated and honors reduced-motion and Save-Data. The known baked rice-colored background in the available mascot artwork is mitigated by removing rectangular shadow treatment and using lightweight blend/motion; replacing the source master remains the cleanest future improvement.
+- Floating WhatsApp consultation now retains RAMUNI prompts and visitor replies as one continuous transcript. Visible phone and email replies are masked, bubble spacing is more comfortable, the composer and final handoff are simplified, auto-scroll follows the latest exchange, and accessibility/reduced-motion behavior is preserved.
+- Verification passed: `git diff --check`; JavaScript syntax checks; Astro check with 128 files and 0 errors, warnings, or hints; staging build with 127 pages; 12/12 calculator tests; full static/site/SEO/performance audit; and `npm audit --audit-level=high` with 0 vulnerabilities.
+- Focused Docker Chromium QA covered the homepage, Asisten AI, stock solution, and consultation chat at 375, 768, and 1440 px. The consultation transcript preserved the preceding RAMUNI question, the visitor name, the next RAMUNI question, and a masked phone reply.
+- Live verification returned HTTP 200 for `/`, `/produk/asisten-ai/`, and `/solusi/kelola-stok/`. Each carries `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml` and `/sitemap-index.xml` return 404. Live HTML contains the new Asisten AI, homepage dashboard, and consultation transcript markers.
+- No raster image generation was required for this release. Future raster generation/editing must use the native HashMicro image plugin. Disposable browser QA screenshots and canonical build dependencies were removed after recording this evidence; the immutable staging release and published commit were preserved.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
