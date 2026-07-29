@@ -44,7 +44,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah semua SKU harus dimasukkan sekaligus?', answer: 'Tidak. Mulai dari produk aktif dan paling sering bergerak, lalu lengkapi secara bertahap.' },
       { question: 'Bagaimana jika stok sistem berbeda dari rak?', answer: 'Tandai selisih, periksa transaksi terakhir, lalu lakukan cek fisik sebelum koreksi.' },
     ],
-    privacy: 'Jangan masukkan data pelanggan ke demo atau formulir publik.',
+    privacy: 'Jangan masukkan data pelanggan ke tour atau formulir publik.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'naikkan-omzet'],
     resourceHrefs: ['/panduan/', '/kalkulator/'],
@@ -72,7 +72,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah RAMUNI menghitung resep dan bahan terbuang otomatis?', answer: 'Belum tentu. Cakupan resep dan bahan terbuang hanya ditampilkan setelah fitur serta cara pencatatannya terverifikasi.' },
       { question: 'Bagaimana membaca menu laris yang bahannya menipis?', answer: 'Bandingkan penjualan pada jam ramai dengan saldo bahan terakhir, lalu cek kondisi fisik sebelum menambah stok.' },
     ],
-    privacy: 'Demo dan contoh F&B memakai data sintetis. Jangan memasukkan data pelanggan atau transaksi sensitif ke formulir publik.',
+    privacy: 'Tour memakai skenario yang sudah disiapkan. Anda tidak perlu membawa data bisnis untuk memulai.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
     resourceHrefs: ['/panduan/', '/kalkulator/'],
@@ -122,7 +122,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     onboarding: [
       { title: 'Samakan kode produk', text: 'Pakai kode yang sama antar kanal agar produk tidak dihitung sebagai item berbeda.' },
       { title: 'Isi HPP yang diketahui', text: 'Catat harga pokok sederhana sebelum membaca margin per produk.' },
-      { title: 'Tandai sumber catatan', text: 'Pisahkan kanal penjualan tanpa memasukkan data pribadi ke demo atau formulir publik.' },
+      { title: 'Tandai sumber catatan', text: 'Pisahkan kanal penjualan tanpa memasukkan data pribadi ke tour atau formulir publik.' },
     ],
     faq: [
       { question: 'Apakah marketplace sudah terhubung langsung?', answer: 'Koneksi langsung hanya boleh diklaim saat integrasi dan dukungan operasionalnya sudah disetujui.' },
@@ -161,7 +161,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     solutionSlugs: ['pantau-laba-dan-arus-kas', 'pahami-pelanggan'],
     resourceHrefs: ['/kalkulator/', '/kamus-bisnis/'],
     exampleMetrics: [
-      { label: 'Pendapatan layanan contoh', value: 'Rp4,8 juta', note: 'Nilai sintetis untuk satu periode mingguan.' },
+      { label: 'Pendapatan layanan contoh', value: 'Rp4,8 juta', note: 'Ilustrasi untuk satu periode mingguan.' },
       { label: 'Biaya pendukung contoh', value: 'Rp1,6 juta', note: 'Dikelompokkan pada periode yang sama.' },
       { label: 'Pesanan berulang contoh', value: '3 pesanan', note: 'Ditinjau tanpa mengirim tindak lanjut otomatis.' },
     ],
@@ -184,12 +184,12 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah RAMUNI membuat rencana produksi otomatis?', answer: 'Tidak pada cakupan awal. Data hanya membantu menentukan apa yang perlu diperiksa sebelum produksi.' },
       { question: 'Bagaimana membaca bahan dan barang jadi bersama?', answer: 'Bandingkan saldo terakhir, penjualan barang jadi, dan kebutuhan bahan yang sudah diketahui secara manual.' },
     ],
-    privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau demo website.',
+    privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau tour website.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
     resourceHrefs: ['/panduan/', '/template/'],
     exampleMetrics: [
-      { label: 'Barang jadi contoh', value: '26 unit', note: 'Saldo sintetis sebelum jadwal produksi berikutnya.' },
+      { label: 'Barang jadi contoh', value: '26 unit', note: 'Ilustrasi saldo sebelum jadwal produksi berikutnya.' },
       { label: 'Penjualan contoh', value: '19 unit', note: 'Dicatat untuk periode tujuh hari.' },
       { label: 'Bahan utama contoh', value: '42 kg', note: 'Perlu dibandingkan dengan kebutuhan produksi secara manual.' },
     ],
@@ -219,7 +219,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Minta tour produk gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh tampilan produk memakai data demo dan batas fitur yang dijelaskan." />
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Minta tour produk gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh tampilan RAMUNI untuk alur usaha yang relevan." />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
@@ -253,7 +253,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
           { label: 'Catatan', title: 'Periksa sumber data yang menjelaskan kejadian.', items: brief.dataNeeds },
           { label: 'Pertanyaan', title: 'Gunakan pertanyaan untuk menelusuri pola.', items: brief.questions },
         ]}
-        note={'Semua label dan angka di halaman ' + industry.title + ' adalah contoh sintetis, bukan data atau hasil pelanggan.'}
+        note={'Label dan angka di halaman ' + industry.title + ' digunakan untuk membantu menjelaskan alur.'}
         mascot="evidence3d"
         variant="industry"
       />
@@ -297,7 +297,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
       <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Batas data tetap dijaga.</h2><p class="lede">{brief.privacy}</p></div>
       <div class="faq-list reveal">
         {brief.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-        <details><summary>Apakah saya perlu mengirim data bisnis untuk demo?</summary><p>Tidak. Demo publik memakai data sintetis dan formulir tidak boleh menerima data pelanggan atau transaksi sensitif.</p></details>
+        <details><summary>Apakah saya perlu mengirim data bisnis untuk tour?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details>
       </div>
     </div>
   </section>

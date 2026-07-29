@@ -1,134 +1,53 @@
 ---
 import '../styles/forms-conversion.css';
-interface Props { kind?: 'early-access' | 'demo' | 'contact'; submitLabel?: string; }
-const { kind = 'early-access', submitLabel } = Astro.props;
-const labels = { 'early-access': 'Minta akses uji coba', demo: 'Jadwalkan Demo', contact: 'Kirim pesan' };
-const isEarlyAccess = kind === 'early-access';
-const isContact = kind === 'contact';
+interface Props {
+  kind?: 'early-access' | 'demo' | 'contact';
+  submitLabel?: string;
+  mode?: 'standard' | 'progressive';
+  handoff?: 'thank-you' | 'whatsapp';
+  location?: string;
+}
+const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline' } = Astro.props;
+const labels = { 'early-access': 'Minta akses uji coba', demo: 'Kirim permintaan tour', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
-const consentVersion = '2026-07-25';
+const isProgressive = mode === 'progressive';
 ---
-<form class="lead-form" action={enabled ? endpoint : undefined} method="post" data-lead-form={kind} data-enabled={String(enabled)}>
-  <div class="form-grid">
-    <div class="field"><label for={`${kind}-name`}>Nama lengkap</label><input id={`${kind}-name`} name="name" autocomplete="name" required /></div>
-    <div class="field"><label for={`${kind}-email`}>Email</label><input id={`${kind}-email`} name="email" type="email" autocomplete="email" required /><small>Dipakai untuk menindaklanjuti permintaan ini.</small></div>
-    <div class="field"><label for={`${kind}-business`}>Nama usaha</label><input id={`${kind}-business`} name="business" autocomplete="organization" required /></div>
-    {!isContact && !isEarlyAccess && <div class="field"><label for={`${kind}-industry`}>Jenis usaha</label><select id={`${kind}-industry`} name="industry" required><option value="">Pilih jenis usaha</option><option>Retail</option><option>F&B</option><option>Distributor</option><option>Reseller Online</option><option>Jasa</option><option>Manufaktur Kecil</option><option>Lainnya</option></select></div>}
-    {!isContact && !isEarlyAccess && <div class="field"><label for={`${kind}-size`}>Ukuran tim</label><select id={`${kind}-size`} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21+">Lebih dari 20 orang</option></select></div>}
-    {!isContact && <div class="field"><label for={`${kind}-intent`}>Kebutuhan utama</label><select id={`${kind}-intent`} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha secara umum</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option></select></div>}
-  </div>
-  <div class="field field--context"><label for={`${kind}-need`}>Apa yang ingin Anda pahami?</label><textarea id={`${kind}-need`} name="need" aria-describedby={`${kind}-privacy`} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai."></textarea><small id={`${kind}-privacy`}>Jangan masukkan data pelanggan, transaksi, atau informasi sensitif.</small></div>
-  <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
-  <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value={consentVersion} />
-  <input type="hidden" name="firstTouchAttribution" data-attribution-field="first" />
-  <input type="hidden" name="lastTouchAttribution" data-attribution-field="last" />
-  {enabled ? <div class="form-actions"><button class="button button--primary" type="submit">{submitLabel || labels[kind]}</button><p class="form-status" role="status" aria-live="polite"></p></div> : <div class="form-unavailable" role="status"><strong>Tour dibahas langsung lewat WhatsApp.</strong><p>Pilih satu masalah usaha. Tim RAMUNI akan menunjukkan contoh alur dengan data demo dan menjelaskan batas fiturnya.</p><a class="button button--primary" href="https://wa.me/message/K35W6X6WT7YMJ1" target="_blank" rel="noopener noreferrer">Bahas tour lewat WhatsApp</a></div>}
+<form class:list={['lead-form', { 'lead-form--progressive': isProgressive }]} action={enabled ? endpoint : undefined} method="post"
+  data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
+  data-enabled={String(enabled)} novalidate>
+  {isProgressive && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
+    <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
+  </ol>}
+  <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
+    {isProgressive && <legend>Mulai dari kontak yang bisa dihubungi.</legend>}
+    <div class="form-grid">
+      <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" required maxlength="150" /></div>
+      <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /><small>Digunakan tim kami untuk menindaklanjuti permintaan Anda.</small></div>
+      <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" required maxlength="254" /></div>
+    </div>
+  </fieldset>
+  <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
+    {isProgressive && <legend>Beri konteks minimum agar tim tidak menebak-nebak.</legend>}
+    <div class="form-grid">
+      <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>
+      <div class="field"><label for={kind + '-' + location + '-industry'}>Jenis usaha</label><select id={kind + '-' + location + '-industry'} name="industry" required><option value="">Pilih jenis usaha</option><option value="retail">Retail</option><option value="food-beverage">F&amp;B / kuliner</option><option value="distributor">Distributor</option><option value="online-reseller">Reseller online</option><option value="services">Jasa</option><option value="small-manufacturing">Manufaktur kecil</option><option value="other">Lainnya</option></select></div>
+      <div class="field"><label for={kind + '-' + location + '-size'}>Ukuran tim</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-plus">Lebih dari 20 orang</option></select></div>
+      <div class="field"><label for={kind + '-' + location + '-intent'}>Kebutuhan utama</label><select id={kind + '-' + location + '-intent'} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option><option value="support">Bantuan atau pertanyaan lain</option></select></div>
+    </div>
+    <div class="field field--context"><label for={kind + '-' + location + '-need'}>Apa yang ingin Anda pahami?</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan data pelanggan, transaksi, password, token, atau informasi sensitif.</small></div>
+  </fieldset>
+  <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
+    {isProgressive && <legend>Setujui tindak lanjut sebelum diarahkan ke WhatsApp.</legend>}
+    <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
+    <label class="consent-field consent-field--optional"><input type="checkbox" name="marketingConsent" value="yes" /><span>Saya boleh menerima pembaruan produk RAMUNI. Ini opsional.</span></label>
+    <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
+  </fieldset>
+  {enabled ? <div class="form-actions">
+    {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
+    {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
+    <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </div> : <div class="form-unavailable" role="status"><strong>Formulir belum tersedia.</strong><p>Silakan coba lagi beberapa saat lagi.</p></div>}
 </form>
-<script>
-  const preselectLeadIntent = () => {
-    const requested = (new URLSearchParams(window.location.search).get('intent') || '')
-      .replace(/[\u0000-\u001f\u007f<>]/g, '')
-      .slice(0, 180);
-    const allowed = new Set(['overview', 'catalog', 'sales', 'stock', 'finance', 'customer', 'report']);
-    if (!allowed.has(requested)) return;
-    document.querySelectorAll<HTMLSelectElement>('[data-lead-form] select[name="intent"]').forEach((field) => {
-      field.value = requested;
-    });
-  };
-  preselectLeadIntent();
-  document.addEventListener('astro:page-load', preselectLeadIntent);
-</script>
-{enabled && <script>
-  const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id'];
-  const storageKey = 'ramuni-attribution-v1';
-  const cleanValue = (value: string) => value.replace(/[\u0000-\u001f\u007f<>]/g, '').slice(0, 180);
-  const requestedIntent = cleanValue(new URLSearchParams(window.location.search).get('intent') || '');
-  const allowedIntents = new Set(['overview', 'catalog', 'sales', 'stock', 'finance', 'customer', 'report']);
-  const readStoredAttribution = () => {
-    try {
-      const stored = JSON.parse(localStorage.getItem(storageKey) || 'null');
-      if (!stored || typeof stored !== 'object') return null;
-      const cleanTouch = (touch: unknown) => {
-        if (!touch || typeof touch !== 'object') return null;
-        const source = touch as Record<string, unknown>;
-        const cleaned: Record<string, string> = {};
-        [...attributionKeys, 'landingPath', 'capturedAt'].forEach((key) => {
-          if (typeof source[key] === 'string') cleaned[key] = cleanValue(source[key]);
-        });
-        return Object.keys(cleaned).length ? cleaned : null;
-      };
-      return { first: cleanTouch(stored.first), last: cleanTouch(stored.last) };
-    } catch { return null; }
-  };
-  const writeStoredAttribution = (value: unknown) => {
-    try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Attribution still applies to this page view. */ }
-  };
-  const collectAttribution = () => {
-    const params = new URLSearchParams(window.location.search);
-    const touch: Record<string, string> = {};
-    attributionKeys.forEach((key) => {
-      const value = params.get(key);
-      if (value) touch[key] = cleanValue(value);
-    });
-    if (!Object.keys(touch).length) return null;
-    return {
-      ...touch,
-      landingPath: window.location.pathname,
-      capturedAt: new Date().toISOString(),
-    };
-  };
-  const currentTouch = collectAttribution();
-  const storedAttribution = readStoredAttribution();
-  const attribution = {
-    first: storedAttribution?.first || currentTouch,
-    last: currentTouch || storedAttribution?.last || null,
-  };
-  if (currentTouch || storedAttribution) writeStoredAttribution(attribution);
-  document.querySelectorAll('[data-lead-form][data-enabled="true"]').forEach((form) => {
-    if (!(form instanceof HTMLFormElement)) return;
-    const intentField = form.querySelector('select[name="intent"]');
-    if (intentField instanceof HTMLSelectElement && allowedIntents.has(requestedIntent)) intentField.value = requestedIntent;
-    const firstField = form.querySelector('[data-attribution-field="first"]');
-    const lastField = form.querySelector('[data-attribution-field="last"]');
-    if (firstField instanceof HTMLInputElement && attribution.first) firstField.value = JSON.stringify(attribution.first);
-    if (lastField instanceof HTMLInputElement && attribution.last) lastField.value = JSON.stringify(attribution.last);
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const button = form.querySelector('button[type="submit"]');
-      const status = form.querySelector('.form-status');
-      if (!(button instanceof HTMLButtonElement)) return;
-      button.disabled = true;
-      const original = button.textContent;
-      button.textContent = 'Mengirim...';
-      if (status) {
-        status.textContent = 'Sedang mengirim data...';
-        status.setAttribute('data-state', 'loading');
-      }
-      try {
-        const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-        if (!response.ok) throw new Error('request_failed');
-        const kind = form.dataset.leadForm;
-        window.dispatchEvent(new CustomEvent('ramuni:lead:accepted', {
-          detail: {
-            leadType: kind,
-            attributionPresent: Boolean(attribution.first || attribution.last),
-            acceptedAt: new Date().toISOString(),
-          },
-        }));
-        if (status) {
-          status.textContent = 'Terkirim. Mengarahkan ke halaman konfirmasi...';
-          status.setAttribute('data-state', 'success');
-        }
-        window.location.assign(`/terima-kasih/${kind === 'contact' ? 'kontak' : kind}`);
-      } catch {
-        if (status) {
-          status.textContent = 'Kiriman belum berhasil. Periksa koneksi lalu coba lagi.';
-          status.setAttribute('data-state', 'error');
-        }
-        button.disabled = false;
-        button.textContent = original;
-      }
-    });
-  });
-</script>}
+<script is:inline type="module" src="/scripts/lead-form.js"></script>

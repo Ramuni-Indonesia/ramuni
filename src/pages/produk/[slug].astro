@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   return (await listProductRouteModels()).map((model) => ({ params: { slug: model.product.slug }, props: model }));
 }
 
-const { product, detail, seo: cmsSeo, cmsSnapshotId } = Astro.props as ProductRouteModel;
+const { product, detail, seo: cmsSeo, cmsSnapshotId, cmsHeroTitle, cmsHeroEyebrow } = Astro.props as ProductRouteModel;
 
 if (!detail) {
   throw new Error(`Product detail content is missing for ${product.slug}`);
@@ -47,7 +47,7 @@ const productHeroTitles: Record<string, string> = {
   'laporan-insight': 'Tutup hari dan minggu dengan angka dari sumber yang sama.',
   integrasi: 'Masukkan data dengan pemetaan dan status yang jelas.',
 };
-const heroTitle = productHeroTitles[product.slug] || detail.outcome;
+const heroTitle = cmsHeroTitle || productHeroTitles[product.slug] || detail.outcome;
 const tourIntentByProduct: Record<string, string> = {
   'asisten-ai': 'overview',
   'dashboard-bisnis': 'overview',
@@ -142,7 +142,7 @@ const structuredData = [
           <div class="pd-hero__meta">
             <span class="pd-product-glyph" aria-hidden="true" {...capabilityIconAttributes('product', product.slug)}><i></i><i></i><i></i></span>
             <span class="pd-module-name">{product.title}</span>
-            <span class="pd-status-label">Preview produk · data demo</span>
+            <span class="pd-status-label">{cmsHeroEyebrow || 'Preview produk'}</span>
           </div>
           <h1 id="product-title">{heroTitle}</h1>
           <p class="pd-hero__lead">{detail.heroLead}</p>
@@ -348,14 +348,14 @@ const structuredData = [
           headingId="product-next-step-title"
           eyebrow="Tour produk"
           title={detail.closing}
-          body={`${detail.outcome} Tour memakai data contoh agar cara kerja dan batas ${product.title} bisa dibahas sebelum akses.`}
+          body={`${detail.outcome} Lihat cara kerja ${product.title}, lalu bahas fitur yang paling relevan sebelum akses.`}
           primaryLabel={`Minta tour ${product.title}`}
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Produk"
           secondaryHref="/produk/"
           visual={closingVisual}
-          visualBadge="Visual konteks · bukan akun pelanggan"
-          points={[`Mulai dari ${product.title}`, 'Lihat contoh data yang bisa ditelusuri', 'Sepakati batas sebelum akses']}
+          visualBadge="Ilustrasi konteks produk"
+          points={[`Mulai dari ${product.title}`, 'Lihat alur yang dapat ditelusuri', 'Pilih langkah sebelum akses']}
         />
       </div>
     </section>

@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan contoh sintetis dan langkah pemeriksaan stok."
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan langkah pemeriksaan stok."
 readingTime: "5 menit"
 takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."
@@ -121,4 +121,4 @@ Checklist singkat:
 
 Dengan urutan ini, tim tidak harus memeriksa semua barang dengan intensitas yang sama. Perhatian diberikan lebih dulu pada produk yang paling berisiko mengganggu penjualan atau menahan modal.
 
-> Contoh artikel ini memakai data sintetis dan belum mewakili saran keuangan, pajak, atau operasional final.
+> Angka dalam artikel ini hanya untuk ilustrasi dan bukan saran keuangan, pajak, atau operasional final.

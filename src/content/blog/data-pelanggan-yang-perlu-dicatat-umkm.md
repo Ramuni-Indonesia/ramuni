@@ -2,7 +2,7 @@
 title: "Data Pelanggan yang Perlu Dicatat UMKM dan yang Tidak"
 description: "Panduan menentukan data pelanggan minimum untuk transaksi, layanan, dan analisis UMKM dengan batas privasi yang jelas."
 dek: "Catat data karena ada tujuan, bukan karena kolomnya tersedia. Semakin sensitif datanya, semakin kuat alasan dan perlindungan yang dibutuhkan."
-cover: "/website-original/dashboards/ramuni-dashboard-sales-customer.webp"
+cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
 coverAlt: "Dashboard sintetis RAMUNI yang merangkum penjualan dan pola pelanggan tanpa data nyata"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
@@ -80,7 +80,7 @@ Kolom “catatan pelanggan” sering menjadi tempat tim menulis terlalu banyak i
 
 Jangan menulis dugaan tentang kondisi pribadi, kesehatan, kemampuan keuangan, etnis, agama, atau karakter seseorang. Catatan seperti itu sulit diverifikasi, berisiko disalahgunakan, dan biasanya tidak diperlukan untuk menyelesaikan transaksi.
 
-[Modul pelanggan RAMUNI](/produk/pelanggan/) menunjukkan struktur hubungan pelanggan dan transaksi menggunakan data demo. Akses di penggunaan nyata tetap harus dibatasi sesuai peran dan tujuan kerja.
+[Modul pelanggan RAMUNI](/produk/pelanggan/) menunjukkan cara hubungan pelanggan dan transaksi dapat dirangkum. Pada penggunaan nyata, akses tetap perlu dibatasi sesuai peran dan tujuan kerja.
 
 ## Pisahkan identitas dari analisis bila memungkinkan
 

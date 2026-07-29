@@ -27,9 +27,9 @@ const profiles: Record<HeroContextScene, { mode: SceneMode; eyebrow: string; hea
 const profile = profiles[scene] ?? profiles['industry-hub'];
 const sceneDashboardMap: Record<HeroContextScene, DashboardVisualKey> = {
   'industry-hub': 'productPerformance', retail: 'productPerformance', fnb: 'productOperations', distributor: 'productOperations', 'reseller-online': 'productPerformance', jasa: 'productPerformance', 'manufaktur-kecil': 'productOperations',
-  'role-hub': 'productOverview', 'pemilik-usaha': 'productOverview', 'admin-toko': 'productOperations', kasir: 'productPerformance', supervisor: 'productOperations', support: 'ai',
+  'role-hub': 'productOverview', 'pemilik-usaha': 'productOverview', 'admin-toko': 'productOperations', kasir: 'productPerformance', supervisor: 'productOperations', support: 'productOverview',
 };
-const dashboard = dashboardVisuals[sceneDashboardMap[scene] || 'ai'];
+const dashboard = dashboardVisuals[sceneDashboardMap[scene] || 'productOverview'];
 const levels = [78, 34, 62, 48];
 ---
 
@@ -37,9 +37,9 @@ const levels = [78, 34, 62, 48];
   <figcaption>
     <span>{label || profile.eyebrow}</span>
     <strong id={'hero-context-' + scene}>{title || profile.headline}</strong>
-    <small>{dashboard.type === 'product-screenshot' ? 'Tampilan produk dengan data demo' : 'Data contoh, bukan data pelanggan'}</small>
+    <small>Tampilan dashboard RAMUNI</small>
   </figcaption>
-  <div class="hero-context__image">
+  <div class:list={['hero-context__image', { 'hero-context__image--product': dashboard.type === 'product-screenshot' }]}>
     <picture>
       {'mobileSrc' in dashboard && <source media="(max-width: 620px)" srcset={dashboard.mobileSrc} width={dashboard.mobileWidth} height={dashboard.mobileHeight} />}
       <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={dashboard.alt} decoding="async" fetchpriority="high" />
@@ -60,9 +60,10 @@ const levels = [78, 34, 62, 48];
   .hero-context{position:relative;min-height:520px;margin:0;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);overflow:hidden;isolation:isolate}
   .hero-context::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:44px 44px;opacity:.46}
   .hero-context__image{position:absolute;inset:32px 28px 106px;border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.16);overflow:hidden}.hero-context__image picture{display:block;width:100%;height:100%}.hero-context__image img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+  .hero-context__image--product img{object-fit:contain;background:var(--rice)}
   .hero-context__screen{display:none}
   .hero-context__screen header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--ink-10);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.hero-context__screen header span{color:var(--teal)}
-  .hero-context figcaption{position:absolute;z-index:3;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:rgb(244 240 231/.95);color:var(--ink);backdrop-filter:blur(10px)}
+  .hero-context figcaption{position:absolute;z-index:3;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:var(--rice);color:var(--ink);border:1px solid var(--ink-10)}
   .hero-context figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero-context figcaption strong{font-size:.88rem}.hero-context figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
   .hero-context__tokens{position:absolute;right:26px;top:24px;display:flex;gap:7px}.hero-context__tokens i{width:22px;height:22px;border:1px solid var(--ink);background:var(--teal)}.hero-context__tokens i:nth-child(2){background:var(--yellow);transform:translateY(8px)}.hero-context__tokens i:nth-child(3){background:var(--ink);transform:translateY(16px)}
   .hero-context__bars,.hero-context__ledger,.hero-context__flow,.hero-context__roles,.hero-context__support{min-width:0;padding:clamp(18px,3vw,32px)}
@@ -71,7 +72,7 @@ const levels = [78, 34, 62, 48];
   .hero-context__flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:8px}.hero-context__flow article{display:grid;align-content:end;min-height:170px;padding:13px;border:1px solid var(--ink);background:var(--rice)}.hero-context__flow article:nth-of-type(2){background:var(--yellow)}.hero-context__flow>i{width:16px;height:2px;background:var(--teal)}.hero-context__flow article span,.hero-context__flow article small{color:var(--teal);font-size:.58rem;font-weight:800}.hero-context__flow article strong{margin-top:38px;font-size:.82rem}
   .hero-context__roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hero-context__roles article{display:grid;place-items:center;gap:9px;min-height:120px;border:1px solid var(--ink-10);background:var(--rice);text-align:center}.hero-context__roles article.is-primary{grid-row:span 2;background:var(--ink);color:var(--white)}.hero-context__roles span{font-size:.72rem;font-weight:800}.hero-context__roles strong{color:var(--teal);font-size:.66rem}.hero-context__roles .is-primary strong{color:var(--yellow)}
   .hero-context__support{display:grid;gap:14px}.hero-context__support>div{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;padding:15px;border:1px solid var(--ink);background:var(--rice)}.hero-context__support>div i{width:17px;height:17px;border:3px solid var(--teal);border-radius:50%}.hero-context__support>div b{color:var(--teal);font-size:.62rem}.hero-context__support ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}.hero-context__support li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;padding:13px;border:1px solid var(--ink-10)}.hero-context__support li small,.hero-context__support li span{color:var(--teal);font-size:.62rem}
-  @media(max-width:900px){.hero-context{min-height:440px}.hero-context__screen{inset:38px 22px 110px}.hero-context__bars{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-context__bars article{min-height:100px}.hero-context__flow{grid-template-columns:1fr}.hero-context__flow>i{width:2px;height:12px;justify-self:center}.hero-context__flow article{min-height:72px}}
-  @media(max-width:620px){.hero-context{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.hero-context__screen{inset:32px 14px 120px}.hero-context figcaption{grid-template-columns:1fr}.hero-context figcaption small{grid-column:auto}.hero-context__tokens{display:none}.hero-context__roles{grid-template-columns:1fr}.hero-context__roles article{min-height:66px}.hero-context__roles article.is-primary{grid-row:auto}.hero-context__support li{grid-template-columns:26px 1fr}.hero-context__support li span{grid-column:2}}
+  @media(max-width:900px){.hero-context{min-height:440px}.hero-context__image{inset:30px 22px 118px}.hero-context__bars{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-context__bars article{min-height:100px}.hero-context__flow{grid-template-columns:1fr}.hero-context__flow>i{width:2px;height:12px;justify-self:center}.hero-context__flow article{min-height:72px}}
+  @media(max-width:620px){.hero-context{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.hero-context__image{inset:20px 14px 136px}.hero-context figcaption{grid-template-columns:1fr;left:14px;right:14px;bottom:14px}.hero-context figcaption small{grid-column:auto}.hero-context__tokens{display:none}.hero-context__roles{grid-template-columns:1fr}.hero-context__roles article{min-height:66px}.hero-context__roles article.is-primary{grid-row:auto}.hero-context__support li{grid-template-columns:26px 1fr}.hero-context__support li span{grid-column:2}}
   @media(prefers-reduced-motion:reduce){.hero-context__screen{transition:none;transform:none!important}}
 </style>

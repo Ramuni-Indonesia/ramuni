@@ -58,7 +58,7 @@ export const productDetails: Record<string, ProductDetail> = {
       'Jawaban cepat sulit dipercaya tanpa sumber yang jelas.',
     ],
     example: {
-      label: 'Contoh jawaban berbasis data sintetis',
+      label: 'Contoh jawaban RAMUNI',
       heading: 'Jawaban singkat, jejak angkanya tetap terbuka.',
       rows: [['Periode', 'Hari ini dibanding tujuh hari terakhir'], ['Dasar', 'Penjualan dan saldo stok yang sudah masuk'], ['Perlu dicek', 'Stok fisik sebelum jam ramai']],
       takeaway: 'Gunakan jawaban untuk menentukan pemeriksaan berikutnya, bukan menggantikan keputusan manusia.',

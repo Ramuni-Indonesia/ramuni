@@ -40,7 +40,7 @@ const payload = JSON.stringify({
   </div>
 
   <footer class="template-preview__footer">
-    <p data-template-caption>Data contoh sintetis. Hapus atau ganti sebelum digunakan.</p>
+    <p data-template-caption>Hapus atau ganti baris contoh sebelum digunakan.</p>
     <div class="button-row">
       <button class="button button--primary" type="button" data-template-download>Unduh CSV contoh</button>
       <a class="button button--secondary" href={`/downloads/template/${template.downloadName}`} download>Unduhan langsung</a>
@@ -82,7 +82,7 @@ const payload = JSON.stringify({
         return tr;
       }));
       caption.textContent = currentView === 'example'
-        ? 'Data contoh sintetis. Hapus atau ganti sebelum digunakan.'
+        ? 'Hapus atau ganti baris contoh sebelum digunakan.'
         : 'Tiga baris kosong siap diisi setelah file diunduh.';
       preview.querySelectorAll<HTMLButtonElement>('[data-template-view]').forEach((button) => {
         button.setAttribute('aria-pressed', String(button.dataset.templateView === currentView));

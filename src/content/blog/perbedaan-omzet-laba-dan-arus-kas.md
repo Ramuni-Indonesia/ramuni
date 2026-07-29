@@ -3,7 +3,7 @@ title: "Perbedaan Omzet, Laba, dan Arus Kas untuk UMKM"
 description: "Penjelasan sederhana tentang omzet, laba, dan arus kas serta mengapa ketiganya dapat bergerak berbeda."
 dek: "Omzet mencatat nilai penjualan, laba membandingkan pendapatan dan biaya, sedangkan arus kas mengikuti uang yang benar-benar bergerak."
 cover: "/website-original/cash-signal-ledger.svg"
-coverAlt: "Ilustrasi RAMUNI yang memisahkan omzet, laba, dan kas tersedia dengan contoh sintetis"
+coverAlt: "Ilustrasi RAMUNI yang memisahkan omzet, laba, dan kas"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Keuangan UMKM"
@@ -105,7 +105,7 @@ Jika tiga angka tampak tidak cocok, jangan menebak. Telusuri transaksi dan waktu
 5. Tandai pembelian stok, aset, pinjaman, atau transaksi lain yang memerlukan perlakuan khusus.
 6. Minta pemeriksaan profesional jika klasifikasi belum jelas.
 
-[Modul keuangan RAMUNI](/produk/keuangan/) menggambarkan hubungan catatan transaksi dan ringkasan kas menggunakan data demo. Ia bukan pengganti pembukuan resmi atau penilaian profesional.
+[Modul keuangan RAMUNI](/produk/keuangan/) menggambarkan hubungan catatan transaksi dan ringkasan kas. Modul ini bukan pengganti pembukuan resmi atau penilaian profesional.
 
 ## Gunakan pertanyaan yang sesuai dengan angkanya
 

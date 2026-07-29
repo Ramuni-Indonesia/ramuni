@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../../../components/blog/StoryMicroVisual.astro';
 import { getBlogCategory, type BlogCategoryMeta } from '../../../data/blogTaxonomy';
-import { getVisibleBlogPosts, isBlogCategoryIndexable } from '../../../lib/blog';
+import { getBlogPosts, getVisibleBlogPosts, isBlogCategoryIndexable } from '../../../lib/blog';
 import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
-  const collection = await getCollection('blog');
+  const collection = await getBlogPosts();
   const routePosts = getVisibleBlogPosts(collection);
   const archivePosts = getVisibleBlogPosts(collection, !releaseGates.siteIndexable);
   const slugs = [...new Set(routePosts.map((post) => post.data.categorySlug))];
@@ -66,5 +65,5 @@ const schema = [
   </div></section>}
   <section class="section category-start"><div class="container category-route"><div class="category-route__head"><p class="section-kicker">Jalur pemula</p><h2>Mulai dengan urutan yang bisa diperiksa.</h2><p>{meta.start}</p></div><ol class="category-route__track">{meta.steps.map((step, index) => <li><span>0{index + 1}</span><strong>{step}</strong></li>)}</ol></div></section>
   {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
-  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta.title}</h2><p>Gunakan data sintetis tanpa mengirim catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta.href}>{meta.cta.label}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
+  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta.title}</h2><p>Lihat contoh alurnya tanpa perlu menyiapkan catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta.href}>{meta.cta.label}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
 </BaseLayout>

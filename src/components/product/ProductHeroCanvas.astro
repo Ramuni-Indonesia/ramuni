@@ -19,10 +19,10 @@ const hubFrames = [dashboardVisuals.productOverview];
 ---
 
 {isHub ? (
-  <figure class="product-canvas product-canvas--hub-proof" aria-label="Tiga tampilan dashboard RAMUNI dengan data demo">
+  <figure class="product-canvas product-canvas--hub-proof" aria-label="Tampilan penuh dashboard RAMUNI">
     <figcaption class="product-canvas__caption">
       <span><i aria-hidden="true"></i> Tampilan produk RAMUNI</span>
-      <strong>Data demo, bukan akun pelanggan</strong>
+      <strong>Tampilan RAMUNI</strong>
     </figcaption>
     <div class="product-canvas__hub-media">
       {hubFrames.map((frame, index) => (
@@ -56,7 +56,7 @@ const hubFrames = [dashboardVisuals.productOverview];
     <figcaption class="product-canvas__detail-copy">
       <span>Pertanyaan yang dibantu</span>
       <strong>{question}</strong>
-      <small>Dashboard memakai data demo. Status kemampuan {title} dijelaskan di bagian cakupan sebelum Anda memutuskan langkah berikutnya.</small>
+      <small>Contoh tampilan dashboard RAMUNI. Ketersediaan fitur {title} dijelaskan sebelum Anda memilih langkah berikutnya.</small>
     </figcaption>
   </figure>
 )}
@@ -66,7 +66,7 @@ const hubFrames = [dashboardVisuals.productOverview];
   .product-canvas__caption{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 18px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white);font-size:.66rem;letter-spacing:.04em}
   .product-canvas__caption span{display:flex;align-items:center;gap:9px;font-weight:800}.product-canvas__caption i{width:8px;height:8px;border-radius:50%;background:var(--yellow)}.product-canvas__caption strong{color:rgb(255 255 255/.66);font-size:inherit}
   .product-canvas--hub-proof{border:0;box-shadow:none;background:var(--ink)}
-  .product-canvas__hub-media{position:relative;aspect-ratio:1280/618;overflow:hidden;background:var(--rice)}
+  .product-canvas__hub-media{position:relative;aspect-ratio:1440/1202;overflow:hidden;background:var(--rice)}
   .product-canvas__hub-frame{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:top center;opacity:0;transform:none}
   .product-canvas__hub-frame--1{opacity:1;transform:none}
   .product-canvas__hub-reading{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--white);color:var(--ink)}
@@ -79,8 +79,8 @@ const hubFrames = [dashboardVisuals.productOverview];
     .product-canvas--detail-proof{border-radius:16px;box-shadow:0 18px 38px rgb(11 48 69/.13)}
     .product-canvas__caption strong{display:none}
     .product-canvas__hub-reading{grid-template-columns:1fr}.product-canvas__hub-reading>span{border-right:0;border-bottom:1px solid var(--ink-10)}.product-canvas__hub-reading>span:last-child{border-bottom:0}
-    .product-canvas__detail-screen{aspect-ratio:4/3}.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}
+    .product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}
   }
-  @container(max-width:480px){.product-canvas__detail-screen{aspect-ratio:4/3}.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}}
+  @container(max-width:480px){.product-canvas__detail-copy{grid-template-columns:1fr;gap:6px;padding:13px 14px}}
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}}
 </style>

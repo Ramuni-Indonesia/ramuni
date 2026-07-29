@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan contoh sintetis dan batas edukasi keuangan."
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan batas edukasi keuangan."
 readingTime: "4 menit"
 takeaways:
   - "Pisahkan arus masuk dan keluar sebelum membaca detail lain."

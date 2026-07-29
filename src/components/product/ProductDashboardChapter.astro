@@ -10,42 +10,42 @@ const { slug, title } = Astro.props;
 
 const chapters = {
   'asisten-ai': {
-    visual: dashboardVisuals.productPerformance,
+    visual: dashboardVisuals.productOverview,
     eyebrow: 'Dari jawaban ke angka asal',
     heading: 'Ringkasan baru berguna ketika sumbernya bisa dibuka.',
     body: 'Dashboard memberi konteks periode dan perubahan. Asisten membantu menjelaskannya, tetapi angka asal tetap menjadi tempat pemeriksaan.',
     reads: [['Mulai di sini', 'Baca perubahan utama'], ['Lalu buka', 'Periode dan metrik'], ['Sebelum bertindak', 'Periksa catatan asal']],
   },
   'dashboard-bisnis': {
-    visual: dashboardVisuals.productOperations,
+    visual: dashboardVisuals.productOverview,
     eyebrow: 'Satu layar, urutan yang jelas',
     heading: 'Sorotan pagi harus berujung pada pekerjaan yang bisa dibuka.',
     body: 'Ringkasan tidak berhenti pada angka besar. Aktivitas pembayaran, stok, dan biaya memberi jalur untuk menelusuri perubahan yang perlu dibahas.',
     reads: [['Lihat', 'Perubahan terbesar'], ['Telusuri', 'Aktivitas pembentuk'], ['Tandai', 'Pekerjaan hari ini']],
   },
   'katalog-produk': {
-    visual: dashboardVisuals.productOverview,
+    visual: dashboardVisuals.productOperations,
     eyebrow: 'Dampak data yang rapi',
     heading: 'Nama dan satuan yang konsisten membuat ringkasan lebih masuk akal.',
     body: 'Katalog menjadi dasar saat penjualan, stok, dan laporan menyebut produk. Satu identitas mengurangi perbedaan arti di layar berikutnya.',
     reads: [['Samakan', 'Nama dan SKU'], ['Lengkapi', 'Unit, harga, dan HPP'], ['Gunakan', 'Di transaksi dan laporan']],
   },
   penjualan: {
-    visual: dashboardVisuals.productOperations,
+    visual: dashboardVisuals.productPerformance,
     eyebrow: 'Dari omzet ke transaksi',
     heading: 'Perubahan penjualan perlu jejak waktu, produk, dan pembayaran.',
     body: 'Aktivitas operasional membantu membedakan transaksi selesai, pembayaran yang perlu dicek, dan produk yang benar-benar membentuk omzet.',
     reads: [['Bandingkan', 'Periode yang setara'], ['Buka', 'Produk dan jam'], ['Periksa', 'Status pembayaran']],
   },
   inventori: {
-    visual: dashboardVisuals.productPerformance,
+    visual: dashboardVisuals.productOperations,
     eyebrow: 'Stok dibaca bersama geraknya',
     heading: 'Saldo hari ini belum cukup untuk menentukan urutan isi ulang.',
     body: 'Penjualan dan pergerakan barang memberi konteks pada sisa stok. Pemeriksaan fisik tetap diperlukan sebelum keputusan pengadaan.',
     reads: [['Baca', 'Saldo terakhir'], ['Bandingkan', 'Laju keluar'], ['Pastikan', 'Stok fisik dan waktu tunggu']],
   },
   keuangan: {
-    visual: dashboardVisuals.productOverview,
+    visual: dashboardVisuals.productPerformance,
     eyebrow: 'Angka dengan definisi',
     heading: 'Omzet, laba, dan kas perlu dibaca sebagai tiga hal berbeda.',
     body: 'Ringkasan membantu melihat arah. Definisi, periode, dan transaksi pendukung tetap perlu dibuka sebelum menilai kondisi usaha.',
@@ -59,7 +59,7 @@ const chapters = {
     reads: [['Hubungkan', 'Riwayat pembelian'], ['Kenali', 'Frekuensi dan produk'], ['Hormati', 'Izin dan kanal']],
   },
   'laporan-insight': {
-    visual: dashboardVisuals.productOperations,
+    visual: dashboardVisuals.productOverview,
     eyebrow: 'Laporan yang siap dibahas',
     heading: 'Perubahan, penyebab, dan pemilik tindak lanjut berada dalam satu alur.',
     body: 'Aktivitas harian menjadi dasar ringkasan. Periode dan rumus yang konsisten membuat rapat fokus pada keputusan, bukan menyatukan angka lagi.',
@@ -87,10 +87,10 @@ const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-b
     <figure class="pd-dashboard-chapter__proof reveal">
       <div class="pd-dashboard-chapter__label">
         <span><i aria-hidden="true"></i> Dashboard RAMUNI</span>
-        <strong>Tampilan produk · data demo</strong>
+        <strong>{chapter.visual.badge}</strong>
       </div>
       <picture style={`--dashboard-ratio:${chapter.visual.width}/${chapter.visual.height}`}>
-        <source media="(max-width: 620px)" srcset={chapter.visual.mobileSrc} width={chapter.visual.mobileWidth} height={chapter.visual.mobileHeight} />
+        {'mobileSrc' in chapter.visual && <source media="(max-width: 620px)" srcset={chapter.visual.mobileSrc} width={chapter.visual.mobileWidth} height={chapter.visual.mobileHeight} />}
         <img
           src={chapter.visual.src}
           width={chapter.visual.width}
@@ -106,7 +106,7 @@ const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-b
         ))}
       </figcaption>
     </figure>
-    <p class="pd-dashboard-chapter__disclosure">Tampilan memakai fixture pengujian, bukan akun pelanggan. Screenshot ini memperlihatkan dashboard RAMUNI secara umum dan tidak menyatakan seluruh kemampuan {title} sudah tersedia.</p>
+    <p class="pd-dashboard-chapter__disclosure">Contoh tampilan dashboard RAMUNI. Ketersediaan fitur {title} dijelaskan pada halaman ini.</p>
   </div>
 </section>
 
@@ -129,6 +129,6 @@ const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-b
   .pd-dashboard-chapter__proof figcaption small{color:var(--ink-56);font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.pd-dashboard-chapter__proof figcaption strong{font-size:.72rem;line-height:1.35}
   .pd-dashboard-chapter__disclosure{grid-column:2;margin:14px 0 0;max-width:82ch;color:var(--ink-56);font-size:.66rem;line-height:1.55}
   @media(max-width:960px){.pd-dashboard-chapter__layout{grid-template-columns:1fr}.pd-dashboard-chapter__intro{position:static;max-width:680px}.pd-dashboard-chapter__intro h2{max-width:18ch}.pd-dashboard-chapter__disclosure{grid-column:auto}}
-  @media(max-width:620px){.pd-dashboard-chapter__proof{border-radius:16px}.pd-dashboard-chapter__label strong{display:none}.pd-dashboard-chapter__proof picture{aspect-ratio:4/3}.pd-dashboard-chapter__proof figcaption{grid-template-columns:1fr}.pd-dashboard-chapter__proof figcaption span{border-right:0;border-bottom:1px solid var(--ink-10)}.pd-dashboard-chapter__proof figcaption span:last-child{border-bottom:0}}
+  @media(max-width:620px){.pd-dashboard-chapter__proof{border-radius:16px}.pd-dashboard-chapter__label strong{display:none}.pd-dashboard-chapter__proof figcaption{grid-template-columns:1fr}.pd-dashboard-chapter__proof figcaption span{border-right:0;border-bottom:1px solid var(--ink-10)}.pd-dashboard-chapter__proof figcaption span:last-child{border-bottom:0}}
   @media(pointer:coarse),(prefers-reduced-motion:reduce){.pd-dashboard-chapter__intro{position:static}}
 </style>

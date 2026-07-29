@@ -132,120 +132,6 @@
   margin-top: 16px;
 }
 
-.lead-dialog {
-  width: min(920px, calc(100% - 32px));
-  max-height: calc(100dvh - 32px);
-  border: 0;
-  padding: 0;
-  background: var(--white);
-  color: var(--ink);
-  box-shadow: 0 30px 100px rgb(11 48 69 / 0.42);
-}
-
-.lead-dialog::backdrop {
-  background: rgb(11 48 69 / 0.72);
-  backdrop-filter: blur(5px);
-}
-
-.lead-dialog__layout {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
-  min-height: min(570px, calc(100dvh - 32px));
-}
-
-.lead-dialog__intro {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: clamp(30px, 5vw, 58px);
-  background: var(--yellow);
-}
-
-.lead-dialog__intro h2 {
-  margin-top: 0;
-  font-size: clamp(2rem, 4vw, 3.75rem);
-  line-height: 0.98;
-}
-
-.lead-dialog__intro > p:not(.section-kicker) {
-  color: var(--ink-72);
-}
-
-.lead-dialog__intro > a {
-  margin-top: auto;
-  color: var(--ink);
-  font-weight: 800;
-  text-underline-offset: 5px;
-}
-
-.lead-dialog__close {
-  position: absolute;
-  right: 16px;
-  top: 14px;
-  min-height: 44px;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font-weight: 800;
-  padding: 8px;
-}
-
-.lead-dialog__form {
-  display: grid;
-  align-content: center;
-  padding: clamp(28px, 5vw, 58px);
-  overflow: auto;
-  min-width: 0;
-}
-
-.lead-dialog__form .lead-form {
-  max-width: none;
-}
-
-.early-access-form-page {
-  min-height: calc(100dvh - 74px);
-  display: grid;
-  align-items: center;
-  padding-block: clamp(44px, 7vw, 96px);
-  background: var(--rice);
-}
-
-.early-access-form-page__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.76fr) minmax(340px, 1.24fr);
-  gap: clamp(44px, 9vw, 128px);
-  align-items: start;
-}
-
-.early-access-form-page__intro {
-  position: sticky;
-  top: 110px;
-}
-
-.early-access-form-page__intro .section-kicker {
-  margin: 32px 0 16px;
-}
-
-.early-access-form-page__intro .lede {
-  max-width: 42rem;
-  margin-top: 22px;
-}
-
-.early-access-form-page__intro ul {
-  list-style: none;
-  margin: 30px 0 0;
-  padding: 0;
-  border-top: 1px solid var(--ink);
-}
-
-.early-access-form-page__intro li {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--ink-10);
-  font-weight: 800;
-}
-
-.early-access-form-page__panel,
 .contact-conversion-page__panel {
   background: var(--white);
   border: 1px solid var(--ink-10);
@@ -254,7 +140,6 @@
   box-shadow: 0 20px 60px rgb(11 48 69 / 0.08);
 }
 
-.early-access-form-page__panel .lead-form,
 .contact-conversion-page__panel .lead-form {
   max-width: none;
 }
@@ -452,6 +337,231 @@
   width: 100%;
 }
 
+/* CRM-first consultation flow. The floating panel is user-triggered and only
+   hands off to WhatsApp after a durable CRM acceptance. */
+.lead-form__step {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.lead-form__step + .lead-form__step {
+  margin-top: 18px;
+}
+
+.lead-form__step legend {
+  width: 100%;
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.lead-form--progressive .lead-form__step {
+  display: none;
+}
+
+.lead-form--progressive .lead-form__step[data-active] {
+  display: grid;
+  gap: 18px;
+  animation: lead-step-enter 260ms var(--ease) both;
+}
+
+.lead-form__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: lead-step;
+}
+
+.lead-form__steps li {
+  display: grid;
+  gap: 7px;
+  color: var(--ink-72);
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+.lead-form__steps li::before {
+  content: '';
+  height: 4px;
+  border-radius: 999px;
+  background: var(--ink-10);
+  transition: background 180ms ease;
+}
+
+.lead-form__steps li[data-active] {
+  color: var(--teal);
+}
+
+.lead-form__steps li[data-active]::before {
+  background: var(--teal);
+}
+
+.lead-form .consent-field--optional {
+  margin-top: 14px;
+}
+
+.lead-form--progressive .form-actions {
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+}
+
+.lead-form--progressive .form-actions .form-status {
+  grid-column: 1 / -1;
+}
+
+.lead-form--progressive .form-actions .button:only-of-type {
+  grid-column: 1 / -1;
+}
+
+.floating-actions__contact > span:last-child {
+  display: grid;
+  text-align: left;
+  line-height: 1.05;
+}
+
+.floating-actions__contact > span:last-child small {
+  margin-bottom: 3px;
+  font-size: .62rem;
+  font-weight: 700;
+  opacity: .78;
+}
+
+.contact-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(560px, 100%);
+  max-width: 100%;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 0 0 auto;
+  border-radius: 26px 0 0 26px;
+  overflow: hidden;
+  background: var(--rice);
+}
+
+.contact-dialog::backdrop {
+  background: rgb(11 48 69 / .48);
+  backdrop-filter: blur(3px);
+}
+
+.contact-dialog__panel {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  height: 100%;
+  padding: 0;
+}
+
+.contact-dialog__header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.contact-dialog__header > div {
+  display: grid;
+  gap: 2px;
+}
+
+.contact-dialog__header small {
+  font-size: .68rem;
+  opacity: .72;
+}
+
+.contact-dialog__header strong {
+  font-size: .94rem;
+}
+
+.contact-dialog__avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.contact-dialog .contact-dialog__close {
+  position: static;
+  color: var(--white);
+}
+
+.contact-dialog .contact-dialog__close:hover,
+.contact-dialog .contact-dialog__close:focus-visible {
+  background: rgb(255 255 255 / .12);
+}
+
+.contact-dialog__conversation {
+  display: grid;
+  gap: 8px;
+  padding: 18px 22px 8px;
+}
+
+.contact-dialog__conversation p {
+  width: fit-content;
+  max-width: 86%;
+  margin: 0;
+  border-radius: 4px 16px 16px 16px;
+  background: var(--white);
+  padding: 10px 13px;
+  color: var(--ink-72);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.contact-dialog__conversation p:last-child {
+  margin-left: auto;
+  border-radius: 16px 4px 16px 16px;
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.contact-dialog__form {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 14px 22px max(24px, env(safe-area-inset-bottom));
+}
+
+.contact-dialog__form .lead-form {
+  max-width: none;
+}
+
+@keyframes lead-step-enter {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+  .contact-dialog {
+    inset: auto 0 0;
+    width: 100%;
+    height: min(92dvh, 820px);
+    margin: auto 0 0;
+    border-radius: 24px 24px 0 0;
+  }
+  .contact-dialog__header { padding: 16px; }
+  .contact-dialog__conversation { padding: 14px 16px 6px; }
+  .contact-dialog__form { padding: 12px 16px max(20px, env(safe-area-inset-bottom)); }
+  .lead-form--progressive .form-actions { grid-template-columns: 1fr; }
+  .lead-form--progressive .form-actions .form-status { grid-column: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lead-form--progressive .lead-form__step[data-active] { animation: none; }
+}
+
 .mega-lead > strong {
   text-wrap: balance;
 }
@@ -477,55 +587,20 @@
 }
 
 @media (max-width: 1080px) {
-  .lead-dialog {
-    width: min(100% - 20px, 620px);
-    overflow: auto;
-  }
-
-  .lead-dialog__layout,
-  .early-access-form-page__layout,
   .contact-conversion-page__layout {
     grid-template-columns: 1fr;
   }
 
-  .lead-dialog__layout {
-    min-height: 0;
-  }
-
-  .lead-dialog__intro {
-    min-height: 220px;
-  }
-
-  .lead-dialog__form {
-    overflow: visible;
-  }
-
-  .early-access-form-page__intro,
   .contact-conversion-page__intro {
     position: static;
   }
 }
 
 @media (max-width: 640px) {
-  .lead-dialog {
-    width: calc(100% - 16px);
-    max-height: calc(100dvh - 16px);
-    border-radius: 18px;
-  }
-
-  .lead-dialog__intro,
-  .lead-dialog__form,
-  .early-access-form-page__panel,
   .contact-conversion-page__panel {
     padding: 22px;
   }
 
-  .lead-dialog__intro h2 {
-    padding-right: 54px;
-    font-size: clamp(1.9rem, 10vw, 2.7rem);
-  }
-
-  .early-access-form-page,
   .contact-conversion-page {
     padding-block: 38px;
   }

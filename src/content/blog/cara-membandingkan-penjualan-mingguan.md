@@ -3,7 +3,7 @@ title: "Cara Membandingkan Penjualan Mingguan secara Adil"
 description: "Panduan membandingkan penjualan minggu ini dan minggu lalu tanpa salah periode, kanal, atau status transaksi."
 dek: "Perbandingan yang adil memakai jumlah hari, jam buka, kanal, dan status transaksi yang sama."
 cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-coverAlt: "Tampilan produk RAMUNI dengan data demo untuk membandingkan kinerja penjualan"
+coverAlt: "Tampilan produk RAMUNI untuk membandingkan kinerja penjualan"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Penjualan & Omzet"
@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan contoh sintetis; menunggu tinjauan editorial sebelum indeksasi."
+editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "7 menit"
 takeaways:
   - "Bandingkan periode dengan jumlah hari dan jam operasional yang sama."
@@ -65,9 +65,9 @@ Persentase besar dapat berasal dari angka dasar yang kecil. Karena itu, tampilka
 | Jumlah transaksi | 500 | 520 | +20 | +4% |
 | Nilai rata-rata transaksi | Rp40.000 | Rp42.308 | +Rp2.308 | +5,8% |
 
-Pada contoh sintetis ini, omzet tumbuh lebih cepat daripada jumlah transaksi. Salah satu pertanyaan lanjutan adalah apakah pelanggan membeli lebih banyak per transaksi, harga berubah, atau komposisi produk bergeser.
+Pada contoh ilustrasi ini, omzet tumbuh lebih cepat daripada jumlah transaksi. Salah satu pertanyaan lanjutan adalah apakah pelanggan membeli lebih banyak per transaksi, harga berubah, atau komposisi produk bergeser.
 
-Anda dapat memakai [dashboard bisnis RAMUNI](/produk/dashboard-bisnis/) sebagai gambaran cara menyatukan periode dan sumber data. Tampilan yang ditunjukkan di situs menggunakan data demo dan tidak mewakili hasil pelanggan.
+Anda dapat memakai [dashboard bisnis RAMUNI](/produk/dashboard-bisnis/) sebagai gambaran cara menyatukan periode dan sumber data. Angka pada tampilan digunakan untuk membantu menjelaskan alurnya.
 
 ## Pecah perubahan menjadi bagian yang dapat dicek
 

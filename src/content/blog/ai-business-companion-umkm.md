@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan contoh sintetis dan batas AI yang terlihat."
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan batas AI yang terlihat."
 readingTime: "4 menit"
 takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."

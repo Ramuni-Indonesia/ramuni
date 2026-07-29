@@ -2,7 +2,7 @@
 title: "Cara Merapikan Data Produk dan SKU untuk UMKM"
 description: "Langkah menyusun nama produk, SKU, satuan, kategori, harga, dan status agar transaksi serta stok lebih mudah ditelusuri."
 dek: "Data produk yang rapi memakai satu identitas untuk satu barang, aturan nama yang konsisten, dan riwayat perubahan yang dapat diperiksa."
-cover: "/website-original/dashboards/ramuni-dashboard-inventory-reorder.webp"
+cover: "/website-original/product-screens/ramuni-product-dashboard-operations.webp"
 coverAlt: "Dashboard inventori sintetis RAMUNI dengan saldo, laju penjualan, dan prioritas pemeriksaan"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan contoh sintetis; menunggu tinjauan operasional sebelum indeksasi."
+editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan operasional sebelum indeksasi."
 readingTime: "9 menit"
 takeaways:
   - "Satu varian produk memerlukan satu identitas internal yang stabil."

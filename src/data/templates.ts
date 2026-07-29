@@ -66,7 +66,7 @@ export const businessTemplates: Record<TemplateKey, BusinessTemplate> = {
     limitations: [
       'CSV tidak menghitung saldo secara otomatis; periksa kembali rumus saldo awal + masuk - keluar.',
       'Template ini belum menggantikan pencatatan batch, tanggal kedaluwarsa, atau valuasi persediaan.',
-      'Contoh berisi data sintetis. Hapus baris contoh sebelum memasukkan catatan usaha.',
+      'Hapus baris contoh sebelum memasukkan catatan usaha.',
     ],
   },
   'arus-kas-sederhana': {

@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getBlogPosts } from '../lib/blog';
 import StoryMicroVisual from '../components/blog/StoryMicroVisual.astro';
 import { releaseGates } from '../config/release';
 import '../styles/resource-hub.css';
 
-const posts = (await getCollection('blog'))
+const posts = (await getBlogPosts())
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';

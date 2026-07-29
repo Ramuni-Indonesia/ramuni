@@ -2,7 +2,7 @@
 title: "Produk Terlaris Belum Tentu Paling Untung: Cara Membacanya"
 description: "Pelajari mengapa produk paling laku belum tentu memberi laba terbesar dan data apa yang perlu diperiksa UMKM."
 dek: "Jumlah terjual menunjukkan permintaan. Keuntungan baru terlihat setelah harga, biaya, diskon, dan periode dibaca bersama."
-cover: "/website-original/dashboards/ramuni-dashboard-cash-flow.webp"
+cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
 coverAlt: "Dashboard sintetis RAMUNI yang menampilkan arus kas dan rincian pembentuk perubahan"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
@@ -71,7 +71,7 @@ Rumus ini bukan laporan laba rugi lengkap. Ia belum memasukkan seluruh biaya ope
 | Paket Sarapan | 120 | Rp4.800.000 | Rp2.400.000 | Rp2.400.000 |
 | Biji Kopi 250 g | 60 | Rp3.600.000 | Rp1.800.000 | Rp1.800.000 |
 
-Pada contoh sintetis ini, Kopi Susu paling laku berdasarkan unit. Namun, Paket Sarapan memberi kontribusi sederhana lebih besar. Kesimpulannya bukan “hentikan Kopi Susu”, melainkan “lihat peran tiap produk sebelum memilih tindakan”.
+Pada contoh ilustrasi ini, Kopi Susu paling laku berdasarkan unit. Namun, Paket Sarapan memberi kontribusi sederhana lebih besar. Kesimpulannya bukan “hentikan Kopi Susu”, melainkan “lihat peran tiap produk sebelum memilih tindakan”.
 
 ## Periksa biaya yang sering tertinggal
 
@@ -86,7 +86,7 @@ Biaya langsung harus memakai definisi yang konsisten. Tergantung jenis usaha, ko
 
 Jangan memasukkan atau mengeluarkan biaya hanya agar hasil terlihat bagus. Catat asumsi dan mintalah tinjauan akuntansi ketika angka akan dipakai untuk laporan resmi, pajak, atau keputusan harga.
 
-Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) sebagai gambaran hubungan transaksi dan catatan keuangan. Fitur serta tampilan di situs menggunakan data demo dan harus mengikuti status produk yang terverifikasi.
+Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) sebagai gambaran hubungan transaksi dan catatan keuangan. Ketersediaan fitur akan dijelaskan pada halaman produk dan saat tour.
 
 ## Waspadai diskon dan produk pemancing
 

@@ -1,16 +1,18 @@
 # Form and Lead Delivery Handoff
 
-Status: the browser form shell is implemented; no production lead service is configured or verified.
+Status: the browser uses the CRM public lead v1 contract. Staging enables the endpoint only after the CRM origin allowlist and runtime health checks pass.
 
 ## Current client contract
 
 - Form kinds: `early-access`, `demo`, and `contact`.
-- Endpoint: `PUBLIC_LEAD_ENDPOINT` only.
-- Empty endpoint: fields and submit controls are disabled and no form action is emitted.
-- Configured endpoint: browser sends `POST` with `FormData` and requests JSON.
-- Non-2xx or network failure: inline failure status; no success redirect.
-- Success: redirect to the matching typed thank-you route.
-- Payload fields currently include `name`, `email`, `business`, `industry`, `businessSize`, `intent`, optional `need`, `consent`, `leadType`, and `consentVersion`.
+- Endpoint: `PUBLIC_LEAD_ENDPOINT` only; staging deploys with `https://crm.ramuni.id/v1/public/lead-submissions`.
+- Empty endpoint: the form fails closed and exposes no direct WhatsApp bypass.
+- Configured endpoint: browser sends canonical JSON with `Idempotency-Key` and `X-Form-Contract-Version: 1`.
+- Required contact fields include name, email, E.164-normalized WhatsApp phone, company, industry, team size, intent, and contact consent.
+- Visitor/session/capture identifiers are opaque and contain no PII. Retry keeps the idempotency key until the user edits the request.
+- Attribution is allowlisted; referrer query/fragment and likely email/phone values are discarded.
+- Only HTTP 201 with `status=accepted` and a receipt ID counts as success.
+- Contact handoff opens the fixed official WhatsApp destination only after CRM acceptance; no submitted PII is placed in its URL.
 - Current consent version: `2026-07-25`.
 
 ## Required server contract
@@ -30,4 +32,4 @@ Status: the browser form shell is implemented; no production lead service is con
 
 Required tests: validation failures, duplicate submission, CSRF/origin rejection, bot/rate limiting, timeout and retry, queue failure, dead-letter recovery, consent persistence, PII-log scan, destination delivery, and conversion reconciliation.
 
-The endpoint URL, hosting owner, CRM or inbox destination, retention period, deletion workflow, on-call owner, and recovery target remain external blockers.
+The CRM endpoint and durable intake service exist at `crm.ramuni.id`. Before a staging release, apply the staging origin allowlist, recreate the two API replicas one at a time, verify health/CORS and a synthetic submission, then build the marketing artifact with `PUBLIC_LEAD_ENDPOINT` configured.

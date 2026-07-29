@@ -66,7 +66,7 @@ export const solutionDetails: SolutionDetail[] = [
       kind: 'revenue',
       label: 'Contoh pembacaan omzet',
       title: 'Penurunan tidak terjadi di semua produk',
-      period: 'Data sintetis · 1-14 Juli dibanding 17-30 Juni',
+      period: 'Contoh periode · 1-14 Juli dibanding 17-30 Juni',
       metrics: [
         { label: 'Produk A', value: '+12%', note: 'Stabil di hari kerja', tone: 'accent' },
         { label: 'Produk B', value: '-18%', note: 'Turun pada 15.00-18.00', tone: 'warning' },
@@ -96,7 +96,7 @@ export const solutionDetails: SolutionDetail[] = [
       { verb: 'Putuskan', title: 'Langkah yang bisa diuji', text: 'Pengguna memilih apakah perlu cek stok, jadwal, produk, atau promosi.' },
     ],
     scenario: {
-      eyebrow: 'Contoh insight sintetis',
+      eyebrow: 'Contoh insight',
       title: 'Omzet turun 7%, tetapi satu produk tetap tumbuh.',
       context: 'Toko retail membandingkan dua periode 14 hari dengan jam operasi yang sama.',
       rows: [
@@ -110,8 +110,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'RAMUNI menunjukkan pola dan sumber. Keputusan harga, stok, dan promosi tetap dibuat pengguna.',
     },
     capabilities: [
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi dan produk yang membentuk perubahan.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur · data sintetis', text: 'Perubahan utama sebelum grafik lengkap.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi dan produk yang membentuk perubahan.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur', text: 'Perubahan utama sebelum grafik lengkap.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Jawaban dapat ditelusuri', text: 'Membantu menyusun pertanyaan lanjutan tanpa menjalankan tindakan.' },
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Pola pembelian hanya tampil ketika datanya tersedia dan boleh dipakai.' },
     ],
@@ -132,7 +132,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah promosi selalu menjadi langkah berikutnya?', answer: 'Tidak. Periksa perubahan produk, waktu, stok, dan data yang hilang sebelum memilih promosi.' },
     ],
     closingTitle: 'Bawa satu perubahan omzet yang ingin Anda jelaskan.',
-    closingText: 'Tour memakai data sintetis agar alur analisis dapat dibahas tanpa mengirim data usaha sensitif.',
+    closingText: 'Tour memakai skenario yang sudah disiapkan agar alur analisis dapat dibahas tanpa membawa data usaha.',
   },
   {
     slug: 'kelola-stok',
@@ -148,7 +148,7 @@ export const solutionDetails: SolutionDetail[] = [
       kind: 'stock',
       label: 'Contoh perhatian stok',
       title: 'Sisa yang sama, tingkat risiko berbeda',
-      period: 'Data sintetis · pembaruan 08.15 WIB',
+      period: 'Contoh pembaruan · 08.15 WIB',
       metrics: [
         { label: 'Kopi 250 g', value: '18 unit', note: 'Keluar 34 unit / 7 hari', tone: 'warning' },
         { label: 'Teh 250 g', value: '18 unit', note: 'Keluar 8 unit / 7 hari' },
@@ -178,7 +178,7 @@ export const solutionDetails: SolutionDetail[] = [
       { verb: 'Putuskan', title: 'Cek, tahan, atau siapkan isi ulang', text: 'Tim memilih tindakan setelah memeriksa kondisi fisik.' },
     ],
     scenario: {
-      eyebrow: 'Contoh insight sintetis',
+      eyebrow: 'Contoh insight',
       title: 'Dua SKU sama-sama tersisa 18 unit. Hanya satu yang mendesak.',
       context: 'Toko retail meninjau 10 SKU dengan unit yang sudah disamakan.',
       rows: [
@@ -192,8 +192,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Perkiraan tidak menggantikan stock opname. Jumlah pesanan tetap ditentukan pengguna.',
     },
     capabilities: [
-      { title: 'Inventori', href: '/produk/inventori/', status: 'Preview alur · data sintetis', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Laju produk terjual pada periode yang dipilih.' },
+      { title: 'Inventori', href: '/produk/inventori/', status: 'Preview alur', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Laju produk terjual pada periode yang dipilih.' },
       { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Daftar barang yang perlu diperiksa beserta sumbernya.' },
     ],
     industries: [
@@ -213,7 +213,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah RAMUNI membuat pesanan ke pemasok?', answer: 'Tidak pada alur ini. Tim memeriksa rekomendasi dan menentukan jumlah serta waktu pemesanan.' },
     ],
     closingTitle: 'Mulai dari barang yang paling sering keluar.',
-    closingText: 'Bawa lima sampai sepuluh SKU ke tour dengan data sintetis untuk melihat bagaimana prioritas dibentuk.',
+    closingText: 'Lihat contoh lima sampai sepuluh SKU saat tour untuk memahami bagaimana prioritas dibentuk.',
   },
   {
     slug: 'pantau-laba-dan-arus-kas',
@@ -229,7 +229,7 @@ export const solutionDetails: SolutionDetail[] = [
       kind: 'cash',
       label: 'Contoh arus uang',
       title: 'Laba positif, kas belum ikut naik',
-      period: 'Data sintetis · minggu 8-14 Juli',
+      period: 'Contoh periode · minggu 8-14 Juli',
       metrics: [
         { label: 'Omzet', value: 'Rp28 jt', note: 'Nilai penjualan tercatat', tone: 'accent' },
         { label: 'Laba', value: 'Rp6,4 jt', note: 'Setelah biaya yang diketahui' },
@@ -259,7 +259,7 @@ export const solutionDetails: SolutionDetail[] = [
       { verb: 'Putuskan', title: 'Tindakan keuangan', text: 'Pengguna menentukan transaksi atau biaya yang perlu ditinjau.' },
     ],
     scenario: {
-      eyebrow: 'Contoh insight sintetis',
+      eyebrow: 'Contoh insight',
       title: 'Laba tercatat Rp6,4 juta, tetapi Rp7 juta belum diterima.',
       context: 'Usaha jasa menutup minggu dengan transaksi dan biaya pada rentang tanggal yang sama.',
       rows: [
@@ -273,8 +273,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Rumus harus disepakati tim. Gunakan akuntan untuk kebutuhan akuntansi dan pajak profesional.',
     },
     capabilities: [
-      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Preview alur · data sintetis', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi yang membentuk nilai omzet.' },
+      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Preview alur', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi yang membentuk nilai omzet.' },
       { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Ringkasan masih disiapkan', text: 'Perbandingan angka pada periode yang sama.' },
     ],
     industries: [
@@ -294,7 +294,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah ringkasan ini menggantikan akuntan?', answer: 'Tidak. RAMUNI membantu membaca catatan operasional dan bukan pengganti nasihat pajak atau akuntansi profesional.' },
     ],
     closingTitle: 'Lihat angka mana yang benar-benar mengubah kas.',
-    closingText: 'Tour memperlihatkan perbedaan omzet, laba, dan pembayaran masuk memakai data sintetis.',
+    closingText: 'Tour memperlihatkan perbedaan omzet, laba, dan pembayaran masuk lewat contoh yang mudah diikuti.',
   },
   {
     slug: 'pahami-pelanggan',
@@ -310,7 +310,7 @@ export const solutionDetails: SolutionDetail[] = [
       kind: 'customer',
       label: 'Contoh riwayat pelanggan',
       title: 'Pola berulang terlihat dari jaraknya',
-      period: 'Data sintetis · 90 hari terakhir',
+      period: 'Contoh periode · 90 hari terakhir',
       metrics: [
         { label: 'Pelanggan A', value: '3 kali', note: 'Jeda rata-rata 24 hari', tone: 'accent' },
         { label: 'Pelanggan B', value: '1 kali', note: 'Belum cukup untuk menyimpulkan' },
@@ -340,7 +340,7 @@ export const solutionDetails: SolutionDetail[] = [
       { verb: 'Putuskan', title: 'Tindak lanjut manusia', text: 'Tim memilih apakah perlu menanggapi, lewat kanal yang disetujui.' },
     ],
     scenario: {
-      eyebrow: 'Contoh insight sintetis',
+      eyebrow: 'Contoh insight',
       title: 'Sebagian pelanggan kembali setiap 21-28 hari.',
       context: 'Usaha jasa meninjau 60 riwayat pelanggan yang memiliki identitas konsisten.',
       rows: [
@@ -355,7 +355,7 @@ export const solutionDetails: SolutionDetail[] = [
     },
     capabilities: [
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Riwayat dan pola pembelian yang boleh dipakai.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur · data sintetis', text: 'Transaksi yang terhubung dengan pelanggan.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi yang terhubung dengan pelanggan.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Tidak mengirim pesan otomatis', text: 'Membantu membaca konteks tanpa mengirim pesan.' },
     ],
     industries: [
@@ -375,7 +375,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Bagaimana menangani data pelanggan ganda?', answer: 'Gunakan pengenal yang konsisten, tetapi jangan menggabungkan dua identitas tanpa dasar yang dapat diperiksa.' },
     ],
     closingTitle: 'Mulai dari satu pertanyaan pelanggan yang perlu dijawab.',
-    closingText: 'Lihat contoh pola dengan data sintetis tanpa mengirim pesan atau membuka data sensitif.',
+    closingText: 'Lihat contoh pola pelanggan dan bahas tindak lanjut yang tetap berada dalam kendali Anda.',
   },
   {
     slug: 'laporan-bisnis-otomatis',
@@ -391,7 +391,7 @@ export const solutionDetails: SolutionDetail[] = [
       kind: 'report',
       label: 'Contoh laporan mingguan',
       title: 'Tiga perubahan siap dibahas',
-      period: 'Data sintetis · minggu 8-14 Juli',
+      period: 'Contoh periode · minggu 8-14 Juli',
       metrics: [
         { label: 'Penjualan', value: '-7%', note: 'Produk B sore hari', tone: 'warning' },
         { label: 'Stok', value: '3 SKU', note: 'Perlu pemeriksaan hari ini', tone: 'accent' },
@@ -421,7 +421,7 @@ export const solutionDetails: SolutionDetail[] = [
       { verb: 'Setujui', title: 'Pemilik tindak lanjut', text: 'Pengguna memeriksa ringkasan dan menetapkan siapa yang melanjutkan.' },
     ],
     scenario: {
-      eyebrow: 'Contoh laporan sintetis',
+      eyebrow: 'Contoh laporan',
       title: 'Satu periode, tiga temuan, dua tindakan.',
       context: 'Tim retail menutup minggu dengan definisi metrik yang sudah disepakati.',
       rows: [
@@ -436,7 +436,7 @@ export const solutionDetails: SolutionDetail[] = [
     },
     capabilities: [
       { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Ringkasan harian dan mingguan dari aturan yang sama.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur · data sintetis', text: 'Perubahan utama sebelum detail.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur', text: 'Perubahan utama sebelum detail.' },
       { title: 'Notifikasi', status: 'Belum tersedia pada preview', text: 'Kanal email, WhatsApp, dan push tidak diklaim aktif.' },
     ],
     industries: [

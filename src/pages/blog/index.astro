@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
 import BlogArticleGrid from '../../components/blog/BlogArticleGrid.astro';
 import BlogPagination from '../../components/blog/BlogPagination.astro';
 import { releaseGates } from '../../config/release';
 import { blogCategories } from '../../data/blogTaxonomy';
-import { getBlogPageHref, getVisibleBlogPosts, paginateBlogPosts } from '../../lib/blog';
+import { getBlogPageHref, getBlogPosts, getVisibleBlogPosts, paginateBlogPosts } from '../../lib/blog';
 import '../../styles/blog.css';
 
-const posts = getVisibleBlogPosts(await getCollection('blog'), !releaseGates.siteIndexable);
+const posts = getVisibleBlogPosts(await getBlogPosts(), !releaseGates.siteIndexable);
 const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
 
 const featured = posts.find((post) => post.data.featured) || posts[0];

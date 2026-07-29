@@ -52,7 +52,7 @@ const groupActive = (item: MegaNavigationGroup) => {
 };
 ---
 <header class="site-header">
-  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Lihat cara RAMUNI membaca stok, penjualan, dan kas.</span><span class="announcement-short">Tour RAMUNI memakai data contoh.</span><a href="/tour-produk-gratis/">Minta tour</a></div></div>}
+  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Lihat cara RAMUNI membaca stok, penjualan, dan kas.</span><span class="announcement-short">Kenali RAMUNI lewat tour singkat.</span><a href="/tour-produk-gratis/">Minta tour</a></div></div>}
   <div class="container nav-shell">
     <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color-tight.webp" width="1187" height="355" alt="RAMUNI" /></a>
     <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -104,7 +104,7 @@ const groupActive = (item: MegaNavigationGroup) => {
               </details>
             ) : <a href={publicHref(item.href)} aria-current={current(publicHref(item.href)) ? 'page' : undefined}>{item.label}</a>
           ))}
-          <a href="https://wa.me/message/K35W6X6WT7YMJ1" target="_blank" rel="noopener noreferrer">Kontak WhatsApp</a>
+          <a href="/kontak/">Hubungi RAMUNI</a>
         </nav>
         <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
       </div>

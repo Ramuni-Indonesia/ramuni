@@ -34,7 +34,7 @@ const roleContext: Record<string, {
       { question: 'Apakah AI dapat menyetujui perubahan penting?', answer: 'Tidak. Persetujuan akses, tagihan, harga, dan tindakan berisiko tetap berada pada manusia.' },
     ],
     industrySlugs: ['retail', 'distributor', 'jasa'],
-    headings: { responsibility: 'Tahu mana yang membutuhkan keputusan hari ini.', priorities: 'Ringkasan pertama menjawab tiga pertanyaan pemilik.', workflow: 'Mulai dari perubahan, lalu tetapkan orang yang menindaklanjuti.', permissions: 'Kendali akun tetap berada pada pemilik.', collaboration: 'Keputusan sampai ke tim tanpa kehilangan alasan.', success: 'Hari kerja lebih jelas ketika setiap tindak lanjut punya pemilik.', related: 'Pilih modul dan contoh usaha yang paling dekat.', closing: 'Lihat ringkasan pemilik usaha dengan data sintetis.' },
+    headings: { responsibility: 'Tahu mana yang membutuhkan keputusan hari ini.', priorities: 'Ringkasan pertama menjawab tiga pertanyaan pemilik.', workflow: 'Mulai dari perubahan, lalu tetapkan orang yang menindaklanjuti.', permissions: 'Kendali akun tetap berada pada pemilik.', collaboration: 'Keputusan sampai ke tim tanpa kehilangan alasan.', success: 'Hari kerja lebih jelas ketika setiap tindak lanjut punya pemilik.', related: 'Pilih modul dan contoh usaha yang paling dekat.', closing: 'Lihat ringkasan yang dirancang untuk pemilik usaha.' },
   },
   'admin-toko': {
     workflow: ['Cek tugas data yang belum lengkap', 'Rapikan produk, pelanggan, transaksi, atau biaya', 'Koreksi sesuai akses dengan jejak', 'Teruskan pengecualian yang perlu persetujuan'],
@@ -106,11 +106,11 @@ const relatedIndustries = industries.filter((industry) => context.industrySlugs.
 const roleHelpLinks: Record<string, { label: string; href: string }[]> = {
   'pemilik-usaha': [
     { label: 'Atur batas akses tim', href: '/keamanan/' },
-    { label: 'Siapkan pertanyaan untuk demo', href: '/panduan/' },
+    { label: 'Siapkan pertanyaan untuk tour', href: '/panduan/' },
   ],
   'admin-toko': [
     { label: 'Panduan merapikan data awal', href: '/panduan/' },
-    { label: 'Hubungi dukungan untuk kendala impor', href: 'https://wa.me/message/K35W6X6WT7YMJ1' },
+    { label: 'Sampaikan kendala impor ke dukungan', href: '/kontak/' },
   ],
   kasir: [
     { label: 'Cari langkah pemulihan transaksi', href: '/bantuan/' },
@@ -219,7 +219,7 @@ const closingLinks = role.slug === 'kasir'
         headingId="role-cta-title"
         eyebrow={'Langkah berikutnya untuk ' + role.title}
         title={context.headings.closing}
-        body="Gunakan data sintetis untuk menilai alur, memeriksa bukti, dan membahas tindakan tanpa membagikan data bisnis sensitif."
+        body="Lihat alur yang relevan, periksa bukti, lalu bahas langkah yang paling sesuai untuk usaha Anda."
         primaryLabel={closingLinks[0]?.label}
         primaryHref={closingLinks[0]?.href}
         secondaryLabel={closingLinks[1]?.label}

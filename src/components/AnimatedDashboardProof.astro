@@ -6,7 +6,7 @@ interface Props {
 
 const {
   class: className = '',
-  label = 'Tampilan dashboard RAMUNI dengan data demo: ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
+  label = 'Tampilan dashboard RAMUNI: ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
 } = Astro.props;
 ---
 
@@ -17,9 +17,9 @@ const {
 >
   <img
     class="animated-dashboard-proof__frame"
-    src="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
-    width="1280"
-    height="618"
+    src="/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp"
+    width="1440"
+    height="1202"
     alt=""
     fetchpriority="high"
     decoding="async"
@@ -31,7 +31,7 @@ const {
     position:relative;
     display:block;
     width:100%;
-    aspect-ratio:60/29;
+    aspect-ratio:1440/1202;
     overflow:hidden;
     background:var(--rice);
     contain:paint;
@@ -47,11 +47,6 @@ const {
     object-position:top center;
     opacity:1;
     transform:none;
-  }
-
-  @media(max-width:680px){
-    .animated-dashboard-proof{aspect-ratio:16/10}
-    .animated-dashboard-proof__frame{object-fit:contain;object-position:top center}
   }
 
 </style>

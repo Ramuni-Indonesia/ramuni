@@ -1,35 +1,29 @@
 ---
-const whatsappHref = 'https://wa.me/message/K35W6X6WT7YMJ1';
+import LeadForm from './LeadForm.astro';
 ---
-
 <div class="floating-actions" data-floating-actions>
-  <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden>
-    <span aria-hidden="true">&uarr;</span>
-  </button>
+  <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden><span aria-hidden="true">&uarr;</span></button>
   <button class="floating-actions__contact" type="button" data-contact-open aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-dialog">
     <span class="floating-actions__whatsapp" aria-hidden="true">
-      <svg viewBox="0 0 32 32" width="28" height="28" focusable="false">
-        <path fill="currentColor" d="M16 3.2A12.7 12.7 0 0 0 5.1 22.4L3.4 28.8l6.6-1.7A12.7 12.7 0 1 0 16 3.2Zm0 2.5a10.2 10.2 0 0 1 8.8 15.4 10.2 10.2 0 0 1-13.9 3.7l-.5-.3-3.3.9.9-3.2-.3-.5A10.2 10.2 0 0 1 16 5.7Zm-4.4 4.7c-.3 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.8 6 5.1 3 1.1 3.6.9 4.3.8.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.2-.4-.3-.8-.5l-2.4-1.1c-.4-.2-.7-.3-1 .2-.3.4-1 1.1-1.3 1.4-.2.3-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7l-1.1-2.5c-.3-.7-.6-.7-.8-.7Z"/>
-      </svg>
+      <img src="/icons/whatsapp-mark.svg" width="28" height="28" alt="" loading="lazy" decoding="async" />
     </span>
-    <span>WhatsApp</span>
+    <span><small>Konsultasi</small>Hubungi kami</span>
   </button>
 </div>
-
 <span class="scroll-top-sentinel" data-scroll-top-sentinel aria-hidden="true"></span>
-
-<dialog
-  class="contact-dialog"
-  id="contact-dialog"
-  data-contact-dialog
-  aria-label="Hubungi RAMUNI melalui WhatsApp"
->
+<dialog class="contact-dialog" id="contact-dialog" data-contact-dialog aria-labelledby="contact-dialog-title" aria-label="Konsultasi bersama tim RAMUNI">
   <div class="contact-dialog__panel">
-    <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">×</button>
-    <h2>Mau dibantu memilih tour produk?</h2>
-    <p>Ceritakan masalah umum seperti stok, penjualan, kas, pelanggan, atau laporan. Jangan kirim data sensitif.</p>
-    <a class="button button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Buka WhatsApp</a>
+    <header class="contact-dialog__header">
+      <span class="contact-dialog__avatar" aria-hidden="true">R</span>
+      <div><small>Tim RAMUNI</small><strong id="contact-dialog-title">Ceritakan kebutuhan usaha Anda</strong></div>
+      <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">×</button>
+    </header>
+    <div class="contact-dialog__conversation">
+      <p>Halo! Ceritakan kebutuhan usaha Anda. Setelah formulir terkirim, lanjutkan obrolan di WhatsApp.</p>
+    </div>
+    <div class="contact-dialog__form">
+      <LeadForm kind="contact" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim lalu buka WhatsApp" />
+    </div>
   </div>
 </dialog>
-
 <script is:inline type="module" src="/scripts/floating-contact.js"></script>

@@ -1,23 +1,22 @@
 ---
 import AnimatedDashboardProof from './AnimatedDashboardProof.astro';
+import AnimatedMuniWork from './AnimatedMuniWork.astro';
 ---
 
 <div class="ramuni-hero-visual home-decision-demo">
-  <figure class="home-hero-proof">
-    <header class="home-hero-proof__head">
-      <span>Dashboard RAMUNI</span>
-      <strong><i aria-hidden="true"></i> Tampilan produk · data demo</strong>
-    </header>
-    <AnimatedDashboardProof class="home-hero-proof__dashboard" />
+  <figure class="home-hero-product">
+    <div class="home-hero-product__viewport">
+      <AnimatedDashboardProof class="home-hero-product__dashboard" />
+    </div>
     <figcaption>
-      <strong>Satu layar untuk melihat perubahan penjualan, kas, stok, dan aktivitas usaha.</strong>
-      <small>Angka di layar adalah fixture pengujian, bukan data pelanggan.</small>
+      <strong>Dashboard RAMUNI</strong>
+      <span>Satu layar untuk membaca perubahan usaha.</span>
+      <small>Contoh tampilan RAMUNI.</small>
     </figcaption>
   </figure>
 
-  <div class="home-hero-story" aria-label="Tiga hal yang terlihat pada dashboard">
-    <span class="home-hero-story__step home-hero-story__step--overview"><b>01</b> Kondisi utama</span>
-    <span class="home-hero-story__step home-hero-story__step--performance"><b>02</b> Perubahan penting</span>
-    <span class="home-hero-story__step home-hero-story__step--operations"><b>03</b> Sumber untuk diperiksa</span>
-  </div>
+  <aside class="home-hero-guide" aria-label="Muni membantu membaca dashboard">
+    <AnimatedMuniWork class="home-hero-guide__mascot" label="Muni bergerak sambil membantu membaca dashboard RAMUNI" />
+    <p><strong>Lihat perubahan dulu.</strong><span>Buka angkanya saat perlu memeriksa.</span></p>
+  </aside>
 </div>

@@ -63,6 +63,7 @@ npm ci --force
 npm run check
 ramuni_r2_env_file=${RAMUNI_R2_ENV_FILE:-/home/meetsin/.config/ramuni/r2.env}
 ramuni_asset_base_url=${RAMUNI_ASSET_BASE_URL:-https://assets-staging.ramuni.id}
+ramuni_lead_endpoint=${RAMUNI_PUBLIC_LEAD_ENDPOINT:-https://crm.ramuni.id/v1/public/lead-submissions}
 if [[ -f $ramuni_r2_env_file ]]; then
   npm run r2:sync -- --env-file "$ramuni_r2_env_file"
 else
@@ -72,6 +73,7 @@ PUBLIC_DEPLOY_ENV=staging \
 PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
+PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
 npm run build
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
@@ -80,6 +82,7 @@ PUBLIC_DEPLOY_ENV=staging \
 PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
+PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
 npm run audit
 npm audit --audit-level=high
 

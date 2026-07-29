@@ -2,7 +2,7 @@
 title: "Cara Membaca Omzet Harian Tanpa Tertipu Satu Angka"
 description: "Panduan membaca omzet harian UMKM melalui transaksi, produk, waktu ramai, dan metode pembayaran."
 dek: "Omzet harian baru berguna setelah Anda tahu transaksi apa yang membentuknya dan pembanding mana yang setara."
-cover: "/website-original/dashboards/ramuni-dashboard-sales-customer.webp"
+cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
 coverAlt: "Dashboard sintetis RAMUNI dengan ringkasan penjualan, produk, dan pola pelanggan"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan contoh sintetis; menunggu tinjauan editorial sebelum indeksasi."
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "7 menit"
 takeaways:
   - "Omzet adalah nilai penjualan pada periode tertentu, bukan laba atau kas tersedia."
@@ -71,7 +71,7 @@ Misalkan omzet kedai fiktif pada Selasa adalah Rp4.200.000. Angka itu belum memb
 
 Contoh ini menunjukkan bahwa kenaikan omzet dapat berasal dari satu pesanan besar, bukan peningkatan pada seluruh transaksi. Jika pesanan tersebut tidak berulang, jangan langsung menjadikannya target harian baru.
 
-Untuk membaca sumber perubahannya, gunakan alur di [modul penjualan RAMUNI](/produk/penjualan/) sebagai gambaran struktur data yang perlu diperiksa. Contoh pada situs memakai data demo, bukan data pelanggan.
+Untuk membaca sumber perubahannya, gunakan alur di [modul penjualan RAMUNI](/produk/penjualan/) sebagai gambaran struktur data yang perlu diperiksa. Angka pada contoh digunakan untuk membantu menjelaskan alurnya.
 
 ## Bandingkan hari yang setara
 

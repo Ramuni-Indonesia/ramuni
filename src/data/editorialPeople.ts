@@ -25,7 +25,7 @@ export const editorialPeople: EditorialPerson[] = [
     shortBio:
       'Menyusun panduan praktis agar pemilik UMKM dapat membaca penjualan, stok, kas, pelanggan, dan AI dengan batas yang jelas.',
     fullBio:
-      'Tim Editorial RAMUNI mengubah pertanyaan operasional sehari-hari menjadi panduan yang mudah diperiksa. Setiap artikel memakai contoh sintetis, menyebutkan batas penggunaan, dan menghindari klaim fitur atau hasil bisnis yang belum memiliki bukti rilis.',
+      'Tim Editorial RAMUNI mengubah pertanyaan operasional sehari-hari menjadi panduan yang mudah diperiksa. Setiap artikel memakai ilustrasi yang jelas, menyebutkan batas penggunaan, dan menghindari klaim fitur atau hasil bisnis yang belum memiliki bukti rilis.',
     expertise: ['Metrik dasar usaha', 'Operasional UMKM', 'Stok dan arus kas', 'Batas penggunaan AI', 'Bahasa edukasi produk'],
     disclosure:
       'Profil ini mewakili tim internal RAMUNI. Artikel edukasi bukan nasihat pajak, akuntansi, hukum, atau keputusan bisnis yang dipersonalisasi.',

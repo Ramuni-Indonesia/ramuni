@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getBlogPosts } from '../../../lib/blog';
 import { getEditorialPerson } from '../../../data/editorialPeople';
 import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  const posts = (await getBlogPosts()).filter((post) => !post.data.draft);
   const authors = [...new Set(posts.map((post) => post.data.authorSlug))];
   return authors.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.authorSlug === slug) } }));
 }

@@ -9,92 +9,92 @@ const { articleId } = Astro.props;
 
 const variants = {
   'ai-business-companion-umkm': {
-    label: 'Contoh alur AI yang dapat diperiksa',
-    title: 'Pertanyaan masuk. Bukti tetap terlihat.',
-    description: 'Ilustrasi komponen dengan data sintetis. AI menyusun konteks, lalu manusia memeriksa bukti dan menentukan tindakan.',
+    label: 'Tampilan ringkasan RAMUNI',
+    title: 'Perubahan penting terlihat dalam satu layar.',
+    description: 'Dashboard merangkum penjualan, kas, stok, pelanggan, aktivitas, dan wawasan usaha.',
     kind: 'ai',
-    dashboard: 'ai',
-    alt: 'Alur contoh dari pertanyaan bisnis menuju bukti, batas, dan persetujuan manusia.',
+    dashboard: 'productOverview',
+    alt: 'Dashboard RAMUNI berisi ringkasan penjualan, kas, stok, pelanggan, aktivitas, dan wawasan usaha.',
   },
   'arus-kas-umkm-ringan': {
     label: 'Contoh pembacaan arus kas',
     title: 'Pisahkan pergerakan uang dari angka penjualan.',
-    description: 'Ilustrasi memakai angka sintetis untuk menunjukkan hubungan uang masuk, uang keluar, dan selisih kas.',
+    description: 'Dashboard menampilkan kas tersedia dan perubahan arus kas untuk membantu pemeriksaan.',
     kind: 'cash',
-    dashboard: 'cash',
-    alt: 'Diagram contoh uang masuk, uang keluar, dan arus kas bersih negatif dengan label data sintetis.',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan ringkasan kas tersedia dan grafik arus kas.',
   },
   'panduan-membaca-stok-harian': {
-    label: 'Contoh papan pemeriksaan stok',
-    title: 'Saldo yang sama dapat membawa risiko berbeda.',
-    description: 'Ilustrasi memakai data sintetis. Prioritas cek dibentuk dari saldo, laju keluar, dan waktu isi ulang.',
+    label: 'Tampilan aktivitas RAMUNI',
+    title: 'Perubahan stok masuk ke urutan aktivitas usaha.',
+    description: 'Dashboard membantu melihat pembaruan stok bersama transaksi dan pengeluaran terbaru.',
     kind: 'stock',
-    dashboard: 'inventory',
-    alt: 'Papan contoh yang membandingkan saldo, laju penjualan, dan urutan pemeriksaan tiga produk.',
+    dashboard: 'productOperations',
+    alt: 'Dashboard RAMUNI yang menampilkan aktivitas pembayaran, pembaruan stok, dan pengeluaran operasional.',
   },
   'cara-membaca-omzet-harian': {
-    label: 'Contoh pembacaan omzet',
-    title: 'Buka angka sampai ke transaksi pembentuknya.',
-    description: 'Visual memakai data sintetis untuk memisahkan produk, waktu transaksi, dan status pembayaran.',
-    kind: 'sales',
-    dashboard: 'sales',
-    alt: 'Dashboard sintetis untuk menelusuri omzet berdasarkan produk, waktu transaksi, dan status pembayaran.',
-  },
-  'produk-terlaris-belum-tentu-paling-untung': {
-    label: 'Contoh kontribusi produk',
-    title: 'Jumlah terjual bukan satu-satunya ukuran.',
-    description: 'Visual sintetis membantu membedakan pendapatan, biaya langsung, dan kontribusi sederhana.',
-    kind: 'cash',
-    dashboard: 'cash',
-    alt: 'Dashboard sintetis untuk membandingkan pendapatan, biaya langsung, dan kontribusi beberapa produk.',
-  },
-  'cara-membandingkan-penjualan-mingguan': {
-    label: 'Contoh perbandingan periode',
-    title: 'Bandingkan minggu yang benar-benar setara.',
-    description: 'Tampilan produk memakai data demo untuk memperlihatkan periode, perubahan, dan transaksi pendukung.',
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Penjualan hari ini dibaca bersama perubahan kas.',
+    description: 'Dashboard memperlihatkan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
     kind: 'sales',
     dashboard: 'productPerformance',
-    alt: 'Tampilan produk RAMUNI dengan data demo untuk membandingkan penjualan pada periode yang setara.',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
+  },
+  'produk-terlaris-belum-tentu-paling-untung': {
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Penjualan perlu dibaca bersama kondisi kas.',
+    description: 'Dashboard menyandingkan indikator penjualan, kas tersedia, produk aktif, dan perubahan arus kas.',
+    kind: 'cash',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
+  },
+  'cara-membandingkan-penjualan-mingguan': {
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Perubahan penjualan terlihat dalam ringkasan yang sama.',
+    description: 'Dashboard memperlihatkan indikator penjualan dan grafik arus kas tujuh hari terakhir.',
+    kind: 'sales',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan dan grafik arus kas tujuh hari terakhir.',
   },
   'cara-melihat-pelanggan-yang-kembali-belanja': {
-    label: 'Contoh pola pelanggan',
-    title: 'Baca kunjungan kembali sebagai pola kelompok.',
-    description: 'Visual memakai data sintetis dan tidak menampilkan identitas atau riwayat pelanggan nyata.',
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Ringkasan usaha membantu memilih angka yang perlu dibuka lebih jauh.',
+    description: 'Dashboard menempatkan perubahan penjualan dan kas dalam satu konteks pemeriksaan.',
     kind: 'sales',
-    dashboard: 'sales',
-    alt: 'Dashboard sintetis untuk membaca kelompok pelanggan baru, kembali, dan belum kembali.',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
   },
   'data-pelanggan-yang-perlu-dicatat-umkm': {
-    label: 'Contoh data minimum',
-    title: 'Setiap data perlu tujuan yang dapat dijelaskan.',
-    description: 'Visual sintetis menampilkan ringkasan kelompok tanpa membuka identitas atau catatan pribadi.',
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Ringkasan membantu menentukan detail yang benar-benar perlu diperiksa.',
+    description: 'Dashboard menyatukan indikator penjualan dan kas tanpa menampilkan data pribadi pelanggan.',
     kind: 'sales',
-    dashboard: 'sales',
-    alt: 'Dashboard sintetis yang merangkum pola pelanggan tanpa menampilkan data pribadi nyata.',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
   },
   'checklist-review-bisnis-mingguan-umkm': {
     label: 'Contoh review mingguan',
     title: 'Pilih perubahan, bukti, dan penanggung jawab.',
-    description: 'Tampilan produk memakai data demo untuk merangkum penjualan, kas, stok, dan pekerjaan yang perlu diperiksa.',
+    description: 'Tampilan produk merangkum penjualan, kas, stok, dan pekerjaan yang perlu diperiksa.',
     kind: 'operations',
     dashboard: 'productOverview',
-    alt: 'Tampilan produk RAMUNI dengan data demo untuk review bisnis mingguan.',
+    alt: 'Tampilan produk RAMUNI untuk review bisnis mingguan.',
   },
   'cara-merapikan-data-produk-dan-sku': {
-    label: 'Contoh pemeriksaan inventori',
-    title: 'Satu barang membutuhkan identitas yang konsisten.',
-    description: 'Visual sintetis membantu menghubungkan data produk, saldo, laju keluar, dan prioritas pemeriksaan.',
+    label: 'Tampilan aktivitas RAMUNI',
+    title: 'Setiap pembaruan produk terlihat dalam aktivitas usaha.',
+    description: 'Dashboard membantu melihat pembaruan stok bersama transaksi dan pengeluaran terbaru.',
     kind: 'stock',
-    dashboard: 'inventory',
-    alt: 'Dashboard inventori sintetis untuk membaca produk, saldo, dan prioritas pemeriksaan.',
+    dashboard: 'productOperations',
+    alt: 'Dashboard RAMUNI yang menampilkan aktivitas pembayaran, pembaruan stok, dan pengeluaran operasional.',
   },
   'perbedaan-omzet-laba-dan-arus-kas': {
-    label: 'Contoh tiga sudut pandang',
-    title: 'Penjualan, hasil, dan pergerakan uang dibaca terpisah.',
-    description: 'Visual sintetis membantu menelusuri uang masuk, uang keluar, biaya, dan transaksi pendukung.',
+    label: 'Tampilan kinerja RAMUNI',
+    title: 'Penjualan dan pergerakan kas dibaca berdampingan.',
+    description: 'Dashboard menyandingkan indikator penjualan, kas tersedia, dan grafik arus kas.',
     kind: 'cash',
-    dashboard: 'cash',
-    alt: 'Dashboard sintetis yang memisahkan omzet, laba sederhana, dan pergerakan kas.',
+    dashboard: 'productPerformance',
+    alt: 'Dashboard RAMUNI dengan indikator penjualan, kas tersedia, produk aktif, dan grafik arus kas.',
   },
 } as const;
 
@@ -110,7 +110,7 @@ const dashboard = visual ? dashboardVisuals[visual.dashboard as DashboardVisualK
       <p>{visual.description}</p>
     </figcaption>
 
-    <div class="article-context-visual__stage">
+    <div class:list={['article-context-visual__stage', { 'article-context-visual__stage--product': dashboard.type === 'product-screenshot' }]}>
       <img src={dashboard.src} width={dashboard.width} height={dashboard.height} alt={visual.alt} loading="lazy" decoding="async" />
       <span>{dashboard.badge}</span>
     </div>
@@ -121,6 +121,7 @@ const dashboard = visual ? dashboardVisuals[visual.dashboard as DashboardVisualK
   .article-context-visual{display:grid;grid-template-columns:minmax(210px,.58fr) minmax(0,1.42fr);gap:clamp(24px,5vw,56px);align-items:stretch;margin:0 0 clamp(46px,7vw,76px);padding-block:clamp(26px,4vw,40px);border-block:1px solid var(--ink)}
   .article-context-visual figcaption{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end}.article-context-visual figcaption span{color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.article-context-visual figcaption strong{max-width:18ch;margin-top:14px;font-size:clamp(1.45rem,2.8vw,2.5rem);line-height:1.08;letter-spacing:-.04em}.article-context-visual figcaption p{max-width:34ch;margin-top:14px;color:var(--ink-72);font-size:.86rem;line-height:1.6}
   .article-context-visual__stage{position:relative;min-width:0;min-height:330px;background:var(--rice);overflow:hidden}.article-context-visual__stage img{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}.article-context-visual__stage>span{position:absolute;left:16px;bottom:16px;padding:8px 10px;background:rgb(11 48 69/.9);color:var(--white);font-size:.64rem;font-weight:800}
+  .article-context-visual__stage--product img{object-fit:contain;object-position:top center;background:var(--rice)}
   @media(max-width:960px){.article-context-visual{grid-template-columns:1fr}.article-context-visual figcaption{justify-content:flex-start}.article-context-visual figcaption p{max-width:58ch}}
   @media(max-width:740px){.article-context-visual__stage{min-height:260px}}
 </style>

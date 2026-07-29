@@ -3,7 +3,7 @@ title: "Checklist Review Bisnis Mingguan untuk UMKM"
 description: "Checklist 30 menit untuk meninjau penjualan, stok, kas, pelanggan, dan pekerjaan tim secara terarah."
 dek: "Review mingguan yang berguna tidak menumpuk semua laporan. Ia memilih perubahan penting, bukti, dan orang yang menindaklanjuti."
 cover: "/website-original/product-screens/ramuni-product-dashboard-overview.webp"
-coverAlt: "Tampilan dashboard RAMUNI dengan data demo untuk ringkasan bisnis"
+coverAlt: "Tampilan dashboard RAMUNI untuk ringkasan bisnis"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Operasional Bisnis"
@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan contoh sintetis; menunggu tinjauan editorial sebelum indeksasi."
+editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
   - "Gunakan periode dan sumber data yang sama setiap minggu."
@@ -55,7 +55,7 @@ Siapkan lima ringkasan:
 4. Pelanggan kembali atau keluhan, bila datanya tersedia dan berizin.
 5. Tugas terbuka dan gangguan operasional.
 
-[Dashboard bisnis RAMUNI](/produk/dashboard-bisnis/) dapat menjadi contoh cara menyatukan ringkasan tersebut. Tampilan situs memakai data demo; keputusan nyata tetap memerlukan pembukaan transaksi dan catatan pendukung.
+[Dashboard bisnis RAMUNI](/produk/dashboard-bisnis/) dapat menjadi contoh cara menyatukan ringkasan tersebut. Keputusan nyata tetap memerlukan pemeriksaan transaksi dan catatan pendukung.
 
 ## Menit 0-5: periksa kelengkapan
 

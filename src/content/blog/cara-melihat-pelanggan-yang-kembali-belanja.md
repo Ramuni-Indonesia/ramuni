@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan data sintetis; memerlukan tinjauan privasi dan produk sebelum indeksasi."
+editorialStatus: "Disusun dengan ilustrasi; memerlukan tinjauan privasi dan produk sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
   - "Pelanggan kembali perlu definisi periode dan identitas yang konsisten."
@@ -64,7 +64,7 @@ Rujuk teks resmi [Undang-Undang Pelindungan Data Pribadi](https://peraturan.bpk.
 
 ## Hitung pelanggan kembali secara sederhana
 
-Gunakan contoh sintetis berikut untuk periode 90 hari:
+Gunakan contoh ilustrasi berikut untuk periode 90 hari:
 
 | Kelompok | Jumlah pelanggan | Definisi contoh |
 | --- | ---: | --- |

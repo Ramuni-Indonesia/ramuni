@@ -10,29 +10,14 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let scrollFrame = 0;
-
-  const setScrollButtonState = () => {
-    if (!(scrollButton instanceof HTMLButtonElement)) return;
-    scrollButton.hidden = window.scrollY < Math.min(320, window.innerHeight * 0.42);
-  };
-
-  const queueScrollButtonState = () => {
-    if (scrollFrame) return;
-    scrollFrame = window.requestAnimationFrame(() => {
-      scrollFrame = 0;
-      setScrollButtonState();
-    });
-  };
-
   if (scrollButton instanceof HTMLButtonElement) {
-    setScrollButtonState();
-    window.addEventListener('scroll', queueScrollButtonState, { passive: true });
-    window.addEventListener('resize', queueScrollButtonState, { passive: true });
-
     if (scrollSentinel instanceof HTMLElement && 'IntersectionObserver' in window) {
-      const scrollObserver = new IntersectionObserver(() => queueScrollButtonState());
+      const scrollObserver = new IntersectionObserver(([entry]) => {
+        scrollButton.hidden = entry?.isIntersecting ?? true;
+      }, { rootMargin: `-${Math.min(320, Math.round(window.innerHeight * 0.42))}px 0px 0px 0px`, threshold: 0 });
       scrollObserver.observe(scrollSentinel);
+    } else {
+      scrollButton.hidden = false;
     }
 
     scrollButton.addEventListener('click', () => {

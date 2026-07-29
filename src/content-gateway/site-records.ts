@@ -16,7 +16,12 @@ type CmsDocument = {
 };
 
 export type ProductPagePayload = { product: Product; detail: ProductDetail };
-export type ProductRouteModel = ProductPagePayload & { seo?: { title?: string; description?: string }; cmsSnapshotId?: string };
+export type ProductRouteModel = ProductPagePayload & {
+  seo?: { title?: string; description?: string };
+  cmsSnapshotId?: string;
+  cmsHeroTitle?: string;
+  cmsHeroEyebrow?: string;
+};
 export type SolutionPagePayload = { solution: SolutionDetail };
 export type SolutionRouteModel = SolutionPagePayload & { cmsSnapshotId?: string };
 
@@ -59,6 +64,8 @@ export function productRouteModelFromPage(page: PublishedPage): ProductRouteMode
     detail: { ...baselineDetail, audience: document.hero.eyebrow || baselineDetail.audience, heroLead: document.hero.description },
     seo: document.seo,
     cmsSnapshotId: page.id,
+    cmsHeroTitle: document.hero.title,
+    cmsHeroEyebrow: document.hero.eyebrow,
   };
 }
 

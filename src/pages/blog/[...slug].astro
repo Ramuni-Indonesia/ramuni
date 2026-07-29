@@ -1,19 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import ArticleContextVisual from '../../components/blog/ArticleContextVisual.astro';
+import ArticleBodyBlocks from '../../components/blog/ArticleBodyBlocks.astro';
+import { getArticleHeadings, getBlogPosts } from '../../lib/blog';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  const posts = (await getBlogPosts()).filter((post) => !post.data.draft);
   return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
 }
 
 const { post, posts } = Astro.props;
-const { Content, headings } = await render(post);
+const renderedLocal = post.localEntry ? await render(post.localEntry) : undefined;
+const Content = renderedLocal?.Content;
+const headings = renderedLocal?.headings || getArticleHeadings(post);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const updatedAt = post.data.updatedAt || post.data.publishedAt;
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
@@ -63,6 +67,8 @@ const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const organizationId = `${siteOrigin}/#organization`;
 const authorUrl = new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString();
 const articleImage = new URL(post.data.cover, Astro.site || Astro.url.origin).toString();
+const coverWidth = 1200;
+const coverHeight = post.source === 'cms' ? 675 : 720;
 const articleIndexable = post.data.reviewStatus === 'reviewed' && !post.data.noindex;
 const schema = [
   {
@@ -94,9 +100,9 @@ const schema = [
   },
 ];
 ---
-<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={1200} imageHeight={720} noindex={!articleIndexable} schema={schema} ogType="article" keywords={post.data.tags}>
+<BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={coverWidth} imageHeight={coverHeight} noindex={!articleIndexable} schema={schema} ogType="article" keywords={post.data.tags}>
   {embeddedCalculator && <style is:inline set:html={calculatorWidgetStyles} />}
-  <div class="article-reading-progress" role="progressbar" aria-label="Progres membaca artikel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-reading-progress><i></i></div>
+  <div class="article-reading-progress" aria-hidden="true"><i></i></div>
   <article>
     <header class="article-hero">
       <div class="container article-head">
@@ -111,7 +117,7 @@ const schema = [
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover"><div><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
+        <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>
 
@@ -124,7 +130,7 @@ const schema = [
 
           <ArticleContextVisual articleId={post.id} />
 
-          <div class="article-content"><Content /></div>
+          <div class="article-content">{Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}</div>
 
           {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}
 
@@ -156,21 +162,6 @@ const schema = [
   {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <script>
-    const readingProgress = document.querySelector<HTMLElement>('[data-reading-progress]');
-    const updateReadingProgress = () => {
-      if (!readingProgress) return;
-      const article = document.querySelector('article');
-      if (!article) return;
-      const start = article.offsetTop;
-      const distance = Math.max(article.offsetHeight - window.innerHeight, 1);
-      const value = Math.min(100, Math.max(0, ((window.scrollY - start) / distance) * 100));
-      readingProgress.style.setProperty('--reading-progress', `${value}%`);
-      readingProgress.setAttribute('aria-valuenow', String(Math.round(value)));
-    };
-    updateReadingProgress();
-    window.addEventListener('scroll', updateReadingProgress, { passive: true });
-    window.addEventListener('resize', updateReadingProgress, { passive: true });
-
     const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
     const tocTargets = tocLinks
       .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
