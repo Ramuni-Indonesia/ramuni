@@ -10,6 +10,27 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const ensureChatStyles = () => new Promise((resolve) => {
+    const existing = document.querySelector('link[data-floating-contact-style]');
+    if (existing instanceof HTMLLinkElement) {
+      if (existing.sheet || existing.dataset.loaded === 'true') resolve();
+      else {
+        existing.addEventListener('load', resolve, { once: true });
+        existing.addEventListener('error', resolve, { once: true });
+      }
+      return;
+    }
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/styles/floating-contact-chat.css';
+    link.dataset.floatingContactStyle = 'true';
+    link.addEventListener('load', () => {
+      link.dataset.loaded = 'true';
+      resolve();
+    }, { once: true });
+    link.addEventListener('error', resolve, { once: true });
+    document.head.append(link);
+  });
   if (scrollButton instanceof HTMLButtonElement) {
     if (scrollSentinel instanceof HTMLElement && 'IntersectionObserver' in window) {
       const scrollObserver = new IntersectionObserver(([entry]) => {
@@ -25,8 +46,9 @@ const initialiseFloatingContact = () => {
     });
   }
 
-  openButton?.addEventListener('click', () => {
+  openButton?.addEventListener('click', async () => {
     if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+    await ensureChatStyles();
     openButton.setAttribute('aria-expanded', 'true');
     dialog.showModal();
     window.setTimeout(() => {

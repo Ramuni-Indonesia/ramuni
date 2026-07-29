@@ -38,6 +38,8 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
   style={`--dashboard-aspect:${aspectRatio};--dashboard-mobile-aspect:${mobileAspectRatio};--dashboard-scan-distance:calc(${scanDistance}cqw - 2px);--dashboard-mobile-scan-distance:calc(${mobileScanDistance}cqw - 2px)`}
   role="img"
   aria-label={label}
+  data-dashboard-motion
+  data-active="false"
 >
   <span class="dashboard-motion__screen" aria-hidden="true">
     <picture>
@@ -54,8 +56,59 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
       />
     </picture>
     <span class="dashboard-motion__scanline"></span>
+    <span class="dashboard-motion__callouts">
+      <span>Ringkasan</span>
+      <span>Bukti</span>
+      <span>Arah</span>
+    </span>
+    <span class="dashboard-motion__insight">
+      <b>Insight bergerak</b>
+      <span>Perubahan ditandai, lalu konteksnya dibuka.</span>
+    </span>
   </span>
   <span class="dashboard-motion__timeline" aria-hidden="true">
     <i></i><i></i><i></i>
   </span>
 </span>
+
+<script>
+  const dashboardMotionObservers = new Map<HTMLElement, IntersectionObserver>();
+
+  const bindDashboardMotion = () => {
+    document.querySelectorAll<HTMLElement>('[data-dashboard-motion]').forEach((dashboard) => {
+      if (dashboard.dataset.bound === 'true') return;
+      dashboard.dataset.bound = 'true';
+      if (!('IntersectionObserver' in window)) {
+        dashboard.dataset.active = 'true';
+        return;
+      }
+      const observer = new IntersectionObserver(([entry]) => {
+        dashboard.dataset.active = entry?.isIntersecting && !document.hidden ? 'true' : 'false';
+      }, { rootMargin: '120px 0px', threshold: 0.08 });
+      observer.observe(dashboard);
+      dashboardMotionObservers.set(dashboard, observer);
+    });
+  };
+
+  bindDashboardMotion();
+  document.addEventListener('astro:page-load', bindDashboardMotion);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      document.querySelectorAll<HTMLElement>('[data-dashboard-motion]').forEach((dashboard) => {
+        dashboard.dataset.active = 'false';
+      });
+    } else {
+      document.querySelectorAll<HTMLElement>('[data-dashboard-motion]').forEach((dashboard) => {
+        const bounds = dashboard.getBoundingClientRect();
+        dashboard.dataset.active = bounds.bottom >= -120 && bounds.top <= window.innerHeight + 120 ? 'true' : 'false';
+      });
+    }
+  });
+  document.addEventListener('astro:before-swap', () => {
+    dashboardMotionObservers.forEach((observer, dashboard) => {
+      observer.disconnect();
+      delete dashboard.dataset.bound;
+    });
+    dashboardMotionObservers.clear();
+  });
+</script>

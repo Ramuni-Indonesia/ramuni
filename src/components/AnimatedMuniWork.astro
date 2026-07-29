@@ -32,6 +32,8 @@ const {
 </span>
 
 <script>
+  const animatedMuniCleanups = new Map<HTMLElement, () => void>();
+
   const bindAnimatedMuniWork = () => {
     document.querySelectorAll<HTMLElement>('[data-animated-muni-work]').forEach((mascot) => {
       if (mascot.dataset.bound === 'true') return;
@@ -57,25 +59,35 @@ const {
         }
       };
 
+      let observer: IntersectionObserver | undefined;
       if (!('IntersectionObserver' in window)) {
         inView = true;
         update();
-        return;
+      } else {
+        observer = new IntersectionObserver(([entry]) => {
+          inView = entry?.isIntersecting ?? false;
+          update();
+        }, { rootMargin: '120px 0px', threshold: 0.08 });
+        observer.observe(mascot);
       }
-
-      const observer = new IntersectionObserver(([entry]) => {
-        inView = entry?.isIntersecting ?? false;
-        update();
-      }, { rootMargin: '120px 0px', threshold: 0.08 });
-
-      observer.observe(mascot);
       document.addEventListener('visibilitychange', update);
       reducedMotion.addEventListener?.('change', update);
+      animatedMuniCleanups.set(mascot, () => {
+        observer?.disconnect();
+        document.removeEventListener('visibilitychange', update);
+        reducedMotion.removeEventListener?.('change', update);
+        video.pause();
+        delete mascot.dataset.bound;
+      });
     });
   };
 
   bindAnimatedMuniWork();
   document.addEventListener('astro:page-load', bindAnimatedMuniWork);
+  document.addEventListener('astro:before-swap', () => {
+    animatedMuniCleanups.forEach((cleanup) => cleanup());
+    animatedMuniCleanups.clear();
+  });
 </script>
 
 <style>

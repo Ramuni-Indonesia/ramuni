@@ -89,6 +89,7 @@ const initialiseLeadForms = () => {
     const backButton = form.querySelector('[data-progress-back]');
     const submitButton = form.querySelector('button[type="submit"]');
     const status = form.querySelector('.form-status');
+    const chatHistory = form.querySelector('[data-chat-history]');
     let stepIndex = 0;
     let retryPayload = null;
 
@@ -103,6 +104,34 @@ const initialiseLeadForms = () => {
       status.dataset.state = state;
     };
     const fieldsForStep = (index) => Array.from(steps[index]?.querySelectorAll('input, select, textarea') || []);
+    const renderChatHistory = () => {
+      if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
+      chatHistory.replaceChildren();
+      if (stepIndex > 0) {
+        const nameReply = document.createElement('p');
+        nameReply.textContent = 'Nama sudah saya isi.';
+        chatHistory.append(nameReply);
+      }
+      if (stepIndex > 1) {
+        const phoneReply = document.createElement('p');
+        phoneReply.textContent = 'Nomor WhatsApp sudah siap.';
+        chatHistory.append(phoneReply);
+      }
+      if (stepIndex > 2) {
+        const emailReply = document.createElement('p');
+        emailReply.textContent = 'Email sudah saya isi.';
+        chatHistory.append(emailReply);
+      }
+      if (stepIndex > 3) {
+        const intentField = form.querySelector('select[name="intent"]');
+        const intentReply = document.createElement('p');
+        const intentLabel = intentField instanceof HTMLSelectElement
+          ? intentField.options[intentField.selectedIndex]?.textContent
+          : '';
+        intentReply.textContent = intentLabel ? 'Saya ingin membahas: ' + intentLabel + '.' : 'Kebutuhan usaha sudah saya pilih.';
+        chatHistory.append(intentReply);
+      }
+    };
     const validate = (fields) => {
       for (const field of fields) {
         if (!(field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement)) continue;
@@ -130,6 +159,7 @@ const initialiseLeadForms = () => {
       if (backButton instanceof HTMLButtonElement) backButton.hidden = stepIndex === 0;
       if (nextButton instanceof HTMLButtonElement) nextButton.hidden = stepIndex === steps.length - 1;
       if (submitButton instanceof HTMLButtonElement) submitButton.hidden = stepIndex !== steps.length - 1;
+      renderChatHistory();
     };
     const advanceStep = () => {
       if (!validate(fieldsForStep(stepIndex))) return false;

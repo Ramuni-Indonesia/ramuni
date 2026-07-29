@@ -9,11 +9,6 @@ import { dashboardVisuals } from '../data/dashboardVisuals';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
-const companionSteps = [
-  ['Catatan', 'Sumber usaha dikumpulkan tanpa menutupi data yang belum lengkap.'],
-  ['Bukti', 'Periode, perubahan, dan angka pendukung tetap bisa ditelusuri.'],
-  ['Arah', 'RAMUNI membantu memilih perhatian berikutnya. Keputusan tetap milik Anda.'],
-];
 const productDashboard = dashboardVisuals.productOverview;
 
 const faq = [
@@ -27,19 +22,16 @@ const faq = [
 ];
 
 const answerLayers = [
-  { label: 'Kesimpulan', title: 'Omzet contoh turun dibanding pekan lalu.', text: 'Perubahan dibaca pada periode Senin sampai Jumat.' },
-  { label: 'Alasan utama', title: 'Transaksi sore berkurang pada dua hari kerja.', text: 'RAMUNI memisahkan jumlah transaksi dari nilai belanja.' },
-  { label: 'Bukti', title: 'Bandingkan periode dan transaksi pendukung.', text: 'Waktu pembaruan serta data yang belum lengkap tetap terlihat.' },
-  { label: 'Produk terdampak', title: 'Kopi Susu dan Roti Panggang perlu ditelusuri.', text: 'Nama produk dan angkanya hanya contoh.' },
-  { label: 'Pemeriksaan berikutnya', title: 'Cek stok dan jadwal sebelum mengubah harga.', text: 'Saran menjadi bahan keputusan, bukan tindakan otomatis.' },
+  { label: 'Kesimpulan', title: 'Omzet berubah dibanding pekan lalu.', text: 'Periode pembanding tetap terlihat.' },
+  { label: 'Bukti', title: 'Transaksi sore perlu dibuka lebih dulu.', text: 'Jumlah transaksi dipisahkan dari nilai belanja.' },
+  { label: 'Periksa', title: 'Cek stok dan jadwal sebelum bertindak.', text: 'Keputusan tetap berada di tangan Anda.' },
 ];
 
 const workflowStages = [
-  ['Catat', 'Penjualan, stok, biaya, dan pelanggan.'],
-  ['Hitung', 'Metrik memakai definisi dan periode yang sama.'],
-  ['Baca', 'Perubahan penting naik ke urutan teratas.'],
-  ['Telusuri', 'Periode dan bukti tetap bisa dibuka.'],
-  ['Putuskan', 'Manusia menentukan tindakan berikutnya.'],
+  'Catat',
+  'Satukan',
+  'Baca',
+  'Putuskan',
 ];
 
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
@@ -85,7 +77,7 @@ const schema = [
         <p>Angka di bawah hanya contoh untuk memperlihatkan cara membaca jawabannya.</p>
       </header>
       <div class="answer-console reveal">
-        <div class="answer-console__rail" aria-hidden="true"><span>Jawaban dirangkai</span><i></i><b>05 lapis</b></div>
+        <div class="answer-console__rail" aria-hidden="true"><span>Jawaban dirangkai</span><i></i><b>03 bagian</b></div>
         <div class="answer-mosaic">
           {answerLayers.map((item, i) => <article class="answer-tile" style={`--i:${i}`}><span>0{i + 1} / {item.label}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
         </div>
@@ -99,30 +91,16 @@ const schema = [
       <div class="section-intro reveal"><h2>Kumpulkan angka, pahami perubahan, lalu tentukan langkah.</h2><p>Pilih satu tahap untuk melihat apa yang terjadi di dalamnya.</p></div>
       <div class="workflow-explorer reveal" data-workflow-explorer>
         <div class="workflow-track" role="group" aria-label="Alur RAMUNI">
-          {workflowStages.map(([title, text], i) => <button type="button" class="workflow-node" aria-pressed={i === 0 ? 'true' : 'false'} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></button>)}
+          {workflowStages.map((title, i) => <button type="button" class="workflow-node" aria-pressed={i === 0 ? 'true' : 'false'} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3></button>)}
         </div>
         <div class="workflow-focus" aria-live="polite">
           <div class="workflow-focus__signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           <div><span data-workflow-label>Catatan masuk</span><strong data-workflow-title>Empat sumber dibaca bersama.</strong><p data-workflow-copy>RAMUNI menyatukan konteks tanpa menyembunyikan data yang belum lengkap.</p></div>
-          <b data-workflow-state>01 / 05</b>
+          <div class="workflow-focus__route" aria-hidden="true"><span>Catatan</span><i></i><span>Bukti</span><i></i><span>Arah</span></div>
+          <AnimatedMuniWork class="workflow-focus__mascot" label="Muni bergerak mengikuti alur dari catatan menuju bukti dan arah keputusan" />
+          <b data-workflow-state>01 / 04</b>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section companion-stage chapter" data-chapter="Arah keputusan" aria-labelledby="companion-title">
-    <div class="container companion-stage__layout">
-      <div class="companion-stage__copy reveal">
-        <p class="section-kicker">Dari data menuju perhatian</p>
-        <h2 id="companion-title">Catatan yang tersebar diramu menjadi arah yang lebih jelas.</h2>
-        <p>Visual ini menggambarkan cara RAMUNI menyusun sinyal usaha. Bukan aksi otomatis, melainkan bahan yang lebih rapi untuk keputusan manusia.</p>
-      </div>
-      <figure class="companion-journey reveal">
-        <img class="companion-journey__art" src="/website-original/ramuni-catatan-bukti-arah.webp" width="1280" height="720" alt="Ilustrasi catatan usaha yang dirapikan menjadi bukti dan arah keputusan" loading="lazy" decoding="async" />
-      </figure>
-      <ol class="companion-stage__steps" aria-label="Alur catatan, bukti, dan arah">
-        {companionSteps.map(([title, text], index) => <li class="reveal" style={`--i:${index}`}><h3>{title}</h3><p>{text}</p></li>)}
-      </ol>
     </div>
   </section>
 

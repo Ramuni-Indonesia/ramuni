@@ -1,8 +1,7 @@
 const workflowCopy = [
   ['Catatan masuk', 'Empat sumber dibaca bersama.', 'RAMUNI menyatukan konteks tanpa menyembunyikan data yang belum lengkap.'],
-  ['Metrik dihitung', 'Periode yang sama mencegah salah banding.', 'Definisi omzet, stok, biaya, dan kas tetap konsisten saat dibaca.'],
-  ['Sinyal disusun', 'Perubahan penting muncul lebih dulu.', 'Urutan membantu Anda memilih apa yang perlu diperiksa, bukan langsung bertindak.'],
-  ['Bukti dibuka', 'Kesimpulan tetap punya jejak.', 'Periode, sumber, dan data pendukung tersedia untuk ditelusuri.'],
+  ['Konteks disatukan', 'Periode yang sama mencegah salah banding.', 'Omzet, stok, biaya, dan kas dibaca dengan definisi yang konsisten.'],
+  ['Bukti dibuka', 'Perubahan penting muncul lebih dulu.', 'Periode dan data pendukung tetap tersedia saat insight dibaca.'],
   ['Keputusan manusia', 'Anda menentukan langkah akhirnya.', 'RAMUNI memberi bahan pertimbangan. Tindakan tetap membutuhkan keputusan manusia.'],
 ];
 
@@ -23,7 +22,7 @@ document.querySelectorAll('[data-workflow-explorer]').forEach((explorer) => {
     focus.dataset.changing = 'false';
     void focus.offsetWidth;
     [label.textContent, title.textContent, copy.textContent] = workflowCopy[index];
-    state.textContent = `${String(index + 1).padStart(2, '0')} / 05`;
+    state.textContent = `${String(index + 1).padStart(2, '0')} / 04`;
     focus.dataset.changing = 'true';
   };
   tabs.forEach((tab, index) => {

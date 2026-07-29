@@ -14,6 +14,7 @@ const {
   class:list={['animated-dashboard-proof', className]}
   role="img"
   aria-label={label}
+  data-animate="false"
 >
   <video
     class="animated-dashboard-proof__frame"
@@ -33,6 +34,8 @@ const {
 </span>
 
 <script>
+  const animatedDashboardCleanups = new Map<HTMLElement, () => void>();
+
   const bindAnimatedDashboardProof = () => {
     document.querySelectorAll<HTMLElement>('.animated-dashboard-proof').forEach((proof) => {
       if (proof.dataset.bound === 'true') return;
@@ -51,22 +54,34 @@ const {
           if (!inView || reducedMotion.matches) video.currentTime = 0;
         }
       };
+      let observer: IntersectionObserver | undefined;
       if (!('IntersectionObserver' in window)) {
         inView = true;
         update();
-        return;
+      } else {
+        observer = new IntersectionObserver(([entry]) => {
+          inView = entry?.isIntersecting ?? false;
+          update();
+        }, { rootMargin: '120px 0px', threshold: 0.08 });
+        observer.observe(proof);
       }
-      const observer = new IntersectionObserver(([entry]) => {
-        inView = entry?.isIntersecting ?? false;
-        update();
-      }, { rootMargin: '120px 0px', threshold: 0.08 });
-      observer.observe(proof);
       document.addEventListener('visibilitychange', update);
       reducedMotion.addEventListener?.('change', update);
+      animatedDashboardCleanups.set(proof, () => {
+        observer?.disconnect();
+        document.removeEventListener('visibilitychange', update);
+        reducedMotion.removeEventListener?.('change', update);
+        video.pause();
+        delete proof.dataset.bound;
+      });
     });
   };
   bindAnimatedDashboardProof();
   document.addEventListener('astro:page-load', bindAnimatedDashboardProof);
+  document.addEventListener('astro:before-swap', () => {
+    animatedDashboardCleanups.forEach((cleanup) => cleanup());
+    animatedDashboardCleanups.clear();
+  });
 </script>
 
 <style>
@@ -142,6 +157,6 @@ const {
   @media(prefers-reduced-motion:reduce){
     .animated-dashboard-proof__frame{visibility:hidden}
     .animated-dashboard-proof__fallback{opacity:1}
-    .animated-dashboard-proof__scanline{animation:none;transform:none}
+    .animated-dashboard-proof__scanline{animation:none;transform:none;opacity:0}
   }
 </style>

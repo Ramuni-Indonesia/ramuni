@@ -7,46 +7,79 @@ interface Props {
   handoff?: 'thank-you' | 'whatsapp';
   location?: string;
   compact?: boolean;
+  variant?: 'standard' | 'chat';
 }
-const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false } = Astro.props;
+const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard' } = Astro.props;
 const labels = { 'early-access': 'Minta akses uji coba', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';
+const isChat = variant === 'chat';
 ---
-<form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact }]} action={enabled ? endpoint : undefined} method="post"
+<form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact, 'lead-form--chat': isChat }]} action={enabled ? endpoint : undefined} method="post"
   data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
-  data-enabled={String(enabled)} novalidate>
-  {isProgressive && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
+  data-enabled={String(enabled)} data-lead-variant={variant} novalidate>
+  {isProgressive && !isChat && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
     <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
   </ol>}
-  <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
-    {isProgressive && <legend>Mulai dari kontak yang bisa dihubungi.</legend>}
-    <div class="form-grid">
-      <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" required maxlength="150" /></div>
-      <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /><small>Digunakan tim kami untuk menindaklanjuti permintaan Anda.</small></div>
-      <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" required maxlength="254" /></div>
-    </div>
-  </fieldset>
-  <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
-    {isProgressive && <legend>Beri konteks minimum agar tim tidak menebak-nebak.</legend>}
-    <div class="form-grid">
-      {!compact && <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>}
-      {!compact && <div class="field"><label for={kind + '-' + location + '-industry'}>Jenis usaha</label><select id={kind + '-' + location + '-industry'} name="industry" required><option value="">Pilih jenis usaha</option><option value="retail">Retail</option><option value="food-beverage">F&amp;B / kuliner</option><option value="distributor">Distributor</option><option value="online-reseller">Reseller online</option><option value="services">Jasa</option><option value="small-manufacturing">Manufaktur kecil</option><option value="other">Lainnya</option></select></div>}
-      {!compact && <div class="field"><label for={kind + '-' + location + '-size'}>Ukuran tim</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-plus">Lebih dari 20 orang</option></select></div>}
-      <div class="field"><label for={kind + '-' + location + '-intent'}>Kebutuhan utama</label><select id={kind + '-' + location + '-intent'} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option><option value="support">Bantuan atau pertanyaan lain</option></select></div>
-    </div>
-    <div class="field field--context"><label for={kind + '-' + location + '-need'}>Apa yang ingin Anda pahami?</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan data pelanggan, transaksi, password, token, atau informasi sensitif.</small></div>
-  </fieldset>
-  <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
-    {isProgressive && <legend>Setujui tindak lanjut sebelum diarahkan ke WhatsApp.</legend>}
-    <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
-    <label class="consent-field consent-field--optional"><input type="checkbox" name="marketingConsent" value="yes" /><span>Saya boleh menerima pembaruan produk RAMUNI. Ini opsional.</span></label>
-    <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
-  </fieldset>
+  {isChat && <div class="lead-form__chat-history" data-chat-history aria-live="polite"></div>}
+  {isChat ? (
+    <>
+      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
+        <legend>Halo, boleh saya tahu nama Anda?</legend>
+        <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" required maxlength="150" /></div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
+        <legend>Terima kasih. Nomor WhatsApp aktifnya berapa?</legend>
+        <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /><small>Kami gunakan untuk melanjutkan obrolan resmi RAMUNI.</small></div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
+        <legend>Email yang bisa dihubungi?</legend>
+        <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" required maxlength="254" /></div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="4" disabled={enabled ? undefined : true}>
+        <legend>Apa yang paling ingin dibahas dulu?</legend>
+        <div class="field"><label for={kind + '-' + location + '-intent'}>Kebutuhan utama</label><select id={kind + '-' + location + '-intent'} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option><option value="support">Bantuan atau pertanyaan lain</option></select></div>
+        <div class="field field--context"><label for={kind + '-' + location + '-need'}>Ceritakan singkat</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan password, token, atau informasi sensitif.</small></div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="5" disabled={enabled ? undefined : true}>
+        <legend>Siap. Setelah ini kami buka WhatsApp resmi RAMUNI.</legend>
+        <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
+        <label class="consent-field consent-field--optional"><input type="checkbox" name="marketingConsent" value="yes" /><span>Saya boleh menerima pembaruan produk RAMUNI. Ini opsional.</span></label>
+        <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
+      </fieldset>
+    </>
+  ) : (
+    <>
+      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
+        {isProgressive && <legend>Mulai dari kontak yang bisa dihubungi.</legend>}
+        <div class="form-grid">
+          <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" required maxlength="150" /></div>
+          <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /><small>Digunakan tim kami untuk menindaklanjuti permintaan Anda.</small></div>
+          <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" required maxlength="254" /></div>
+        </div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
+        {isProgressive && <legend>Beri konteks minimum agar tim tidak menebak-nebak.</legend>}
+        <div class="form-grid">
+          {!compact && <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>}
+          {!compact && <div class="field"><label for={kind + '-' + location + '-industry'}>Jenis usaha</label><select id={kind + '-' + location + '-industry'} name="industry" required><option value="">Pilih jenis usaha</option><option value="retail">Retail</option><option value="food-beverage">F&amp;B / kuliner</option><option value="distributor">Distributor</option><option value="online-reseller">Reseller online</option><option value="services">Jasa</option><option value="small-manufacturing">Manufaktur kecil</option><option value="other">Lainnya</option></select></div>}
+          {!compact && <div class="field"><label for={kind + '-' + location + '-size'}>Ukuran tim</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-plus">Lebih dari 20 orang</option></select></div>}
+          <div class="field"><label for={kind + '-' + location + '-intent'}>Kebutuhan utama</label><select id={kind + '-' + location + '-intent'} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option><option value="support">Bantuan atau pertanyaan lain</option></select></div>
+        </div>
+        <div class="field field--context"><label for={kind + '-' + location + '-need'}>Apa yang ingin Anda pahami?</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan data pelanggan, transaksi, password, token, atau informasi sensitif.</small></div>
+      </fieldset>
+      <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
+        {isProgressive && <legend>Setujui tindak lanjut sebelum diarahkan ke WhatsApp.</legend>}
+        <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
+        <label class="consent-field consent-field--optional"><input type="checkbox" name="marketingConsent" value="yes" /><span>Saya boleh menerima pembaruan produk RAMUNI. Ini opsional.</span></label>
+        <input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
+      </fieldset>
+    </>
+  )}
   {enabled ? <div class="form-actions">
     {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
-    {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
+    {isProgressive && <button class="button button--primary" type="button" data-progress-next>{isChat ? 'Balas' : 'Lanjut'}</button>}
     <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>
     <p class="form-status" role="status" aria-live="polite"></p>
   </div> : <div class="form-unavailable" role="status"><strong>Formulir belum tersedia.</strong><p>Silakan coba lagi beberapa saat lagi.</p></div>}
