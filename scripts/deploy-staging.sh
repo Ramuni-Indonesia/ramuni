@@ -8,6 +8,25 @@ ramuni_release_dir="$ramuni_deploy_root/releases/$ramuni_release_id"
 ramuni_current_link="$ramuni_deploy_root/current"
 ramuni_previous_target=""
 ramuni_switched=0
+ramuni_privileged_mode=""
+
+if sudo -n true >/dev/null 2>&1; then
+  ramuni_privileged_mode=sudo
+elif command -v /usr/bin/docker >/dev/null && /usr/bin/docker image inspect nginx:alpine >/dev/null 2>&1; then
+  ramuni_privileged_mode=docker
+else
+  echo "Deployment needs passwordless sudo or the local nginx:alpine Docker image for atomic file activation." >&2
+  exit 1
+fi
+
+ramuni_privileged() {
+  if [[ $ramuni_privileged_mode == sudo ]]; then
+    sudo -n "$@"
+    return
+  fi
+  /usr/bin/docker run --rm --network none --entrypoint /bin/sh -v /:/host nginx:alpine \
+    -c 'exec chroot /host "$@"' sh "$@"
+}
 
 # Astro 7 requires Node 22. The host's system Node may intentionally remain on
 # the Ubuntu-supported line, so deployment runs itself inside an ephemeral
@@ -26,8 +45,8 @@ rollback_on_error() {
   local exit_code=$?
   if [[ $ramuni_switched -eq 1 && -n $ramuni_previous_target && -d $ramuni_previous_target ]]; then
     echo "Deployment failed after activation; restoring $ramuni_previous_target" >&2
-    sudo ln -sfn "$ramuni_previous_target" "$ramuni_deploy_root/current.rollback"
-    sudo mv -Tf "$ramuni_deploy_root/current.rollback" "$ramuni_current_link"
+    ramuni_privileged ln -sfn "$ramuni_previous_target" "$ramuni_deploy_root/current.rollback"
+    ramuni_privileged mv -Tf "$ramuni_deploy_root/current.rollback" "$ramuni_current_link"
   fi
   exit "$exit_code"
 }
@@ -57,7 +76,7 @@ fi
 
 echo "Building staging artifact from $(git rev-parse --short=12 HEAD)..."
 if [[ -d dist ]]; then
-  sudo chown -R "$(id -u):$(id -g)" dist
+  ramuni_privileged chown -R "$(id -u):$(id -g)" "$ramuni_repo_dir/dist"
 fi
 npm ci --force
 npm run check
@@ -111,24 +130,25 @@ done < <(find dist -type f \( \
 
 ramuni_artifact_digest=$(find dist -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
 
-sudo install -d -o root -g www-data -m 2775 "$ramuni_deploy_root" "$ramuni_deploy_root/releases"
-sudo install -d -o www-data -g www-data -m 0755 "$ramuni_release_dir"
-sudo rsync -a --delete --chown=www-data:www-data --chmod=D755,F644 dist/ "$ramuni_release_dir/"
+ramuni_privileged install -d -o root -g www-data -m 2775 "$ramuni_deploy_root" "$ramuni_deploy_root/releases"
+ramuni_privileged install -d -o www-data -g www-data -m 0755 "$ramuni_release_dir"
+ramuni_privileged rsync -a --delete --chown=www-data:www-data --chmod=D755,F644 "$ramuni_repo_dir/dist/" "$ramuni_release_dir/"
 if [[ -L $ramuni_current_link ]]; then
   ramuni_previous_target=$(readlink -f "$ramuni_current_link")
 fi
 
+ramuni_release_metadata=$(mktemp)
 printf 'release=%s\nsha=%s\nartifact_sha256=%s\ndeployed_at=%s\n' \
   "$ramuni_release_id" \
   "$(git rev-parse HEAD)" \
   "$ramuni_artifact_digest" \
-  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" | sudo tee "$ramuni_release_dir/RELEASE" >/dev/null
-sudo chown www-data:www-data "$ramuni_release_dir/RELEASE"
-sudo chmod 0644 "$ramuni_release_dir/RELEASE"
+  "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > "$ramuni_release_metadata"
+ramuni_privileged install -o www-data -g www-data -m 0644 "$ramuni_release_metadata" "$ramuni_release_dir/RELEASE"
+rm -f "$ramuni_release_metadata"
 
 # Keep recovery tooling independent of a particular Git worktree path.
-sudo install -d -o root -g root -m 0755 /usr/local/lib/ramuni-staging
-sudo install -o root -g root -m 0755 \
+ramuni_privileged install -d -o root -g root -m 0755 /usr/local/lib/ramuni-staging
+ramuni_privileged install -o root -g root -m 0755 \
   "$ramuni_repo_dir/scripts/health-check-staging.sh" \
   "$ramuni_repo_dir/scripts/monitor-staging.sh" \
   "$ramuni_repo_dir/scripts/rollback-staging.sh" \
@@ -136,8 +156,8 @@ sudo install -o root -g root -m 0755 \
 
 # RELEASE exists before the atomic alias switch, avoiding a transient 503 from
 # /healthz during activation.
-sudo ln -sfn "$ramuni_release_dir" "$ramuni_deploy_root/current.next"
-sudo mv -Tf "$ramuni_deploy_root/current.next" "$ramuni_current_link"
+ramuni_privileged ln -sfn "$ramuni_release_dir" "$ramuni_deploy_root/current.next"
+ramuni_privileged mv -Tf "$ramuni_deploy_root/current.next" "$ramuni_current_link"
 ramuni_switched=1
 
 RAMUNI_HEALTH_RESOLVE_IP="${RAMUNI_HEALTH_RESOLVE_IP:-127.0.0.1}" \
