@@ -6,6 +6,8 @@ Brand direction: Lipat Arah
 
 ## Current delivery
 
+- Latest published staging release: `20260729T134246Z-62c58295f577` from commit `62c58295f577b960cf1cb85b4c54bd6e20becfd2`; artifact SHA-256 `4e1c8a61250c6fc9b629b0d30aaa29d911482c6c3f09af12b68852a1c752e689`.
+
 - Static output page count is release-specific and must be refreshed after each production build. The current source includes the homepage, marketing route families, dynamic product/solution/resource/blog details, plus `404.html` and `500.html`.
 - Global layout includes final RAMUNI brand assets, self-hosted Plus Jakarta Sans WOFF2, metadata, canonical URLs, Open Graph, JSON-LD, sitemap, robots, web manifest, favicons, reduced-motion handling, and responsive navigation.
 - Navigation now exposes Produk, Solusi, Untuk Tim, Industri, Harga, and Sumber Daya from shared route data.

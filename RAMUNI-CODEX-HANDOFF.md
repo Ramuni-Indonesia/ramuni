@@ -12,7 +12,7 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-### Pending local batch — not yet published or deployed
+### Published staging batch — `62c58295f577`
 
 - Added a contextual product bridge to every article category, with a product route and a separate `Coba gratis` path.
 - Added route-specific animated evidence pipelines to product and solution detail content and reduced repeated generic dashboard chapters on routes where semantic flows explain the feature more honestly.
@@ -24,7 +24,9 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 - Product and solution heroes now render nine context-aware, code-built marketing dashboard states instead of one repeated raster dashboard. The states use RAMUNI SaaS visual language, synthetic example data, explicit claim disclosure, tablet/mobile re-composition, and one shared finite motion controller that settles after approximately 6.4 seconds.
 - Repeated screenshot chapters were removed from product details because the contextual dashboard now appears in the hero and the lower page uses a separate evidence flow. Product-hub family visuals use lightweight code-built boards for insight and operations rather than repeated screenshots.
 - Astro check passed across 128 files with zero errors, warnings, or hints. All 12 calculator tests, the 127-page production build, the complete static/site/performance audit, and `npm audit --audit-level=high` passed.
-- Browser screenshot QA remains unavailable on this host because no Playwright browser binary is installed; the source/build/audit gates are green. The remaining release steps are commit, push, atomic staging deploy, and live noindex/cache/sitemap verification.
+- Browser screenshot QA remains unavailable on this host because no Playwright browser binary is installed; do not claim screenshot-based visual sign-off from this session.
+- Published runtime commits: `f3d4d1617e4c` (`expand contextual dashboards and free resource journeys`) and `62c58295f577` (`trim contextual dashboard release budget`). Atomic staging release: `20260729T134246Z-62c58295f577`; artifact SHA-256: `4e1c8a61250c6fc9b629b0d30aaa29d911482c6c3f09af12b68852a1c752e689`.
+- Live verification passed for homepage, product, solution, calculator, template, and blog routes. Staging sends `Cache-Control: no-store`, fail-closed `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, HTML `noindex,follow`, and 404 responses for the sitemap index plus page/blog sitemap endpoints.
 
 - Published runtime commit: `056c40d18ab5` (`trim solution cards for release budget`), including visual CTA and editorial media commit `472b618590e6`.
 - Active staging release: `20260729T110110Z-056c40d18ab5`.
