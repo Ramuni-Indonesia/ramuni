@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-07-28 Asia/Jakarta
+Snapshot date: 2026-07-29 Asia/Jakarta
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -12,11 +12,11 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-- Published runtime commit: `9020d76ce089a4bdb5c63fb5ccdd5ed4efc40980` (`keep contact navigation lean`).
-- The product-first visual baseline is commit `69992d05b3f21736f699bce2a453f92e1dbd31f8`; the contextual CRO, mascot release-gate, and editorial cleanup are included in the published runtime commit above.
-- Active staging release: `20260728T135133Z-9020d76ce089`.
-- Active release path: `/var/www/ramuni-staging/releases/20260728T135133Z-9020d76ce089`.
-- Deployed artifact SHA-256: `f20789971bd7a350804beceb1476a2cfcf6b11718485567158813cc7aca3c4b7`.
+- Published runtime commit: `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7` (`refine non product hero visuals`).
+- The contextual hero and free-trial baseline immediately before this batch is commit `92919d34b4c2c8164b69ddc6e866ae574f4986dc`.
+- Active staging release: `20260729T071536Z-e54a5cfeac65`.
+- Active release path: `/var/www/ramuni-staging/releases/20260729T071536Z-e54a5cfeac65`.
+- Deployed artifact SHA-256: `0b6d48a68e80c37ccbb474a6f41ee27f1ba265af85cd3dbf03914565ba3c4fdc`.
 - Staging URL: `https://staging.ramuni.id`.
 - Staging is intentionally fail-closed: HTTP `X-Robots-Tag` includes `noindex`, HTML uses `noindex,follow`, responses use `Cache-Control: no-store`, and sitemap endpoints return 404.
 
@@ -59,6 +59,8 @@ Additional mascot source of truth is available in the isolated RAMUNI Creative S
 - Product and solution chapters now create local paint boundaries with `overflow: clip` and `isolation: isolate`; sticky headings and transformed visuals cannot paint into the following section.
 - The product problem, solution problem, and solution scenario sticky headings are structurally bounded by dedicated overview wrappers. Touch/coarse-pointer layouts disable these sticky states, and grid children receive `min-width: 0` overflow protection.
 - Product, solution, industry, and role pages now use contextual real RAMUNI product screenshots where the seeded dashboard evidence supports the claim; unsupported AI/import-specific flows retain explicitly conceptual visuals.
+- Generic `PageHero` routes no longer infer a product dashboard from their layout mode. Industry, role, and help heroes now render contextual bars, ledgers, flows, role maps, or support journeys; real dashboards remain reserved for product and solution proof.
+- The calculator hub hero now uses the `catatan -> bukti -> arah` workspace visual rather than a mascot presenting a dashboard, so its visual matches the input/formula/result task.
 - Real product screenshots are cropped from local product evidence that uses demo fixtures, not production tenant or customer data. Public labels say `Tampilan produk · data demo`.
 - The homepage hero now combines a looping real RAMUNI seeded/demo dashboard video with a separate looping Muni work video. Both use WebM plus MP4 fallbacks and pause offscreen, on hidden tabs, with Save-Data, and under reduced-motion.
 - The homepage problem section now uses a lazy procedural Three.js interpretation of Muni with breathing, blinking, head/wing/tail motion, pointer/touch drag, and restrained scroll-linked rotation. Mobile below 740px, Save-Data, reduced-motion, and WebGL failure keep the static poster fallback. This remains a decorative interpretation, not an approved rigged identity model.
@@ -135,6 +137,14 @@ Useful visual components and assets:
 The current real screenshots show the implemented RAMUNI seeded/demo dashboard, not a real customer account. The pinned Docker Playwright runner now works for marketing-site visual QA, but route-specific SaaS fixture captures for Sales, Inventory, Finance, Customers, Reports, and Import have not been produced or verified. Use the existing evidence until that separate authenticated fixture-capture pipeline is run; never substitute fabricated customer screens.
 
 ## Latest validation evidence
+
+- Runtime commit `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7` passed Astro check across 120 files with 0 errors, 0 warnings, and 0 hints.
+- Its staging build produced 98 pages; the full metadata, social, schema, static accessibility, internal-link, noindex/robots, encoding, and asset-budget audit passed.
+- R2 reported 0 uploads and 92 unchanged objects because this batch reused existing approved assets.
+- Live `/bantuan/`, `/industri/`, `/industri/retail/`, `/untuk/admin-toko/`, `/kalkulator/`, and `/produk/asisten-ai/` returned HTTP 200 with `noindex,follow`.
+- Live help, industry, and role heroes contain `hero-context__screen` and no `hero-context__image` dashboard frame. The AI product hero also remains non-dashboard.
+- Live staging still returns `Cache-Control: no-store`, `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and 404 for `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml`.
+- The prepared 40-combination Playwright browser audit was not completed in this batch because the shared production-host build gate was occupied by unrelated repository test work. Static build/audit and live route verification completed successfully; rerun browser screenshots when the gate is idle.
 
 - Astro check with Node `22.23.1` exited successfully with no diagnostics.
 - Production build: 97 pages; staging build: 98 pages because staging includes crawlable preview pagination for the unapproved article set. The obsolete `/kebijakan-cookie/` route and its public navigation links remain removed; the consent preference dialog and footer `Kelola Cookie` control remain available.
