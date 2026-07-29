@@ -263,6 +263,19 @@ The current batch materially increases real product evidence and motion, but sev
 - The release gate intentionally rejected an intermediate artifact that exceeded the 64 kB HTML budget after CDN rewriting. The markup was simplified without removing the contextual route, then the exact deploy sequence was repeated. Final Node 22 Astro check passed 119 files with 0 errors, warnings, or hints; staging built 98 pages; the full post-CDN site audit passed; `npm audit` reported 0 vulnerabilities; R2 reported 88 unchanged objects and no unnecessary upload.
 - Live health verification succeeded after the atomic switch. Staging remains `Cache-Control: no-store`, HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, HTML `noindex,follow`, and sitemap endpoints return 404.
 
+## Authentic dashboard and post-CDN budget release, 2026-07-29
+
+- Published runtime commits: `9827b2d` (natural visitor copy plus authentic dashboard capture), `8b70104` (authentic product proof and CRM-first lead flow), `c51a766` (non-interactive atomic-deploy fallback), and `309bf585eaaec66724a8a801ac278c184c2b806d` (route-specific contact CSS plus external reveal runtime).
+- Active product evidence now includes `public/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp`, copied from the RAMUNI SaaS evidence repository at 1440×1202. Active dashboard maps use verified RAMUNI SaaS captures; generated contextual artwork remains separately identified and is not presented as a dashboard.
+- Visitor-facing technical storage/CRM language and the phrases `data demo`, `data contoh`, and `data sintetis` were removed or rewritten naturally. The contact and floating consultation journeys still submit through the configured lead endpoint before the optional WhatsApp handoff.
+- The final staging build checked 119 Astro files with 0 errors, warnings, or hints; built 98 pages; passed the full post-CDN metadata, social, accessibility, content, schema, internal-link, robots/noindex, encoding, and asset-budget audit; and reported 0 dependency vulnerabilities.
+- The post-CDN budget correction moved contact-only styles out of the shared stylesheet and externalized the reveal observer to `public/scripts/reveal.js`. R2 uploaded that one new runtime object and left 91 existing objects unchanged.
+- Atomic staging release: `20260729T051627Z-309bf585eaae`; artifact SHA-256: `f1e9f9e68fa96e0a065f19cfd11917e06892dcefb9747614d6ed0d6c29a15bc8`. The deployment script used the local Docker/chroot privilege fallback because interactive sudo is unavailable, while preserving rollback-safe release creation and symlink activation.
+- Live verification passed for health, homepage, product hub/detail, solution hub/detail, blog archive/article, contact, and tour routes. `/demo/`, `/early-access/`, and `/harga/` redirect to `/tour-produk-gratis/` in one 301 hop.
+- Staging remains fail-closed: every checked HTML route returns `Cache-Control: no-store`, HTTP `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and HTML `noindex,follow`. `/robots.txt` returns 200 while the checked sitemap endpoints return 404.
+- The authentic full-dashboard WebP, three supporting real dashboard captures, `reveal.js`, lead/contact runtimes, and the WhatsApp mark return HTTP 200 from the staging CDN with the expected content types.
+- Fresh live Chromium layout QA covered nine representative routes at 375, 768, 1024, 1440, and 1920 px: 45 combinations, 0 failures, no horizontal overflow, no broken completed images, noindex present, header in bounds, and floating contact visible.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
