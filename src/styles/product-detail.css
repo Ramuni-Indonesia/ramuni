@@ -23,9 +23,8 @@
   .pd-example__layout,
   .pd-example__stage,
   .pd-workflow__layout,
-  .pd-capabilities__layout,
-  .pd-safety__layout,
-  .pd-roles__layout,
+  .pd-readiness__layout,
+  .pd-audience__layout,
   .pd-related__layout,
   .pd-faq__layout
 ) > * {
@@ -61,10 +60,8 @@
 .pd-example,
 .pd-benefits,
 .pd-workflow,
-.pd-capabilities,
-.pd-safety,
-.pd-roles,
-.pd-industries,
+.pd-readiness,
+.pd-audience,
 .pd-related,
 .pd-faq,
 .pd-close {
@@ -965,9 +962,6 @@
 
 .pd-problem header > span,
 .pd-example__intro > span,
-.pd-capabilities header > span,
-.pd-safety > .container > div > span,
-.pd-roles header > span,
 .pd-faq__layout > div:first-child > span,
 .pd-close__layout > div > span {
   display: block;
@@ -983,9 +977,6 @@
 .pd-example h2,
 .pd-section-heading h2,
 .pd-workflow h2,
-.pd-capabilities h2,
-.pd-safety h2,
-.pd-roles h2,
 .pd-related h2,
 .pd-faq h2,
 .pd-close h2 {
@@ -1147,9 +1138,7 @@
 }
 
 .pd-section-heading p,
-.pd-workflow header p,
-.pd-capabilities header p,
-.pd-roles header p {
+.pd-workflow header p {
   max-width: 55ch;
   margin-top: 20px;
   color: var(--ink-72);
@@ -2070,11 +2059,8 @@
   .pd-page[data-layout='ledger'] .pd-problem__overview,
   .pd-example__layout,
   .pd-workflow__layout,
-  .pd-capabilities__layout,
   .pd-readiness__layout,
   .pd-audience__layout,
-  .pd-safety__layout,
-  .pd-roles__layout,
   .pd-related__layout,
   .pd-faq__layout {
     grid-template-columns: minmax(0, 1fr);
@@ -2094,7 +2080,6 @@
   }
 
   .pd-problem header,
-  .pd-capabilities header,
   .pd-readiness__intro,
   .pd-audience__intro {
     position: static;
@@ -2160,15 +2145,6 @@
     border-bottom: 1px solid var(--ink-10);
   }
 
-  .pd-safety__layout {
-    grid-template-columns: minmax(0, 1fr) minmax(170px, 0.45fr);
-  }
-
-  .pd-safety ol,
-  .pd-safety .text-link {
-    grid-column: 1 / 3;
-  }
-
   .pd-benefit:nth-child(2) {
     grid-row: auto;
   }
@@ -2177,22 +2153,6 @@
     grid-column: 1 / 3;
   }
 
-  .pd-safety .text-link {
-    grid-column: 1;
-  }
-
-  .pd-industry-spread {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .pd-industry-spread a:nth-child(2) {
-    margin-top: 32px;
-  }
-
-  .pd-industry-spread a:nth-child(3) {
-    grid-column: 1 / 3;
-    min-height: 210px;
-  }
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -2213,12 +2173,8 @@
   .pd-example,
   .pd-benefits,
   .pd-workflow,
-  .pd-capabilities,
   .pd-readiness,
   .pd-audience,
-  .pd-safety,
-  .pd-roles,
-  .pd-industries,
   .pd-related,
   .pd-faq,
   .pd-close {
@@ -2346,7 +2302,6 @@
 
   .pd-problem ol,
   .pd-example__receipt dl,
-  .pd-capability-list,
   .pd-readiness__flow {
     grid-template-columns: 1fr;
   }
@@ -2404,16 +2359,11 @@
   .pd-example__receipt dl div:last-child { border-bottom: 0; }
 
   .pd-benefit-grid,
-  .pd-workflow__steps,
-  .pd-role-track,
-  .pd-industry-spread {
+  .pd-workflow__steps {
     grid-template-columns: 1fr;
   }
 
-  .pd-benefit:nth-child(n),
-  .pd-role-track a:first-child:last-child,
-  .pd-role-track a:nth-child(3):last-child,
-  .pd-industry-spread a:nth-child(3) {
+  .pd-benefit:nth-child(n) {
     grid-column: 1;
     grid-row: auto;
   }
@@ -2432,34 +2382,6 @@
 
   .pd-workflow__steps li:last-child {
     border-bottom: 0;
-  }
-
-  .pd-capability-list article {
-    min-height: 190px;
-    gap: 14px;
-  }
-
-  .pd-safety__layout,
-  .pd-role-track {
-    grid-template-columns: 1fr;
-  }
-
-  .pd-safety ol,
-  .pd-safety .text-link {
-    grid-column: 1;
-  }
-
-  .pd-safety__seal {
-    width: min(190px, 60vw);
-  }
-
-  .pd-role-track a {
-    min-height: 180px;
-  }
-
-  .pd-industry-spread a:nth-child(n) {
-    min-height: 220px;
-    margin-top: 0;
   }
 
   .pd-related__modules a {
