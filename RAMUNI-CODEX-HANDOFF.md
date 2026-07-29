@@ -356,6 +356,21 @@ The current batch materially increases real product evidence and motion, but sev
 - Live verification returned HTTP 200 for `/`, `/produk/asisten-ai/`, and `/solusi/kelola-stok/`. Each carries `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml` and `/sitemap-index.xml` return 404. Live HTML contains the new Asisten AI, homepage dashboard, and consultation transcript markers.
 - No raster image generation was required for this release. Future raster generation/editing must use the native HashMicro image plugin. Disposable browser QA screenshots and canonical build dependencies were removed after recording this evidence; the immutable staging release and published commit were preserved.
 
+## Product story cleanup and resource generator release, 2026-07-29
+
+- Published runtime commits: `eaa557db0197` (`refine product stories and resource tools`) and `c9ef0b49506c` (`trim product release budgets`). `c9ef0b49506c` is the deployed staging SHA.
+- Product detail routes no longer show separate long `Status kemampuan`, `Bukti, izin, dan batas`, role, and industry card grids. They now use a compact readiness board plus one interactive audience/context selector, with natural availability wording instead of repeated `Dalam pengembangan` labels.
+- Product related paths now use existing RAMUNI icon assets for product/resource rows. The old large related text cards and obsolete product-detail CSS for removed sections were cleaned up to keep post-CDN budgets passing.
+- Solution detail routes combine capability/context evidence into a tighter decision surface, and the solution hub was trimmed slightly after post-CDN HTML budget checking.
+- `/generator/lembar-stok-harian/` is live as a free browser-only stock worksheet generator. It supports dynamic rows, preview totals, CSV export, Excel-compatible `.xls` export, print/save-to-PDF, empty-row validation, and an ungated soft `Coba gratis` prompt with `Tetap unduh`.
+- Generator links were added to the resource hub, mega menu, footer, URL map, and sitemap policy resource group. Resource/calculator cards now receive the existing navigation icon mappings.
+- Verification before release: `git diff --check`; Node 22 Astro check/build with 128 generated pages and 0 errors/warnings/hints; calculator tests 12/12; content gateway tests 14/14; full static/site/SEO/accessibility/schema/internal-link/noindex/robots/asset-budget audit; post-CDN asset rewrite audit; and `npm audit --audit-level=high` with 0 vulnerabilities.
+- First deploy attempt correctly failed on post-CDN product CSS/solution HTML budgets. The release was not switched. The budget-only fix was committed as `c9ef0b49506c`, then the deploy was repeated from the tested SHA.
+- Atomic staging release: `20260729T160254Z-c9ef0b49506c`; artifact SHA-256 `68eaf77c5b1606257a37194bbfb0b79fbd200a0fcaa811c71fe64b6baec2ca73`; current release path `/var/www/ramuni-staging/releases/20260729T160254Z-c9ef0b49506c`.
+- Live verification passed for `/healthz`, `/`, `/produk/inventori/`, `/produk/asisten-ai/`, `/solusi/kelola-stok/`, `/sumber-daya/`, `/kalkulator/`, and `/generator/lembar-stok-harian/`. Each returned HTTP 200 with `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; live HTML contains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
+- Live marker checks confirmed the generator has `Unduh Excel`, `CSV, Excel, atau PDF`, and the accessible export dialog label; Inventori contains the new readiness/audience wording.
+- No raster image generation was run in this batch. Future raster work must continue through the native HashMicro imagegen plugin only.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
