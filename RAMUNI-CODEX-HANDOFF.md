@@ -142,6 +142,20 @@ The current real screenshots show the implemented RAMUNI seeded/demo dashboard, 
 
 ## Latest validation evidence
 
+Latest staging runtime on 2026-07-29:
+
+- Runtime commit `597784deede7279601d9728ab2a803fc37193330` is published on `main`.
+- Atomic staging release `20260729T100947Z-597784deede7` is active with artifact SHA-256 `038c9cc5429eb40fb4bfa218f1703eaf3508d7370e2329afa5992c886e1408dd`.
+- Homepage dashboard proof now uses the real RAMUNI loop video with subtle scan motion and no new card overlays covering the product evidence. Shared dashboard motion pauses while offscreen.
+- Muni work-loop playback and dashboard observers now clean up on Astro navigation. The homepage problem chapter rotates through the three Phase 1 mascot explorations with reduced-motion and visibility safeguards.
+- Homepage insight and workflow chapters were shortened into three evidence layers and a four-step `Catat -> Satukan -> Baca -> Putuskan` journey with a moving route and Muni guide.
+- The floating WhatsApp contact is now a compact, lazy-styled conversation with sequential prompts for name, WhatsApp, email, need, and consent before CRM acceptance and official WhatsApp handoff.
+- The solution hub removed a duplicated text-only principle rail and unused legacy CSS, keeping the staging CDN-rewritten HTML below the enforced route budget.
+- Astro check passed across 121 files with zero errors, warnings, or hints. Content-gateway tests, CMS page/article candidate render tests, the full 98-page site audit, and `npm audit --audit-level=high` all passed; npm reported zero vulnerabilities.
+- Local-origin and public-DNS health checks passed. Homepage, product, solution, help, blog, and try-free routes return HTTP 200 with `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; HTML remains `noindex,follow`; sitemap endpoints return 404.
+- The lazy chat stylesheet and updated scripts return HTTP 200 from staging/CDN. No raster image was generated or edited in this batch.
+- The three non-video mascot portraits remain Creative Studio Phase 1 staging explorations, not approved final production mascot masters.
+
 - Runtime commit `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7` passed Astro check across 120 files with 0 errors, 0 warnings, and 0 hints.
 - Its staging build produced 98 pages; the full metadata, social, schema, static accessibility, internal-link, noindex/robots, encoding, and asset-budget audit passed.
 - R2 reported 0 uploads and 92 unchanged objects because this batch reused existing approved assets.
