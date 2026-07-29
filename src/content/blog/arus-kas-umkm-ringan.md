@@ -2,8 +2,10 @@
 title: "Membaca Arus Kas UMKM dengan Bahasa yang Lebih Ringan"
 description: "Penjelasan awal tentang cara memahami arus kas tanpa laporan yang rumit."
 dek: "Mulai dari arah uang masuk dan keluar, lalu cari perubahan yang perlu diperiksa lebih lanjut."
-cover: "/website-original/cash-signal-ledger.svg"
-coverAlt: "Ilustrasi RAMUNI baru yang memisahkan omzet, laba, dan kas tersedia"
+cover: "/website-original/blog/generated/arus-kas-umkm-ringan.webp"
+coverAlt: "Pemilik UMKM memeriksa aliran uang masuk dan keluar dari catatan usaha"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "Keuangan UMKM"

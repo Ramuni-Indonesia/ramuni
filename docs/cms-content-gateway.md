@@ -19,7 +19,7 @@ Blog archive, category, author, search, resource-hub, pagination, and detail rou
 - article body uses `bodyBlocks` (or the delivery-wire alias `body_blocks`) with only `heading`, `paragraph`, `list`, and `quote` blocks;
 - headings accept depth 2 or 3, links are not accepted as arbitrary HTML, and source URLs must use HTTPS;
 - unknown blocks, malformed dates, incomplete indexable reviewer metadata, or missing required editorial fields fail the build.
-- CMS cover URLs must be absolute HTTPS URLs from the approved public media domain. The CMS projection supplies a sanitized 16:9 hero variant; article detail metadata and intrinsic dimensions switch to 1200x675 for CMS records while local 5:3 fixtures keep 1200x720.
+- CMS cover URLs must be absolute HTTPS URLs from the approved public media domain. The CMS projection may supply `coverWidth` and `coverHeight` so cards, article detail images, and social metadata reserve the correct space. Legacy records without dimensions safely fall back to 1200x675.
 
 Local Markdown remains the default rollback source. It is merged with CMS records only when `RAMUNI_CMS_MIGRATION_FALLBACK=local` is explicitly enabled in candidate mode; matching CMS canonical paths replace their local fixture. Pure `cms-active` mode does not silently restore missing local articles. This makes a partially migrated or malformed collection visible during release verification instead of hiding it behind local content.
 

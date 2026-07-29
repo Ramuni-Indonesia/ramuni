@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import StoryMicroVisual from '../../../components/blog/StoryMicroVisual.astro';
+import BlogDecisionCTA from '../../../components/blog/BlogDecisionCTA.astro';
 import { getBlogCategory, type BlogCategoryMeta } from '../../../data/blogTaxonomy';
 import { getBlogPosts, getVisibleBlogPosts, isBlogCategoryIndexable } from '../../../lib/blog';
 import { releaseGates } from '../../../config/release';
@@ -34,6 +35,7 @@ const sortedPosts = getVisibleBlogPosts(posts);
 const featured = sortedPosts[0];
 const articleList = sortedPosts.slice(1);
 const isThin = !isBlogCategoryIndexable(sortedPosts);
+const categoryCtaId = `category-${slug || 'blog'}-decision-cta`;
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const categoryUrl = new URL(`/blog/kategori/${slug}/`, Astro.site || Astro.url.origin).toString();
 const schema = [
@@ -61,9 +63,22 @@ const schema = [
   {isThin && <div class="container"><p class="taxonomy-status taxonomy-status--standalone"><strong>Koleksi sedang bertambah.</strong> Kami menampilkan bacaan yang sudah tersedia sambil melengkapi artikel pendukung.</p></div>}
   {featured && <section class="section surface category-featured"><div class="container category-featured__layout">
     <div class="category-featured__copy"><p class="section-kicker">Mulai dari sini</p><h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2><p>{featured.data.dek}</p><div class="category-featured__meta"><span>{featured.data.authorName}</span><span>{featured.data.readingTime}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span></div><a class="text-link" href={`/blog/${featured.id}/`}>Baca artikel</a></div>
-    <figure><img src={featured.data.cover} width="1200" height="720" alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></figure>
+    <figure><img src={featured.data.cover} width={featured.data.coverWidth} height={featured.data.coverHeight} alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></figure>
   </div></section>}
   <section class="section category-start"><div class="container category-route"><div class="category-route__head"><p class="section-kicker">Jalur pemula</p><h2>Mulai dengan urutan yang bisa diperiksa.</h2><p>{meta.start}</p></div><ol class="category-route__track">{meta.steps.map((step, index) => <li><span>0{index + 1}</span><strong>{step}</strong></li>)}</ol></div></section>
-  {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
-  <section class="section category-close-stage"><div class="container category-close"><div><p class="section-kicker">Langkah berikutnya</p><h2>{meta.cta.title}</h2><p>Lihat contoh alurnya tanpa perlu menyiapkan catatan usaha.</p></div><div class="category-close__actions"><a class="button button--primary" href={meta.cta.href}>{meta.cta.label}</a><a class="button button--secondary" href="/blog/">Kembali ke Blog</a></div></div></section>
+  {articleList.length > 0 && <section class="section surface"><div class="container category-reading-layout"><div class="category-reading-head"><p class="section-kicker">Artikel terbaru</p><h2>Lanjutkan dari kebutuhan Anda.</h2><p>Urutan mengikuti pembaruan terakhir.</p></div><div class="reading-list reading-list--visual">{articleList.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.authorName} · {post.data.readingTime}</small></div><small>{formatDate(post.data.updatedAt || post.data.publishedAt)}</small></a>)}</div></div></section>}
+  <section class="section category-close-stage" aria-labelledby={`${categoryCtaId}-heading`}>
+    <div class="container reveal">
+      <BlogDecisionCTA
+        id={categoryCtaId}
+        eyebrow="Langkah berikutnya"
+        title={meta.cta.title}
+        text="Lihat contoh alurnya tanpa perlu menyiapkan catatan usaha. Mulai dari satu catatan, periksa buktinya, lalu pilih langkah kecil yang aman dicoba."
+        primaryLabel={meta.cta.label}
+        primaryHref={meta.cta.href}
+        secondaryLabel="Kembali ke Blog"
+        secondaryHref="/blog/"
+      />
+    </div>
+  </section>
 </BaseLayout>

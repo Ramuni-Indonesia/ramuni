@@ -2,8 +2,10 @@
 title: "Cara Membaca Omzet Harian Tanpa Tertipu Satu Angka"
 description: "Panduan membaca omzet harian UMKM melalui transaksi, produk, waktu ramai, dan metode pembayaran."
 dek: "Omzet harian baru berguna setelah Anda tahu transaksi apa yang membentuknya dan pembanding mana yang setara."
-cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-coverAlt: "Dashboard RAMUNI dengan indikator penjualan, kas tersedia, dan grafik arus kas"
+cover: "/website-original/blog/generated/cara-membaca-omzet-harian.webp"
+coverAlt: "Pemilik usaha membaca omzet harian bersama rincian transaksi dan waktu penjualan"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Penjualan & Omzet"

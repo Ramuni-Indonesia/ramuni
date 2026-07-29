@@ -2,8 +2,10 @@
 title: "Cara Membandingkan Penjualan Mingguan secara Adil"
 description: "Panduan membandingkan penjualan minggu ini dan minggu lalu tanpa salah periode, kanal, atau status transaksi."
 dek: "Perbandingan yang adil memakai jumlah hari, jam buka, kanal, dan status transaksi yang sama."
-cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-coverAlt: "Tampilan produk RAMUNI untuk membandingkan kinerja penjualan"
+cover: "/website-original/blog/generated/cara-membandingkan-penjualan-mingguan.webp"
+coverAlt: "Perbandingan penjualan dua minggu dengan periode dan kanal yang setara"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Penjualan & Omzet"

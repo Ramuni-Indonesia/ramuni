@@ -15,6 +15,8 @@ Status: contract only. No CMS, preview API, webhook, or remote content store is 
 
 Required fields: `title`, `slug`, `description`, `dek`, `cover`, `coverAlt`, `publishedAt`, `category`, `categorySlug`, `authorName`, `authorSlug`, `reviewStatus`, `editorialStatus`, `readingTime`, `takeaways`, `updateSummary`, `ctaType`, `draft`, and `noindex`.
 
+Recommended media fields: `coverWidth` and `coverHeight` as positive integers. They preserve the image aspect ratio in article cards, social metadata, and article detail pages. Existing CMS records remain compatible and fall back to `1200 x 675` when these fields are absent. `cover` remains CMS-managed and may point to the approved HTTPS CDN or R2 media URL.
+
 Optional fields: `updatedAt`, `tags`, `reviewerName`, `reviewerSlug`, `sources`, `disclaimer`, `related`, and `featured`.
 
 Current enums:

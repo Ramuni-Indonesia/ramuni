@@ -3,9 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { render } from 'astro:content';
 import ArticleContextVisual from '../../components/blog/ArticleContextVisual.astro';
 import ArticleBodyBlocks from '../../components/blog/ArticleBodyBlocks.astro';
+import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
 import { getArticleHeadings, getBlogPosts } from '../../lib/blog';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
+import { mascots } from '../../data/mascots';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
 
@@ -61,14 +63,17 @@ const cta = {
   demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Sesi coba gratis dimulai dari skenario sederhana agar alurnya mudah dipahami.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
   product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk/' },
 }[post.data.ctaType];
+const ctaSecondary = post.data.ctaType === 'product'
+  ? { label: 'Baca artikel lain', href: '/blog/' }
+  : { label: 'Lihat produk', href: '/produk/' };
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString();
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const organizationId = `${siteOrigin}/#organization`;
 const authorUrl = new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString();
 const articleImage = new URL(post.data.cover, Astro.site || Astro.url.origin).toString();
-const coverWidth = 1200;
-const coverHeight = post.source === 'cms' ? 675 : 720;
+const coverWidth = post.data.coverWidth;
+const coverHeight = post.data.coverHeight;
 const articleIndexable = post.data.reviewStatus === 'reviewed' && !post.data.noindex;
 const schema = [
   {
@@ -139,7 +144,19 @@ const schema = [
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
 
-          <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
+          <aside class="article-inline-decision" aria-label="Langkah berikutnya">
+            <BlogDecisionCTA
+              id={`article-decision-${post.id}`}
+              eyebrow="Dari bacaan ke langkah"
+              title={cta.title}
+              text={cta.text}
+              primaryLabel={cta.label}
+              primaryHref={cta.href}
+              secondaryLabel={ctaSecondary.label}
+              secondaryHref={ctaSecondary.href}
+              variant="article"
+            />
+          </aside>
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
             {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}
@@ -154,12 +171,22 @@ const schema = [
 
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
+          <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
+            <div class="article-rail-cta__visual" aria-hidden="true">
+              <ol><li>Catat</li><li>Periksa</li><li>Tentukan</li></ol>
+              <img src={mascots.working2d.src} width={mascots.working2d.width} height={mascots.working2d.height} alt="" loading="lazy" decoding="async" />
+            </div>
+            <small>Lihat alurnya</small>
+            <strong id="article-rail-cta-title">Punya pertanyaan serupa?</strong>
+            <p>Coba RAMUNI dengan skenario sederhana tanpa membawa data usaha.</p>
+            <a class="button button--primary" href="/tour-produk-gratis/">Coba gratis</a>
+          </section>
         </aside>
       </div>
     </section>
   </article>
 
-  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width="1200" height="720" alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
+  {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width={related.data.coverWidth} height={related.data.coverHeight} alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <script>
     const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));

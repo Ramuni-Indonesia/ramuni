@@ -143,7 +143,7 @@ CMS may deliver a `form_reference` or CTA identifier. Website lead forms continu
 
 At minimum preserve every current `src/content.config.ts` field:
 
-- title, description, dek, cover/alt;
+- title, description, dek, cover/alt, and optional intrinsic cover width/height;
 - publish/update dates;
 - category/category slug and tags;
 - author/reviewer identity;

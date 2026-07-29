@@ -2,8 +2,10 @@
 title: "Checklist Review Bisnis Mingguan untuk UMKM"
 description: "Checklist 30 menit untuk meninjau penjualan, stok, kas, pelanggan, dan pekerjaan tim secara terarah."
 dek: "Review mingguan yang berguna tidak menumpuk semua laporan. Ia memilih perubahan penting, bukti, dan orang yang menindaklanjuti."
-cover: "/website-original/product-screens/ramuni-product-dashboard-overview.webp"
-coverAlt: "Tampilan dashboard RAMUNI untuk ringkasan bisnis"
+cover: "/website-original/blog/generated/checklist-review-bisnis-mingguan-umkm.webp"
+coverAlt: "Pemilik UMKM meninjau penjualan, stok, kas, pelanggan, dan pekerjaan tim mingguan"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Operasional Bisnis"

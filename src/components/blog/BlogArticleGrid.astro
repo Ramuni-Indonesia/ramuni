@@ -26,7 +26,7 @@ const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', {
     {posts.map((post, index) => (
       <a class="editorial-card reveal" href={`/blog/${post.id}/`} style={`--i:${index}`}>
         <figure>
-          <img src={post.data.cover} width="1200" height="720" alt={post.data.coverAlt} loading="lazy" />
+          <img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" />
           <StoryMicroVisual categorySlug={post.data.categorySlug} compact />
         </figure>
         <div>

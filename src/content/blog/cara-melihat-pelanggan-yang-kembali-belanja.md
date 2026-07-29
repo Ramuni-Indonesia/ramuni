@@ -2,8 +2,10 @@
 title: "Cara Melihat Pelanggan yang Kembali Belanja"
 description: "Panduan sederhana membaca pelanggan kembali dari riwayat transaksi tanpa menebak kebutuhan pribadi mereka."
 dek: "Mulai dari identitas yang konsisten, periode yang jelas, dan izin penggunaan data sebelum menghitung kunjungan kembali."
-cover: "/website-original/context/ramuni-context-sales-customer.webp"
-coverAlt: "Ilustrasi konseptual RAMUNI tentang penjualan dan pola pelanggan"
+cover: "/website-original/blog/generated/cara-melihat-pelanggan-yang-kembali-belanja.webp"
+coverAlt: "Pemilik toko meninjau pola pelanggan yang kembali berbelanja"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Pelanggan & CRM"

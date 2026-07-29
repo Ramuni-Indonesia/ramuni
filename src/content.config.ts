@@ -10,6 +10,8 @@ const blog = defineCollection({
     dek: z.string(),
     cover: z.string(),
     coverAlt: z.string(),
+    coverWidth: z.number().int().positive().default(1200),
+    coverHeight: z.number().int().positive().default(675),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     category: z.string(),

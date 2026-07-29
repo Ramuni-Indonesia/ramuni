@@ -17,6 +17,8 @@ const payload = {
   dek: 'Artikel ini membuktikan kandidat CMS dirender melalui adapter yang sama dengan arsip dan halaman detail blog.',
   cover: 'https://assets-staging.ramuni.id/og-default.png',
   coverAlt: 'Visual acceptance test artikel kandidat CMS RAMUNI',
+  coverWidth: 1280,
+  coverHeight: 720,
   publishedAt: '2026-07-29T00:00:00.000Z',
   category: 'Operasional Bisnis',
   categorySlug: 'operasional-bisnis',
@@ -95,6 +97,10 @@ try {
   assert.match(rendered, /Artikel dari kandidat CMS/);
   assert.match(rendered, /Bukti adapter CMS/);
   assert.match(rendered, /Konten ini dirender dari payload kandidat CMS/);
+  assert.match(rendered, /width="1280" height="720" alt="Visual acceptance test artikel kandidat CMS RAMUNI"/);
+  assert.match(rendered, /class="article-rail-cta"/);
+  assert.match(rendered, /class="article-inline-decision"/);
+  assert.match(rendered, /data-blog-decision-cta/);
   await readFile('dist/blog/index.html');
   await readFile('dist/blog/kategori/operasional-bisnis/index.html');
   console.log(JSON.stringify({

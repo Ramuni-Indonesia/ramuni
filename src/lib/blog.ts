@@ -67,6 +67,13 @@ function cmsMediaUrl(value: unknown, field: string): string {
   return url.toString();
 }
 
+function positiveInteger(value: unknown, field: string, fallback: number): number {
+  if (value == null || value === '') return fallback;
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed <= 0) throw new Error(`CMS article ${field} must be a positive integer`);
+  return parsed;
+}
+
 function slugifyHeading(text: string): string {
   return text.toLocaleLowerCase('id-ID').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
@@ -126,7 +133,9 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
   if (takeaways.length > 5) throw new Error(`CMS article ${slug} takeaways must contain at most 5 items`);
   const data = {
     title: requiredText(payload.title, 'title'), description: requiredText(payload.description, 'description'), dek: requiredText(payload.dek, 'dek'),
-    cover: cmsMediaUrl(payload.cover, 'cover'), coverAlt: requiredText(payload.coverAlt, 'coverAlt'), publishedAt: dateValue(payload.publishedAt, 'publishedAt')!,
+    cover: cmsMediaUrl(payload.cover, 'cover'), coverAlt: requiredText(payload.coverAlt, 'coverAlt'),
+    coverWidth: positiveInteger(payload.coverWidth, 'coverWidth', 1200), coverHeight: positiveInteger(payload.coverHeight, 'coverHeight', 675),
+    publishedAt: dateValue(payload.publishedAt, 'publishedAt')!,
     updatedAt: dateValue(payload.updatedAt, 'updatedAt', true), category: requiredText(payload.category, 'category'), categorySlug: requiredSlug(payload.categorySlug, 'categorySlug'),
     tags: payload.tags == null ? [] : textArray(payload.tags, 'tags'), authorName: requiredText(payload.authorName, 'authorName'), authorSlug: requiredSlug(payload.authorSlug, 'authorSlug'),
     reviewerName: optionalText(payload.reviewerName), reviewerSlug: payload.reviewerSlug == null ? undefined : requiredSlug(payload.reviewerSlug, 'reviewerSlug'), reviewStatus: reviewStatus as BlogData['reviewStatus'],

@@ -136,6 +136,18 @@ body.menu-open .site-header{position:fixed;inset:0 0 auto;width:100%}body.menu-o
 .resource-questions{list-style:none;margin:0;padding:0}
 .resource-questions>p,.resource-questions>li{display:block;padding:20px 0;border-bottom:1px solid var(--ink-10);font-weight:700}
 .resource-questions a{transition:padding var(--fast),background var(--fast)}
+
+/* Restrained decision flow for policy and informational page closers. */
+.policy-close>.container{display:grid;grid-template-columns:minmax(0,.82fr) minmax(340px,1.18fr);align-items:center;gap:clamp(36px,7vw,92px)}
+.policy-close h2{max-width:18ch}
+.policy-close__copy .button{margin-top:24px}
+.policy-close__flow{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;align-items:center;min-height:180px;padding:clamp(20px,3vw,32px);border:1px solid rgb(11 48 69/.18);background:var(--rice);box-shadow:10px 10px 0 rgb(11 48 69/.12)}
+.policy-close__flow span{display:grid;min-height:92px;place-items:center;padding:14px;border:1px solid var(--ink-10);background:var(--white);color:var(--ink);font-size:.76rem;font-weight:800;line-height:1.35;text-align:center}
+.policy-close__flow i{position:relative;height:2px;background:var(--teal)}
+.policy-close__flow i::after{content:"";position:absolute;right:-1px;top:50%;width:8px;height:8px;border-top:2px solid var(--teal);border-right:2px solid var(--teal);transform:translateY(-50%) rotate(45deg)}
+@media(prefers-reduced-motion:no-preference){.policy-close__flow i::before{content:"";position:absolute;top:-2px;left:0;width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:policy-flow-pulse 3.8s ease-in-out infinite}.policy-close__flow i:nth-of-type(2)::before{animation-delay:-1.9s}@keyframes policy-flow-pulse{0%,15%{transform:translateX(0)}65%,100%{transform:translateX(26px)}}}
+@media(max-width:960px){.policy-close>.container{grid-template-columns:1fr}.policy-close__flow{width:100%}}
+@media(max-width:740px){.policy-close>.container{align-items:stretch}.policy-close__copy .button{width:100%}.policy-close__flow{grid-template-columns:1fr;gap:12px;min-height:0;padding:18px;box-shadow:7px 7px 0 rgb(11 48 69/.12)}.policy-close__flow span{min-height:70px}.policy-close__flow i{width:2px;height:24px;justify-self:center}.policy-close__flow i::after{right:50%;top:auto;bottom:-1px;transform:translateX(50%) rotate(135deg)}.policy-close__flow i::before{display:none}}
 .resource-questions a:hover,.resource-questions a:focus-visible{padding-inline:14px;background:var(--teal-12)}
 .resource-questions a span,.resource-questions a strong{display:block}
 .resource-questions a strong{margin-top:7px;color:var(--teal);font-size:.76rem}

@@ -88,7 +88,7 @@ const schema = [
 
   {featured && <section class="section surface blog-featured-stage" aria-labelledby="featured-heading">
     <a class="container featured-story reveal" href={`/blog/${featured.id}/`} aria-labelledby="featured-heading">
-      <div class="featured-visual"><img src={featured.data.cover} width="1200" height="720" alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></div>
+      <div class="featured-visual"><img src={featured.data.cover} width={featured.data.coverWidth} height={featured.data.coverHeight} alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></div>
       <div class="featured-copy">
         <div class="featured-index"><span>Pilihan editor</span><b>01</b></div>
         <span class="blog-category-label">{featured.data.category}</span>

@@ -2,8 +2,10 @@
 title: "Perbedaan Omzet, Laba, dan Arus Kas untuk UMKM"
 description: "Penjelasan sederhana tentang omzet, laba, dan arus kas serta mengapa ketiganya dapat bergerak berbeda."
 dek: "Omzet mencatat nilai penjualan, laba membandingkan pendapatan dan biaya, sedangkan arus kas mengikuti uang yang benar-benar bergerak."
-cover: "/website-original/cash-signal-ledger.svg"
-coverAlt: "Ilustrasi RAMUNI yang memisahkan omzet, laba, dan kas"
+cover: "/website-original/blog/generated/perbedaan-omzet-laba-dan-arus-kas.webp"
+coverAlt: "Visual perbedaan omzet, laba, dan arus kas dalam kegiatan usaha sehari-hari"
+coverWidth: 768
+coverHeight: 432
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Keuangan UMKM"
