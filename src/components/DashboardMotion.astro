@@ -27,11 +27,15 @@ const {
   mobileHeight,
 } = Astro.props;
 
-const usesVerticalScan = width / height < 1.35;
+const aspectRatio = `${width}/${height}`;
+const mobileAspectRatio = mobileWidth && mobileHeight ? `${mobileWidth}/${mobileHeight}` : aspectRatio;
+const scanDistance = Math.round((height / width) * 8000) / 100;
+const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeight / mobileWidth) * 8000) / 100 : scanDistance;
 ---
 
 <span
-  class:list={['dashboard-motion', 'dashboard-motion--' + focus, { 'dashboard-motion--vertical-scan': usesVerticalScan }, className]}
+  class:list={['dashboard-motion', 'dashboard-motion--' + focus, className]}
+  style={`--dashboard-aspect:${aspectRatio};--dashboard-mobile-aspect:${mobileAspectRatio};--dashboard-scan-distance:calc(${scanDistance}cqw - 2px);--dashboard-mobile-scan-distance:calc(${mobileScanDistance}cqw - 2px)`}
   role="img"
   aria-label={label}
 >

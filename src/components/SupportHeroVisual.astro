@@ -1,0 +1,76 @@
+---
+interface Props {
+  label?: string;
+  title?: string;
+}
+
+const {
+  label = 'Alur bantuan',
+  title = 'Kenali masalah, periksa rujukan, lalu sampaikan konteks yang aman.',
+} = Astro.props;
+---
+
+<figure class="support-hero" aria-labelledby="support-hero-title">
+  <div class="support-hero__wash" aria-hidden="true"></div>
+  <div class="support-hero__mascot" aria-hidden="true">
+    <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="" decoding="async" fetchpriority="high" />
+  </div>
+
+  <div class="support-hero__journey" aria-hidden="true">
+    <div class="support-hero__search">
+      <span></span>
+      <strong>Apa yang sedang terhambat?</strong>
+      <i></i>
+    </div>
+    <ol>
+      <li>
+        <span>01</span>
+        <div><strong>Pilih topik</strong><small>Mulai dari pekerjaan yang sedang dilakukan.</small></div>
+      </li>
+      <li>
+        <span>02</span>
+        <div><strong>Baca rujukan</strong><small>Ikuti langkah yang sesuai dengan situasi Anda.</small></div>
+      </li>
+      <li>
+        <span>03</span>
+        <div><strong>Minta bantuan</strong><small>Kirim konteks aman tanpa rahasia atau data sensitif.</small></div>
+      </li>
+    </ol>
+  </div>
+
+  <figcaption>
+    <span>{label}</span>
+    <strong id="support-hero-title">{title}</strong>
+  </figcaption>
+</figure>
+
+<style>
+  .support-hero{position:relative;min-height:520px;margin:0;overflow:hidden;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);isolation:isolate}
+  .support-hero::before{position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 82% 13%,rgb(242 177 52/.3),transparent 31%),linear-gradient(145deg,transparent 0 47%,rgb(22 140 140/.08) 47% 66%,transparent 66%);content:""}
+  .support-hero__wash{position:absolute;z-index:-1;right:-90px;bottom:-95px;width:330px;height:330px;border-radius:50%;background:var(--yellow);opacity:.28}
+  .support-hero__journey{position:absolute;inset:42px 32px 104px 168px;display:grid;align-content:start;gap:18px;min-width:0}
+  .support-hero__search{display:grid;grid-template-columns:26px minmax(0,1fr) 30px;gap:12px;align-items:center;padding:15px 16px;border:1px solid var(--ink);border-radius:999px;background:var(--white);box-shadow:7px 7px 0 rgb(11 48 69/.12)}
+  .support-hero__search>span{position:relative;width:18px;height:18px;border:3px solid var(--teal);border-radius:50%}.support-hero__search>span::after{position:absolute;right:-7px;bottom:-4px;width:8px;height:3px;background:var(--teal);transform:rotate(45deg);content:""}
+  .support-hero__search strong{overflow:hidden;font-size:.76rem;text-overflow:ellipsis;white-space:nowrap}.support-hero__search i{height:8px;border-radius:999px;background:var(--yellow)}
+  .support-hero__journey ol{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+  .support-hero__journey li{display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:center;min-width:0;padding:15px 16px;border:1px solid var(--ink-18);background:rgb(255 255 255/.88);box-shadow:5px 5px 0 rgb(11 48 69/.08)}
+  .support-hero__journey li:nth-child(2){margin-left:28px;background:rgb(242 177 52/.2)}.support-hero__journey li:nth-child(3){margin-left:56px;background:rgb(22 140 140/.1)}
+  .support-hero__journey li>span{display:grid;place-items:center;width:36px;height:36px;background:var(--ink);color:var(--yellow);font-size:.62rem;font-weight:800}
+  .support-hero__journey li div{display:grid;gap:4px;min-width:0}.support-hero__journey li strong{font-size:.78rem}.support-hero__journey li small{color:var(--ink-64);font-size:.62rem;line-height:1.45}
+  .support-hero__mascot{position:absolute;z-index:2;left:-26px;bottom:70px;width:220px;pointer-events:none}.support-hero__mascot img{display:block;width:100%;height:auto;mix-blend-mode:multiply;transform-origin:50% 100%}
+  .support-hero figcaption{position:absolute;z-index:3;right:20px;bottom:20px;left:20px;display:grid;gap:5px;padding:16px 18px;border:1px solid var(--ink-10);background:var(--rice)}
+  .support-hero figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.support-hero figcaption strong{max-width:56ch;font-size:.88rem}
+
+  @media(prefers-reduced-motion:no-preference){
+    .support-hero__mascot img{animation:support-guide-breathe 5.8s var(--ease) infinite}
+    .support-hero__journey li{animation:support-step-in .65s var(--ease) both}.support-hero__journey li:nth-child(2){animation-delay:90ms}.support-hero__journey li:nth-child(3){animation-delay:180ms}
+    .support-hero__search i{animation:support-search-ready 2.8s var(--ease) infinite}
+  }
+  @keyframes support-guide-breathe{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}50%{transform:translate3d(0,-7px,0) rotate(1deg)}}
+  @keyframes support-step-in{from{opacity:.25;transform:translate3d(18px,8px,0)}to{opacity:1;transform:none}}
+  @keyframes support-search-ready{0%,100%{transform:scaleX(.42);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}}
+
+  @media(max-width:900px){.support-hero{min-height:440px}.support-hero__journey{inset:34px 24px 112px 150px}.support-hero__mascot{left:-22px;bottom:82px;width:195px}}
+  @media(max-width:620px){.support-hero{min-height:430px;box-shadow:8px 8px 0 var(--ink)}.support-hero__journey{inset:24px 14px 130px 92px;gap:12px}.support-hero__journey li{padding:11px 12px}.support-hero__journey li:nth-child(2),.support-hero__journey li:nth-child(3){margin-left:0}.support-hero__journey li small{display:none}.support-hero__mascot{left:-42px;bottom:104px;width:160px}.support-hero figcaption{right:14px;bottom:14px;left:14px}}
+  @media(prefers-reduced-motion:reduce){.support-hero__mascot img,.support-hero__journey li,.support-hero__search i{animation:none;transform:none}}
+</style>

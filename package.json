@@ -14,6 +14,7 @@
     "check": "cross-env NAPI_RS_FORCE_WASI=1 astro check",
     "test:content-gateway": "node scripts/test-content-gateway.mjs",
     "test:cms-candidate-render": "node scripts/test-cms-candidate-render.mjs",
+    "test:cms-article-candidate-render": "node scripts/test-cms-article-candidate-render.mjs",
     "test:cms-provider": "node --test test/cms-build-provider.test.mjs",
     "test:r2-sync": "node --test test/sync-r2-assets.test.mjs",
     "audit": "node scripts/site-audit.mjs",

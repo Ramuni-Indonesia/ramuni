@@ -17,6 +17,7 @@ export type BlogPost = {
   id: string;
   data: BlogData;
   source: 'local' | 'cms';
+  snapshotId?: string;
   localEntry?: LocalBlogPost;
   bodyBlocks?: ArticleBodyBlock[];
 };
@@ -150,7 +151,7 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
   if (!data.draft && !data.noindex && data.reviewerSlug === data.authorSlug) {
     throw new Error(`Indexable CMS article ${slug} must use a reviewer distinct from its author`);
   }
-  return { id: slug, data, source: 'cms', bodyBlocks: parseBodyBlocks(payload.bodyBlocks ?? payload.body_blocks) };
+  return { id: slug, data, source: 'cms', snapshotId: page.id, bodyBlocks: parseBodyBlocks(payload.bodyBlocks ?? payload.body_blocks) };
 }
 
 function localPublishedPage(post: LocalBlogPost): PublishedPage<CmsArticlePayload> {

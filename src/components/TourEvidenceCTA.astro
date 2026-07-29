@@ -26,7 +26,7 @@ const {
   title,
   body,
   headingId,
-  primaryLabel = 'Mulai coba gratis',
+  primaryLabel = 'Coba gratis',
   primaryHref = '/tour-produk-gratis/',
   secondaryLabel,
   secondaryHref,
@@ -37,7 +37,7 @@ const {
 } = Astro.props;
 ---
 
-<aside class:list={['tour-evidence-cta', `tour-evidence-cta--${theme}`]} aria-label="Ajakan untuk mencoba RAMUNI gratis">
+<aside class:list={['tour-evidence-cta', `tour-evidence-cta--${theme}`]} aria-label="Ajakan untuk mencoba gratis">
   <div class="tour-evidence-cta__copy">
     <p>{eyebrow}</p>
     <h2 id={headingId}>{title}</h2>

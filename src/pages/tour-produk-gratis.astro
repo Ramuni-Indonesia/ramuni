@@ -7,14 +7,14 @@ const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Coba RAMUNI gratis sesuai kebutuhan usaha Anda',
+  name: 'Coba gratis sesuai kebutuhan usaha Anda',
   url: new URL('/tour-produk-gratis/', siteOrigin).toString(),
   description: 'Ceritakan satu masalah bisnis untuk mendapatkan contoh alur RAMUNI yang relevan.',
   inLanguage: 'id-ID',
 };
 ---
 <BaseLayout
-  title="Coba RAMUNI Gratis untuk Usaha Anda"
+  title="Coba Gratis RAMUNI untuk Usaha Anda"
   description="Ceritakan satu masalah penjualan, stok, keuangan, pelanggan, atau laporan yang ingin Anda pahami bersama RAMUNI."
   schema={schema}
   chrome={false}
@@ -33,7 +33,7 @@ const schema = {
             <h1 id="tour-form-title">Ceritakan satu hal yang ingin Anda pahami dari bisnis.</h1>
             <p>Pilih satu masalah, lihat contoh alurnya, lalu bahas fitur yang paling relevan lewat WhatsApp. Anda tidak perlu menyiapkan data bisnis untuk memulai.</p>
           </div>
-          <LeadForm kind="demo" submitLabel="Mulai coba gratis" />
+          <LeadForm kind="demo" submitLabel="Coba gratis" />
         </div>
       </div>
     </div>

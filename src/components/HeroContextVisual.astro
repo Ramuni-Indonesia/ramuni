@@ -3,63 +3,78 @@ export type HeroContextScene =
   | 'industry-hub' | 'retail' | 'fnb' | 'distributor' | 'reseller-online' | 'jasa' | 'manufaktur-kecil'
   | 'role-hub' | 'pemilik-usaha' | 'admin-toko' | 'kasir' | 'supervisor' | 'support';
 
-type SceneMode = 'bars' | 'ledger' | 'flow' | 'roles' | 'support';
+type SceneMode = 'workspace' | 'inventory' | 'sales' | 'cash' | 'people' | 'support';
 interface Props { scene?: HeroContextScene; label?: string; title?: string; }
 
 const { scene = 'industry-hub', label, title } = Astro.props;
-const profiles: Record<HeroContextScene, { mode: SceneMode; eyebrow: string; headline: string; rows: string[]; values: string[] }> = {
-  'industry-hub': { mode: 'bars', eyebrow: 'Konteks usaha', headline: 'Pertanyaan yang sama dibaca dengan ritme berbeda.', rows: ['Penjualan', 'Stok', 'Biaya', 'Pelanggan'], values: ['Prioritas', 'Perlu cek', 'Stabil', 'Tinjau'] },
-  retail: { mode: 'bars', eyebrow: 'Rak & SKU', headline: 'Produk cepat bergerak dipasangkan dengan sisa stok.', rows: ['Kopi susu', 'Roti cokelat', 'Air mineral', 'Snack'], values: ['Laris', '8 unit', 'Stabil', 'Naik'] },
-  fnb: { mode: 'bars', eyebrow: 'Menu & bahan', headline: 'Menu ramai dibaca bersama bahan sebelum jam puncak.', rows: ['Menu ramai', 'Bahan utama', 'Jam puncak', 'Biaya bahan'], values: ['18 porsi', '11 tersisa', 'Sore', 'Cek'] },
-  distributor: { mode: 'ledger', eyebrow: 'Pesanan ulang', headline: 'Pesanan, pelanggan rutin, dan stok dilihat dalam satu urutan.', rows: ['Pesanan aktif', 'Pelanggan rutin', 'Stok karton', 'Pembayaran'], values: ['14 order', '4 akun', '32 karton', 'Tinjau'] },
-  'reseller-online': { mode: 'flow', eyebrow: 'Kanal penjualan', headline: 'Produk ramai belum tentu sehat jika HPP dan kanal belum rapi.', rows: ['Katalog', 'Kanal A', 'Kanal B', 'Margin'], values: ['24 unit', 'Rp85 rb', 'Rp58 rb', 'Cek HPP'] },
-  jasa: { mode: 'ledger', eyebrow: 'Layanan & biaya', headline: 'Pendapatan layanan dibaca bersama biaya pendukung.', rows: ['Pendapatan', 'Biaya langsung', 'Kas masuk', 'Repeat order'], values: ['Rp4,8 jt', 'Rp1,6 jt', 'Tercatat', '3 order'] },
-  'manufaktur-kecil': { mode: 'flow', eyebrow: 'Bahan ke barang jadi', headline: 'Bahan, proses, dan penjualan tidak dibaca terpisah.', rows: ['Bahan utama', 'Proses', 'Barang jadi', 'Penjualan'], values: ['32 bahan', 'Batch 04', '18 jadi', 'Cek'] },
-  'role-hub': { mode: 'roles', eyebrow: 'Batas peran', headline: 'Satu sumber data, sudut baca berbeda untuk setiap orang.', rows: ['Pemilik', 'Admin', 'Kasir', 'Supervisor'], values: ['Penuh', 'Operasional', 'Terbatas', 'Pantau'] },
-  'pemilik-usaha': { mode: 'roles', eyebrow: 'Layar pemilik', headline: 'Ringkasan menyorot keputusan yang perlu disetujui.', rows: ['Omzet', 'Kas', 'Stok', 'Tindak lanjut'], values: ['Prioritas', 'Bukti ada', 'Cek', 'Putuskan'] },
-  'admin-toko': { mode: 'ledger', eyebrow: 'Ruang admin', headline: 'Data kotor ditandai sebelum masuk ringkasan.', rows: ['Produk ganda', 'Import file', 'Koreksi', 'Sinkron'], values: ['4 perlu cek', '124 siap', 'Berjejak', 'Rapi'] },
-  kasir: { mode: 'support', eyebrow: 'Meja kasir', headline: 'Transaksi dibantu tanpa membuka area sensitif.', rows: ['Transaksi', 'Pembayaran', 'Catatan', 'Minta bantuan'], values: ['2 tertahan', 'Perlu cek', 'Aman', 'Kirim'] },
-  supervisor: { mode: 'ledger', eyebrow: 'Pengecualian', headline: 'Masalah harian dikirim dengan konteks, bukan chat kosong.', rows: ['Antrian', 'Stok turun', 'Tim', 'Tindak lanjut'], values: ['3 isu', 'Periksa', 'Pemilik', 'Pantau'] },
-  support: { mode: 'support', eyebrow: 'Alur bantuan', headline: 'Cari masalah, siapkan konteks aman, lalu pilih dukungan.', rows: ['Cari topik', 'Baca rujukan', 'Cek status', 'Hubungi'], values: ['Tanpa PII', 'Panduan', 'Terkini', 'Aman'] },
+const baseMascots = {
+  muni: '/website-original/mascot/phase-1/muni-manyar-friendly-v2.webp',
+  ramu: '/website-original/mascot/phase-1/si-ramu-friendly-v2.webp',
+  kancil: '/website-original/mascot/phase-1/kancil-cermat-friendly-v2.webp',
+} as const;
+const profiles: Record<HeroContextScene, { mode: SceneMode; eyebrow: string; headline: string; image: string; imageAlt: string; mascot: keyof typeof baseMascots; chips: string[]; accent: 'teal' | 'yellow' | 'ink' }> = {
+  'industry-hub': { mode: 'workspace', eyebrow: 'Konteks usaha', headline: 'Setiap usaha dibaca dari ritme pekerjaan hariannya.', image: '/website-original/context/ramuni-context-umkm-signal-workspace.webp', imageAlt: 'Meja kerja usaha dengan catatan, kalkulator, dan alur arah berwarna RAMUNI', mascot: 'kancil', chips: ['Ritme usaha', 'Catatan harian', 'Arah cek'], accent: 'teal' },
+  retail: { mode: 'inventory', eyebrow: 'Rak dan SKU', headline: 'Laju jual dilihat bersama stok yang tersedia.', image: '/website-original/context/ramuni-context-stock-operations.webp', imageAlt: 'Rak stok toko dengan produk tersusun dan catatan pemeriksaan', mascot: 'muni', chips: ['Produk laris', 'Sisa stok', 'Reorder'], accent: 'yellow' },
+  fnb: { mode: 'inventory', eyebrow: 'Menu dan bahan', headline: 'Menu ramai dipasangkan dengan kebutuhan bahan.', image: '/website-original/context/ramuni-context-stock-operations.webp', imageAlt: 'Rak bahan dan produk yang disusun untuk pemeriksaan operasional', mascot: 'kancil', chips: ['Menu ramai', 'Bahan utama', 'Jam puncak'], accent: 'yellow' },
+  distributor: { mode: 'sales', eyebrow: 'Pesanan ulang', headline: 'Order, pelanggan rutin, dan stok dibaca dalam satu urutan.', image: '/website-original/context/ramuni-context-sales-customer.webp', imageAlt: 'Ilustrasi hubungan penjualan dan pelanggan pada konteks usaha', mascot: 'ramu', chips: ['Order aktif', 'Pelanggan rutin', 'Stok kirim'], accent: 'teal' },
+  'reseller-online': { mode: 'sales', eyebrow: 'Kanal penjualan', headline: 'Produk ramai tetap dicek bersama margin dan kanal.', image: '/website-original/context/ramuni-context-sales-customer.webp', imageAlt: 'Ilustrasi penjualan dan pelanggan untuk membaca kanal usaha', mascot: 'muni', chips: ['Katalog', 'Kanal jual', 'Margin'], accent: 'ink' },
+  jasa: { mode: 'cash', eyebrow: 'Layanan dan biaya', headline: 'Pendapatan layanan dibaca bersama biaya pendukung.', image: '/website-original/context/ramuni-context-cash-report.webp', imageAlt: 'Ilustrasi arus kas dan laporan usaha dalam gaya RAMUNI', mascot: 'ramu', chips: ['Kas masuk', 'Biaya', 'Repeat order'], accent: 'teal' },
+  'manufaktur-kecil': { mode: 'inventory', eyebrow: 'Bahan ke barang jadi', headline: 'Bahan, proses, dan penjualan tidak dibaca terpisah.', image: '/website-original/context/ramuni-context-stock-operations.webp', imageAlt: 'Rak persediaan dan alur pemeriksaan stok untuk usaha kecil', mascot: 'kancil', chips: ['Bahan', 'Proses', 'Barang jadi'], accent: 'yellow' },
+  'role-hub': { mode: 'people', eyebrow: 'Batas peran', headline: 'Satu sumber data, sudut baca berbeda untuk setiap orang.', image: '/website-original/context/ramuni-context-ai-import.webp', imageAlt: 'Ilustrasi ruang kerja data dengan catatan yang siap diperiksa', mascot: 'ramu', chips: ['Pemilik', 'Admin', 'Kasir'], accent: 'teal' },
+  'pemilik-usaha': { mode: 'people', eyebrow: 'Layar pemilik', headline: 'Ringkasan menyorot keputusan yang perlu disetujui.', image: '/website-original/context/ramuni-context-umkm-signal-workspace.webp', imageAlt: 'Meja kerja pemilik usaha dengan catatan dan arah pemeriksaan', mascot: 'kancil', chips: ['Arah bisnis', 'Bukti', 'Keputusan'], accent: 'ink' },
+  'admin-toko': { mode: 'workspace', eyebrow: 'Ruang admin', headline: 'Data yang belum rapi ditandai sebelum masuk ringkasan.', image: '/website-original/context/ramuni-context-ai-import.webp', imageAlt: 'Ilustrasi impor catatan usaha dan pemeriksaan data', mascot: 'ramu', chips: ['Import', 'Koreksi', 'Sinkron'], accent: 'teal' },
+  kasir: { mode: 'sales', eyebrow: 'Meja kasir', headline: 'Transaksi dibantu tanpa membuka area sensitif.', image: '/website-original/context/ramuni-context-sales-customer.webp', imageAlt: 'Ilustrasi transaksi dan pelanggan untuk konteks kasir', mascot: 'muni', chips: ['Transaksi', 'Pembayaran', 'Bantuan'], accent: 'yellow' },
+  supervisor: { mode: 'people', eyebrow: 'Pengecualian', headline: 'Masalah harian dikirim dengan konteks yang jelas.', image: '/website-original/context/ramuni-context-stock-operations.webp', imageAlt: 'Rak operasional untuk membaca pengecualian stok dan pekerjaan tim', mascot: 'kancil', chips: ['Antrian', 'Stok turun', 'Tindak lanjut'], accent: 'teal' },
+  support: { mode: 'support', eyebrow: 'Alur bantuan', headline: 'Cari masalah, siapkan konteks aman, lalu pilih dukungan.', image: '/website-original/context/ramuni-context-ai-import.webp', imageAlt: 'Ilustrasi catatan dukungan dan pemeriksaan konteks', mascot: 'muni', chips: ['Cari topik', 'Baca rujukan', 'Hubungi'], accent: 'teal' },
 };
 const profile = profiles[scene] ?? profiles['industry-hub'];
-const levels = [78, 34, 62, 48];
-const screenTitle = profile.mode === 'support' ? 'Pusat bantuan RAMUNI' : profile.mode === 'roles' ? 'Hak akses tim' : 'Alur pemeriksaan';
+const mascotSrc = baseMascots[profile.mascot];
 ---
 
-<figure class:list={['hero-context', 'hero-context--' + profile.mode]} aria-labelledby={'hero-context-' + scene}>
+<figure class:list={['hero-context', 'hero-context--' + profile.mode, 'hero-context--' + profile.accent]} aria-labelledby={'hero-context-' + scene}>
+  <div class="hero-context__media">
+    <img class="hero-context__image" src={profile.image} width="1200" height="720" alt={profile.imageAlt} loading="lazy" decoding="async" />
+    <div class="hero-context__soft-panel" aria-hidden="true">
+      <span>{profile.eyebrow}</span>
+      <strong>Fokus yang dibuka</strong>
+      <ol>{profile.chips.map((chip) => <li>{chip}</li>)}</ol>
+    </div>
+  </div>
+
+  <img class="hero-context__mascot" src={mascotSrc} width="1024" height="1024" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+
   <figcaption>
     <span>{label || profile.eyebrow}</span>
     <strong id={'hero-context-' + scene}>{title || profile.headline}</strong>
-    <small>Visual interaktif sesuai konteks halaman</small>
   </figcaption>
-  <div class="hero-context__screen" aria-hidden="true">
-    <header><span>{profile.eyebrow}</span><b>{screenTitle}</b></header>
-    {profile.mode === 'bars' && <div class="hero-context__bars">{profile.rows.map((row, index) => <article class:list={{ 'is-focus': index === 1 }}><span>{row}</span><i style={'--level:' + levels[index] + '%'}></i><strong>{profile.values[index]}</strong></article>)}</div>}
-    {profile.mode === 'ledger' && <div class="hero-context__ledger">{profile.rows.map((row, index) => <article class:list={{ 'is-focus': index === 0 }}><small>{String(index + 1).padStart(2, '0')}</small><div><strong>{row}</strong><span>{profile.values[index]}</span></div><b>{index === 0 ? 'Buka' : 'Cek'}</b></article>)}</div>}
-    {profile.mode === 'flow' && <div class="hero-context__flow">{profile.rows.map((row, index) => <><article><span>0{index + 1}</span><strong>{row}</strong><small>{profile.values[index]}</small></article>{index < 3 && <i></i>}</>)}</div>}
-    {profile.mode === 'roles' && <div class="hero-context__roles">{profile.rows.map((row, index) => <article class:list={{ 'is-primary': index === 0 }}><span>{row}</span><strong>{profile.values[index]}</strong></article>)}</div>}
-    {profile.mode === 'support' && <div class="hero-context__support"><div><i></i><span>{profile.rows[0]}</span><b>{profile.values[0]}</b></div><ol>{profile.rows.slice(1).map((row, index) => <li><small>0{index + 1}</small><strong>{row}</strong><span>{profile.values[index + 1]}</span></li>)}</ol></div>}
-  </div>
-  <div class="hero-context__tokens" aria-hidden="true"><i></i><i></i><i></i></div>
 </figure>
 
 <style>
-  .hero-context{position:relative;min-height:520px;margin:0;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);overflow:hidden;isolation:isolate}
-  .hero-context::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--ink-10) 1px,transparent 1px),linear-gradient(90deg,var(--ink-10) 1px,transparent 1px);background-size:44px 44px;opacity:.46}
-  .hero-context__screen{position:absolute;inset:32px 28px 106px;display:grid;grid-template-rows:auto minmax(0,1fr);border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.16);overflow:hidden}
-  .hero-context__screen header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--ink-10);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.hero-context__screen header span{color:var(--teal)}
-  .hero-context figcaption{position:absolute;z-index:3;left:20px;right:20px;bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;padding:16px 18px;background:var(--rice);color:var(--ink);border:1px solid var(--ink-10)}
-  .hero-context figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero-context figcaption strong{font-size:.88rem}.hero-context figcaption small{grid-column:1/-1;color:var(--ink-56);font-size:.62rem}
-  .hero-context__tokens{position:absolute;right:26px;top:24px;display:flex;gap:7px}.hero-context__tokens i{width:22px;height:22px;border:1px solid var(--ink);background:var(--teal)}.hero-context__tokens i:nth-child(2){background:var(--yellow);transform:translateY(8px)}.hero-context__tokens i:nth-child(3){background:var(--ink);transform:translateY(16px)}
-  .hero-context__bars,.hero-context__ledger,.hero-context__flow,.hero-context__roles,.hero-context__support{min-width:0;padding:clamp(18px,3vw,32px)}
-  .hero-context__bars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:10px}.hero-context__bars article{display:grid;align-content:end;gap:12px;min-height:240px;padding:12px;border:1px solid var(--ink-10);background:var(--rice)}.hero-context__bars article.is-focus{background:var(--yellow)}.hero-context__bars span,.hero-context__bars strong{font-size:.66rem}.hero-context__bars i{display:block;height:var(--level);min-height:32px;background:var(--teal)}
-  .hero-context__ledger{display:grid;align-content:center}.hero-context__ledger article{display:grid;grid-template-columns:30px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--ink-10)}.hero-context__ledger article.is-focus{padding-inline:12px;background:var(--yellow)}.hero-context__ledger small{color:var(--teal);font-weight:800}.hero-context__ledger div{display:grid;gap:3px}.hero-context__ledger div span{color:var(--ink-72);font-size:.68rem}.hero-context__ledger article>b{color:var(--teal);font-size:.65rem}
-  .hero-context__flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:8px}.hero-context__flow article{display:grid;align-content:end;min-height:170px;padding:13px;border:1px solid var(--ink);background:var(--rice)}.hero-context__flow article:nth-of-type(2){background:var(--yellow)}.hero-context__flow>i{width:16px;height:2px;background:var(--teal)}.hero-context__flow article span,.hero-context__flow article small{color:var(--teal);font-size:.58rem;font-weight:800}.hero-context__flow article strong{margin-top:38px;font-size:.82rem}
-  .hero-context__roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hero-context__roles article{display:grid;place-items:center;gap:9px;min-height:120px;border:1px solid var(--ink-10);background:var(--rice);text-align:center}.hero-context__roles article.is-primary{grid-row:span 2;background:var(--ink);color:var(--white)}.hero-context__roles span{font-size:.72rem;font-weight:800}.hero-context__roles strong{color:var(--teal);font-size:.66rem}.hero-context__roles .is-primary strong{color:var(--yellow)}
-  .hero-context__support{display:grid;gap:14px}.hero-context__support>div{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;padding:15px;border:1px solid var(--ink);background:var(--rice)}.hero-context__support>div i{width:17px;height:17px;border:3px solid var(--teal);border-radius:50%}.hero-context__support>div b{color:var(--teal);font-size:.62rem}.hero-context__support ol{display:grid;gap:8px;margin:0;padding:0;list-style:none}.hero-context__support li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;padding:13px;border:1px solid var(--ink-10)}.hero-context__support li small,.hero-context__support li span{color:var(--teal);font-size:.62rem}
-  @media(prefers-reduced-motion:no-preference){.hero-context__support li,.hero-context__roles article,.hero-context__flow article{animation:hero-context-rise .65s var(--ease) both;animation-delay:calc(var(--i,0)*90ms)}.hero-context__support li:nth-child(2),.hero-context__roles article:nth-child(2),.hero-context__flow article:nth-of-type(2){--i:1}.hero-context__support li:nth-child(3),.hero-context__roles article:nth-child(3),.hero-context__flow article:nth-of-type(3){--i:2}.hero-context__roles article:nth-child(4),.hero-context__flow article:nth-of-type(4){--i:3}@keyframes hero-context-rise{from{opacity:.2;transform:translateY(12px)}to{opacity:1;transform:none}}}
-  @media(max-width:900px){.hero-context{min-height:440px}.hero-context__screen{inset:30px 22px 118px}.hero-context__bars{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-context__bars article{min-height:100px}.hero-context__flow{grid-template-columns:1fr}.hero-context__flow>i{width:2px;height:12px;justify-self:center}.hero-context__flow article{min-height:72px}}
-  @media(max-width:620px){.hero-context{min-height:420px;box-shadow:8px 8px 0 var(--ink)}.hero-context__screen{inset:20px 14px 136px}.hero-context figcaption{grid-template-columns:1fr;left:14px;right:14px;bottom:14px}.hero-context figcaption small{grid-column:auto}.hero-context__tokens{display:none}.hero-context__roles{grid-template-columns:1fr}.hero-context__roles article{min-height:66px}.hero-context__roles article.is-primary{grid-row:auto}.hero-context__support li{grid-template-columns:26px 1fr}.hero-context__support li span{grid-column:2}}
-  @media(prefers-reduced-motion:reduce){.hero-context__screen{transition:none;transform:none!important}}
+  .hero-context{--hero-accent:var(--teal);position:relative;min-height:520px;margin:0;overflow:hidden;border:1px solid var(--ink);background:var(--rice);box-shadow:16px 16px 0 var(--ink);isolation:isolate}
+  .hero-context--yellow{--hero-accent:var(--yellow)}.hero-context--ink{--hero-accent:var(--ink)}
+  .hero-context::before{position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 82% 16%,rgb(242 177 52/.34),transparent 28%),radial-gradient(circle at 12% 82%,rgb(22 140 140/.18),transparent 31%);content:""}
+  .hero-context::after{position:absolute;right:-86px;bottom:-112px;z-index:-1;width:310px;height:310px;border-radius:50%;background:var(--hero-accent);opacity:.18;content:""}
+  .hero-context__media{position:absolute;inset:28px 28px 100px 92px;overflow:hidden;border:1px solid var(--ink);background:var(--white);box-shadow:10px 10px 0 rgb(11 48 69/.14)}
+  .hero-context__image{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-context__media::after{position:absolute;inset:0;background:linear-gradient(90deg,rgb(11 48 69/.04),transparent 42%),linear-gradient(0deg,rgb(11 48 69/.3),transparent 46%);content:""}
+  .hero-context__soft-panel{position:absolute;right:18px;bottom:18px;z-index:2;width:min(265px,58%);padding:16px;border:1px solid rgb(255 255 255/.5);border-radius:18px;background:rgb(255 255 255/.86);box-shadow:0 18px 46px rgb(11 48 69/.16);backdrop-filter:blur(12px)}
+  .hero-context__soft-panel>span{display:block;color:var(--teal);font-size:.64rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero-context__soft-panel strong{display:block;margin-top:8px;font-size:.92rem}.hero-context__soft-panel ol{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}.hero-context__soft-panel li{padding:6px 9px;border-radius:999px;background:var(--rice);color:var(--ink);font-size:.64rem;font-weight:800}
+  .hero-context__mascot{position:absolute;left:-58px;bottom:70px;z-index:3;width:clamp(170px,28%,245px);height:auto;filter:drop-shadow(0 16px 26px rgb(11 48 69/.18));mix-blend-mode:multiply;transform-origin:50% 100%}
+  .hero-context figcaption{position:absolute;right:20px;bottom:20px;left:20px;z-index:4;display:grid;gap:6px;padding:16px 18px;border:1px solid var(--ink-10);background:var(--rice);color:var(--ink)}
+  .hero-context figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.hero-context figcaption strong{max-width:54ch;font-size:.9rem;line-height:1.35}
+
+  @media(prefers-reduced-motion:no-preference){
+    .hero-context__image{animation:hero-context-image-drift 12s var(--ease) infinite alternate}
+    .hero-context__mascot{animation:hero-context-mascot-wave 5.8s var(--ease) infinite}
+    .hero-context__soft-panel{animation:hero-context-panel-in .7s var(--ease) both}
+    .hero-context__soft-panel li{animation:hero-context-chip-in .55s var(--ease) both}.hero-context__soft-panel li:nth-child(2){animation-delay:90ms}.hero-context__soft-panel li:nth-child(3){animation-delay:180ms}
+  }
+  @keyframes hero-context-image-drift{from{transform:scale(1.02) translate3d(-.6%,0,0)}to{transform:scale(1.07) translate3d(.8%,-.8%,0)}}
+  @keyframes hero-context-mascot-wave{0%,100%{transform:translate3d(0,0,0) rotate(-1deg)}48%{transform:translate3d(9px,-9px,0) rotate(1.2deg)}}
+  @keyframes hero-context-panel-in{from{opacity:.35;transform:translate3d(18px,12px,0)}to{opacity:1;transform:none}}
+  @keyframes hero-context-chip-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  @media(max-width:900px){.hero-context{min-height:450px}.hero-context__media{inset:26px 22px 116px 72px}.hero-context__mascot{left:-56px;bottom:88px;width:188px}}
+  @media(max-width:620px){.hero-context{min-height:430px;box-shadow:8px 8px 0 var(--ink)}.hero-context__media{inset:18px 14px 136px 46px}.hero-context__soft-panel{right:12px;bottom:12px;width:min(245px,72%);padding:13px}.hero-context__soft-panel li{font-size:.6rem}.hero-context__mascot{left:-68px;bottom:120px;width:152px}.hero-context figcaption{right:14px;bottom:14px;left:14px}}
+  @media(prefers-reduced-motion:reduce){.hero-context__image,.hero-context__mascot,.hero-context__soft-panel,.hero-context__soft-panel li{animation:none!important;transform:none!important}}
 </style>

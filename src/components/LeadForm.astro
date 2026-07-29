@@ -6,14 +6,15 @@ interface Props {
   mode?: 'standard' | 'progressive';
   handoff?: 'thank-you' | 'whatsapp';
   location?: string;
+  compact?: boolean;
 }
-const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline' } = Astro.props;
-const labels = { 'early-access': 'Minta akses uji coba', demo: 'Mulai coba gratis', contact: 'Kirim permintaan konsultasi' };
+const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false } = Astro.props;
+const labels = { 'early-access': 'Minta akses uji coba', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';
 ---
-<form class:list={['lead-form', { 'lead-form--progressive': isProgressive }]} action={enabled ? endpoint : undefined} method="post"
+<form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact }]} action={enabled ? endpoint : undefined} method="post"
   data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
   data-enabled={String(enabled)} novalidate>
   {isProgressive && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
@@ -30,9 +31,9 @@ const isProgressive = mode === 'progressive';
   <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
     {isProgressive && <legend>Beri konteks minimum agar tim tidak menebak-nebak.</legend>}
     <div class="form-grid">
-      <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>
-      <div class="field"><label for={kind + '-' + location + '-industry'}>Jenis usaha</label><select id={kind + '-' + location + '-industry'} name="industry" required><option value="">Pilih jenis usaha</option><option value="retail">Retail</option><option value="food-beverage">F&amp;B / kuliner</option><option value="distributor">Distributor</option><option value="online-reseller">Reseller online</option><option value="services">Jasa</option><option value="small-manufacturing">Manufaktur kecil</option><option value="other">Lainnya</option></select></div>
-      <div class="field"><label for={kind + '-' + location + '-size'}>Ukuran tim</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-plus">Lebih dari 20 orang</option></select></div>
+      {!compact && <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>}
+      {!compact && <div class="field"><label for={kind + '-' + location + '-industry'}>Jenis usaha</label><select id={kind + '-' + location + '-industry'} name="industry" required><option value="">Pilih jenis usaha</option><option value="retail">Retail</option><option value="food-beverage">F&amp;B / kuliner</option><option value="distributor">Distributor</option><option value="online-reseller">Reseller online</option><option value="services">Jasa</option><option value="small-manufacturing">Manufaktur kecil</option><option value="other">Lainnya</option></select></div>}
+      {!compact && <div class="field"><label for={kind + '-' + location + '-size'}>Ukuran tim</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="">Pilih ukuran tim</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-plus">Lebih dari 20 orang</option></select></div>}
       <div class="field"><label for={kind + '-' + location + '-intent'}>Kebutuhan utama</label><select id={kind + '-' + location + '-intent'} name="intent" required><option value="">Pilih kebutuhan</option><option value="overview">Memahami kondisi usaha</option><option value="catalog">Merapikan data produk</option><option value="sales">Memahami penjualan</option><option value="stock">Merapikan stok</option><option value="finance">Membaca laba dan kas</option><option value="customer">Memahami pelanggan</option><option value="report">Merapikan laporan</option><option value="support">Bantuan atau pertanyaan lain</option></select></div>
     </div>
     <div class="field field--context"><label for={kind + '-' + location + '-need'}>Apa yang ingin Anda pahami?</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan data pelanggan, transaksi, password, token, atau informasi sensitif.</small></div>

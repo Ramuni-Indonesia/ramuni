@@ -57,8 +57,8 @@ const hasVerifiedReviewer = Boolean(
 );
 
 const cta = {
-  'early-access': { title: 'Lihat cara RAMUNI membaca masalah usaha ini.', text: 'Sesi coba gratis menggunakan skenario sederhana dan tidak meminta catatan bisnis sensitif.', label: 'Coba RAMUNI gratis', href: '/tour-produk-gratis/' },
-  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Sesi coba gratis dimulai dari skenario sederhana agar alurnya mudah dipahami.', label: 'Coba RAMUNI gratis', href: '/tour-produk-gratis/' },
+  'early-access': { title: 'Lihat cara RAMUNI membaca masalah usaha ini.', text: 'Sesi coba gratis menggunakan skenario sederhana dan tidak meminta catatan bisnis sensitif.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
+  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Sesi coba gratis dimulai dari skenario sederhana agar alurnya mudah dipahami.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
   product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk/' },
 }[post.data.ctaType];
 
@@ -103,7 +103,7 @@ const schema = [
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={coverWidth} imageHeight={coverHeight} noindex={!articleIndexable} schema={schema} ogType="article" keywords={post.data.tags}>
   {embeddedCalculator && <style is:inline set:html={calculatorWidgetStyles} />}
   <div class="article-reading-progress" aria-hidden="true"><i></i></div>
-  <article>
+  <article data-cms-snapshot={post.snapshotId}>
     <header class="article-hero">
       <div class="container article-head">
         <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>

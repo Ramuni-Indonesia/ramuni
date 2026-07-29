@@ -1,5 +1,6 @@
 ---
 import HeroContextVisual, { type HeroContextScene } from './HeroContextVisual.astro';
+import SupportHeroVisual from './SupportHeroVisual.astro';
 
 interface Props {
   eyebrow?: string;
@@ -42,7 +43,9 @@ const resolvedScene = visualScene ?? (visual === 'evidence' ? 'industry-hub' : '
       </div>}
     </div>
     {visual && (
-      <HeroContextVisual scene={resolvedScene} label={visualLabel} title={visualTitle} />
+      resolvedScene === 'support'
+        ? <SupportHeroVisual label={visualLabel} title={visualTitle} />
+        : <HeroContextVisual scene={resolvedScene} label={visualLabel} title={visualTitle} />
     )}
   </div>
 </section>
@@ -50,9 +53,9 @@ const resolvedScene = visualScene ?? (visual === 'evidence' ? 'industry-hub' : '
 <style>
   .page-hero__copy{min-width:0}.page-hero--visual{overflow:hidden;padding-block:clamp(48px,6vw,90px)}
   .page-hero__layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(430px,1.12fr);gap:clamp(40px,7vw,104px);align-items:center}
-  .page-hero__layout>:global(.hero-context){width:100%;min-width:0}
+  .page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:100%;min-width:0}
   .page-hero--visual h1{font-size:var(--type-h1);line-height:1.04;max-width:16ch;text-wrap:balance}
   .page-hero--visual .lede{max-width:48ch}
-  @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__layout>:global(.hero-context){width:min(720px,100%);justify-self:center}}
-  @media(min-width:961px) and (max-width:1200px){.page-hero__layout{grid-template-columns:minmax(260px,.82fr) minmax(430px,1.18fr);gap:30px}.page-hero__layout>:global(.hero-context){width:100%;min-height:410px;justify-self:stretch}}
+  @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:min(720px,100%);justify-self:center}}
+  @media(min-width:961px) and (max-width:1200px){.page-hero__layout{grid-template-columns:minmax(260px,.82fr) minmax(430px,1.18fr);gap:30px}.page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:100%;min-height:410px;justify-self:stretch}}
 </style>
