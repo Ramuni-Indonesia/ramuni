@@ -19,11 +19,11 @@ const dashboardContext = getProductMarketingDashboardContext(slug);
 ---
 
 {isHub ? (
-  <div class="product-canvas product-canvas--hub-proof" aria-label="Contoh ruang kerja RAMUNI berbasis data rekaan">
+  <div class="product-canvas product-canvas--hub-proof" aria-label="Contoh ruang kerja RAMUNI">
     <MarketingDashboardCanvas context={dashboardContext} priority />
   </div>
 ) : (
-  <div class="product-canvas product-canvas--detail-proof" aria-label={`Contoh ruang kerja ${title}: ${question}`}>
+  <div class="product-canvas product-canvas--detail-proof" aria-label={`Ruang kerja ${title}: ${question}`}>
     <MarketingDashboardCanvas context={dashboardContext} priority />
   </div>
 )}
@@ -31,6 +31,10 @@ const dashboardContext = getProductMarketingDashboardContext(slug);
 <style>
   .product-canvas{position:relative;min-width:0;margin:0;overflow:hidden}
   .product-canvas--detail-proof{container-type:inline-size}
+  .product-canvas--detail-proof :global(.marketing-dashboard){border-color:rgb(11 48 69/.1);box-shadow:none}
+  .product-canvas--detail-proof :global(.marketing-dashboard__content){padding:12px}
+  .product-canvas--detail-proof :global(.marketing-dashboard__disclosure){display:none}
+  .product-canvas--detail-proof :global(.marketing-dashboard__shell){background:var(--white)}
   @media(max-width:740px){.product-canvas{border-radius:16px}}
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}}
 </style>

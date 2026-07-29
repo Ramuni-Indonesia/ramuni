@@ -52,7 +52,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       {
         label: 'AI & Insight',
         links: [
-          { label: 'Asisten AI', href: '/produk/asisten-ai/', description: 'Tanya kondisi usaha. Preview awal memperlihatkan AI membaca data tanpa tindakan otomatis.' },
+          { label: 'Asisten AI', href: '/produk/asisten-ai/', description: 'Tanya kondisi usaha. Lihat cara AI membaca data tanpa tindakan otomatis.' },
           { label: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', description: 'Lihat prioritas sebelum membuka detail angka.' },
           { label: 'Laporan & Insight', href: '/produk/laporan-insight/', description: 'Ringkas harian dan mingguan dengan periode jelas.' },
         ],
@@ -147,6 +147,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
         label: 'Pakai',
         links: [
           { label: 'Template', href: '/template/', description: 'Template sederhana untuk pekerjaan rutin usaha.' },
+          { label: 'Generator Lembar Stok', href: '/generator/lembar-stok-harian/', description: 'Susun lembar stok lalu unduh sebagai CSV, Excel, atau PDF.' },
           { label: 'Kalkulator Laba', href: '/kalkulator/laba-usaha/', description: 'Hitung laba edukatif di browser.' },
           { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', description: 'Periksa biaya barang terjual.' },
           { label: 'Kalkulator Harga Jual', href: '/kalkulator/harga-jual/', description: 'Perkirakan harga dari HPP dan margin.' },
@@ -208,6 +209,7 @@ export const footerNavigation: FooterNavigationGroup[] = [
       { label: 'Blog', href: '/blog/' },
       { label: 'Panduan', href: '/panduan/' },
       { label: 'Template', href: '/template/' },
+      { label: 'Generator Stok', href: '/generator/lembar-stok-harian/' },
       { label: 'Kalkulator', href: '/kalkulator/' },
       { label: 'Kamus Bisnis', href: '/kamus-bisnis/' },
       { label: 'Bantuan', href: '/bantuan/' },

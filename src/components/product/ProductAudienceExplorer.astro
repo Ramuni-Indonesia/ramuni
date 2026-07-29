@@ -1,0 +1,112 @@
+---
+interface LinkItem {
+  title: string;
+  text: string;
+  href: string;
+}
+
+interface Props {
+  slug: string;
+  title: string;
+  roles: LinkItem[];
+  industries: LinkItem[];
+  heading: string;
+}
+
+const { slug, title, roles, industries, heading } = Astro.props;
+const panels = industries.map((industry, index) => ({
+  industry,
+  role: roles[index % roles.length],
+}));
+---
+
+<section id="product-audience" class="pd-audience" data-section-id="product-audience" data-analytics-id="product_audience_context" aria-labelledby="product-audience-title">
+  <div class="container pd-audience__layout" data-product-audience={slug}>
+    <header class="pd-audience__intro reveal">
+      <h2 id="product-audience-title">{heading}</h2>
+      <p>Pilih contoh usaha. Lihat siapa yang perlu memeriksa catatan sebelum keputusan dibuat.</p>
+    </header>
+
+    <div class="pd-audience__explorer reveal">
+      <div class="pd-audience__tabs" role="tablist" aria-label={`Konteks penggunaan ${title}`}>
+        {panels.map(({ industry }, index) => (
+          <button
+            type="button"
+            role="tab"
+            id={`product-audience-tab-${slug}-${index}`}
+            aria-controls={`product-audience-panel-${slug}-${index}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            tabindex={index === 0 ? 0 : -1}
+          >
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            {industry.title}
+          </button>
+        ))}
+      </div>
+
+      <div class="pd-audience__panels">
+        {panels.map(({ industry, role }, index) => (
+          <article
+            id={`product-audience-panel-${slug}-${index}`}
+            role="tabpanel"
+            aria-labelledby={`product-audience-tab-${slug}-${index}`}
+            hidden={index !== 0}
+          >
+            <div class="pd-audience__story">
+              <small>{industry.title}</small>
+              <h3>{industry.text}</h3>
+              <a href={industry.href}>Lihat konteks usaha</a>
+            </div>
+            <div class="pd-audience__role">
+              <span>Yang memeriksa</span>
+              <strong>{role.title}</strong>
+              <p>{role.text}</p>
+              <a href={role.href}>Lihat kebutuhan peran</a>
+            </div>
+            <div class="pd-audience__signal" aria-label="Urutan kerja manusia">
+              <span><i aria-hidden="true"></i><b>Catat</b></span>
+              <span><i aria-hidden="true"></i><b>Periksa</b></span>
+              <span><i aria-hidden="true"></i><b>Putuskan</b></span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const bindAudienceExplorers = () => {
+      document.querySelectorAll('[data-product-audience]').forEach((root) => {
+        if (root.dataset.audienceBound === 'true') return;
+        root.dataset.audienceBound = 'true';
+        const tabs = [...root.querySelectorAll('[role="tab"]')];
+        const panels = [...root.querySelectorAll('[role="tabpanel"]')];
+
+        const activate = (nextIndex, focus = false) => {
+          tabs.forEach((tab, index) => {
+            const selected = index === nextIndex;
+            tab.setAttribute('aria-selected', String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+            if (selected && focus) tab.focus();
+          });
+          panels.forEach((panel, index) => { panel.hidden = index !== nextIndex; });
+        };
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => activate(index));
+          tab.addEventListener('keydown', (event) => {
+            if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+            event.preventDefault();
+            const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
+            activate((index + direction + tabs.length) % tabs.length, true);
+          });
+        });
+      });
+    };
+
+    bindAudienceExplorers();
+    document.addEventListener('astro:page-load', bindAudienceExplorers);
+  })();
+</script>

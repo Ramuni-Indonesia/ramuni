@@ -69,7 +69,7 @@ export const productNarratives: Record<string, ProductNarrative> = {
     workflowHeading: 'Saldo bergerak. Alasannya tidak ikut hilang.',
     workflow: [['Catat', 'Simpan barang masuk, keluar, dan koreksi.'], ['Hitung', 'Lihat saldo terakhir dan waktu pembaruan.'], ['Bandingkan', 'Baca saldo bersama kecepatan penjualan.'], ['Tentukan', 'Cek fisik atau siapkan isi ulang.']],
     roleHeading: 'Admin menjaga catatan. Supervisor menangani selisih.',
-    industryHeading: 'Bahan baku, barang jadi, dan SKU punya pola berbeda.',
+    industryHeading: 'Barang cepat habis, bahan utama, dan stok gudang dibaca dengan cara berbeda.',
     closing: 'Lihat stok yang layak dicek hari ini, bukan setelah habis.',
   },
   keuangan: {

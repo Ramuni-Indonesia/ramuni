@@ -1,0 +1,76 @@
+---
+interface CapabilityRow {
+  label: string;
+  description: string;
+  status: string;
+  statusClass: string;
+}
+
+interface SafetyContent {
+  heading: string;
+  boundary: string;
+  checks: string[];
+}
+
+interface Props {
+  slug: string;
+  title: string;
+  capabilities: CapabilityRow[];
+  safety: SafetyContent;
+}
+
+const { slug, title, capabilities, safety } = Astro.props;
+const headings: Record<string, string> = {
+  'asisten-ai': 'Lihat apa yang dibaca sebelum mengikuti jawaban.',
+  'dashboard-bisnis': 'Buka alasan di balik setiap prioritas.',
+  'katalog-produk': 'Pastikan satu produk punya satu identitas.',
+  penjualan: 'Telusuri perubahan omzet sampai ke transaksinya.',
+  inventori: 'Lihat stok mana yang perlu dicek hari ini.',
+  keuangan: 'Periksa definisi dan transaksi sebelum menilai kondisi usaha.',
+  pelanggan: 'Gunakan riwayat yang relevan sebelum menindaklanjuti pelanggan.',
+  'laporan-insight': 'Bawa perubahan, bukti, dan tindak lanjut dalam satu alur.',
+  integrasi: 'Periksa format dan hasil validasi sebelum memakai data.',
+};
+const statuses = [...new Set(capabilities.map((capability) => capability.status))];
+const sharedStatus = statuses.length === 1 ? statuses[0] : undefined;
+const sharedStatusNote = sharedStatus === 'Dalam pengembangan'
+  ? 'Belum tersedia untuk akses umum. Ketersediaan dikonfirmasi sebelum Anda mencoba.'
+  : sharedStatus ? `Status saat ini: ${sharedStatus.toLowerCase()}.` : undefined;
+---
+
+<section id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
+  <div class="container pd-readiness__layout">
+    <header class="pd-readiness__intro reveal">
+      <h2 id="product-capabilities-title">{headings[slug] || `Lihat cara kerja ${title} sebelum mengandalkannya.`}</h2>
+      <p>Mulai dari catatan yang terbaca, lalu cek bagian yang masih memerlukan keputusan manusia.</p>
+      {sharedStatusNote && <small>{sharedStatusNote}</small>}
+    </header>
+
+    <div class="pd-readiness__stage reveal" aria-label={`Alur pemeriksaan kemampuan ${title}`}>
+      <ol class="pd-readiness__flow">
+        {capabilities.map((capability, index) => (
+          <li style={`--i:${index}`}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <strong>{capability.label}</strong>
+              <p>{capability.description}</p>
+            </div>
+            {!sharedStatus && <small class={capability.statusClass}>{capability.status}</small>}
+          </li>
+        ))}
+      </ol>
+
+      <aside class="pd-readiness__boundary">
+        <div>
+          <span>Keputusan tetap di tangan Anda</span>
+          <h3>{safety.heading}</h3>
+          <p>{safety.boundary}</p>
+        </div>
+        <ul>
+          {safety.checks.map((check) => <li><i aria-hidden="true"></i><span>{check}</span></li>)}
+        </ul>
+        <a class="text-link" href="/keamanan/">Lihat cara RAMUNI menjaga batas</a>
+      </aside>
+    </div>
+  </div>
+</section>

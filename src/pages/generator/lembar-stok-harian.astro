@@ -1,0 +1,387 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { releaseGates } from '../../config/release';
+import '../../styles/generator-tool.css';
+
+const canonicalUrl = new URL('/generator/lembar-stok-harian/', Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Generator Lembar Stok Harian RAMUNI',
+    description: 'Generator gratis untuk menyusun lembar pemeriksaan stok harian, melihat selisih, lalu menyimpan hasil sebagai CSV, Excel, atau PDF.',
+    url: canonicalUrl,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Any',
+    browserRequirements: 'Requires JavaScript',
+    inLanguage: 'id-ID',
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Sumber Daya', item: new URL('/sumber-daya/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: 'Generator Lembar Stok Harian', item: canonicalUrl },
+    ],
+  },
+];
+
+const emptyRows = Array.from({ length: 3 });
+---
+
+<BaseLayout
+  title="Generator Lembar Stok Harian Gratis untuk UMKM"
+  description="Susun lembar pemeriksaan stok harian langsung di browser. Tambahkan produk, bandingkan saldo sistem dan stok fisik, lalu simpan sebagai CSV, Excel, atau PDF."
+  noindex={!releaseGates.resourcePagesIndexable}
+  pageType="WebPage"
+  schema={schema}
+  keywords={['generator stok harian', 'template stok UMKM', 'lembar stok gratis', 'stok opname CSV', 'RAMUNI']}
+>
+  <main class="generator-page" data-stock-generator>
+    <header class="generator-hero">
+      <div class="container generator-hero__grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Generator Stok</span></nav>
+          <p class="eyebrow">Alat gratis di browser</p>
+          <h1>Susun lembar stok yang siap diperiksa.</h1>
+          <p class="lede">Masukkan produk dan hasil pengecekan fisik. RAMUNI merapikan lembar kerja, menandai selisih, lalu menyiapkannya untuk CSV, Excel, atau PDF.</p>
+          <div class="generator-hero__facts" aria-label="Ringkasan cara kerja">
+            <span>Tanpa akun</span><span>Data tetap di perangkat</span><span>CSV, Excel, dan PDF</span>
+          </div>
+        </div>
+        <div class="generator-hero__preview" aria-label="Alur generator lembar stok">
+          <div><span>Isi</span><strong>Produk dan saldo</strong></div>
+          <i aria-hidden="true"></i>
+          <div><span>Periksa</span><strong>Selisih dan batas stok</strong></div>
+          <i aria-hidden="true"></i>
+          <div><span>Simpan</span><strong>CSV, Excel, atau PDF</strong></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section generator-workspace" aria-labelledby="generator-title">
+      <div class="container generator-workspace__layout">
+        <form class="generator-editor" data-generator-form>
+          <div class="generator-editor__heading">
+            <div><p class="section-kicker">Isi lembar kerja</p><h2 id="generator-title">Apa yang diperiksa hari ini?</h2></div>
+            <p>Kolom kosong tidak ikut diekspor. Gunakan catatan singkat untuk menjelaskan selisih yang perlu ditelusuri.</p>
+          </div>
+
+          <div class="generator-meta">
+            <label><span>Nama usaha <small>opsional</small></span><input type="text" maxlength="80" autocomplete="organization" placeholder="Contoh: Toko Anda" data-business-name /></label>
+            <label><span>Tanggal pemeriksaan</span><input type="date" data-check-date /></label>
+            <label><span>Penanggung jawab <small>opsional</small></span><input type="text" maxlength="80" autocomplete="name" placeholder="Nama pemeriksa" data-checker-name /></label>
+          </div>
+
+          <div class="generator-entry-scroll" tabindex="0" aria-label="Daftar produk yang diperiksa">
+            <table class="generator-entry-table">
+              <thead><tr><th scope="col">Produk</th><th scope="col">SKU</th><th scope="col">Saldo sistem</th><th scope="col">Stok fisik</th><th scope="col">Batas minimum</th><th scope="col">Catatan</th><th scope="col"><span class="sr-only">Tindakan</span></th></tr></thead>
+              <tbody data-entry-body>
+                {emptyRows.map((_, index) => <tr data-entry-row>
+                  <td><input type="text" maxlength="100" aria-label={`Nama produk baris ${index + 1}`} placeholder="Nama produk" data-field="product" /></td>
+                  <td><input type="text" maxlength="48" aria-label={`SKU baris ${index + 1}`} placeholder="SKU" data-field="sku" /></td>
+                  <td><input type="number" min="0" step="any" inputmode="decimal" aria-label={`Saldo sistem baris ${index + 1}`} placeholder="0" data-field="system" /></td>
+                  <td><input type="number" min="0" step="any" inputmode="decimal" aria-label={`Stok fisik baris ${index + 1}`} placeholder="0" data-field="physical" /></td>
+                  <td><input type="number" min="0" step="any" inputmode="decimal" aria-label={`Batas minimum baris ${index + 1}`} placeholder="0" data-field="minimum" /></td>
+                  <td><input type="text" maxlength="160" aria-label={`Catatan baris ${index + 1}`} placeholder="Alasan atau tindak lanjut" data-field="note" /></td>
+                  <td><button type="button" class="generator-row-remove" data-remove-row>Hapus</button></td>
+                </tr>)}
+              </tbody>
+            </table>
+          </div>
+          <div class="generator-editor__actions">
+            <button class="button button--secondary" type="button" data-add-row>Tambah produk</button>
+            <p data-entry-limit>Tambahkan produk sesuai kebutuhan.</p>
+          </div>
+        </form>
+
+        <aside class="generator-output" aria-labelledby="generator-preview-title">
+          <div class="generator-output__top">
+            <div><span>Pratinjau dokumen</span><h2 id="generator-preview-title" data-document-title>Lembar stok harian</h2></div>
+            <small data-document-meta>Siap diisi</small>
+          </div>
+          <div class="generator-summary" aria-live="polite">
+            <div><span>Produk</span><strong data-summary-items>0</strong></div>
+            <div><span>Selisih</span><strong data-summary-differences>0</strong></div>
+            <div><span>Perlu cek batas</span><strong data-summary-minimum>0</strong></div>
+          </div>
+          <div class="generator-preview-scroll" tabindex="0">
+            <table class="generator-preview-table">
+              <thead><tr><th scope="col">Produk</th><th scope="col">Sistem</th><th scope="col">Fisik</th><th scope="col">Selisih</th><th scope="col">Status</th></tr></thead>
+              <tbody data-preview-body><tr class="generator-preview-empty"><td colspan="5">Isi produk untuk membuat lembar pemeriksaan.</td></tr></tbody>
+            </table>
+          </div>
+          <p class="generator-output__note">Hasil membantu merapikan pemeriksaan. Koreksi saldo tetap perlu alasan dan persetujuan sesuai proses usaha Anda.</p>
+          <p class="generator-output__error" data-export-error role="status" aria-live="polite"></p>
+          <div class="generator-output__actions">
+            <button class="button button--primary" type="button" data-export="csv">Unduh CSV</button>
+            <button class="button button--secondary" type="button" data-export="excel">Unduh Excel</button>
+            <button class="button button--secondary" type="button" data-export="pdf">Cetak atau simpan PDF</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section generator-next" aria-labelledby="generator-next-title">
+      <div class="container generator-next__grid">
+        <div><p class="section-kicker">Gunakan hasilnya</p><h2 id="generator-next-title">Periksa selisih sebelum mengubah saldo.</h2></div>
+        <ol>
+          <li><strong>Bandingkan bukti</strong><span>Cek barang masuk, penjualan, retur, dan kerusakan.</span></li>
+          <li><strong>Tulis alasannya</strong><span>Catatan singkat membuat koreksi lebih mudah ditelusuri.</span></li>
+          <li><strong>Tentukan pemeriksa</strong><span>Pastikan perubahan penting dibaca oleh orang yang berwenang.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <dialog class="generator-export-dialog" data-export-dialog aria-label="Pilihan ekspor lembar stok" aria-labelledby="export-dialog-title" aria-describedby="export-dialog-description">
+      <div class="generator-export-dialog__body">
+        <button class="generator-export-dialog__close" type="button" data-export-close>Tutup</button>
+        <p class="section-kicker">Lembar Anda sudah siap</p>
+        <h2 id="export-dialog-title">Simpan hasilnya atau lihat RAMUNI lebih dekat.</h2>
+        <p id="export-dialog-description">Unduhan tetap gratis dan tidak memerlukan akun. Jika ingin merapikan alur stok bersama RAMUNI, Anda juga bisa mencoba produknya.</p>
+        <div class="generator-export-dialog__actions">
+          <a class="button button--primary" href="/tour-produk-gratis/?intent=inventory" target="_blank" rel="noopener" data-export-conversion>Coba gratis</a>
+          <button class="button button--secondary" type="button" data-export-continue>Tetap unduh</button>
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <script>
+    interface StockRow {
+      product: string;
+      sku: string;
+      system: number | null;
+      physical: number | null;
+      minimum: number | null;
+      note: string;
+      difference: number | null;
+      status: string;
+    }
+
+    const setupStockGenerator = () => {
+      const generator = document.querySelector<HTMLElement>('[data-stock-generator]');
+      if (!generator || generator.dataset.ready === 'true') return;
+      generator.dataset.ready = 'true';
+
+      const entryBody = generator.querySelector<HTMLTableSectionElement>('[data-entry-body]');
+      const previewBody = generator.querySelector<HTMLTableSectionElement>('[data-preview-body]');
+      const addRowButton = generator.querySelector<HTMLButtonElement>('[data-add-row]');
+      const entryLimit = generator.querySelector<HTMLElement>('[data-entry-limit]');
+      const businessName = generator.querySelector<HTMLInputElement>('[data-business-name]');
+      const checkDate = generator.querySelector<HTMLInputElement>('[data-check-date]');
+      const checkerName = generator.querySelector<HTMLInputElement>('[data-checker-name]');
+      const documentTitle = generator.querySelector<HTMLElement>('[data-document-title]');
+      const documentMeta = generator.querySelector<HTMLElement>('[data-document-meta]');
+      const summaryItems = generator.querySelector<HTMLElement>('[data-summary-items]');
+      const summaryDifferences = generator.querySelector<HTMLElement>('[data-summary-differences]');
+      const summaryMinimum = generator.querySelector<HTMLElement>('[data-summary-minimum]');
+      const dialog = generator.querySelector<HTMLDialogElement>('[data-export-dialog]');
+      const continueButton = generator.querySelector<HTMLButtonElement>('[data-export-continue]');
+      const closeButton = generator.querySelector<HTMLButtonElement>('[data-export-close]');
+      if (!entryBody || !previewBody || !addRowButton || !dialog || !continueButton || !closeButton) return;
+
+      const maxRows = 30;
+      const exportError = generator.querySelector<HTMLElement>('[data-export-error]');
+      let pendingExport: 'csv' | 'excel' | 'pdf' | null = null;
+
+      const numberFrom = (input: HTMLInputElement | null) => {
+        if (!input || input.value.trim() === '') return null;
+        const value = Number(input.value);
+        return Number.isFinite(value) ? value : null;
+      };
+
+      const getStatus = (system: number | null, physical: number | null, minimum: number | null) => {
+        const hasDifference = system !== null && physical !== null && system !== physical;
+        const reachesMinimum = physical !== null && minimum !== null && physical <= minimum;
+        if (hasDifference && reachesMinimum) return 'Periksa selisih dan batas stok';
+        if (hasDifference) return 'Periksa selisih';
+        if (reachesMinimum) return 'Periksa batas stok';
+        if (system !== null && physical !== null) return 'Sesuai catatan';
+        return 'Lengkapi jumlah';
+      };
+
+      const readRows = (): StockRow[] => Array.from(entryBody.querySelectorAll<HTMLTableRowElement>('[data-entry-row]')).map((row) => {
+        const input = (field: string) => row.querySelector<HTMLInputElement>(`[data-field="${field}"]`);
+        const system = numberFrom(input('system'));
+        const physical = numberFrom(input('physical'));
+        const minimum = numberFrom(input('minimum'));
+        return {
+          product: input('product')?.value.trim() || '',
+          sku: input('sku')?.value.trim() || '',
+          system,
+          physical,
+          minimum,
+          note: input('note')?.value.trim() || '',
+          difference: system !== null && physical !== null ? physical - system : null,
+          status: getStatus(system, physical, minimum),
+        };
+      }).filter((row) => row.product || row.sku || row.system !== null || row.physical !== null || row.minimum !== null || row.note);
+
+      const formatNumber = (value: number | null) => value === null ? '-' : new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format(value);
+      const dateLabel = () => checkDate?.value ? new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${checkDate.value}T00:00:00`)) : '';
+
+      const render = () => {
+        const rows = readRows();
+        const differenceCount = rows.filter((row) => row.difference !== null && row.difference !== 0).length;
+        const minimumCount = rows.filter((row) => row.physical !== null && row.minimum !== null && row.physical <= row.minimum).length;
+        if (summaryItems) summaryItems.textContent = String(rows.length);
+        if (summaryDifferences) summaryDifferences.textContent = String(differenceCount);
+        if (summaryMinimum) summaryMinimum.textContent = String(minimumCount);
+
+        if (documentTitle) documentTitle.textContent = businessName?.value.trim() ? `Lembar stok ${businessName.value.trim()}` : 'Lembar stok harian';
+        const meta = [dateLabel(), checkerName?.value.trim() ? `Pemeriksa: ${checkerName.value.trim()}` : ''].filter(Boolean).join(' · ');
+        if (documentMeta) documentMeta.textContent = meta || 'Siap diisi';
+
+        if (!rows.length) {
+          previewBody.innerHTML = '<tr class="generator-preview-empty"><td colspan="5">Isi produk untuk membuat lembar pemeriksaan.</td></tr>';
+          return;
+        }
+
+        previewBody.replaceChildren(...rows.map((row) => {
+          const tr = document.createElement('tr');
+          const values = [row.product || row.sku || 'Tanpa nama', formatNumber(row.system), formatNumber(row.physical), formatNumber(row.difference), row.status];
+          values.forEach((value, index) => {
+            const td = document.createElement('td');
+            td.textContent = value;
+            if (index === 4) td.dataset.status = row.status.includes('Periksa') ? 'check' : row.status === 'Sesuai catatan' ? 'ok' : 'incomplete';
+            tr.append(td);
+          });
+          return tr;
+        }));
+      };
+
+      const updateRowLabels = () => {
+        const rows = Array.from(entryBody.querySelectorAll<HTMLTableRowElement>('[data-entry-row]'));
+        rows.forEach((row, index) => row.querySelectorAll<HTMLInputElement>('[data-field]').forEach((input) => {
+          const label = input.dataset.field === 'product' ? 'Nama produk' : input.dataset.field === 'sku' ? 'SKU' : input.dataset.field === 'system' ? 'Saldo sistem' : input.dataset.field === 'physical' ? 'Stok fisik' : input.dataset.field === 'minimum' ? 'Batas minimum' : 'Catatan';
+          input.setAttribute('aria-label', `${label} baris ${index + 1}`);
+        }));
+        addRowButton.disabled = rows.length >= maxRows;
+        if (entryLimit) entryLimit.textContent = rows.length >= maxRows ? 'Batas 30 produk tercapai.' : `${rows.length} baris tersedia. Baris kosong tidak ikut diekspor.`;
+      };
+
+      const bindRow = (row: HTMLTableRowElement) => {
+        row.querySelectorAll<HTMLInputElement>('input').forEach((input) => input.addEventListener('input', render));
+        row.querySelector<HTMLButtonElement>('[data-remove-row]')?.addEventListener('click', () => {
+          const rows = entryBody.querySelectorAll('[data-entry-row]');
+          if (rows.length === 1) row.querySelectorAll<HTMLInputElement>('input').forEach((input) => { input.value = ''; });
+          else row.remove();
+          updateRowLabels();
+          render();
+        });
+      };
+
+      addRowButton.addEventListener('click', () => {
+        if (entryBody.querySelectorAll('[data-entry-row]').length >= maxRows) return;
+        const row = document.createElement('tr');
+        row.dataset.entryRow = '';
+        row.innerHTML = '<td><input type="text" maxlength="100" placeholder="Nama produk" data-field="product"></td><td><input type="text" maxlength="48" placeholder="SKU" data-field="sku"></td><td><input type="number" min="0" step="any" inputmode="decimal" placeholder="0" data-field="system"></td><td><input type="number" min="0" step="any" inputmode="decimal" placeholder="0" data-field="physical"></td><td><input type="number" min="0" step="any" inputmode="decimal" placeholder="0" data-field="minimum"></td><td><input type="text" maxlength="160" placeholder="Alasan atau tindak lanjut" data-field="note"></td><td><button type="button" class="generator-row-remove" data-remove-row>Hapus</button></td>';
+        entryBody.append(row);
+        bindRow(row);
+        updateRowLabels();
+        row.querySelector<HTMLInputElement>('[data-field="product"]')?.focus();
+      });
+
+      const escapeCsv = (value: string | number | null) => `"${String(value ?? '').replaceAll('"', '""')}"`;
+      const escapeXml = (value: string | number | null) => String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&apos;');
+      const exportHeadings = ['Nama usaha', 'Tanggal', 'Pemeriksa', 'Produk', 'SKU', 'Saldo sistem', 'Stok fisik', 'Selisih', 'Batas minimum', 'Status', 'Catatan'];
+      const exportRows = () => readRows().map((row) => [businessName?.value.trim() || '', checkDate?.value || '', checkerName?.value.trim() || '', row.product, row.sku, row.system, row.physical, row.difference, row.minimum, row.status, row.note]);
+      const safeFilename = () => (businessName?.value.trim() || 'usaha').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'usaha';
+      const downloadCsv = () => {
+        const lines = [exportHeadings.map(escapeCsv).join(','), ...exportRows().map((row) => row.map(escapeCsv).join(','))];
+        const blob = new Blob([`\uFEFF${lines.join('\r\n')}\r\n`], { type: 'text/csv;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `ramuni-lembar-stok-${safeFilename()}-${checkDate?.value || 'harian'}.csv`;
+        document.body.append(link);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        link.remove();
+      };
+
+      const downloadExcel = () => {
+        const rows = [exportHeadings, ...exportRows()];
+        const cells = rows.map((row) => `<Row>${row.map((value) => {
+          const isNumber = typeof value === 'number' && Number.isFinite(value);
+          return `<Cell><Data ss:Type="${isNumber ? 'Number' : 'String'}">${escapeXml(value)}</Data></Cell>`;
+        }).join('')}</Row>`).join('');
+        const workbook = `<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="Stok Harian"><Table>${cells}</Table></Worksheet></Workbook>`;
+        const blob = new Blob([workbook], { type: 'application/vnd.ms-excel;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `ramuni-lembar-stok-${safeFilename()}-${checkDate?.value || 'harian'}.xls`;
+        document.body.append(link);
+        link.click();
+        URL.revokeObjectURL(link.href);
+        link.remove();
+      };
+
+      const completeExport = () => {
+        if (!pendingExport) return;
+        const format = pendingExport;
+        pendingExport = null;
+        if (dialog.open) dialog.close();
+        else dialog.removeAttribute('open');
+        render();
+        window.dispatchEvent(new CustomEvent('ramuni:generator:exported', { detail: { generatorSlug: 'lembar-stok-harian', format, gated: false, pagePath: window.location.pathname } }));
+        if (format === 'csv') downloadCsv();
+        else if (format === 'excel') downloadExcel();
+        else {
+          generator.dataset.printReady = 'true';
+          window.print();
+          window.setTimeout(() => delete generator.dataset.printReady, 500);
+        }
+      };
+
+      generator.querySelectorAll<HTMLButtonElement>('[data-export]').forEach((button) => button.addEventListener('click', () => {
+        if (!readRows().length) {
+          if (exportError) exportError.textContent = 'Isi setidaknya satu produk sebelum menyimpan lembar.';
+          generator.querySelector<HTMLInputElement>('[data-field="product"]')?.focus();
+          return;
+        }
+        if (exportError) exportError.textContent = '';
+        pendingExport = button.dataset.export === 'pdf' ? 'pdf' : button.dataset.export === 'excel' ? 'excel' : 'csv';
+        render();
+        window.dispatchEvent(new CustomEvent('ramuni:generator:export-prompted', { detail: { generatorSlug: 'lembar-stok-harian', format: pendingExport, pagePath: window.location.pathname } }));
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+      }));
+
+      continueButton.addEventListener('click', completeExport);
+      closeButton.addEventListener('click', () => {
+        pendingExport = null;
+        if (dialog.open) dialog.close();
+        else dialog.removeAttribute('open');
+      });
+      generator.querySelector<HTMLAnchorElement>('[data-export-conversion]')?.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('ramuni:generator:trial-opened', { detail: { generatorSlug: 'lembar-stok-harian', pagePath: window.location.pathname } }));
+      });
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) {
+          pendingExport = null;
+          dialog.close();
+        }
+      });
+      dialog.addEventListener('cancel', () => { pendingExport = null; });
+
+      [businessName, checkDate, checkerName].forEach((input) => input?.addEventListener('input', render));
+      generator.querySelector<HTMLFormElement>('[data-generator-form]')?.addEventListener('submit', (event) => event.preventDefault());
+      if (checkDate && !checkDate.value) checkDate.value = new Date().toISOString().slice(0, 10);
+      entryBody.querySelectorAll<HTMLTableRowElement>('[data-entry-row]').forEach(bindRow);
+      updateRowLabels();
+      render();
+    };
+
+    setupStockGenerator();
+    document.addEventListener('astro:page-load', setupStockGenerator);
+  </script>
+</BaseLayout>

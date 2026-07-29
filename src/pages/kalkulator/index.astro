@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { releaseGates } from '../../config/release';
 import { calculatorEntries } from '../../data/calculators';
+import { navigationIconAttributes } from '../../data/capabilityIcons';
 import '../../styles/tools-resource-pages.css';
 
 const calculatorUrl = new URL('/kalkulator/', Astro.site || Astro.url.origin).toString();
@@ -69,7 +70,7 @@ const schema = [
         <div class="tools-section-head reveal"><p class="section-kicker">Pilih pertanyaan</p><h2 id="calculator-list-title">Apa yang sedang ingin Anda periksa?</h2><p>Mulai dari masalah nyata. Setiap kalkulator menjelaskan input, rumus, arti hasil, dan langkah pemeriksaan berikutnya.</p></div>
         <div class="tools-catalog__grid">
           {calculatorEntries.map(([slug, calculator], index) => <a class:list={['tool-card', `tool-card--${calculator.category.toLowerCase()}`, `tool-card--${slug}`, 'reveal']} href={`/kalkulator/${slug}/`} style={`--i:${index}`}>
-            <div class="tool-card__top"><span>{String(index + 1).padStart(2, '0')}</span><small>{calculator.category}</small></div>
+            <div class="tool-card__top"><span>{String(index + 1).padStart(2, '0')}</span><span class="tool-card__icon" aria-hidden="true" {...navigationIconAttributes(`/kalkulator/${slug}/`)}></span><small>{calculator.category}</small></div>
             <div class="tool-card__visual" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             <div class="tool-card__copy"><h3>{calculator.title}</h3><p>{calculator.intent}</p><small>{calculator.formula}</small></div>
             <b>Gunakan kalkulator <i aria-hidden="true">&rarr;</i></b>

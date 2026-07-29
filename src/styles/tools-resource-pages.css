@@ -31,6 +31,7 @@
 /* Shared type scale and readable measures for tool pages. */
 .tools-section-head h2{max-width:20ch}
 .tool-card__copy h3{font-size:clamp(1.4rem,2.1vw,2.05rem);line-height:1.12}
+.tool-card__top{align-items:center}.tool-card__top small{margin-left:auto}.tool-card__icon[data-capability-icon]{width:38px;height:38px;background:var(--capability-icon-image) center/contain no-repeat;transition:transform .3s var(--ease)}.tool-card:hover .tool-card__icon,.tool-card:focus-visible .tool-card__icon{transform:translateY(-2px) rotate(-3deg)}.tool-card__visual{margin-top:24px}
 @media(max-width:620px){.tools-hero__copy h1,.tool-detail-hero__copy h1{font-size:clamp(2.35rem,10.5vw,3.2rem)}}
 @media(min-width:961px) and (max-width:1200px){.tools-hero__grid,.tool-detail-hero__grid{grid-template-columns:minmax(260px,.8fr) minmax(430px,1.2fr);gap:clamp(24px,3vw,42px)}.tools-hero__copy,.tool-detail-hero__copy{max-width:none}.tools-hero__lab,.tool-detail-hero__visual{width:100%;justify-self:stretch}}
 @media(max-width:1200px), (hover:none), (pointer:coarse){.tool-card:hover,.tool-card:focus-visible,.tool-card:hover>b i,.tools-crosslink__grid a:hover,.tools-crosslink__grid a:focus-visible,.tool-related__grid a:hover,.tool-related__grid a:focus-visible{transform:none}}

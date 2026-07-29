@@ -102,3 +102,18 @@
 }
 
 @media(prefers-reduced-motion:reduce){.sd-visual,.sd-visual__tabs label,.sd-revenue__column i,.sd-stock__row i::after,.sd-cash__step i::after,.sd-customer__line,.sd-customer__event,.sd-report__item,.sd-workflow__step::after,.sd-manual-gap__note,.sd-capability,.sd-capability>span,.sd-industry-list a,.sd-industry-list span{animation:none!important;transition:none!important;transform:none!important}}
+
+/* Keep modules and business contexts in one decision surface instead of two consecutive card sections. */
+.sd-capabilities__workspace{display:grid;gap:28px;min-width:0}
+.sd-context-rail{display:grid;grid-template-columns:minmax(210px,.42fr) minmax(0,1fr);gap:28px;border-top:1px solid var(--ink);padding-top:28px}
+.sd-context-rail>div>span{color:var(--teal);font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.sd-context-rail h3{max-width:18ch;margin-top:10px;font-size:clamp(1.45rem,2.3vw,2.35rem);line-height:1.08;text-wrap:balance}
+.sd-industry-list--compact{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto;background:transparent;border:0;gap:1px}
+.sd-industry-list--compact a,.sd-industry-list--compact a:first-child{grid-row:auto;min-height:210px;align-content:start;border:1px solid var(--sd-line);background:var(--rice)}
+.sd-industry-list--compact a:first-child{background:var(--white)}
+.sd-industry-list--compact a:nth-child(2){background:var(--yellow-18)}
+.sd-industry-list--compact a:nth-child(3){background:var(--teal);color:var(--white)}
+.sd-industry-list--compact a:nth-child(3) p{color:rgb(255 255 255/.7)}
+.sd-industry-list--compact a:nth-child(3) b{color:var(--yellow)}
+@media(max-width:1200px){.sd-context-rail{grid-template-columns:1fr}.sd-industry-list--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:740px){.sd-industry-list--compact{grid-template-columns:1fr}.sd-industry-list--compact a,.sd-industry-list--compact a:first-child{min-height:150px}.sd-context-rail{gap:20px}}

@@ -113,38 +113,33 @@ const faqSchema = {
     <section class="section sd-capabilities" aria-labelledby="capabilities-title">
       <div class="container sd-capabilities__layout">
         <header class="reveal">
-          <p class="section-kicker">Cakupan dan status</p>
+          <p class="section-kicker">Alur yang terhubung</p>
           <h2 id="capabilities-title">{narrative?.moduleHeading || 'Modul yang membantu alur ini.'}</h2>
-          <p>Lihat bagian yang ditampilkan pada preview dan bagian yang masih disiapkan.</p>
+          <p>Buka modul yang relevan, lalu pilih konteks usaha untuk melihat titik pemeriksaan yang berbeda.</p>
         </header>
-        <div class="sd-capability-list">
-          {solution.capabilities.map((capability, index) => (
-            capability.href ? (
-              <a class="sd-capability reveal" style={`--i:${index}`} href={capability.href}>
-                <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b>Buka</b>
-              </a>
-            ) : (
-              <div class="sd-capability sd-capability--limited reveal" style={`--i:${index}`}>
-                <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p>
-              </div>
-            )
-          ))}
+        <div class="sd-capabilities__workspace">
+          <div class="sd-capability-list">
+            {solution.capabilities.map((capability, index) => (
+              capability.href ? (
+                <a class="sd-capability reveal" style={`--i:${index}`} href={capability.href}>
+                  <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p><b>Buka</b>
+                </a>
+              ) : (
+                <div class="sd-capability sd-capability--limited reveal" style={`--i:${index}`}>
+                  <span {...capabilityIconForHref(capability.href)}><i></i><i></i><i></i><b class="sr-only">{String(index + 1).padStart(2, '0')}</b></span><div><strong>{capability.title}</strong><small>{capability.status}</small></div><p>{capability.text}</p>
+                </div>
+              )
+            ))}
+          </div>
+          <aside class="sd-context-rail" aria-labelledby="context-title">
+            <div><span>Konteks usaha</span><h3 id="context-title">{narrative?.industryHeading || 'Masalah yang sama muncul dengan ritme berbeda.'}</h3></div>
+            <nav class="sd-industry-list sd-industry-list--compact" aria-label="Contoh berdasarkan industri">
+              {solution.industries.map((industry, index) => (
+                <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat konteks</b></a>
+              ))}
+            </nav>
+          </aside>
         </div>
-      </div>
-    </section>
-
-    <section class="section sd-context" aria-labelledby="context-title">
-      <div class="container">
-        <header class="sd-section-heading reveal">
-          <p class="section-kicker">Konteks usaha</p>
-          <h2 id="context-title">{narrative?.industryHeading || 'Masalah yang sama muncul dengan ritme berbeda.'}</h2>
-          <p>Contoh berikut memakai data rekaan. Kecocokannya bergantung pada data dan cara kerja usaha Anda.</p>
-        </header>
-        <nav class="sd-industry-list" aria-label="Contoh berdasarkan industri">
-          {solution.industries.map((industry, index) => (
-            <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat konteks</b></a>
-          ))}
-        </nav>
       </div>
     </section>
 

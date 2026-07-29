@@ -77,7 +77,7 @@
 
       document.querySelectorAll<HTMLElement>('.pd-page > section, .sd-page > section').forEach((section) => {
         const targets = [...section.querySelectorAll<HTMLElement>(
-          '.pd-benefit, .pd-capability-list article, .pd-related__modules > div > a, .pd-related__paths > a, .sd-symptoms > li, .sd-impact > article, .sd-workflow__step, .sd-capability, .sd-industry-list > a',
+          '.pd-benefit, .pd-related__modules > div > a, .pd-related__paths > a, .sd-symptoms > li, .sd-impact > article, .sd-workflow__step, .sd-capability, .sd-industry-list > a',
         )].filter((target) => !target.classList.contains('reveal'));
         if (!targets.length) return;
         gsap.fromTo(targets,

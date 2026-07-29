@@ -44,10 +44,10 @@ export function sitemapGroupForPath(pathname) {
     path === '/sumber-daya/'
     || path.startsWith('/panduan/')
     || path.startsWith('/template/')
+    || path.startsWith('/generator/')
     || path.startsWith('/kalkulator/')
     || path.startsWith('/kamus-bisnis/')
   ) return 'resources';
 
   return 'pages';
 }
-

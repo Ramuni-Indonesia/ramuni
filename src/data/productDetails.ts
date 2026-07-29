@@ -298,14 +298,14 @@ export const productDetails: Record<string, ProductDetail> = {
       { label: 'Periksa tindakan', text: 'Cek fisik sebelum menyiapkan isi ulang.' },
     ],
     capabilities: [
-      { capabilityId: 'INV-LEDGER-001', label: 'Riwayat pergerakan', description: 'Jejak barang masuk, keluar, dan koreksi tetap dapat diperiksa.', publicApproved: false },
-      { capabilityId: 'INV-BALANCE-001', label: 'Saldo dan waktu pembaruan', description: 'Jumlah terkini tampil bersama waktu pembaruannya.', publicApproved: false },
-      { capabilityId: 'INV-MIN-001', label: 'Batas stok minimum', description: 'Tandai barang yang perlu diperiksa lebih dulu.', publicApproved: false },
-      { capabilityId: 'INV-PROCURE-BOUNDARY', label: 'Pengadaan otomatis', description: 'Belum tersedia dan tidak dipicu oleh batas stok minimum.', publicApproved: false },
+      { capabilityId: 'INV-LEDGER-001', label: 'Lihat barang bergerak', description: 'Barang masuk, keluar, dan koreksi tetap berada dalam satu urutan.', publicApproved: false },
+      { capabilityId: 'INV-BALANCE-001', label: 'Baca saldo terbaru', description: 'Jumlah stok tampil bersama waktu pembaruan terakhir.', publicApproved: false },
+      { capabilityId: 'INV-MIN-001', label: 'Temukan stok yang perlu dicek', description: 'Batas minimum membantu menyaring barang yang perlu diperiksa lebih dulu.', publicApproved: false },
+      { capabilityId: 'INV-PROCURE-BOUNDARY', label: 'Putuskan setelah cek fisik', description: 'RAMUNI tidak membuat pembelian otomatis dari batas stok.', publicApproved: false },
     ],
     safety: {
-      heading: 'Saldo tidak berubah tanpa alasan.',
-      boundary: 'Koreksi memerlukan jejak. Batas minimum tidak membuat pesanan pembelian otomatis.',
+      heading: 'Saldo berubah bersama alasannya.',
+      boundary: 'Cek jumlah fisik dan riwayat koreksi sebelum menyiapkan isi ulang.',
       checks: ['Jumlah fisik dan saldo sistem', 'Alasan penyesuaian', 'Waktu isi ulang dan laju keluar'],
     },
     roles: [
