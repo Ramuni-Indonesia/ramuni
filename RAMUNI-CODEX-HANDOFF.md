@@ -12,6 +12,17 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+- Published runtime commit: `056c40d18ab5` (`trim solution cards for release budget`), including visual CTA and editorial media commit `472b618590e6`.
+- Active staging release: `20260729T110110Z-056c40d18ab5`.
+- Active release path: `/var/www/ramuni-staging/releases/20260729T110110Z-056c40d18ab5`.
+- Deployed artifact SHA-256: `97f472ea88e463d3bd34db6eae0b21adf2ef7a8862d437bce4e38c0619b53d58`.
+- Eleven distinct 16:9 blog covers were generated through the native HashMicro image gateway, optimized to 768 x 432 WebP, committed under `public/website-original/blog/generated/`, and synchronized to the staging CDN.
+- Article pages now use CMS-compatible intrinsic cover dimensions, a compact visual trial path in the desktop rail, and an interactive contextual CTA after the article. Blog category pages use the same decision-flow CTA family. Industry and role hubs now close with contextual visual evidence instead of plain text banners.
+- Shared policy and informational pages retain restrained wording but now show a compact `Tulis pertanyaan -> Hindari data sensitif -> Terima arahan` visual flow beside their closing action.
+- CMS article payloads may provide positive `coverWidth` and `coverHeight`; legacy records safely fall back to 1200 x 675. The candidate render test verifies dimensions plus both article CTA surfaces.
+- Astro check passed across 121 files with zero errors, warnings, or hints. Content gateway tests, CMS page/article candidate tests, the 98-page production build, full site audit, and `npm audit --audit-level=high` passed with zero vulnerabilities.
+- Local and public staging health checks passed. Blog, category, article, industry, role, and solution routes return HTTP 200. Staging remains `noindex,follow` in HTML, sends the fail-closed `X-Robots-Tag`, uses `Cache-Control: no-store`, and returns 404 for all sitemap endpoints.
+
 - Published runtime commit: `440a233ce0becd0d4c6b5ad30cc20e7e6c1368ad` (`refine product motion and contextual visual journeys`).
 - The contextual hero and free-trial baseline immediately before this visual/CRO batch was commit `e54a5cfeac6523ded6ec35b74871cb64f4f6a7a7`.
 - Active staging release: `20260729T091116Z-440a233ce0be`.
