@@ -24,7 +24,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Omzet', 'Produk terlaris', 'Perbandingan periode'],
     start: 'Pilih periode yang setara, periksa transaksi pembentuk omzet, lalu cari produk atau waktu yang benar-benar berubah.',
     steps: ['Pilih periode setara', 'Buka transaksi pembentuknya', 'Catat perubahan utama'],
-    cta: { title: 'Ingin melihat alur penjualan dengan data contoh?', label: 'Pelajari Penjualan', href: '/produk/penjualan/' },
+    cta: { title: 'Ingin melihat alur penjualan dari dekat?', label: 'Pelajari Penjualan', href: '/produk/penjualan/' },
   },
   {
     slug: 'stok-inventori',
@@ -99,9 +99,9 @@ export const blogCategories: BlogCategoryMeta[] = [
     introduction: 'Panduan RAMUNI menjelaskan cara menyiapkan pertanyaan, membaca contoh, dan memahami batas tiap alur. Penyebutan produk harus mengikuti status yang telah diverifikasi dan tidak otomatis berarti fitur sudah tersedia.',
     question: 'Apa yang dapat dipelajari dan apa yang masih perlu diverifikasi?',
     topics: ['Memulai', 'Membaca dashboard', 'Batas fitur'],
-    start: 'Mulai dari tujuan usaha, siapkan data contoh yang aman, lalu periksa status setiap alur sebelum menggunakannya.',
-    steps: ['Pilih tujuan', 'Siapkan data contoh', 'Periksa status fitur'],
-    cta: { title: 'Mulai dari alur produk dengan data contoh.', label: 'Lihat Tour Produk', href: '/tour-produk-gratis/' },
+    start: 'Mulai dari tujuan usaha, pilih skenario yang relevan, lalu periksa status setiap alur sebelum menggunakannya.',
+    steps: ['Pilih tujuan', 'Pilih skenario', 'Periksa status fitur'],
+    cta: { title: 'Mulai dari alur produk yang paling dekat dengan kebutuhan Anda.', label: 'Lihat Tour Produk', href: '/tour-produk-gratis/' },
   },
 ];
 

@@ -57,8 +57,8 @@ const hasVerifiedReviewer = Boolean(
 );
 
 const cta = {
-  'early-access': { title: 'Lihat cara RAMUNI membaca masalah usaha ini.', text: 'Tour memakai data contoh dan tidak meminta data bisnis sensitif.', label: 'Minta tour produk', href: '/tour-produk-gratis/' },
-  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Tour memakai data contoh, bukan data bisnis Anda.', label: 'Minta tour produk', href: '/tour-produk-gratis/' },
+  'early-access': { title: 'Lihat cara RAMUNI membaca masalah usaha ini.', text: 'Tour menggunakan skenario sederhana dan tidak meminta catatan bisnis sensitif.', label: 'Minta tour produk', href: '/tour-produk-gratis/' },
+  demo: { title: 'Lihat cara RAMUNI membaca angka usaha.', text: 'Tour dimulai dari skenario sederhana agar alurnya mudah dipahami.', label: 'Minta tour produk', href: '/tour-produk-gratis/' },
   product: { title: 'Pilih area kerja yang ingin Anda pelajari.', text: 'Lihat modul yang membantu membaca data usaha dengan lebih jelas.', label: 'Pelajari Produk', href: '/produk/' },
 }[post.data.ctaType];
 
@@ -117,7 +117,7 @@ const schema = [
         </div>
         <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
-        <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas memakai data contoh untuk membantu membaca isi artikel.</figcaption></figure>
+        <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>
 
@@ -142,7 +142,7 @@ const schema = [
           <aside class="article-inline-cta" aria-label="Langkah berikutnya"><div><h2>{cta.title}</h2><p>{cta.text}</p></div><a class="button button--primary" href={cta.href}>{cta.label}</a></aside>
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
-            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Contoh angka dan nama usaha dibuat sintetis untuk menjelaskan cara membaca data. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}
+            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}
             {post.data.disclaimer && <p class="article-disclaimer">{post.data.disclaimer}</p>}
           </section>
 

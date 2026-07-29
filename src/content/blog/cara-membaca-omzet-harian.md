@@ -3,7 +3,7 @@ title: "Cara Membaca Omzet Harian Tanpa Tertipu Satu Angka"
 description: "Panduan membaca omzet harian UMKM melalui transaksi, produk, waktu ramai, dan metode pembayaran."
 dek: "Omzet harian baru berguna setelah Anda tahu transaksi apa yang membentuknya dan pembanding mana yang setara."
 cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-coverAlt: "Dashboard sintetis RAMUNI dengan ringkasan penjualan, produk, dan pola pelanggan"
+coverAlt: "Dashboard RAMUNI dengan indikator penjualan, kas tersedia, dan grafik arus kas"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Penjualan & Omzet"
@@ -90,7 +90,7 @@ Jika ingin melihat tren yang lebih panjang, lanjutkan ke panduan [cara membandin
 
 Setelah menemukan perubahan total, cari bagian yang paling banyak menyumbang selisih. Urutan ini lebih berguna daripada memeriksa semua produk sekaligus.
 
-Contoh sintetis:
+Contoh sederhana:
 
 - Omzet naik Rp700.000 dibanding Selasa lalu.
 - Rp500.000 berasal dari satu produk paket.

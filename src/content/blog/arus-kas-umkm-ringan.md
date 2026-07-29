@@ -39,7 +39,7 @@ noindex: true
 
 Arus kas sering terasa rumit karena omzet, laba, saldo rekening, dan tagihan dibaca sebagai satu angka. Padahal masing-masing menjawab pertanyaan berbeda.
 
-Panduan ini memakai usaha fiktif dan angka sintetis. Tujuannya menguji cara membaca arus uang, bukan memberi saran pajak atau akuntansi untuk usaha tertentu.
+Panduan ini memakai skenario usaha fiktif. Tujuannya menjelaskan cara membaca arus uang, bukan memberi saran pajak atau akuntansi untuk usaha tertentu.
 
 ## Pisahkan pemasukan dan pengeluaran utama
 
@@ -70,7 +70,7 @@ Misalnya, omzet naik Rp2 juta tetapi saldo kas hanya bertambah Rp400 ribu. Perbe
 
 Omzet adalah nilai penjualan. Laba memperhitungkan biaya sesuai rumus yang digunakan. Kas menunjukkan uang yang tersedia pada waktu tertentu. Ketiganya dapat bergerak ke arah berbeda.
 
-Contoh sintetis:
+Contoh sederhana:
 
 - Penjualan tercatat Rp10 juta.
 - Pembayaran yang sudah diterima Rp8 juta.

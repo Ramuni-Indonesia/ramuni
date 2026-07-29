@@ -39,7 +39,7 @@ noindex: true
 
 Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” perlu dibandingkan dengan laju penjualan dan waktu ramai. Periksa juga waktu yang dibutuhkan untuk menyiapkan barang pengganti.
 
-Panduan ini memakai contoh kedai fiktif. Semua angka bersifat sintetis dan ditujukan untuk menguji cara membaca stok, bukan sebagai patokan untuk setiap usaha.
+Panduan ini memakai skenario kedai fiktif untuk menjelaskan cara membaca stok, bukan sebagai patokan untuk setiap usaha.
 
 ## Mulai dari produk yang bergerak cepat
 

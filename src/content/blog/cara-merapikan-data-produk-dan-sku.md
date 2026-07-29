@@ -3,7 +3,7 @@ title: "Cara Merapikan Data Produk dan SKU untuk UMKM"
 description: "Langkah menyusun nama produk, SKU, satuan, kategori, harga, dan status agar transaksi serta stok lebih mudah ditelusuri."
 dek: "Data produk yang rapi memakai satu identitas untuk satu barang, aturan nama yang konsisten, dan riwayat perubahan yang dapat diperiksa."
 cover: "/website-original/product-screens/ramuni-product-dashboard-operations.webp"
-coverAlt: "Dashboard inventori sintetis RAMUNI dengan saldo, laju penjualan, dan prioritas pemeriksaan"
+coverAlt: "Dashboard RAMUNI yang menampilkan aktivitas pembayaran, pembaruan stok, dan pengeluaran operasional"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Stok & Inventori"
@@ -47,7 +47,7 @@ Satu varian adalah kombinasi yang perlu dibedakan saat dijual atau disimpan. Con
 
 Satu baris produk minimum dapat berisi:
 
-| Kolom | Fungsi | Contoh sintetis |
+| Kolom | Fungsi | Contoh isian |
 | --- | --- | --- |
 | Nama produk | Nama yang dibaca tim | Kopi Bubuk 250 g |
 | SKU internal | Identitas stabil | KOP-BBK-250 |
@@ -82,7 +82,7 @@ Satu istilah tidak otomatis menggantikan yang lain. Jika Anda menjual produk mil
 
 Masalah sering muncul ketika pembelian dicatat per dus, stok per pak, dan penjualan per satuan. Tentukan satuan dasar serta konversinya.
 
-Contoh sintetis:
+Contoh sederhana:
 
 - 1 dus = 12 pak.
 - 1 pak = 6 botol.

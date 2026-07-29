@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan angka sintetis; memerlukan tinjauan akuntansi sebelum indeksasi."
+editorialStatus: "Disusun dengan contoh perhitungan; memerlukan tinjauan akuntansi sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
   - "Omzet, laba, dan kas menjawab tiga pertanyaan yang berbeda."
@@ -73,7 +73,7 @@ Waktu pengakuan pendapatan dan biaya dapat berbeda dari waktu uang bergerak. Con
 - pembelian aset mengurangi kas sekaligus, sementara pencatatannya mengikuti kebijakan akuntansi;
 - tagihan biaya belum dibayar pada akhir periode.
 
-Contoh sintetis sederhana:
+Contoh perhitungan sederhana:
 
 | Catatan bulan ini | Nilai |
 | --- | ---: |

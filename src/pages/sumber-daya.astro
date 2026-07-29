@@ -33,7 +33,7 @@ const modes = [
 
 const standards = [
   { number: '01', title: 'Sumber terlihat', text: 'Definisi, periode, dan rujukan ditulis agar pembaca dapat memeriksanya.', href: '/blog/kebijakan-sumber/' },
-  { number: '02', title: 'Contoh diberi konteks', text: 'Data contoh tidak ditampilkan sebagai hasil usaha nyata atau janji produk.', href: '/blog/metodologi-fact-check/' },
+  { number: '02', title: 'Contoh diberi konteks', text: 'Setiap skenario dijelaskan sebagai panduan, bukan hasil usaha atau janji produk.', href: '/blog/metodologi-fact-check/' },
   { number: '03', title: 'Pembaruan tercatat', text: 'Perubahan penting memiliki tanggal, ringkasan, dan jalur koreksi.', href: '/blog/kebijakan-pembaruan/' },
 ];
 
@@ -81,7 +81,7 @@ const schema = [
         </div>
 
         <div class="resource-navigator reveal is-visible" data-resource-navigator>
-          <div class="resource-navigator__top"><span>Peta belajar</span><small>Gunakan data contoh</small></div>
+          <div class="resource-navigator__top"><span>Peta belajar</span><small>Mulai dari skenario sederhana</small></div>
           <div class="resource-navigator__tabs" role="tablist" aria-label="Cara memakai sumber daya">
             {modes.map((mode, index) => <button type="button" role="tab" id={`resource-tab-${mode.id}`} aria-controls={`resource-panel-${mode.id}`} aria-selected={index === 0 ? 'true' : 'false'} data-resource-tab={mode.id}>{mode.label}</button>)}
           </div>
@@ -139,7 +139,7 @@ const schema = [
       </section>
 
       <section class="section resource-close-stage">
-        <div class="container resource-close reveal"><div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan usaha.</h2><p>Mulai dari artikel jika butuh penjelasan, atau minta tour dengan data contoh.</p></div><div class="button-row"><a class="button button--primary" href="/blog/">Jelajahi Artikel</a><a class="button button--secondary" href="/tour-produk-gratis/">Minta tour produk gratis</a></div></div>
+        <div class="container resource-close reveal"><div><p class="section-kicker">Belajar sambil mencoba</p><h2>Bawa satu pertanyaan usaha.</h2><p>Mulai dari artikel jika butuh penjelasan, atau minta tour untuk melihat alurnya langsung.</p></div><div class="button-row"><a class="button button--primary" href="/blog/">Jelajahi Artikel</a><a class="button button--secondary" href="/tour-produk-gratis/">Minta tour produk gratis</a></div></div>
       </section>
     </div>
   </div>

@@ -3,7 +3,7 @@ title: "Produk Terlaris Belum Tentu Paling Untung: Cara Membacanya"
 description: "Pelajari mengapa produk paling laku belum tentu memberi laba terbesar dan data apa yang perlu diperiksa UMKM."
 dek: "Jumlah terjual menunjukkan permintaan. Keuntungan baru terlihat setelah harga, biaya, diskon, dan periode dibaca bersama."
 cover: "/website-original/product-screens/ramuni-product-dashboard-performance.webp"
-coverAlt: "Dashboard sintetis RAMUNI yang menampilkan arus kas dan rincian pembentuk perubahan"
+coverAlt: "Dashboard RAMUNI dengan indikator penjualan, kas tersedia, dan grafik arus kas"
 publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Keuangan UMKM"
@@ -15,7 +15,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun dengan angka sintetis; memerlukan tinjauan keuangan sebelum indeksasi."
+editorialStatus: "Disusun dengan contoh perhitungan; memerlukan tinjauan keuangan sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
   - "Produk terlaris diukur dari jumlah atau nilai penjualan, bukan otomatis dari laba."

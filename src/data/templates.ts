@@ -103,7 +103,7 @@ export const businessTemplates: Record<TemplateKey, BusinessTemplate> = {
     limitations: [
       'Template ini adalah catatan arus kas sederhana, bukan laporan laba rugi atau pengganti pembukuan akuntansi.',
       'CSV tidak memisahkan kas dan rekening bank secara otomatis. Buat file terpisah bila sumber dana perlu dibedakan.',
-      'Contoh nominal sepenuhnya sintetis dan bukan tolok ukur kinerja usaha.',
+      'Nominal hanya menunjukkan format dan bukan tolok ukur kinerja usaha.',
     ],
   },
   'evaluasi-mingguan': {
