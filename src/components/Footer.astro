@@ -12,7 +12,7 @@ const publicHref = (href: string) => matchesRoute(href, '/demo') ? '/tour-produk
       {footerNavigation.map((group) => (
         <nav class="footer-col" aria-label={group.label}>
           <h2>{group.label}</h2>
-          {group.links.filter((link) => !matchesRoute(link.href, '/harga') && !matchesRoute(link.href, '/status')).map((link) => <a href={publicHref(link.href)}>{matchesRoute(link.href, '/demo') ? 'Minta tour produk gratis' : link.label}</a>)}
+          {group.links.filter((link) => !matchesRoute(link.href, '/harga') && !matchesRoute(link.href, '/status')).map((link) => <a href={publicHref(link.href)}>{matchesRoute(link.href, '/demo') ? 'Coba gratis' : link.label}</a>)}
           {group.label === 'Legal' && <button class="footer-button" type="button" data-cookie-settings>Kelola Cookie</button>}
         </nav>
       ))}

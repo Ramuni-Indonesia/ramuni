@@ -16,13 +16,13 @@ const companionSteps = [
 const productDashboard = dashboardVisuals.productOverview;
 
 const faq = [
-  ['Apakah RAMUNI adalah ERP?', 'RAMUNI adalah AI Business Companion. Fokus awalnya membantu UMKM membaca kondisi bisnis dan menentukan perhatian berikutnya.'],
-  ['Apakah AI menjalankan transaksi otomatis?', 'Tidak pada versi awal. AI hanya membaca dan menjelaskan. Tindakan berisiko tetap membutuhkan persetujuan manusia.'],
-  ['Data apa yang dibutuhkan?', 'Mulai dari data operasional yang tersedia. Jalur input dan ketersediaannya akan dijelaskan sebelum proses dimulai.'],
-  ['Apakah saya bisa langsung mencoba?', 'Anda dapat melihat contoh tampilan RAMUNI, lalu meminta tour yang sesuai kebutuhan usaha. Akses produk diajukan terpisah.'],
-  ['Apakah harga sudah tersedia?', 'Harga belum diumumkan. Kami akan menampilkannya setelah isi setiap paket ditetapkan.'],
-  ['Apakah RAMUNI cocok untuk semua industri?', 'Kami cocokkan dulu cara kerja usaha Anda dengan fitur yang sudah siap. Contoh awal tersedia untuk enam jenis usaha.'],
-  ['Bagaimana keamanan data dijaga?', 'Preview menunjukkan rancangan akses berdasarkan peran. Ketersediaan dan cakupannya akan dijelaskan sebelum penggunaan.'],
+  ['Apakah RAMUNI adalah ERP?', 'RAMUNI bukan ERP rumit. Fokusnya membantu UMKM memahami kondisi bisnis dan memilih langkah berikutnya.'],
+  ['Apakah AI menjalankan transaksi otomatis?', 'Tidak. AI menjelaskan konteks. Tindakan tetap diputuskan manusia.'],
+  ['Data apa yang dibutuhkan?', 'Mulai dari catatan operasional yang tersedia. Jalur input dijelaskan sebelum proses dimulai.'],
+  ['Apakah saya bisa langsung mencoba?', 'Anda dapat melihat contoh tampilan lalu mengajukan coba gratis. Akses produk diproses terpisah.'],
+  ['Apakah harga sudah tersedia?', 'Belum. Harga ditampilkan setelah isi paket ditetapkan.'],
+  ['Apakah RAMUNI cocok untuk semua industri?', 'Kami cocokkan cara kerja usaha dengan fitur yang siap. Contoh awal mencakup enam jenis usaha.'],
+  ['Bagaimana keamanan data dijaga?', 'Akses mengikuti peran. Cakupan perlindungan dijelaskan sebelum penggunaan.'],
 ];
 
 const answerLayers = [
@@ -57,7 +57,7 @@ const schema = [
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
         <h1>Pahami bisnis Anda. Tahu langkah berikutnya.</h1>
         <p class="lede">RAMUNI membantu Anda melihat perubahan penting pada penjualan, stok, kas, dan pelanggan. Buka angka pendukung sebelum mengambil keputusan.</p>
-        <div class="button-row"><a class="button button--primary" href={launchCta.href}>Lihat tour sesuai usaha Anda</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard RAMUNI</a></div>
+        <div class="button-row"><a class="button button--primary" href={launchCta.href}>Coba gratis sesuai usaha Anda</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard RAMUNI</a></div>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
@@ -251,8 +251,8 @@ const schema = [
 
   <section class="section pricing-stage chapter" data-chapter="Akses">
     <div class="container pricing-composition">
-      <div class="pricing-word reveal">Tour<br />Produk</div>
-      <div class="pricing-copy reveal"><h2>Mulai dari tour, lanjut jika cocok.</h2><p>Bahas satu masalah usaha, lihat contoh alurnya, lalu pilih fitur yang paling relevan sebelum memutuskan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Bahas tour produk gratis</a></div></div>
+      <div class="pricing-word reveal">Coba<br />Gratis</div>
+      <div class="pricing-copy reveal"><h2>Coba gratis dulu, lanjut jika cocok.</h2><p>Bahas satu masalah usaha, lihat contoh alurnya, lalu pilih fitur yang paling relevan sebelum memutuskan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a></div></div>
     </div>
   </section>
 
@@ -267,7 +267,7 @@ const schema = [
     <div class="container closing-composition reveal">
       <p>Meramu insight. Memberi arah.</p>
       <h2>Pilih satu masalah. Mulai dari sana.</h2>
-      <a class="button button--primary" href="/tour-produk-gratis/">Bahas tour produk gratis</a>
+      <a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a>
     </div>
   </section>
   <script is:inline type="module" src="/scripts/home-interactions.js"></script>

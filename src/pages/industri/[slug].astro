@@ -44,7 +44,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah semua SKU harus dimasukkan sekaligus?', answer: 'Tidak. Mulai dari produk aktif dan paling sering bergerak, lalu lengkapi secara bertahap.' },
       { question: 'Bagaimana jika stok sistem berbeda dari rak?', answer: 'Tandai selisih, periksa transaksi terakhir, lalu lakukan cek fisik sebelum koreksi.' },
     ],
-    privacy: 'Jangan masukkan data pelanggan ke tour atau formulir publik.',
+    privacy: 'Jangan masukkan data pelanggan ke sesi coba gratis atau formulir publik.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'naikkan-omzet'],
     resourceHrefs: ['/panduan/', '/kalkulator/'],
@@ -72,7 +72,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah RAMUNI menghitung resep dan bahan terbuang otomatis?', answer: 'Belum tentu. Cakupan resep dan bahan terbuang hanya ditampilkan setelah fitur serta cara pencatatannya terverifikasi.' },
       { question: 'Bagaimana membaca menu laris yang bahannya menipis?', answer: 'Bandingkan penjualan pada jam ramai dengan saldo bahan terakhir, lalu cek kondisi fisik sebelum menambah stok.' },
     ],
-    privacy: 'Tour memakai skenario yang sudah disiapkan. Anda tidak perlu membawa data bisnis untuk memulai.',
+    privacy: 'Sesi coba gratis memakai skenario yang sudah disiapkan. Anda tidak perlu membawa data bisnis untuk memulai.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'kasir', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
     resourceHrefs: ['/panduan/', '/kalkulator/'],
@@ -122,7 +122,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
     onboarding: [
       { title: 'Samakan kode produk', text: 'Pakai kode yang sama antar kanal agar produk tidak dihitung sebagai item berbeda.' },
       { title: 'Isi HPP yang diketahui', text: 'Catat harga pokok sederhana sebelum membaca margin per produk.' },
-      { title: 'Tandai sumber catatan', text: 'Pisahkan kanal penjualan tanpa memasukkan data pribadi ke tour atau formulir publik.' },
+      { title: 'Tandai sumber catatan', text: 'Pisahkan kanal penjualan tanpa memasukkan data pribadi ke sesi coba gratis atau formulir publik.' },
     ],
     faq: [
       { question: 'Apakah marketplace sudah terhubung langsung?', answer: 'Koneksi langsung hanya boleh diklaim saat integrasi dan dukungan operasionalnya sudah disetujui.' },
@@ -184,7 +184,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { question: 'Apakah RAMUNI membuat rencana produksi otomatis?', answer: 'Tidak pada cakupan awal. Data hanya membantu menentukan apa yang perlu diperiksa sebelum produksi.' },
       { question: 'Bagaimana membaca bahan dan barang jadi bersama?', answer: 'Bandingkan saldo terakhir, penjualan barang jadi, dan kebutuhan bahan yang sudah diketahui secara manual.' },
     ],
-    privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau tour website.',
+    privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau sesi coba gratis.',
     roleSlugs: ['pemilik-usaha', 'admin-toko', 'supervisor'],
     solutionSlugs: ['kelola-stok', 'pantau-laba-dan-arus-kas'],
     resourceHrefs: ['/panduan/', '/template/'],
@@ -219,7 +219,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Minta tour produk gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh tampilan RAMUNI untuk alur usaha yang relevan." />
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba RAMUNI gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh tampilan RAMUNI untuk alur usaha yang relevan." />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
@@ -297,7 +297,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
       <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Batas data tetap dijaga.</h2><p class="lede">{brief.privacy}</p></div>
       <div class="faq-list reveal">
         {brief.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-        <details><summary>Apakah saya perlu mengirim data bisnis untuk tour?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details>
+        <details><summary>Apakah saya perlu mengirim data bisnis untuk mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details>
       </div>
     </div>
   </section>
@@ -309,7 +309,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
         eyebrow={'Simulasi untuk ' + industry.title}
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
         body="Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi sebelum menentukan langkah."
-        primaryLabel="Minta tour produk gratis"
+        primaryLabel="Coba RAMUNI gratis"
         primaryHref="/tour-produk-gratis/"
         secondaryLabel="Lihat Solusi"
         secondaryHref="/solusi/"

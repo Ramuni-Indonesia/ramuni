@@ -101,7 +101,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Memulai', 'Membaca dashboard', 'Batas fitur'],
     start: 'Mulai dari tujuan usaha, pilih skenario yang relevan, lalu periksa status setiap alur sebelum menggunakannya.',
     steps: ['Pilih tujuan', 'Pilih skenario', 'Periksa status fitur'],
-    cta: { title: 'Mulai dari alur produk yang paling dekat dengan kebutuhan Anda.', label: 'Lihat Tour Produk', href: '/tour-produk-gratis/' },
+    cta: { title: 'Mulai dari alur produk yang paling dekat dengan kebutuhan Anda.', label: 'Coba RAMUNI gratis', href: '/tour-produk-gratis/' },
   },
 ];
 

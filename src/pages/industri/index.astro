@@ -31,7 +31,7 @@ const industryLens = industries.map((industry) => ({
 }));
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Bandingkan ritme retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil sebelum memilih konteks RAMUNI.">
-  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Minta tour produk gratis" secondaryHref="/tour-produk-gratis/" visual="evidence" visualScene="industry-hub" visualLabel="Konteks usaha" visualTitle="Pertanyaan yang sama dibaca berbeda sesuai ritme usaha." />
+  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Coba RAMUNI gratis" secondaryHref="/tour-produk-gratis/" visual="evidence" visualScene="industry-hub" visualLabel="Konteks usaha" visualTitle="Pertanyaan yang sama dibaca berbeda sesuai ritme usaha." />
 
   <section class="section industry-lens" aria-labelledby="industry-lens-title">
     <div class="container industry-lens__layout">
@@ -59,7 +59,7 @@ const industryLens = industries.map((industry) => ({
       <div class="industry-hub__sticky reveal">
         <p class="eyebrow">Temukan konteks Anda</p>
         <h2 id="industry-selector-title">Pertanyaan harian adalah titik mulai terbaik.</h2>
-        <p>Setiap halaman memakai contoh rekaan. Fitur yang tersedia akan dijelaskan saat tour.</p>
+        <p>Setiap halaman memakai contoh rekaan. Fitur yang tersedia akan dijelaskan sebelum Anda mulai.</p>
         <div class="industry-hub__radar" aria-hidden="true"><span></span><i></i><b></b></div>
       </div>
       <nav class="industry-hub__signals" aria-label="Daftar industri">
@@ -106,7 +106,7 @@ const industryLens = industries.map((industry) => ({
 
   <section class="section industry-hub__resources" id="panduan-industri" aria-labelledby="industry-resources-title">
     <div class="container industry-hub__resource-layout">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum tour</p><h2 id="industry-resources-title">Bawa konteks, bukan data sensitif.</h2></div>
+      <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum mencoba</p><h2 id="industry-resources-title">Bawa konteks, bukan data sensitif.</h2></div>
       <div class="industry-hub__resource-list">
         {resources.map((resource, index) => <a class="industry-hub__resource reveal" style={`--i:${index}`} href={resource.href}><span>{resource.eyebrow}</span><div><h3>{resource.title}</h3><p>{resource.text}</p></div><b aria-hidden="true">Buka</b></a>)}
       </div>
@@ -115,17 +115,17 @@ const industryLens = industries.map((industry) => ({
 
   <section class="section surface industry-hub__faq" id="kecocokan" aria-labelledby="fit-title">
     <div class="container industry-hub__faq-layout">
-      <div class="industry-hub__sticky reveal"><p class="eyebrow">Kecocokan</p><h2 id="fit-title">Pilih sesuai kebutuhan usaha.</h2><p>Gunakan halaman industri untuk menyiapkan pertanyaan sebelum tour.</p></div>
+      <div class="industry-hub__sticky reveal"><p class="eyebrow">Kecocokan</p><h2 id="fit-title">Pilih sesuai kebutuhan usaha.</h2><p>Gunakan halaman industri untuk menyiapkan pertanyaan sebelum mencoba.</p></div>
       <div class="industry-hub__faq-list reveal">
         <details><summary>Apakah RAMUNI berbeda untuk setiap industri?</summary><p>Tidak. Produk intinya sama. Contoh, istilah, dan urutan pemeriksaan disesuaikan dengan ritme usaha.</p></details>
-        <details><summary>Apakah semua fitur industri sudah tersedia?</summary><p>Belum tentu. Status dan batas fitur dijelaskan di halaman masing-masing dan dikonfirmasi saat tour.</p></details>
-        <details><summary>Perlukah membawa data usaha saat tour?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya tanpa membawa data bisnis.</p></details>
+        <details><summary>Apakah semua fitur industri sudah tersedia?</summary><p>Belum tentu. Status dan batas fitur dijelaskan di halaman masing-masing sebelum Anda mulai.</p></details>
+        <details><summary>Perlukah membawa data usaha saat mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya tanpa membawa data bisnis.</p></details>
         <details><summary>Jika model usaha saya campuran, mulai dari mana?</summary><p>Pilih ritme yang paling banyak menyita waktu tim, lalu bahas alur lainnya saat konsultasi.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="section dark-surface industry-hub__closing" id="cta" aria-labelledby="industry-cta-title"><div class="container reveal"><div><p class="eyebrow">Langkah berikutnya</p><h2 id="industry-cta-title">Cocokkan kebutuhan sebelum memilih fitur.</h2><p>Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan batas yang perlu diperiksa.</p></div><a class="button button--light" href="/tour-produk-gratis/">Minta tour produk gratis</a></div></section>
+  <section class="section dark-surface industry-hub__closing" id="cta" aria-labelledby="industry-cta-title"><div class="container reveal"><div><p class="eyebrow">Langkah berikutnya</p><h2 id="industry-cta-title">Cocokkan kebutuhan sebelum memilih fitur.</h2><p>Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan batas yang perlu diperiksa.</p></div><a class="button button--light" href="/tour-produk-gratis/">Coba RAMUNI gratis</a></div></section>
 </BaseLayout>
 
 <style>

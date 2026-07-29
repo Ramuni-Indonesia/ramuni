@@ -8,7 +8,7 @@ interface Props {
   location?: string;
 }
 const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline' } = Astro.props;
-const labels = { 'early-access': 'Minta akses uji coba', demo: 'Kirim permintaan tour', contact: 'Kirim permintaan konsultasi' };
+const labels = { 'early-access': 'Minta akses uji coba', demo: 'Mulai coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';

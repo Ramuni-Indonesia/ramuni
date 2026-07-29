@@ -18,7 +18,7 @@ const schema = {
   },
 };
 const contactPaths = [
-  ['Tour produk', 'Lihat apakah RAMUNI cocok untuk alur usaha Anda.', 'Jenis usaha + masalah utama'],
+  ['Coba gratis', 'Lihat apakah RAMUNI cocok untuk alur usaha Anda.', 'Jenis usaha + masalah utama'],
   ['Pertanyaan produk', 'Tanya batas fitur, data yang dibutuhkan, atau status rilis.', 'Konteks singkat tanpa data sensitif'],
   ['Kerja sama', 'Bahas peluang partner, edukasi, atau kolaborasi.', 'Tujuan kerja sama + kanal resmi'],
   ['Privasi / keamanan', 'Minta arahan untuk permintaan data atau laporan keamanan.', 'Jenis permintaan tanpa rahasia teknis'],
@@ -26,16 +26,16 @@ const contactPaths = [
 const safeBrief = [
   ['Boleh dikirim', 'Peran Anda, jenis usaha, masalah yang ingin dipahami.'],
   ['Jangan dikirim', 'Password, token, data pelanggan, transaksi rinci.'],
-  ['Langkah berikut', 'Tim mengarahkan ke tour produk, bantuan, keamanan, atau sumber yang tepat.'],
+  ['Langkah berikut', 'Tim mengarahkan ke sesi coba gratis, bantuan, keamanan, atau sumber yang tepat.'],
 ];
 ---
-<BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk membahas tour produk, pertanyaan produk, atau kerja sama tanpa mengirim data sensitif." schema={schema}>
+<BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk membahas sesi coba gratis, pertanyaan produk, atau kerja sama tanpa mengirim data sensitif." schema={schema}>
   <section class="contact-conversion-page" id="formulir-kontak" aria-labelledby="contact-form">
     <div class="container contact-conversion-page__layout">
       <div class="contact-conversion-page__intro reveal is-visible">
         <p class="section-kicker">Kontak RAMUNI</p>
         <h1 id="contact-form">Ceritakan satu masalah usaha. Kami arahkan ke langkah yang tepat.</h1>
-        <p class="lede">Ceritakan kebutuhan Anda agar tim kami dapat mengarahkan ke tour produk, bantuan, keamanan, atau kerja sama yang sesuai.</p>
+        <p class="lede">Ceritakan kebutuhan Anda agar tim kami dapat mengarahkan ke sesi coba gratis, bantuan, keamanan, atau kerja sama yang sesuai.</p>
         <p class="contact-conversion-page__safe">Jangan sertakan data pelanggan, transaksi, kata sandi, atau token.</p>
         <nav class="contact-conversion-links" aria-label="Tautan bantuan kontak">
           <a href="/bantuan/">Pusat Bantuan</a>

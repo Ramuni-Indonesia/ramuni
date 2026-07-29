@@ -64,7 +64,7 @@ const faqSchema = {
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href={tourHref}>{solutionCtas[solution.slug] || 'Bahas tour produk gratis'}</a>
+            <a class="button button--primary" href={tourHref}>{solutionCtas[solution.slug] || 'Mulai coba gratis'}</a>
             <a class="button button--secondary" href="#workflow-title">Lihat cara kerja</a>
           </div>
         </div>
@@ -183,7 +183,7 @@ const faqSchema = {
           eyebrow="Langkah berikutnya"
           title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
-          primaryLabel={solutionCtas[solution.slug] || 'Bahas tour produk gratis'}
+          primaryLabel={solutionCtas[solution.slug] || 'Mulai coba gratis'}
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="/solusi/"

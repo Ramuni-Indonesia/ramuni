@@ -227,6 +227,25 @@
   opacity: .78;
 }
 
+.floating-actions__contact {
+  border: 1px solid rgb(255 255 255 / .28);
+  background:
+    radial-gradient(circle at 22% 18%, rgb(255 255 255 / .22), transparent 34%),
+    linear-gradient(135deg, #18a884 0%, #10765f 100%);
+  box-shadow: 0 16px 36px rgb(11 48 69 / .22);
+}
+
+.floating-actions__whatsapp {
+  border-radius: 50%;
+  background: rgb(255 255 255 / .16);
+}
+
+.floating-actions__whatsapp img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
 .contact-dialog {
   position: fixed;
   inset: 0 0 0 auto;
@@ -237,7 +256,9 @@
   margin: 0 0 0 auto;
   border-radius: 26px 0 0 26px;
   overflow: hidden;
-  background: var(--rice);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / .86), rgb(246 241 229 / .96)),
+    var(--rice);
 }
 
 .contact-dialog::backdrop {
@@ -256,9 +277,11 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 12px;
-  align-items: center;
-  padding: 20px 22px;
-  background: var(--ink);
+  align-items: start;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 18% 0%, rgb(255 209 102 / .24), transparent 32%),
+    linear-gradient(135deg, var(--ink), #123e4d);
   color: var(--white);
 }
 
@@ -276,6 +299,18 @@
   font-size: .94rem;
 }
 
+.contact-dialog__status {
+  width: fit-content;
+  margin-top: 8px;
+  border: 1px solid rgb(255 255 255 / .18);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgb(255 255 255 / .08);
+  color: rgb(255 255 255 / .76);
+  font-size: .66rem;
+  font-weight: 800;
+}
+
 .contact-dialog__avatar {
   display: grid;
   place-items: center;
@@ -285,6 +320,12 @@
   background: var(--yellow);
   color: var(--ink);
   font-weight: 900;
+}
+
+.contact-dialog__avatar img {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .contact-dialog .contact-dialog__close {
@@ -300,7 +341,7 @@
 .contact-dialog__conversation {
   display: grid;
   gap: 8px;
-  padding: 18px 22px 8px;
+  padding: 20px 22px 8px;
 }
 
 .contact-dialog__conversation p {
@@ -318,7 +359,7 @@
 .contact-dialog__conversation p:last-child {
   margin-left: auto;
   border-radius: 16px 4px 16px 16px;
-  background: var(--yellow);
+  background: #dcf8c6;
   color: var(--ink);
 }
 

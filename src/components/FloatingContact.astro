@@ -7,19 +7,20 @@ import LeadForm from './LeadForm.astro';
     <span class="floating-actions__whatsapp" aria-hidden="true">
       <img src="/icons/whatsapp-mark.svg" width="28" height="28" alt="" loading="lazy" decoding="async" />
     </span>
-    <span><small>Konsultasi</small>Hubungi kami</span>
+    <span><small>WhatsApp RAMUNI</small>Konsultasi gratis</span>
   </button>
 </div>
 <span class="scroll-top-sentinel" data-scroll-top-sentinel aria-hidden="true"></span>
 <dialog class="contact-dialog" id="contact-dialog" data-contact-dialog aria-labelledby="contact-dialog-title" aria-label="Konsultasi bersama tim RAMUNI">
   <div class="contact-dialog__panel">
     <header class="contact-dialog__header">
-      <span class="contact-dialog__avatar" aria-hidden="true">R</span>
-      <div><small>Tim RAMUNI</small><strong id="contact-dialog-title">Ceritakan kebutuhan usaha Anda</strong></div>
+      <span class="contact-dialog__avatar" aria-hidden="true"><img src="/icons/whatsapp-mark.svg" width="24" height="24" alt="" loading="lazy" decoding="async" /></span>
+      <div><small>Tim RAMUNI</small><strong id="contact-dialog-title">Ceritakan kebutuhan usaha Anda</strong><span class="contact-dialog__status">Biasanya dibalas lewat WhatsApp</span></div>
       <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">×</button>
     </header>
     <div class="contact-dialog__conversation">
-      <p>Halo! Ceritakan kebutuhan usaha Anda. Setelah formulir terkirim, lanjutkan obrolan di WhatsApp.</p>
+      <p>Halo! Pilih masalah usaha yang ingin dibahas, lalu kirim kontak Anda.</p>
+      <p>Setelah formulir diterima, kami lanjutkan obrolan di WhatsApp resmi RAMUNI.</p>
     </div>
     <div class="contact-dialog__form">
       <LeadForm kind="contact" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim lalu buka WhatsApp" />

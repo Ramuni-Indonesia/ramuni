@@ -1,0 +1,57 @@
+---
+import '../styles/dashboard-motion.css';
+
+interface Props {
+  class?: string;
+  label?: string;
+  focus?: 'overview' | 'performance' | 'operations' | 'full' | string;
+  priority?: boolean;
+  src?: string;
+  width?: number;
+  height?: number;
+  mobileSrc?: string;
+  mobileWidth?: number;
+  mobileHeight?: number;
+}
+
+const {
+  class: className = '',
+  label = 'Tampilan dashboard RAMUNI yang bergerak memperlihatkan ringkasan, arus kas, aktivitas, dan status data.',
+  focus = 'overview',
+  priority = false,
+  src = '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
+  width = 1440,
+  height = 1202,
+  mobileSrc,
+  mobileWidth,
+  mobileHeight,
+} = Astro.props;
+
+const usesVerticalScan = width / height < 1.35;
+---
+
+<span
+  class:list={['dashboard-motion', 'dashboard-motion--' + focus, { 'dashboard-motion--vertical-scan': usesVerticalScan }, className]}
+  role="img"
+  aria-label={label}
+>
+  <span class="dashboard-motion__screen" aria-hidden="true">
+    <picture>
+      {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
+      <img
+        class="dashboard-motion__image"
+        src={src}
+        width={width}
+        height={height}
+        alt=""
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : undefined}
+        decoding="async"
+      />
+    </picture>
+    <span class="dashboard-motion__scanline"></span>
+  </span>
+  <span class="dashboard-motion__timeline" aria-hidden="true">
+    <i></i><i></i><i></i>
+  </span>
+</span>

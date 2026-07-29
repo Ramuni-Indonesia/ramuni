@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
+import DashboardMotion from '../components/DashboardMotion.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
 import { dashboardVisuals, heroContextVisuals } from '../data/dashboardVisuals';
@@ -22,7 +23,7 @@ const painClusters = [
 const solutionFaq = [
   { question: 'Bagaimana memilih solusi yang tepat?', answer: 'Mulai dari gejala yang paling sering menghambat keputusan, lalu periksa modul dan data yang dibutuhkan.' },
   { question: 'Apakah RAMUNI menjamin hasil bisnis?', answer: 'Tidak. RAMUNI membantu membaca pola dan bukti. Hasil tetap dipengaruhi keputusan dan kondisi usaha.' },
-  { question: 'Data apa yang dibutuhkan untuk mulai?', answer: 'Tergantung masalahnya. Tour memetakan catatan minimum tanpa meminta data sensitif.' },
+  { question: 'Data apa yang dibutuhkan untuk mulai?', answer: 'Tergantung masalahnya. Sesi coba gratis memetakan catatan minimum tanpa meminta data sensitif.' },
 ];
 
 const problemMapEntries = painClusters.map((cluster, index) => ({
@@ -38,7 +39,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
           <p class="section-kicker">Solusi bisnis</p>
           <h1>Pilih masalahnya, bukan modulnya.</h1>
           <p class="lede">Mulai dari masalah yang paling mengganggu usaha Anda. RAMUNI membantu memilih data dan modul yang perlu diperiksa sebelum Anda menentukan langkah.</p>
-          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/">Cocokkan masalah lewat tour</a></div>
+          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a></div>
         </div>
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
       </div>
@@ -50,10 +51,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         <div class="solution-directory__content">
           <figure class="solution-directory__preview">
             <div class="solution-directory__preview-media">
-              <picture>
-                <source media="(max-width: 620px)" srcset={solutionPreview.mobileSrc} width={solutionPreview.mobileWidth} height={solutionPreview.mobileHeight} />
-                <img src={solutionPreview.src} width={solutionPreview.width} height={solutionPreview.height} alt="Contoh tampilan dashboard RAMUNI." loading="lazy" decoding="async" />
-              </picture>
+              <DashboardMotion focus="performance" label="Contoh tampilan dashboard RAMUNI." {...solutionPreview} />
               <img class="solution-directory__preview-context" src={solutionPreviewContext.src} width={solutionPreviewContext.width} height={solutionPreviewContext.height} alt="" loading="lazy" decoding="async" aria-hidden="true" />
             </div>
             <figcaption><span>{solutionPreview.badge}</span></figcaption>
@@ -133,7 +131,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
   .pain-clusters__track{display:grid;grid-template-columns:1.2fr .8fr .8fr 1.2fr;margin-top:clamp(42px,6vw,72px);border-block:1px solid var(--ink)}
   .pain-clusters__track article{min-height:220px;padding:24px;border-right:1px solid var(--ink-10);display:flex;flex-direction:column}.pain-clusters__track article:last-child{border-right:0}
   .pain-clusters__track span{color:var(--teal);font-size:.76rem;font-weight:800}.pain-clusters__track p{margin-top:auto;font-size:1.08rem}
-  .solution-directory__layout{display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(44px,7vw,104px);align-items:start}.solution-directory__layout>header{position:sticky;top:104px}.solution-directory__layout>header>p:last-child{margin-top:20px;color:var(--ink-72)}.solution-directory__content{display:grid;gap:clamp(26px,4vw,44px);min-width:0}.solution-directory__preview{margin:0;border:1px solid var(--ink-10);background:var(--rice);overflow:hidden}.solution-directory__preview-media{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(180px,.65fr);gap:1px;background:var(--ink-10)}.solution-directory__preview picture,.solution-directory__preview img{display:block;min-width:0;width:100%;height:100%}.solution-directory__preview picture img{object-fit:contain;object-position:top center;background:var(--rice)}.solution-directory__preview .solution-directory__preview-context{object-fit:cover;object-position:center}.solution-directory__preview figcaption{display:flex;justify-content:space-between;gap:18px;padding:14px 16px;background:var(--white);font-size:.72rem}.solution-directory__preview figcaption span{color:var(--teal);font-weight:800}.solution-directory__preview figcaption strong{max-width:48ch;text-align:right}
+  .solution-directory__layout{display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(44px,7vw,104px);align-items:start}.solution-directory__layout>header{position:sticky;top:104px}.solution-directory__layout>header>p:last-child{margin-top:20px;color:var(--ink-72)}.solution-directory__content{display:grid;gap:clamp(26px,4vw,44px);min-width:0}.solution-directory__preview{margin:0;background:transparent;overflow:visible}.solution-directory__preview-media{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(180px,.65fr);gap:16px;align-items:stretch}.solution-directory__preview .solution-directory__preview-context{display:block;min-width:0;width:100%;height:100%;object-fit:cover;object-position:center;border:1px solid var(--ink-10);border-radius:22px;background:var(--white);box-shadow:0 18px 48px rgb(11 48 69/.08)}.solution-directory__preview figcaption{display:flex;justify-content:space-between;gap:18px;margin-top:14px;padding:12px 0;border-top:1px solid var(--ink-10);font-size:.72rem}.solution-directory__preview figcaption span{color:var(--teal);font-weight:800}.solution-directory__preview figcaption strong{max-width:48ch;text-align:right}
   .solution-stories{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
   .solution-story{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:18px;align-items:start;min-width:0;min-height:300px;margin:0;padding:26px;border:1px solid var(--ink-10);background:var(--white);text-decoration:none;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
   .solution-story:nth-child(1),.solution-story:nth-child(4){grid-column:span 7}.solution-story:nth-child(2),.solution-story:nth-child(3){grid-column:span 5;background:var(--rice)}.solution-story:nth-child(5){grid-column:1/-1;min-height:220px;grid-template-columns:52px .8fr 1.2fr auto;grid-template-rows:auto}.solution-story:hover,.solution-story:focus-visible{transform:translateY(-5px);border-color:var(--teal);box-shadow:-7px 7px 0 var(--yellow)}

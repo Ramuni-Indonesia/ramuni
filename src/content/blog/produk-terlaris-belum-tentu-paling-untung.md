@@ -86,7 +86,7 @@ Biaya langsung harus memakai definisi yang konsisten. Tergantung jenis usaha, ko
 
 Jangan memasukkan atau mengeluarkan biaya hanya agar hasil terlihat bagus. Catat asumsi dan mintalah tinjauan akuntansi ketika angka akan dipakai untuk laporan resmi, pajak, atau keputusan harga.
 
-Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) sebagai gambaran hubungan transaksi dan catatan keuangan. Ketersediaan fitur akan dijelaskan pada halaman produk dan saat tour.
+Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) sebagai gambaran hubungan transaksi dan catatan keuangan. Ketersediaan fitur akan dijelaskan pada halaman produk sebelum Anda mulai.
 
 ## Waspadai diskon dan produk pemancing
 

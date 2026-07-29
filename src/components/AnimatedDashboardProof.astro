@@ -31,22 +31,40 @@ const {
     position:relative;
     display:block;
     width:100%;
-    aspect-ratio:1440/1202;
+    aspect-ratio:16/10;
     overflow:hidden;
+    border:1px solid rgb(11 48 69/.16);
+    border-radius:22px;
     background:var(--rice);
+    box-shadow:0 24px 70px rgb(11 48 69/.13);
     contain:paint;
   }
 
   .animated-dashboard-proof__frame{
-    position:absolute;
-    inset:0;
     display:block;
     width:100%;
-    height:100%;
+    height:auto;
     object-fit:contain;
     object-position:top center;
-    opacity:1;
-    transform:none;
+    transform:translate3d(0,0,0);
   }
 
+  @media(prefers-reduced-motion:no-preference){
+    .animated-dashboard-proof__frame{animation:hero-dashboard-scan 14s cubic-bezier(.45,0,.18,1) infinite}
+  }
+
+  @keyframes hero-dashboard-scan{
+    0%,14%{transform:translate3d(0,0,0)}
+    38%,52%{transform:translate3d(0,-12%,0)}
+    72%,86%{transform:translate3d(0,-25%,0)}
+    100%{transform:translate3d(0,0,0)}
+  }
+
+  @media(max-width:740px){
+    .animated-dashboard-proof{aspect-ratio:4/3;border-radius:16px;box-shadow:0 16px 38px rgb(11 48 69/.12)}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .animated-dashboard-proof__frame{animation:none;transform:none}
+  }
 </style>

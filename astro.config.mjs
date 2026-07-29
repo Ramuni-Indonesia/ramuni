@@ -12,7 +12,7 @@ export default defineConfig({
   site,
   output: 'static',
   integrations: [ramuniSitemapArchitecture({ site, indexingEnabled: publicEnvironment.indexingEnabled })],
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'never' },
   compressHTML: true,
   prefetch: { prefetchAll: false, defaultStrategy: 'viewport' },
 });

@@ -29,6 +29,10 @@ const initialiseFloatingContact = () => {
     if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
     openButton.setAttribute('aria-expanded', 'true');
     dialog.showModal();
+    window.setTimeout(() => {
+      const firstField = dialog.querySelector('input, select, textarea') || closeButton;
+      if (firstField instanceof HTMLElement) firstField.focus({ preventScroll: true });
+    }, 0);
   });
 
   closeButton?.addEventListener('click', () => {
