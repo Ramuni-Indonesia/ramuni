@@ -81,7 +81,7 @@ export const productDetails: Record<string, ProductDetail> = {
       { capabilityId: 'AI-GUARD-001', label: 'Mode baca saja', description: 'Tidak menjalankan transaksi atau tindakan bisnis otomatis.', publicApproved: false },
     ],
     safety: {
-      heading: 'Batas jawaban terlihat sebelum dipakai.',
+      heading: 'Dasar jawaban terlihat sebelum dipakai.',
       boundary: 'Asisten bukan mesin pencari umum dan tidak menjalankan aksi bisnis secara otomatis.',
       checks: ['Periode dan waktu pembaruan', 'Sumber angka yang dipakai', 'Bagian yang masih perlu diperiksa manusia'],
     },
@@ -97,11 +97,11 @@ export const productDetails: Record<string, ProductDetail> = {
     ],
     relatedProductSlugs: ['dashboard-bisnis', 'laporan-insight', 'integrasi'],
     solution: { title: 'Laporan bisnis lebih ringkas', text: 'Lihat alur dari data harian menjadi bahan evaluasi.', href: '/solusi/laporan-bisnis-otomatis/' },
-    resource: { title: 'AI Business Companion untuk UMKM', text: 'Kenali peran AI yang tetap menyertakan bukti dan batas.', href: '/blog/ai-business-companion-umkm/' },
+    resource: { title: 'AI Business Companion untuk UMKM', text: 'Kenali peran AI yang tetap menyertakan bukti dan konteks.', href: '/blog/ai-business-companion-umkm/' },
     help: { title: 'Mulai dari panduan dasar', text: 'Siapkan pertanyaan dan data sebelum mencoba contoh.', href: '/panduan/' },
     faq: [
       { question: 'Data apa yang dipakai untuk menjawab?', answer: 'Jawaban mengikuti periode, modul, dan catatan yang sedang dibuka. Data yang belum lengkap perlu disebutkan.' },
-      { question: 'Apakah Asisten AI dapat mengubah data?', answer: 'Tidak pada rancangan awal. Asisten membaca dan menjelaskan; perubahan tetap dilakukan pengguna sesuai akses.' },
+      { question: 'Bagaimana Asisten AI membantu perubahan data?', answer: 'Asisten membaca dan menjelaskan konteks. Perubahan dilakukan pengguna sesuai akses dan alur persetujuan.' },
       { question: 'Apa yang perlu diperiksa sebelum memakai jawaban?', answer: 'Periksa periode, waktu pembaruan, sumber angka, dan bagian yang masih membutuhkan penilaian manusia.' },
     ],
     closing: 'Mulai dari satu pertanyaan yang sering menghabiskan waktu Anda.',
@@ -189,8 +189,8 @@ export const productDetails: Record<string, ProductDetail> = {
       { capabilityId: 'CAT-CORE-001', label: 'Kategori, unit, produk, dan SKU', description: 'Identitas utama untuk menjaga katalog tetap konsisten.', publicApproved: false },
       { capabilityId: 'CAT-VALUE-001', label: 'Harga, HPP, dan stok minimum', description: 'Nilai dasar untuk transaksi dan pemeriksaan stok.', publicApproved: false },
       { capabilityId: 'CAT-ARCHIVE-001', label: 'Arsip produk', description: 'Pisahkan produk aktif tanpa menghapus riwayat.', publicApproved: false },
-      { capabilityId: 'CAT-ADVANCED-001', label: 'Barcode, varian, bundel, lot, dan serial', description: 'Belum tersedia.', publicApproved: false },
-      { capabilityId: 'CAT-PRICELIST-001', label: 'Daftar harga bertingkat', description: 'Belum tersedia.', publicApproved: false },
+      { capabilityId: 'CAT-ADVANCED-001', label: 'Barcode, varian, bundel, lot, dan serial', description: 'Struktur lanjutan perlu tetap terhubung ke identitas produk utama.', publicApproved: false },
+      { capabilityId: 'CAT-PRICELIST-001', label: 'Daftar harga bertingkat', description: 'Aturan harga perlu mudah ditelusuri menurut kebutuhan penjualan.', publicApproved: false },
     ],
     safety: {
       heading: 'Fitur lanjutan tidak dibungkus sebagai satu janji.',
@@ -212,7 +212,7 @@ export const productDetails: Record<string, ProductDetail> = {
     help: { title: 'Panduan menyiapkan data', text: 'Mulai dari struktur produk yang konsisten.', href: '/panduan/' },
     faq: [
       { question: 'Bagaimana menangani nama produk yang ganda?', answer: 'Pilih satu identitas utama, samakan SKU dan unit, lalu arsipkan duplikat tanpa menghapus riwayat.' },
-      { question: 'Apakah varian dan bundel sudah termasuk?', answer: 'Belum dinyatakan tersedia. Barcode, varian, bundel, lot, serial, dan daftar harga memiliki status terpisah.' },
+      { question: 'Bagaimana menyiapkan varian dan bundel?', answer: 'Gunakan satu identitas produk utama, lalu pisahkan atribut, kode, unit, dan aturan harga agar setiap turunannya tetap dapat ditelusuri.' },
       { question: 'Siapa yang boleh mengubah harga atau HPP?', answer: 'Perubahan mengikuti akses akun dan perlu meninggalkan jejak yang dapat diperiksa.' },
     ],
     closing: 'Rapikan produk sekali, gunakan dengan cara yang sama.',
@@ -245,7 +245,7 @@ export const productDetails: Record<string, ProductDetail> = {
       { capabilityId: 'SALE-CAPTURE-001', label: 'Pencatatan transaksi', description: 'Catat penjualan dasar beserta waktu dan produknya.', publicApproved: false },
       { capabilityId: 'SALE-TREND-001', label: 'Tren produk dan kategori', description: 'Lihat produk dan kategori yang mendorong perubahan omzet.', publicApproved: false },
       { capabilityId: 'SALE-PAYMENT-001', label: 'Status pembayaran', description: 'Pisahkan nilai transaksi dari uang yang sudah diterima.', publicApproved: false },
-      { capabilityId: 'SALE-POS-BOUNDARY', label: 'Cakupan POS lanjutan', description: 'Mode offline, tutup shift, retur, dan dukungan perangkat belum tersedia.', publicApproved: false },
+      { capabilityId: 'SALE-POS-BOUNDARY', label: 'Operasional POS', description: 'Mode offline, tutup shift, retur, dan perangkat perlu memiliki jejak transaksi yang konsisten.', publicApproved: false },
     ],
     safety: {
       heading: 'Pencatatan penjualan bukan janji POS lengkap.',
@@ -269,7 +269,7 @@ export const productDetails: Record<string, ProductDetail> = {
     faq: [
       { question: 'Apa beda transaksi dan pembayaran?', answer: 'Transaksi mencatat penjualan. Status pembayaran menunjukkan apakah uang sudah diterima atau masih perlu diperiksa.' },
       { question: 'Bagaimana menangani transaksi yang gagal tersimpan?', answer: 'Jangan langsung mengulang. Periksa statusnya agar tidak membuat transaksi ganda.' },
-      { question: 'Apakah ini sudah mencakup POS lengkap?', answer: 'Belum dinyatakan. Offline, tutup shift, retur, perangkat, dan fitur POS lain memiliki status terpisah.' },
+      { question: 'Apa yang perlu diperiksa dalam alur POS?', answer: 'Periksa transaksi, pembayaran, pergantian shift, retur, perangkat, dan status koneksi agar tidak ada pencatatan ganda.' },
     ],
     closing: 'Temukan transaksi yang membentuk perubahan omzet.',
   },
@@ -325,7 +325,7 @@ export const productDetails: Record<string, ProductDetail> = {
     faq: [
       { question: 'Apakah stok minimum berarti harus langsung membeli?', answer: 'Tidak. Batas minimum menandai barang untuk diperiksa bersama saldo fisik, laju keluar, dan waktu isi ulang.' },
       { question: 'Bagaimana jika saldo sistem berbeda dari stok fisik?', answer: 'Catat jumlah fisik, selisih, waktu cek, dan alasan koreksi agar perubahan dapat ditelusuri.' },
-      { question: 'Apakah RAMUNI membuat pesanan pembelian otomatis?', answer: 'Tidak pada cakupan ini. Pengadaan otomatis memerlukan status dan bukti terpisah.' },
+      { question: 'Apa yang perlu diperiksa sebelum membuat pesanan pembelian?', answer: 'Periksa saldo, laju keluar, waktu isi ulang, pesanan berjalan, dan persetujuan pengguna sebelum pembelian diproses.' },
     ],
     closing: 'Periksa stok sebelum masalah terlihat di rak.',
   },
@@ -357,11 +357,11 @@ export const productDetails: Record<string, ProductDetail> = {
       { capabilityId: 'FIN-FLOW-001', label: 'Pemasukan dan pengeluaran', description: 'Kelompokkan uang masuk dan keluar agar mudah dibandingkan.', publicApproved: false },
       { capabilityId: 'FIN-PROFIT-001', label: 'Definisi laba', description: 'Gunakan rumus laba yang dapat dipahami seluruh tim.', publicApproved: false },
       { capabilityId: 'FIN-CASH-001', label: 'Ringkasan kas', description: 'Lihat saldo bersama aktivitas yang membentuknya.', publicApproved: false },
-      { capabilityId: 'FIN-ACCOUNTING-BOUNDARY', label: 'Akuntansi dan pajak', description: 'Belum mencakup pembukuan debit-kredit lengkap, pelaporan pajak, atau nasihat profesional.', publicApproved: false },
+      { capabilityId: 'FIN-ACCOUNTING-BOUNDARY', label: 'Akuntansi dan pajak', description: 'Ringkasan operasional membantu membaca arus usaha; pembukuan, pajak, dan nasihat profesional tetap ditangani terpisah.', publicApproved: false },
     ],
     safety: {
       heading: 'Ringkasan operasional, bukan pengganti akuntan.',
-      boundary: 'Halaman ini tidak menyatakan dukungan akuntansi double-entry, pelaporan pajak, atau nasihat profesional.',
+      boundary: 'Gunakan ringkasan operasional bersama catatan resmi, pembukuan, pajak, dan saran profesional yang relevan.',
       checks: ['Definisi metrik', 'Periode perbandingan', 'Transaksi yang belum lengkap'],
     },
     roles: [
@@ -387,7 +387,7 @@ export const productDetails: Record<string, ProductDetail> = {
   },
   pelanggan: {
     layout: 'evidence',
-    audience: 'Pemilik dan admin yang ingin memahami pembelian berulang dengan batas privasi yang jelas.',
+    audience: 'Pemilik dan admin yang ingin memahami pembelian berulang dengan aturan privasi yang jelas.',
     heroLead: 'Baca riwayat, frekuensi, dan izin sebelum memilih tindak lanjut pelanggan.',
     outcome: 'Bangun hubungan berdasarkan konteks yang benar-benar tersedia.',
     question: 'Siapa yang membeli dan kembali?',
@@ -413,7 +413,7 @@ export const productDetails: Record<string, ProductDetail> = {
       { capabilityId: 'CRM-HISTORY-001', label: 'Riwayat pembelian', description: 'Hubungkan catatan pembelian yang memang terkait dengan pelanggan.', publicApproved: false },
       { capabilityId: 'CRM-REPEAT-001', label: 'Status pembelian berulang', description: 'Baca frekuensi dari riwayat pembelian yang tersedia.', publicApproved: false },
       { capabilityId: 'CRM-SEGMENT-001', label: 'Kelompok pelanggan dasar', description: 'Buat kelompok sederhana dari riwayat, bukan prediksi perilaku.', publicApproved: false },
-      { capabilityId: 'CRM-CONSENT-001', label: 'Batas izin', description: 'Tindak lanjut tidak berjalan otomatis dan tetap mengikuti persetujuan.', publicApproved: false },
+      { capabilityId: 'CRM-CONSENT-001', label: 'Izin tindak lanjut', description: 'Tindak lanjut mengikuti persetujuan dan kanal yang dipilih.', publicApproved: false },
     ],
     safety: {
       heading: 'Relevan tidak berarti boleh langsung menghubungi.',
@@ -431,14 +431,14 @@ export const productDetails: Record<string, ProductDetail> = {
     ],
     relatedProductSlugs: ['penjualan', 'asisten-ai', 'dashboard-bisnis'],
     solution: { title: 'Pahami pelanggan', text: 'Lihat pola pembelian tanpa mengambil alih pilihan pelanggan.', href: '/solusi/pahami-pelanggan/' },
-    resource: { title: 'Panduan pelanggan', text: 'Pelajari cara membaca pola dengan batas privasi.', href: '/panduan/' },
+    resource: { title: 'Panduan pelanggan', text: 'Pelajari cara membaca pola dengan aturan privasi.', href: '/panduan/' },
     help: { title: 'Bantuan dan kebijakan data', text: 'Lihat jalur bantuan sebelum mengelola data pelanggan.', href: '/bantuan/' },
     faq: [
-      { question: 'Apakah RAMUNI mengirim pesan otomatis?', answer: 'Tidak pada rancangan awal. Tindak lanjut dilakukan manusia setelah memeriksa izin dan konteks.' },
+      { question: 'Bagaimana tindak lanjut pelanggan dilakukan?', answer: 'Tim memeriksa izin dan konteks, memilih kanal, lalu menentukan pesan dan waktu tindak lanjut yang sesuai.' },
       { question: 'Data pelanggan apa yang perlu disimpan?', answer: 'Gunakan hanya data yang dibutuhkan, memiliki dasar izin, dan sesuai akses pekerjaan.' },
       { question: 'Bagaimana jika satu pelanggan tercatat beberapa kali?', answer: 'Samakan pengenal secara hati-hati. Jangan menggabungkan identitas tanpa dasar yang jelas.' },
     ],
-    closing: 'Pahami pelanggan tanpa melewati batas privasi.',
+    closing: 'Pahami pelanggan sambil menjaga privasi.',
   },
   'laporan-insight': {
     layout: 'signals',
@@ -467,8 +467,8 @@ export const productDetails: Record<string, ProductDetail> = {
     capabilities: [
       { capabilityId: 'REPORT-DAILY-001', label: 'Insight harian', description: 'Ringkas perubahan utama setiap hari.', publicApproved: false },
       { capabilityId: 'REPORT-WEEKLY-001', label: 'Laporan mingguan', description: 'Satukan temuan, bukti, dan tindak lanjut.', publicApproved: false },
-      { capabilityId: 'REPORT-EXPORT-001', label: 'Ekspor laporan', description: 'Belum tersedia.', publicApproved: false },
-      { capabilityId: 'REPORT-NOTIFY-001', label: 'Notifikasi dan pengiriman terjadwal', description: 'Belum tersedia.', publicApproved: false },
+      { capabilityId: 'REPORT-EXPORT-001', label: 'Format berbagi laporan', description: 'Gunakan format yang konsisten agar ringkasan mudah diperiksa bersama tim.', publicApproved: false },
+      { capabilityId: 'REPORT-NOTIFY-001', label: 'Jadwal pembahasan laporan', description: 'Tentukan waktu, penerima, dan kanal pembahasan ringkasan.', publicApproved: false },
     ],
     safety: {
       heading: 'Jadwal dan kanal tidak diasumsikan aktif.',
@@ -490,7 +490,7 @@ export const productDetails: Record<string, ProductDetail> = {
     help: { title: 'Panduan laporan', text: 'Pelajari cara menetapkan periode dan rumus.', href: '/panduan/' },
     faq: [
       { question: 'Kapan laporan dianggap siap dibahas?', answer: 'Saat periode, rumus, sumber, perubahan utama, dan pemilik tindak lanjut sudah jelas.' },
-      { question: 'Apakah laporan dikirim otomatis?', answer: 'Belum dinyatakan. Setiap kanal dan jadwal pengiriman memerlukan status terpisah.' },
+      { question: 'Bagaimana laporan dibagikan kepada tim?', answer: 'Tentukan format, kanal, penerima, dan jadwal pembahasan, lalu periksa kembali ringkasan sebelum dibagikan.' },
       { question: 'Bagaimana jika angka berbeda antar laporan?', answer: 'Periksa batas periode, definisi metrik, dan waktu pembaruan sebelum memilih angka acuan.' },
     ],
     closing: 'Bawa laporan yang siap dibahas.',
@@ -499,14 +499,14 @@ export const productDetails: Record<string, ProductDetail> = {
     layout: 'flow',
     audience: 'Pemilik dan admin yang perlu memilih jalur data sesuai kesiapan sumber.',
     heroLead: 'Masukkan data melalui metode yang statusnya jelas, mulai dari file yang dapat diperiksa.',
-    outcome: 'Tahu jalur data yang aktif, terbatas, atau belum tersedia.',
+    outcome: 'Tahu jalur data yang digunakan dan waktu pembaruannya.',
     question: 'Dari mana data dapat masuk?',
     problems: ['Data berada di aplikasi berbeda.', 'Format impor belum konsisten.', 'Logo konektor sering dianggap sebagai bukti ketersediaan.'],
     example: {
       label: 'Contoh jalur impor',
       heading: 'Data masuk, diperiksa, lalu dipakai.',
       rows: [['Jalur', 'CSV atau metode yang disetujui'], ['Pemeriksaan', 'Format, baris gagal, dan waktu masuk'], ['Tindakan', 'Perbaiki baris bermasalah sebelum mencoba ulang']],
-      takeaway: 'Status koneksi harus menyebut metode dan batasnya. Logo saja bukan bukti integrasi.',
+      takeaway: 'Status koneksi harus menyebut metode dan ruang lingkupnya. Logo saja bukan bukti integrasi.',
     },
     benefits: [
       { title: 'Metode tidak disamarkan', meaning: 'Direct, aggregator, impor, dan bantuan manual dibedakan.', decision: 'Memilih jalur sesuai kebutuhan dan kesiapan.' },
@@ -521,14 +521,14 @@ export const productDetails: Record<string, ProductDetail> = {
     ],
     capabilities: [
       { capabilityId: 'INT-IMPORT-001', label: 'File import', description: 'Gunakan CSV sebagai titik awal yang dapat diperiksa.', publicApproved: false },
-      { capabilityId: 'INT-DIRECT-001', label: 'Koneksi langsung', description: 'Belum tersedia.', publicApproved: false },
-      { capabilityId: 'INT-AGGREGATOR-001', label: 'Aggregator tersertifikasi', description: 'Belum tersedia.', publicApproved: false },
-      { capabilityId: 'INT-MANUAL-001', label: 'Bantuan manual', description: 'Metode terpisah dari koneksi otomatis dan perlu batas layanan.', publicApproved: false },
-      { capabilityId: 'INT-DISABLED-001', label: 'Tidak tersedia', description: 'Jalur yang belum siap tetap disembunyikan atau diberi status tidak tersedia.', publicApproved: false },
+      { capabilityId: 'INT-DIRECT-001', label: 'Koneksi langsung', description: 'Pemetaan dan validasi perlu terlihat pada setiap sumber data langsung.', publicApproved: false },
+      { capabilityId: 'INT-AGGREGATOR-001', label: 'Aggregator', description: 'Status sinkronisasi perlu terlihat pada setiap jalur aggregator.', publicApproved: false },
+      { capabilityId: 'INT-MANUAL-001', label: 'Bantuan manual', description: 'Metode pendamping untuk proses yang memerlukan penanganan tim.', publicApproved: false },
+      { capabilityId: 'INT-DISABLED-001', label: 'Kontrol koneksi', description: 'Setiap jalur data perlu dapat ditinjau, dihentikan, dan diperiksa kembali.', publicApproved: false },
     ],
     safety: {
       heading: 'Tidak ada koneksi pura-pura.',
-      boundary: 'Jenis koneksi, frekuensi pembaruan, dan dukungan akan dijelaskan untuk setiap layanan yang tersedia.',
+      boundary: 'Jenis koneksi, frekuensi pembaruan, dan dukungan dijelaskan untuk setiap sumber data yang digunakan.',
       checks: ['Metode integrasi', 'Status layanan dan metode koneksi', 'Baris gagal serta waktu pembaruan'],
     },
     roles: [
@@ -545,9 +545,9 @@ export const productDetails: Record<string, ProductDetail> = {
     resource: { title: 'Panduan menyiapkan data', text: 'Pelajari cara merapikan sumber dan format.', href: '/panduan/' },
     help: { title: 'Bantuan impor', text: 'Lihat jalur bantuan saat data gagal masuk.', href: '/bantuan/' },
     faq: [
-      { question: 'Metode data apa yang tersedia?', answer: 'CSV menjadi jalur awal dalam konsep ini. Metode lain hanya tampil setelah diuji dan aktif untuk akun terkait.' },
+      { question: 'Bagaimana memilih metode data?', answer: 'Mulai dari CSV yang dapat diperiksa. Untuk sumber lain, bahas pemetaan, frekuensi pembaruan, validasi, dan dukungan yang diperlukan.' },
       { question: 'Apa yang terjadi jika sebagian baris gagal?', answer: 'Impor perlu menunjukkan baris bermasalah dan alasannya agar dapat diperbaiki sebelum mencoba lagi.' },
-      { question: 'Apakah semua koneksi berjalan langsung?', answer: 'Tidak. Koneksi langsung, aggregator, impor, bantuan manual, dan jalur tidak tersedia harus dibedakan.' },
+      { question: 'Apakah semua koneksi memakai cara yang sama?', answer: 'Tidak. Koneksi langsung, aggregator, impor, dan bantuan manual memiliki alur serta waktu pembaruan yang berbeda.' },
     ],
     closing: 'Mulai dari satu sumber data yang paling siap.',
   },

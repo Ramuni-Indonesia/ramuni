@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; definisi biaya dan perlakuan pajak perlu dikonfirmasi dengan tenaga profesional."
 disclaimer: "Contoh ini bersifat edukasi umum, bukan perhitungan akuntansi, pajak, atau rekomendasi harga untuk usaha tertentu."
-updateSummary: "Terbit awal dengan contoh kontribusi produk dan batas penggunaan margin sederhana."
+updateSummary: "Menambahkan contoh kontribusi produk dan cara membaca margin sederhana."
 related:
   - "cara-membaca-omzet-harian"
   - "perbedaan-omzet-laba-dan-arus-kas"
@@ -95,7 +95,7 @@ Biaya langsung harus memakai definisi yang konsisten. Tergantung jenis usaha, ko
 
 Jangan memasukkan atau mengeluarkan biaya hanya agar hasil terlihat bagus. Catat asumsi dan mintalah tinjauan akuntansi ketika angka akan dipakai untuk laporan resmi, pajak, atau keputusan harga.
 
-Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) sebagai gambaran hubungan transaksi dan catatan keuangan. Ketersediaan fitur akan dijelaskan pada halaman produk sebelum Anda mulai.
+Untuk konteks yang lebih lengkap, pelajari [modul keuangan RAMUNI](/produk/keuangan/) untuk melihat hubungan transaksi, biaya, laba, dan catatan keuangan.
 
 ## Waspadai diskon dan produk pemancing
 

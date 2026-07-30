@@ -266,7 +266,7 @@ export const products: Product[] = [
       { title: 'Jawaban berbasis konteks', text: 'Jawaban mengacu pada periode dan data yang sedang dibuka.' },
       { title: 'Bukti pendukung', text: 'Lihat angka di balik jawaban tanpa mencari laporan lain.' },
       { title: 'Tanda saat data belum cukup', text: 'RAMUNI memberi tahu ketika dasar jawaban belum memadai.' },
-      { title: 'AI hanya membaca', text: 'Pada versi awal, RAMUNI tidak menjalankan transaksi.' },
+      { title: 'AI berbasis konteks', text: 'RAMUNI membantu membaca data dan menyiapkan perhatian berikutnya.' },
     ],
     safety: 'Asisten tidak menjawab sebagai mesin pencari umum dan tidak menjalankan aksi bisnis secara otomatis.',
     roles: ['Pemilik usaha', 'Supervisor', 'Admin toko'],
@@ -302,7 +302,7 @@ export const products: Product[] = [
       { title: 'Harga dan HPP', text: 'Simpan harga jual dan biaya dasar pada tempat yang sama.' },
       { title: 'Stok minimum dan arsip', text: 'Tandai batas perhatian dan pisahkan produk yang tidak aktif.' },
     ],
-    safety: 'Barcode, varian, bundel, lot, serial, dan daftar harga belum termasuk dalam preview ini.',
+    safety: 'Katalog berfokus pada kategori, unit, SKU, harga, HPP, stok minimum, dan struktur produk yang mudah ditelusuri.',
     roles: ['Pemilik usaha', 'Admin toko'],
     industries: ['Retail', 'Distributor', 'Reseller Online'],
   },
@@ -319,7 +319,7 @@ export const products: Product[] = [
       { title: 'Perbandingan periode', text: 'Bandingkan omzet dengan rentang waktu yang setara.' },
       { title: 'Status pembayaran', text: 'Bedakan transaksi yang sudah dibayar dan perlu diperiksa.' },
     ],
-    safety: 'Cakupan pencatatan penjualan mengikuti fitur yang sudah tersedia.',
+    safety: 'Produk, waktu transaksi, nilai penjualan, dan status pembayaran dibaca dalam satu alur.',
     roles: ['Kasir', 'Admin toko', 'Pemilik usaha'],
     industries: ['Retail', 'F&B', 'Reseller Online'],
   },
@@ -368,7 +368,7 @@ export const products: Product[] = [
       { title: 'Riwayat pembelian', text: 'Lihat kapan pelanggan terakhir membeli dan produk yang dipilih.' },
       { title: 'Pembelian berulang', text: 'Kenali pola pelanggan yang kembali tanpa menebak.' },
       { title: 'Kelompok pelanggan dasar', text: 'Susun kelompok sederhana berdasarkan riwayat yang tersedia.' },
-      { title: 'Batas privasi', text: 'Tampilkan data hanya sesuai izin dan kebutuhan peran.' },
+      { title: 'Privasi pelanggan', text: 'Tampilkan data hanya sesuai izin dan kebutuhan peran.' },
     ],
     safety: 'Tidak ada pesan otomatis kepada pelanggan tanpa dasar persetujuan dan kontrol manusia.',
     roles: ['Pemilik usaha', 'Admin toko'],
@@ -385,9 +385,9 @@ export const products: Product[] = [
       { title: 'Insight harian', text: 'Bawa perubahan utama ke perhatian tim setiap hari.' },
       { title: 'Laporan mingguan', text: 'Ringkas pola, bukti, dan hal yang perlu dibahas bersama.' },
       { title: 'Periode dan rumus metrik', text: 'Gunakan rentang waktu dan definisi angka yang sama.' },
-      { title: 'Ekspor laporan', text: 'Opsi unduh muncul setelah format laporannya lolos uji.' },
+      { title: 'Format laporan', text: 'Gunakan susunan yang konsisten agar laporan mudah dibagikan dan diperiksa kembali.' },
     ],
-    safety: 'Kanal notifikasi dan pengiriman belum termasuk dalam preview ini.',
+    safety: 'Laporan disusun dalam format yang konsisten agar mudah dibagikan, diperiksa, dan ditindaklanjuti.',
     roles: ['Pemilik usaha', 'Supervisor'],
     industries: ['Retail', 'F&B', 'Distributor'],
   },
@@ -400,7 +400,7 @@ export const products: Product[] = [
     situations: ['Data berada di aplikasi berbeda', 'Format impor belum konsisten', 'Ketersediaan konektor sering disalahartikan'],
     features: [
       { title: 'CSV sebagai jalur awal', text: 'Mulai dari format yang mudah dibaca sebelum memakai koneksi lain.' },
-      { title: 'Status setiap koneksi', text: 'Bedakan koneksi aktif, terbatas, direncanakan, dan belum tersedia.' },
+      { title: 'Status setiap koneksi', text: 'Lihat metode, waktu pembaruan, dan hasil sinkronisasi setiap koneksi.' },
       { title: 'Metode sinkronisasi terpisah', text: 'Lihat apakah data masuk manual, terjadwal, atau langsung.' },
       { title: 'Status gagal dan pembaruan', text: 'Ketahui saat impor gagal dan kapan data terakhir diterima.' },
     ],
@@ -444,9 +444,9 @@ export interface RolePage {
 
 export const roles: RolePage[] = [
   { slug: 'pemilik-usaha', title: 'Pemilik Usaha', summary: 'Lihat kesehatan bisnis lintas modul tanpa kehilangan kendali atas tim dan keputusan.', responsibilities: ['Menentukan prioritas usaha', 'Memantau kesehatan penjualan dan kas', 'Menjaga akses serta langganan'], friction: ['Ringkasan datang terlambat', 'Data berbeda antar tim', 'Penyebab perubahan sulit ditelusuri'], priorities: ['Insight lintas modul', 'Perbandingan periode', 'Peringatan yang perlu tindakan'], permissions: 'Menjadi rujukan utama untuk arah usaha, pengaturan akses, dan keputusan yang perlu persetujuan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
-  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Berfokus pada data operasional yang menjadi bahan ringkasan. Batas akses dijelaskan sebelum penggunaan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Berfokus pada data operasional yang menjadi bahan ringkasan sesuai akses yang diberikan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
   { slug: 'kasir', title: 'Kasir', summary: 'Selesaikan alur penjualan yang diizinkan dengan cepat dan panduan pemulihan yang jelas.', responsibilities: ['Mencatat transaksi', 'Memeriksa pembayaran', 'Meminta bantuan saat alur gagal'], friction: ['Langkah transaksi terlalu panjang', 'Status pembayaran membingungkan', 'Panduan pemulihan sulit ditemukan'], priorities: ['Transaksi aktif', 'Status pembayaran', 'Bantuan sesuai situasi'], permissions: 'Membantu pekerjaan transaksi harian tanpa membuka area yang tidak diperlukan.', ctaLabel: 'Buka Panduan Kasir', ctaHref: '/bantuan/' },
-  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Membantu membaca kegiatan operasional dan tindak lanjut tim sesuai batas yang disepakati.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Membantu membaca kegiatan operasional dan tindak lanjut tim sesuai akses yang diberikan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
 ];
 
 export const industries = [

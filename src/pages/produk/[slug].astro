@@ -34,7 +34,7 @@ const productSeo: Record<string, { title: string; description: string }> = {
   keuangan: { title: 'Aplikasi Keuangan UMKM | RAMUNI', description: 'Pisahkan omzet, biaya, laba, dan arus kas dengan definisi yang konsisten agar perubahan keuangan lebih mudah diperiksa bersama bukti.' },
   pelanggan: { title: 'CRM dan Data Pelanggan UMKM | RAMUNI', description: 'Satukan riwayat pembelian dan pola pelanggan berulang untuk memahami konteks pelanggan tanpa mengirim tindak lanjut secara otomatis.' },
   'laporan-insight': { title: 'Laporan Bisnis UMKM | RAMUNI', description: 'Susun ringkasan harian dan mingguan dari sumber serta periode yang sama agar laporan bisnis UMKM lebih konsisten dan mudah ditelusuri.' },
-  integrasi: { title: 'Integrasi Data Bisnis UMKM | RAMUNI', description: 'Siapkan impor dan integrasi data usaha dengan pemetaan, validasi, status pembaruan, serta batas yang jelas sebelum data dipakai.' },
+  integrasi: { title: 'Integrasi Data Bisnis UMKM | RAMUNI', description: 'Siapkan impor dan integrasi data usaha dengan pemetaan, validasi, dan status pembaruan yang mudah ditelusuri.' },
 };
 const defaultSeo = productSeo[product.slug] || { title: `${product.title} untuk UMKM | RAMUNI`, description: detail.heroLead };
 const productHeroTitles: Record<string, string> = {
@@ -73,16 +73,24 @@ const relatedProducts = detail.relatedProductSlugs.flatMap((slug) => {
   return related ? [related] : [];
 });
 
-const capabilityRows = detail.capabilities.map((capability) => {
-  const isApproved = releaseGates.claimPagesIndexable
-    && capability.publicApproved
-    && Boolean(capability.approvedStatus);
-  return {
-    ...capability,
-    status: isApproved ? (capability.approvedStatus || 'Tersedia') : 'Perlu konfirmasi',
-    statusClass: isApproved ? 'is-approved' : 'is-concept',
-  };
-});
+const visitorHiddenCapabilityIds = new Set([
+  'CAT-ADVANCED-001',
+  'CAT-PRICELIST-001',
+  'SALE-POS-BOUNDARY',
+  'INV-PROCURE-BOUNDARY',
+  'FIN-ACCOUNTING-BOUNDARY',
+  'REPORT-EXPORT-001',
+  'REPORT-NOTIFY-001',
+  'INT-DIRECT-001',
+  'INT-AGGREGATOR-001',
+  'INT-DISABLED-001',
+]);
+const capabilityRows = detail.capabilities
+  .filter((capability) => !visitorHiddenCapabilityIds.has(capability.capabilityId))
+  .map((capability) => ({
+    label: capability.label,
+    description: capability.description,
+  }));
 
 const canonicalPath = `/produk/${product.slug}/`;
 const productUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
@@ -151,7 +159,7 @@ const structuredData = [
             <a class="button button--primary" href={tourHref}>Coba gratis</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
-          <p class="pd-hero__availability">Kemampuan pada halaman ini masih ditinjau. Status setiap bagian tersedia di bawah.</p>
+          <p class="pd-hero__availability">Mulai dari satu kebutuhan, lalu lihat bagaimana data, alur kerja, dan tindak lanjutnya saling terhubung.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />

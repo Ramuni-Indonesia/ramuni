@@ -5,9 +5,9 @@ import PageHero from '../components/PageHero.astro';
 const collections = [
   { no: '01', title: 'Mulai menggunakan RAMUNI', text: 'Persiapan bisnis, data awal, dan langkah pertama sebelum tim mulai bekerja.', tags: ['persiapan', 'data awal', 'mulai'] },
   { no: '02', title: 'Produk, stok, dan penjualan', text: 'Fondasi katalog, transaksi, koreksi, dan pergerakan stok harian.', tags: ['produk', 'stok', 'transaksi'] },
-  { no: '03', title: 'Laporan dan Asisten AI', text: 'Cara membaca insight, sumber, periode, serta batas jawaban yang perlu diperiksa.', tags: ['laporan', 'insight', 'AI'] },
-  { no: '04', title: 'Tim, akses, dan persetujuan', text: 'Peran, batas akses, koreksi data, dan keputusan yang membutuhkan persetujuan.', tags: ['tim', 'akses', 'izin'] },
-  { no: '05', title: 'Keamanan dan privasi', text: 'Data sensitif, kredensial, izin, serta batas informasi di kanal publik.', tags: ['keamanan', 'privasi', 'data'] },
+  { no: '03', title: 'Laporan dan Asisten AI', text: 'Cara membaca insight, sumber, periode, serta dasar jawaban yang perlu diperiksa.', tags: ['laporan', 'insight', 'AI'] },
+  { no: '04', title: 'Tim, akses, dan persetujuan', text: 'Peran, pengaturan akses, koreksi data, dan keputusan yang membutuhkan persetujuan.', tags: ['tim', 'akses', 'izin'] },
+  { no: '05', title: 'Keamanan dan privasi', text: 'Data sensitif, kredensial, izin, serta informasi yang aman dibagikan melalui kanal publik.', tags: ['keamanan', 'privasi', 'data'] },
   { no: '06', title: 'Pemecahan masalah', text: 'Susun kronologi dan langkah yang sudah dicoba tanpa membuka data sensitif.', tags: ['masalah', 'pemulihan', 'dukungan'] },
 ];
 
@@ -19,7 +19,7 @@ const roles = [
 ];
 ---
 
-<BaseLayout title="Pusat Bantuan RAMUNI" description="Peta topik bantuan, batas keamanan, dan jalur dukungan RAMUNI untuk pekerjaan umum pengguna." noindex={true}>
+<BaseLayout title="Pusat Bantuan RAMUNI" description="Peta topik bantuan, keamanan, dan jalur dukungan RAMUNI untuk pekerjaan umum pengguna." noindex={true}>
   <div class="support-hub">
     <PageHero eyebrow="Pusat Bantuan" title="Mulai dari masalah yang sedang menghambat pekerjaan." description="Cari kelompok topik yang paling dekat, siapkan konteks minimum yang aman, lalu pilih rujukan atau jalur dukungan yang tersedia." primaryLabel="Cari Topik" primaryHref="#pencarian" secondaryLabel="Hubungi Dukungan" secondaryHref="/kontak/" visual="guide" visualScene="support" visualLabel="Alur bantuan" visualTitle="Kenali masalah, periksa rujukan, lalu sampaikan konteks yang aman." />
 
@@ -60,7 +60,7 @@ const roles = [
 
     <section class="section dark-surface role-route" id="berdasarkan-peran" aria-labelledby="roles-title">
       <div class="container role-route__layout">
-        <div class="section-copy reveal"><p class="eyebrow">Lewat tanggung jawab</p><h2 id="roles-title">Tidak tahu nama topiknya? Mulai dari peran Anda.</h2><p>Halaman peran membantu memetakan pekerjaan, batas akses, dan tindak lanjut yang relevan.</p></div>
+        <div class="section-copy reveal"><p class="eyebrow">Lewat tanggung jawab</p><h2 id="roles-title">Tidak tahu nama topiknya? Mulai dari peran Anda.</h2><p>Halaman peran membantu memetakan pekerjaan, akses, dan tindak lanjut yang relevan.</p></div>
         <nav class="role-grid" aria-label="Bantuan berdasarkan peran">{roles.map(([title, text, href], index) => <a class="reveal" style={`--i:${index}`} href={href}><span>0{index + 1}</span><div><strong>{title}</strong><small>{text}</small></div><b aria-hidden="true">↗</b></a>)}</nav>
       </div>
     </section>

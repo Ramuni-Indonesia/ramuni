@@ -43,7 +43,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan teknis umum untuk risiko perlindungan data saat disimpan atau dikirim."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat hukum, keamanan, atau kepatuhan untuk usaha tertentu."
-updateSummary: "Terbit awal dengan matriks tujuan data, data yang perlu dihindari, serta checklist akses dan retensi."
+updateSummary: "Menambahkan matriks tujuan data, data yang perlu dihindari, serta checklist akses dan retensi."
 related:
   - "cara-melihat-pelanggan-yang-kembali-belanja"
   - "cara-merapikan-data-produk-dan-sku"

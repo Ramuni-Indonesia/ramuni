@@ -17,16 +17,16 @@ const productFamilyBoards = {
 } as const;
 const productCloseVisual = heroContextVisuals.aiImport;
 const sharedCapabilities = [
-  { title: 'Rancangan akses per peran', text: 'Preview menunjukkan ruang kerja pemilik, supervisor, admin, dan kasir. Ketersediaannya akan dijelaskan sebelum penggunaan.' },
-  { title: 'Rancangan jejak perubahan', text: 'Preview memperlihatkan bagaimana waktu, alasan, dan pelaku koreksi dapat diperiksa.' },
+  { title: 'Akses per peran', text: 'Ruang kerja pemilik, supervisor, admin, dan kasir mengikuti tanggung jawab masing-masing.' },
+  { title: 'Jejak perubahan', text: 'Waktu, alasan, dan pelaku koreksi dapat diperiksa kembali.' },
   { title: 'Bukti di balik insight', text: 'Ringkasan membawa pengguna kembali ke metrik, periode, dan catatan sumber.' },
-  { title: 'Rancangan impor dan ekspor', text: 'Jalur data ditampilkan bersama status ketersediaan dan hasil validasinya.' },
+  { title: 'Impor dan ekspor', text: 'Jalur data ditampilkan bersama hasil validasi dan riwayat prosesnya.' },
 ];
 
 const productFaq = [
-  { question: 'Apakah semua modul sudah tersedia?', answer: 'Belum. Halaman ini memberi gambaran arah produk. Ketersediaan setiap modul akan dijelaskan sebelum Anda mulai.' },
   { question: 'Haruskah memakai semua modul sekaligus?', answer: 'Tidak. Mulai dari catatan yang paling penting, lalu tambah modul saat alurnya sudah rapi.' },
-  { question: 'Apakah AI dapat menjalankan transaksi?', answer: 'Tidak pada versi awal. AI membaca konteks dan bukti, sedangkan tindakan tetap diputuskan pengguna.' },
+  { question: 'Bagaimana AI membantu pekerjaan?', answer: 'AI membaca konteks dan bukti, lalu membantu menyiapkan pertanyaan dan perhatian berikutnya. Tindakan tetap diputuskan pengguna.' },
+  { question: 'Bagaimana memilih modul pertama?', answer: 'Pilih masalah yang paling sering menghambat pekerjaan, kemudian ikuti rekomendasi modul dan alur yang terkait.' },
 ];
 ---
 <BaseLayout title="Aplikasi Bisnis UMKM | Produk RAMUNI" description="Jelajahi modul RAMUNI untuk memahami penjualan, stok, keuangan, pelanggan, dan kondisi bisnis dalam satu alur.">
@@ -38,7 +38,7 @@ const productFaq = [
           <h1>Lihat contoh penjualan, stok, dan kas dalam satu layar.</h1>
         </div>
         <div class="catalog-hero__aside reveal is-visible">
-          <p>Preview RAMUNI memperlihatkan bagaimana catatan usaha dapat dibaca bersama, perubahan penting dibuka, lalu sumber angkanya ditelusuri.</p>
+          <p>Tampilan RAMUNI memperlihatkan bagaimana catatan usaha dibaca bersama, perubahan penting dibuka, lalu sumber angkanya ditelusuri.</p>
           <div class="button-row">
             <a class="button button--primary" href="/tour-produk-gratis/">Coba gratis</a>
             <a class="button button--secondary" href="#product-catalog">Lihat semua modul</a>
@@ -68,7 +68,7 @@ const productFaq = [
         <header class="product-catalog__intro">
           <p class="section-kicker">Keluarga produk</p>
           <h2 id="product-catalog-title">Pilih dari pertanyaan bisnis Anda.</h2>
-          <p>Halaman tiap modul menjelaskan manfaat, contoh tampilan, dan batas kemampuannya tanpa menganggap semua fitur sudah tersedia.</p>
+          <p>Halaman tiap modul menjelaskan manfaat, contoh tampilan, dan alur kerja yang membantu pekerjaan sehari-hari.</p>
         </header>
         <div class="product-families">
           <section class="product-family" aria-labelledby="family-intelligence">
@@ -123,7 +123,7 @@ const productFaq = [
 
     <section class="section product-capabilities" aria-labelledby="capabilities-title">
       <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Prinsip yang menjaga setiap modul tetap dapat diperiksa.</h2><p>Preview memperlihatkan rancangan akses, jejak perubahan, dan sumber angka. Cakupan akhirnya akan dijelaskan sebelum penggunaan.</p></header>
+        <header><h2 id="capabilities-title">Prinsip yang menjaga setiap modul tetap dapat diperiksa.</h2><p>Tampilan produk memperlihatkan akses, jejak perubahan, dan sumber angka dalam satu alur yang mudah ditelusuri.</p></header>
         <div class="capability-folds">
           {sharedCapabilities.map((item, index) => (
             <article class="capability-fold reveal" style={`--i:${index}`}>
@@ -157,7 +157,7 @@ const productFaq = [
     <section class="section product-trust" aria-labelledby="product-trust-title">
       <div class="container product-trust__layout">
         <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">RAMUNI membantu membaca. Keputusan tetap di tangan Anda.</h2></div>
-        <div class="product-trust__copy"><p>Preview menunjukkan rancangan akses tiap peran, sumber jawaban, dan batas AI yang direncanakan. Ketersediaannya belum dinyatakan sebagai fitur publik.</p><a href="/keamanan/">Pelajari keamanan dan batas AI</a></div>
+        <div class="product-trust__copy"><p>Akses mengikuti peran, jawaban membawa sumber, dan tindakan penting tetap membutuhkan keputusan manusia.</p><a href="/keamanan/">Pelajari keamanan RAMUNI</a></div>
       </div>
     </section>
 
@@ -176,7 +176,7 @@ const productFaq = [
           body="Lihat modul yang paling dekat dengan kebutuhan usaha Anda, lalu bahas fitur dan langkah berikutnya sebelum akses."
           visual={productCloseVisual}
           visualBadge="Ilustrasi alur produk"
-          points={['Pilih satu pertanyaan usaha', 'Lihat modul yang terkait', 'Bahas status sebelum akses']}
+          points={['Pilih satu pertanyaan usaha', 'Lihat modul yang terkait', 'Tentukan langkah berikutnya']}
         />
       </div>
     </section>

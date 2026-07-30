@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan umum tentang pencatatan; checklist artikel ini bukan pengganti pembukuan atau kewajiban pajak resmi."
 disclaimer: "Checklist ini bersifat edukasi operasional umum dan bukan nasihat akuntansi, hukum, atau pajak untuk usaha tertentu."
-updateSummary: "Terbit awal dengan agenda review 30 menit dan format catatan tindak lanjut."
+updateSummary: "Menambahkan agenda review 30 menit dan format catatan tindak lanjut."
 related:
   - "cara-membandingkan-penjualan-mingguan"
   - "panduan-membaca-stok-harian"

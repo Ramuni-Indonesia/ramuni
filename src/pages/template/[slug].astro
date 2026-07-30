@@ -23,7 +23,7 @@ const relatedResources = {
     { type: 'Kamus', title: 'Arus kas', text: 'Lihat definisi dan contoh yang sering tertukar dengan laba.', href: '/kamus-bisnis/arus-kas/' },
   ],
   'evaluasi-mingguan': [
-    { type: 'Panduan', title: 'Menilai insight AI', text: 'Periksa pertanyaan, bukti, periode, dan batas jawaban.', href: '/panduan/menilai-insight-ai/' },
+    { type: 'Panduan', title: 'Menilai insight AI', text: 'Periksa pertanyaan, bukti, periode, dan dasar jawaban.', href: '/panduan/menilai-insight-ai/' },
     { type: 'Kalkulator', title: 'Laba usaha', text: 'Bawa hasil hitung ke evaluasi dengan periode yang jelas.', href: '/kalkulator/laba-usaha/' },
     { type: 'Sumber daya', title: 'Pusat sumber daya', text: 'Pilih panduan, alat, atau istilah untuk temuan berikutnya.', href: '/sumber-daya/' },
   ],
@@ -68,7 +68,7 @@ const schema = [
 ];
 ---
 
-<BaseLayout title={template.title} description={`${template.summary} Unduh CSV gratis dengan contoh, petunjuk kolom, dan batas penggunaan yang jelas.`} noindex={!releaseGates.resourcePagesIndexable} schema={schema} keywords={[template.title, 'template bisnis UMKM', 'template CSV gratis', 'RAMUNI']}>
+<BaseLayout title={template.title} description={`${template.summary} Unduh CSV gratis dengan contoh, petunjuk kolom, dan catatan penggunaan yang jelas.`} noindex={!releaseGates.resourcePagesIndexable} schema={schema} keywords={[template.title, 'template bisnis UMKM', 'template CSV gratis', 'RAMUNI']}>
   <article class="template-detail-page">
     <header class="template-detail-hero">
       <div class="container">
@@ -128,8 +128,8 @@ const schema = [
     <section class="section surface template-boundaries" aria-labelledby="template-boundaries-title">
       <div class="container template-boundaries__grid">
         <div>
-          <p class="section-kicker">Batas penggunaan</p>
-          <h2 id="template-boundaries-title">Sederhana untuk mulai, jujur tentang batasnya.</h2>
+          <p class="section-kicker">Catatan penggunaan</p>
+          <h2 id="template-boundaries-title">Sederhana untuk mulai, jelas sebelum dipakai.</h2>
         </div>
         <ul>
           {template.limitations.map((limitation) => <li>{limitation}</li>)}
@@ -139,7 +139,7 @@ const schema = [
 
     <section class="section template-related" aria-labelledby="template-related-title">
       <div class="container">
-        <div class="template-library-intro reveal"><div><p class="section-kicker">Gunakan bersama</p><h2 id="template-related-title">Baca catatan sebelum mengambil keputusan.</h2></div><p>Template menyimpan urutan data. Materi berikut membantu Anda membaca angka, istilah, dan batasnya.</p></div>
+        <div class="template-library-intro reveal"><div><p class="section-kicker">Gunakan bersama</p><h2 id="template-related-title">Baca catatan sebelum mengambil keputusan.</h2></div><p>Template menyimpan urutan data. Materi berikut membantu Anda membaca angka, istilah, dan cara penggunaannya.</p></div>
         <div class="template-related__grid">
           {relatedResources.map((item, index) => <a class="reveal" href={item.href}><span>{String(index + 1).padStart(2, '0')}</span><small>{item.type}</small><h3>{item.title}</h3><p>{item.text}</p><b>Buka materi <i aria-hidden="true">→</i></b></a>)}
         </div>

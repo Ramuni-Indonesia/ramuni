@@ -36,7 +36,7 @@ sources:
     url: "https://web.iaiglobal.or.id/PSAK-Umum/16"
     accessedAt: 2026-07-27
     note: "Rujukan standar akuntansi Indonesia mengenai persediaan; langkah pemeriksaan stok harian dalam artikel adalah panduan operasional sederhana, bukan penerapan PSAK 202."
-updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "arus-kas-umkm-ringan"
   - "ai-business-companion-umkm"

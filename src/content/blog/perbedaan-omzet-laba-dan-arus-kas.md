@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; perlakuan transaksi dan pajak mengikuti ketentuan serta kondisi usaha."
 disclaimer: "Artikel ini bersifat edukasi umum dan bukan nasihat akuntansi, keuangan, atau pajak untuk usaha tertentu."
-updateSummary: "Terbit awal dengan tabel perbedaan, contoh waktu transaksi, dan checklist rekonsiliasi sederhana."
+updateSummary: "Menambahkan tabel perbedaan, contoh waktu transaksi, dan checklist rekonsiliasi sederhana."
 related:
   - "arus-kas-umkm-ringan"
   - "cara-membaca-omzet-harian"

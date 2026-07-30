@@ -70,7 +70,7 @@ const chapters = {
     visual: dashboardVisuals.productOperations,
     eyebrow: 'Data masuk dengan status',
     heading: 'Dashboard hanya dapat dipercaya ketika jalur datanya terlihat.',
-    body: 'Waktu pembaruan, baris gagal, dan metode input memberi batas yang jujur sebelum data dipakai untuk membaca kondisi usaha.',
+    body: 'Waktu pembaruan, baris gagal, dan metode input memberi konteks sebelum data dipakai untuk membaca kondisi usaha.',
     reads: [['Siapkan', 'Kolom dan format'], ['Periksa', 'Hasil dan baris gagal'], ['Gunakan', 'Setelah statusnya jelas']],
   },
 } as const;
@@ -103,7 +103,7 @@ const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-b
         ))}
       </figcaption>
     </figure>
-    <p class="pd-dashboard-chapter__disclosure">Contoh tampilan dashboard RAMUNI. Ketersediaan fitur {title} dijelaskan pada halaman ini.</p>
+    <p class="pd-dashboard-chapter__disclosure">Tampilan dashboard RAMUNI untuk menunjukkan bagaimana {title} membantu membaca data dan menentukan tindak lanjut.</p>
   </div>
 </section>
 

@@ -1,10 +1,24 @@
 const initialiseLeadForms = () => {
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
+  const whatsappMessageTemplate = [
+    'Halo RAMUNI, saya tertarik mencoba RAMUNI.',
+    '',
+    'Nama usaha: [isi nama usaha]',
+    'Produk atau solusi: [isi yang ingin dibahas]',
+    'Kebutuhan utama: [jelaskan singkat]',
+    'Waktu yang nyaman untuk dihubungi: [isi waktu]',
+  ].join('\n');
+  const whatsappHandoffUrl = () => {
+    const url = new URL(officialWhatsAppUrl);
+    url.searchParams.set('text', whatsappMessageTemplate);
+    return url.toString();
+  };
   const allowedIntents = new Set(['overview', 'catalog', 'sales', 'stock', 'finance', 'customer', 'report', 'support']);
   const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
   const clickIdKeys = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'ttclid', 'li_fat_id'];
   const piiPattern = /(?:[^\s@]+@[^\s@]+\.[^\s@]+)|(?:\+?\d[\d\s().-]{7,}\d)/i;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const requestTimeoutMs = 15000;
 
   const clean = (value, max = 200) => String(value || '').replace(/[\u0000-\u001f\u007f<>]/g, '').trim().slice(0, max);
   const key = (value, fallback) => clean(value, 80).toLowerCase().replace(/&/g, ' and ').replace(/\+/g, ' plus ')
@@ -136,8 +150,31 @@ const initialiseLeadForms = () => {
       const message = document.createElement('p');
       message.className = `lead-form__chat-message lead-form__chat-message--${kind}`;
       message.textContent = text;
-      if (isNew) message.dataset.chatNew = 'true';
+      if (isNew) {
+        message.dataset.chatNew = 'true';
+        window.setTimeout(() => delete message.dataset.chatNew, 520);
+      }
       container.append(message);
+      return message;
+    };
+    const questionForStep = (index) => {
+      const fallback = steps[index]?.querySelector('legend')?.textContent?.trim() || '';
+      if (index !== 1) return fallback;
+      const nameField = form.querySelector('input[name="name"]');
+      const firstName = nameField instanceof HTMLInputElement
+        ? clean(nameField.value, 150).split(/\s+/)[0]
+        : '';
+      return firstName
+        ? `Terima kasih, ${firstName}. Apa yang paling ingin Anda rapikan atau pahami dari bisnis?`
+        : fallback;
+    };
+    const appendQuestionForStep = (index, isNew = true) => {
+      if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
+      if (chatHistory.querySelector(`[data-chat-question="${index}"]`)) return;
+      const question = questionForStep(index);
+      if (!question) return;
+      const message = appendChatMessage(chatHistory, question, 'agent', isNew);
+      message.dataset.chatQuestion = String(index);
     };
     const answerForStep = (index) => {
       if (index === 0) {
@@ -145,36 +182,56 @@ const initialiseLeadForms = () => {
         return field instanceof HTMLInputElement && field.value.trim() ? field.value.trim() : 'Nama sudah saya isi.';
       }
       if (index === 1) {
-        const field = form.querySelector('input[name="phone"]');
-        return field instanceof HTMLInputElement ? maskPhone(field.value) : 'Nomor WhatsApp sudah diisi.';
-      }
-      if (index === 2) {
-        const field = form.querySelector('input[name="email"]');
-        return field instanceof HTMLInputElement ? maskEmail(field.value) : 'Email sudah diisi.';
-      }
-      if (index === 3) {
         const field = form.querySelector('textarea[name="need"]');
         return field instanceof HTMLTextAreaElement && field.value.trim()
           ? field.value.trim()
           : 'Kebutuhan usaha sudah saya tulis.';
       }
+      if (index === 2) {
+        const field = form.querySelector('input[name="phone"]');
+        return field instanceof HTMLInputElement ? maskPhone(field.value) : 'Nomor WhatsApp sudah diisi.';
+      }
+      if (index === 3) {
+        const field = form.querySelector('input[name="email"]');
+        return field instanceof HTMLInputElement ? maskEmail(field.value) : 'Email sudah diisi.';
+      }
       return '';
     };
-    const renderChatHistory = () => {
+    const appendAnswerForStep = (index) => {
       if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
-      chatHistory.replaceChildren();
-      for (let index = 0; index < stepIndex; index += 1) {
-        const question = steps[index]?.querySelector('legend')?.textContent?.trim();
-        const answer = answerForStep(index);
-        const isNewestExchange = index === stepIndex - 1;
-        if (question) appendChatMessage(chatHistory, question, 'agent', isNewestExchange);
-        if (answer) appendChatMessage(chatHistory, answer, 'visitor', isNewestExchange);
+      const answer = answerForStep(index);
+      if (!answer) return;
+      const existing = chatHistory.querySelector(`[data-chat-answer="${index}"]`);
+      if (existing instanceof HTMLElement) {
+        existing.textContent = answer;
+        return;
       }
+      const message = appendChatMessage(chatHistory, answer, 'visitor', true);
+      message.dataset.chatAnswer = String(index);
+    };
+    const updateChatProgress = (message, state = 'working') => {
+      if (!(chatHistory instanceof HTMLElement) || form.dataset.leadVariant !== 'chat') return;
+      let progress = chatHistory.querySelector('[data-chat-progress]');
+      if (!(progress instanceof HTMLElement)) {
+        progress = appendChatMessage(chatHistory, message, 'agent', true);
+        progress.dataset.chatProgress = 'true';
+      } else {
+        progress.textContent = message;
+        progress.dataset.chatNew = 'true';
+        window.setTimeout(() => delete progress.dataset.chatNew, 520);
+      }
+      progress.dataset.state = state;
+      scrollChatToLatest();
     };
     const validate = (fields) => {
       for (const field of fields) {
         if (!(field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement)) continue;
         field.setCustomValidity('');
+        if ((field.name === 'name' || field.name === 'need') && field.required && !field.value.trim()) {
+          field.setCustomValidity(field.name === 'name'
+            ? 'Masukkan nama agar kami dapat menyapa Anda dengan tepat.'
+            : 'Ceritakan singkat hal yang ingin Anda rapikan atau pahami.');
+        }
         if (field.name === 'phone' && !normalizePhone(field.value)) {
           field.setCustomValidity('Masukkan nomor WhatsApp aktif, contoh 08123456789 atau +628123456789.');
         }
@@ -200,14 +257,19 @@ const initialiseLeadForms = () => {
         if (button instanceof HTMLButtonElement) button.hidden = stepIndex === steps.length - 1;
       });
       if (submitButton instanceof HTMLButtonElement) submitButton.hidden = stepIndex !== steps.length - 1;
-      renderChatHistory();
     };
     const advanceStep = () => {
       if (!validate(fieldsForStep(stepIndex))) return false;
+      appendAnswerForStep(stepIndex);
       stepIndex = Math.min(stepIndex + 1, steps.length - 1);
       renderStep();
-      focusStep(stepIndex);
-      scrollChatToLatest();
+      const revealQuestion = () => {
+        appendQuestionForStep(stepIndex);
+        focusStep(stepIndex);
+        scrollChatToLatest();
+      };
+      if (reducedMotion.matches || form.dataset.leadVariant !== 'chat') revealQuestion();
+      else window.setTimeout(revealQuestion, 150);
       return true;
     };
     renderStep();
@@ -215,6 +277,18 @@ const initialiseLeadForms = () => {
     nextButtons.forEach((button) => button.addEventListener('click', () => {
       advanceStep();
     }));
+    form.addEventListener('keydown', (event) => {
+      if (form.dataset.leadVariant !== 'chat' || event.key !== 'Enter' || event.isComposing) return;
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement)) return;
+      if (target instanceof HTMLTextAreaElement && event.shiftKey) return;
+      event.preventDefault();
+      if (stepIndex < steps.length - 1) {
+        advanceStep();
+        return;
+      }
+      if (submitButton instanceof HTMLButtonElement) form.requestSubmit(submitButton);
+    });
     backButton?.addEventListener('click', () => {
       stepIndex = Math.max(stepIndex - 1, 0);
       renderStep();
@@ -284,16 +358,27 @@ const initialiseLeadForms = () => {
       };
       retryPayload = payload;
 
+      if (form.dataset.leadVariant === 'chat') {
+        appendAnswerForStep(stepIndex);
+        updateChatProgress('Terima kasih. Saya kirim detailnya ke tim RAMUNI terlebih dahulu.');
+      }
       form.dataset.submitting = 'true';
-      const originalLabel = submitButton.textContent;
+      const originalMarkup = submitButton.innerHTML;
+      const originalAriaLabel = submitButton.getAttribute('aria-label');
       submitButton.disabled = true;
-      submitButton.textContent = 'Mengirim...';
+      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.dataset.loading = 'true';
+      if (form.dataset.leadVariant !== 'chat') submitButton.textContent = 'Mengirim...';
+      else submitButton.setAttribute('aria-label', 'Sedang mengirim detail konsultasi');
       setStatus('Sedang mengirim permintaan Anda.', 'loading');
 
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), requestTimeoutMs);
       try {
         const response = await fetch(form.action, {
           method: 'POST',
           body: JSON.stringify(payload),
+          signal: controller.signal,
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -312,8 +397,9 @@ const initialiseLeadForms = () => {
         delete form.dataset.idempotencyKey;
         retryPayload = null;
         if (form.dataset.leadHandoff === 'whatsapp') {
-          setStatus('Permintaan terkirim. Membuka WhatsApp RAMUNI...', 'success');
-          window.location.assign(officialWhatsAppUrl);
+          updateChatProgress('Siap. WhatsApp RAMUNI akan terbuka dengan pesan yang tinggal Anda lengkapi.', 'success');
+          setStatus('Detail diterima. Membuka WhatsApp RAMUNI...', 'success');
+          window.setTimeout(() => window.location.assign(whatsappHandoffUrl()), reducedMotion.matches ? 0 : 620);
           return;
         }
         setStatus('Terkirim. Mengarahkan ke halaman konfirmasi...', 'success');
@@ -321,11 +407,22 @@ const initialiseLeadForms = () => {
           ? receipt.next.path
           : '/terima-kasih/' + (kind === 'contact' ? 'kontak' : kind);
         window.location.assign(nextPath);
-      } catch {
+      } catch (error) {
         form.dataset.submitting = 'false';
         submitButton.disabled = false;
-        submitButton.textContent = originalLabel;
-        setStatus('Belum terkirim. Periksa koneksi atau coba lagi sebentar lagi.', 'error');
+        submitButton.removeAttribute('aria-busy');
+        delete submitButton.dataset.loading;
+        submitButton.innerHTML = originalMarkup;
+        if (originalAriaLabel) submitButton.setAttribute('aria-label', originalAriaLabel);
+        else submitButton.removeAttribute('aria-label');
+        const timedOut = error instanceof DOMException && error.name === 'AbortError';
+        const message = timedOut
+          ? 'Koneksi memerlukan waktu lebih lama. Ketuk kirim untuk mencoba lagi.'
+          : 'Detail belum terkirim. Periksa koneksi, lalu ketuk kirim untuk mencoba lagi.';
+        updateChatProgress(message, 'error');
+        setStatus(message, 'error');
+      } finally {
+        window.clearTimeout(timeoutId);
       }
     });
   });

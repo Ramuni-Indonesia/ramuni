@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum mengenai pencatatan dan penyajian keuangan entitas mikro, kecil, dan menengah. Kebijakan persediaan resmi perlu mengikuti standar dan kebutuhan usaha yang berlaku."
 disclaimer: "Contoh perhitungan bersifat edukasi. Sesuaikan angka dengan pola usaha, kondisi barang, pemasok, dan kebijakan pencatatan Anda."
-updateSummary: "Terbit awal dengan metode sederhana menentukan stok minimum, stok pengaman, dan jadwal peninjauan."
+updateSummary: "Menambahkan metode sederhana menentukan stok minimum, stok pengaman, dan jadwal peninjauan."
 related:
   - "panduan-membaca-stok-harian"
   - "cara-merapikan-data-produk-dan-sku"

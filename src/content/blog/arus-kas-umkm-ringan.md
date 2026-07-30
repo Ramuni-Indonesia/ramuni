@@ -37,7 +37,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan standar akuntansi Indonesia untuk laporan arus kas; contoh artikel disederhanakan untuk edukasi dan bukan panduan penyusunan laporan keuangan resmi."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat pajak, akuntansi, atau keuangan untuk usaha tertentu."
-updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "panduan-membaca-stok-harian"
 ctaType: "early-access"

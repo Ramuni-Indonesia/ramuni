@@ -2,8 +2,6 @@
 interface CapabilityRow {
   label: string;
   description: string;
-  status: string;
-  statusClass: string;
 }
 
 interface SafetyContent {
@@ -31,19 +29,13 @@ const headings: Record<string, string> = {
   'laporan-insight': 'Bawa perubahan, bukti, dan tindak lanjut dalam satu alur.',
   integrasi: 'Periksa format dan hasil validasi sebelum memakai data.',
 };
-const statuses = [...new Set(capabilities.map((capability) => capability.status))];
-const sharedStatus = statuses.length === 1 ? statuses[0] : undefined;
-const sharedStatusNote = sharedStatus === 'Perlu konfirmasi'
-  ? 'Cakupan dan akses dikonfirmasi sebelum Anda mencoba.'
-  : sharedStatus ? `Status saat ini: ${sharedStatus.toLowerCase()}.` : undefined;
 ---
 
 <section id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
   <div class="container pd-readiness__layout">
     <header class="pd-readiness__intro reveal">
       <h2 id="product-capabilities-title">{headings[slug] || `Lihat cara kerja ${title} sebelum mengandalkannya.`}</h2>
-      <p>Mulai dari catatan yang terbaca, lalu cek bagian yang masih memerlukan keputusan manusia.</p>
-      {sharedStatusNote && <small>{sharedStatusNote}</small>}
+      <p>Mulai dari catatan yang terbaca, lalu ikuti alurnya sampai keputusan berikutnya.</p>
     </header>
 
     <div class="pd-readiness__stage reveal" aria-label={`Alur pemeriksaan kemampuan ${title}`}>
@@ -55,21 +47,20 @@ const sharedStatusNote = sharedStatus === 'Perlu konfirmasi'
               <strong>{capability.label}</strong>
               <p>{capability.description}</p>
             </div>
-            {!sharedStatus && <small class={capability.statusClass}>{capability.status}</small>}
           </li>
         ))}
       </ol>
 
       <aside class="pd-readiness__boundary">
         <div>
-          <span>Keputusan tetap di tangan Anda</span>
-          <h3>{safety.heading}</h3>
-          <p>{safety.boundary}</p>
+          <span>Alur yang dapat ditinjau</span>
+          <h3>Setiap langkah membawa alasan dan sumber yang dapat diperiksa.</h3>
+          <p>RAMUNI membantu membaca konteks. Anda tetap menentukan tindakan berikutnya.</p>
         </div>
         <ul>
           {safety.checks.map((check) => <li><i aria-hidden="true"></i><span>{check}</span></li>)}
         </ul>
-        <a class="text-link" href="/keamanan/">Lihat cara RAMUNI menjaga batas</a>
+        <a class="text-link" href="/keamanan/">Lihat cara RAMUNI menjaga proses</a>
       </aside>
     </div>
   </div>

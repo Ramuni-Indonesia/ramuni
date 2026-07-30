@@ -22,31 +22,29 @@ const isChat = variant === 'chat';
   {isProgressive && !isChat && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
     <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
   </ol>}
-  {isChat && <div class="lead-form__chat-history" data-chat-history aria-live="off" aria-label="Riwayat percakapan konsultasi"></div>}
+  {isChat && <div class="lead-form__chat-history" data-chat-history role="log" aria-live="polite" aria-relevant="additions" aria-label="Riwayat percakapan konsultasi">
+    <p class="lead-form__chat-message lead-form__chat-message--agent" data-chat-question="0">Halo, saya bantu arahkan ke tim RAMUNI. Boleh tahu nama Anda?</p>
+  </div>}
   {isChat ? (
     <>
       <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
-        <legend>Halo! Sebelum kami bantu, boleh tahu nama Anda?</legend>
+        <legend class="visually-hidden">Halo, saya bantu arahkan ke tim RAMUNI. Boleh tahu nama Anda?</legend>
         <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" placeholder="Ketik nama Anda" required maxlength="150" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim nama"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
       <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
-        <legend>Terima kasih. Nomor WhatsApp aktifnya berapa?</legend>
-        <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim nomor WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
+        <legend class="visually-hidden">Apa yang paling ingin Anda rapikan atau pahami dari bisnis?</legend>
+        <input type="hidden" name="intent" value="support" />
+        <div class="chat-composer chat-composer--message"><div class="field field--context"><label class="visually-hidden" for={kind + '-' + location + '-need'}>Kebutuhan utama</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: ingin memantau stok dan penjualan" required maxlength="2000"></textarea><small class="visually-hidden" id={kind + '-' + location + '-privacy'}>Jangan masukkan password, token, atau informasi sensitif.</small></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim kebutuhan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
       <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
-        <legend>Email yang bisa dihubungi?</legend>
-        <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" placeholder="nama@email.com" required maxlength="254" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
+        <legend class="visually-hidden">Baik. Nomor WhatsApp aktif yang bisa dihubungi?</legend>
+        <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim nomor WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
       <fieldset class="lead-form__step" data-form-step="4" disabled={enabled ? undefined : true}>
-        <legend>Apa yang paling ingin dibahas dulu?</legend>
-        <input type="hidden" name="intent" value="support" />
-        <div class="chat-composer chat-composer--message"><div class="field field--context"><label class="visually-hidden" for={kind + '-' + location + '-need'}>Ceritakan singkat</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Tulis kebutuhan Anda..." required maxlength="2000"></textarea><small class="visually-hidden" id={kind + '-' + location + '-privacy'}>Jangan masukkan password, token, atau informasi sensitif.</small></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim kebutuhan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
-      </fieldset>
-      <fieldset class="lead-form__step" data-form-step="5" disabled={enabled ? undefined : true}>
-        <legend>Siap. Kami buka WhatsApp resmi RAMUNI setelah pesan ini terkirim.</legend>
-        <p class="chat-note">Dengan melanjutkan, Anda menyetujui tindak lanjut sesuai <a href="/privasi/">kebijakan privasi</a>.</p>
+        <legend class="visually-hidden">Terakhir, email yang bisa dihubungi?</legend>
         <input type="hidden" name="consent" value="yes" /><input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
-        <div class="chat-composer chat-composer--final"><button class="chat-send chat-send--final" type="submit">Buka WhatsApp</button></div>
+        <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" placeholder="nama@email.com" required maxlength="254" /></div><button class="chat-send" type="submit" aria-label="Kirim email dan buka WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
+        <small class="chat-consent">Dengan mengirim, Anda menyetujui tindak lanjut sesuai <a href="/privasi/">kebijakan privasi</a>. Setelah diterima, WhatsApp akan terbuka dengan pesan yang siap dilengkapi.</small>
       </fieldset>
       <p class="form-status" role="status" aria-live="polite"></p>
     </>
@@ -83,6 +81,6 @@ const isChat = variant === 'chat';
     {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
     <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>
     <p class="form-status" role="status" aria-live="polite"></p>
-  </div> : !enabled ? <div class="form-unavailable" role="status"><strong>Formulir belum tersedia.</strong><p>Silakan coba lagi beberapa saat lagi.</p></div> : null}
+  </div> : !enabled ? <div class="form-unavailable" role="status"><strong>Hubungi tim RAMUNI melalui WhatsApp.</strong><p>Gunakan tombol WhatsApp agar percakapan dapat langsung dilanjutkan.</p></div> : null}
 </form>
 <script is:inline type="module" src="/scripts/lead-form.js"></script>

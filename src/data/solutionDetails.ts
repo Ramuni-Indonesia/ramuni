@@ -110,8 +110,8 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'RAMUNI menunjukkan pola dan sumber. Keputusan harga, stok, dan promosi tetap dibuat pengguna.',
     },
     capabilities: [
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi dan produk yang membentuk perubahan.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur', text: 'Perubahan utama sebelum grafik lengkap.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Alur terhubung', text: 'Transaksi dan produk yang membentuk perubahan.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Ringkasan bisnis', text: 'Perubahan utama sebelum grafik lengkap.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Jawaban dapat ditelusuri', text: 'Membantu menyusun pertanyaan lanjutan tanpa menjalankan tindakan.' },
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Pola pembelian hanya tampil ketika datanya tersedia dan boleh dipakai.' },
     ],
@@ -192,9 +192,9 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Perkiraan tidak menggantikan stock opname. Jumlah pesanan tetap ditentukan pengguna.',
     },
     capabilities: [
-      { title: 'Inventori', href: '/produk/inventori/', status: 'Preview alur', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Laju produk terjual pada periode yang dipilih.' },
-      { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Daftar barang yang perlu diperiksa beserta sumbernya.' },
+      { title: 'Inventori', href: '/produk/inventori/', status: 'Alur stok', text: 'Saldo, barang masuk, keluar, dan koreksi bertanggal.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Laju penjualan', text: 'Laju produk terjual pada periode yang dipilih.' },
+      { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan prioritas', text: 'Daftar barang yang perlu diperiksa beserta sumbernya.' },
     ],
     industries: [
       { title: 'Retail', href: '/industri/retail/', example: 'Dahulukan SKU laris yang mendekati batas stok.' },
@@ -273,9 +273,9 @@ export const solutionDetails: SolutionDetail[] = [
       boundary: 'Rumus harus disepakati tim. Gunakan akuntan untuk kebutuhan akuntansi dan pajak profesional.',
     },
     capabilities: [
-      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Preview alur', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi yang membentuk nilai omzet.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Ringkasan masih disiapkan', text: 'Perbandingan angka pada periode yang sama.' },
+      { title: 'Keuangan', href: '/produk/keuangan/', status: 'Alur keuangan', text: 'Pemasukan, pengeluaran, laba, dan status pembayaran.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Sumber omzet', text: 'Transaksi yang membentuk nilai omzet.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Perbandingan periode', text: 'Perbandingan angka pada periode yang sama.' },
     ],
     industries: [
       { title: 'F&B', href: '/industri/fnb/', example: 'Baca penjualan menu bersama biaya yang sudah dicatat.' },
@@ -355,7 +355,7 @@ export const solutionDetails: SolutionDetail[] = [
     },
     capabilities: [
       { title: 'Pelanggan', href: '/produk/pelanggan/', status: 'Bergantung pada izin data', text: 'Riwayat dan pola pembelian yang boleh dipakai.' },
-      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Preview alur', text: 'Transaksi yang terhubung dengan pelanggan.' },
+      { title: 'Penjualan', href: '/produk/penjualan/', status: 'Riwayat transaksi', text: 'Transaksi yang terhubung dengan pelanggan.' },
       { title: 'Asisten AI', href: '/produk/asisten-ai/', status: 'Tidak mengirim pesan otomatis', text: 'Membantu membaca konteks tanpa mengirim pesan.' },
     ],
     industries: [
@@ -370,7 +370,7 @@ export const solutionDetails: SolutionDetail[] = [
     ],
     resource: { type: 'Artikel RAMUNI', title: 'Pelanggan & CRM', text: 'Pelajari cara membaca perilaku pelanggan dan menjaga tindak lanjut tetap menghormati privasi.', href: '/blog/', cta: 'Baca artikel terkait' },
     faq: [
-      { question: 'Apakah RAMUNI menghubungi pelanggan otomatis?', answer: 'Tidak pada versi awal. Tim tetap memeriksa izin, memilih kanal, dan menentukan tindak lanjut.' },
+      { question: 'Bagaimana RAMUNI membantu tindak lanjut pelanggan?', answer: 'Tim memeriksa izin, memilih kanal, lalu menentukan pesan dan waktu tindak lanjut dari konteks pembelian yang relevan.' },
       { question: 'Riwayat apa yang boleh dipakai?', answer: 'Gunakan hanya riwayat yang dibutuhkan, memiliki dasar izin, dan dapat dilihat oleh peran terkait.' },
       { question: 'Bagaimana menangani data pelanggan ganda?', answer: 'Gunakan pengenal yang konsisten, tetapi jangan menggabungkan dua identitas tanpa dasar yang dapat diperiksa.' },
     ],
@@ -384,7 +384,7 @@ export const solutionDetails: SolutionDetail[] = [
     eyebrow: 'Solusi laporan',
     heroTitle: 'Tutup minggu tanpa merakit laporan dari awal.',
     heroText: 'Gunakan periode, rumus, dan sumber yang sama agar rapat membahas perubahan, bukan memperdebatkan angka.',
-    heroOutcome: 'Ringkasan dapat disiapkan dari aturan yang sama. Kanal pengiriman otomatis belum tersedia pada preview.',
+    heroOutcome: 'Ringkasan disusun dari aturan yang sama, lalu dikirim melalui kanal dan jadwal yang dipilih tim.',
     ctaLabel: 'Lihat Contoh Laporan Mingguan',
     layout: 'editorial',
     visual: {
@@ -432,12 +432,12 @@ export const solutionDetails: SolutionDetail[] = [
       finding: 'Produk B melemah pada sore hari, tiga SKU perlu dicek, dan biaya pengiriman meningkat.',
       evidence: ['Periode laporan', 'Definisi metrik', 'Transaksi sumber', 'Pemilik tindak lanjut'],
       decision: 'Supervisor memeriksa stok. Pemilik meninjau biaya pengiriman sebelum laporan disetujui.',
-      boundary: 'Penyusunan ringkasan tidak berarti pengiriman otomatis. Kanal notifikasi mengikuti status rilis akun.',
+      boundary: 'Tim menentukan jadwal, penerima, kanal notifikasi, dan pemeriksaan sebelum ringkasan dibagikan.',
     },
     capabilities: [
-      { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan masih disiapkan', text: 'Ringkasan harian dan mingguan dari aturan yang sama.' },
-      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Preview alur', text: 'Perubahan utama sebelum detail.' },
-      { title: 'Notifikasi', status: 'Belum tersedia pada preview', text: 'Kanal email, WhatsApp, dan push tidak diklaim aktif.' },
+      { title: 'Laporan & Insight', href: '/produk/laporan-insight/', status: 'Ringkasan berkala', text: 'Ringkasan harian dan mingguan dari aturan yang sama.' },
+      { title: 'Dashboard Bisnis', href: '/produk/dashboard-bisnis/', status: 'Sorotan utama', text: 'Perubahan utama sebelum detail.' },
+      { title: 'Notifikasi', status: 'Kanal pilihan', text: 'Atur email, WhatsApp, atau push sesuai alur komunikasi tim.' },
     ],
     industries: [
       { title: 'Retail', href: '/industri/retail/', example: 'Ringkas penjualan, stok kritis, dan koreksi untuk pemilik.' },
@@ -449,10 +449,10 @@ export const solutionDetails: SolutionDetail[] = [
       { title: 'Tetapkan jadwal', text: 'Pilih batas tutup harian atau mingguan yang realistis.' },
       { title: 'Uji satu periode', text: 'Bandingkan ringkasan dengan sumber sebelum menjadi kebiasaan.' },
     ],
-    resource: { type: 'Template', title: 'Review Bisnis Mingguan', text: 'Lihat struktur temuan, bukti, keputusan, dan penanggung jawab sebelum file final dirilis.', href: '/template/', cta: 'Lihat struktur template' },
+    resource: { type: 'Template', title: 'Review Bisnis Mingguan', text: 'Lihat struktur temuan, bukti, keputusan, dan penanggung jawab sebelum digunakan tim.', href: '/template/', cta: 'Lihat struktur template' },
     faq: [
       { question: 'Apa yang perlu disepakati sebelum laporan dibuat?', answer: 'Tentukan nama metrik, rumus, sumber, periode, jadwal tutup, dan orang yang menindaklanjuti.' },
-      { question: 'Apakah laporan langsung dikirim otomatis?', answer: 'Belum pada preview. Ringkasan perlu diperiksa dan kanal pengiriman mengikuti status rilis akun.' },
+      { question: 'Bagaimana laporan dibagikan kepada tim?', answer: 'Tim menentukan format, penerima, kanal, jadwal pembahasan, dan pemeriksaan sebelum ringkasan dibagikan.' },
       { question: 'Bagaimana jika angka antar tim berbeda?', answer: 'Periksa definisi metrik, batas periode, dan waktu pembaruan sebelum membahas hasil.' },
     ],
     closingTitle: 'Bawa satu laporan yang paling sering terlambat.',

@@ -37,7 +37,7 @@ sources:
     url: "https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm"
     accessedAt: 2026-07-27
     note: "Rujukan umum pentingnya pencatatan yang konsisten; artikel ini tidak membahas perlakuan pajak tertentu."
-updateSummary: "Terbit awal dengan matriks pembanding mingguan dan contoh analisis perubahan."
+updateSummary: "Menambahkan matriks pembanding mingguan dan contoh analisis perubahan."
 related:
   - "cara-membaca-omzet-harian"
   - "produk-terlaris-belum-tentu-paling-untung"

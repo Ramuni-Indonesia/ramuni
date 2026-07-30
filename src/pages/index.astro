@@ -15,10 +15,10 @@ const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI bukan ERP rumit. Fokusnya membantu UMKM memahami kondisi bisnis dan memilih langkah berikutnya.'],
   ['Apakah AI menjalankan transaksi otomatis?', 'Tidak. AI menjelaskan konteks. Tindakan tetap diputuskan manusia.'],
   ['Data apa yang dibutuhkan?', 'Mulai dari catatan operasional yang tersedia. Jalur input dijelaskan sebelum proses dimulai.'],
-  ['Apakah saya bisa langsung mencoba?', 'Anda dapat melihat contoh tampilan lalu mengajukan sesi coba gratis. Akses produk diproses terpisah.'],
-  ['Apakah harga sudah tersedia?', 'Belum. Harga ditampilkan setelah isi paket ditetapkan.'],
-  ['Apakah RAMUNI cocok untuk semua industri?', 'Kami cocokkan cara kerja usaha dengan fitur yang siap. Contoh awal mencakup enam jenis usaha.'],
-  ['Bagaimana keamanan data dijaga?', 'Akses mengikuti peran. Cakupan perlindungan dijelaskan sebelum penggunaan.'],
+  ['Apakah saya bisa langsung mencoba?', 'Ya. Ajukan sesi coba gratis, lalu tim kami akan membantu menyiapkan akses yang sesuai.'],
+  ['Bagaimana mengetahui paket dan harga?', 'Paket dan harga disesuaikan dengan kebutuhan usaha. Tim kami membantu membahas pilihan yang paling relevan.'],
+  ['Apakah RAMUNI cocok untuk semua industri?', 'Kami mencocokkan cara kerja usaha dengan fitur RAMUNI yang relevan. Lihat penerapannya untuk enam jenis usaha.'],
+  ['Bagaimana keamanan data dijaga?', 'Akses mengikuti peran, perubahan penting tercatat, dan keputusan tetap berada pada pengguna.'],
 ];
 
 const answerLayers = [
@@ -219,8 +219,8 @@ const schema = [
     <div class="container trust-manifesto">
       <div class="trust-manifesto__mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="" /><span>Prinsip kerja RAMUNI</span></div>
       <h2 class="reveal">Jawaban tidak berhenti pada kesimpulan.</h2>
-      <p class="trust-manifesto__lede reveal">Periode, sumber angka, dan batas data tetap terlihat sebelum Anda menentukan langkah.</p>
-      <div class="trust-principles">{['Akses mengikuti peran yang diberi wewenang', 'AI hanya membaca pada versi awal', 'Jawaban menunjukkan periode dan bukti pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-principle reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
+      <p class="trust-manifesto__lede reveal">Periode, sumber angka, dan konteks data tetap terlihat sebelum Anda menentukan langkah.</p>
+      <div class="trust-principles">{['Akses mengikuti peran yang diberi wewenang', 'AI membantu membaca konteks dan bukti', 'Jawaban menunjukkan periode dan sumber pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-principle reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
       <a class="button button--light reveal" href="/keamanan/">Pelajari keamanan</a>
     </div>
   </section>
@@ -234,7 +234,7 @@ const schema = [
 
   <section class="section faq-stage chapter" data-chapter="FAQ">
     <div class="container faq-library">
-      <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Pertanyaan yang perlu dijawab sebelum mulai.</h2><p>Jawaban singkat, tanpa menyembunyikan batas produk yang sedang disiapkan.</p></div>
+      <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Pertanyaan yang membantu Anda memulai.</h2><p>Jawaban singkat tentang cara kerja, data, dan langkah yang dapat dilakukan bersama RAMUNI.</p></div>
       <div class="faq-list">{faq.map(([question, answer]) => <details class="reveal"><summary>{question}</summary><p>{answer}</p></details>)}</div>
     </div>
   </section>

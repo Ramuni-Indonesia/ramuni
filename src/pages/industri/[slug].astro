@@ -28,7 +28,7 @@ type IndustryBrief = {
 const industryBriefs: Record<string, IndustryBrief> = {
   retail: {
     fit: ['Toko dengan banyak SKU aktif', 'Pemilik yang perlu memantau stok cepat bergerak', 'Tim kasir dan admin yang berbagi catatan'],
-    boundaries: ['Tidak menyiratkan multi-gudang lanjutan', 'Tidak menjanjikan POS enterprise lengkap', 'Integrasi perangkat mengikuti status rilis'],
+    boundaries: ['Kelola SKU dan stok per lokasi dengan struktur yang konsisten', 'Hubungkan transaksi, pembayaran, dan pergerakan stok', 'Gunakan perangkat sesuai alur operasional toko'],
     workflow: ['Cek stok kritis sebelum toko ramai', 'Catat penjualan dan koreksi dengan jejak', 'Bandingkan produk laris dengan saldo stok', 'Tentukan restock atau pemeriksaan fisik'],
     pains: ['Produk laris habis tanpa peringatan', 'Barang lambat menumpuk', 'Selisih catatan kasir dan stok sulit ditelusuri'],
     dataNeeds: ['Katalog produk dan SKU', 'Transaksi penjualan', 'Saldo dan pergerakan stok', 'Batas stok minimum'],
@@ -56,7 +56,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
   },
   fnb: {
     fit: ['Usaha makanan/minuman dengan menu aktif', 'Pemilik yang memantau jam ramai', 'Tim yang perlu melihat bahan dan penjualan bersama'],
-    boundaries: ['Biaya per resep mengikuti status fitur', 'Tidak menggantikan SOP dapur', 'Bahan terbuang dan rincian bahan mengikuti data yang disiapkan'],
+    boundaries: ['Baca biaya per resep bersama penjualan dan bahan', 'Gunakan SOP dapur sebagai acuan operasional', 'Catat bahan terbuang dan rincian bahan secara konsisten'],
     workflow: ['Lihat menu yang berubah performanya', 'Cek bahan atau stok yang perlu perhatian', 'Bandingkan jam ramai dan biaya', 'Tentukan pembelian atau evaluasi menu'],
     pains: ['Menu ramai tetapi margin belum jelas', 'Bahan habis saat jam puncak', 'Waste tidak masuk konteks laporan'],
     dataNeeds: ['Daftar menu', 'Penjualan per waktu', 'Stok bahan atau item utama', 'Pengeluaran bahan'],
@@ -69,7 +69,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
       { title: 'Kelompokkan biaya bahan', text: 'Gunakan kategori yang sama setiap periode supaya perubahan biaya mudah dibandingkan.' },
     ],
     faq: [
-      { question: 'Apakah RAMUNI menghitung resep dan bahan terbuang otomatis?', answer: 'Belum tentu. Cakupan resep dan bahan terbuang hanya ditampilkan setelah fitur serta cara pencatatannya terverifikasi.' },
+      { question: 'Bagaimana membaca resep dan bahan terbuang?', answer: 'Catat komponen resep, jumlah bahan, serta bahan terbuang agar biaya dan penggunaan bahan dapat dibaca pada periode yang sama.' },
       { question: 'Bagaimana membaca menu laris yang bahannya menipis?', answer: 'Bandingkan penjualan pada jam ramai dengan saldo bahan terakhir, lalu cek kondisi fisik sebelum menambah stok.' },
     ],
     privacy: 'Sesi coba gratis memakai skenario yang sudah disiapkan. Anda tidak perlu membawa data bisnis untuk memulai.',
@@ -84,7 +84,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
   },
   distributor: {
     fit: ['Usaha dengan pesanan berulang', 'Produk bergerak dalam volume lebih besar', 'Pemilik yang memantau kas, pesanan ulang, dan stok'],
-    boundaries: ['Kontrol pemasok, pesanan pembelian, dan kredit mengikuti status fitur', 'Piutang lanjutan mengikuti cakupan rilis', 'Integrasi akuntansi hanya bila sudah terverifikasi'],
+    boundaries: ['Satukan pemasok, pesanan pembelian, dan kredit dalam alur yang jelas', 'Pantau piutang bersama status pembayaran', 'Hubungkan data keuangan dengan catatan operasional'],
     workflow: ['Pantau pesanan dan produk bergerak', 'Cek pelanggan yang biasanya memesan ulang', 'Bandingkan stok dengan permintaan', 'Tinjau dampak ke kas'],
     pains: ['Produk cepat keluar tetapi pembelian terlambat', 'Pelanggan rutin tidak terpantau', 'Kas terasa ketat saat order besar berjalan'],
     dataNeeds: ['Produk dan kategori', 'Riwayat penjualan pelanggan', 'Pergerakan stok', 'Status pembayaran operasional'],
@@ -112,7 +112,7 @@ const industryBriefs: Record<string, IndustryBrief> = {
   },
   'reseller-online': {
     fit: ['Reseller dengan beberapa kanal catatan', 'Produk dan margin sering berubah', 'Pemilik yang perlu melihat produk bernilai tinggi'],
-    boundaries: ['Koneksi marketplace langsung hanya ditampilkan setelah rilis', 'Tidak otomatis menjalankan kampanye', 'Data kanal perlu dibawa melalui metode yang tersedia'],
+    boundaries: ['Hubungkan catatan marketplace dengan kode produk yang sama', 'Gunakan data kanal untuk menilai produk dan margin', 'Kelola tindak lanjut kampanye bersama keputusan pengguna'],
     workflow: ['Gabungkan catatan penjualan', 'Bandingkan margin per produk', 'Cek pelanggan yang kembali', 'Tentukan produk yang perlu didorong atau dihentikan'],
     pains: ['Produk ramai belum tentu margin baik', 'Catatan kanal tersebar', 'Pelanggan berulang sulit dikenali'],
     dataNeeds: ['Produk dan harga', 'HPP atau biaya terkait', 'Transaksi per kanal bila tersedia', 'Riwayat pelanggan yang sesuai izin'],
@@ -135,12 +135,12 @@ const industryBriefs: Record<string, IndustryBrief> = {
     exampleMetrics: [
       { label: 'Penjualan produk contoh', value: '24 unit', note: 'Gabungan catatan dari kanal yang sudah dimasukkan.' },
       { label: 'Harga jual contoh', value: 'Rp85 ribu', note: 'Dibandingkan dengan HPP yang diketahui.' },
-      { label: 'HPP contoh', value: 'Rp58 ribu', note: 'Belum memasukkan biaya kanal yang datanya belum tersedia.' },
+      { label: 'HPP contoh', value: 'Rp58 ribu', note: 'Dibaca bersama biaya kanal yang dicatat pada periode yang sama.' },
     ],
   },
   jasa: {
     fit: ['Usaha jasa dengan pendapatan per layanan', 'Pemilik yang memantau biaya dan pelanggan', 'Tim yang perlu melihat layanan mana yang konsisten'],
-    boundaries: ['RAMUNI bukan alat pengelolaan proyek lengkap', 'Pencatatan waktu dan perencanaan tenaga kerja mengikuti status fitur', 'Konteks proyek hanya sejauh data operasional tersedia'],
+    boundaries: ['Hubungkan pekerjaan proyek dengan pendapatan dan biaya', 'Catat waktu dan kebutuhan tenaga kerja secara konsisten', 'Gunakan konteks proyek dari data operasional yang tercatat'],
     workflow: ['Catat pendapatan layanan', 'Kelompokkan biaya', 'Lihat pelanggan atau layanan berulang', 'Tentukan layanan yang perlu diprioritaskan'],
     pains: ['Pendapatan terlihat naik tetapi biaya ikut naik', 'Layanan laris belum tentu sehat', 'Konteks pelanggan tersebar'],
     dataNeeds: ['Jenis layanan', 'Pendapatan', 'Pengeluaran', 'Pelanggan atau sumber pesanan bila sesuai izin'],
@@ -168,20 +168,20 @@ const industryBriefs: Record<string, IndustryBrief> = {
   },
   'manufaktur-kecil': {
     fit: ['Usaha yang memantau bahan dan barang jadi', 'Pemilik yang melihat produksi sederhana dan penjualan bersama', 'Tim yang perlu tahu stok mana perlu perhatian'],
-    boundaries: ['Perencanaan produksi dan daftar bahan lengkap mengikuti status fitur', 'Tidak otomatis membuat rencana produksi', 'Biaya produksi rinci mengikuti status fitur'],
+    boundaries: ['Susun rencana produksi bersama stok bahan dan barang jadi', 'Gunakan daftar bahan sebagai dasar pemeriksaan', 'Baca biaya produksi bersama penjualan dan stok'],
     workflow: ['Cek barang jadi dan bahan utama', 'Pantau penjualan produk', 'Lihat biaya atau pengeluaran terkait', 'Tentukan pemeriksaan stok atau produksi berikutnya'],
     pains: ['Bahan terlihat cukup tetapi barang jadi menipis', 'Biaya produksi tidak terbaca bersama penjualan', 'Keputusan dibuat dari ingatan'],
     dataNeeds: ['Produk jadi', 'Bahan atau item stok utama', 'Transaksi penjualan', 'Pengeluaran produksi sederhana'],
     modules: ['Inventori', 'Penjualan', 'Keuangan', 'Dashboard Bisnis'],
     questions: ['Produk mana yang membutuhkan perhatian stok?', 'Bahan apa yang perlu dicek sebelum produksi?', 'Biaya apa yang berubah minggu ini?'],
-    scenario: 'Sebelum produksi berikutnya, pemilik melihat barang jadi tertentu menipis. RAMUNI membantu mengecek penjualan, stok, dan biaya terkait tanpa menjanjikan perencanaan produksi lengkap.',
+    scenario: 'Sebelum produksi berikutnya, pemilik melihat barang jadi tertentu menipis. RAMUNI membantu mengecek penjualan, stok, biaya, dan kebutuhan produksi berikutnya.',
     onboarding: [
       { title: 'Pisahkan bahan dan barang jadi', text: 'Gunakan kategori berbeda supaya saldo tidak tercampur.' },
       { title: 'Tentukan unit stok', text: 'Samakan kilogram, meter, atau unit sebelum membaca pergerakan bahan.' },
       { title: 'Catat biaya utama', text: 'Kelompokkan biaya produksi sederhana pada periode yang konsisten.' },
     ],
     faq: [
-      { question: 'Apakah RAMUNI membuat rencana produksi otomatis?', answer: 'Tidak pada cakupan awal. Data hanya membantu menentukan apa yang perlu diperiksa sebelum produksi.' },
+      { question: 'Bagaimana RAMUNI membantu rencana produksi?', answer: 'RAMUNI menyatukan penjualan, stok bahan, barang jadi, dan biaya agar kebutuhan produksi berikutnya lebih mudah ditentukan.' },
       { question: 'Bagaimana membaca bahan dan barang jadi bersama?', answer: 'Bandingkan saldo terakhir, penjualan barang jadi, dan kebutuhan bahan yang sudah diketahui secara manual.' },
     ],
     privacy: 'Data produksi sensitif tidak perlu dimasukkan ke formulir publik atau sesi coba gratis.',
@@ -217,7 +217,7 @@ const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug)
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
 ---
-<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'Gambaran awal RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, batas klaim, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
   <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Coba gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
 
@@ -229,7 +229,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
       </div>
       <div class="audience-boundary-ledger reveal">
         <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
-        <div><strong>Batas saat ini</strong><ul>{brief.boundaries.map((item) => <li>{item}</li>)}</ul></div>
+        <div><strong>Cara kerja</strong><ul>{brief.boundaries.map((item) => <li>{item}</li>)}</ul></div>
       </div>
     </div>
   </section>
@@ -294,7 +294,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
 
   <section class="section surface" id="privasi-faq" aria-labelledby="privacy-title">
     <div class="container audience-split">
-      <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Batas data tetap dijaga.</h2><p class="lede">{brief.privacy}</p></div>
+      <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Data tetap dijaga sesuai izin.</h2><p class="lede">{brief.privacy}</p></div>
       <div class="faq-list reveal">
         {brief.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         <details><summary>Apakah saya perlu mengirim data bisnis untuk mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details>
@@ -308,7 +308,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
         headingId="cta-title"
         eyebrow={'Simulasi untuk ' + industry.title}
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
-        body="Bawa pertanyaan utama, cara menyiapkan data, dan batas fitur yang perlu dikonfirmasi sebelum menentukan langkah."
+        body="Bawa pertanyaan utama, cara menyiapkan data, dan alur fitur yang paling relevan untuk usaha Anda."
         primaryLabel="Coba gratis"
         primaryHref="/tour-produk-gratis/"
         secondaryLabel="Lihat Solusi"

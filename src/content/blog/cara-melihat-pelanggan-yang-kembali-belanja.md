@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum utama tentang pelindungan data pribadi di Indonesia; penerapan pada proses tertentu perlu ditinjau tenaga hukum."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat hukum. Pastikan dasar pemrosesan, pemberitahuan, akses, retensi, dan pilihan pelanggan ditinjau sesuai kegiatan usaha Anda."
-updateSummary: "Terbit awal dengan definisi pelanggan kembali, batas privasi, dan contoh pembacaan kelompok."
+updateSummary: "Menambahkan definisi pelanggan kembali, prinsip privasi, dan contoh pembacaan kelompok."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-membandingkan-penjualan-mingguan"
@@ -108,7 +108,7 @@ Sebelum menghubungi pelanggan, periksa:
 - cara pelanggan mengubah pilihan atau berhenti;
 - siapa yang boleh mengakses daftar tersebut.
 
-[Modul pelanggan RAMUNI](/produk/pelanggan/) menggambarkan bagaimana catatan pelanggan dapat dihubungkan dengan riwayat transaksi. Penggunaan nyata tetap harus mengikuti status fitur, hak akses, dan kebijakan privasi yang berlaku.
+[Modul pelanggan RAMUNI](/produk/pelanggan/) menunjukkan bagaimana catatan pelanggan dihubungkan dengan riwayat transaksi. Penggunaannya mengikuti hak akses, persetujuan, dan kebijakan privasi yang berlaku.
 
 ## Buat tindak lanjut yang aman
 

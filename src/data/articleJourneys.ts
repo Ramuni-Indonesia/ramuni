@@ -66,7 +66,7 @@ export const articleJourneys: Record<string, ArticleJourney> = {
     productTitle: 'Pelanggan RAMUNI',
     productHref: '/produk/pelanggan/',
     tourHref: '/tour-produk-gratis/?intent=customer',
-    title: 'Kenali pola pembelian tanpa melewati batas privasi pelanggan.',
+    title: 'Kenali pola pembelian sambil menjaga privasi pelanggan.',
     text: 'Lihat contoh alur dari transaksi menuju pelanggan berulang, segmentasi sederhana, dan pemeriksaan izin.',
     stages: ['Transaksi', 'Riwayat', 'Pola kembali', 'Cek izin'],
     metric: 'Pelanggan berulang',

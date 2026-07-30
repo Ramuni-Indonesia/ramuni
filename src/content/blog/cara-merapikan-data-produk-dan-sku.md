@@ -37,7 +37,7 @@ sources:
     url: "https://www.gs1.org/standards/id-keys/gtin"
     accessedAt: 2026-07-27
     note: "Rujukan untuk membedakan identitas barang global GTIN dari kode SKU internal yang dibuat usaha."
-updateSummary: "Terbit awal dengan aturan nama, SKU internal, satuan, deduplikasi, dan migrasi bertahap."
+updateSummary: "Menambahkan aturan nama, SKU internal, satuan, deduplikasi, dan migrasi bertahap."
 related:
   - "panduan-membaca-stok-harian"
   - "produk-terlaris-belum-tentu-paling-untung"

@@ -17,7 +17,7 @@ tags:
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
 reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan batas AI yang terlihat."
+editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan peran AI yang dijelaskan secara terbuka."
 readingTime: "4 menit"
 takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."
@@ -37,7 +37,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan kerangka manajemen risiko AI untuk transparansi, pengukuran risiko, dan pengawasan manusia; artikel ini menerapkannya sebagai prinsip edukatif, bukan penilaian kepatuhan."
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
-updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan batas penggunaan panduan."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "panduan-membaca-stok-harian"
 ctaType: "demo"
@@ -84,15 +84,15 @@ Jika salah satu tidak dapat dijawab, perlakukan hasil sebagai dugaan awal. Janga
 
 > Jawaban singkat boleh berada di depan. Dasar hitungannya tidak boleh disembunyikan.
 
-## Kenali batas AI
+## Pahami peran AI
 
 AI dapat membantu menyusun ringkasan dan menemukan pola pada data yang tersedia. AI tidak mengetahui keadaan toko di luar catatan tersebut. Sistem juga dapat salah membaca istilah, periode, atau data yang tidak lengkap.
 
-Pada versi awal, AI RAMUNI hanya membaca dan menjelaskan data. AI tidak mengubah harga, memesan stok, mengirim pesan kepada pelanggan, atau memindahkan uang.
+AI RAMUNI membaca dan menjelaskan data. AI tidak mengubah harga, memesan stok, mengirim pesan kepada pelanggan, atau memindahkan uang.
 
 ## Tindakan tetap butuh persetujuan
 
-Pada versi awal, AI hanya membaca dan menjelaskan. Tindakan bisnis yang berisiko tetap memerlukan kontrol manusia.
+AI membaca dan menjelaskan konteks. Tindakan bisnis yang berisiko tetap berada dalam kendali manusia.
 
 Untuk contoh stok, admin mengecek jumlah fisik. Untuk kas, pemilik memastikan transaksi dan kategori biaya. Untuk pelanggan, tim memeriksa izin sebelum menghubungi.
 

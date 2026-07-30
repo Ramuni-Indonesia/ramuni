@@ -4,39 +4,39 @@ import PageHero from '../components/PageHero.astro';
 import '../styles/system-status-visuals.css';
 
 const components = [
-  ['Website marketing', 'Tidak dipantau melalui halaman ini', 'Tampilan halaman bukan bukti uptime atau kondisi layanan produksi.'],
-  ['Aplikasi produk', 'Status tidak dipublikasikan di sini', 'Runtime produk dikelola terpisah dan perlu sumber operasional terverifikasi.'],
-  ['API dan background jobs', 'Status tidak tersedia', 'Tidak ada feed health publik yang dapat dirujuk.'],
-  ['Notifikasi dan integrasi', 'Mengikuti status rilis', 'Tidak diasumsikan aktif sebelum dukungan operasionalnya terbukti.'],
+  ['Website RAMUNI', 'Bantuan akses halaman', 'Laporkan halaman yang sulit dibuka beserta waktu dan perangkat yang digunakan.'],
+  ['Akun dan aplikasi', 'Bantuan masuk produk', 'Tim membantu memeriksa akses akun dan langkah yang perlu dilakukan.'],
+  ['Formulir dan WhatsApp', 'Bantuan pengiriman', 'Sampaikan jika formulir atau percakapan tidak dapat dilanjutkan.'],
+  ['Data dan integrasi', 'Bantuan alur data', 'Tim membantu menelusuri sumber, waktu pembaruan, dan proses yang digunakan.'],
 ];
 ---
-<BaseLayout title="Status RAMUNI" description="Informasi status RAMUNI dan jalur konfirmasi operasional tanpa klaim uptime yang tidak memiliki sumber terverifikasi." noindex={true}>
-  <PageHero eyebrow="Status" title="Status harus datang dari data operasional." description="Halaman ini tidak terhubung ke monitor atau penyedia status terverifikasi. Karena itu, RAMUNI tidak menampilkan klaim kondisi sistem tanpa bukti operasional." primaryLabel="Konfirmasi ke Dukungan" primaryHref="/kontak/" secondaryLabel="Baca Keamanan" secondaryHref="/keamanan/" />
+<BaseLayout title="Status dan Bantuan Layanan RAMUNI" description="Jalur bantuan untuk memeriksa akses website, akun, formulir, dan alur data RAMUNI." noindex={true}>
+  <PageHero eyebrow="Status layanan" title="Temukan jalur bantuan yang tepat." description="Jelaskan kendala yang Anda alami. Tim RAMUNI akan membantu memeriksa akses, alur, dan langkah berikutnya." primaryLabel="Hubungi Dukungan" primaryHref="/kontak/" secondaryLabel="Buka Pusat Bantuan" secondaryHref="/bantuan/" />
 
   <section class="section status-page__overall" id="status-saat-ini" aria-labelledby="overall-title">
     <div class="container status-page__overall-layout">
-      <div class="status-page__heading reveal"><p class="eyebrow">Status saat ini</p><h2 id="overall-title">Konfirmasi melalui kanal dukungan.</h2><p>Halaman publik ini tidak menerima telemetri, health endpoint, atau feed status penyedia.</p></div>
-      <div class="status-page__stamp reveal" role="status"><span>STATUS FEED</span><div class="status-feed-visual" aria-hidden="true"><i></i><i></i><i></i><i></i><b>?</b></div><strong>Konfirmasi manual</strong><p>Gunakan kanal dukungan untuk memeriksa kondisi operasional yang relevan dengan kebutuhan Anda.</p></div>
+      <div class="status-page__heading reveal"><p class="eyebrow">Bantuan langsung</p><h2 id="overall-title">Mulai dari gejala yang Anda lihat.</h2><p>Sertakan halaman atau fitur yang digunakan, waktu kejadian, dan pesan yang tampil agar pemeriksaan lebih cepat.</p></div>
+      <div class="status-page__stamp reveal" role="status"><span>DUKUNGAN RAMUNI</span><div class="status-feed-visual" aria-hidden="true"><i></i><i></i><i></i><i></i><b>?</b></div><strong>Siap membantu</strong><p>Tim akan mengarahkan pertanyaan Anda ke jalur penanganan yang paling relevan.</p></div>
     </div>
   </section>
 
   <section class="section surface status-page__components" id="komponen" aria-labelledby="components-title">
     <div class="container">
-      <div class="status-page__heading reveal"><h2 id="components-title">Tidak ada indikator hijau tanpa sumber bukti.</h2></div>
+      <div class="status-page__heading reveal"><h2 id="components-title">Pilih area yang paling dekat dengan kendala Anda.</h2></div>
       <div class="status-page__component-list">{components.map((component, index) => <article class="reveal"><div class="status-component-signal" aria-hidden="true"><span>{String(index + 1).padStart(2, '0')}</span><i></i><i></i><i></i></div><strong>{component[0]}</strong><span>{component[1]}</span><p>{component[2]}</p></article>)}</div>
     </div>
   </section>
 
   <section class="section dark-surface status-page__incidents" id="insiden" aria-labelledby="incidents-title">
     <div class="container status-page__split">
-      <div class="status-page__heading reveal"><p class="eyebrow">Insiden aktif</p><h2 id="incidents-title">Feed insiden tidak tersedia di halaman ini.</h2><p>Ketiadaan feed bukan bukti bahwa layanan bebas gangguan. Konfirmasi kondisi operasional melalui dukungan.</p></div>
-      <div class="status-page__empty-state reveal"><span>Konfirmasi diperlukan</span><strong>Informasi insiden harus berasal dari proses respons yang terverifikasi.</strong><p>Komunikasi gangguan tidak boleh membuka data pribadi, kredensial, stack trace, atau detail eksploitasi.</p></div>
+      <div class="status-page__heading reveal"><p class="eyebrow">Ada kendala?</p><h2 id="incidents-title">Ceritakan apa yang terjadi.</h2><p>Tim membantu menelusuri kendala berdasarkan gejala, waktu, dan area layanan yang terdampak.</p></div>
+      <div class="status-page__empty-state reveal"><span>Informasi yang membantu</span><strong>Halaman, waktu kejadian, perangkat, dan pesan yang terlihat.</strong><p>Jangan sertakan password, token, data pelanggan, atau transaksi sensitif.</p></div>
     </div>
   </section>
 
   <section class="section status-page__maintenance" id="maintenance" aria-labelledby="maintenance-title">
     <div class="container status-page__split">
-      <div class="status-page__heading reveal"><h2 id="maintenance-title">Jadwal pemeliharaan tidak ditampilkan di halaman ini.</h2></div>
+      <div class="status-page__heading reveal"><h2 id="maintenance-title">Pembaruan layanan disampaikan dengan konteks yang jelas.</h2></div>
       <ol class="status-page__process">
         <li class="reveal"><span>01</span><div><strong>Konfirmasi cakupan</strong><p>Tentukan layanan, waktu, dan dampak pengguna.</p></div></li>
         <li class="reveal"><span>02</span><div><strong>Publikasikan jadwal</strong><p>Tampilkan zona waktu dan kanal pembaruan.</p></div></li>
@@ -47,8 +47,8 @@ const components = [
 
   <section class="section surface status-page__history" id="riwayat" aria-labelledby="history-title">
     <div class="container status-page__split">
-      <div class="status-page__heading reveal"><h2 id="history-title">Riwayat status tidak dipublikasikan di halaman ini.</h2><p>Catatan yang layak dipublikasikan harus memuat waktu, cakupan dampak, pembaruan, dan resolusi yang dapat diverifikasi.</p></div>
-      <div class="status-page__history-rule reveal"><strong>Pembaruan otomatis tidak tersedia dari halaman ini.</strong><p>RAMUNI tidak meminta email atau nomor WhatsApp untuk langganan status melalui halaman ini.</p></div>
+      <div class="status-page__heading reveal"><h2 id="history-title">Setiap laporan ditangani bersama konteksnya.</h2><p>Waktu, area terdampak, gejala, dan hasil pemeriksaan membantu tim memberi tindak lanjut yang lebih jelas.</p></div>
+      <div class="status-page__history-rule reveal"><strong>Gunakan kanal dukungan resmi RAMUNI.</strong><p>Tim akan mengabarkan langkah berikutnya melalui kanal yang Anda pilih.</p></div>
     </div>
   </section>
 

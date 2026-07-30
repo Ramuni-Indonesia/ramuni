@@ -30,7 +30,7 @@ const paths = [
 const modes = [
   { id: 'baca', label: 'Baca', title: 'Mulai dari penjelasan', text: 'Artikel dan panduan menunjukkan urutan pemeriksaan sebelum Anda membuka alat.', steps: ['Pilih masalah', 'Baca contoh', 'Catat pertanyaan'] },
   { id: 'coba', label: 'Coba', title: 'Uji dengan angka contoh', text: 'Kalkulator dan template membantu memeriksa asumsi tanpa mengirim data usaha.', steps: ['Isi angka', 'Lihat cara hitung', 'Bandingkan hasil'] },
-  { id: 'periksa', label: 'Periksa', title: 'Lihat sumber dan batasnya', text: 'Standar editorial menjelaskan cara materi disusun, diperbarui, dan dikoreksi.', steps: ['Buka sumber', 'Cek pembaruan', 'Kirim koreksi'] },
+  { id: 'periksa', label: 'Periksa', title: 'Lihat sumber dan cara pakainya', text: 'Standar editorial menjelaskan cara materi disusun, diperbarui, dan dikoreksi.', steps: ['Buka sumber', 'Cek pembaruan', 'Kirim koreksi'] },
 ];
 
 const standards = [
@@ -76,7 +76,7 @@ const schema = [
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><span aria-current="page">Sumber Daya</span></nav>
           <p class="eyebrow">Sumber Daya</p>
           <h1>Cari jawaban untuk angka usaha.</h1>
-          <p class="lede">Baca artikel, coba alat sederhana, lalu periksa sumber dan batasnya sebelum menentukan langkah.</p>
+          <p class="lede">Baca artikel, coba alat sederhana, lalu periksa sumber dan cara pakainya sebelum menentukan langkah.</p>
           <nav class="resource-hub-hero__links" aria-label="Pintasan sumber daya">
             <a href="/blog/">Artikel</a><a href="/panduan/">Panduan</a><a href="/template/">Template</a><a href="/generator/lembar-stok-harian/">Generator</a><a href="/kalkulator/">Kalkulator</a><a href="/kamus-bisnis/">Kamus</a>
           </nav>
@@ -132,7 +132,7 @@ const schema = [
 
       <section class="section resource-editorial" aria-labelledby="resource-editorial-title">
         <div class="container resource-editorial__layout">
-          <div class="resource-editorial__statement reveal"><p class="section-kicker">Standar editorial</p><h2 id="resource-editorial-title">Materi yang berguna harus bisa diperiksa.</h2><p>Kami menunjukkan sumber, contoh yang diberi batas, dan riwayat pembaruan. Jika ada yang kurang tepat, jalur koreksi selalu tersedia.</p><a class="text-link" href="/blog/kebijakan-editorial/">Baca kebijakan editorial</a></div>
+          <div class="resource-editorial__statement reveal"><p class="section-kicker">Standar editorial</p><h2 id="resource-editorial-title">Materi yang berguna harus bisa diperiksa.</h2><p>Kami menunjukkan sumber, konteks contoh, dan riwayat pembaruan. Jika ada yang kurang tepat, jalur koreksi selalu tersedia.</p><a class="text-link" href="/blog/kebijakan-editorial/">Baca kebijakan editorial</a></div>
           <ol class="resource-editorial__standards">
             {standards.map((standard) => <li class="reveal"><a href={standard.href}><span>{standard.number}</span><div><h3>{standard.title}</h3><p>{standard.text}</p></div><i aria-hidden="true">&rarr;</i></a></li>)}
           </ol>

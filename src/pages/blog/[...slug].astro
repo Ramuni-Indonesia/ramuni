@@ -33,7 +33,7 @@ const CalculatorWidget = embeddedCalculator ? (await import('../../components/Ca
 const articleResources = {
   'ai-business-companion-umkm': {
     title: 'Uji jawaban AI sebelum dipakai.',
-    text: 'Gunakan panduan pemeriksaan untuk melihat pertanyaan, bukti, periode, batas, dan persetujuan manusia.',
+    text: 'Gunakan panduan pemeriksaan untuk melihat pertanyaan, bukti, periode, konteks, dan persetujuan manusia.',
     primary: { label: 'Buka panduan menilai insight AI', href: '/panduan/menilai-insight-ai/' },
     secondary: { label: 'Kenali Asisten AI RAMUNI', href: '/produk/asisten-ai/' },
   },
@@ -50,7 +50,7 @@ const articleResources = {
     secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
   },
   'cara-menentukan-stok-minimum-umkm': {
-    title: 'Uji batas stok sebelum dipakai tim.',
+    title: 'Periksa stok minimum sebelum dipakai tim.',
     text: 'Hitung perkiraan reorder, lalu bawa hasilnya ke pemeriksaan saldo fisik dan waktu tunggu pemasok.',
     primary: { label: 'Gunakan kalkulator reorder stok', href: '/kalkulator/reorder-stok/' },
     secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
@@ -180,7 +180,7 @@ const schema = [
           </section>}
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
-            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}
+            {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan konteks penggunaan ditulis langsung pada bagian yang relevan.</p>}
             {post.data.disclaimer && <p class="article-disclaimer">{post.data.disclaimer}</p>}
           </section>
 

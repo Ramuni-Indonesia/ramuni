@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum penyajian laporan keuangan untuk entitas mikro, kecil, dan menengah. Penerapan resmi perlu disesuaikan dengan standar dan kebutuhan usaha."
 disclaimer: "Konten ini bersifat edukasi umum, bukan nasihat akuntansi atau pajak. Gunakan tenaga profesional untuk kebutuhan pelaporan resmi."
-updateSummary: "Terbit awal dengan struktur pendapatan, HPP, biaya operasional, pemeriksaan sumber, dan contoh laporan sederhana."
+updateSummary: "Menambahkan struktur pendapatan, HPP, biaya operasional, pemeriksaan sumber, dan contoh laporan sederhana."
 related:
   - "perbedaan-omzet-laba-dan-arus-kas"
   - "produk-terlaris-belum-tentu-paling-untung"

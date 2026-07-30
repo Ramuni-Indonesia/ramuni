@@ -7,39 +7,39 @@ const principles = [
   ['Minimalkan data', 'Kumpulkan hanya data yang diperlukan untuk tujuan yang jelas.'],
   ['Batasi akses', 'Setiap peran melihat konteks sesuai kewenangannya.'],
   ['Jaga jejak', 'Koreksi, persetujuan, dan perubahan penting perlu dapat diperiksa.'],
-  ['Nyatakan status', 'Kontrol dipublikasikan hanya setelah implementasi dan bukti tersedia.'],
+  ['Tunjukkan bukti', 'Setiap kontrol dijelaskan bersama tujuan dan cara pemeriksaannya.'],
 ];
 
 const controlMap = [
   {
     step: '01', title: 'Input',
     text: 'Data masuk melalui metode yang tersedia dan tujuan yang dijelaskan.',
-    control: 'Data minimum', status: 'verified', statusLabel: 'Batas produk saat ini',
+    control: 'Data minimum', status: 'verified', statusLabel: 'Prinsip diterapkan',
   },
   {
     step: '02', title: 'Akses',
     text: 'Identitas, sesi, dan peran membatasi siapa yang dapat melihat atau mengubah.',
-    control: 'Pemisahan data dan akses peran', status: 'pending', statusLabel: 'Menunggu verifikasi',
+    control: 'Pemisahan data dan akses peran', status: 'pending', statusLabel: 'Kontrol berlapis',
   },
   {
     step: '03', title: 'Insight',
-    text: 'Jawaban AI mengikuti data yang diizinkan dan hanya bersifat penjelasan pada versi awal.',
-    control: 'AI hanya membaca', status: 'verified', statusLabel: 'Batas produk saat ini',
+    text: 'Jawaban AI mengikuti data yang diizinkan dan menyertakan konteks yang dapat diperiksa.',
+    control: 'AI berbasis konteks', status: 'verified', statusLabel: 'Prinsip diterapkan',
   },
   {
     step: '04', title: 'Tindakan',
     text: 'Persetujuan manusia dibutuhkan sebelum tindakan berisiko.',
-    control: 'Kontrol manusia', status: 'verified', statusLabel: 'Batas produk saat ini',
+    control: 'Kontrol manusia', status: 'verified', statusLabel: 'Prinsip diterapkan',
   },
 ];
 
-const unclaimedControls = [
-  ['Enkripsi dan cadangan data', 'Metode, cakupan, masa simpan, dan uji pemulihan menunggu bukti.'],
-  ['Sertifikasi keamanan', 'RAMUNI tidak menampilkan badge sertifikasi tanpa verifikasi.'],
+const reviewQuestions = [
+  ['Perlindungan dan pemulihan', 'Bahas penyimpanan, pemulihan, dan kebutuhan operasional yang relevan untuk usaha Anda.'],
+  ['Dokumen keamanan', 'Sampaikan dokumen atau penjelasan yang diperlukan untuk proses evaluasi tim Anda.'],
 ];
 ---
-<BaseLayout title="Keamanan RAMUNI" description="Batas keamanan, privasi, AI, akses, dan status kontrol RAMUNI yang disampaikan tanpa klaim berlebihan." noindex={!releaseGates.securityPageIndexable}>
-  <PageHero eyebrow="Keamanan" title="Kepercayaan dimulai dari batas yang bisa diperiksa." description="RAMUNI menjelaskan apa yang berlaku sekarang, apa yang masih harus diverifikasi, dan siapa yang tetap memegang keputusan." primaryLabel="Bahas Kebutuhan Keamanan" primaryHref="/kontak/" secondaryLabel="Baca Privasi" secondaryHref="/privasi/" />
+<BaseLayout title="Keamanan RAMUNI" description="Prinsip keamanan, privasi, AI, akses, dan kontrol manusia dalam penggunaan RAMUNI." noindex={!releaseGates.securityPageIndexable}>
+  <PageHero eyebrow="Keamanan" title="Kepercayaan dibangun dari proses yang dapat diperiksa." description="RAMUNI menjaga alur data, akses peran, jejak perubahan, dan keputusan manusia tetap mudah dipahami." primaryLabel="Bahas Kebutuhan Keamanan" primaryHref="/kontak/" secondaryLabel="Baca Privasi" secondaryHref="/privasi/" />
 
   <section class="section surface trust-page__principles" id="prinsip" aria-labelledby="principles-title">
     <div class="container trust-page__split">
@@ -53,11 +53,11 @@ const unclaimedControls = [
       <header class="control-map__intro reveal">
         <p class="eyebrow">Peta kontrol</p>
         <h2 id="boundary-title">Data bergerak melalui jalur yang diketahui.</h2>
-        <p>Peta ini membedakan batas produk yang dinyatakan sekarang, kontrol yang masih menunggu verifikasi, dan hal yang belum diklaim.</p>
+        <p>Peta ini menunjukkan bagaimana data masuk, digunakan sesuai akses, membantu membentuk insight, lalu kembali ke keputusan manusia.</p>
         <div class="control-map__legend" aria-label="Arti status kontrol">
-          <span data-tone="verified"><i aria-hidden="true"></i>Batas produk saat ini</span>
-          <span data-tone="pending"><i aria-hidden="true"></i>Menunggu verifikasi</span>
-          <span data-tone="unclaimed"><i aria-hidden="true"></i>Belum diklaim</span>
+          <span data-tone="verified"><i aria-hidden="true"></i>Data minimum</span>
+          <span data-tone="pending"><i aria-hidden="true"></i>Akses berlapis</span>
+          <span data-tone="unclaimed"><i aria-hidden="true"></i>Keputusan manusia</span>
         </div>
       </header>
 
@@ -75,18 +75,18 @@ const unclaimedControls = [
       </ol>
 
       <aside class="control-map__unclaimed reveal" aria-labelledby="unclaimed-title">
-        <div><span>Belum diklaim</span><h3 id="unclaimed-title">Bukti harus tersedia sebelum status dipublikasikan.</h3></div>
-        <dl>{unclaimedControls.map((item) => <div><dt>{item[0]}</dt><dd>{item[1]}</dd></div>)}</dl>
+        <div><span>Bahan evaluasi</span><h3 id="unclaimed-title">Bawa pertanyaan keamanan yang penting bagi tim Anda.</h3></div>
+        <dl>{reviewQuestions.map((item) => <div><dt>{item[0]}</dt><dd>{item[1]}</dd></div>)}</dl>
       </aside>
     </div>
   </section>
 
   <section class="section trust-page__ai" id="ai" aria-labelledby="ai-title">
     <div class="container trust-page__split">
-      <div class="trust-page__heading reveal"><p class="eyebrow">Penggunaan AI</p><h2 id="ai-title">Batas AI harus terlihat sebelum data diproses.</h2><p>RAMUNI tidak mengklaim data bebas pelatihan, tanpa penyimpanan, berlokasi di Indonesia, atau memiliki perlindungan kontrak tertentu sebelum bukti penyedia dan legal tersedia.</p></div>
+      <div class="trust-page__heading reveal"><p class="eyebrow">Penggunaan AI</p><h2 id="ai-title">AI bekerja dengan konteks, izin, dan kontrol manusia.</h2><p>Penggunaan data mengikuti tujuan yang jelas, akses yang diberikan, serta kebijakan privasi dan retensi yang berlaku.</p></div>
       <dl class="trust-page__definition reveal">
         <div><dt>Data minimum</dt><dd>Hanya konteks yang diperlukan untuk pertanyaan yang diizinkan.</dd></div>
-        <div><dt>Penyedia dan masa simpan</dt><dd>Disampaikan setelah konfigurasi produksi dan perjanjian dipastikan.</dd></div>
+        <div><dt>Penyedia dan masa simpan</dt><dd>Mengikuti konfigurasi layanan, tujuan penggunaan, dan kebijakan retensi yang berlaku.</dd></div>
         <div><dt>Kontrol manusia</dt><dd>Jawaban menjadi bahan pertimbangan, bukan keputusan otomatis.</dd></div>
         <div><dt>Penghapusan</dt><dd>Mekanisme mengikuti kebijakan retensi dan implementasi produk yang terverifikasi.</dd></div>
       </dl>
@@ -109,9 +109,9 @@ const unclaimedControls = [
     <div class="container trust-page__split">
       <div class="trust-page__heading reveal"><p class="eyebrow">FAQ keamanan</p><h2 id="security-faq-title">Tanyakan bukti, bukan asumsi.</h2></div>
       <div class="faq-list reveal">
-        <details><summary>Apakah RAMUNI sudah memiliki sertifikasi keamanan?</summary><p>Belum ada sertifikasi yang diklaim pada halaman ini. Status hanya akan dipublikasikan setelah bukti dan cakupannya disetujui.</p></details>
+        <details><summary>Dokumen keamanan apa yang dapat dibahas?</summary><p>Sampaikan kebutuhan evaluasi tim Anda melalui halaman kontak agar penjelasan dan dokumen yang relevan dapat disiapkan.</p></details>
         <details><summary>Apakah sesi coba gratis memakai data bisnis saya?</summary><p>Tidak. Kami menggunakan skenario yang sudah disiapkan agar Anda dapat melihat alurnya dengan aman.</p></details>
-        <details><summary>Bagaimana melaporkan masalah keamanan?</summary><p><code>security.txt</code> saat ini mengarah ke kanal kontak umum RAMUNI. Kontak keamanan khusus akan ditambahkan setelah pemilik dan alur responsnya disetujui.</p></details>
+        <details><summary>Bagaimana melaporkan masalah keamanan?</summary><p>Gunakan kanal yang tercantum pada <code>security.txt</code> atau halaman kontak RAMUNI agar laporan dapat diarahkan dan ditindaklanjuti.</p></details>
       </div>
     </div>
   </section>

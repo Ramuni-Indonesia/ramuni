@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; penerapan pajak mengikuti kondisi serta ketentuan usaha masing-masing."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat akuntansi atau pajak untuk usaha tertentu."
-updateSummary: "Terbit awal dengan contoh omzet harian, pembanding setara, dan checklist pemeriksaan transaksi."
+updateSummary: "Menambahkan contoh omzet harian, pembanding setara, dan checklist pemeriksaan transaksi."
 related:
   - "cara-membandingkan-penjualan-mingguan"
   - "produk-terlaris-belum-tentu-paling-untung"

@@ -8,7 +8,7 @@ import '../styles/other-pages-refinement.css';
 const principles = [
   ['Insight lebih dulu', 'Mulai dari arti bisnis, lalu buka angka pendukung.'],
   ['Rumus yang konsisten', 'Angka dasar dihitung dengan cara yang sama dan dapat diperiksa.'],
-  ['Bukti terlihat', 'Periode, sumber, dan batas jawaban tidak disembunyikan.'],
+  ['Bukti terlihat', 'Periode, sumber, dan alasan jawaban selalu dapat diperiksa.'],
   ['Manusia menyetujui', 'AI tidak mengambil alih keputusan atau aksi berisiko.'],
 ];
 
@@ -22,7 +22,7 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
   ? '/website-original/ramuni-mascot-muni-manyar.webp'
   : '/website-original/ramuni-mascot-problem-section.webp';
 ---
-<BaseLayout title="Tentang RAMUNI" description="Misi, sudut pandang, prinsip produk, batas penggunaan, dan cara RAMUNI memvalidasi kebutuhan UMKM Indonesia.">
+<BaseLayout title="Tentang RAMUNI" description="Misi, sudut pandang, prinsip produk, cara kerja, dan peran manusia dalam mengambil keputusan bersama RAMUNI.">
   <PageHero eyebrow="Tentang RAMUNI" title="Bantu pemilik usaha memahami angka sebelum mengambil keputusan." description="Nama RAMUNI berasal dari Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membuat data usaha lebih mudah dibaca tanpa meminta Anda menjadi analis." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Pelajari Produk" secondaryHref="/produk/" />
 
   <section class="section company-story" id="masalah" aria-labelledby="story-title">
@@ -66,19 +66,19 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
 
   <section class="section surface company-page__validation" id="cara-bekerja" aria-labelledby="validation-title">
     <div class="container company-method">
-      <div class="company-page__heading reveal"><p class="eyebrow">Cara kami bekerja</p><h2 id="validation-title">Kami menguji sebelum menjanjikan.</h2><p>Informasi baru kami terbitkan setelah isi, tanggal, dan persetujuannya diperiksa.</p></div>
+      <div class="company-page__heading reveal"><p class="eyebrow">Cara kami bekerja</p><h2 id="validation-title">Kami memeriksa sebelum mempublikasikan.</h2><p>Setiap informasi kami susun, tinjau, dan perbarui agar tetap mudah dipahami.</p></div>
       <div class="company-method__body">
         <ol class="company-page__timeline">
-          <li class="reveal"><span>01</span><div><strong>Dengar</strong><p>Pahami pekerjaan, keputusan, dan batas data pengguna.</p></div></li>
-          <li class="reveal"><span>02</span><div><strong>Uji</strong><p>Gunakan skenario yang jelas untuk memeriksa alur dan bahasa.</p></div></li>
-          <li class="reveal"><span>03</span><div><strong>Verifikasi</strong><p>Cocokkan kemampuan dengan implementasi dan bukti rilis.</p></div></li>
-          <li class="reveal"><span>04</span><div><strong>Publikasikan</strong><p>Sampaikan status dan batas dengan bahasa yang jujur.</p></div></li>
+          <li class="reveal"><span>01</span><div><strong>Dengar</strong><p>Pahami pekerjaan, keputusan, dan kualitas data yang digunakan.</p></div></li>
+          <li class="reveal"><span>02</span><div><strong>Tinjau</strong><p>Gunakan skenario yang jelas untuk memeriksa alur dan bahasa.</p></div></li>
+          <li class="reveal"><span>03</span><div><strong>Verifikasi</strong><p>Pastikan setiap manfaat dapat ditelusuri pada cara kerja produk.</p></div></li>
+          <li class="reveal"><span>04</span><div><strong>Publikasikan</strong><p>Sampaikan cara kerja dengan bahasa yang jelas dan mudah diterapkan.</p></div></li>
         </ol>
-        <aside class="company-method__boundary reveal" aria-label="Batas RAMUNI saat ini">
-          <span>Batas saat ini</span>
-          <h3>Cakupan disampaikan sebelum digunakan.</h3>
-          <p>Kami membantu menyatukan konteks, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</p>
-          <p>Kami tidak menjanjikan keputusan otomatis, hasil bisnis tertentu, atau cakupan yang belum tersedia.</p>
+        <aside class="company-method__boundary reveal" aria-label="Peran RAMUNI dan pengguna">
+          <span>Peran Anda</span>
+          <h3>Keputusan tetap di tangan Anda.</h3>
+          <p>RAMUNI membantu menyatukan konteks, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</p>
+          <p>Anda melihat alasan dan sumbernya, lalu menentukan tindakan yang paling sesuai untuk usaha.</p>
         </aside>
       </div>
     </div>
