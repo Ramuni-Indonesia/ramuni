@@ -371,6 +371,19 @@ The current batch materially increases real product evidence and motion, but sev
 - Live marker checks confirmed the generator has `Unduh Excel`, `CSV, Excel, atau PDF`, and the accessible export dialog label; Inventori contains the new readiness/audience wording.
 - No raster image generation was run in this batch. Future raster work must continue through the native HashMicro imagegen plugin only.
 
+## Homepage motion and consultation chat release, 2026-07-30
+
+- Published runtime commits: `8c807f0cb9cf` (`refine homepage motion and consultation chat`) and `70acccd4e1f1` (`trim mascot fallback markup for release budget`). `70acccd4e1f1` is the deployed staging SHA.
+- The floating WhatsApp journey now gives the active RAMUNI question and composer more breathing room. Only the newest completed exchange receives the upward bubble choreography, the composer follows with a short delayed reveal, and auto-scroll/reduced-motion behavior remains intact.
+- `AnimatedMuniWork` now uses the existing branded WebM/MP4 work loop with a poster instead of moving a static wrapper. Playback and the supporting position motion pause outside the viewport, while the reduced-motion and Save-Data paths stop the video and return it to its poster frame.
+- Homepage hero dashboard metric tiles, insight panel, and chart bars now have restrained continuous motion. The three homepage problem mascots use more legible image-level movement rather than relying on movement of their surrounding stage.
+- The first deployment attempt was rejected before activation because post-CDN `index.html` measured 64.1 kB against the 64.0 kB release budget. Redundant video fallback markup was removed, the full build/audit path was repeated, and the post-CDN budget passed without weakening the visual behavior.
+- Verification passed: JavaScript syntax checks, `git diff --check`, Node 22 Astro check across 131 files with 0 errors/warnings/hints, 128-page staging build, full metadata/accessibility/schema/internal-link/noindex/robots/asset-budget audit, and dependency audit with 0 vulnerabilities.
+- Atomic staging release: `20260730T020444Z-70acccd4e1f1`; artifact SHA-256 `e5cf482f4e2d0740a620b3548e424dac767113300df0e5b72d12f9625d565e99`; current release path `/var/www/ramuni-staging/releases/20260730T020444Z-70acccd4e1f1`.
+- Live verification passed for `/`, `/produk/inventori/`, `/solusi/kelola-stok/`, and `/generator/lembar-stok-harian/`. Each returns HTTP 200, `Cache-Control: no-store`, and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML retains `noindex,follow`; all checked sitemap endpoints return 404.
+- The mascot WebM/MP4 and updated public chat/motion assets return HTTP 200 with the expected content types. The three unversioned CDN runtime URLs were explicitly purged after activation so the live consultation script, mascot script, and chat stylesheet no longer serve their earlier cached versions.
+- No raster generation or image editing was required for this batch. Existing approved RAMUNI motion assets were reused.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
