@@ -132,10 +132,11 @@ const initialiseLeadForms = () => {
         });
       });
     };
-    const appendChatMessage = (container, text, kind) => {
+    const appendChatMessage = (container, text, kind, isNew = false) => {
       const message = document.createElement('p');
       message.className = `lead-form__chat-message lead-form__chat-message--${kind}`;
       message.textContent = text;
+      if (isNew) message.dataset.chatNew = 'true';
       container.append(message);
     };
     const answerForStep = (index) => {
@@ -165,8 +166,9 @@ const initialiseLeadForms = () => {
       for (let index = 0; index < stepIndex; index += 1) {
         const question = steps[index]?.querySelector('legend')?.textContent?.trim();
         const answer = answerForStep(index);
-        if (question) appendChatMessage(chatHistory, question, 'agent');
-        if (answer) appendChatMessage(chatHistory, answer, 'visitor');
+        const isNewestExchange = index === stepIndex - 1;
+        if (question) appendChatMessage(chatHistory, question, 'agent', isNewestExchange);
+        if (answer) appendChatMessage(chatHistory, answer, 'visitor', isNewestExchange);
       }
     };
     const validate = (fields) => {

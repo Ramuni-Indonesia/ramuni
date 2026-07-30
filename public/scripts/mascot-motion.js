@@ -23,16 +23,24 @@ const bindMascotMotion = () => {
     if (!(node instanceof HTMLElement) || node.dataset.mascotMotionBound === 'true') return;
     node.dataset.mascotMotionBound = 'true';
     if (!node.dataset.mascotMotion) node.dataset.mascotMotion = 'observe';
+    const motionTarget = node.matches('[data-animated-muni-work]')
+      ? node.querySelector('video, img')
+      : node;
+    if (!(motionTarget instanceof HTMLElement)) {
+      delete node.dataset.mascotMotionBound;
+      return;
+    }
+    const motionVideo = motionTarget instanceof HTMLVideoElement ? motionTarget : null;
 
     let inView = false;
     let motion;
     const createMotion = () => {
       motion?.cancel();
       motion = undefined;
-      if (typeof node.animate !== 'function' || reducedMotion.matches || saveData) {
-        node.style.translate = '0 0';
-        node.style.rotate = '0deg';
-        node.style.scale = '1';
+      if (typeof motionTarget.animate !== 'function' || reducedMotion.matches || saveData) {
+        motionTarget.style.translate = '0 0';
+        motionTarget.style.rotate = '0deg';
+        motionTarget.style.scale = '1';
         return;
       }
 
@@ -59,7 +67,7 @@ const bindMascotMotion = () => {
             { translate: '0 0', rotate: '0deg', scale: 1 },
           ];
       try {
-        motion = node.animate(keyframes, {
+        motion = motionTarget.animate(keyframes, {
           duration,
           iterations: Infinity,
           easing: 'cubic-bezier(.45,.05,.3,.96)',
@@ -67,14 +75,22 @@ const bindMascotMotion = () => {
         motion.currentTime = (index * 630) % duration;
         motion.pause();
       } catch {
-        node.style.translate = '0 0';
+        motionTarget.style.translate = '0 0';
       }
     };
     const update = () => {
       const active = inView && !document.hidden && !reducedMotion.matches && !saveData;
       node.dataset.mascotActive = active ? 'true' : 'false';
-      if (active) motion?.play();
-      else motion?.pause();
+      if (active) {
+        motion?.play();
+        motionVideo?.play()?.catch?.(() => {});
+      } else {
+        motion?.pause();
+        motionVideo?.pause();
+        if (motionVideo && (reducedMotion.matches || saveData)) {
+          try { motionVideo.currentTime = 0; } catch { /* Media may not be ready yet. */ }
+        }
+      }
     };
 
     createMotion();
@@ -104,11 +120,12 @@ const bindMascotMotion = () => {
       reducedMotion.removeEventListener?.('change', refreshMotion);
       compactViewport.removeEventListener?.('change', refreshMotion);
       motion?.cancel();
+      motionVideo?.pause();
       delete node.dataset.mascotActive;
       delete node.dataset.mascotMotionBound;
-      node.style.removeProperty('translate');
-      node.style.removeProperty('rotate');
-      node.style.removeProperty('scale');
+      motionTarget.style.removeProperty('translate');
+      motionTarget.style.removeProperty('rotate');
+      motionTarget.style.removeProperty('scale');
     });
   });
 };
