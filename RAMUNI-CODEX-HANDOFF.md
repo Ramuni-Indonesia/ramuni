@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-07-29 Asia/Jakarta
+Snapshot date: 2026-07-30 Asia/Jakarta
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -383,6 +383,16 @@ The current batch materially increases real product evidence and motion, but sev
 - Live verification passed for `/`, `/produk/inventori/`, `/solusi/kelola-stok/`, and `/generator/lembar-stok-harian/`. Each returns HTTP 200, `Cache-Control: no-store`, and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML retains `noindex,follow`; all checked sitemap endpoints return 404.
 - The mascot WebM/MP4 and updated public chat/motion assets return HTTP 200 with the expected content types. The three unversioned CDN runtime URLs were explicitly purged after activation so the live consultation script, mascot script, and chat stylesheet no longer serve their earlier cached versions.
 - No raster generation or image editing was required for this batch. Existing approved RAMUNI motion assets were reused.
+
+## Solution FAQ and closing CTA spacing repair, 2026-07-30
+
+- Published runtime commit: `4d2abebd41ce` (`fix solution FAQ CTA spacing`).
+- All solution detail routes now restore the normal section bottom rhythm and add a responsive `clamp(56px, 8vw, 112px)` gap between the FAQ list and the contextual closing CTA. This fixes the reported collision on `/solusi/laporan-bisnis-otomatis/` and applies consistently to all five solution detail pages.
+- Cross-page source audit confirmed product detail, product hub, solution hub, industry, and role journeys already place FAQ and CTA content in separate padded sections, so the shared CTA component was intentionally left unchanged.
+- Verification passed: `git diff --check`, Astro check across 131 files with 0 errors/warnings/hints, 128-page staging build, full metadata/accessibility/schema/internal-link/noindex/robots/asset-budget audit, and dependency audit with 0 vulnerabilities.
+- Atomic staging release: `20260730T022050Z-4d2abebd41ce`; artifact SHA-256 `3e31e2bcf966214362112d225df6943e5f9ba0f30a4c54cf7b68ae9fbf0afade`; current release path `/var/www/ramuni-staging/releases/20260730T022050Z-4d2abebd41ce`.
+- Live checks returned HTTP 200 with `Cache-Control: no-store` and fail-closed `X-Robots-Tag: noindex` for all five solution detail routes plus representative product and hub routes. HTML retains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-0.xml` return 404.
+- Browser screenshot QA was not run in this batch because the host does not currently provide a Playwright/Chromium browser binary. The fix is a bounded wrapper-level spacing correction rather than a shared component redesign.
 
 ## Next continuation workflow
 
