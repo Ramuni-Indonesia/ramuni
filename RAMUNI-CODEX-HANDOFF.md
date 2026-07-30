@@ -12,6 +12,19 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+### Published staging batch — `ec8cd35457b3`
+
+- Simplified `/blog/` into an article-first editorial archive: compact positioning, modern search, crawlable category shortcuts, one featured story, direct latest-article grid, pagination, restrained editorial links, and a compact closing CTA.
+- Replaced the oversized interactive blog CTA with a lighter static `catatan -> bukti -> arah` reading flow so article and archive conversion surfaces remain clear without behaving like a second mini-page.
+- Added two practical cluster articles: `/blog/cara-menentukan-stok-minimum-umkm/` and `/blog/laporan-laba-rugi-sederhana-umkm/`. Both use existing contextual RAMUNI dashboard evidence, internal product/tool links, authoritative sources, visible FAQs, and remain `needs-review` plus `noindex` until a real editorial reviewer approves them.
+- Added visible FAQ sections and conditional `FAQPage` JSON-LD to all local article fixtures. CMS article payloads now support the same FAQ data, intrinsic image/figure body blocks, optional creation/review dates, and revision-safe reviewer validation without inventing approval data.
+- Article headers now expose available creation, publication, update, author, and verified-review metadata. BlogPosting schema mirrors the approved metadata, while unreviewed content does not claim a reviewer.
+- Removed visitor-facing `uji coba`, `dalam pengembangan`, and `akses coba` phrasing from the About, product-readiness, lead, and thank-you surfaces. The About `Sudut pandang` section now uses a bounded responsive grid that prevents its cards and large quote from colliding.
+- Astro check and build passed with zero diagnostics. CMS article candidate, content gateway, CMS candidate, full 131-page audit, and `npm audit --audit-level=high` passed with zero vulnerabilities.
+- Native HashMicro image generation was attempted for additional blog media but the plugin transport closed before returning a result. No fallback image provider was used and no new generated raster was added in this batch.
+- Published runtime commit: `ec8cd35457b3a2e7eb47a57d7ec08b4a6fb9bc79`. Atomic staging release: `20260730T045912Z-ec8cd35457b3`; artifact SHA-256: `b0cdb1e7fed064877ed82b6b659fef1d45ee59d51338013a2fa15efc32601cad`.
+- Live verification passed for `/blog/`, both new articles, and `/tentang/`. Staging returns HTTP 200, HTML `noindex,follow`, `Cache-Control: no-store`, fail-closed `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`, and HTTP 404 for the sitemap index, page sitemap, and blog sitemap endpoints.
+
 ### Published staging batch — `62c58295f577`
 
 - Added a contextual product bridge to every article category, with a product route and a separate `Coba gratis` path.
