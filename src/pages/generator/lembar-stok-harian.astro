@@ -74,6 +74,22 @@ const emptyRows = Array.from({ length: 3 });
             <label><span>Nama usaha <small>opsional</small></span><input type="text" maxlength="80" autocomplete="organization" placeholder="Contoh: Toko Anda" data-business-name /></label>
             <label><span>Tanggal pemeriksaan</span><input type="date" data-check-date /></label>
             <label><span>Penanggung jawab <small>opsional</small></span><input type="text" maxlength="80" autocomplete="name" placeholder="Nama pemeriksa" data-checker-name /></label>
+            <label><span>Disetujui oleh <small>opsional</small></span><input type="text" maxlength="80" autocomplete="name" placeholder="Pemilik atau supervisor" data-approver-name /></label>
+          </div>
+
+          <div class="generator-branding">
+            <div>
+              <span>Logo usaha <small>opsional</small></span>
+              <p>PNG, JPG, atau WebP maksimal 2 MB. Logo hanya diproses di perangkat ini dan ikut pada hasil cetak/PDF.</p>
+            </div>
+            <div class="generator-branding__actions">
+              <label class="generator-logo-picker">
+                <input type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="generator-logo-status" data-business-logo />
+                <span>Pilih logo</span>
+              </label>
+              <button type="button" class="generator-logo-remove" data-logo-remove hidden>Hapus logo</button>
+            </div>
+            <p class="generator-branding__status" id="generator-logo-status" data-logo-status aria-live="polite">Belum ada logo dipilih.</p>
           </div>
 
           <div class="generator-entry-scroll" tabindex="0" aria-label="Daftar produk yang diperiksa">
@@ -99,9 +115,19 @@ const emptyRows = Array.from({ length: 3 });
         </form>
 
         <aside class="generator-output" aria-labelledby="generator-preview-title">
+          <p class="generator-output__eyebrow">Pratinjau dokumen</p>
           <div class="generator-output__top">
-            <div><span>Pratinjau dokumen</span><h2 id="generator-preview-title" data-document-title>Lembar stok harian</h2></div>
-            <small data-document-meta>Siap diisi</small>
+            <div class="generator-document-brand">
+              <div class="generator-document-logo" data-document-logo-wrap>
+                <span data-document-logo-placeholder>Logo</span>
+                <img alt="" width="160" height="160" data-document-logo hidden />
+              </div>
+              <div><span data-document-business>Nama usaha</span><h2 id="generator-preview-title">Lembar stok harian</h2></div>
+            </div>
+            <dl class="generator-document-meta">
+              <div><dt>Tanggal</dt><dd data-document-date>Belum ditentukan</dd></div>
+              <div><dt>Pemeriksa</dt><dd data-document-checker>Belum diisi</dd></div>
+            </dl>
           </div>
           <div class="generator-summary" aria-live="polite">
             <div><span>Produk</span><strong data-summary-items>0</strong></div>
@@ -110,16 +136,25 @@ const emptyRows = Array.from({ length: 3 });
           </div>
           <div class="generator-preview-scroll" tabindex="0">
             <table class="generator-preview-table">
-              <thead><tr><th scope="col">Produk</th><th scope="col">Sistem</th><th scope="col">Fisik</th><th scope="col">Selisih</th><th scope="col">Status</th></tr></thead>
-              <tbody data-preview-body><tr class="generator-preview-empty"><td colspan="5">Isi produk untuk membuat lembar pemeriksaan.</td></tr></tbody>
+              <thead><tr><th scope="col">Produk</th><th scope="col">SKU</th><th scope="col">Sistem</th><th scope="col">Fisik</th><th scope="col">Selisih</th><th scope="col">Minimum</th><th scope="col">Status</th><th scope="col">Catatan</th></tr></thead>
+              <tbody data-preview-body><tr class="generator-preview-empty"><td colspan="8">Isi produk untuk membuat lembar pemeriksaan.</td></tr></tbody>
             </table>
+          </div>
+          <div class="generator-document-footer">
+            <p>Catatan pemeriksaan</p>
+            <span>Periksa bukti barang masuk, penjualan, retur, atau kerusakan sebelum mengoreksi saldo.</span>
+          </div>
+          <div class="generator-signoff" aria-label="Persetujuan dokumen">
+            <div><span>Diperiksa oleh</span><strong data-document-checker>Belum diisi</strong><i>Paraf / tanda tangan</i></div>
+            <div><span>Disetujui oleh</span><strong data-document-approver>Belum diisi</strong><i>Paraf / tanda tangan</i></div>
           </div>
           <p class="generator-output__note">Hasil membantu merapikan pemeriksaan. Koreksi saldo tetap perlu alasan dan persetujuan sesuai proses usaha Anda.</p>
           <p class="generator-output__error" data-export-error role="status" aria-live="polite"></p>
+          <p class="generator-output__action-label">Pilih format dokumen</p>
           <div class="generator-output__actions">
             <button class="button button--primary" type="button" data-export="csv">Unduh CSV</button>
             <button class="button button--secondary" type="button" data-export="excel">Unduh Excel</button>
-            <button class="button button--secondary" type="button" data-export="pdf">Cetak atau simpan PDF</button>
+            <button class="button button--secondary" type="button" data-export="pdf">Cetak / Simpan PDF</button>
           </div>
         </aside>
       </div>
@@ -174,8 +209,16 @@ const emptyRows = Array.from({ length: 3 });
       const businessName = generator.querySelector<HTMLInputElement>('[data-business-name]');
       const checkDate = generator.querySelector<HTMLInputElement>('[data-check-date]');
       const checkerName = generator.querySelector<HTMLInputElement>('[data-checker-name]');
-      const documentTitle = generator.querySelector<HTMLElement>('[data-document-title]');
-      const documentMeta = generator.querySelector<HTMLElement>('[data-document-meta]');
+      const approverName = generator.querySelector<HTMLInputElement>('[data-approver-name]');
+      const logoInput = generator.querySelector<HTMLInputElement>('[data-business-logo]');
+      const logoImage = generator.querySelector<HTMLImageElement>('[data-document-logo]');
+      const logoPlaceholder = generator.querySelector<HTMLElement>('[data-document-logo-placeholder]');
+      const logoRemove = generator.querySelector<HTMLButtonElement>('[data-logo-remove]');
+      const logoStatus = generator.querySelector<HTMLElement>('[data-logo-status]');
+      const documentBusiness = generator.querySelector<HTMLElement>('[data-document-business]');
+      const documentDate = generator.querySelector<HTMLElement>('[data-document-date]');
+      const documentCheckers = generator.querySelectorAll<HTMLElement>('[data-document-checker]');
+      const documentApprovers = generator.querySelectorAll<HTMLElement>('[data-document-approver]');
       const summaryItems = generator.querySelector<HTMLElement>('[data-summary-items]');
       const summaryDifferences = generator.querySelector<HTMLElement>('[data-summary-differences]');
       const summaryMinimum = generator.querySelector<HTMLElement>('[data-summary-minimum]');
@@ -187,6 +230,7 @@ const emptyRows = Array.from({ length: 3 });
       const maxRows = 30;
       const exportError = generator.querySelector<HTMLElement>('[data-export-error]');
       let pendingExport: 'csv' | 'excel' | 'pdf' | null = null;
+      let logoObjectUrl = '';
 
       const numberFrom = (input: HTMLInputElement | null) => {
         if (!input || input.value.trim() === '') return null;
@@ -223,31 +267,37 @@ const emptyRows = Array.from({ length: 3 });
 
       const formatNumber = (value: number | null) => value === null ? '-' : new Intl.NumberFormat('id-ID', { maximumFractionDigits: 2 }).format(value);
       const dateLabel = () => checkDate?.value ? new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${checkDate.value}T00:00:00`)) : '';
+      const getSummary = (rows: StockRow[]) => ({
+        items: rows.length,
+        differences: rows.filter((row) => row.difference !== null && row.difference !== 0).length,
+        minimum: rows.filter((row) => row.physical !== null && row.minimum !== null && row.physical <= row.minimum).length,
+      });
 
       const render = () => {
         const rows = readRows();
-        const differenceCount = rows.filter((row) => row.difference !== null && row.difference !== 0).length;
-        const minimumCount = rows.filter((row) => row.physical !== null && row.minimum !== null && row.physical <= row.minimum).length;
-        if (summaryItems) summaryItems.textContent = String(rows.length);
-        if (summaryDifferences) summaryDifferences.textContent = String(differenceCount);
-        if (summaryMinimum) summaryMinimum.textContent = String(minimumCount);
+        const summary = getSummary(rows);
+        if (summaryItems) summaryItems.textContent = String(summary.items);
+        if (summaryDifferences) summaryDifferences.textContent = String(summary.differences);
+        if (summaryMinimum) summaryMinimum.textContent = String(summary.minimum);
 
-        if (documentTitle) documentTitle.textContent = businessName?.value.trim() ? `Lembar stok ${businessName.value.trim()}` : 'Lembar stok harian';
-        const meta = [dateLabel(), checkerName?.value.trim() ? `Pemeriksa: ${checkerName.value.trim()}` : ''].filter(Boolean).join(' · ');
-        if (documentMeta) documentMeta.textContent = meta || 'Siap diisi';
+        if (documentBusiness) documentBusiness.textContent = businessName?.value.trim() || 'Nama usaha';
+        if (logoImage && !logoImage.hidden) logoImage.alt = `Logo ${businessName?.value.trim() || 'usaha'}`;
+        if (documentDate) documentDate.textContent = dateLabel() || 'Belum ditentukan';
+        documentCheckers.forEach((element) => { element.textContent = checkerName?.value.trim() || 'Belum diisi'; });
+        documentApprovers.forEach((element) => { element.textContent = approverName?.value.trim() || 'Belum diisi'; });
 
         if (!rows.length) {
-          previewBody.innerHTML = '<tr class="generator-preview-empty"><td colspan="5">Isi produk untuk membuat lembar pemeriksaan.</td></tr>';
+          previewBody.innerHTML = '<tr class="generator-preview-empty"><td colspan="8">Isi produk untuk membuat lembar pemeriksaan.</td></tr>';
           return;
         }
 
         previewBody.replaceChildren(...rows.map((row) => {
           const tr = document.createElement('tr');
-          const values = [row.product || row.sku || 'Tanpa nama', formatNumber(row.system), formatNumber(row.physical), formatNumber(row.difference), row.status];
+          const values = [row.product || row.sku || 'Tanpa nama', row.sku || '-', formatNumber(row.system), formatNumber(row.physical), formatNumber(row.difference), formatNumber(row.minimum), row.status, row.note || '-'];
           values.forEach((value, index) => {
             const td = document.createElement('td');
             td.textContent = value;
-            if (index === 4) td.dataset.status = row.status.includes('Periksa') ? 'check' : row.status === 'Sesuai catatan' ? 'ok' : 'incomplete';
+            if (index === 6) td.dataset.status = row.status.includes('Periksa') ? 'check' : row.status === 'Sesuai catatan' ? 'ok' : 'incomplete';
             tr.append(td);
           });
           return tr;
@@ -286,6 +336,47 @@ const emptyRows = Array.from({ length: 3 });
         row.querySelector<HTMLInputElement>('[data-field="product"]')?.focus();
       });
 
+      const clearLogo = () => {
+        if (logoObjectUrl) URL.revokeObjectURL(logoObjectUrl);
+        logoObjectUrl = '';
+        if (logoInput) logoInput.value = '';
+        if (logoImage) {
+          logoImage.removeAttribute('src');
+          logoImage.hidden = true;
+        }
+        if (logoPlaceholder) logoPlaceholder.hidden = false;
+        if (logoRemove) logoRemove.hidden = true;
+        if (logoStatus) logoStatus.textContent = 'Belum ada logo dipilih.';
+      };
+
+      logoInput?.addEventListener('change', () => {
+        const file = logoInput.files?.[0];
+        if (!file) {
+          clearLogo();
+          return;
+        }
+        const allowedTypes = new Set(['image/png', 'image/jpeg', 'image/webp']);
+        if (!allowedTypes.has(file.type) || file.size > 2 * 1024 * 1024) {
+          clearLogo();
+          if (logoStatus) logoStatus.textContent = file.size > 2 * 1024 * 1024
+            ? 'Logo terlalu besar. Gunakan file maksimal 2 MB.'
+            : 'Format logo belum didukung. Gunakan PNG, JPG, atau WebP.';
+          logoInput.focus();
+          return;
+        }
+        if (logoObjectUrl) URL.revokeObjectURL(logoObjectUrl);
+        logoObjectUrl = URL.createObjectURL(file);
+        if (logoImage) {
+          logoImage.src = logoObjectUrl;
+          logoImage.alt = `Logo ${businessName?.value.trim() || 'usaha'}`;
+          logoImage.hidden = false;
+        }
+        if (logoPlaceholder) logoPlaceholder.hidden = true;
+        if (logoRemove) logoRemove.hidden = false;
+        if (logoStatus) logoStatus.textContent = `${file.name} siap dimasukkan ke cetak/PDF.`;
+      });
+      logoRemove?.addEventListener('click', clearLogo);
+
       const escapeCsv = (value: string | number | null) => `"${String(value ?? '').replaceAll('"', '""')}"`;
       const escapeXml = (value: string | number | null) => String(value ?? '')
         .replaceAll('&', '&amp;')
@@ -293,8 +384,8 @@ const emptyRows = Array.from({ length: 3 });
         .replaceAll('>', '&gt;')
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&apos;');
-      const exportHeadings = ['Nama usaha', 'Tanggal', 'Pemeriksa', 'Produk', 'SKU', 'Saldo sistem', 'Stok fisik', 'Selisih', 'Batas minimum', 'Status', 'Catatan'];
-      const exportRows = () => readRows().map((row) => [businessName?.value.trim() || '', checkDate?.value || '', checkerName?.value.trim() || '', row.product, row.sku, row.system, row.physical, row.difference, row.minimum, row.status, row.note]);
+      const exportHeadings = ['Nama usaha', 'Tanggal', 'Pemeriksa', 'Disetujui oleh', 'Produk', 'SKU', 'Saldo sistem', 'Stok fisik', 'Selisih', 'Batas minimum', 'Status', 'Catatan'];
+      const exportRows = () => readRows().map((row) => [businessName?.value.trim() || '', checkDate?.value || '', checkerName?.value.trim() || '', approverName?.value.trim() || '', row.product, row.sku, row.system, row.physical, row.difference, row.minimum, row.status, row.note]);
       const safeFilename = () => (businessName?.value.trim() || 'usaha').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'usaha';
       const downloadCsv = () => {
         const lines = [exportHeadings.map(escapeCsv).join(','), ...exportRows().map((row) => row.map(escapeCsv).join(','))];
@@ -309,12 +400,13 @@ const emptyRows = Array.from({ length: 3 });
       };
 
       const downloadExcel = () => {
-        const rows = [exportHeadings, ...exportRows()];
-        const cells = rows.map((row) => `<Row>${row.map((value) => {
+        const dataRows = exportRows();
+        const summary = getSummary(readRows());
+        const tableRows = [exportHeadings, ...dataRows].map((row, rowIndex) => `<Row>${row.map((value) => {
           const isNumber = typeof value === 'number' && Number.isFinite(value);
-          return `<Cell><Data ss:Type="${isNumber ? 'Number' : 'String'}">${escapeXml(value)}</Data></Cell>`;
+          return `<Cell${rowIndex === 0 ? ' ss:StyleID="Header"' : ''}><Data ss:Type="${isNumber ? 'Number' : 'String'}">${escapeXml(value)}</Data></Cell>`;
         }).join('')}</Row>`).join('');
-        const workbook = `<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="Stok Harian"><Table>${cells}</Table></Worksheet></Workbook>`;
+        const workbook = `<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Styles><Style ss:ID="Default" ss:Name="Normal"><Alignment ss:Vertical="Center"/><Font ss:FontName="Arial" ss:Size="10"/></Style><Style ss:ID="Title"><Font ss:Bold="1" ss:Size="16" ss:Color="#0B3045"/></Style><Style ss:ID="Label"><Font ss:Bold="1" ss:Color="#168C8C"/></Style><Style ss:ID="Header"><Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/><Font ss:Bold="1" ss:Color="#FFFFFF"/><Interior ss:Color="#0B3045" ss:Pattern="Solid"/></Style><Style ss:ID="Summary"><Font ss:Bold="1"/><Interior ss:Color="#F2B134" ss:Pattern="Solid"/></Style></Styles><Worksheet ss:Name="Stok Harian"><Table><Column ss:Width="110"/><Column ss:Width="80"/><Column ss:Width="100"/><Column ss:Width="100"/><Column ss:Width="130"/><Column ss:Width="75"/><Column ss:Width="75"/><Column ss:Width="75"/><Column ss:Width="70"/><Column ss:Width="80"/><Column ss:Width="145"/><Column ss:Width="180"/><Row ss:Height="28"><Cell ss:MergeAcross="11" ss:StyleID="Title"><Data ss:Type="String">Lembar Stok Harian</Data></Cell></Row><Row><Cell ss:StyleID="Label"><Data ss:Type="String">Nama usaha</Data></Cell><Cell ss:MergeAcross="10"><Data ss:Type="String">${escapeXml(businessName?.value.trim() || '-')}</Data></Cell></Row><Row><Cell ss:StyleID="Label"><Data ss:Type="String">Tanggal</Data></Cell><Cell ss:MergeAcross="10"><Data ss:Type="String">${escapeXml(dateLabel() || '-')}</Data></Cell></Row><Row><Cell ss:StyleID="Label"><Data ss:Type="String">Pemeriksa</Data></Cell><Cell ss:MergeAcross="10"><Data ss:Type="String">${escapeXml(checkerName?.value.trim() || '-')}</Data></Cell></Row><Row><Cell ss:StyleID="Label"><Data ss:Type="String">Disetujui oleh</Data></Cell><Cell ss:MergeAcross="10"><Data ss:Type="String">${escapeXml(approverName?.value.trim() || '-')}</Data></Cell></Row><Row/><Row><Cell ss:StyleID="Summary"><Data ss:Type="String">Ringkasan</Data></Cell><Cell ss:StyleID="Summary"><Data ss:Type="String">${summary.items} produk</Data></Cell><Cell ss:StyleID="Summary"><Data ss:Type="String">${summary.differences} selisih</Data></Cell><Cell ss:StyleID="Summary"><Data ss:Type="String">${summary.minimum} perlu cek batas</Data></Cell></Row><Row/>${tableRows}<Row/><Row><Cell ss:MergeAcross="11"><Data ss:Type="String">Periksa bukti barang masuk, penjualan, retur, atau kerusakan sebelum mengoreksi saldo.</Data></Cell></Row></Table></Worksheet></Workbook>`;
         const blob = new Blob([workbook], { type: 'application/vnd.ms-excel;charset=utf-8' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -325,7 +417,7 @@ const emptyRows = Array.from({ length: 3 });
         link.remove();
       };
 
-      const completeExport = () => {
+      const completeExport = async () => {
         if (!pendingExport) return;
         const format = pendingExport;
         pendingExport = null;
@@ -336,6 +428,9 @@ const emptyRows = Array.from({ length: 3 });
         if (format === 'csv') downloadCsv();
         else if (format === 'excel') downloadExcel();
         else {
+          if (logoImage && !logoImage.hidden && !logoImage.complete) {
+            try { await logoImage.decode(); } catch { /* Print remains available without blocking on a damaged preview. */ }
+          }
           generator.dataset.printReady = 'true';
           window.print();
           window.setTimeout(() => delete generator.dataset.printReady, 500);
@@ -373,7 +468,7 @@ const emptyRows = Array.from({ length: 3 });
       });
       dialog.addEventListener('cancel', () => { pendingExport = null; });
 
-      [businessName, checkDate, checkerName].forEach((input) => input?.addEventListener('input', render));
+      [businessName, checkDate, checkerName, approverName].forEach((input) => input?.addEventListener('input', render));
       generator.querySelector<HTMLFormElement>('[data-generator-form]')?.addEventListener('submit', (event) => event.preventDefault());
       if (checkDate && !checkDate.value) checkDate.value = new Date().toISOString().slice(0, 10);
       entryBody.querySelectorAll<HTMLTableRowElement>('[data-entry-row]').forEach(bindRow);
