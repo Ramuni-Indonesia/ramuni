@@ -1,5 +1,4 @@
 ---
-import { releaseGates } from '../../config/release';
 import { mascots } from '../../data/mascots';
 
 interface Props {
@@ -30,38 +29,10 @@ const {
   metricLabel = 'Contoh pembacaan',
 } = Astro.props;
 
-const mascotStates = releaseGates.mascotExplorationEnabled
-  ? [mascots.working2d, mascots.workLoop2d, mascots.welcome2d]
-  : [mascots.decisionVisual, mascots.decisionVisual, mascots.decisionVisual];
-
-const signals = [
-  {
-    key: 'catatan',
-    label: stageLabels[0],
-    title: 'Mulai dari satu angka.',
-    text: 'Pilih periode dan catatan yang ingin dipahami lebih dulu.',
-    steps: [stageLabels[0], stageLabels[1]],
-  },
-  {
-    key: 'bukti',
-    label: stageLabels[1],
-    title: 'Periksa pembandingnya.',
-    text: 'Lihat sumber dan konteks sebelum menarik kesimpulan.',
-    steps: [stageLabels[1], stageLabels[2]],
-  },
-  {
-    key: 'arah',
-    label: stageLabels[3],
-    title: 'Tentukan langkah kecil.',
-    text: 'Catat tindakan yang bisa dicoba, lalu cek kembali hasilnya.',
-    steps: [stageLabels[2], stageLabels[3]],
-  },
-];
-const controlHash = [...id].reduce((hash, char) => ((hash * 31) + char.charCodeAt(0)) >>> 0, 7).toString(36);
-const controlId = `bd-${controlHash}`;
+const mascot = mascots.working2d || mascots.decisionVisual;
 ---
 
-<div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]} data-blog-decision-cta>
+<div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]}>
   <div class="blog-decision-cta__copy">
     <p class="section-kicker">{eyebrow}</p>
     <h2 id={`${id}-heading`}>{title}</h2>
@@ -72,151 +43,15 @@ const controlId = `bd-${controlHash}`;
     </div>
   </div>
 
-  <div class="blog-decision-cta__visual" aria-label="Alur interaktif untuk membaca catatan, memeriksa bukti, dan menentukan arah.">
+  <div class="blog-decision-cta__visual" aria-label="Alur singkat dari catatan usaha menuju langkah berikutnya.">
     <div class="blog-decision-cta__visual-head">
-      <span>Jejak keputusan</span>
+      <span>Alur yang dapat diperiksa</span>
       <small>{metricLabel}</small>
     </div>
-
-    <div class="blog-decision-cta__tabs" role="tablist" aria-label="Tahap membaca angka usaha">
-      {signals.map((signal, index) => (
-        <button
-          id={`${controlId}-t-${signal.key}`}
-          type="button"
-          role="tab"
-          aria-selected={index === 0 ? 'true' : 'false'}
-          aria-controls={`${controlId}-p-${signal.key}`}
-          tabindex={index === 0 ? 0 : -1}
-          data-signal-tab={signal.key}
-          data-mascot-src={mascotStates[index].src}
-        >
-          <b>0{index + 1}</b>
-          <span>{signal.label}</span>
-        </button>
-      ))}
-    </div>
-
-    <div class="blog-decision-cta__panels">
-      {signals.map((signal, index) => (
-        <div
-          id={`${controlId}-p-${signal.key}`}
-          class="blog-decision-cta__panel"
-          role="tabpanel"
-          aria-labelledby={`${controlId}-t-${signal.key}`}
-          data-signal-panel={signal.key}
-          hidden={index !== 0}
-        >
-          <span>{signal.label}</span>
-          <strong>{signal.title}</strong>
-          <p>{signal.text}</p>
-          <ol aria-label={`Langkah ${signal.label.toLowerCase()}`}>
-            {signal.steps.map((step, stepIndex) => <li><i aria-hidden="true"></i><small>{stepIndex + 1}</small>{step}</li>)}
-          </ol>
-        </div>
-      ))}
-    </div>
-
-    <img class="blog-decision-cta__mascot" data-blog-mascot data-mascot-motion="observe" src={mascotStates[0].src} width={mascotStates[0].width} height={mascotStates[0].height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    <ol class="blog-decision-cta__steps">
+      {stageLabels.map((label, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><span>{label}</span><i aria-hidden="true"></i></li>)}
+    </ol>
+    <p class="blog-decision-cta__note">Mulai dari catatan yang sudah ada. Periksa konteksnya, lalu pilih satu langkah yang masuk akal untuk usaha Anda.</p>
+    <img class="blog-decision-cta__mascot" data-mascot-motion="observe" src={mascot.src} width={mascot.width} height={mascot.height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
   </div>
 </div>
-
-<script>
-  const initialiseDecisionCtas = () => {
-    document.querySelectorAll<HTMLElement>('[data-blog-decision-cta]').forEach((root) => {
-      if (root.dataset.ready === 'true') return;
-      root.dataset.ready = 'true';
-
-      const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-signal-tab]'));
-      const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-signal-panel]'));
-      const mascotImage = root.querySelector<HTMLImageElement>('[data-blog-mascot]');
-      let mascotRequest = 0;
-
-      const swapMascot = async (src?: string) => {
-        const request = ++mascotRequest;
-        if (!mascotImage) return false;
-        mascotImage.dataset.transitioning = 'false';
-        if (!src) return false;
-        if (mascotImage.dataset.currentSrc === src) return true;
-        const preload = new Image();
-        preload.decoding = 'async';
-        preload.src = src;
-        try {
-          await preload.decode();
-        } catch {
-          return false;
-        }
-        if (request !== mascotRequest) return false;
-
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reduceMotion) {
-          const fadedOut = new Promise<void>((resolve) => {
-            let timeout = 0;
-            const finish = () => {
-              window.clearTimeout(timeout);
-              mascotImage.removeEventListener('transitionend', onTransitionEnd);
-              resolve();
-            };
-            const onTransitionEnd = (event: TransitionEvent) => {
-              if (event.propertyName === 'opacity') finish();
-            };
-            mascotImage.addEventListener('transitionend', onTransitionEnd);
-            timeout = window.setTimeout(finish, 240);
-          });
-          mascotImage.dataset.transitioning = 'true';
-          await fadedOut;
-          if (request !== mascotRequest) return false;
-        }
-
-        mascotImage.src = src;
-        mascotImage.dataset.currentSrc = src;
-        if (!reduceMotion) {
-          await new Promise<void>((resolve) => {
-            requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
-          });
-          if (request !== mascotRequest) return false;
-          mascotImage.dataset.transitioning = 'false';
-        }
-        return true;
-      };
-
-      if (mascotImage) mascotImage.dataset.currentSrc = mascotImage.getAttribute('src') || '';
-
-      const selectTab = (nextTab: HTMLButtonElement) => {
-        const key = nextTab.dataset.signalTab;
-        tabs.forEach((tab) => {
-          const selected = tab === nextTab;
-          tab.setAttribute('aria-selected', String(selected));
-          tab.tabIndex = selected ? 0 : -1;
-        });
-        panels.forEach((panel) => {
-          panel.hidden = panel.dataset.signalPanel !== key;
-        });
-        void swapMascot(nextTab.dataset.mascotSrc).then((isCurrent) => {
-          if (!isCurrent) return;
-          root.dataset.stateChanging = 'false';
-          void root.offsetWidth;
-          root.dataset.stateChanging = 'true';
-        });
-      };
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => selectTab(tab));
-        tab.addEventListener('keydown', (event) => {
-          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-          event.preventDefault();
-          const nextIndex = event.key === 'Home'
-            ? 0
-            : event.key === 'End'
-              ? tabs.length - 1
-              : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-          const nextTab = tabs[nextIndex];
-          selectTab(nextTab);
-          nextTab.focus();
-        });
-      });
-    });
-  };
-
-  initialiseDecisionCtas();
-  document.addEventListener('astro:page-load', initialiseDecisionCtas);
-</script>

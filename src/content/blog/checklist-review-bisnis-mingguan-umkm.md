@@ -24,6 +24,13 @@ takeaways:
   - "Bahas perubahan besar dan pengecualian, bukan membaca semua angka."
   - "Pisahkan fakta, dugaan, dan keputusan tindak lanjut."
   - "Setiap tindakan membutuhkan pemilik dan tenggat pemeriksaan."
+faqs:
+  - question: "Apa saja yang perlu dibahas dalam review bisnis mingguan?"
+    answer: "Mulai dari perubahan penjualan, kas, stok, pelanggan, dan pekerjaan yang belum selesai. Pilih pengecualian yang paling penting, bukan membaca semua angka."
+  - question: "Berapa lama review mingguan sebaiknya dilakukan?"
+    answer: "Durasi bergantung pada ukuran usaha, tetapi agenda singkat 30 sampai 60 menit cukup bila data, pertanyaan, dan penanggung jawab sudah disiapkan."
+  - question: "Bagaimana agar rapat menghasilkan tindakan?"
+    answer: "Pisahkan fakta dan dugaan, lalu catat satu tindakan dengan penanggung jawab, tenggat, dan cara memeriksa hasilnya."
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"

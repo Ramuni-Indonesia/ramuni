@@ -24,6 +24,13 @@ takeaways:
   - "Pisahkan data transaksi, layanan, dan pilihan pemasaran."
   - "Batasi akses, masa simpan, dan ekspor sesuai kebutuhan kerja."
   - "Hindari catatan bebas yang berisi asumsi atau informasi sensitif."
+faqs:
+  - question: "Data pelanggan apa yang perlu dicatat UMKM?"
+    answer: "Catat hanya data yang punya tujuan jelas, misalnya identitas kontak yang diperlukan, riwayat transaksi, kebutuhan layanan, dan pilihan komunikasi."
+  - question: "Apakah semua staf boleh melihat data pelanggan?"
+    answer: "Tidak. Akses sebaiknya dibatasi berdasarkan pekerjaan, dicatat, dan ditinjau ketika peran staf berubah."
+  - question: "Berapa lama data pelanggan boleh disimpan?"
+    answer: "Tentukan masa simpan berdasarkan tujuan, kewajiban hukum, dan kebutuhan layanan. Hapus atau anonimisasi data yang tidak lagi diperlukan."
 sources:
   - title: "Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi"
     publisher: "Badan Pemeriksa Keuangan Republik Indonesia"

@@ -23,6 +23,13 @@ takeaways:
   - "Pisahkan arus masuk dan keluar sebelum membaca detail lain."
   - "Cari perubahan yang tidak biasa, bukan hanya saldo akhir."
   - "Gunakan pertanyaan bisnis agar laporan lebih mudah ditindaklanjuti."
+faqs:
+  - question: "Apa yang dimaksud arus kas UMKM?"
+    answer: "Arus kas adalah catatan kapan uang benar-benar masuk dan keluar dari usaha. Angkanya berbeda dari omzet dan laba karena waktu transaksi dan pembayaran bisa tidak sama."
+  - question: "Mengapa usaha bisa untung tetapi kas menipis?"
+    answer: "Kas dapat menipis ketika pembayaran pelanggan belum diterima, stok dibeli lebih dulu, cicilan dibayar, atau pengeluaran terjadi sebelum pendapatan masuk."
+  - question: "Seberapa sering arus kas perlu diperiksa?"
+    answer: "Usaha dengan transaksi harian sebaiknya memeriksa kas setiap hari dan merangkum perubahannya setiap minggu agar selisih lebih cepat ditemukan."
 sources:
   - title: "PSAK 207: Laporan Arus Kas"
     publisher: "Ikatan Akuntan Indonesia"

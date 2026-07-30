@@ -75,7 +75,7 @@ const schema = [
   <section class="section blog-latest-stage" aria-labelledby="archive-heading">
     <div class="container blog-latest-layout">
       <div class="blog-latest-head reveal"><p class="section-kicker">Arsip artikel</p><h2 id="archive-heading">Bacaan lanjutan yang tetap mudah ditelusuri.</h2><p>Gunakan tautan halaman untuk melanjutkan tanpa kehilangan urutan artikel.</p></div>
-      <BlogArticleGrid posts={page.items} startPosition={page.startPosition} />
+      <BlogArticleGrid posts={page.items} startPosition={page.startPosition} variant="archive" />
       <BlogPagination currentPage={page.currentPage} totalPages={page.totalPages} />
     </div>
   </section>

@@ -24,6 +24,13 @@ takeaways:
   - "Bandingkan hari yang setara dan buka transaksi pembentuk perubahan."
   - "Pisahkan pengaruh produk, waktu, kanal, dan status pembayaran."
   - "Tutup pengecekan dengan satu temuan dan satu tindak lanjut yang jelas."
+faqs:
+  - question: "Bagaimana cara menghitung omzet harian?"
+    answer: "Jumlahkan nilai transaksi penjualan dalam satu hari dengan aturan yang konsisten untuk diskon, retur, pembatalan, pajak, ongkir, dan status pembayaran."
+  - question: "Apakah omzet sama dengan laba?"
+    answer: "Tidak. Omzet menunjukkan nilai penjualan, sedangkan laba memperhitungkan biaya. Kas juga berbeda karena menunjukkan uang yang benar-benar sudah masuk atau keluar."
+  - question: "Omzet hari ini sebaiknya dibandingkan dengan hari apa?"
+    answer: "Bandingkan dengan hari, jam operasional, kanal, dan kondisi yang setara. Selasa biasanya lebih relevan dibanding Selasa sebelumnya daripada dibanding akhir pekan."
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"

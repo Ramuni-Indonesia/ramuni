@@ -16,8 +16,10 @@ Blog archive, category, author, search, resource-hub, pagination, and detail rou
 
 - `content_type` is `articles` and `schema_version` is `1`;
 - the payload preserves every field validated by `src/content.config.ts`;
-- article body uses `bodyBlocks` (or the delivery-wire alias `body_blocks`) with only `heading`, `paragraph`, `list`, and `quote` blocks;
+- article body uses `bodyBlocks` (or the delivery-wire alias `body_blocks`) with `heading`, `paragraph`, `list`, `quote`, `image`, and `figure` blocks; image/figure blocks require a non-empty factual `alt`, positive intrinsic dimensions, an optional caption, and an absolute HTTPS `src`;
 - headings accept depth 2 or 3, links are not accepted as arbitrary HTML, and source URLs must use HTTPS;
+- optional top-level `faqs` entries contain non-empty `question` and `answer` fields; the article template renders the same entries visibly and emits `FAQPage` JSON-LD only when that visible section exists. The adapter temporarily accepts singular `faq` as a delivery alias, but CMS projectors should emit canonical `faqs`;
+- optional `createdAt`/`created_at` is exposed as `dateCreated`; `reviewedBy` and schema.org `lastReviewed` are emitted only when the article carries an existing reviewed-status reviewer profile and approved `reviewedAt`/`reviewed_at` timestamp. A review timestamp without reviewed status and paired reviewer metadata fails CMS validation. These fields never infer or fabricate review approval;
 - unknown blocks, malformed dates, incomplete indexable reviewer metadata, or missing required editorial fields fail the build.
 - CMS cover URLs must be absolute HTTPS URLs from the approved public media domain. The CMS projection may supply `coverWidth` and `coverHeight` so cards, article detail images, and social metadata reserve the correct space. Legacy records without dimensions safely fall back to 1200x675.
 

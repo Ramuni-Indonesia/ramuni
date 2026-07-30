@@ -24,6 +24,13 @@ takeaways:
   - "Pisahkan perubahan total dari perubahan per produk, kanal, dan waktu."
   - "Catat promosi, libur, dan gangguan operasional sebagai konteks."
   - "Gunakan angka persentase bersama selisih nominal agar tidak menyesatkan."
+faqs:
+  - question: "Bagaimana membandingkan penjualan mingguan dengan adil?"
+    answer: "Gunakan jumlah hari, jam buka, kanal, status transaksi, dan definisi omzet yang sama. Catat promosi, libur, atau gangguan sebagai konteks."
+  - question: "Apakah kenaikan persentase saja cukup?"
+    answer: "Tidak. Tampilkan juga selisih nominal dan jumlah transaksi agar perubahan kecil dari basis rendah tidak terlihat lebih besar dari kenyataannya."
+  - question: "Apa yang perlu diperiksa ketika penjualan turun?"
+    answer: "Buka produk, waktu, kanal, jumlah transaksi, nilai rata-rata transaksi, pembatalan, dan kondisi operasional sebelum menyimpulkan penyebabnya."
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"

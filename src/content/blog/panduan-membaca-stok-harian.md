@@ -23,6 +23,13 @@ takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."
   - "Produk yang terlihat aman dapat tetap berisiko saat jam ramai."
   - "Catat keputusan berikutnya agar tim memiliki konteks yang sama."
+faqs:
+  - question: "Apa yang perlu diperiksa dalam stok harian?"
+    answer: "Periksa saldo sistem, jumlah fisik, barang masuk dan keluar, koreksi, produk yang cepat bergerak, serta waktu pembaruan terakhir."
+  - question: "Apakah stok minimum berarti harus langsung membeli?"
+    answer: "Tidak selalu. Stok minimum adalah sinyal untuk memeriksa laju penjualan, waktu pemasok, pesanan terbuka, dan kondisi fisik barang sebelum memutuskan."
+  - question: "Bagaimana menangani selisih stok?"
+    answer: "Hitung ulang, telusuri transaksi dan koreksi, catat alasan, lalu minta persetujuan sesuai proses usaha sebelum mengubah saldo."
 sources:
   - title: "PSAK 202: Persediaan"
     publisher: "Ikatan Akuntan Indonesia"

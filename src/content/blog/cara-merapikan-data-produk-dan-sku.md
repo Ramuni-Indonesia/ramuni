@@ -24,6 +24,13 @@ takeaways:
   - "Nama, satuan, kategori, dan status perlu aturan yang dipakai bersama."
   - "SKU internal tidak sama dengan barcode atau GTIN global."
   - "Jangan menghapus produk lama jika riwayat transaksi masih membutuhkannya."
+faqs:
+  - question: "Apa itu SKU produk?"
+    answer: "SKU adalah kode internal untuk membedakan produk atau varian secara konsisten di katalog, stok, dan transaksi."
+  - question: "Apakah SKU sama dengan barcode?"
+    answer: "Tidak selalu. SKU dibuat untuk kebutuhan internal usaha, sedangkan barcode dapat memakai standar atau nomor yang dipindai pada kemasan."
+  - question: "Bagaimana membuat SKU yang mudah dipakai?"
+    answer: "Gunakan pola singkat dan stabil yang membedakan kategori, produk, dan varian tanpa memasukkan informasi yang mudah berubah seperti harga."
 sources:
   - title: "Global Trade Item Number (GTIN)"
     publisher: "GS1"

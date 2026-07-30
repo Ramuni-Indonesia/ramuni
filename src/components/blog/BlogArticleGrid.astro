@@ -6,12 +6,14 @@ interface Props {
   posts: BlogPost[];
   startPosition?: number;
   emptyMessage?: string;
+  variant?: 'default' | 'archive';
 }
 
 const {
   posts,
   startPosition = 1,
   emptyMessage = 'Artikel berikutnya sedang disiapkan. Mulai dari kategori utama dulu.',
+  variant = 'default',
 } = Astro.props;
 
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', {
@@ -22,12 +24,12 @@ const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', {
 ---
 
 {posts.length ? (
-  <div class="editorial-cards">
+  <div class:list={['editorial-cards', variant === 'archive' && 'editorial-cards--archive']}>
     {posts.map((post, index) => (
       <a class="editorial-card reveal" href={`/blog/${post.id}/`} style={`--i:${index}`}>
         <figure>
           <img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" />
-          <StoryMicroVisual categorySlug={post.data.categorySlug} compact />
+          {variant === 'default' && <StoryMicroVisual categorySlug={post.data.categorySlug} compact />}
         </figure>
         <div>
           <div class="editorial-card__top">

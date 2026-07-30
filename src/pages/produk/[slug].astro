@@ -79,7 +79,7 @@ const capabilityRows = detail.capabilities.map((capability) => {
     && Boolean(capability.approvedStatus);
   return {
     ...capability,
-    status: isApproved ? (capability.approvedStatus || 'Tersedia') : 'Dalam pengembangan',
+    status: isApproved ? (capability.approvedStatus || 'Tersedia') : 'Perlu konfirmasi',
     statusClass: isApproved ? 'is-approved' : 'is-concept',
   };
 });

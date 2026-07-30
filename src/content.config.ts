@@ -12,6 +12,7 @@ const blog = defineCollection({
     coverAlt: z.string(),
     coverWidth: z.number().int().positive().default(1200),
     coverHeight: z.number().int().positive().default(675),
+    createdAt: z.coerce.date().optional(),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     category: z.string(),
@@ -21,10 +22,15 @@ const blog = defineCollection({
     authorSlug: z.string(),
     reviewerName: z.string().optional(),
     reviewerSlug: z.string().optional(),
+    reviewedAt: z.coerce.date().optional(),
     reviewStatus: z.enum(['draft-template', 'needs-review', 'reviewed']).default('draft-template'),
     editorialStatus: z.string(),
     readingTime: z.string(),
     takeaways: z.array(z.string()).min(3).max(5),
+    faqs: z.array(z.object({
+      question: z.string().min(1),
+      answer: z.string().min(1),
+    })).default([]),
     sources: z.array(z.object({
       title: z.string(),
       publisher: z.string(),

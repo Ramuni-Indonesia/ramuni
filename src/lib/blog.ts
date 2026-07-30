@@ -11,7 +11,8 @@ export type ArticleBodyBlock =
   | { type: 'heading'; depth: 2 | 3; text: string; slug: string }
   | { type: 'paragraph'; text: string }
   | { type: 'list'; ordered: boolean; items: string[] }
-  | { type: 'quote'; text: string; attribution?: string };
+  | { type: 'quote'; text: string; attribution?: string }
+  | { type: 'image' | 'figure'; src: string; alt: string; width: number; height: number; caption?: string };
 
 export type BlogPost = {
   id: string;
@@ -24,6 +25,9 @@ export type BlogPost = {
 
 type CmsArticlePayload = Partial<BlogData> & {
   slug?: unknown;
+  created_at?: unknown;
+  reviewed_at?: unknown;
+  faq?: unknown;
   bodyBlocks?: unknown;
   body_blocks?: unknown;
 };
@@ -74,6 +78,12 @@ function positiveInteger(value: unknown, field: string, fallback: number): numbe
   return parsed;
 }
 
+function requiredPositiveInteger(value: unknown, field: string): number {
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed <= 0) throw new Error(`CMS article ${field} must be a positive integer`);
+  return parsed;
+}
+
 function slugifyHeading(text: string): string {
   return text.toLocaleLowerCase('id-ID').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
@@ -98,7 +108,28 @@ function parseBodyBlocks(value: unknown): ArticleBodyBlock[] {
     if (type === 'paragraph') return { type, text: requiredText(block.text, `bodyBlocks[${index}].text`) };
     if (type === 'list') return { type, ordered: block.ordered === true, items: textArray(block.items, `bodyBlocks[${index}].items`, 1) };
     if (type === 'quote') return { type, text: requiredText(block.text, `bodyBlocks[${index}].text`), attribution: optionalText(block.attribution) };
+    if (type === 'image' || type === 'figure') return {
+      type,
+      src: cmsMediaUrl(block.src, `bodyBlocks[${index}].src`),
+      alt: requiredText(block.alt, `bodyBlocks[${index}].alt`),
+      width: requiredPositiveInteger(block.width, `bodyBlocks[${index}].width`),
+      height: requiredPositiveInteger(block.height, `bodyBlocks[${index}].height`),
+      caption: optionalText(block.caption),
+    };
     throw new Error(`CMS article bodyBlocks[${index}] uses unsupported type: ${type}`);
+  });
+}
+
+function parseFaqs(value: unknown): BlogData['faqs'] {
+  if (value == null) return [];
+  if (!Array.isArray(value)) throw new Error('CMS article faqs must be an array');
+  return value.map((raw, index) => {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error(`CMS article faqs[${index}] must be an object`);
+    const item = raw as Record<string, unknown>;
+    return {
+      question: requiredText(item.question, `faqs[${index}].question`),
+      answer: requiredText(item.answer, `faqs[${index}].answer`),
+    };
   });
 }
 
@@ -135,12 +166,13 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
     title: requiredText(payload.title, 'title'), description: requiredText(payload.description, 'description'), dek: requiredText(payload.dek, 'dek'),
     cover: cmsMediaUrl(payload.cover, 'cover'), coverAlt: requiredText(payload.coverAlt, 'coverAlt'),
     coverWidth: positiveInteger(payload.coverWidth, 'coverWidth', 1200), coverHeight: positiveInteger(payload.coverHeight, 'coverHeight', 675),
+    createdAt: dateValue(payload.createdAt ?? payload.created_at, 'createdAt', true),
     publishedAt: dateValue(payload.publishedAt, 'publishedAt')!,
     updatedAt: dateValue(payload.updatedAt, 'updatedAt', true), category: requiredText(payload.category, 'category'), categorySlug: requiredSlug(payload.categorySlug, 'categorySlug'),
     tags: payload.tags == null ? [] : textArray(payload.tags, 'tags'), authorName: requiredText(payload.authorName, 'authorName'), authorSlug: requiredSlug(payload.authorSlug, 'authorSlug'),
-    reviewerName: optionalText(payload.reviewerName), reviewerSlug: payload.reviewerSlug == null ? undefined : requiredSlug(payload.reviewerSlug, 'reviewerSlug'), reviewStatus: reviewStatus as BlogData['reviewStatus'],
+    reviewerName: optionalText(payload.reviewerName), reviewerSlug: payload.reviewerSlug == null ? undefined : requiredSlug(payload.reviewerSlug, 'reviewerSlug'), reviewedAt: dateValue(payload.reviewedAt ?? payload.reviewed_at, 'reviewedAt', true), reviewStatus: reviewStatus as BlogData['reviewStatus'],
     editorialStatus: requiredText(payload.editorialStatus, 'editorialStatus'), readingTime: requiredText(payload.readingTime, 'readingTime'), takeaways,
-    sources: parseSources(payload.sources), disclaimer: optionalText(payload.disclaimer), updateSummary: requiredText(payload.updateSummary, 'updateSummary'),
+    faqs: parseFaqs(payload.faqs ?? payload.faq), sources: parseSources(payload.sources), disclaimer: optionalText(payload.disclaimer), updateSummary: requiredText(payload.updateSummary, 'updateSummary'),
     related: payload.related == null ? [] : textArray(payload.related, 'related'), ctaType: ctaType as BlogData['ctaType'], featured: payload.featured === true,
     draft: payload.draft === true, noindex: payload.noindex !== false,
   } satisfies BlogData;
@@ -153,6 +185,9 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
     if (!reviewerProfile || reviewerProfile.name !== data.reviewerName) {
       throw new Error(`CMS article ${slug} reviewer does not match a published editorial profile`);
     }
+  }
+  if (data.reviewedAt && (data.reviewStatus !== 'reviewed' || !data.reviewerName || !data.reviewerSlug)) {
+    throw new Error(`CMS article ${slug} reviewedAt requires reviewed status and an approved reviewer`);
   }
   if (!data.draft && !data.noindex && data.reviewStatus === 'reviewed' && (!data.reviewerName || !data.reviewerSlug)) {
     throw new Error(`Indexable CMS article ${slug} must include an approved reviewer`);

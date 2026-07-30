@@ -24,6 +24,13 @@ takeaways:
   - "Penjualan kredit dapat menambah omzet sebelum uang diterima."
   - "Pembelian stok dapat mengurangi kas sebelum seluruh biaya masuk periode laba."
   - "Gunakan definisi akuntansi yang disetujui untuk laporan resmi."
+faqs:
+  - question: "Apa perbedaan omzet dan laba?"
+    answer: "Omzet adalah nilai penjualan, sedangkan laba adalah hasil setelah pendapatan dibandingkan dengan biaya sesuai aturan pencatatan yang digunakan."
+  - question: "Mengapa laba tidak sama dengan saldo kas?"
+    answer: "Waktu pengakuan pendapatan dan biaya dapat berbeda dari waktu uang diterima atau dibayar, misalnya pada penjualan kredit dan pembelian stok."
+  - question: "Angka mana yang paling penting untuk UMKM?"
+    answer: "Ketiganya penting karena menjawab pertanyaan berbeda. Baca omzet untuk penjualan, laba untuk hasil usaha, dan arus kas untuk kemampuan membayar kebutuhan."
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"

@@ -7,5 +7,9 @@ const { blocks } = Astro.props;
   if (block.type === 'heading') return block.depth === 2 ? <h2 id={block.slug}>{block.text}</h2> : <h3 id={block.slug}>{block.text}</h3>;
   if (block.type === 'paragraph') return <p>{block.text}</p>;
   if (block.type === 'list') return block.ordered ? <ol>{block.items.map((item) => <li>{item}</li>)}</ol> : <ul>{block.items.map((item) => <li>{item}</li>)}</ul>;
-  return <blockquote><p>{block.text}</p>{block.attribution && <cite>{block.attribution}</cite>}</blockquote>;
+  if (block.type === 'quote') return <blockquote><p>{block.text}</p>{block.attribution && <cite>{block.attribution}</cite>}</blockquote>;
+  return <figure class:list={['article-body-figure', `article-body-figure--${block.type}`]}>
+    <img src={block.src} width={block.width} height={block.height} alt={block.alt} loading="lazy" decoding="async" />
+    {block.caption && <figcaption>{block.caption}</figcaption>}
+  </figure>;
 })}

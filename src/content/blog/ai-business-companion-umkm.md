@@ -23,6 +23,13 @@ takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."
   - "Jawaban yang berguna perlu dapat ditelusuri ke data pendukung."
   - "Data yang belum lengkap harus disertai batas dan ketidakpastian."
+faqs:
+  - question: "Apa bedanya AI Business Companion dengan chatbot biasa?"
+    answer: "AI Business Companion dirancang untuk membantu membaca konteks usaha, menunjukkan dasar jawaban, dan menyusun pertanyaan tindak lanjut. Hasilnya tetap perlu diperiksa sebelum dipakai mengambil keputusan."
+  - question: "Apakah AI boleh mengambil keputusan bisnis otomatis?"
+    answer: "Tidak sebaiknya. Keputusan yang memengaruhi uang, stok, pelanggan, atau operasional perlu tetap memiliki pemeriksaan dan persetujuan manusia."
+  - question: "Data apa yang sebaiknya tidak dimasukkan ke AI?"
+    answer: "Hindari kata sandi, data pembayaran, nomor identitas, informasi kesehatan, rahasia usaha, dan data pelanggan yang tidak diperlukan untuk menjawab pertanyaan."
 sources:
   - title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"
     publisher: "National Institute of Standards and Technology"

@@ -10,7 +10,7 @@ interface Props {
   variant?: 'standard' | 'chat';
 }
 const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard' } = Astro.props;
-const labels = { 'early-access': 'Minta akses uji coba', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
+const labels = { 'early-access': 'Ajukan akses', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';

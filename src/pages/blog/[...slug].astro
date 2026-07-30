@@ -49,14 +49,31 @@ const articleResources = {
     primary: { label: 'Gunakan kalkulator reorder stok', href: '/kalkulator/reorder-stok/' },
     secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
   },
+  'cara-menentukan-stok-minimum-umkm': {
+    title: 'Uji batas stok sebelum dipakai tim.',
+    text: 'Hitung perkiraan reorder, lalu bawa hasilnya ke pemeriksaan saldo fisik dan waktu tunggu pemasok.',
+    primary: { label: 'Gunakan kalkulator reorder stok', href: '/kalkulator/reorder-stok/' },
+    secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
+  },
+  'laporan-laba-rugi-sederhana-umkm': {
+    title: 'Rapikan komponen laporan sebelum menilai hasil.',
+    text: 'Susun pendapatan, HPP, dan biaya operasional dengan template agar sumber angka lebih mudah diperiksa.',
+    primary: { label: 'Buka template HPP produk', href: '/template/hpp-produk/' },
+    secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
+  },
 } as const;
 const articleResource = articleResources[post.id as keyof typeof articleResources];
+const reviewerProfile = post.data.reviewerSlug ? getEditorialPerson(post.data.reviewerSlug) : undefined;
 const hasVerifiedReviewer = Boolean(
   post.data.reviewStatus === 'reviewed'
   && post.data.reviewerName
   && post.data.reviewerSlug
-  && post.data.reviewerSlug !== post.data.authorSlug,
+  && post.data.reviewerSlug !== post.data.authorSlug
+  && reviewerProfile
+  && reviewerProfile.slug === post.data.reviewerSlug
+  && reviewerProfile.name === post.data.reviewerName,
 );
+const reviewer = hasVerifiedReviewer ? reviewerProfile : undefined;
 
 const articleUrl = new URL(`/blog/${post.id}/`, Astro.site || Astro.url.origin).toString();
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
@@ -66,6 +83,15 @@ const articleImage = new URL(post.data.cover, Astro.site || Astro.url.origin).to
 const coverWidth = post.data.coverWidth;
 const coverHeight = post.data.coverHeight;
 const articleIndexable = post.data.reviewStatus === 'reviewed' && !post.data.noindex;
+const faqSchema = post.data.faqs.length ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: post.data.faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+} : undefined;
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -78,9 +104,18 @@ const schema = [
     inLanguage: 'id-ID',
     articleSection: post.data.category,
     keywords: post.data.tags,
+    ...(post.data.createdAt ? { dateCreated: post.data.createdAt.toISOString() } : {}),
     datePublished: post.data.publishedAt.toISOString(),
     dateModified: updatedAt.toISOString(),
     author: { '@type': author.profileType === 'person' ? 'Person' : 'Organization', '@id': `${authorUrl}#author`, name: author.name, url: authorUrl },
+    ...(reviewer ? {
+      reviewedBy: {
+        '@type': reviewer.profileType === 'person' ? 'Person' : 'Organization',
+        name: reviewer.name,
+        url: new URL(`/blog/penulis/${reviewer.slug}/`, Astro.site || Astro.url.origin).toString(),
+      },
+      ...(post.data.reviewedAt ? { lastReviewed: post.data.reviewedAt.toISOString() } : {}),
+    } : {}),
     publisher: { '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', logo: { '@type': 'ImageObject', url: new URL('/brand/ramuni-mark-color.webp', Astro.site || Astro.url.origin).toString() } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
   },
@@ -94,6 +129,7 @@ const schema = [
       { '@type': 'ListItem', position: 4, name: post.data.title, item: articleUrl },
     ],
   },
+  ...(faqSchema ? [faqSchema] : []),
 ];
 ---
 <BaseLayout title={post.data.title} description={post.data.description} image={post.data.cover} imageAlt={post.data.coverAlt} imageWidth={coverWidth} imageHeight={coverHeight} noindex={!articleIndexable} schema={schema} ogType="article" keywords={post.data.tags}>
@@ -111,7 +147,7 @@ const schema = [
           {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/penulis/${post.data.reviewerSlug}/`}>{post.data.reviewerName}</a></div>}
           <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
         </div>
-        <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
+        <div class="article-date-row">{post.data.createdAt && <span>Dibuat {formatDate(post.data.createdAt)}</span>}<span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span>{hasVerifiedReviewer && post.data.reviewedAt && <span>Ditinjau {formatDate(post.data.reviewedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
         <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
@@ -136,6 +172,12 @@ const schema = [
           </aside>}
 
           <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} />
+
+          {post.data.faqs.length > 0 && <section class="article-faq" aria-labelledby="article-faq-heading">
+            <p class="section-kicker">FAQ</p>
+            <h2 id="article-faq-heading">Pertanyaan yang sering muncul</h2>
+            <div class="article-faq__list">{post.data.faqs.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+          </section>}
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
             {post.data.sources.length ? <ol class="source-list">{post.data.sources.map((source) => <li><strong>{source.url ? <a href={source.url} rel="noreferrer">{source.title}</a> : source.title}</strong><span>{source.publisher}</span><p>{source.note}</p></li>)}</ol> : <p class="source-empty"><strong>Tidak ada statistik eksternal dalam artikel ini.</strong> Angka dan nama usaha pada skenario dibuat untuk menjelaskan cara membaca catatan. Definisi, asumsi, dan batas penggunaan ditulis langsung pada bagian yang relevan.</p>}

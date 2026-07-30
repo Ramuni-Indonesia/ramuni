@@ -24,6 +24,13 @@ takeaways:
   - "Bandingkan pendapatan dengan biaya langsung menggunakan definisi yang konsisten."
   - "Diskon, barang rusak, dan biaya kanal dapat mengubah kontribusi produk."
   - "Gunakan hasil sebagai sinyal pemeriksaan, bukan keputusan harga otomatis."
+faqs:
+  - question: "Mengapa produk terlaris belum tentu paling untung?"
+    answer: "Produk dapat banyak terjual tetapi memiliki margin kecil, diskon besar, biaya kanal tinggi, atau tingkat kerusakan yang mengurangi kontribusinya."
+  - question: "Bagaimana cara melihat produk paling menguntungkan?"
+    answer: "Bandingkan pendapatan produk dengan biaya langsung yang relevan memakai definisi dan periode yang konsisten, lalu periksa diskon, retur, dan biaya kanal."
+  - question: "Apakah produk dengan margin rendah harus dihentikan?"
+    answer: "Tidak otomatis. Produk tersebut mungkin menarik pelanggan atau mendukung penjualan produk lain. Periksa perannya sebelum mengubah harga atau menghentikannya."
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"

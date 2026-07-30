@@ -24,6 +24,13 @@ takeaways:
   - "Riwayat transaksi tidak otomatis menjadi izin untuk mengirim promosi."
   - "Bandingkan pola kelompok, bukan menebak keadaan pribadi seseorang."
   - "Tindak lanjut tetap memerlukan pilihan manusia dan pemeriksaan izin."
+faqs:
+  - question: "Bagaimana cara sederhana menghitung pelanggan yang kembali?"
+    answer: "Tentukan periode, identifikasi pelanggan secara konsisten, lalu hitung pelanggan yang melakukan transaksi lagi setelah pembelian pertama pada periode tersebut."
+  - question: "Apakah nomor WhatsApp pelanggan boleh langsung dipakai untuk promosi?"
+    answer: "Riwayat transaksi tidak otomatis menjadi izin promosi. Pastikan ada tujuan yang jelas, persetujuan yang sesuai, dan cara berhenti menerima pesan."
+  - question: "Apa bedanya repeat customer dan pelanggan loyal?"
+    answer: "Repeat customer berarti pelanggan membeli kembali. Pelanggan loyal biasanya menunjukkan pola hubungan yang lebih panjang, tetapi definisinya perlu ditentukan berdasarkan konteks usaha."
 sources:
   - title: "Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi"
     publisher: "Badan Pemeriksa Keuangan Republik Indonesia"

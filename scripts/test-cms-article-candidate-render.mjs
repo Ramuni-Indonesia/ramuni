@@ -19,6 +19,7 @@ const payload = {
   coverAlt: 'Visual acceptance test artikel kandidat CMS RAMUNI',
   coverWidth: 1280,
   coverHeight: 720,
+  createdAt: '2026-07-28T00:00:00.000Z',
   publishedAt: '2026-07-29T00:00:00.000Z',
   category: 'Operasional Bisnis',
   categorySlug: 'operasional-bisnis',
@@ -29,6 +30,9 @@ const payload = {
   editorialStatus: 'Acceptance test kandidat CMS',
   readingTime: '2 menit',
   takeaways: ['Artikel berasal dari kandidat CMS.', 'Body dirender sebagai blok bertipe.', 'Snapshot exact terlihat pada route artikel.'],
+  faqs: [
+    { question: 'Apakah FAQ ini berasal dari payload CMS?', answer: 'Ya. Pertanyaan dan jawaban dirender sebagai HTML terlihat sebelum dipakai dalam JSON-LD.' },
+  ],
   sources: [],
   updateSummary: 'Acceptance test awal.',
   related: [],
@@ -39,6 +43,7 @@ const payload = {
   bodyBlocks: [
     { type: 'heading', depth: 2, text: 'Bukti adapter CMS', slug: 'bukti-adapter-cms' },
     { type: 'paragraph', text: 'Konten ini dirender dari payload kandidat CMS tanpa menyisipkan HTML arbitrer.' },
+    { type: 'figure', src: 'https://assets-staging.ramuni.id/og-default.png', alt: 'Diagram kontekstual acceptance test artikel CMS RAMUNI', width: 1200, height: 675, caption: 'Keterangan visual juga berasal dari blok terstruktur.' },
     { type: 'list', ordered: false, items: ['Gateway membaca kandidat.', 'Parser memvalidasi payload.', 'Route membawa snapshot exact.'] },
   ],
 };
@@ -97,10 +102,19 @@ try {
   assert.match(rendered, /Artikel dari kandidat CMS/);
   assert.match(rendered, /Bukti adapter CMS/);
   assert.match(rendered, /Konten ini dirender dari payload kandidat CMS/);
+  assert.match(rendered, /class="article-body-figure article-body-figure--figure"/);
+  assert.match(rendered, /src="https:\/\/assets-staging\.ramuni\.id\/og-default\.png" width="1200" height="675" alt="Diagram kontekstual acceptance test artikel CMS RAMUNI"/);
+  assert.match(rendered, /Keterangan visual juga berasal dari blok terstruktur/);
+  assert.match(rendered, /class="article-faq"/);
+  assert.match(rendered, /Apakah FAQ ini berasal dari payload CMS\?/);
+  assert.match(rendered, /"@type":"FAQPage"/);
+  assert.match(rendered, /"dateCreated":"2026-07-28T00:00:00.000Z"/);
+  assert.doesNotMatch(rendered, /"reviewedBy"/);
+  assert.doesNotMatch(rendered, /"lastReviewed"/);
   assert.match(rendered, /width="1280" height="720" alt="Visual acceptance test artikel kandidat CMS RAMUNI"/);
   assert.match(rendered, /class="article-rail-cta"/);
   assert.match(rendered, /class="article-inline-decision"/);
-  assert.match(rendered, /data-blog-decision-cta/);
+  assert.match(rendered, /class="blog-decision-cta blog-decision-cta--article"/);
   await readFile('dist/blog/index.html');
   await readFile('dist/blog/kategori/operasional-bisnis/index.html');
   console.log(JSON.stringify({

@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import StoryMicroVisual from '../../components/blog/StoryMicroVisual.astro';
 import BlogDecisionCTA from '../../components/blog/BlogDecisionCTA.astro';
 import BlogArticleGrid from '../../components/blog/BlogArticleGrid.astro';
 import BlogPagination from '../../components/blog/BlogPagination.astro';
@@ -10,29 +9,13 @@ import { getBlogPageHref, getBlogPosts, getVisibleBlogPosts, paginateBlogPosts }
 import '../../styles/blog.css';
 
 const posts = getVisibleBlogPosts(await getBlogPosts(), !releaseGates.siteIndexable);
-const mascotSrc = releaseGates.mascotExplorationEnabled ? '/website-original/ramuni-mascot-muni-manyar.webp' : '/website-original/ramuni-mascot-problem-section.webp';
-
 const featured = posts.find((post) => post.data.featured) || posts[0];
 const page = paginateBlogPosts(posts, 1);
 const latest = page.items.filter((post) => post.id !== featured?.id);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
-const publishedCategories = new Set(posts.map((post) => post.data.categorySlug));
-
 const categories = blogCategories
   .map((category) => ({ ...category, count: posts.filter((post) => post.data.categorySlug === category.slug).length }))
   .filter((category) => category.count > 0);
-
-const problems = [
-  { label: 'Stok sering meleset', question: 'Barang mana yang perlu perhatian sebelum habis?', slug: 'stok-inventori' },
-  { label: 'Kas terasa tidak jelas', question: 'Uang masuk dan keluar berubah karena apa?', slug: 'keuangan-umkm' },
-  { label: 'AI untuk usaha', question: 'Apa yang boleh dibantu AI, dan apa yang tetap harus dicek manusia?', slug: 'ai-untuk-umkm' },
-];
-
-const readingPaths = [
-  { title: 'Rapikan catatan', text: 'Mulai dari istilah, periode, dan angka yang paling sering membingungkan.', href: '/blog/kategori/operasional-bisnis/' },
-  { title: 'Baca perubahan', text: 'Bandingkan penjualan, stok, atau kas dengan periode yang setara.', href: '/blog/kategori/stok-inventori/' },
-  { title: 'Periksa sebelum bertindak', text: 'Gunakan bukti dan batas AI sebelum memilih langkah berikutnya.', href: '/blog/kategori/ai-untuk-umkm/' },
-].filter((item) => publishedCategories.has(item.href.replace(/\/+$/, '').split('/').pop() || ''));
 
 const schema = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, dan AI untuk UMKM.' },
@@ -56,104 +39,69 @@ const schema = [
   schema={schema}
   nextPage={page.totalPages > 1 ? getBlogPageHref(2) : undefined}
 >
-  <section class="blog-hero">
-    <div class="container blog-hero-grid">
-      <div class="reveal is-visible">
-        <div class="blog-issue-line"><span>Catatan usaha</span><span>Stok / kas / AI</span></div>
+  <header class="blog-archive-hero">
+    <div class="container blog-archive-hero__layout">
+      <div>
         <p class="eyebrow">Blog RAMUNI</p>
-        <h1>Angka usaha punya cerita.</h1>
-        <p class="lede">Kami membantu Anda menemukan ceritanya: stok mana yang perlu dicek, ke mana kas bergerak, dan kapan jawaban AI harus diperiksa lagi.</p>
-        <nav class="blog-hero-topics" aria-label="Topik utama blog RAMUNI">
-          <a href="/blog/kategori/stok-inventori/">Stok</a>
-          <a href="/blog/kategori/keuangan-umkm/">Arus kas</a>
-          <a href="/blog/kategori/ai-untuk-umkm/">AI untuk UMKM</a>
-        </nav>
+        <h1>Panduan praktis untuk membaca bisnis.</h1>
+        <p class="lede">Temukan jawaban tentang penjualan, stok, keuangan, pelanggan, dan penggunaan AI untuk usaha. Semua ditulis agar mudah dipahami dan langsung bisa diperiksa.</p>
       </div>
-      <div class="blog-hero-side reveal is-visible">
-        <div class="blog-hero-signal" role="img" aria-label="Alur membaca: pilih satu catatan, bandingkan perubahan, lalu periksa konteksnya.">
-          <img class="blog-hero-signal__mascot" data-mascot-motion="observe" src={mascotSrc} width="720" height="720" alt="" aria-hidden="true" decoding="async" />
-          <div class="blog-hero-signal__top"><span>Jejak membaca</span><small>Contoh pembacaan</small></div>
-          <div class="blog-hero-signal__plot" aria-hidden="true">
-            <i style="--h:42%;--d:0"></i><i style="--h:68%;--d:1"></i><i style="--h:54%;--d:2"></i><i style="--h:84%;--d:3"></i><i style="--h:63%;--d:4"></i>
-          </div>
-          <ol><li><b>01</b><span>Pilih catatan</span></li><li><b>02</b><span>Bandingkan</span></li><li><b>03</b><span>Periksa konteks</span></li></ol>
+      <form class="blog-search blog-search--archive" action="/blog/cari/" method="get" role="search">
+        <label for="blog-query">Cari artikel</label>
+        <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Contoh: cara menghitung omzet" /><button type="submit">Cari</button></div>
+        <small>Cari berdasarkan masalah, istilah, atau pekerjaan yang sedang Anda lakukan.</small>
+      </form>
+    </div>
+    {categories.length > 0 && <nav class="container blog-category-strip" aria-label="Kategori artikel">
+      <a class="is-active" href="/blog/">Semua artikel</a>
+      {categories.map((category) => <a href={`/blog/kategori/${category.slug}/`}>{category.name}<span>{category.count}</span></a>)}
+    </nav>}
+  </header>
+
+  {featured && <section class="section blog-featured-simple" aria-labelledby="featured-heading">
+    <div class="container">
+      <a class="blog-featured-simple__card" href={`/blog/${featured.id}/`} aria-labelledby="featured-heading">
+        <figure><img src={featured.data.cover} width={featured.data.coverWidth} height={featured.data.coverHeight} alt={featured.data.coverAlt} fetchpriority="high" /></figure>
+        <div>
+          <span class="blog-featured-simple__label">Pilihan editor · {featured.data.category}</span>
+          <h2 id="featured-heading">{featured.data.title}</h2>
+          <p>{featured.data.dek}</p>
+          <small>{formatDate(featured.data.updatedAt || featured.data.publishedAt)} · {featured.data.readingTime}</small>
+          <strong>Baca artikel <i aria-hidden="true">&rarr;</i></strong>
         </div>
-        <form class="blog-search" action="/blog/cari/" method="get" role="search">
-          <label for="blog-query">Cari topik usaha</label>
-          <div class="search-line"><input id="blog-query" name="q" type="search" placeholder="Stok menipis" /><button type="submit">Cari</button></div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  {featured && <section class="section surface blog-featured-stage" aria-labelledby="featured-heading">
-    <a class="container featured-story reveal" href={`/blog/${featured.id}/`} aria-labelledby="featured-heading">
-      <div class="featured-visual"><img src={featured.data.cover} width={featured.data.coverWidth} height={featured.data.coverHeight} alt={featured.data.coverAlt} fetchpriority="high" /><StoryMicroVisual categorySlug={featured.data.categorySlug} /></div>
-      <div class="featured-copy">
-        <div class="featured-index"><span>Pilihan editor</span><b>01</b></div>
-        <span class="blog-category-label">{featured.data.category}</span>
-        <h2 id="featured-heading">{featured.data.title}</h2>
-        <p>{featured.data.dek}</p>
-        <span class="featured-read">Baca artikel <i aria-hidden="true">&rarr;</i></span>
-        <div class="featured-meta"><span>{featured.data.authorName}</span><span>{formatDate(featured.data.updatedAt || featured.data.publishedAt)}</span><span>{featured.data.readingTime}</span></div>
-      </div>
-    </a>
-  </section>}
-
-  {readingPaths.length > 0 && <section class="section blog-reading-path" aria-labelledby="reading-path-heading">
-    <div class="container reading-journey">
-      <div class="reading-journey__head reveal"><p class="section-kicker">Jalur membaca</p><h2 id="reading-path-heading">Bacaan untuk mengubah angka menjadi langkah.</h2></div>
-      <ol class="blog-reading-path__list">
-        {readingPaths.map((path, index) => <li class="reveal" style={`--i:${index}`}><a href={path.href}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{path.title}</h3><p>{path.text}</p></div><b aria-hidden="true">Buka jalur <i>&rarr;</i></b></a></li>)}
-      </ol>
+      </a>
     </div>
   </section>}
 
-  <section class="section blog-problem-stage" aria-labelledby="problem-heading">
-    <div class="container blog-problem-layout">
-      <div class="blog-section-lead reveal"><h2 id="problem-heading">Pertanyaan bisnis yang dekat dengan keseharian.</h2><p>Pilih masalah yang ingin Anda pahami lebih dulu.</p></div>
-      <div class="blog-question-deck" aria-label="Pilih pertanyaan bisnis">
-        {problems.map((problem, index) => <a class="blog-question-card reveal" href={`/blog/kategori/${problem.slug}/`} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['blog-question-signal', `blog-question-signal--${problem.slug}`]} aria-hidden="true"><i></i><i></i><i></i><i></i></div><strong>{problem.question}</strong><small>{problem.label}</small></a>)}
+  <section class="section blog-archive-list" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="blog-archive-list__head">
+        <div><p class="section-kicker">Artikel terbaru</p><h2 id="latest-heading">Mulai dari pertanyaan yang paling dekat.</h2></div>
+        <a href="/blog/cari/">Cari semua artikel <span aria-hidden="true">&rarr;</span></a>
       </div>
-    </div>
-  </section>
-
-  <section class="section surface" aria-labelledby="category-heading">
-    <div class="container blog-topic-map">
-      <div class="blog-topic-map__head reveal"><p class="section-kicker">Peta topik</p><h2 id="category-heading">Masuk dari masalah yang sedang terasa.</h2><p>Tidak perlu membaca semuanya. Pilih satu topik yang dekat dengan pekerjaan hari ini.</p></div>
-      <div class="category-index">
-        {categories.map((category, index) => <a class="category-index-row reveal" href={`/blog/kategori/${category.slug}/`} style={`--i:${index}`}><b>0{index + 1}</b><div><h3>{category.name}</h3><p>{category.description}</p></div><StoryMicroVisual categorySlug={category.slug} compact inline /><div><span>{category.question}</span><small>{category.count} artikel <i aria-hidden="true">&rarr;</i></small></div></a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section blog-latest-stage" aria-labelledby="latest-heading">
-    <div class="container blog-latest-layout">
-      <div class="blog-latest-head reveal"><p class="section-kicker">Terbit terbaru</p><h2 id="latest-heading">Bacaan berikutnya, dipilih dari kebutuhan nyata.</h2><p>Setiap artikel dimulai dari satu pertanyaan usaha, bukan istilah teknis.</p></div>
-      <BlogArticleGrid posts={latest} startPosition={featured ? 2 : 1} />
+      <BlogArticleGrid posts={latest} startPosition={featured ? 2 : 1} variant="archive" />
       <BlogPagination currentPage={page.currentPage} totalPages={page.totalPages} />
     </div>
   </section>
 
-  <section class="section editorial-trust-stage" aria-labelledby="trust-heading">
-    <div class="container editorial-trust-manifesto">
-      <div class="editorial-trust-manifesto__copy reveal"><p class="section-kicker">Kepercayaan editorial</p><h2 id="trust-heading">Artikel yang baik menunjukkan sumber dan batasnya.</h2><p>Kami menandai status artikel, menjelaskan cara pemeriksaan, dan membuka jalur koreksi.</p></div>
-      <nav class="editorial-policy-grid" aria-label="Kebijakan editorial blog">
-        <a href="/blog/kebijakan-editorial/"><span>01</span><strong>Kebijakan editorial</strong><i>&rarr;</i></a>
-        <a href="/blog/metodologi-fact-check/"><span>02</span><strong>Metodologi pengecekan fakta</strong><i>&rarr;</i></a>
-        <a href="/blog/kebijakan-sumber/"><span>03</span><strong>Kebijakan sumber</strong><i>&rarr;</i></a>
-        <a href="/blog/kebijakan-pembaruan/"><span>04</span><strong>Kebijakan pembaruan</strong><i>&rarr;</i></a>
-        <a href="/blog/koreksi/"><span>05</span><strong>Koreksi</strong><i>&rarr;</i></a>
+  <section class="blog-editorial-links" aria-label="Informasi editorial blog">
+    <div class="container">
+      <span>Transparansi editorial</span>
+      <nav>
+        <a href="/blog/kebijakan-editorial/">Kebijakan editorial</a>
+        <a href="/blog/metodologi-fact-check/">Pengecekan fakta</a>
+        <a href="/blog/kebijakan-sumber/">Kebijakan sumber</a>
+        <a href="/blog/koreksi/">Koreksi artikel</a>
       </nav>
     </div>
   </section>
 
   <section class="section blog-close-stage" aria-labelledby="blog-final-cta-heading">
-    <div class="container reveal">
+    <div class="container">
       <BlogDecisionCTA
         id="blog-final-cta"
-        title="Punya satu angka usaha yang membingungkan?"
-        text="Lihat contoh cara RAMUNI mengubah catatan menjadi pertanyaan yang bisa diperiksa."
+        title="Punya angka usaha yang belum jelas?"
+        text="Lihat bagaimana RAMUNI membantu menyusun catatan, memeriksa konteks, dan menentukan perhatian berikutnya."
         secondaryLabel="Pelajari Produk"
         secondaryHref="/produk/"
       />
