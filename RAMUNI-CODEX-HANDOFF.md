@@ -407,6 +407,18 @@ The current batch materially increases real product evidence and motion, but sev
 - Live checks returned HTTP 200 with `Cache-Control: no-store` and fail-closed `X-Robots-Tag: noindex` for all five solution detail routes plus representative product and hub routes. HTML retains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-0.xml` return 404.
 - Browser screenshot QA was not run in this batch because the host does not currently provide a Playwright/Chromium browser binary. The fix is a bounded wrapper-level spacing correction rather than a shared component redesign.
 
+## Natural visitor copy and WhatsApp consultation release, 2026-07-30
+
+- Published runtime commit: `7dd26d2cc831` (`refine visitor copy and WhatsApp consultation flow`). Atomic staging release: `20260730T063754Z-7dd26d2cc831`; artifact SHA-256: `04fd048f7c3d7bb3903c401da265b5dc02325e3499e1cfc716b1b608988206d1`; current release path: `/var/www/ramuni-staging/releases/20260730T063754Z-7dd26d2cc831`.
+- Visitor-facing product, solution, company, security, role, industry, resource, and editorial copy no longer exposes internal readiness labels or release-status phrasing. Legitimate business terms such as minimum stock thresholds remain where they explain the work a visitor needs to do.
+- The floating WhatsApp consultation is an append-only conversation: RAMUNI questions stay on the left, visitor replies stay on the right, and each next question appears only after the prior reply. The compact path asks for name, business need, WhatsApp number, and email before submitting the lead and opening the official WhatsApp channel.
+- The WhatsApp handoff opens with an editable, non-PII template asking the visitor to complete business name, relevant product or solution, primary need, and preferred contact time. Personal form values are not copied into the WhatsApp URL.
+- Validation passed: JavaScript syntax, `git diff --check`, Astro check across 131 files with 0 errors/warnings/hints, 12/12 calculator tests, 14 content-gateway checks, CMS page/article candidate renders, a 131-page staging build, full metadata/social/accessibility/schema/internal-link/noindex/robots/asset-budget audit, and dependency audit with 0 vulnerabilities.
+- Docker Chromium QA covered the chat at 375x812 and 1440x1000. The dialog remained within the viewport with no horizontal overflow; the transcript stayed connected through the email step; mobile and desktop bubble spacing remained visible; masked contact replies, keyboard submission, the prepared WhatsApp template, and the absence of PII in the destination URL were confirmed.
+- Live staging verification returned HTTP 200 for the homepage, product, security, status, and robots routes. HTML retains `noindex,follow`; HTTP retains `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
+- R2 synchronized the changed chat script and stylesheet. Cloudflare initially served the prior unversioned objects, so only `scripts/lead-form.js` and `styles/floating-contact-chat.css` were purged after activation. The live CDN script now contains the new conversation runtime and WhatsApp message template.
+- No raster image generation or editing was required for this release. Disposable QA output was kept outside the repository and canonical build artifacts are removed after the documentation update; immutable releases and published Git commits remain preserved.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
