@@ -29,14 +29,6 @@ const {
   >
     <source src="/website-original/mascot/ramuni-mascot-work-loop.webm" type="video/webm" />
     <source src="/website-original/mascot/ramuni-mascot-work-loop.mp4" type="video/mp4" />
-    <img
-      src="/website-original/mascot/ramuni-mascot-work-loop-poster.webp"
-      width="720"
-      height="720"
-      alt=""
-      loading="lazy"
-      decoding="async"
-    />
   </video>
 </span>
 
@@ -55,7 +47,7 @@ const {
     contain:layout;
   }
 
-  .animated-muni-work :is(video,img){
+  .animated-muni-work video{
     display:block;
     width:100%;
     height:100%;
@@ -66,5 +58,5 @@ const {
   }
 
   @media(max-width:680px){.animated-muni-work{--animated-muni-size:112px;filter:drop-shadow(0 12px 20px rgb(11 48 69/.12))}}
-  @media(prefers-reduced-motion:reduce){.animated-muni-work :is(video,img){will-change:auto}}
+  @media(prefers-reduced-motion:reduce){.animated-muni-work video{will-change:auto}}
 </style>
