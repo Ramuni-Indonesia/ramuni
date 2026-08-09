@@ -119,3 +119,5 @@ Hindari kesalahan berikut:
 - Tidak meninjau langkah setelah beberapa kejadian berulang.
 
 Mulai dari satu halaman yang dapat digunakan hari ini. Uji selama satu atau dua minggu, kumpulkan temuan, lalu sesuaikan urutan dan bahasa. SOP buka tutup yang ringkas membuat toko lebih siap melayani dan memudahkan staf meneruskan pekerjaan secara jelas pada hari berikutnya.
+
+Simpan versi checklist beserta tanggal mulai berlaku. Bila ada perubahan, jelaskan alasannya kepada orang yang menjalankan shift dan lakukan satu contoh bersama bila langkahnya baru. Jangan menilai keberhasilan SOP dari jumlah tanda centang saja. Lihat apakah temuan berulang berkurang, apakah serah-terima lebih jelas, dan apakah pelanggan atau staf masih mengalami hambatan yang sama. Ukuran sederhana tersebut membantu memastikan SOP benar-benar memperbaiki kerja harian.
