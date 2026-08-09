@@ -130,4 +130,10 @@ Tidak perlu mengubah semua kebiasaan dalam satu hari. Pilih satu tindakan awal, 
 | Tidak tahu kas yang bisa dipakai | Buat ringkasan kewajiban dan pesanan berjalan mingguan |
 | Dana pribadi sering menutup biaya usaha | Catat setiap dana masuk dan tinjau penyebabnya |
 
+## Perbaiki kebiasaan lama dengan catatan terbuka
+
+Jika uang sudah lama tercampur, jangan mencoba menyusun ulang semuanya dari ingatan lalu menganggap hasilnya pasti tepat. Mulai dari tanggal yang dapat ditentukan, catat saldo awal yang diketahui, kumpulkan bukti yang masih ada, dan tandai transaksi yang belum jelas. Untuk transaksi baru, gunakan aturan pemisahan segera. Setelah itu, tinjau catatan lama secara bertahap bila memang diperlukan oleh usaha atau kewajiban yang berlaku.
+
+Aturan pengambilan juga perlu ditinjau ketika penjualan, biaya, atau kebutuhan rumah tangga berubah. Bila aturan tidak dapat dijalankan secara konsisten, sederhanakan formulir atau jadwalnya. Tujuannya bukan membuat pemilik sulit memakai uang, melainkan memastikan setiap perpindahan dapat dijelaskan dan tidak mengacaukan pembacaan kas usaha.
+
 Kesalahan umum adalah menyebut semua uang masuk sebagai penjualan, semua uang keluar sebagai biaya, memakai kas usaha untuk pribadi tanpa catatan, serta menganggap piutang sebagai kas. Pemisahan uang pribadi dan usaha membuat pemilik memiliki pandangan yang lebih jujur tentang kemampuan usaha. Dari sana, keputusan stok, harga, pengambilan, dan pengembangan dapat dibuat dengan dasar yang lebih jelas.
