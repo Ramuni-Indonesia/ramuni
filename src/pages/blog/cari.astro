@@ -4,7 +4,7 @@ import { getBlogPosts, getVisibleBlogPosts } from '../../lib/blog';
 import '../../styles/blog.css';
 import '../../styles/blog-search.css';
 
-const articles = getVisibleBlogPosts(await getBlogPosts())
+const articles = getVisibleBlogPosts(await getBlogPosts(), false)
   .sort((a, b) => (b.data.updatedAt || b.data.publishedAt).valueOf() - (a.data.updatedAt || a.data.publishedAt).valueOf())
   .map((post) => ({
     title: post.data.title,
