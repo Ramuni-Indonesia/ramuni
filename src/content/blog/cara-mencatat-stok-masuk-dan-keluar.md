@@ -74,6 +74,39 @@ Contoh: pemasok mengirim 30 unit, tetapi dua unit rusak saat diterima. Jangan me
 
 Stok keluar karena barang diserahkan kepada pelanggan. Uang bisa diterima pada waktu berbeda, terutama pada penjualan kredit atau transfer tertunda. Pisahkan catatan persediaan dari catatan kas agar angka tidak dicampur. Untuk transaksi yang dibatalkan atau dikembalikan, simpan hubungan ke transaksi awal agar saldo dan nilai penjualan sama-sama dapat diperiksa.
 
+## Buat urutan penerimaan yang tidak melompati pemeriksaan
+
+Barang yang baru tiba belum selalu siap dipakai atau dijual. Sederhanakan proses penerimaan menjadi beberapa langkah yang bisa dilakukan oleh orang yang sama atau dua orang berbeda: cek dokumen dan jumlah, cek kondisi, putuskan apakah barang siap jual, lalu catat statusnya. Jika proses usaha membutuhkan pemeriksaan kualitas, gunakan area atau status karantina sampai pemeriksaan selesai. Barang karantina perlu terlihat di catatan, tetapi tidak boleh dihitung sebagai saldo yang tersedia untuk memenuhi pesanan pelanggan.
+
+Contoh alur untuk pesanan 50 botol:
+
+1. terima dan cocokkan 50 botol dengan nota pemasok;
+2. temukan tiga botol bocor dan pisahkan dari 47 botol layak jual;
+3. catat 50 botol diterima, kemudian 3 botol rusak atau ditolak dengan alasan;
+4. masukkan hanya 47 botol ke saldo siap jual; dan
+5. buat tindak lanjut klaim atau penggantian secara terpisah dari stok yang sudah tersedia.
+
+Alur ini membuat angka fisik, bukti pemasok, dan saldo operasional dapat dijelaskan sekaligus. Jangan memasukkan jumlah yang dipesan sebagai jumlah yang diterima apabila pemasok mengirim sebagian. Tulis jumlah aktual dan tandai sisa pesanan sebagai masih dalam perjalanan. Dengan begitu, tim tidak menganggap 20 unit yang belum datang sebagai persediaan ataupun memesan ulang tanpa alasan.
+
+## Perlakukan pergerakan tidak biasa sebagai kejadian tersendiri
+
+Sebagian besar selisih muncul pada transaksi yang jarang terjadi: sampel gratis, barang dipinjamkan, pemakaian untuk foto produk, transfer antar cabang, pengemasan ulang, atau barang yang diberikan kepada staf. Buat jenis pergerakan yang mudah dipilih daripada membiarkannya masuk sebagai “penjualan” atau “koreksi”. Setiap jenis harus tetap menyebut siapa, kapan, berapa jumlahnya, dan bukti atau persetujuan yang menyertainya.
+
+| Kejadian tidak biasa | Cara menulisnya | Risiko bila tidak dipisahkan |
+| --- | --- | --- |
+| Sampel untuk calon pelanggan | Keluar—sampel; nama kegiatan dan jumlah | Saldo berkurang tanpa terlihat sebagai biaya promosi |
+| Transfer antar lokasi | Keluar dari asal dan masuk di tujuan dengan referensi sama | Barang dapat tercatat tersedia di dua lokasi |
+| Barang dipakai produksi | Keluar—pemakaian produksi; nomor batch atau pesanan | HPP atau bahan yang dipakai tidak dapat ditelusuri |
+| Retur pelanggan | Masuk—menunggu pemeriksaan; referensi transaksi awal | Barang rusak keliru masuk kembali sebagai siap jual |
+
+Pemisahan ini tidak harus menambah banyak formulir. Satu pilihan keterangan standar dan bukti yang dilampirkan pada transaksi sudah cukup untuk tahap awal. Yang penting, orang tidak perlu menebak arti pengurangan saldo saat membaca kartu beberapa minggu kemudian.
+
+## Tetapkan waktu tutup dan penanggung jawab
+
+Pencatatan yang baik membutuhkan batas waktu yang realistis. Tentukan kapan penerimaan harus masuk ke kartu, kapan rekap penjualan dipindahkan, dan siapa yang memeriksa daftar transaksi tertunda. Pada usaha dengan satu orang, rutinitas lima atau sepuluh menit sebelum tutup bisa lebih dapat dijaga daripada target pencatatan langsung yang sering gagal ketika antrean ramai. Pada usaha dengan beberapa orang, pisahkan pencatat dari pemberi persetujuan koreksi bila memungkinkan.
+
+Jika ada transaksi yang belum lengkap, jangan menghilangkannya dari daftar. Beri status tertunda, alasan, serta tanggal penyelesaian. Contoh: “retur 2 unit, cek kondisi oleh Rani sebelum 10 Agustus”. Daftar terbuka seperti ini membuat pekerjaan lanjutan terlihat tanpa memalsukan saldo akhir hari.
+
 ## Bandingkan dengan kondisi fisik
 
 Catatan yang rapi tetap dapat berbeda dari barang nyata bila ada barang yang salah satuan, belum masuk, rusak, atau pergerakannya terlambat dicatat. Lakukan [stok opname](/blog/cara-melakukan-stok-opname/) untuk membandingkan catatan dengan fisik. Jika muncul selisih, jangan langsung mengubah saldo. Telusuri penerimaan, penjualan, retur, dan koreksi yang terkait.
