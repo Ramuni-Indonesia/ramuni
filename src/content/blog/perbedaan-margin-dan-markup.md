@@ -102,8 +102,12 @@ Hindari memakai margin kotor untuk menjanjikan laba bersih. Margin kotor dapat m
 
 Diskon menurunkan harga jual dan dapat mengubah margin lebih besar dari yang terlihat. Produk yang tadinya memiliki selisih aman bisa menjadi sangat tipis setelah promo, terutama bila ada biaya tambahan atau retur. Saat mengevaluasi promosi, lihat harga setelah diskon, HPP, unit terjual, serta hasil bersih. Baca [dampak diskon terhadap laba](/blog/cara-mengukur-dampak-diskon-terhadap-laba/) untuk menyusun catatan tersebut.
 
+Sebelum promo diluncurkan, simpan tiga skenario: harga normal, diskon yang direncanakan, dan diskon terdalam yang masih dapat diterima. Untuk masing-masing, tulis harga efektif, biaya yang dipakai, margin, serta jumlah unit minimum yang ingin diuji. Setelah promo selesai, bandingkan realisasi dengan skenario tersebut. Apabila unit naik tetapi kontribusi kotor turun tajam, jangan hanya membaca omzet; periksa apakah diskon, biaya kanal, atau campuran produk menjadi penyebabnya.
+
 ## Catat definisi yang dipakai tim
 
 Tuliskan apakah laporan menggunakan margin atau markup dan pastikan semua orang memakai definisi yang sama. Hal ini penting ketika membandingkan produk, menetapkan target, atau menjelaskan perubahan harga kepada pemilik usaha.
 
 Produk terlaris belum tentu memberi margin tertinggi. Dengan membaca volume dan selisih biaya-harga secara terpisah, usaha dapat menentukan produk mana yang perlu diperiksa lebih dulu. Artikel [produk terlaris belum tentu paling untung](/blog/produk-terlaris-belum-tentu-paling-untung/) membahas perbedaan tersebut dalam keputusan sehari-hari.
+
+Hindari dua jalan pintas: membandingkan persentase tanpa menyebut pembaginya dan memakai HPP yang sudah tidak berlaku. Saat harga bahan berubah, angka margin lama dapat memberi rasa aman yang keliru. Simpan tanggal pembaruan biaya, lalu gunakan angka tersebut secara konsisten pada evaluasi periode yang sama. Bila ada pengecualian—misalnya harga kontrak atau paket khusus—tulis alasannya agar pembacaan produk tidak tercampur dengan harga normal.
