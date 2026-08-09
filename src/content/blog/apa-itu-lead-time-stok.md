@@ -123,4 +123,6 @@ Periksa kembali catatan lead time ketika ada perubahan harga, rute pengiriman, j
 
 Kesalahan yang sering terjadi adalah menganggap semua produk dari satu pemasok memiliki lead time sama. Produk siap kirim, produk musiman, dan produk yang perlu dibuat khusus dapat memiliki ritme berbeda. Pisahkan catatannya bila perbedaan itu memengaruhi keputusan stok.
 
+Tetapkan ritme tinjauan yang sesuai dengan pergerakan barang. Produk cepat bergerak dapat dilihat setiap minggu, sedangkan bahan yang dibeli jarang bisa dibaca saat pesanan berikutnya dibuat. Dalam tinjauan tersebut, pilih beberapa pesanan terbaru dan jawab tiga pertanyaan: berapa hari yang benar-benar dibutuhkan, apa penyebab penyimpangan terbesarnya, dan apakah batas stok masih memberi cukup waktu untuk bertindak. Simpan jawaban bersama log, sehingga anggota tim baru tidak perlu menebak asumsi yang dipakai sebelumnya.
+
 Lead time yang tercatat dengan rapi membuat stok lebih mudah dibaca: tim tahu kapan perlu mulai memeriksa, apa yang sedang ditunggu, dan alasan di balik batas persediaan yang dipakai.
