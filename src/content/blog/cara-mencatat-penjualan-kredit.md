@@ -123,6 +123,8 @@ Kelompokkan saldo piutang menurut kedekatan atau keterlambatan jatuh tempo. Tuju
 
 Bandingkan total piutang dengan kas, belanja stok, gaji, dan kewajiban dekat lainnya. Penjualan kredit dapat tampak baik di laporan penjualan tetapi mengganggu operasi jika penerimaan terlambat. Laporan bulanan perlu memperlihatkan keduanya. Panduan [laporan bisnis bulanan](/blog/cara-membuat-laporan-bisnis-bulanan/) dapat membantu menyusun ringkasan yang tidak hanya berisi omzet.
 
+Tinjau pula batas kredit sebelum menerima pesanan baru. Lihat saldo aktif, riwayat pembayaran, nilai pesanan yang diminta, dan kas yang dibutuhkan usaha pada periode tersebut. Bila limit perlu diubah, simpan alasan dan persetujuannya. Kontrol sederhana ini mencegah keputusan kredit terjadi hanya karena catatan lama belum diperiksa atau karena staf tidak melihat total tagihan yang masih terbuka.
+
 ## Jaga komunikasi dan tindak lanjut tetap profesional
 
 Buat jadwal pengingat yang sesuai kesepakatan, gunakan data minimum, dan catat siapa yang menghubungi serta hasilnya. Hindari mengirim detail tagihan kepada pihak yang tidak berwenang atau membagikan daftar pelanggan ke kanal umum. Bila ada sengketa atau kondisi khusus, jangan membuat janji atau tindakan di luar kewenangan usaha tanpa peninjauan yang tepat.
