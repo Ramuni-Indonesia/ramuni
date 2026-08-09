@@ -90,6 +90,26 @@ Jangan menghapus stok mati dari catatan agar angka terlihat lebih bersih. Setiap
 
 Kesalahan yang sering terjadi adalah membeli lagi produk yang sama karena tim hanya melihat stok sistem yang belum diperbarui, atau sebaliknya menghentikan produk yang sebenarnya masih memiliki pola musiman. Periksa data beberapa periode dan libatkan orang yang memahami pelanggan serta kondisi barang.
 
+## Nilai pilihan dengan kerugian yang paling kecil
+
+Sebelum mengadakan diskon besar, buat satu lembar keputusan untuk tiap kelompok produk. Tujuannya bukan mencari jawaban sempurna, melainkan menghindari tindakan yang menghabiskan margin tanpa menyelesaikan penyebab barang menumpuk. Bandingkan nilai stok, kondisi fisik, peluang terjual, dan biaya jika barang terus disimpan.
+
+| Pertanyaan | Contoh jawaban | Dampak pada keputusan |
+| --- | --- | --- |
+| Apakah produk masih relevan bagi pelanggan? | Masih dicari, tetapi tertutup produk baru | Uji penempatan atau bundel sebelum menurunkan harga |
+| Berapa lama barang aman disimpan? | Tiga bulan sebelum mutu menurun | Tetapkan tenggat tindakan dan cek mingguan |
+| Apakah pemasok menerima retur? | Hanya untuk kemasan utuh dalam 30 hari | Prioritaskan pemeriksaan syarat dan jumlah yang layak dikembalikan |
+| Apakah diskon masih menutup biaya langsung? | Harga promo masih di atas HPP dan biaya kemasan | Uji promo terbatas, lalu bandingkan hasilnya |
+| Apakah barang bisa dipakai dengan cara lain? | Bahan dapat menjadi paket sampel | Hitung nilai manfaatnya dan catat pengurangan stok |
+
+Contohnya, ada 40 unit produk yang tidak bergerak selama dua bulan. Sebelum memberi diskon 50 persen, pemilik usaha dapat mencoba memindahkan 10 unit ke area yang lebih terlihat selama satu minggu dan mencatat jumlah yang ditanyakan maupun terjual. Jika tidak ada respons, uji bundel kecil dengan produk pelengkap. Diskon lebih dalam baru dipertimbangkan setelah biaya dan tujuan—mengurangi ruang, mengembalikan sebagian kas, atau menghentikan lini produk—jelas. Catatan hasil uji membantu menghindari promo yang diulang hanya karena terlihat ramai sesaat.
+
+## Hentikan sumber stok mati berikutnya
+
+Penanganan stok lama belum lengkap bila pembelian baru tetap berjalan dengan pola yang sama. Setelah menemukan barang mati, telusuri keputusan pembelian terakhir: siapa yang memesan, dasar jumlahnya, apakah ada minimum pembelian, dan apakah sisa stok sebelumnya terlihat saat pesanan dibuat. Perubahan kecil sering cukup, misalnya menahan pembelian sampai stok turun ke batas tertentu, memesan kemasan lebih kecil, atau meminta pemasok mengonfirmasi ketersediaan sebelum produk dipajang.
+
+Bedakan tindakan sementara dan keputusan permanen. Menunda pembelian satu siklus bukan berarti produk harus dihentikan selamanya. Tulis tanggal evaluasi, orang yang bertanggung jawab, serta ukuran keberhasilan yang mudah dibaca—misalnya “20 unit berkurang dalam empat minggu tanpa diskon di bawah biaya”. Jika ukuran itu tidak tercapai, tim dapat memilih tindakan berikutnya berdasarkan bukti, bukan menambah stok baru karena kebiasaan.
+
 ## Buat pemeriksaan berulang yang ringan
 
 Setiap minggu atau bulan, pilih daftar kecil barang yang perlu dibaca: nilai stok tertinggi, barang paling lama tidak bergerak, barang mendekati masa simpan, dan barang dengan banyak koreksi. Jangan mencoba menyelesaikan seluruh katalog sekaligus.
