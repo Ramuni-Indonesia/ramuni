@@ -139,4 +139,17 @@ Daftar pembelian belum selesai ketika pesanan dikirim. Saat barang datang, cocok
 | Terlambat | Catat lead time nyata untuk perencanaan berikutnya |
 | Tidak jadi dikirim | Perbarui kebutuhan, pesanan berjalan, dan alternatif |
 
+## Tinjau perubahan sebelum menambah atau membatalkan pesanan
+
+Kebutuhan dapat berubah setelah daftar dibuat. Penjualan bisa naik, stok dapat ditemukan di lokasi lain, atau pemasok dapat memberi informasi keterlambatan. Jangan mengganti jumlah melalui pesan singkat tanpa memperbarui daftar utama. Catat perubahan, waktu, alasan, pihak yang menyetujui, serta dampaknya pada jumlah dan nilai pesanan. Dengan begitu, penerimaan nanti masih dapat dibandingkan dengan versi terakhir yang benar.
+
+| Perubahan | Yang perlu diperiksa |
+| --- | --- |
+| Jumlah ditambah | Stok, kas, kapasitas simpan, dan persetujuan baru |
+| Jumlah dikurangi | Risiko stok kosong dan syarat minimum pemasok |
+| Supplier diganti | Harga efektif, mutu, lead time, serta bukti komunikasi |
+| Pesanan dibatalkan | Stok berjalan, pelanggan terdampak, dan alternatif |
+
+Tinjauan singkat ini membantu usaha tidak membeli dua kali atau menerima barang yang tidak lagi dibutuhkan hanya karena keputusan awal tidak diperbarui.
+
 Kesalahan umum adalah membuat daftar berdasarkan rasa khawatir, mengabaikan pesanan berjalan, memakai satuan berbeda, tidak melihat kas, serta tidak menutup daftar setelah penerimaan. Daftar pembelian yang rapi membuat usaha membeli dengan alasan yang bisa dijelaskan, memeriksa hasilnya, dan memperbaiki keputusan berikutnya berdasarkan data nyata.
