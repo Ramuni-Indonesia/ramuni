@@ -1,4 +1,4 @@
-# Peta 50 Artikel Blog RAMUNI
+# Peta 100 Artikel Blog RAMUNI
 
 Tanggal pembaruan: 9 Agustus 2026  
 Tujuan: membangun topical authority RAMUNI untuk pemilik UMKM Indonesia melalui artikel yang menjawab kebutuhan nyata, bukan halaman massal untuk mengejar kata kunci.
@@ -17,7 +17,7 @@ Tujuan: membangun topical authority RAMUNI untuk pemilik UMKM Indonesia melalui 
 
 Setiap spoke menautkan ke satu hub/topik utama, dua artikel saudara yang benar-benar relevan, dan—bila membantu—satu kalkulator, template, panduan, glossary, produk, atau solusi RAMUNI. Related card tidak dihitung sebagai pengganti tautan dalam isi artikel.
 
-## Daftar artikel
+## Daftar artikel 1–50
 
 Status `aktif` berarti sudah tersedia. Status `rencana` berarti belum boleh dipublikasikan atau dimasukkan ke sitemap sampai naskah, cover, sumber, dan review terpenuhi.
 
@@ -88,3 +88,77 @@ Status `aktif` berarti sudah tersedia. Status `rencana` berarti belum boleh dipu
 - Satu atau dua link ke kompetitor hanya untuk artikel perbandingan atau untuk menjelaskan workflow/dokumentasi yang benar-benar relevan. Link harus diperiksa ulang saat review.
 - Minimal satu contoh kerja yang jelas, daftar kesalahan umum, tindakan berikutnya, dan FAQ bila pertanyaan lanjutan memang ada.
 - Metadata unik, canonical mandiri, `BlogPosting`, breadcrumbs, serta `FAQPage` hanya jika FAQ tampil pada halaman.
+
+## Ekspansi artikel 51–100
+
+Semua topik berikut adalah rencana. Tidak ada yang boleh dimasukkan ke sitemap sebelum naskah, cover unik, sumber bila diperlukan, pemeriksaan tautan, dan review terpenuhi.
+
+| No. | Cluster | Judul / slug | Kata kunci utama | Kata kunci sekunder | Intent | Review |
+| ---: | --- | --- | --- | --- | --- | --- |
+| 51 | Penjualan | `cara-menghitung-pertumbuhan-penjualan` | cara menghitung pertumbuhan penjualan | growth sales; kenaikan omzet; persentase penjualan | How-to | Editorial |
+| 52 | Penjualan | `cara-membaca-penjualan-per-jam` | penjualan per jam | jam ramai toko; analisis jam penjualan; waktu transaksi | Informasional | Editorial |
+| 53 | Penjualan | `cara-membandingkan-penjualan-online-dan-offline` | penjualan online dan offline | laporan per kanal; omzet marketplace; toko fisik | Informasional | Editorial |
+| 54 | Penjualan | `cara-menghitung-konversi-penjualan-sederhana` | cara menghitung konversi penjualan | conversion rate toko; calon pembeli; transaksi selesai | How-to | Editorial |
+| 55 | Penjualan | `cara-menentukan-produk-pelengkap` | produk pelengkap | cross sell UMKM; produk bundling; nilai belanja | Informasional | Editorial |
+| 56 | Penjualan | `cara-mengevaluasi-promo-penjualan` | evaluasi promo penjualan | efektivitas promo; diskon usaha; hasil promosi | Informasional | Editorial + keuangan |
+| 57 | Penjualan | `cara-membaca-penjualan-saat-hari-libur` | penjualan saat hari libur | tren musiman; omzet liburan; perencanaan toko | Informasional | Editorial |
+| 58 | Penjualan | `contoh-laporan-penjualan-harian` | contoh laporan penjualan harian | format penjualan; rekap transaksi; laporan toko | Informasional | Editorial |
+| 59 | Penjualan | `cara-mengatasi-omzet-turun` | cara mengatasi omzet turun | penjualan menurun; analisis omzet; evaluasi toko | Informasional | Editorial |
+| 60 | Penjualan | `cara-mencatat-penjualan-kredit` | pencatatan penjualan kredit | piutang pelanggan; transaksi tempo; tagihan usaha | How-to | Editorial + keuangan |
+| 61 | Stok | `cara-menghitung-safety-stock` | cara menghitung safety stock | stok pengaman; persediaan aman; stock buffer | How-to | Editorial |
+| 62 | Stok | `perbedaan-stok-minimum-dan-safety-stock` | stok minimum dan safety stock | batas stok; reorder point; stok pengaman | Informasional | Editorial |
+| 63 | Stok | `cara-memilih-produk-untuk-stok-opname` | produk untuk stok opname | prioritas stock opname; barang cepat laku; cek persediaan | Informasional | Editorial |
+| 64 | Stok | `penyebab-selisih-stok-dan-cara-mengeceknya` | penyebab selisih stok | stok tidak sesuai; koreksi persediaan; audit stok | Informasional | Editorial |
+| 65 | Stok | `cara-mencatat-stok-rusak` | cara mencatat stok rusak | barang rusak; penyusutan stok; koreksi persediaan | How-to | Editorial + keuangan |
+| 66 | Stok | `cara-mengatur-stok-produk-musiman` | stok produk musiman | persediaan musiman; stok hari raya; perencanaan barang | Informasional | Editorial |
+| 67 | Stok | `cara-memilih-supplier-untuk-stok-usaha` | memilih supplier UMKM | evaluasi pemasok; lead time supplier; pembelian barang | Informasional | Editorial |
+| 68 | Stok | `cara-membuat-daftar-pembelian-barang` | daftar pembelian barang | purchase list; kebutuhan stok; belanja usaha | How-to | Editorial |
+| 69 | Stok | `cara-mengelola-stok-produk-varian` | stok produk varian | ukuran warna produk; SKU varian; katalog stok | Informasional | Editorial |
+| 70 | Stok | `cara-mengukur-perputaran-stok` | cara menghitung perputaran stok | inventory turnover; stok lambat; pergerakan barang | How-to | Editorial + keuangan |
+| 71 | Keuangan | `cara-menghitung-harga-jual-produk` | cara menghitung harga jual | harga jual UMKM; markup harga; margin produk | How-to | Editorial + keuangan |
+| 72 | Keuangan | `cara-memisahkan-uang-pribadi-dan-uang-usaha` | memisahkan uang pribadi dan usaha | rekening usaha; kas bisnis; keuangan UMKM | How-to | Editorial + keuangan |
+| 73 | Keuangan | `contoh-catatan-pengeluaran-usaha` | contoh catatan pengeluaran usaha | biaya usaha; buku pengeluaran; cash out | Informasional | Editorial + keuangan |
+| 74 | Keuangan | `cara-membuat-anggaran-usaha-sederhana` | anggaran usaha sederhana | budget UMKM; rencana biaya; pengeluaran bisnis | How-to | Editorial + keuangan |
+| 75 | Keuangan | `cara-menghitung-margin-laba-kotor` | cara menghitung margin laba kotor | gross margin; margin produk; laba kotor | How-to | Editorial + keuangan |
+| 76 | Keuangan | `cara-membaca-arus-kas-negatif` | arus kas negatif | cash flow negatif; kas usaha; uang masuk keluar | Informasional | Editorial + keuangan |
+| 77 | Keuangan | `cara-mencatat-utang-usaha-ke-supplier` | cara mencatat utang supplier | utang usaha; pembelian tempo; jatuh tempo | How-to | Editorial + keuangan |
+| 78 | Keuangan | `cara-mencatat-piutang-pelanggan` | cara mencatat piutang pelanggan | tagihan pelanggan; penjualan kredit; jatuh tempo | How-to | Editorial + keuangan |
+| 79 | Keuangan | `cara-menghitung-modal-usaha-awal` | cara menghitung modal usaha | modal awal UMKM; biaya mulai usaha; kebutuhan modal | Informasional | Editorial + keuangan |
+| 80 | Keuangan | `perbedaan-laba-kotor-dan-laba-bersih` | laba kotor dan laba bersih | gross profit; net profit; biaya operasional | Informasional | Editorial + keuangan |
+| 81 | Pelanggan | `cara-menghitung-nilai-pelanggan` | nilai pelanggan | customer lifetime value sederhana; nilai pembeli; pelanggan loyal | Informasional | Editorial |
+| 82 | Pelanggan | `cara-membuat-kartu-pelanggan-sederhana` | kartu pelanggan sederhana | catatan pelanggan; riwayat belanja; database toko | How-to | Editorial + privasi |
+| 83 | Pelanggan | `cara-meminta-izin-kontak-pelanggan` | izin kontak pelanggan | persetujuan WhatsApp; privasi pelanggan; consent marketing | How-to | Editorial + privasi |
+| 84 | Pelanggan | `cara-mengukur-kepuasan-pelanggan-sederhana` | mengukur kepuasan pelanggan | feedback pelanggan; survei singkat; pelayanan toko | How-to | Editorial |
+| 85 | Pelanggan | `cara-menangani-pelanggan-komplain` | menangani komplain pelanggan | keluhan pelanggan; service recovery; pelayanan usaha | How-to | Editorial |
+| 86 | Operasional | `cara-membuat-sop-kasir` | SOP kasir | prosedur kasir; tutup kasir; transaksi toko | How-to | Editorial |
+| 87 | Operasional | `cara-membuat-shift-karyawan-toko` | jadwal shift karyawan toko | pembagian shift; jadwal toko; operasional retail | How-to | Editorial |
+| 88 | Operasional | `cara-membuat-laporan-shift-kasir` | laporan shift kasir | rekap kasir; serah terima kas; laporan harian | How-to | Editorial + keuangan |
+| 89 | Operasional | `cara-mengelola-dokumen-usaha` | cara mengelola dokumen usaha | arsip invoice; bukti transaksi; dokumen toko | How-to | Editorial |
+| 90 | Operasional | `cara-membuat-dashboard-bisnis-sederhana` | dashboard bisnis sederhana | KPI UMKM; ringkasan usaha; metrik bisnis | How-to | Editorial |
+| 91 | AI | `apa-itu-ai-business-companion` | AI business companion | asisten AI bisnis; AI untuk pemilik usaha; insight AI | Informasional | Editorial + AI |
+| 92 | AI | `cara-menulis-pertanyaan-bisnis-untuk-ai` | pertanyaan bisnis untuk AI | prompt UMKM; analisis penjualan AI; pertanyaan data | How-to | Editorial + AI |
+| 93 | AI | `cara-mengecek-hasil-ai-yang-tidak-masuk-akal` | cek hasil AI | verifikasi jawaban AI; halusinasi AI; validasi insight | How-to | Editorial + AI |
+| 94 | AI | `data-usaha-yang-jangan-dimasukkan-ke-ai` | data usaha untuk AI | data sensitif bisnis; privasi AI; keamanan data | Informasional | Editorial + AI + privasi |
+| 95 | AI | `perbedaan-otomasi-dan-rekomendasi-ai` | otomasi dan rekomendasi AI | AI read only; approval manusia; keputusan bisnis | Informasional | Editorial + AI |
+| 96 | Industri | `cara-mengatur-stok-toko-sembako` | stok toko sembako | inventori warung; barang cepat laku; belanja grosir | Informasional | Editorial |
+| 97 | Industri | `cara-menghitung-hpp-usaha-kuliner` | HPP usaha kuliner | HPP makanan; biaya per porsi; harga menu | How-to | Editorial + keuangan |
+| 98 | Industri | `cara-membuat-laporan-penjualan-barbershop` | laporan penjualan barbershop | usaha jasa; omzet layanan; catatan pelanggan | How-to | Editorial |
+| 99 | Industri | `cara-mengelola-stok-toko-fashion` | stok toko fashion | ukuran warna pakaian; SKU fashion; stok musiman | Informasional | Editorial |
+| 100 | Industri | `cara-mencatat-penjualan-usaha-laundry` | pencatatan usaha laundry | laporan laundry; pendapatan jasa; pelanggan laundry | How-to | Editorial + keuangan |
+
+## Kalender editorial Januari–9 Agustus 2026
+
+Ini adalah distribusi **rencana topik** agar backlog editorial terlihat natural dan merata. Ini bukan izin untuk memalsukan `publishedAt`: tanggal yang tampil di halaman tetap tanggal publikasi sebenarnya, sementara naskah yang belum siap tetap draft/noindex.
+
+| Bulan | Jumlah topik dalam kalender | Fokus |
+| --- | ---: | --- |
+| Januari | 6 | Pondasi omzet, stok, dan catatan usaha |
+| Februari | 8 | Penjualan dan produk |
+| Maret | 10 | Stok, SKU, serta stock opname |
+| April | 12 | HPP, harga jual, dan laporan keuangan |
+| Mei | 14 | Pelanggan, pelayanan, dan operasional toko |
+| Juni | 16 | Laporan, kalkulator, template, dan SOP |
+| Juli | 18 | Cluster AI aman serta kebutuhan industri |
+| 1–9 Agustus | 16 | Refresh, perbandingan yang faktual, dan artikel yang lolos review |
+
+Setiap artikel baru akan memakai tanggal terbit aktualnya. Untuk artikel yang sudah pernah terbit, tanggal lama tidak diubah hanya untuk membuat distribusi terlihat lebih rapi.
