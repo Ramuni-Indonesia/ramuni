@@ -131,3 +131,5 @@ Untuk setiap produk prioritas, tulis nama, satuan, batas stok minimum, safety st
 | Peninjauan | Mengubah angka berdasarkan bukti, bukan kebiasaan |
 
 Tinjau kartu saat terjadi stok kosong, sisa berulang, perubahan pemasok, promo, atau perubahan pola penjualan. Stok minimum dan safety stock bukan angka yang harus dipertahankan selamanya. Keduanya adalah alat untuk membuat keputusan persediaan lebih dapat dijelaskan, dengan tetap menjaga kas dan risiko barang.
+
+Sebelum mengubah batas, cocokkan beberapa saldo penting dengan kondisi fisik serta dokumen penerimaan. Periksa juga pesanan yang sudah dibuat namun belum datang, karena stok dalam perjalanan tidak sama dengan stok layak pakai di gudang. Langkah kecil ini mencegah usaha memperbesar buffer hanya karena catatan terlambat diperbarui atau jumlah penerimaan belum diperiksa.
