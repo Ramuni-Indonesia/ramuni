@@ -104,6 +104,14 @@ Setiap minggu atau bulan, pilih beberapa pesanan untuk ditinjau. Apakah barang d
 
 Jika sering terjadi pesanan mendadak, cari penyebabnya: batas stok tidak diperbarui, stok fisik berbeda, informasi permintaan tidak dibagikan, atau waktu persetujuan terlalu lama. Pilih satu perbaikan yang dapat diuji, seperti peninjauan produk cepat bergerak pada hari tertentu atau pemisahan stok pesanan pelanggan. Simpan hasilnya agar perubahan keputusan bisa ditelusuri.
 
+## Tentukan pemilik keputusan dan batas persetujuan
+
+Dalam usaha kecil, satu orang sering memilih barang, membuat pesanan, menerima kiriman, dan mencatatnya. Hal itu dapat berjalan bila daftar kerja jelas, tetapi risiko kesalahan meningkat ketika transaksi ramai atau orang tersebut tidak hadir. Tulis siapa yang boleh menyusun kebutuhan, siapa yang menyetujui jumlah atau nilai tertentu, dan siapa yang memeriksa penerimaan. Tidak perlu membuat struktur rumit; peran sederhana membuat pertanyaan dapat dijawab lebih cepat.
+
+Contohnya, staf stok dapat membuat daftar berdasarkan saldo dan pemakaian. Pemilik menyetujui pembelian yang melampaui batas nilai yang disepakati. Orang yang menerima barang mencocokkan jumlah dengan bukti, lalu memberi tahu pembuat pesanan bila ada selisih. Jika satu orang memegang beberapa peran, gunakan bukti serta catatan waktu untuk membantu pemeriksaan berikutnya.
+
+Simpan perubahan harga, minimum pesanan, atau syarat pemasok pada catatan yang mudah ditemukan. Ketika pemasok menawarkan substitusi produk, jangan hanya mengganti nama di pesanan. Periksa satuan, mutu, harga, dampak ke resep atau penjualan, serta persetujuan yang diperlukan. Catatan keputusan tersebut mencegah produk pengganti masuk ke stok tanpa diketahui orang yang akan menjual atau menggunakannya.
+
 Hindari kesalahan berikut:
 
 - Membeli berdasarkan ingatan tanpa memeriksa stok siap jual dan barang dalam perjalanan.
