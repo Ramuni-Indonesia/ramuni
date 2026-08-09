@@ -74,6 +74,35 @@ Tidak semua biaya mudah dimasukkan ke satu kelompok. Tagihan listrik dapat memil
 
 Jangan memaksa pembagian sempurna jika data belum cukup. Tulis asumsi yang dipakai, lalu perbarui ketika data baru tersedia. Tujuannya adalah membuat keputusan lebih dapat diperiksa, bukan menciptakan angka yang terlihat sangat presisi tetapi tidak punya dasar.
 
+## Pecah biaya campuran dengan cara yang konsisten
+
+Untuk tahap awal, ambil contoh tagihan yang mudah dibuktikan. Misalnya, listrik terdiri dari biaya minimum Rp150.000 per bulan dan penggunaan tambahan yang biasanya naik ketika mesin bekerja lebih lama. Usaha tidak harus langsung menghitung tarif per menit dengan akurasi sempurna. Pisahkan bagian dasar sebagai biaya periode dan catat bagian penggunaan dengan pendekatan yang sama pada setiap bulan. Bila data meter atau jam mesin tersedia, gunakan sebagai bukti tambahan saat meninjau perkiraan tersebut.
+
+Hal yang sama berlaku untuk pengiriman. Biaya jemputan bulanan yang dibayar tetap dapat diperlakukan berbeda dari ongkos kurir per pesanan. Jika biaya kurir dipengaruhi jarak, berat, atau promosi bebas ongkir, jangan hanya mengambil satu angka rata-rata tanpa menjelaskan produk atau kanal yang diwakili. Simpan data beberapa pesanan lalu lihat apakah biaya bergerak seiring jumlah transaksi atau lebih dipengaruhi oleh rute.
+
+| Biaya | Bagian yang dapat dipisahkan | Catatan asumsi |
+| --- | --- | --- |
+| Listrik | Beban minimum dan penggunaan tambahan | Gunakan tagihan bulanan serta jam operasi bila tersedia |
+| Gaji | Gaji pokok dan lembur per jam | Bedakan kontrak tetap dari tambahan jam kerja |
+| Pengiriman | Langganan tetap dan ongkos per pesanan | Tulis kanal, wilayah, atau syarat bebas ongkir |
+| Pembayaran digital | Langganan perangkat dan biaya per transaksi | Gunakan laporan penyedia layanan untuk periode yang sama |
+
+Catatan ini tidak mengubah semua biaya menjadi pasti, tetapi membuat peninjauan berikutnya lebih baik daripada menempatkan seluruhnya pada satu kolom tanpa alasan.
+
+## Periksa perilaku biaya saat kapasitas berubah
+
+Biaya tetap dapat berubah secara bertahap. Sewa mungkin tetap sampai usaha membutuhkan ruang baru; gaji tetap dapat bertambah ketika diperlukan shift kedua; langganan perangkat bisa naik setelah melewati batas pengguna. Karena itu, “tetap” berarti relatif tetap dalam rentang aktivitas dan periode tertentu, bukan tidak pernah berubah selamanya.
+
+Bayangkan usaha mampu memproduksi sampai 500 unit dengan satu alat. Sewa dan alat mungkin sama ketika produksi naik dari 300 ke 450 unit. Namun jika target 700 unit menuntut alat tambahan atau ruang baru, biaya tetap periode berikutnya berubah. Sebelum menggunakan target volume untuk membuat proyeksi, cek titik perubahan kapasitas seperti ini. Perhitungan yang memakai biaya lama pada kapasitas baru dapat terlihat terlalu optimistis.
+
+Sebaliknya, biaya variabel per unit juga tidak selalu tetap. Diskon pembelian bahan dalam jumlah besar, kenaikan harga pemasok, limbah, atau perubahan ukuran kemasan dapat mengubahnya. Catat harga dan takaran yang dipakai pada setiap batch penting agar usaha tahu apakah perubahan margin berasal dari volume, pembelian, atau proses produksi.
+
+## Gunakan klasifikasi untuk mengambil tindakan kecil
+
+Setelah daftar biaya disusun, pilih satu pertanyaan yang dapat ditindaklanjuti. Jika biaya variabel per unit naik, periksa nota pembelian, takaran, hasil layak jual, atau biaya kanal. Jika biaya tetap terlalu berat dibandingkan penjualan normal, telaah waktu komitmen, kapasitas yang belum dipakai, atau produk yang memberi kontribusi lebih besar. Jangan menyimpulkan bahwa semua biaya harus dipotong; ada biaya yang diperlukan untuk mutu, kecepatan, atau pertumbuhan yang memang direncanakan.
+
+Saat menilai penghematan, tulis dampak yang diharapkan dan risiko yang mungkin muncul. Contohnya, mengganti kemasan lebih murah dapat menurunkan biaya per unit tetapi meningkatkan kerusakan atau retur. Uji pada jumlah terbatas, lalu bandingkan hasilnya dengan catatan sebelumnya. Pendekatan ini menghubungkan klasifikasi biaya dengan keputusan nyata tanpa mengorbankan layanan secara tidak terlihat.
+
 ## Gunakan klasifikasi untuk pertanyaan yang lebih baik
 
 Jika penjualan turun, biaya tetap tidak selalu langsung turun bersama volume. Jika produksi naik, biaya variabel biasanya perlu diperiksa lebih dahulu. Pemisahan ini membantu usaha melihat apakah masalah datang dari harga, volume, biaya per unit, atau komitmen biaya periode.
