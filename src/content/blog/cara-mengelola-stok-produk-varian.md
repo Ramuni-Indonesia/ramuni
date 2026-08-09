@@ -134,4 +134,8 @@ Data varian dapat menunjukkan kebutuhan pembelian, rotasi, produk pelengkap, ata
 
 Artikel [cara mengurangi stok mati](/blog/cara-mengurangi-stok-mati/) membahas cara memeriksa produk yang lambat tanpa mengorbankan kejelasan bagi pelanggan. Catat pula keputusan ketika varian dihentikan atau dikurangi agar pesanan berjalan, katalog, dan stok fisik diperbarui bersama.
 
+## Sinkronkan varian pada setiap kanal penjualan
+
+Jika usaha menjual melalui toko, chat, dan katalog online, tetapkan satu sumber catatan untuk SKU serta ketersediaan. Saat varian habis, dihentikan, atau dipindahkan, perbarui informasi pada kanal yang dipakai pelanggan dan beri tahu orang yang menerima pesanan. Jangan menjanjikan varian hanya karena total produk masih terlihat tersedia. Catat kapan pembaruan dilakukan agar perbedaan antara kanal dapat ditelusuri bila muncul pembatalan atau keluhan.
+
 Kesalahan umum adalah mencatat seluruh varian sebagai satu produk, memakai nama yang berbeda pada kanal berbeda, menyimpan lokasi tanpa penanda, dan membeli berdasarkan total. Pengelolaan varian yang rapi membuat usaha tahu pilihan mana yang tersedia, mana yang berisiko habis, dan mana yang perlu ditinjau sebelum modal kembali masuk ke stok.
