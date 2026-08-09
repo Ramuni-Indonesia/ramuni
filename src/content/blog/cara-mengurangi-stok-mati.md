@@ -115,3 +115,5 @@ Bedakan tindakan sementara dan keputusan permanen. Menunda pembelian satu siklus
 Setiap minggu atau bulan, pilih daftar kecil barang yang perlu dibaca: nilai stok tertinggi, barang paling lama tidak bergerak, barang mendekati masa simpan, dan barang dengan banyak koreksi. Jangan mencoba menyelesaikan seluruh katalog sekaligus.
 
 Catat hasilnya dalam tiga bagian: temuan, tindakan, dan tanggal cek berikutnya. Dari kebiasaan kecil ini, stok mati menjadi sinyal untuk memperbaiki pembelian dan penjualan berikutnya, bukan sekadar masalah yang disembunyikan di gudang.
+
+Mulailah dari daftar yang paling berdampak, bukan dari jumlah SKU terbanyak. Lima produk dengan nilai modal tertahan tinggi sering lebih penting untuk diperiksa daripada puluhan produk murah yang tersisa sedikit. Pada akhir setiap pemeriksaan, cocokkan keputusan dengan catatan kas dan pembelian berikutnya: apakah ruang menjadi lebih lega, apakah produk kembali bergerak, dan apakah pembelian baru benar-benar berkurang. Dengan evaluasi tersebut, tindakan terhadap stok mati menjadi proses yang dapat dipelajari, bukan sekadar acara cuci gudang.
