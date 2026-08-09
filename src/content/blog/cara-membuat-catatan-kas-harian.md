@@ -64,6 +64,37 @@ Jangan menggunakan keterangan umum seperti “uang masuk”. Tuliskan apakah uan
 
 Pemisahan ini membantu saat membandingkan catatan kas dengan [penjualan harian](/blog/cara-mencatat-penjualan-harian/). Jika omzet terlihat naik tetapi kas tidak bertambah sebanding, usaha dapat memeriksa apakah ada transaksi kredit, pembayaran tertunda, diskon, atau pencatatan yang belum lengkap.
 
+## Pisahkan metode pembayaran sebelum menjumlahkannya
+
+Uang tunai, transfer bank, dompet digital, dan pembayaran kartu tidak selalu masuk ke tempat yang sama pada waktu yang sama. Buat kolom metode pembayaran atau buku bantu terpisah, lalu gabungkan hanya ketika ingin melihat total kas masuk. Cara ini membuat saldo laci kas tidak dibandingkan dengan omzet dari seluruh kanal.
+
+| Metode | Yang dicocokkan | Waktu yang perlu diperhatikan |
+| --- | --- | --- |
+| Tunai | Uang fisik, uang kembalian, dan rekap kasir | Saat pergantian shift atau penutupan hari |
+| Transfer bank | Mutasi rekening dan nomor pesanan | Waktu transfer diterima, bukan hanya bukti kirim pelanggan |
+| Dompet digital | Laporan penyedia dan transaksi yang berhasil | Potongan biaya serta waktu pencairan dana |
+| Kartu atau kanal lain | Laporan settlement dan biaya layanan | Tanggal penjualan dapat berbeda dengan tanggal dana masuk |
+
+Misalnya, penjualan hari ini Rp1.000.000 terdiri dari tunai Rp400.000, dompet digital Rp350.000, dan transfer Rp250.000. Laci kas hanya perlu dicocokkan dengan tunai setelah memperhitungkan uang kembalian dan pengeluaran kas kecil yang sah. Dana dompet digital mungkin baru dicairkan ke rekening besok; catatan perlu menunjukkan status tersebut agar tidak terlihat seperti uang hilang.
+
+## Gunakan bukti dan nomor referensi yang ringan
+
+Setiap baris tidak harus disertai berkas panjang, tetapi harus memiliki jalan untuk menemukan buktinya. Gunakan nomor nota, nomor pesanan, foto struk dengan nama yang konsisten, atau referensi rekap kasir. Untuk pengeluaran kecil, tulis siapa yang membayar, tujuan pembelian, dan bukti apa yang tersedia. Jika bukti belum ada, jangan menghapus transaksi; beri tanda “bukti menyusul” serta tanggal tindak lanjut.
+
+Aturan sederhana yang dapat dipakai adalah satu baris untuk satu peristiwa kas. Hindari menggumpalkan “belanja harian Rp450.000” jika terdiri dari beberapa pembelian yang perlu diperiksa. Sebaliknya, jangan membuat pencatatan sangat rinci sehingga tidak pernah selesai. Cari batas yang memungkinkan pemilik usaha menelusuri transaksi material dan kejadian yang tidak biasa tanpa menambah pekerjaan berlebihan.
+
+## Tangani selisih dan setoran dengan prosedur tetap
+
+Selisih tidak selalu berarti kesalahan yang disengaja. Kembalian salah, transaksi yang belum diposting, uang muka yang belum dicatat, atau nota ganda dapat menjadi penyebabnya. Namun, memperbaiki saldo tanpa jejak membuat sebab sebenarnya hilang. Catat selisih dengan nilai, waktu ditemukan, orang yang memeriksa, dan langkah berikutnya. Setelah penyebab terbukti, buat transaksi koreksi atau lengkapi transaksi yang tertunda dengan referensi ke catatan awal.
+
+Untuk setoran kas ke rekening, catat dua kejadian bila diperlukan: uang keluar dari laci kas dan uang masuk ke rekening pada saat dana benar-benar diterima. Referensikan keduanya dengan nomor setoran yang sama. Dengan cara ini, transfer internal tidak keliru terlihat sebagai biaya atau pendapatan baru, dan saldo setiap tempat tetap dapat direkonsiliasi.
+
+## Jadikan penutupan hari sebagai kebiasaan yang dapat diwariskan
+
+Ritual penutupan dapat sesingkat beberapa langkah: berhenti menerima transaksi tunai pada waktu yang disepakati, cetak atau simpan rekap, hitung kas dengan dua orang bila memungkinkan, cocokkan dengan catatan, lalu tandai transaksi terbuka. Bila usaha menggunakan shift, tulis saldo serah-terima dan siapa yang menerima. Jangan mengandalkan pesan lisan untuk saldo awal shift berikutnya.
+
+Pemeriksaan harian bukan berarti semua masalah harus selesai pada malam yang sama. Yang penting adalah saldo final tidak dibuat-buat, selisih diberi status, dan tindak lanjut memiliki pemilik. Dalam beberapa minggu, daftar transaksi terbuka akan menunjukkan pola: metode pembayaran tertentu yang sering terlambat, pengeluaran yang tidak memiliki bukti, atau jam shift yang paling sering menghasilkan selisih. Pola tersebut memberi dasar perbaikan yang lebih baik daripada sekadar menambah aturan baru.
+
 ## Tutup hari dengan rekonsiliasi ringan
 
 Pada akhir hari, hitung uang fisik dan bandingkan dengan saldo kas pada catatan. Untuk transfer atau dompet digital, cocokkan dengan laporan metode pembayaran yang tersedia. Jika ada selisih, jangan menutupnya dengan mengubah angka tanpa keterangan. Catat waktu, jumlah, serta transaksi yang perlu ditelusuri.
