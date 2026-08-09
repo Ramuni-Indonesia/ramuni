@@ -8,6 +8,13 @@ import { createProviderService } from '../ops/cms-build-provider/server.mjs';
 import { ProviderStore } from '../ops/cms-build-provider/store.mjs';
 import { signBody } from '../ops/cms-build-provider/security.mjs';
 import { contentApprovalHash, fetchCandidate } from '../ops/cms-build-provider/candidate-client.mjs';
+import { shouldRollbackCurrentRelease } from '../ops/cms-build-provider/build-runner.mjs';
+
+test('provider rollback only restores the release that the candidate build still owns', () => {
+  assert.equal(shouldRollbackCurrentRelease({ previousTarget: '/releases/old', activeTarget: '/releases/candidate', releaseDir: '/releases/candidate' }), true);
+  assert.equal(shouldRollbackCurrentRelease({ previousTarget: '/releases/old', activeTarget: '/releases/manual-newer', releaseDir: '/releases/candidate' }), false);
+  assert.equal(shouldRollbackCurrentRelease({ previousTarget: null, activeTarget: '/releases/candidate', releaseDir: '/releases/candidate' }), false);
+});
 
 test('provider authenticates, deduplicates, builds one exact candidate and retries callback durably', async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'ramuni-provider-'));

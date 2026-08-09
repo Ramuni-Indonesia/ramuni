@@ -37,6 +37,9 @@ async function artifactDigest(root) {
 }
 
 function outputPath(dist, route) { return route === '/' ? join(dist, 'index.html') : join(dist, route.replace(/^\//, ''), 'index.html'); }
+export function shouldRollbackCurrentRelease({ previousTarget, activeTarget, releaseDir }) {
+  return Boolean(previousTarget && activeTarget === releaseDir);
+}
 async function pruneReleases(releaseRoot, keep) {
   const releasesRoot = join(releaseRoot, 'releases');
   let entries;
@@ -106,8 +109,15 @@ export async function runCandidateBuild(config, event, candidate) {
       }
     } catch (error) {
       if (previousTarget) {
-        const rollback = join(config.releaseRoot, 'current.provider-rollback');
-        await rm(rollback, { force: true }); await symlink(previousTarget, rollback); await rename(rollback, current);
+        let activeTarget = null;
+        try { activeTarget = await readlink(current); } catch (readError) { if (readError?.code !== 'ENOENT') throw readError; }
+        // A manual/independent deployment may have moved `current` while this
+        // candidate was being verified. Only roll back the release this build
+        // activated; never overwrite a newer release owned by another deploy.
+        if (shouldRollbackCurrentRelease({ previousTarget, activeTarget, releaseDir })) {
+          const rollback = join(config.releaseRoot, 'current.provider-rollback');
+          await rm(rollback, { force: true }); await symlink(previousTarget, rollback); await rename(rollback, current);
+        }
       }
       throw error;
     }
