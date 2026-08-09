@@ -708,7 +708,7 @@ const robotsPath = join(root, 'robots.txt');
 try {
   const robots = await readFile(robotsPath, 'utf8');
   if (publicEnvironment.indexingEnabled) {
-    if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap-index.xml`)) failures.push('robots.txt: production sitemap missing');
+    if (!robots.includes(`Sitemap: ${siteOrigin}/sitemap.xml`)) failures.push('robots.txt: production sitemap missing');
     if (/Disallow: \/(?:masuk|terima-kasih)/.test(robots)) failures.push('robots.txt: noindex route incorrectly blocked');
   } else {
     if (!/^Allow: \/$/m.test(robots)) failures.push('robots.txt: non-production build must allow crawlers to see noindex directives');
