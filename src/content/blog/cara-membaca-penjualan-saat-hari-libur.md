@@ -124,4 +124,6 @@ Uji perubahan kecil, misalnya menyiapkan produk terlaris lebih awal, menjadwalka
 
 Setelah hari libur, buat satu rekap yang mudah dibaca: tujuan, jam buka, penjualan per kanal, produk utama, stok kosong, sisa, promo, masalah layanan, dan tindakan yang disarankan. Tulis juga perubahan yang tidak terduga. Misalnya, angka turun karena hujan atau naik karena ada acara di sekitar toko. Catatan ini bernilai ketika usaha menyusun rencana periode serupa berikutnya.
 
+Sebelum memakai rekap sebagai dasar belanja, minta penanggung jawab operasi memeriksa beberapa transaksi dan saldo barang yang paling penting. Langkah sampel ini tidak membuat prediksi sempurna, tetapi dapat menangkap status transaksi keliru, retur yang belum masuk, atau stok yang tercatat tersedia padahal sudah tidak layak jual. Simpan koreksi bersama rekap sehingga perencanaan berikutnya memakai angka yang semakin dapat dipercaya.
+
 Kesalahan yang sering terjadi adalah memperlakukan satu hari ramai sebagai pola tetap, membandingkan periode yang tidak setara, tidak mencatat stok kosong, serta mengabaikan biaya dan beban staf. Membaca penjualan hari libur dengan rapi membantu usaha menjaga keseimbangan: cukup siap ketika permintaan datang, namun tidak membebani kas dan persediaan ketika pola berubah.
