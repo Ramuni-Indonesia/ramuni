@@ -116,3 +116,5 @@ Hindari kesalahan berikut:
 - Mengakhiri rapat tanpa pemilik tindakan serta tanggal evaluasi.
 
 Laporan bisnis bulanan yang baik menjadikan data sebagai percakapan kerja. Mulai dari ringkasan singkat, cek sumbernya, pilih temuan yang nyata, lalu uji perbaikan kecil pada bulan berikutnya. Dengan ritme ini, laporan tidak hanya mencatat masa lalu tetapi membantu usaha membuat keputusan yang lebih siap untuk periode berikutnya.
+
+Sebelum menyimpan laporan, beri nama file atau dokumen dengan periode dan statusnya, misalnya draf, diperiksa, atau diperbarui setelah koreksi. Simpan tautan ke sumber utama serta catatan asumsi di tempat yang dapat dibuka oleh pemilik proses. Jika laporan dibagikan kepada tim, gunakan ringkasan yang sesuai kebutuhan mereka dan hindari membuka rincian pelanggan atau informasi sensitif yang tidak diperlukan untuk tindakan. Kebiasaan dokumentasi kecil ini membuat laporan tetap dapat dipercaya ketika orang, sistem, atau proses berubah.
