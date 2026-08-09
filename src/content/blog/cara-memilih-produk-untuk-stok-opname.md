@@ -131,4 +131,6 @@ Hasil pemeriksaan dapat memengaruhi pesanan, safety stock, dan rotasi barang. Ji
 
 Setelah pemeriksaan, buat ringkasan singkat: produk yang dicek, selisih, penyebab yang terbukti, koreksi yang disetujui, dan perubahan proses berikutnya. Tinjau apakah prioritas perlu diubah. Produk yang selalu akurat dapat dicek lebih jarang, sedangkan produk baru dengan selisih berulang mungkin perlu masuk kelompok prioritas tinggi sampai prosesnya stabil.
 
+Tetapkan tanggal pemeriksaan ulang untuk selisih yang belum dapat dijelaskan. Bila penyebab belum jelas, jangan biarkan catatan berhenti pada kata “selisih”. Tulis siapa yang memeriksa bukti penerimaan, transaksi, atau lokasi barang, serta kapan hasilnya ditinjau oleh penanggung jawab. Penutupan yang terjadwal membuat perbaikan proses dapat diverifikasi pada siklus stok opname berikutnya.
+
 Kesalahan umum dalam stok opname adalah menghitung tanpa batas waktu jelas, melupakan lokasi atau status barang, memakai satuan bercampur, dan mengoreksi saldo tanpa penyelidikan. Memilih produk prioritas membuat stok opname lebih teratur, tetapi kualitasnya tetap bergantung pada catatan penerimaan, pengeluaran, serta koreksi yang dapat ditelusuri.
