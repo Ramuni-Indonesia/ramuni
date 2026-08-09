@@ -114,4 +114,4 @@ Target harian dapat diturunkan dari target periode bila jam buka, stok, dan pola
 
 ## Tinjau kembali saat asumsi berubah
 
-Perbarui perhitungan ketika sewa, harga bahan, kemasan, harga jual, diskon, atau komposisi produk berubah. Perbedaan biaya tetap dan variabel perlu dijaga konsisten agar perbandingan antarperiode tidak membingungkan. Dengan catatan yang jelas, titik impas menjadi alat untuk membuka percakapan yang lebih baik tentang biaya dan penjualan, bukan sekadar grafik di atas kertas.
+Perbarui perhitungan ketika sewa, harga bahan, kemasan, harga jual, diskon, atau komposisi produk berubah. Perbedaan biaya tetap dan variabel perlu dijaga konsisten agar perbandingan antarperiode tidak membingungkan. Simpan versi perhitungan, sumber angka, dan tanggal berlakunya untuk setiap perubahan penting. Dengan catatan yang jelas, titik impas menjadi alat untuk membuka percakapan yang lebih baik tentang biaya dan penjualan, bukan sekadar grafik di atas kertas.
