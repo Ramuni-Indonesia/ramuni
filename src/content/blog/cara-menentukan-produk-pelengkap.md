@@ -128,6 +128,8 @@ Pilih satu produk utama dengan pola yang cukup jelas, lalu pilih satu pelengkap.
 
 Artikel [cara menghitung konversi penjualan sederhana](/blog/cara-menghitung-konversi-penjualan-sederhana/) dapat membantu menentukan tahap yang dicatat, misalnya jumlah pembeli produk utama yang juga memilih produk pelengkap. Jangan mengukur hanya jumlah paket terjual bila banyak pelanggan tidak melihat penawarannya.
 
+Setelah periode uji selesai, bandingkan hasilnya dengan periode yang setara dan tulis juga hal yang tidak berjalan sesuai rencana. Mungkin pasangan dibeli tetapi memperlambat pengemasan, mungkin stok pendukung tersisa, atau mungkin pelanggan lebih memilih membeli produk tersebut secara terpisah. Keputusan terbaik dapat berupa mempertahankan pasangan tanpa diskon, memperbaiki informasinya, membatasi pada produk tertentu, atau menghentikannya. Catatan tersebut membuat uji berikutnya bertumpu pada pengalaman usaha sendiri, bukan pada dugaan.
+
 ## Jangan memakai bundel untuk menutupi stok mati
 
 Stok lambat perlu ditangani dengan diagnosis. Mungkin produk tidak relevan, harganya tidak sesuai, lokasinya tidak terlihat, atau permintaan memang rendah. Menempelkan produk tersebut ke barang populer tanpa manfaat yang nyata berisiko merusak pengalaman pelanggan dan menciptakan retur.
