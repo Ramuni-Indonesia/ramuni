@@ -134,4 +134,6 @@ Jangan menghapus catatan lama agar saldo baru terlihat rapi. Jejak koreksi memba
 
 Saldo yang salah dapat membuat safety stock atau titik pemesanan tidak relevan. Jika stok tercatat lebih tinggi dari fisik, usaha bisa terlambat memesan. Jika tercatat lebih rendah, usaha dapat membeli berlebihan. Karena itu, bersihkan proses pencatatan sebelum menaikkan buffer untuk menutup masalah selisih. Artikel [cara menghitung safety stock](/blog/cara-menghitung-safety-stock/) menjelaskan buffer sebagai respons terhadap variasi nyata, bukan sebagai pengganti kontrol stok.
 
+Bagikan ringkasan koreksi kepada peran yang menerima, menyimpan, menjual, atau memakai barang agar langkah pencegahan dapat diterapkan pada titik proses yang tepat. Hindari menyebarkan tuduhan atau informasi yang tidak terbukti. Fokus pada bukti, perubahan proses, dan pemeriksaan ulang akan menjaga perbaikan tetap adil serta dapat diukur.
+
 Kesalahan umum adalah langsung mengoreksi, hanya memeriksa penjualan, mencampur barang rusak dengan layak jual, serta tidak menetapkan batas waktu pemeriksaan. Selisih stok akan lebih mudah diatasi bila usaha menghitung dengan benar, mengikuti jalur barang, menyimpan bukti, dan menjadikan hasil pemeriksaan sebagai perbaikan proses yang dapat diuji pada siklus berikutnya.
