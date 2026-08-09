@@ -1,11 +1,11 @@
 ---
-title: "Cara Mengukur Dampak Diskon terhadap Laba Sebelum Menjalankan Promo"
+title: "Cara Mengukur Dampak Diskon pada Laba"
 description: "Panduan membaca dampak diskon pada nilai penjualan, margin, jumlah unit yang perlu terjual, dan catatan evaluasi promo UMKM."
 dek: "Diskon dapat membantu menguji minat pembeli, tetapi nilainya perlu dibaca bersama HPP, jumlah unit, dan biaya promo agar keputusan tidak hanya mengandalkan omzet."
 cover: "/website-original/blog/generated/cara-mengukur-dampak-diskon-terhadap-laba.webp"
 coverAlt: "Pemilik toko kain membandingkan label promo, catatan biaya, dan kalkulator"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09

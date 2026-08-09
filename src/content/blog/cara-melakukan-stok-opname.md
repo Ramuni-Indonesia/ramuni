@@ -1,11 +1,11 @@
 ---
-title: "Cara Melakukan Stok Opname agar Selisih Persediaan Bisa Ditelusuri"
+title: "Cara Stok Opname agar Selisih Mudah Ditelusuri"
 description: "Panduan stok opname UMKM: menyiapkan daftar barang, menghitung fisik, mencatat selisih, dan menentukan tindak lanjut tanpa mengubah angka sembarangan."
 dek: "Stok opname bukan sekadar menghitung barang. Tujuannya adalah membandingkan catatan dengan kondisi fisik, lalu memahami selisih yang perlu diperiksa."
 cover: "/website-original/blog/generated/cara-melakukan-stok-opname.webp"
 coverAlt: "Dua pekerja toko menghitung persediaan di rak sambil mengisi daftar pemeriksaan"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Catat selisihnya, cek transaksi dan pergerakan terkait, lalu buat koreksi yang memiliki alasan serta jejak pemeriksaan."
   - question: "Apakah semua barang harus dihitung sekaligus?"
     answer: "Tidak selalu. Usaha dapat memulai dari barang cepat laku, bernilai tinggi, atau yang sering memiliki selisih, selama cakupan dan jadwalnya jelas."
-sources: []
+sources:
+  - title: "PSAK 202: Persediaan"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar-Akuntansi-Keuangan/PSAK-202-Persediaan#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum mengenai persediaan; kebijakan koreksi dan pencatatan perlu disesuaikan dengan proses usaha."
 disclaimer: "Artikel ini merupakan panduan operasional umum. Kebijakan koreksi persediaan perlu disesuaikan dengan proses dan tanggung jawab usaha Anda."
 updateSummary: "Draf awal stok opname dengan fokus pada jejak selisih dan tindak lanjut."
 related:

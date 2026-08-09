@@ -1,11 +1,11 @@
 ---
-title: "Cara Mencatat Penjualan Harian agar Rekap Usaha Tidak Membingungkan"
+title: "Cara Mencatat Penjualan Harian dengan Rapi"
 description: "Panduan pencatatan penjualan harian untuk UMKM: data minimum, urutan cek, cara menangani pembatalan, dan langkah membuat rekap yang dapat dibandingkan."
 dek: "Pencatatan penjualan harian tidak harus rumit, tetapi setiap transaksi perlu memiliki status dan periode yang jelas agar rekap dapat dipercaya."
 cover: "/website-original/blog/generated/cara-mencatat-penjualan-harian.webp"
 coverAlt: "Pemilik toko mencatat struk transaksi ke buku penjualan di meja kasir"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Ya. Pemisahan membantu membedakan nilai penjualan dari uang yang sudah diterima serta memudahkan pemeriksaan kas dan pembayaran tertunda."
   - question: "Bagaimana mencatat transaksi yang batal?"
     answer: "Simpan jejak transaksi dengan status batal dan alasan singkat. Jangan menghapusnya begitu saja, karena penghapusan membuat rekap sulit diperiksa."
-sources: []
+sources:
+  - title: "Tentang SAK EMKM"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; pencatatan dan perpajakan perlu mengikuti kondisi serta ketentuan usaha."
 disclaimer: "Artikel ini membahas pencatatan operasional dasar dan bukan nasihat akuntansi atau pajak untuk kondisi usaha tertentu."
 updateSummary: "Draf awal pencatatan penjualan harian dengan kolom minimum dan urutan rekonsiliasi."
 related:

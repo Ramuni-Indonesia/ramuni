@@ -1,11 +1,11 @@
 ---
-title: "Cara Membuat Target Penjualan Harian yang Bisa Diperiksa Tim"
+title: "Cara Membuat Target Penjualan Harian UMKM"
 description: "Panduan mengubah target omzet menjadi kebutuhan transaksi harian, lalu menyesuaikannya dengan kapasitas, stok, dan pola penjualan usaha."
 dek: "Target harian yang berguna bukan angka tinggi di papan tulis, melainkan angka yang dapat ditelusuri ke transaksi, waktu, dan kondisi operasional."
 cover: "/website-original/blog/generated/cara-membuat-target-penjualan-harian.webp"
 coverAlt: "Pemilik usaha makanan menyusun rencana target penjualan pada kalender dan kalkulator"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Tidak. Hari kerja, akhir pekan, jam buka, musim, dan kapasitas usaha dapat berbeda. Target perlu disesuaikan dengan pola yang benar-benar terjadi."
   - question: "Apa yang dilakukan jika target tidak tercapai?"
     answer: "Buka penyebabnya: jumlah transaksi, nilai transaksi, stok, jam ramai, pembatalan, atau kualitas pencatatan. Hindari langsung menaikkan target berikutnya tanpa bukti."
-sources: []
+sources:
+  - title: "Tentang SAK EMKM"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; target penjualan perlu disesuaikan dengan data dan kapasitas usaha."
 disclaimer: "Contoh pada artikel ini bersifat edukasi. Target tidak menjamin hasil dan perlu disesuaikan dengan kondisi serta kapasitas usaha Anda."
 updateSummary: "Draf awal target penjualan harian dengan alur dari omzet menuju kebutuhan transaksi."
 related:

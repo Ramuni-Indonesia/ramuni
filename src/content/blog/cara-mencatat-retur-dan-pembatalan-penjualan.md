@@ -1,11 +1,11 @@
 ---
-title: "Cara Mencatat Retur dan Pembatalan Penjualan agar Rekap Tetap Jelas"
+title: "Cara Mencatat Retur dan Pembatalan Penjualan"
 description: "Panduan membedakan retur dan pembatalan, mencatat status transaksi, serta menggunakan data koreksi untuk memperbaiki proses penjualan UMKM."
 dek: "Retur dan pembatalan bukan angka yang perlu disembunyikan. Catatan yang rapi membantu usaha melihat penyebabnya tanpa membuat omzet, kas, dan stok saling berbeda."
 cover: "/website-original/blog/generated/cara-mencatat-retur-dan-pembatalan-penjualan.webp"
 coverAlt: "Pemilik toko menerima barang retur sambil mencatat koreksi transaksi"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Tidak. Simpan jejak dengan status batal dan alasan singkat agar rekap dapat ditelusuri dan pola masalah dapat dilihat."
   - question: "Mengapa retur perlu dikaitkan dengan stok?"
     answer: "Barang yang kembali dapat memengaruhi saldo stok, kondisi barang, dan keputusan penjualan berikutnya. Catatan retur membantu memastikan perlakuannya jelas."
-sources: []
+sources:
+  - title: "Tentang SAK EMKM"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; aturan retur dan pengembalian dana mengikuti kebijakan usaha serta ketentuan yang berlaku."
 disclaimer: "Aturan retur, pembatalan, dan pengembalian dana perlu disesuaikan dengan kebijakan usaha, metode pembayaran, serta ketentuan yang berlaku."
 updateSummary: "Draf awal catatan retur dan pembatalan dengan fokus pada jejak transaksi serta penyebab koreksi."
 related:

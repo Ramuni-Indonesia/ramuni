@@ -19,7 +19,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     slug: 'penjualan-omzet',
     name: 'Penjualan & Omzet',
     description: 'Baca pola transaksi, produk terlaris, dan waktu ramai tanpa laporan yang rumit.',
-    introduction: 'Penjualan perlu dibaca bersama produk, waktu transaksi, pembayaran, dan periode pembandingnya. Kumpulan ini membantu pemilik usaha menelusuri perubahan omzet tanpa menganggap satu angka sebagai jawaban akhir.',
+    introduction: 'Baca penjualan bersama produk, waktu, pembayaran, dan periode pembanding. Kumpulan ini membantu menelusuri perubahan omzet tanpa terpaku pada satu angka.',
     question: 'Produk dan waktu mana yang mendorong omzet minggu ini?',
     topics: ['Omzet', 'Produk terlaris', 'Perbandingan periode'],
     start: 'Pilih periode yang setara, periksa transaksi pembentuk omzet, lalu cari produk atau waktu yang benar-benar berubah.',

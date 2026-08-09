@@ -1,11 +1,11 @@
 ---
-title: "Cara Menghitung Rata-Rata Transaksi untuk Membaca Nilai Belanja Pelanggan"
+title: "Cara Menghitung Rata-Rata Transaksi UMKM"
 description: "Panduan menghitung rata-rata transaksi UMKM, membaca perubahan nilainya, dan menentukan pertanyaan lanjutan tanpa menyimpulkan terlalu cepat."
 dek: "Nilai rata-rata per transaksi membantu melihat apakah perubahan omzet datang dari jumlah pembeli, nilai belanja, atau keduanya."
 cover: "/website-original/blog/generated/cara-menghitung-rata-rata-transaksi.webp"
 coverAlt: "Pemilik toko memeriksa struk dan catatan penjualan untuk membandingkan nilai transaksi"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Tidak. Omzet adalah total nilai penjualan, sedangkan rata-rata transaksi menunjukkan nilai belanja rata-rata pada setiap transaksi."
   - question: "Bagaimana jika jumlah transaksi turun tetapi rata-rata transaksi naik?"
     answer: "Periksa apakah pelanggan membeli lebih banyak per kunjungan, ada pesanan besar yang tidak berulang, atau ada perubahan harga dan diskon. Jangan menyimpulkan hanya dari satu angka."
-sources: []
+sources:
+  - title: "Tentang SAK EMKM"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; penerapan akuntansi serta pajak perlu disesuaikan dengan kondisi usaha."
 disclaimer: "Contoh angka pada artikel ini bersifat ilustratif. Gunakan catatan transaksi dan biaya usaha Anda sendiri sebelum menentukan tindakan."
 updateSummary: "Draf awal panduan rata-rata transaksi dengan contoh pemeriksaan penjualan harian."
 related:

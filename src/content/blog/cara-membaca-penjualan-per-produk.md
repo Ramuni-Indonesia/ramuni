@@ -1,11 +1,11 @@
 ---
-title: "Cara Membaca Penjualan per Produk agar Tahu Item yang Perlu Diperiksa"
+title: "Cara Membaca Penjualan per Produk"
 description: "Panduan melihat penjualan per produk melalui nilai, jumlah unit, frekuensi transaksi, stok, dan margin tanpa hanya terpaku pada produk paling laris."
 dek: "Daftar produk terlaris adalah awal pemeriksaan. Untuk mengambil keputusan, bandingkan nilai penjualan, unit, ketersediaan stok, dan biaya produk secara terpisah."
 cover: "/website-original/blog/generated/cara-membaca-penjualan-per-produk.webp"
 coverAlt: "Pemilik toko membandingkan beberapa kelompok produk dan catatan penjualan di meja"
-coverWidth: 768
-coverHeight: 432
+coverWidth: 640
+coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
 updatedAt: 2026-08-09
@@ -34,7 +34,12 @@ faqs:
     answer: "Tidak selalu. Produk terlaris mungkin sudah sering dibeli tanpa promo, memiliki stok terbatas, atau memberi margin yang tipis. Periksa tujuannya sebelum menambah promosi."
   - question: "Berapa produk yang sebaiknya diperiksa?"
     answer: "Mulai dari tiga sampai lima produk yang paling banyak berubah, paling sering kosong, atau paling banyak mengalami retur."
-sources: []
+sources:
+  - title: "Tentang SAK EMKM"
+    publisher: "Ikatan Akuntan Indonesia"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
+    accessedAt: 2026-08-09
+    note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; pembacaan produk perlu disesuaikan dengan data serta kebijakan usaha."
 disclaimer: "Contoh pada artikel ini hanya untuk menjelaskan cara membaca catatan produk. Keputusan pembelian, harga, dan promosi perlu mempertimbangkan kondisi usaha Anda sendiri."
 updateSummary: "Draf awal pembacaan penjualan per produk dengan pembeda nilai, unit, stok, dan margin."
 related:
