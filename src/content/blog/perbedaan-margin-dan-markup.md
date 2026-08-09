@@ -69,6 +69,35 @@ Sebelum menghitung persentase, periksa dulu HPP produk. Gunakan komponen biaya y
 
 Harga jual tidak hanya ditentukan oleh HPP. Usaha perlu mempertimbangkan biaya lain, nilai bagi pelanggan, harga pasar, kapasitas, dan strategi produk. Karena itu, margin atau markup adalah alat membaca keputusan, bukan rumus tunggal yang berlaku untuk semua produk.
 
+## Jangan menukar rumus saat menetapkan target harga
+
+Kesalahan yang paling sering terjadi muncul ketika target margin diperlakukan sebagai markup. Misalnya, HPP Rp40.000 dan usaha ingin margin 50%. Harga jualnya bukan Rp60.000. Margin 50% berarti biaya hanya boleh mengambil setengah dari harga jual, sehingga harga perlu dihitung dengan membagi biaya dengan sisa persentase margin: Rp40.000 dibagi 50% = Rp80.000. Pada harga Rp80.000, selisihnya Rp40.000; margin 50% dan markup 100%.
+
+Sebaliknya, jika targetnya markup 50%, harga jual dihitung dengan menambah 50% dari biaya: Rp40.000 x 1,5 = Rp60.000. Hasil itu memberi margin sekitar 33,3%, seperti tabel awal. Tuliskan rumus yang dipakai di dokumen penetapan harga agar anggota tim tidak mengisi angka target yang sama dengan dasar yang berbeda.
+
+| Target yang disebut | Cara mencari harga dari HPP Rp40.000 | Harga jual | Ukuran hasil |
+| --- | --- | ---: | --- |
+| Markup 25% | Rp40.000 x 1,25 | Rp50.000 | Margin 20% |
+| Markup 50% | Rp40.000 x 1,50 | Rp60.000 | Margin 33,3% |
+| Margin 25% | Rp40.000 / 0,75 | Rp53.333 | Markup sekitar 33,3% |
+| Margin 50% | Rp40.000 / 0,50 | Rp80.000 | Markup 100% |
+
+Angka di atas adalah ilustrasi sebelum pembulatan, pajak, biaya kanal penjualan, atau biaya lain yang mungkin berlaku. Jika harga perlu dibulatkan, hitung ulang margin setelah pembulatan. Selisih kecil pada harga dapat berarti besar pada produk yang volumenya tinggi atau margin awalnya tipis.
+
+## Baca margin pada penjualan nyata, bukan hanya daftar harga
+
+Harga label tidak selalu sama dengan harga yang diterima usaha. Voucher, diskon bundel, biaya layanan kanal, komisi reseller, pengiriman yang ditanggung penjual, dan retur dapat mengurangi nilai penjualan efektif. Saat menilai apakah produk memenuhi target margin, gunakan harga setelah pengurangan yang benar-benar menjadi pendapatan usaha dan sertakan biaya yang relevan sesuai tujuan analisis.
+
+Contohnya, produk berharga Rp60.000 dengan HPP Rp40.000 tampak memiliki margin 33,3%. Jika pelanggan memakai voucher Rp5.000 yang ditanggung penjual, selisih menjadi Rp15.000 dari harga efektif Rp55.000; margin turun menjadi sekitar 27,3%. Nilai ini belum memperhitungkan biaya kanal bila ada. Catatan ini bukan alasan untuk menolak semua promo, tetapi dasar untuk menetapkan batas promo yang masih dapat diterima.
+
+Untuk produk yang dijual melalui beberapa kanal, buat kolom terpisah untuk harga bersih per kanal. Jangan mengambil rata-rata tanpa bobot bila satu kanal menjual jauh lebih banyak. Pembacaan seperti ini membantu mengidentifikasi apakah masalahnya ada pada harga dasar, bentuk promosi, atau biaya penjualan pada kanal tertentu.
+
+## Gunakan bahasa yang sama dalam rapat dan laporan
+
+Saat tim berdiskusi, sebutkan selalu tiga angka: HPP yang dipakai, harga jual efektif, dan ukuran persentasenya—margin atau markup. Kalimat “produk ini memberi margin 30% dari harga efektif Rp60.000 dengan HPP Rp42.000” jauh lebih jelas daripada “untungnya 30%”. Jika biaya belum lengkap, tandai sebagai perkiraan dan tulis komponen yang belum masuk.
+
+Hindari memakai margin kotor untuk menjanjikan laba bersih. Margin kotor dapat membantu membandingkan produk, tetapi sewa, gaji, pemasaran, biaya pembayaran, dan biaya usaha lain tetap menentukan hasil akhir. Hubungkan pembacaan per produk dengan [laporan laba rugi sederhana](/blog/laporan-laba-rugi-sederhana-umkm/) agar keputusan harga tidak terlepas dari kondisi usaha secara keseluruhan.
+
 ## Jangan menilai promo dari persentase saja
 
 Diskon menurunkan harga jual dan dapat mengubah margin lebih besar dari yang terlihat. Produk yang tadinya memiliki selisih aman bisa menjadi sangat tipis setelah promo, terutama bila ada biaya tambahan atau retur. Saat mengevaluasi promosi, lihat harga setelah diskon, HPP, unit terjual, serta hasil bersih. Baca [dampak diskon terhadap laba](/blog/cara-mengukur-dampak-diskon-terhadap-laba/) untuk menyusun catatan tersebut.
