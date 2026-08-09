@@ -132,4 +132,18 @@ Jumlah barang rusak perlu dilihat bersama jenis produk, nilai, lokasi, pemasok, 
 
 Tentukan satu tindakan kecil dan waktu pemeriksaan ulang. Misalnya, bila kemasan sering bocor setelah ditumpuk, ubah susunan untuk satu kelompok barang lalu lihat apakah jumlah rusak berkurang dalam beberapa minggu. Catat dampaknya sebelum menetapkan perubahan untuk seluruh gudang.
 
+## Periksa kondisi saat penerimaan dan serah-terima
+
+Banyak kerusakan baru terlihat setelah barang beberapa hari berada di gudang, padahal kondisinya mungkin sudah bermasalah saat diterima. Karena itu, masukkan pemeriksaan dasar ke alur penerimaan: bandingkan jumlah dengan dokumen, lihat kondisi kemasan serta segel bila relevan, pisahkan barang yang diragukan, dan catat waktu serta pihak yang menerima. Jika barang diterima oleh satu orang lalu disimpan oleh orang lain, buat serah-terima yang mencatat lokasi dan statusnya supaya kerusakan tidak kehilangan jejak.
+
+| Langkah penerimaan | Catatan yang membantu |
+| --- | --- |
+| Bandingkan jumlah | Satuan, jumlah diterima, dan jumlah yang ditolak bila ada |
+| Periksa kondisi tampak | Kemasan, kelembapan, kebocoran, pecah, atau kondisi sesuai produk |
+| Tandai barang meragukan | Lokasi karantina dan alasan pemeriksaan lanjutan |
+| Simpan bukti secukupnya | Rujukan pesanan, penerimaan, atau komunikasi pemasok bila diperlukan |
+| Catat keputusan | Diterima, dipisahkan, dikembalikan, atau menunggu penilaian |
+
+Langkah ini tidak menggantikan pemeriksaan mutu yang diwajibkan untuk jenis produk tertentu. Ia hanya memastikan kondisi dan status barang tidak berubah tanpa catatan saat berpindah dari pemasok ke penyimpanan usaha.
+
 Kesalahan umum adalah mencampur barang rusak dengan stok normal, hanya mencatat total tanpa penyebab, membuang barang tanpa jejak, dan memakai koreksi untuk menutup masalah proses. Catatan stok rusak yang sederhana tetapi konsisten membantu usaha menjaga saldo yang lebih jujur, mengurangi waste, dan menindaklanjuti kerusakan berdasarkan bukti.
