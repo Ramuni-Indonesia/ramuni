@@ -125,3 +125,5 @@ Artikel [pertanyaan AI untuk analisis penjualan](/blog/pertanyaan-ai-untuk-anali
 - Mengabaikan jawaban yang bertentangan dengan data sumber karena output terlihat percaya diri.
 
 AI paling berguna ketika membantu usaha memperluas pertanyaan dan mempercepat pekerjaan yang tetap dapat diperiksa. Tanggung jawab akhir tetap berada pada orang yang memahami usaha, melihat bukti, dan dapat menjelaskan alasan keputusan kepada pelanggan serta tim.
+
+Tinjau batas penggunaan AI setiap kali proses, data, atau alat berubah. Pelatihan staf juga perlu menjelaskan contoh yang boleh dilakukan, contoh yang perlu persetujuan, dan contoh yang harus dihentikan. Catat insiden atau hasil yang tidak sesuai sebagai bahan perbaikan proses, bukan untuk mencari jalan pintas yang mengabaikan batas yang sudah disepakati. Dengan disiplin ini, AI tetap berada pada peran pendukung yang dapat dipertanggungjawabkan.
