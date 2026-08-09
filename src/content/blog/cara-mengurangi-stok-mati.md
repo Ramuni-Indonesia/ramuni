@@ -102,13 +102,13 @@ Sebelum mengadakan diskon besar, buat satu lembar keputusan untuk tiap kelompok 
 | Apakah diskon masih menutup biaya langsung? | Harga promo masih di atas HPP dan biaya kemasan | Uji promo terbatas, lalu bandingkan hasilnya |
 | Apakah barang bisa dipakai dengan cara lain? | Bahan dapat menjadi paket sampel | Hitung nilai manfaatnya dan catat pengurangan stok |
 
-Contohnya, ada 40 unit produk yang tidak bergerak selama dua bulan. Sebelum memberi diskon 50 persen, pemilik usaha dapat mencoba memindahkan 10 unit ke area yang lebih terlihat selama satu minggu dan mencatat jumlah yang ditanyakan maupun terjual. Jika tidak ada respons, uji bundel kecil dengan produk pelengkap. Diskon lebih dalam baru dipertimbangkan setelah biaya dan tujuan—mengurangi ruang, mengembalikan sebagian kas, atau menghentikan lini produk—jelas. Catatan hasil uji membantu menghindari promo yang diulang hanya karena terlihat ramai sesaat.
+Contohnya, ada 40 unit produk yang tidak bergerak selama dua bulan. Sebelum memberi diskon 50 persen, pemilik usaha dapat mencoba memindahkan 10 unit ke area yang lebih terlihat selama satu minggu dan mencatat jumlah yang ditanyakan maupun terjual. Jika tidak ada respons, uji bundel kecil dengan produk pelengkap. Diskon lebih dalam baru dipertimbangkan setelah biaya dan tujuan jelas: mengurangi ruang, mengembalikan sebagian kas, atau menghentikan lini produk. Catatan hasil uji membantu menghindari promo yang diulang hanya karena terlihat ramai sesaat.
 
 ## Hentikan sumber stok mati berikutnya
 
 Penanganan stok lama belum lengkap bila pembelian baru tetap berjalan dengan pola yang sama. Setelah menemukan barang mati, telusuri keputusan pembelian terakhir: siapa yang memesan, dasar jumlahnya, apakah ada minimum pembelian, dan apakah sisa stok sebelumnya terlihat saat pesanan dibuat. Perubahan kecil sering cukup, misalnya menahan pembelian sampai stok turun ke batas tertentu, memesan kemasan lebih kecil, atau meminta pemasok mengonfirmasi ketersediaan sebelum produk dipajang.
 
-Bedakan tindakan sementara dan keputusan permanen. Menunda pembelian satu siklus bukan berarti produk harus dihentikan selamanya. Tulis tanggal evaluasi, orang yang bertanggung jawab, serta ukuran keberhasilan yang mudah dibaca—misalnya “20 unit berkurang dalam empat minggu tanpa diskon di bawah biaya”. Jika ukuran itu tidak tercapai, tim dapat memilih tindakan berikutnya berdasarkan bukti, bukan menambah stok baru karena kebiasaan.
+Bedakan tindakan sementara dan keputusan permanen. Menunda pembelian satu siklus bukan berarti produk harus dihentikan selamanya. Tulis tanggal evaluasi, orang yang bertanggung jawab, serta ukuran keberhasilan yang mudah dibaca, misalnya “20 unit berkurang dalam empat minggu tanpa diskon di bawah biaya”. Jika ukuran itu tidak tercapai, tim dapat memilih tindakan berikutnya berdasarkan bukti, bukan menambah stok baru karena kebiasaan.
 
 ## Buat pemeriksaan berulang yang ringan
 

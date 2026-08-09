@@ -73,7 +73,7 @@ Saat bahan tersisa, jangan langsung memasukkan seluruh nilai belanja sebagai bia
 
 ## Hitung satu batch dari bukti yang sama
 
-Untuk membuat HPP dapat diperiksa, kumpulkan bukti dalam satu batch: resep atau daftar bahan, nota pembelian, catatan pemakaian, jumlah hasil, dan produk yang tidak layak jual. Tidak semua usaha perlu sistem produksi yang rumit, tetapi tanggal dan batas batch perlu jelas. Bila produksi dilakukan tiga kali dalam sehari dengan bahan dan ukuran yang sama, usaha dapat memilih menghitung per hari atau per produksi—selama pilihan itu dipakai konsisten pada periode berikutnya.
+Untuk membuat HPP dapat diperiksa, kumpulkan bukti dalam satu batch: resep atau daftar bahan, nota pembelian, catatan pemakaian, jumlah hasil, dan produk yang tidak layak jual. Tidak semua usaha perlu sistem produksi yang rumit, tetapi tanggal dan batas batch perlu jelas. Bila produksi dilakukan tiga kali dalam sehari dengan bahan dan ukuran yang sama, usaha dapat memilih menghitung per hari atau per produksi selama pilihan itu dipakai konsisten pada periode berikutnya.
 
 Misalnya, satu batch minuman menggunakan 3 kg bahan utama dari persediaan. Bahan dibeli Rp60.000 per kg, sehingga nilai bahan yang dipakai Rp180.000; bukan nilai seluruh pembelian bila masih ada bahan tersisa. Tambahkan bahan pendukung Rp30.000 dan 50 kemasan seharga Rp40.000. Jika dari proses tersebut dihasilkan 52 botol tetapi dua botol bocor, pembaginya adalah 50 botol layak jual. Total Rp250.000 dibagi 50 menghasilkan Rp5.000 per botol. Tulis juga dua botol gagal tersebut, karena tingkat kegagalan yang berulang dapat menaikkan biaya nyata pada batch berikutnya.
 

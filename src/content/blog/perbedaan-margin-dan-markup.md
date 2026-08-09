@@ -94,7 +94,7 @@ Untuk produk yang dijual melalui beberapa kanal, buat kolom terpisah untuk harga
 
 ## Gunakan bahasa yang sama dalam rapat dan laporan
 
-Saat tim berdiskusi, sebutkan selalu tiga angka: HPP yang dipakai, harga jual efektif, dan ukuran persentasenya—margin atau markup. Kalimat “produk ini memberi margin 30% dari harga efektif Rp60.000 dengan HPP Rp42.000” jauh lebih jelas daripada “untungnya 30%”. Jika biaya belum lengkap, tandai sebagai perkiraan dan tulis komponen yang belum masuk.
+Saat tim berdiskusi, sebutkan selalu tiga angka: HPP yang dipakai, harga jual efektif, dan ukuran persentasenya, yaitu margin atau markup. Kalimat “produk ini memberi margin 30% dari harga efektif Rp60.000 dengan HPP Rp42.000” jauh lebih jelas daripada “untungnya 30%”. Jika biaya belum lengkap, tandai sebagai perkiraan dan tulis komponen yang belum masuk.
 
 Hindari memakai margin kotor untuk menjanjikan laba bersih. Margin kotor dapat membantu membandingkan produk, tetapi sewa, gaji, pemasaran, biaya pembayaran, dan biaya usaha lain tetap menentukan hasil akhir. Hubungkan pembacaan per produk dengan [laporan laba rugi sederhana](/blog/laporan-laba-rugi-sederhana-umkm/) agar keputusan harga tidak terlepas dari kondisi usaha secara keseluruhan.
 
@@ -110,4 +110,4 @@ Tuliskan apakah laporan menggunakan margin atau markup dan pastikan semua orang 
 
 Produk terlaris belum tentu memberi margin tertinggi. Dengan membaca volume dan selisih biaya-harga secara terpisah, usaha dapat menentukan produk mana yang perlu diperiksa lebih dulu. Artikel [produk terlaris belum tentu paling untung](/blog/produk-terlaris-belum-tentu-paling-untung/) membahas perbedaan tersebut dalam keputusan sehari-hari.
 
-Hindari dua jalan pintas: membandingkan persentase tanpa menyebut pembaginya dan memakai HPP yang sudah tidak berlaku. Saat harga bahan berubah, angka margin lama dapat memberi rasa aman yang keliru. Simpan tanggal pembaruan biaya, lalu gunakan angka tersebut secara konsisten pada evaluasi periode yang sama. Bila ada pengecualian—misalnya harga kontrak atau paket khusus—tulis alasannya agar pembacaan produk tidak tercampur dengan harga normal.
+Hindari dua jalan pintas: membandingkan persentase tanpa menyebut pembaginya dan memakai HPP yang sudah tidak berlaku. Saat harga bahan berubah, angka margin lama dapat memberi rasa aman yang keliru. Simpan tanggal pembaruan biaya, lalu gunakan angka tersebut secara konsisten pada evaluasi periode yang sama. Bila ada pengecualian, misalnya harga kontrak atau paket khusus, tulis alasannya agar pembacaan produk tidak tercampur dengan harga normal.

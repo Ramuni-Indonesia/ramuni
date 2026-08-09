@@ -94,10 +94,10 @@ Sebagian besar selisih muncul pada transaksi yang jarang terjadi: sampel gratis,
 
 | Kejadian tidak biasa | Cara menulisnya | Risiko bila tidak dipisahkan |
 | --- | --- | --- |
-| Sampel untuk calon pelanggan | Keluar—sampel; nama kegiatan dan jumlah | Saldo berkurang tanpa terlihat sebagai biaya promosi |
+| Sampel untuk calon pelanggan | Keluar: sampel; nama kegiatan dan jumlah | Saldo berkurang tanpa terlihat sebagai biaya promosi |
 | Transfer antar lokasi | Keluar dari asal dan masuk di tujuan dengan referensi sama | Barang dapat tercatat tersedia di dua lokasi |
-| Barang dipakai produksi | Keluar—pemakaian produksi; nomor batch atau pesanan | HPP atau bahan yang dipakai tidak dapat ditelusuri |
-| Retur pelanggan | Masuk—menunggu pemeriksaan; referensi transaksi awal | Barang rusak keliru masuk kembali sebagai siap jual |
+| Barang dipakai produksi | Keluar: pemakaian produksi; nomor batch atau pesanan | HPP atau bahan yang dipakai tidak dapat ditelusuri |
+| Retur pelanggan | Masuk: menunggu pemeriksaan; referensi transaksi awal | Barang rusak keliru masuk kembali sebagai siap jual |
 
 Pemisahan ini tidak harus menambah banyak formulir. Satu pilihan keterangan standar dan bukti yang dilampirkan pada transaksi sudah cukup untuk tahap awal. Yang penting, orang tidak perlu menebak arti pengurangan saldo saat membaca kartu beberapa minggu kemudian.
 
