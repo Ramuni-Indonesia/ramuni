@@ -113,3 +113,5 @@ Hindari kesalahan berikut:
 - Tidak memberi waktu serta panduan untuk pengguna yang menjalankan proses sehari-hari.
 
 Catatan yang baik adalah catatan yang dapat digunakan, diperiksa, dan diteruskan. Nilai manual atau aplikasi dari kemampuan tersebut, lalu ubah proses secara bertahap berdasarkan bukti yang ditemukan dalam usaha sendiri.
+
+Simpan keputusan evaluasi beserta alasan, pengguna yang ikut menguji, ruang lingkup pilot, dan tanggal peninjauan berikutnya. Bila usaha memakai dua cara selama masa transisi, tentukan satu sumber utama untuk setiap jenis data agar angka tidak dicatat dua kali lalu berbeda. Setelah proses dipilih, terus periksa apakah catatan masih membantu staf melayani pelanggan, menerima barang, dan menutup transaksi tanpa pekerjaan tambahan yang tidak perlu.
