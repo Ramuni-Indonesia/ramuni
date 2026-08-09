@@ -108,3 +108,7 @@ Pada akhir hari, pilih produk penting atau cepat bergerak untuk diperiksa. Bandi
 Kartu stok juga membantu ketika usaha menentukan kapan perlu menyiapkan pembelian. Saldo pada kartu bukan keputusan pesan otomatis, tetapi dapat menjadi masukan untuk [reorder point](/blog/cara-menghitung-reorder-point/) bersama waktu tunggu pemasok dan stok fisik.
 
 Kesalahan umum adalah mencatat belakangan saat bukti sudah hilang, memakai satu kartu untuk beberapa varian, atau tidak menuliskan alasan koreksi. Mulai dari format kecil yang benar-benar bisa dijaga. Setelah kebiasaan terbentuk, kartu stok memberi dasar yang lebih baik untuk membaca persediaan tanpa menebak.
+
+Jika memakai spreadsheet, lindungi kolom rumus saldo dan beri akses edit hanya kepada orang yang memang mencatat transaksi. Simpan tautan atau nomor bukti di kolom keterangan, bukan foto yang ditanam tanpa nama. Jika memakai buku, beri nomor halaman dan jangan merobek halaman yang salah; coret satu garis, tulis koreksi, lalu bubuhkan tanggal. Praktik kecil ini membuat catatan tetap dapat diaudit oleh pemilik usaha tanpa memperumit pekerjaan harian.
+
+Saat usaha memiliki lebih dari satu lokasi, jangan cukup menulis “pindah”. Buat satu transaksi keluar di lokasi asal dan satu transaksi masuk di lokasi tujuan dengan referensi yang sama. Kedua kartu akan tetap seimbang, sementara barang yang masih di perjalanan tidak keliru dianggap tersedia untuk dijual di dua tempat sekaligus. Aturan ini juga berguna untuk stok yang dipinjamkan ke acara atau dititipkan kepada reseller.
