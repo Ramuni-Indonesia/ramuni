@@ -146,9 +146,9 @@ Semua topik berikut adalah rencana. Tidak ada yang boleh dimasukkan ke sitemap s
 | 99 | Industri | `cara-mengelola-stok-toko-fashion` | stok toko fashion | ukuran warna pakaian; SKU fashion; stok musiman | Informasional | Editorial |
 | 100 | Industri | `cara-mencatat-penjualan-usaha-laundry` | pencatatan usaha laundry | laporan laundry; pendapatan jasa; pelanggan laundry | How-to | Editorial + keuangan |
 
-## Kalender editorial Januari–9 Agustus 2026
+## Kalender editorial teracak Januari–9 Agustus 2026
 
-Ini adalah distribusi **rencana topik** agar backlog editorial terlihat natural dan merata. Ini bukan izin untuk memalsukan `publishedAt`: tanggal yang tampil di halaman tetap tanggal publikasi sebenarnya, sementara naskah yang belum siap tetap draft/noindex.
+Ini adalah distribusi **rencana topik** agar backlog editorial tersebar natural pada delapan bulan terakhir. Slot topik diacak di dalam bulan terkait, dengan jarak satu sampai tiga hari kerja dan tanpa pola tanggal yang berulang. Ini bukan izin untuk memalsukan `publishedAt`: tanggal yang tampil di halaman tetap tanggal publikasi sebenarnya, sementara naskah yang belum siap tetap draft/noindex.
 
 | Bulan | Jumlah topik dalam kalender | Fokus |
 | --- | ---: | --- |
@@ -161,4 +161,4 @@ Ini adalah distribusi **rencana topik** agar backlog editorial terlihat natural 
 | Juli | 18 | Cluster AI aman serta kebutuhan industri |
 | 1–9 Agustus | 16 | Refresh, perbandingan yang faktual, dan artikel yang lolos review |
 
-Setiap artikel baru akan memakai tanggal terbit aktualnya. Untuk artikel yang sudah pernah terbit, tanggal lama tidak diubah hanya untuk membuat distribusi terlihat lebih rapi.
+Setiap artikel baru akan memakai tanggal terbit aktualnya. Untuk artikel yang sudah pernah terbit, tanggal lama tidak diubah hanya untuk membuat distribusi terlihat lebih rapi. Kolom kalender ini digunakan sebagai urutan produksi dan prioritas review, bukan metadata publik.
