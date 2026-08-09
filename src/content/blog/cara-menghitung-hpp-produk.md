@@ -108,3 +108,5 @@ Untuk melihat mengapa volume penjualan dan kontribusi laba tidak selalu sama, ba
 Perbarui HPP ketika harga bahan, ukuran kemasan, hasil produksi, atau proses kerja berubah. Simpan tanggal serta alasan perubahan. Catatan ini membantu usaha menjelaskan mengapa margin terlihat berubah pada laporan berikutnya, bukan hanya melihat omzet dan menebak penyebabnya.
 
 HPP sederhana yang konsisten lebih berguna daripada perhitungan sangat detail yang tidak pernah diperbarui. Mulai dari produk utama, gunakan bukti pembelian dan hasil produksi yang tersedia, lalu hubungkan hasilnya dengan [laporan laba rugi sederhana](/blog/laporan-laba-rugi-sederhana-umkm/) untuk melihat biaya produk dalam konteks usaha yang lebih luas.
+
+Sebelum menjadikan angka sebagai dasar keputusan besar, minta satu orang lain membaca kembali satu batch contoh. Ia perlu dapat menemukan asal setiap angka dan menghitung ulang hasilnya tanpa penjelasan lisan. Jika tidak bisa, sederhanakan format atau tambahkan keterangan. Pemeriksaan singkat ini lebih berguna daripada mengandalkan angka yang tampak presisi tetapi tidak dapat ditelusuri.
