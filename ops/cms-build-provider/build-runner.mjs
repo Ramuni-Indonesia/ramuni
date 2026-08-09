@@ -60,7 +60,9 @@ export async function runCandidateBuild(config, event, candidate) {
     const baseEnv = {
       PATH: process.env.PATH, HOME: buildHome, NPM_CONFIG_CACHE: join(buildHome, '.npm'), ...config.publicBuildEnv,
       PUBLIC_DEPLOY_ENV: config.publicBuildEnv.PUBLIC_DEPLOY_ENV || 'staging',
-      PUBLIC_INDEXING_ENABLED: 'false',
+      // Production indexing is intentionally opt-in through the provider's
+      // reviewed PUBLIC_* environment. Staging remains noindex by default.
+      PUBLIC_INDEXING_ENABLED: config.publicBuildEnv.PUBLIC_INDEXING_ENABLED || 'false',
     };
     const candidateBuildEnv = {
       ...baseEnv,
@@ -110,7 +112,8 @@ export async function runCandidateBuild(config, event, candidate) {
       throw error;
     }
     await pruneReleases(config.releaseRoot, config.releaseRetention || 8);
-    return { providerBuildId: buildId, artifactDigest: digest, artifactUrl: `https://staging.ramuni.id/?release=${encodeURIComponent(buildId)}` };
+    const artifactUrl = new URL(`?release=${encodeURIComponent(buildId)}`, config.publicBaseUrl).toString();
+    return { providerBuildId: buildId, artifactDigest: digest, artifactUrl };
   } finally {
     await run('git', ['-C', config.repository, 'worktree', 'remove', '--force', checkout], { env: process.env, label: 'git_worktree_remove' }).catch(() => undefined);
     await rm(workRoot, { recursive: true, force: true });
