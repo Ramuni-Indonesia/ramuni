@@ -1,9 +1,8 @@
 import type { APIRoute } from 'astro';
-import { getBlogPosts } from '../lib/blog';
+import { getBlogPosts, getVisibleBlogPosts } from '../lib/blog';
 
 export const GET: APIRoute = async () => {
-  const articles = (await getBlogPosts())
-    .filter((post) => !post.data.draft)
+  const articles = getVisibleBlogPosts(await getBlogPosts())
     .sort((a, b) => (b.data.updatedAt || b.data.publishedAt).valueOf() - (a.data.updatedAt || a.data.publishedAt).valueOf())
     .map((post) => ({
       title: post.data.title,
