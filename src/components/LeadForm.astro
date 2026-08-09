@@ -12,13 +12,13 @@ interface Props {
 const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard' } = Astro.props;
 const labels = { 'early-access': 'Ajukan akses', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
-const hasLeadEndpoint = Boolean(endpoint);
+const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';
 const isChat = variant === 'chat';
 ---
-<form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact, 'lead-form--chat': isChat }]} action={hasLeadEndpoint ? endpoint : undefined} method="post"
+<form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact, 'lead-form--chat': isChat }]} action={enabled ? endpoint : undefined} method="post"
   data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
-  data-lead-endpoint={endpoint || ''} data-lead-variant={variant} novalidate>
+  data-enabled={String(enabled)} data-lead-variant={variant} novalidate>
   {isProgressive && !isChat && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
     <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
   </ol>}
@@ -27,20 +27,20 @@ const isChat = variant === 'chat';
   </div>}
   {isChat ? (
     <>
-      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined}>
+      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
         <legend class="visually-hidden">Halo, saya bantu arahkan ke tim RAMUNI. Boleh tahu nama Anda?</legend>
         <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" placeholder="Ketik nama Anda" required maxlength="150" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim nama"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
-      <fieldset class="lead-form__step" data-form-step="2">
+      <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
         <legend class="visually-hidden">Apa yang paling ingin Anda rapikan atau pahami dari bisnis?</legend>
         <input type="hidden" name="intent" value="support" />
         <div class="chat-composer chat-composer--message"><div class="field field--context"><label class="visually-hidden" for={kind + '-' + location + '-need'}>Kebutuhan utama</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: ingin memantau stok dan penjualan" required maxlength="2000"></textarea><small class="visually-hidden" id={kind + '-' + location + '-privacy'}>Jangan masukkan password, token, atau informasi sensitif.</small></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim kebutuhan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
-      <fieldset class="lead-form__step" data-form-step="3">
+      <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
         <legend class="visually-hidden">Baik. Nomor WhatsApp aktif yang bisa dihubungi?</legend>
         <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xx atau +62xx" required maxlength="24" /></div><button class="chat-send" type="button" data-progress-next aria-label="Kirim nomor WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
       </fieldset>
-      <fieldset class="lead-form__step" data-form-step="4">
+      <fieldset class="lead-form__step" data-form-step="4" disabled={enabled ? undefined : true}>
         <legend class="visually-hidden">Terakhir, email yang bisa dihubungi?</legend>
         <input type="hidden" name="consent" value="yes" /><input type="hidden" name="leadType" value={kind} /><input type="hidden" name="consentVersion" value="2026-07-25" />
         <div class="chat-composer"><div class="field"><label class="visually-hidden" for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" placeholder="nama@email.com" required maxlength="254" /></div><button class="chat-send" type="submit" aria-label="Kirim email dan buka WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 4.5 17 7.5-17 7.5 2.1-6.1 8.7-1.4-8.7-1.4-2.1-6.1Z" /></svg></button></div>
@@ -50,7 +50,7 @@ const isChat = variant === 'chat';
     </>
   ) : (
     <>
-      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined}>
+      <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
         {isProgressive && <legend>Mulai dari kontak yang bisa dihubungi.</legend>}
         <div class="form-grid">
           <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" required maxlength="150" /></div>
@@ -58,7 +58,7 @@ const isChat = variant === 'chat';
           <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" required maxlength="254" /></div>
         </div>
       </fieldset>
-      <fieldset class="lead-form__step" data-form-step="2">
+      <fieldset class="lead-form__step" data-form-step="2" disabled={enabled ? undefined : true}>
         {isProgressive && <legend>Beri konteks minimum agar tim tidak menebak-nebak.</legend>}
         <div class="form-grid">
           {!compact && <div class="field"><label for={kind + '-' + location + '-business'}>Nama usaha</label><input id={kind + '-' + location + '-business'} name="business" autocomplete="organization" required maxlength="150" /></div>}
@@ -68,7 +68,7 @@ const isChat = variant === 'chat';
         </div>
         <div class="field field--context"><label for={kind + '-' + location + '-need'}>Apa yang ingin Anda pahami?</label><textarea id={kind + '-' + location + '-need'} name="need" aria-describedby={kind + '-' + location + '-privacy'} placeholder="Contoh: Saya sulit tahu stok mana yang perlu dicek sebelum jam ramai." maxlength="2000"></textarea><small id={kind + '-' + location + '-privacy'}>Jangan masukkan data pelanggan, transaksi, password, token, atau informasi sensitif.</small></div>
       </fieldset>
-      <fieldset class="lead-form__step" data-form-step="3">
+      <fieldset class="lead-form__step" data-form-step="3" disabled={enabled ? undefined : true}>
         {isProgressive && <legend>Setujui tindak lanjut sebelum diarahkan ke WhatsApp.</legend>}
         <label class="consent-field"><input type="checkbox" name="consent" value="yes" required /><span>Saya setuju informasi ini dipakai untuk menindaklanjuti permintaan sesuai <a href="/privasi/">kebijakan privasi</a>.</span></label>
         <label class="consent-field consent-field--optional"><input type="checkbox" name="marketingConsent" value="yes" /><span>Saya boleh menerima pembaruan produk RAMUNI. Ini opsional.</span></label>
@@ -76,7 +76,7 @@ const isChat = variant === 'chat';
       </fieldset>
     </>
   )}
-  {!isChat ? <div class="form-actions">
+  {enabled && !isChat ? <div class="form-actions">
     {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
     {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
     <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>

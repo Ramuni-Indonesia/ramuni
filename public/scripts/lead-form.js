@@ -302,38 +302,8 @@ const initialiseLeadForms = () => {
       }
     });
 
-    if (!form.dataset.leadEndpoint) {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (!(submitButton instanceof HTMLButtonElement) || form.dataset.submitting === 'true') return;
-        if (form.dataset.leadMode === 'progressive' && stepIndex < steps.length - 1) {
-          advanceStep();
-          return;
-        }
-        if (!validate(steps.flatMap((_, index) => fieldsForStep(index)))) return;
-
-        const data = new FormData(form);
-        const name = clean(data.get('name'), 150);
-        const need = clean(data.get('need'), 600);
-        const fallbackMessage = [
-          'Halo RAMUNI, saya ingin mencoba RAMUNI.',
-          '',
-          ...(name ? [`Nama: ${name}`] : []),
-          ...(need ? [`Kebutuhan utama: ${need}`] : []),
-          'Saya ingin mengetahui alur yang paling relevan untuk usaha saya.',
-        ].join('\n');
-        const handoff = new URL(officialWhatsAppUrl);
-        handoff.searchParams.set('text', fallbackMessage);
-        form.dataset.submitting = 'true';
-        submitButton.disabled = true;
-        submitButton.setAttribute('aria-busy', 'true');
-        if (form.dataset.leadVariant === 'chat') {
-          appendAnswerForStep(stepIndex);
-          updateChatProgress('Siap. WhatsApp RAMUNI akan terbuka untuk melanjutkan percakapan.', 'success');
-        }
-        setStatus('Membuka WhatsApp RAMUNI...', 'success');
-        window.setTimeout(() => window.location.assign(handoff.toString()), reducedMotion.matches ? 0 : 180);
-      });
+    if (form.dataset.enabled !== 'true') {
+      form.addEventListener('submit', (event) => event.preventDefault());
       return;
     }
     form.addEventListener('submit', async (event) => {

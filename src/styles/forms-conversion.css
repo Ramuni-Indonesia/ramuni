@@ -116,8 +116,8 @@
   font-weight: 800;
 }
 
-/* The floating consultation is user-triggered. It hands off through CRM when
-   configured, or opens WhatsApp directly when CRM intake is unavailable. */
+/* The floating consultation is user-triggered and hands off to WhatsApp only
+   after the configured CRM intake returns durable acceptance. */
 .lead-form__step {
   min-width: 0;
   margin: 0;
