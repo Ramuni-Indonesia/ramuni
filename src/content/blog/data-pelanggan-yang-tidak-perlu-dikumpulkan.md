@@ -114,3 +114,5 @@ Hindari kesalahan berikut:
 - Menganggap data minimum berarti mengabaikan bukti yang benar-benar diperlukan untuk layanan.
 
 Data yang lebih sedikit tetapi relevan biasanya lebih mudah dirapikan, diamankan, dan dipakai untuk melayani pelanggan. Mulailah dengan menghapus satu kolom yang tidak punya tujuan, memperjelas satu proses akses, atau meninjau satu folder lama. Perubahan kecil yang konsisten membantu usaha menjaga kepercayaan tanpa membuat operasional menjadi lebih berat.
+
+Sebelum meluncurkan formulir baru, lakukan uji dengan tiga transaksi contoh. Minta staf menjelaskan tujuan setiap kolom dan bagaimana informasi itu akan dipakai pada langkah berikutnya. Bila jawaban hanya “untuk jaga-jaga”, hapus atau tunda kolom tersebut sampai ada kebutuhan nyata. Setelah formulir digunakan, periksa apakah ada pelanggan yang bingung, apakah proses layanan benar-benar terbantu, dan apakah ada data yang tidak pernah dibuka lagi. Umpan balik tersebut membantu usaha memperbaiki desain proses tanpa mengumpulkan informasi berlebihan.
