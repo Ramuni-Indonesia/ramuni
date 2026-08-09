@@ -71,6 +71,15 @@ function latestSchemaDate(html) {
   return new Date(Math.max(...timestamps)).toISOString().slice(0, 10);
 }
 
+function configuredFallbackLastmod() {
+  const value = process.env.PUBLIC_SITEMAP_LASTMOD?.trim();
+  if (value === undefined || value === '') return undefined;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) {
+    throw new Error('PUBLIC_SITEMAP_LASTMOD must use YYYY-MM-DD');
+  }
+  return value;
+}
+
 function renderUrlset(entries) {
   const body = entries.map((entry) => {
     const lastmod = entry.lastmod ? `<lastmod>${escapeXml(entry.lastmod)}</lastmod>` : '';
@@ -79,9 +88,9 @@ function renderUrlset(entries) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}</urlset>\n`;
 }
 
-function renderIndex(siteOrigin) {
+function renderIndex(siteOrigin, lastmod) {
   const body = SITEMAP_CHILD_FILES
-    .map((file) => `<sitemap><loc>${escapeXml(`${siteOrigin}/${file}`)}</loc></sitemap>`)
+    .map((file) => `<sitemap><loc>${escapeXml(`${siteOrigin}/${file}`)}</loc>${lastmod ? `<lastmod>${escapeXml(lastmod)}</lastmod>` : ''}</sitemap>`)
     .join('');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${body}</sitemapindex>\n`;
 }
@@ -96,6 +105,7 @@ async function removeGeneratedSitemaps(root) {
 
 export function ramuniSitemapArchitecture({ site, indexingEnabled }) {
   const siteOrigin = new URL(site).origin;
+  const fallbackLastmod = configuredFallbackLastmod();
 
   return {
     name: 'ramuni-sitemap-architecture',
@@ -136,7 +146,9 @@ export function ramuniSitemapArchitecture({ site, indexingEnabled }) {
 
           groups.get(sitemapGroupForPath(route)).push({
             loc: canonicalUrl.href,
-            lastmod: latestSchemaDate(html),
+            // Articles keep their own content timestamp. Stable public pages
+            // use the reviewed site-revision date, never the build clock.
+            lastmod: latestSchemaDate(html) || fallbackLastmod,
           });
         }
 
@@ -145,10 +157,9 @@ export function ramuniSitemapArchitecture({ site, indexingEnabled }) {
           await writeFile(join(root, `sitemap-${group}.xml`), renderUrlset(entries), 'utf8');
         }
 
-        const index = renderIndex(siteOrigin);
+        const index = renderIndex(siteOrigin, fallbackLastmod);
         await Promise.all(SITEMAP_INDEX_FILES.map((file) => writeFile(join(root, file), index, 'utf8')));
       },
     },
   };
 }
-
