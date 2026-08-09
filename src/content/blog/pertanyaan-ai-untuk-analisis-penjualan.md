@@ -122,3 +122,5 @@ Artikel [menilai insight AI untuk bisnis](/blog/cara-menilai-insight-ai-untuk-bi
 - Jangan menyimpan output sebagai fakta terverifikasi tanpa catatan pemeriksaan.
 
 Pertanyaan AI yang baik membuat usaha lebih teliti terhadap data dan keputusan sendiri. Mulai dari konteks yang kecil, minta batas serta pertanyaan verifikasi, lalu jadikan manusia sebagai pihak yang menilai bukti dan bertanggung jawab atas tindakan berikutnya.
+
+Simpan versi prompt yang menghasilkan ringkasan berguna, tetapi tinjau ulang sebelum dipakai pada periode lain. Definisi metrik, format laporan, produk, dan proses usaha dapat berubah. Prompt lama yang memakai asumsi sudah tidak berlaku dapat menghasilkan jawaban yang tampak konsisten tetapi salah arah. Catat perubahan data serta konteks di samping prompt agar pengguna berikutnya mengetahui batas penggunaannya.
