@@ -132,4 +132,6 @@ Setelah menemukan dugaan yang cukup kuat, pilih satu tindakan kecil. Misalnya, b
 
 Bandingkan hasil dengan periode sejenis, lalu catat dampak samping. Jika tindakan tidak membantu, hentikan dan periksa hipotesis lain. Jika membantu, perluas perlahan sambil tetap memantau margin serta beban kerja.
 
+Bagikan ringkasan temuan kepada orang yang menjalankan proses agar perubahan tidak hanya diketahui pemilik. Minta umpan balik dari staf yang melayani pelanggan atau menangani stok, karena mereka sering melihat hambatan operasional yang tidak terlihat dalam rekap angka. Catat fakta tersebut dan cocokkan dengan data sebelum menjadikannya keputusan tetap.
+
 Kesalahan umum saat omzet turun adalah panik, mengubah banyak hal sekaligus, menyalahkan satu kanal tanpa data, dan mengabaikan stok atau transaksi yang salah catat. Pendekatan bertahap memberi usaha cara yang lebih tenang: pastikan data, pecah angka, cek proses, uji satu perubahan, lalu pelajari hasilnya. Omzet yang turun tetap perlu ditangani, tetapi keputusan yang terukur lebih mungkin menjaga pelanggan dan kas.
