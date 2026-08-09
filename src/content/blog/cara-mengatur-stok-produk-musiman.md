@@ -124,4 +124,17 @@ Artikel [cara mengurangi stok mati](/blog/cara-mengurangi-stok-mati/) membantu m
 
 Setelah periode berakhir, bandingkan rencana dengan hasil: stok awal, pesanan tambahan, unit terjual, stok kosong, sisa, retur, barang rusak, biaya, dan kejadian khusus. Tulis hal yang bekerja serta hal yang perlu diubah. Apakah produk yang ditambah memang bergerak? Apakah pesanan datang tepat waktu? Apakah satu kanal memerlukan alokasi berbeda? Catatan ini menjadi modal untuk perencanaan berikutnya.
 
+## Bagi peran dan cek pemasok sebelum periode datang
+
+Rencana musiman akan lebih mudah dijalankan bila setiap orang tahu siapa yang memantau penjualan, siapa yang memeriksa saldo, siapa yang membuat pesanan, dan siapa yang menyetujui belanja tambahan. Buat jalur komunikasi singkat untuk perubahan penting, misalnya keterlambatan pemasok atau stok kosong. Sebelum musim dimulai, konfirmasi kembali minimum pesanan, jadwal pengiriman, kemungkinan pengiriman bertahap, kualitas penerimaan, dan kontak yang dipakai bila ada masalah.
+
+| Peran | Tanggung jawab sederhana |
+| --- | --- |
+| Penanggung jawab stok | Memeriksa saldo, barang rusak, dan pesanan berjalan |
+| Pembelian | Menghubungi pemasok serta mencatat tanggal dan jumlah pesanan |
+| Layanan atau penjualan | Mencatat pertanyaan, stok kosong, dan perubahan permintaan |
+| Pemilik atau peninjau | Menetapkan batas kas serta keputusan pembelian tambahan |
+
+Pemisahan tugas tidak perlu banyak orang. Pada usaha kecil, satu orang dapat memegang beberapa peran, tetapi catatan serta persetujuan tetap perlu jelas agar keputusan penting dapat ditinjau kembali.
+
 Kesalahan umum adalah membeli seluruh stok di awal, menyalin angka tahun lalu tanpa konteks, mengabaikan stok dalam perjalanan, dan tidak menghitung sisa serta kerusakan. Pengaturan stok musiman yang baik tidak mengejar prediksi sempurna. Ia membuat usaha cukup siap untuk belajar cepat, membatasi risiko, dan memperbaiki keputusan berdasarkan data aktual.
