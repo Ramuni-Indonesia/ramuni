@@ -1,7 +1,7 @@
 ---
-title: "Cara Membaca Stok Harian Tanpa Menunggu Masalah"
-description: "Panduan awal untuk membantu UMKM membaca sinyal stok dari penjualan harian."
-dek: "Baca sisa stok bersama kecepatan penjualan agar risiko kosong terlihat sebelum jam ramai."
+title: "Cara Membaca Stok Harian agar Tidak Kehabisan Barang"
+description: "Panduan membaca stok harian UMKM dengan membandingkan saldo, laju penjualan, jam ramai, waktu isi ulang, dan catatan selisih sebelum mengambil tindakan."
+dek: "Bandingkan sisa stok dengan laju penjualan dan waktu isi ulang agar risiko kosong terlihat sebelum mengganggu jam ramai."
 cover: "/website-original/blog/generated/panduan-membaca-stok-harian.webp"
 coverAlt: "Pemilik toko memeriksa sisa stok dan laju penjualan harian"
 coverWidth: 768
@@ -16,8 +16,11 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan langkah pemeriksaan stok."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan langkah pemeriksaan stok, sumber, tautan internal, dan metadata sebelum publikasi."
 readingTime: "5 menit"
 takeaways:
   - "Sisa stok perlu dibaca bersama kecepatan penjualan."
@@ -38,17 +41,20 @@ sources:
     note: "Rujukan standar akuntansi Indonesia mengenai persediaan; langkah pemeriksaan stok harian dalam artikel adalah panduan operasional sederhana, bukan penerapan PSAK 202."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
-  - "arus-kas-umkm-ringan"
-  - "ai-business-companion-umkm"
-ctaType: "demo"
+  - "cara-mencatat-stok-masuk-dan-keluar"
+  - "cara-menghitung-reorder-point"
+  - "cara-mengurangi-stok-mati"
+ctaType: "product"
 featured: true
 draft: false
-noindex: true
+noindex: false
 ---
 
 Stok yang terlihat aman belum tentu cukup untuk jam ramai. Angka “18 porsi tersisa” perlu dibandingkan dengan laju penjualan dan waktu ramai. Periksa juga waktu yang dibutuhkan untuk menyiapkan barang pengganti.
 
 Panduan ini memakai skenario kedai fiktif untuk menjelaskan cara membaca stok, bukan sebagai patokan untuk setiap usaha.
+
+Proses ini akan lebih mudah bila barang masuk dan keluar sudah dicatat konsisten. Mulailah dengan [cara mencatat stok masuk dan keluar](/blog/cara-mencatat-stok-masuk-dan-keluar/), lalu gunakan panduan ini untuk menentukan urutan pemeriksaan.
 
 ## Mulai dari produk yang bergerak cepat
 
@@ -129,5 +135,7 @@ Checklist singkat:
 - [ ] Tindakan dan penanggung jawab sudah dicatat.
 
 Dengan urutan ini, tim tidak harus memeriksa semua barang dengan intensitas yang sama. Perhatian diberikan lebih dulu pada produk yang paling berisiko mengganggu penjualan atau menahan modal.
+
+Setelah data cukup rapi, pelajari [cara menghitung reorder point](/blog/cara-menghitung-reorder-point/) sebagai alat bantu pemeriksaan, dan baca [cara mengurangi stok mati](/blog/cara-mengurangi-stok-mati/) agar penambahan stok tidak sekadar berpindah menjadi barang yang lama tidak bergerak.
 
 > Angka dalam artikel ini hanya untuk ilustrasi dan bukan saran keuangan, pajak, atau operasional final.

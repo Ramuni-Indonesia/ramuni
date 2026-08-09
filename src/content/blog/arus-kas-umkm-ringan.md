@@ -1,7 +1,7 @@
 ---
-title: "Membaca Arus Kas UMKM dengan Bahasa yang Lebih Ringan"
-description: "Penjelasan awal tentang cara memahami arus kas tanpa laporan yang rumit."
-dek: "Mulai dari arah uang masuk dan keluar, lalu cari perubahan yang perlu diperiksa lebih lanjut."
+title: "Cara Membaca Arus Kas Harian untuk UMKM"
+description: "Panduan membaca arus kas harian UMKM: pisahkan uang masuk dan keluar, telusuri selisih, bedakan kas dari omzet dan laba, lalu tentukan tindak lanjut."
+dek: "Mulai dari uang yang benar-benar masuk dan keluar, lalu telusuri perubahan yang perlu diperiksa sebelum mengambil keputusan."
 cover: "/website-original/blog/generated/arus-kas-umkm-ringan.webp"
 coverAlt: "Pemilik UMKM memeriksa aliran uang masuk dan keluar dari catatan usaha"
 coverWidth: 768
@@ -16,9 +16,12 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan batas edukasi keuangan."
-readingTime: "4 menit"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan contoh, batas edukasi keuangan, sumber, tautan internal, dan metadata sebelum publikasi."
+readingTime: "5 menit"
 takeaways:
   - "Pisahkan arus masuk dan keluar sebelum membaca detail lain."
   - "Cari perubahan yang tidak biasa, bukan hanya saldo akhir."
@@ -39,16 +42,20 @@ sources:
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat pajak, akuntansi, atau keuangan untuk usaha tertentu."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
-  - "panduan-membaca-stok-harian"
-ctaType: "early-access"
+  - "perbedaan-omzet-laba-dan-arus-kas"
+  - "laporan-laba-rugi-sederhana-umkm"
+  - "cara-membaca-arus-kas-negatif"
+ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Arus kas sering terasa rumit karena omzet, laba, saldo rekening, dan tagihan dibaca sebagai satu angka. Padahal masing-masing menjawab pertanyaan berbeda.
 
 Panduan ini memakai skenario usaha fiktif. Tujuannya menjelaskan cara membaca arus uang, bukan memberi saran pajak atau akuntansi untuk usaha tertentu.
+
+Bedakan istilahnya lebih dulu lewat [perbedaan omzet, laba, dan arus kas](/blog/perbedaan-omzet-laba-dan-arus-kas/).
 
 ## Pisahkan pemasukan dan pengeluaran utama
 
@@ -93,10 +100,8 @@ Contoh ini belum menghitung laba secara lengkap. Ia hanya menunjukkan mengapa an
 Jika kas turun, hindari langsung menyimpulkan bahwa penjualan buruk. Buka daftar transaksi dan cari penyebabnya.
 
 1. Apakah ada pembayaran pelanggan yang belum masuk?
-2. Apakah pembelian stok lebih besar dari biasanya?
-3. Apakah ada biaya satu kali?
-4. Apakah transaksi tercatat pada tanggal yang benar?
-5. Apakah saldo awal dan akhir memakai rekening yang sama?
+2. Apakah pembelian stok atau biaya satu kali lebih besar dari biasanya?
+3. Apakah transaksi dan saldo memakai periode yang sama?
 
 Jawaban tersebut membantu menentukan tindakan. Tagihan tertunda membutuhkan tindak lanjut berbeda dari biaya operasional yang terus meningkat.
 
@@ -109,7 +114,7 @@ Pertanyaan yang baik memecah laporan menjadi bagian yang dapat dicek:
 - Pembayaran mana yang belum diterima?
 - Apakah perubahan terjadi sekali atau berulang?
 
-Tutup pengecekan dengan satu catatan: penyebab yang paling mungkin, transaksi pendukung, orang yang menindaklanjuti, dan waktu pemeriksaan berikutnya. Jika penyebab belum jelas, tulis bahwa jawabannya belum cukup.
+Tutup pengecekan dengan penyebab, bukti, penanggung jawab, dan waktu cek berikutnya.
 
 Checklist singkat:
 
@@ -119,4 +124,4 @@ Checklist singkat:
 - [ ] Omzet, laba, dan kas tidak dipakai bergantian.
 - [ ] Tindak lanjut memiliki penanggung jawab.
 
-Pertanyaan seperti “mengapa kas turun minggu ini?” lebih mudah ditindaklanjuti daripada tabel panjang tanpa konteks.
+Saat kas turun beberapa hari berturut-turut, lanjutkan dengan [cara membaca arus kas negatif](/blog/cara-membaca-arus-kas-negatif/) dan telusuri transaksi sebelum mengubah pembelian, harga, atau jadwal pembayaran.

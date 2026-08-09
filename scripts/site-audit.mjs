@@ -91,11 +91,6 @@ const AI_MARKERS = [
   /\b(?:written|generated) by chatgpt\b/i,
   /\blorem ipsum\b/i,
 ];
-const DUMMY_BLOG_ROUTES = new Set([
-  '/blog/ai-business-companion-umkm',
-  '/blog/arus-kas-umkm-ringan',
-  '/blog/panduan-membaca-stok-harian',
-]);
 const EDITORIAL_TRUST_ROUTES = new Set([
   '/blog/kebijakan-editorial',
   '/blog/metodologi-fact-check',
@@ -551,8 +546,6 @@ for (const [route, page] of pages) {
   }
   if (route === '/harga') requireSchemaTypes(route, page, ['SoftwareApplication', 'BreadcrumbList']);
   if (/^\/kalkulator\/[^/]+$/.test(route)) requireSchemaTypes(route, page, ['WebApplication', 'BreadcrumbList']);
-  if (DUMMY_BLOG_ROUTES.has(route)) requireSchemaTypes(route, page, ['BlogPosting', 'BreadcrumbList']);
-
   const posting = schemaEntity(page, 'BlogPosting');
   if (posting) {
     if (!equivalentUrl(posting.mainEntityOfPage?.['@id'], page.canonical)) failures.push(`${route}: BlogPosting mainEntityOfPage must match canonical`);
@@ -710,13 +703,6 @@ for (const [route, page] of pages) {
 }
 
 if (!publicEnvironment.indexingEnabled && rootSitemapFiles.length > 0) failures.push('sitemap: non-production build must not expose sitemap files');
-
-for (const route of DUMMY_BLOG_ROUTES) {
-  const page = pages.get(route);
-  if (!page) failures.push(`${route}: expected placeholder route is missing`);
-  else if (!page.noindex) failures.push(`${route}: placeholder or dummy content must remain noindex`);
-  if (sitemapUrls.has(route)) failures.push(`${route}: placeholder or dummy content must be excluded from sitemap`);
-}
 
 const robotsPath = join(root, 'robots.txt');
 try {

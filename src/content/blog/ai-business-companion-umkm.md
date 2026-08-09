@@ -1,7 +1,7 @@
 ---
-title: "Apa Itu AI Business Companion untuk UMKM"
-description: "Penjelasan awal tentang peran AI Business Companion dalam membantu pemilik usaha memahami data."
-dek: "Kenali peran AI sebagai pendamping membaca konteks bisnis, bukan sebagai pengganti keputusan pemilik usaha."
+title: "Cara Memakai AI Business Companion untuk UMKM"
+description: "Panduan memakai AI Business Companion untuk membaca data UMKM dengan pertanyaan terarah, bukti pendukung, batas jelas, dan keputusan manusia."
+dek: "Gunakan AI sebagai pendamping membaca konteks bisnis: mulai dari pertanyaan yang bisa diuji, cek data pendukung, lalu putuskan langkahnya bersama tim."
 cover: "/website-original/blog/generated/ai-business-companion-umkm.webp"
 coverAlt: "Pemilik usaha meninjau catatan dan arah keputusan bersama pendamping bisnis digital"
 coverWidth: 768
@@ -16,9 +16,12 @@ tags:
   - "Pemula"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi dan peran AI yang dijelaskan secara terbuka."
-readingTime: "4 menit"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan peran AI, batas penggunaan, sumber, tautan internal, dan metadata sebelum publikasi."
+readingTime: "5 menit"
 takeaways:
   - "AI membantu menyusun konteks, bukan mengambil alih keputusan."
   - "Jawaban yang berguna perlu dapat ditelusuri ke data pendukung."
@@ -39,16 +42,20 @@ sources:
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
 updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
-  - "panduan-membaca-stok-harian"
-ctaType: "demo"
+  - "apa-itu-ai-business-companion"
+  - "cara-memeriksa-data-sebelum-menggunakan-ai"
+  - "batasan-ai-dalam-mengelola-bisnis"
+ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 AI Business Companion adalah pendamping untuk membaca catatan bisnis, menyusun pertanyaan, dan menunjukkan angka yang mendukung jawaban. Ia bukan pengganti pemilik usaha, akuntan, atau orang yang memahami kondisi lapangan.
 
 Artikel ini menjelaskan cara RAMUNI membantu membaca data usaha melalui contoh. Fitur yang tersedia akan dijelaskan sesuai kondisi produk terbaru.
+
+Sebelum mulai, pahami dulu [batasan AI dalam mengelola bisnis](/blog/batasan-ai-dalam-mengelola-bisnis/). Jika data akan digunakan sebagai bahan pertanyaan, gunakan pula panduan [memeriksa data sebelum menggunakan AI](/blog/cara-memeriksa-data-sebelum-menggunakan-ai/) agar periode, definisi, dan data yang belum lengkap tidak tertukar.
 
 ## Fokus pada pertanyaan bisnis
 
@@ -105,3 +112,5 @@ Checklist sebelum memakai jawaban AI:
 - [ ] Orang yang bertanggung jawab membuat keputusan sudah jelas.
 
 AI Business Companion berguna ketika mengurangi waktu mencari arah tanpa menghapus proses pemeriksaan. Tujuannya bukan membuat keputusan terlihat ajaib, tetapi membuat alasan di balik keputusan lebih mudah dibaca bersama.
+
+Untuk gambaran yang lebih lengkap mengenai fungsi pendamping ini, lanjutkan ke [apa itu AI Business Companion](/blog/apa-itu-ai-business-companion/). Bila pertanyaannya menyangkut stok, cek juga [cara membaca stok harian](/blog/panduan-membaca-stok-harian/) sebelum menentukan tindakan.
