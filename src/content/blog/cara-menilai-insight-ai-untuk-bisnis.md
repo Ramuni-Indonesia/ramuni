@@ -112,6 +112,19 @@ Keluaran AI tidak boleh menjadi alasan untuk mengabaikan pertimbangan manusia. B
 
 Simpan ringkasan: pertanyaan yang diajukan, data yang dipakai, hasil AI, pemeriksaan yang dilakukan, keputusan manusia, dan hasil uji. Catatan ini membantu usaha melihat kapan AI berguna untuk menyusun pertanyaan dan kapan saran perlu ditolak karena konteksnya tidak sesuai. Ia juga mencegah orang berikutnya menganggap output lama sebagai fakta yang sudah diverifikasi.
 
+## Tetapkan batas yang tidak boleh dilewati AI
+
+Sebelum memakai AI, tulis keputusan yang tetap memerlukan pemeriksaan atau persetujuan manusia. Contohnya: menetapkan harga luas, memutuskan penolakan pelanggan, mengubah hak akses, membuat janji hukum atau pajak, menghubungi pelanggan berdasarkan data pribadi, dan menyetujui pembayaran. Batas ini tidak berarti AI tidak berguna. Ia membuat perannya jelas sebagai pembantu analisis, penyusun draf, atau pengingat pertanyaan.
+
+| Jenis pekerjaan | Peran AI yang lebih aman | Pemeriksaan manusia yang tetap diperlukan |
+| --- | --- | --- |
+| Ringkasan penjualan | Mengelompokkan pertanyaan dan perubahan yang terlihat | Cocokkan angka dengan laporan sumber dan konteks periode |
+| Draft komunikasi internal | Menyusun struktur pesan atau daftar langkah | Pastikan fakta, nada, penerima, dan kebijakan sesuai |
+| Ide perbaikan stok | Memberi hipotesis untuk diperiksa | Cek saldo fisik, waktu tunggu, kas, dan masa simpan |
+| Keputusan berdampak besar | Membantu daftar risiko atau pertanyaan | Persetujuan pemilik atau pihak berwenang berdasarkan bukti |
+
+Jika output AI bertentangan dengan data, kebijakan, atau pertimbangan keselamatan, hentikan penggunaan output tersebut dan catat alasannya. Jangan mencoba memaksa data agar cocok dengan rekomendasi. Pencatatan penolakan sama berharganya dengan catatan saran yang berhasil karena membantu tim memahami batas alat dan proses usaha sendiri.
+
 Hindari kesalahan berikut:
 
 - Memberi AI data pribadi atau rahasia yang tidak diperlukan untuk pertanyaan.
