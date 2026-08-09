@@ -135,3 +135,17 @@ Pilih satu tindakan yang sesuai penyebab yang paling mungkin. Jika produk cepat 
 | Biaya tidak jelas | Perbaiki catatan penerimaan serta biaya | Kelengkapan data per periode |
 
 Tinjau hasil secara berkala. Jangan menghapus produk atau menambah pembelian besar hanya dari satu perhitungan. Kesalahan umum adalah memakai periode tidak sebanding, mencampur harga jual dan biaya, melihat total tanpa kategori, serta mengejar perputaran tinggi sampai pelanggan sering kehabisan barang. Perputaran stok paling berguna ketika membantu usaha menyeimbangkan ketersediaan, kas, dan risiko sisa.
+
+## Pastikan kualitas data sebelum membandingkan tren
+
+Perputaran hanya sebaik catatan yang dipakai. Sebelum membandingkan beberapa periode, periksa apakah penerimaan, penjualan, retur, barang rusak, dan koreksi sudah masuk dengan satuan serta status yang sama. Cocokkan sebagian saldo prioritas dengan hitungan fisik dan catat batas waktu transaksi. Jika ada perubahan metode pencatatan atau produk baru, tandai pada laporan agar angka tidak dianggap sepenuhnya sebanding.
+
+| Pemeriksaan data | Dampak bila dilewati |
+| --- | --- |
+| Saldo awal dan akhir | Rata-rata persediaan dapat salah |
+| Biaya barang terjual | Rasio menjadi campuran harga serta biaya |
+| Retur dan kerusakan | Barang tidak tersedia masih terlihat sebagai stok normal |
+| Perubahan SKU atau satuan | Kategori dapat terhitung ganda atau hilang |
+| Stok opname | Selisih dapat mengubah pembacaan perputaran |
+
+Catatan keterbatasan tidak membuat laporan lemah. Ia membantu pemilik mengambil keputusan sesuai tingkat keyakinan data dan menentukan perbaikan pencatatan pada periode berikutnya.
