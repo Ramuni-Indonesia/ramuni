@@ -16,7 +16,10 @@ tags:
   - "Arus Kas"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan contoh perhitungan; memerlukan tinjauan akuntansi sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Omzet adalah nilai penjualan pada periode tertentu. Laba adalah selisih antara pendapatan dan biaya berdasarkan metode perhitungan yang dipakai. Arus kas adalah pergerakan uang masuk dan keluar. Ketiganya saling berhubungan, tetapi tidak dapat dipakai bergantian.

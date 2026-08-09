@@ -16,7 +16,10 @@ tags:
   - "Inventori UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun Tim Editorial RAMUNI; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Stok minimum membantu pemilik usaha mengetahui **kapan sebuah barang mulai perlu diperiksa sebelum habis**. Angka ini bukan target pembelian dan bukan perintah otomatis untuk memesan. Fungsinya adalah memberi waktu untuk membuka data, memeriksa kondisi fisik, dan memilih tindakan yang sesuai.

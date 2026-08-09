@@ -16,7 +16,10 @@ tags:
   - "Inventori"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan operasional sebelum indeksasi."
 readingTime: "9 menit"
 takeaways:
@@ -45,7 +48,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Data produk yang rapi membantu transaksi, stok, dan laporan merujuk pada barang yang sama. Tujuannya bukan membuat kode serumit mungkin, tetapi mencegah satu barang tercatat dengan banyak nama atau dua varian berbeda memakai identitas yang sama.

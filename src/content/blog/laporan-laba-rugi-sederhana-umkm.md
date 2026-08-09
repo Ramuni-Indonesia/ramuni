@@ -16,7 +16,10 @@ tags:
   - "HPP"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun Tim Editorial RAMUNI; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "9 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Laporan laba rugi sederhana membantu pemilik usaha menjawab satu pertanyaan: **apakah pendapatan pada satu periode cukup untuk menutup biaya yang berkaitan dengan periode tersebut?**

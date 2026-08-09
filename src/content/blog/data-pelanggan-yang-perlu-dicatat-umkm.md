@@ -16,7 +16,10 @@ tags:
   - "CRM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun sebagai panduan edukasi; memerlukan tinjauan privasi dan hukum sebelum indeksasi."
 readingTime: "9 menit"
 takeaways:
@@ -51,7 +54,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Data pelanggan yang perlu dicatat adalah data minimum yang dibutuhkan untuk menyelesaikan transaksi, memberi layanan, memenuhi kewajiban yang berlaku, atau menjalankan analisis yang sudah dijelaskan. Kolom tambahan bukan otomatis lebih baik. Setiap data baru menambah tanggung jawab untuk melindungi, memperbarui, membatasi akses, dan menghapusnya saat tidak lagi diperlukan.

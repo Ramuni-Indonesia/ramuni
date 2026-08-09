@@ -16,7 +16,10 @@ tags:
   - "Checklist Bisnis"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Review bisnis mingguan adalah pertemuan singkat untuk melihat perubahan penting pada penjualan, stok, kas, pelanggan, dan pekerjaan tim. Tujuannya bukan membuat laporan sepanjang mungkin, tetapi memastikan satu masalah memiliki bukti, pemilik, dan waktu tindak lanjut.

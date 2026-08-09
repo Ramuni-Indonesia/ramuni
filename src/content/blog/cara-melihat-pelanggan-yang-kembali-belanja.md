@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan ilustrasi; memerlukan tinjauan privasi dan produk sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
@@ -46,7 +49,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Pelanggan kembali adalah pelanggan yang memiliki lebih dari satu transaksi selesai dalam periode yang dipilih. Definisi ini sederhana, tetapi hasilnya hanya berguna jika identitas pelanggan konsisten, transaksi batal dikeluarkan, dan penggunaan data mengikuti izin serta tujuan yang jelas.

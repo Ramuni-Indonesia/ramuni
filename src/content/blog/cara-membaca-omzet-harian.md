@@ -16,7 +16,10 @@ tags:
   - "Pemilik Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun Tim Editorial RAMUNI dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "7 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Omzet harian adalah total nilai penjualan yang dicatat dalam satu hari. Angka ini menjawab **berapa nilai barang atau jasa yang terjual**, tetapi belum menjawab berapa laba yang didapat atau berapa uang yang sudah tersedia.

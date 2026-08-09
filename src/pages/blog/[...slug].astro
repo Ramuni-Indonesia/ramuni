@@ -144,7 +144,7 @@ const schema = [
         <p class="article-dek">{post.data.dek}</p>
         <div class="article-trust-row" aria-label="Akuntabilitas artikel">
           <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}/`}>{post.data.authorName}</a></div>
-          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><a href={`/blog/penulis/${post.data.reviewerSlug}/`}>{post.data.reviewerName}</a></div>}
+          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><strong>{post.data.reviewerName}</strong></div>}
           <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
         </div>
         <div class="article-date-row">{post.data.createdAt && <span>Dibuat {formatDate(post.data.createdAt)}</span>}<span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span>{hasVerifiedReviewer && post.data.reviewedAt && <span>Ditinjau {formatDate(post.data.reviewedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>

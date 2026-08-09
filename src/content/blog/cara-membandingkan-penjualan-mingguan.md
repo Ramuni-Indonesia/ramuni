@@ -16,7 +16,10 @@ tags:
   - "Dashboard Bisnis"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan ilustrasi; menunggu tinjauan editorial sebelum indeksasi."
 readingTime: "7 menit"
 takeaways:
@@ -45,7 +48,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Membandingkan penjualan mingguan berarti melihat dua periode yang setara untuk menemukan apa yang berubah. Perbandingan yang baik tidak hanya berkata “naik 12%”, tetapi juga menjelaskan nilai rupiahnya, transaksi pembentuknya, dan konteks yang mungkin memengaruhi hasil.

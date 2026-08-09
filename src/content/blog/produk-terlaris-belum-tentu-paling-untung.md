@@ -1,5 +1,5 @@
 ---
-title: "Produk Terlaris Belum Tentu Paling Untung: Cara Membacanya"
+title: "Produk Terlaris Tidak Selalu Paling Untung"
 description: "Pelajari mengapa produk paling laku belum tentu memberi laba terbesar dan data apa yang perlu diperiksa UMKM."
 dek: "Jumlah terjual menunjukkan permintaan. Keuntungan baru terlihat setelah harga, biaya, diskon, dan periode dibaca bersama."
 cover: "/website-original/blog/generated/produk-terlaris-belum-tentu-paling-untung.webp"
@@ -16,7 +16,10 @@ tags:
   - "Laba"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Disusun dengan contoh perhitungan; memerlukan tinjauan keuangan sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
@@ -47,7 +50,7 @@ related:
 ctaType: "product"
 featured: false
 draft: false
-noindex: true
+noindex: false
 ---
 
 Produk terlaris adalah produk dengan jumlah atau nilai penjualan paling tinggi pada periode tertentu. Produk paling untung adalah produk yang memberi kontribusi laba terbesar setelah biaya yang relevan diperhitungkan. Keduanya bisa sama, tetapi tidak selalu.
