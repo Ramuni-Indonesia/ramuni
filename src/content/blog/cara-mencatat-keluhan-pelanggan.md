@@ -117,3 +117,11 @@ Hubungkan temuan dengan [checklist review bisnis mingguan](/blog/checklist-revie
 - Tidak meninjau pola sehingga kesalahan yang sama terus terjadi.
 
 Simpan log sebagai alat belajar, bukan daftar kesalahan orang. Setelah satu perbaikan diuji, bandingkan jumlah keluhan sejenis dan kualitas penyelesaiannya pada periode yang setara. Dengan catatan yang ringkas, aman, dan dapat ditindaklanjuti, usaha dapat memulihkan pengalaman pelanggan sekaligus mengurangi masalah yang sama di masa depan.
+
+## Tentukan kapan kasus perlu diteruskan
+
+Tidak semua keluhan dapat diselesaikan oleh orang yang pertama menerimanya. Buat batas penerusan yang mudah dipahami, misalnya bila ada risiko keamanan produk, dugaan kesalahan pembayaran, permintaan yang melibatkan data pelanggan, nilai transaksi besar, atau pelanggan meminta keputusan di luar kewenangan staf. Penerusan bukan kegagalan layanan; ia cara menjaga agar keputusan dibuat oleh orang yang memiliki bukti serta wewenang yang tepat.
+
+Dalam log, tulis kapan kasus diteruskan, kepada siapa, dan informasi apa yang sudah diperiksa. Jangan meminta pelanggan mengulang seluruh cerita setiap kali penanggung jawab berubah. Petugas berikutnya perlu membaca ringkasan fakta, bukti yang tersedia, dan janji pembaruan terakhir sebelum menghubungi pelanggan. Bila penyelesaian membutuhkan waktu lebih lama, berikan pembaruan sesuai waktu yang dijanjikan, bukan hanya saat kasus sudah selesai.
+
+Setelah kasus penting ditutup, lakukan tinjauan singkat: apakah kebijakan perlu diperjelas, apakah staf membutuhkan panduan, dan apakah informasi di halaman produk atau bukti transaksi perlu diperbaiki. Hasil tinjauan yang tidak menyebut identitas pelanggan dapat dibagikan kepada tim sebagai pembelajaran praktis. Dengan demikian, log keluhan membantu mencegah masalah berikutnya, bukan hanya mendokumentasikan masalah lama.
