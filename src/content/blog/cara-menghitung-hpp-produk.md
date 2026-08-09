@@ -71,6 +71,32 @@ Satuan adalah sumber kesalahan yang sering terjadi. Bahan mungkin dibeli per kil
 
 Saat bahan tersisa, jangan langsung memasukkan seluruh nilai belanja sebagai biaya satu batch. Gunakan jumlah yang benar-benar dipakai menurut catatan. Dengan cara ini, perbandingan antar batch tidak bercampur dengan stok bahan yang masih tersedia.
 
+## Hitung satu batch dari bukti yang sama
+
+Untuk membuat HPP dapat diperiksa, kumpulkan bukti dalam satu batch: resep atau daftar bahan, nota pembelian, catatan pemakaian, jumlah hasil, dan produk yang tidak layak jual. Tidak semua usaha perlu sistem produksi yang rumit, tetapi tanggal dan batas batch perlu jelas. Bila produksi dilakukan tiga kali dalam sehari dengan bahan dan ukuran yang sama, usaha dapat memilih menghitung per hari atau per produksi—selama pilihan itu dipakai konsisten pada periode berikutnya.
+
+Misalnya, satu batch minuman menggunakan 3 kg bahan utama dari persediaan. Bahan dibeli Rp60.000 per kg, sehingga nilai bahan yang dipakai Rp180.000; bukan nilai seluruh pembelian bila masih ada bahan tersisa. Tambahkan bahan pendukung Rp30.000 dan 50 kemasan seharga Rp40.000. Jika dari proses tersebut dihasilkan 52 botol tetapi dua botol bocor, pembaginya adalah 50 botol layak jual. Total Rp250.000 dibagi 50 menghasilkan Rp5.000 per botol. Tulis juga dua botol gagal tersebut, karena tingkat kegagalan yang berulang dapat menaikkan biaya nyata pada batch berikutnya.
+
+| Hal yang dicatat | Contoh | Mengapa penting |
+| --- | --- | --- |
+| Bahan yang dipakai | 3 kg, bukan satu sak penuh | Mencegah stok bahan tersisa dibebankan dua kali |
+| Konversi satuan | 1 kg = 1.000 gram | Memudahkan resep dibandingkan dengan nota pembelian |
+| Hasil layak jual | 50 botol | Menunjukkan pembagi yang benar untuk biaya per unit |
+| Produk gagal | 2 botol bocor | Membuka masalah proses, mutu, atau kemasan |
+| Tanggal dan batch | Produksi pagi 9 Agustus | Memudahkan perbandingan saat harga bahan berubah |
+
+## Tetapkan aturan biaya yang mudah dijelaskan
+
+Beberapa biaya mudah dihubungkan langsung dengan produk, seperti bahan dan kemasan. Biaya lain dapat dipakai bersama oleh banyak produk, misalnya sewa, listrik, gaji tetap, atau alat produksi. Jangan memasukkan dan mengeluarkan biaya bersama secara acak hanya untuk mendapatkan angka HPP yang diinginkan. Pilih aturan yang sesuai dengan tujuan laporan, tulis alasannya, lalu gunakan aturan itu secara konsisten atau dapatkan arahan akuntansi bila laporan digunakan untuk kebutuhan formal.
+
+Untuk analisis harian, usaha dapat mulai dari biaya langsung per batch dan menyebutnya dengan jelas. Ketika ingin membandingkan laba antar lini atau menetapkan harga jangka panjang, biaya usaha lain juga perlu dibaca bersama, bukan diam-diam diperlakukan seolah seluruhnya bahan produk. Penjelasan tentang [biaya tetap dan biaya variabel](/blog/biaya-tetap-dan-biaya-variabel/) membantu menghindari perbandingan yang tidak setara. Yang terpenting, pembaca angka tahu komponen apa yang masuk dan apa yang masih harus diperhitungkan di luar HPP tersebut.
+
+## Gunakan hasil HPP untuk mengajukan pertanyaan yang tepat
+
+Setelah mendapatkan angka per unit, jangan berhenti pada pembulatan harga jual. Bandingkan dengan HPP batch sebelumnya dan tanyakan apa yang berubah: harga bahan, takaran, ukuran kemasan, hasil layak jual, atau kesalahan pencatatan. Jika HPP naik karena bahan mahal, keputusan bisa berupa meninjau pemasok, mengubah ukuran dengan komunikasi yang benar, atau menyesuaikan harga. Jika naik karena banyak produk gagal, fokuskan tindakan pada proses dan mutu sebelum menekan harga bahan.
+
+Simpan versi HPP beserta tanggal berlakunya. Ketika produk dijual dengan promo, gunakan versi biaya yang sesuai dengan periode penjualan, bukan HPP lama yang sudah tidak relevan. Kebiasaan ini membuat percakapan tentang margin lebih jernih dan mencegah perubahan harga dibuat hanya berdasarkan perkiraan.
+
 ## Pisahkan HPP dari harga jual dan diskon
 
 HPP memberi dasar untuk melihat biaya produk, bukan keputusan harga otomatis. Harga jual perlu menutup kebutuhan usaha yang lebih luas dan tetap sesuai dengan pasar. Saat ada promo, jangan hanya membandingkan harga diskon dengan harga normal. Periksa selisih yang tersisa setelah HPP dan biaya promo; lihat juga [dampak diskon terhadap laba](/blog/cara-mengukur-dampak-diskon-terhadap-laba/).
