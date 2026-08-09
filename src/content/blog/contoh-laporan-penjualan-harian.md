@@ -136,4 +136,6 @@ Rutinitas membuat laporan lebih dapat dipercaya. Pada waktu tutup yang disepakat
 6. tulis selisih serta kejadian penting; dan
 7. tentukan tindak lanjut untuk hal yang belum selesai.
 
+Jika laporan diserahkan ke orang lain, tulis waktu serah-terima, dokumen atau bukti yang ikut disimpan, serta hal yang masih perlu diperiksa. Hindari mengirim foto atau salinan data pelanggan ke grup yang tidak memerlukan akses. Simpan bukti transaksi di tempat yang terkendali dan gunakan hanya selama diperlukan untuk layanan, pencatatan, serta penelusuran yang sah. Kebiasaan ini menjaga laporan tetap berguna tanpa memperluas akses data secara sembarangan.
+
 Kesalahan umum adalah mencatat total tanpa metode pembayaran, mencampur kas dengan penjualan, menghapus transaksi batal tanpa jejak, serta menunda pengecekan sampai akhir minggu. Contoh laporan ini dapat diperkecil atau diperluas sesuai usaha, tetapi prinsipnya tetap sama: data yang konsisten, bukti yang dapat ditelusuri, dan catatan yang membantu tindakan esok hari.
