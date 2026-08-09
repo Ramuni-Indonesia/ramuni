@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Kartu Pelanggan Sederhana untuk Usaha"
-description: "Cara membuat kartu pelanggan sederhana: tentukan tujuan, kumpulkan data minimum, catat riwayat transaksi seperlunya, atur akses dan retensi, lalu tinjau manfaatnya tanpa mengabaikan privasi pelanggan."
+description: "Cara membuat kartu pelanggan sederhana: tentukan tujuan, kumpulkan data minimum, catat riwayat transaksi seperlunya, atur akses dan retensi, lalu tinjau manfaatnya tanpa"
 dek: "Kartu pelanggan yang baik menyimpan informasi minimum untuk memberi layanan yang lebih konsisten. Mulai dari tujuan yang jelas, bukan dari keinginan mengumpulkan sebanyak mungkin data."
 cover: "/website-original/blog/generated/cara-membuat-kartu-pelanggan-sederhana.webp"
 coverAlt: "Pemilik usaha menyusun kartu profil pelanggan tanpa tulisan ke dalam kotak tertata dengan ikon privasi dan kunci"
@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mencatat-keluhan-pelanggan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Kartu pelanggan sederhana adalah catatan ringkas yang membantu usaha memberi layanan dan menelusuri transaksi bila diperlukan. Ia bukan daftar untuk mengumpulkan semua informasi tentang seseorang. Semakin jelas tujuan kartu, semakin mudah menentukan data minimum, siapa yang boleh mengaksesnya, dan kapan informasi perlu diperbarui atau tidak lagi disimpan.

@@ -13,7 +13,10 @@ categorySlug: "strategi-per-industri"
 tags: ["Stok Toko Sembako", "Inventori Warung", "Belanja Grosir"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang pengaturan stok prioritas untuk ritme toko s
 related: ["cara-mencatat-stok-masuk-dan-keluar", "cara-menentukan-stok-minimum-umkm", "cara-melakukan-stok-opname"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok toko sembako bergerak cepat, jumlah item banyak, dan beberapa barang memiliki umur simpan atau kebutuhan penyimpanan yang berbeda. Karena itu, tujuan pencatatan bukan menghitung semua rak tanpa henti. Tujuannya adalah mengetahui barang mana yang perlu diperiksa lebih dulu agar penjualan, kas belanja, dan kualitas barang tetap terkendali.

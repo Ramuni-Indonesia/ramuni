@@ -16,7 +16,10 @@ tags:
   - "Barang Lambat"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "8 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mengukur-dampak-diskon-terhadap-laba"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok mati adalah persediaan yang terus berada di rak tanpa pergerakan yang cukup untuk kondisi usaha saat ini. Dampaknya bukan hanya ruang yang penuh. Modal tertahan, barang bisa rusak atau kedaluwarsa, dan tim lebih sulit melihat produk yang benar-benar perlu dibeli kembali.

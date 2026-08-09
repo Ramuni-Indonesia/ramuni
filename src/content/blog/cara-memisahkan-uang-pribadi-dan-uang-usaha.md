@@ -1,6 +1,6 @@
 ---
 title: "Cara Memisahkan Uang Pribadi dan Uang Usaha untuk UMKM"
-description: "Cara memisahkan uang pribadi dan uang usaha: pilih tempat terpisah, catat modal dan pengambilan pemilik, buat aturan pembayaran, rekonsiliasi rutin, serta tinjau kas sebelum mengambil uang dari usaha."
+description: "Cara memisahkan uang pribadi dan uang usaha: pilih tempat terpisah, catat modal dan pengambilan pemilik, buat aturan pembayaran, rekonsiliasi rutin, serta tinjau kas sebelum"
 dek: "Pemisahan uang tidak harus dimulai dari sistem yang rumit. Kebiasaan memberi label, mencatat perpindahan, dan membuat aturan pengambilan membantu pemilik melihat kas usaha yang sebenarnya."
 cover: "/website-original/blog/generated/cara-memisahkan-uang-pribadi-dan-uang-usaha.webp"
 coverAlt: "Pemilik usaha memisahkan uang ke dua tray berbeda bersama bukti belanja usaha, kartu rumah tangga abstrak, buku catatan, dan kalkulator"
@@ -16,7 +16,10 @@ tags:
   - "Keuangan UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mencatat-penjualan-kredit"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Ketika uang pribadi dan uang usaha bercampur, pemilik sulit menjawab pertanyaan dasar: berapa kas yang benar-benar tersedia untuk belanja stok, apakah usaha menghasilkan cukup, dan apakah biaya rumah tangga sudah memakai uang yang seharusnya untuk operasi. Campur uang juga membuat catatan penjualan, biaya, modal, serta pengambilan pemilik mudah salah dibaca.

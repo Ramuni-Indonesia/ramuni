@@ -1,6 +1,6 @@
 ---
-title: "Cara Memilih Produk untuk Stok Opname agar Pemeriksaan Lebih Fokus"
-description: "Cara memilih produk untuk stok opname: prioritaskan nilai, pergerakan, risiko selisih, usia simpan, dan dampak layanan; buat jadwal cek bergilir serta catat penyebab perbedaan stok."
+title: "Cara Memilih Produk untuk Stok Opname agar Pemeriksaan"
+description: "Cara memilih produk untuk stok opname: prioritaskan nilai, pergerakan, risiko selisih, usia simpan, dan dampak layanan; buat jadwal cek bergilir serta catat penyebab perbedaan"
 dek: "Stok opname tidak selalu harus dimulai dari menghitung seluruh barang sekaligus. Prioritas berbasis risiko membantu usaha menangkap selisih penting lebih cepat tanpa menghentikan operasi terlalu lama."
 cover: "/website-original/blog/generated/cara-memilih-produk-untuk-stok-opname.webp"
 coverAlt: "Pekerja usaha memeriksa kotak produk prioritas di rak gudang dengan clipboard checklist abstrak dan timbangan kecil"
@@ -16,7 +16,10 @@ tags:
   - "Persediaan Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-menghitung-safety-stock"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok opname adalah pemeriksaan antara catatan persediaan dan kondisi fisik. Pada usaha dengan banyak barang, menghitung seluruh rak setiap hari tidak selalu realistis. Namun menunggu pemeriksaan besar setahun sekali juga berisiko karena selisih kecil bisa menumpuk, stok kosong tidak terlihat, dan barang rusak terlambat ditemukan.

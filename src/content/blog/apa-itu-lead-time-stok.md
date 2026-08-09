@@ -16,7 +16,10 @@ tags:
   - "Stok UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-melakukan-stok-opname"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Lead time stok adalah waktu sejak usaha mulai memesan sampai barang diterima dan siap dipakai atau dijual. Pada praktiknya, waktu ini tidak selalu sama dengan angka yang disebut pemasok. Ada pesanan yang perlu konfirmasi, pengiriman yang datang sebagian, dan barang yang harus diperiksa lebih dulu sebelum masuk ke rak.

@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengelola Dokumen Usaha agar Mudah Dicari"
-description: "Cara mengelola dokumen usaha: kelompokkan bukti transaksi, gunakan nama file konsisten, atur akses, simpan arsip fisik dan digital, tetapkan retensi, serta buat jadwal peninjauan yang dapat dijalankan."
+description: "Cara mengelola dokumen usaha: kelompokkan bukti transaksi, gunakan nama file konsisten, atur akses, simpan arsip fisik dan digital, tetapkan retensi, serta buat jadwal peninjauan"
 dek: "Dokumen usaha tidak perlu disimpan dalam banyak folder tanpa aturan. Sistem sederhana dengan kategori, referensi, akses terbatas, dan jadwal peninjauan membuat bukti lebih mudah ditemukan saat dibutuhkan."
 cover: "/website-original/blog/generated/cara-mengelola-dokumen-usaha.webp"
 coverAlt: "Folder dan kotak arsip usaha yang tertata, lembar invoice tanpa tulisan, perangkat dengan ikon kunci, serta paket produk di meja kerja"
@@ -16,7 +16,10 @@ tags:
   - "Bukti Transaksi"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-membuat-laporan-bisnis-bulanan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Dokumen usaha sering mulai berantakan bukan karena pemilik tidak peduli, melainkan karena transaksi bergerak cepat. Struk diletakkan di meja, invoice masuk lewat pesan, bukti transfer tersimpan di ponsel, dan catatan pembelian berada di tempat lain. Saat perlu memeriksa satu biaya atau status pesanan, tim harus mencari di banyak lokasi atau bertanya kepada orang yang kebetulan menangani transaksi.

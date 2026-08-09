@@ -16,7 +16,10 @@ tags:
   - "Pencatatan Persediaan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menghitung-reorder-point"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Catatan stok masuk dan keluar membantu usaha memahami mengapa saldo berubah. Tanpa jejak ini, selisih antara stok sistem dan stok fisik sering baru terlihat ketika barang sudah habis, pesanan ganda terjadi, atau tim tidak lagi tahu siapa yang menangani perubahan sebelumnya.

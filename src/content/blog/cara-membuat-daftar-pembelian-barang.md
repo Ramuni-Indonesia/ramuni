@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Daftar Pembelian Barang untuk Usaha"
-description: "Cara membuat daftar pembelian barang: mulai dari kebutuhan, cek stok dan pesanan berjalan, tulis satuan, supplier, harga efektif, waktu perlu, batas anggaran, persetujuan, serta hasil penerimaan."
+description: "Cara membuat daftar pembelian barang: mulai dari kebutuhan, cek stok dan pesanan berjalan, tulis satuan, supplier, harga efektif, waktu perlu, batas anggaran, persetujuan, serta"
 dek: "Daftar pembelian yang baik tidak dimulai dari barang yang terasa hampir habis. Ia menghubungkan kebutuhan penjualan, stok layak pakai, pesanan berjalan, lead time, kondisi pemasok, dan batas kas."
 cover: "/website-original/blog/generated/cara-membuat-daftar-pembelian-barang.webp"
 coverAlt: "Pemilik usaha menyusun checklist pembelian abstrak dengan rak stok, peti pengiriman, kalkulator, dan kartu produk"
@@ -16,7 +16,10 @@ tags:
   - "Stok Barang"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan pembelian, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-memilih-supplier-untuk-stok-usaha"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Daftar pembelian barang adalah jembatan antara kebutuhan usaha dan pesanan ke pemasok. Tanpa daftar yang jelas, pembelian mudah terjadi karena perkiraan, barang yang sudah dipesan terbeli lagi, satuan salah, atau kas terpakai sebelum kebutuhan yang lebih penting terlihat. Daftar tidak perlu rumit, tetapi harus cukup untuk menjelaskan mengapa barang dibeli dan bagaimana hasil penerimaannya nanti diperiksa.

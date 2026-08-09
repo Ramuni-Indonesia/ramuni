@@ -1,5 +1,5 @@
 ---
-title: "Cara Mencatat Penjualan Toko Retail agar Kas dan Stok Selaras"
+title: "Cara Mencatat Penjualan Toko Retail agar Kas dan Stok"
 description: "Cara mencatat penjualan toko retail: tetapkan waktu transaksi, pisahkan pembayaran, catat diskon dan retur, tutup kas harian, cocokkan stok, lalu tinjau selisih."
 dek: "Catatan penjualan retail yang berguna bukan sekadar total omzet. Catatan perlu menjawab produk apa yang keluar, bagaimana pelanggan membayar, dan mengapa kas atau stok berbeda dari catatan."
 cover: "/website-original/blog/generated/cara-mencatat-penjualan-toko-retail.webp"
@@ -16,7 +16,10 @@ tags:
   - "Stok Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan transaksi, kas, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-membuat-laporan-bisnis-bulanan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Di toko retail, transaksi kecil dapat terjadi berulang sepanjang hari. Satu pelanggan membayar tunai, pelanggan berikutnya memakai pembayaran digital, ada diskon, ada barang ditukar, dan ada uang laci kas yang dipakai untuk kebutuhan operasional. Bila semua hanya diringkas menjadi satu angka omzet, pemilik toko akan sulit mengetahui apakah kas benar, stok bergerak sesuai penjualan, atau selisih berasal dari proses yang perlu diperbaiki.

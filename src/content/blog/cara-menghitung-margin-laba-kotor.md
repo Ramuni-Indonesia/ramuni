@@ -1,6 +1,6 @@
 ---
-title: "Cara Menghitung Margin Laba Kotor dengan Contoh Sederhana"
-description: "Pelajari cara menghitung margin laba kotor: tentukan penjualan dan harga pokok, gunakan rumus yang tepat, baca hasilnya per produk, dan hindari kekeliruan antara margin, markup, serta laba bersih."
+title: "Cara Menghitung Margin Laba Kotor dengan Contoh"
+description: "Pelajari cara menghitung margin laba kotor: tentukan penjualan dan harga pokok, gunakan rumus yang tepat, baca hasilnya per produk, dan hindari kekeliruan antara margin, markup"
 dek: "Margin laba kotor menunjukkan bagian penjualan yang tersisa setelah harga pokok dikurangkan. Angka ini berguna untuk membaca produk, harga, dan biaya pokok sebelum menyimpulkan laba usaha."
 cover: "/website-original/blog/generated/cara-menghitung-margin-laba-kotor.webp"
 coverAlt: "Pemilik toko membandingkan kartu produk abstrak dan timbangan biaya dengan nilai jual, bersama kalkulator serta bukti transaksi"
@@ -16,7 +16,10 @@ tags:
   - "Harga Jual"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menghitung-harga-jual-produk"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Margin laba kotor membantu pemilik memahami berapa bagian dari penjualan yang tersisa setelah harga pokok dikurangkan. Ia bukan jawaban tunggal tentang kesehatan usaha, tetapi merupakan salah satu angka awal yang berguna saat mengecek harga, produk, diskon, dan pembelian. Tanpa memisahkan harga pokok dari biaya lain, pemilik dapat salah menyimpulkan bahwa penjualan tinggi otomatis memberi ruang yang cukup untuk semua pengeluaran.

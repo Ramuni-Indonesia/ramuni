@@ -1,6 +1,6 @@
 ---
-title: "Cara Membandingkan Penjualan Online dan Offline dengan Adil"
-description: "Cara membandingkan penjualan online dan offline: samakan periode dan status transaksi, pisahkan nilai bersih, biaya kanal, produk, pemenuhan, serta dampak layanan sebelum menentukan prioritas."
+title: "Cara Membandingkan Penjualan Online dan Offline dengan"
+description: "Cara membandingkan penjualan online dan offline: samakan periode dan status transaksi, pisahkan nilai bersih, biaya kanal, produk, pemenuhan, serta dampak layanan sebelum"
 dek: "Kanal online dan toko fisik tidak perlu dipaksa menjadi sama. Perbandingan yang baik menunjukkan kontribusi, biaya, proses, dan kapasitas masing-masing agar keputusan tidak hanya berdasarkan omzet."
 cover: "/website-original/blog/generated/cara-membandingkan-penjualan-online-dan-offline.webp"
 coverAlt: "Pemilik usaha membandingkan kartu toko fisik dan pesanan online abstrak dengan timbangan, produk, dan struk"
@@ -16,7 +16,10 @@ tags:
   - "Laporan per Kanal"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kanal, biaya, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-menghitung-laba-kotor"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Penjualan online dan offline sering terlihat sebagai dua angka yang mudah dibandingkan: mana yang omzetnya lebih besar. Padahal kedua kanal memiliki alur yang berbeda. Toko fisik mungkin menerima pembayaran dan menyerahkan barang pada saat yang sama. Pesanan online dapat melewati waktu konfirmasi, pengemasan, pengiriman, biaya kanal, pembatalan, dan retur. Jika angka yang dibandingkan tidak memakai batas yang sama, kesimpulannya mudah keliru.

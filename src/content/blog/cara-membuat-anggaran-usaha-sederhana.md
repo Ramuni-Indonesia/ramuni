@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Anggaran Usaha Sederhana untuk UMKM"
-description: "Cara membuat anggaran usaha sederhana: tetapkan periode, kumpulkan data, bedakan biaya tetap dan variabel, rencanakan kas, buat batas pengeluaran, lalu tinjau selisih anggaran dengan realisasi."
+description: "Cara membuat anggaran usaha sederhana: tetapkan periode, kumpulkan data, bedakan biaya tetap dan variabel, rencanakan kas, buat batas pengeluaran, lalu tinjau selisih anggaran"
 dek: "Anggaran usaha adalah rencana kerja untuk uang yang akan masuk dan keluar. Format sederhana membantu pemilik memilih prioritas sebelum kas terlanjur habis."
 cover: "/website-original/blog/generated/cara-membuat-anggaran-usaha-sederhana.webp"
 coverAlt: "Pemilik toko menyusun kartu kategori anggaran, struk, kalkulator, dan grafik abstrak di meja kerja"
@@ -16,7 +16,10 @@ tags:
   - "Arus Kas"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "12 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membuat-laporan-bisnis-bulanan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Anggaran usaha sederhana bukan ramalan yang harus selalu benar. Ia adalah rencana tertulis tentang penerimaan, biaya, belanja, dan kewajiban dalam satu periode. Saat rencana terlihat sebelum uang keluar, pemilik lebih mudah menentukan prioritas: stok mana yang perlu dibeli, biaya mana yang dapat ditunda, dan berapa kas yang perlu dijaga untuk kewajiban dekat.

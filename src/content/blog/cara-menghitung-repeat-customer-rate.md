@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membaca-omzet-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Repeat customer rate adalah cara sederhana untuk melihat berapa banyak pelanggan yang kembali bertransaksi dalam suatu periode. Metrik ini berguna karena omzet saja tidak menunjukkan apakah penjualan datang dari pembeli baru, pelanggan yang kembali, atau beberapa pelanggan dengan transaksi sangat besar.

@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengatur Stok Produk Musiman tanpa Menumpuk Sisa"
-description: "Cara mengatur stok produk musiman: gunakan data periode sebanding, pisahkan produk dan kanal, rencanakan bertahap berdasarkan lead time serta kas, lalu pantau penjualan dan sisa setiap hari."
+description: "Cara mengatur stok produk musiman: gunakan data periode sebanding, pisahkan produk dan kanal, rencanakan bertahap berdasarkan lead time serta kas, lalu pantau penjualan dan sisa"
 dek: "Produk musiman dapat menaikkan permintaan dalam waktu singkat, tetapi pola tahun lalu bukan jaminan untuk tahun ini. Rencana bertahap membantu usaha menambah kesiapan tanpa mengunci modal pada stok berlebih."
 cover: "/website-original/blog/generated/cara-mengatur-stok-produk-musiman.webp"
 coverAlt: "Pemilik usaha menata kotak produk musiman, kartu kalender abstrak, grafik tren, peti pemasok, dan rak cadangan"
@@ -16,7 +16,10 @@ tags:
   - "Perencanaan Stok"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan pola musiman, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengurangi-stok-mati"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Permintaan musiman dapat membuat produk tertentu bergerak lebih cepat pada periode singkat. Bagi usaha kecil, peluang ini sering disertai risiko: barang habis saat pelanggan mencari, atau sisa menumpuk ketika periode berakhir. Dua risiko tersebut tidak diselesaikan dengan menebak jumlah terbesar dari tahun lalu. Rencana perlu memperhitungkan bukti permintaan, waktu tunggu pemasok, kas, kapasitas simpan, serta kondisi produk.

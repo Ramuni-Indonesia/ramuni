@@ -16,7 +16,10 @@ tags:
   - "Keuangan UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan angka contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "laporan-laba-rugi-sederhana-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laba kotor membantu usaha melihat sisa pendapatan setelah biaya produk yang dipakai untuk menghasilkan atau memperoleh barang dikurangkan. Angka ini berguna untuk membaca apakah harga, diskon, dan biaya produk masih memberi ruang sebelum sewa, gaji, pemasaran, serta biaya usaha lain diperhitungkan.

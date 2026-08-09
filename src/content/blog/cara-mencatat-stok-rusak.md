@@ -1,5 +1,5 @@
 ---
-title: "Cara Mencatat Stok Rusak agar Saldo dan Penyebabnya Jelas"
+title: "Cara Mencatat Stok Rusak agar Saldo dan Penyebabnya"
 description: "Cara mencatat stok rusak: pisahkan barang, catat produk, jumlah, satuan, kondisi, penyebab, waktu, lokasi, bukti, dan tindakan; lalu tinjau pola untuk mencegah kerusakan berulang."
 dek: "Barang rusak tidak boleh dibiarkan tetap terlihat sebagai stok layak jual. Catatan yang konsisten membantu usaha menjaga saldo, menilai kerugian, dan memperbaiki penerimaan, penyimpanan, atau proses pemakaian."
 cover: "/website-original/blog/generated/cara-mencatat-stok-rusak.webp"
@@ -16,7 +16,10 @@ tags:
   - "Koreksi Stok"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses barang rusak, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengatur-stok-usaha-fnb"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok rusak adalah barang yang kondisi atau statusnya tidak lagi sama dengan stok layak jual atau layak pakai. Jika barang tersebut tetap bercampur di rak dan catatan normal, usaha dapat menjual produk yang tidak sesuai, salah menghitung ketersediaan, atau baru mengetahui kerugian saat stok opname. Pemisahan yang cepat membuat kondisi barang terlihat sebelum berdampak lebih jauh.

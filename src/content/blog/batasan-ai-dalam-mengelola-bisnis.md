@@ -16,7 +16,10 @@ tags:
   - "Keputusan Bisnis"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "data-pelanggan-yang-tidak-perlu-dikumpulkan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 AI dapat membantu usaha merangkum data, membuat draf, atau menyusun pertanyaan untuk pemeriksaan. Namun, AI tidak hadir di toko, tidak melihat kondisi stok fisik, tidak memahami kesepakatan dengan pemasok, dan tidak menanggung akibat ketika keputusan merugikan pelanggan atau arus kas. Karena itu, penggunaan AI perlu dimulai dari batas yang jelas, bukan dari janji bahwa semua pekerjaan dapat diotomatisasi.

@@ -1,6 +1,6 @@
 ---
 title: "Perbedaan Stok Minimum dan Safety Stock untuk Usaha"
-description: "Pahami perbedaan stok minimum dan safety stock: fungsi, cara menetapkan, hubungannya dengan reorder point, contoh sederhana, serta kesalahan umum saat menggunakannya dalam usaha kecil."
+description: "Pahami perbedaan stok minimum dan safety stock: fungsi, cara menetapkan, hubungannya dengan reorder point, contoh sederhana, serta kesalahan umum saat menggunakannya dalam usaha"
 dek: "Stok minimum dan safety stock sama-sama membantu usaha menghindari kekosongan, tetapi keduanya menjawab pertanyaan yang berbeda. Pisahkan fungsinya agar pembelian tidak hanya mengikuti satu angka."
 cover: "/website-original/blog/generated/perbedaan-stok-minimum-dan-safety-stock.webp"
 coverAlt: "Pemilik usaha membandingkan baris stok kerja dan baris cadangan produk dengan checklist serta peti pengiriman"
@@ -16,7 +16,10 @@ tags:
   - "Reorder Point"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan definisi stok, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "apa-itu-lead-time-stok"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok minimum dan safety stock sering dipakai bergantian, padahal keduanya dapat memiliki fungsi berbeda dalam pengelolaan persediaan. Saat istilah tidak dibedakan, tim bisa salah memahami kapan harus memesan, berapa stok yang seharusnya tidak dipakai untuk kebutuhan rutin, atau mengapa barang sering kosong meski terlihat masih ada di gudang.

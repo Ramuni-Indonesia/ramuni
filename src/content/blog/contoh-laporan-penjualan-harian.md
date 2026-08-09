@@ -1,5 +1,5 @@
 ---
-title: "Contoh Laporan Penjualan Harian untuk Toko dan Usaha Kecil"
+title: "Contoh Laporan Penjualan Harian untuk Toko dan Usaha"
 description: "Contoh laporan penjualan harian yang sederhana: rekap transaksi, metode pembayaran, diskon, retur, kas, stok penting, catatan kejadian, serta langkah pengecekan saat ada selisih."
 dek: "Laporan harian bukan sekadar total omzet. Format yang baik menunjukkan apa yang terjual, uang yang masuk melalui tiap metode, peristiwa penting, dan bagian yang perlu ditelusuri besok."
 cover: "/website-original/blog/generated/contoh-laporan-penjualan-harian.webp"
@@ -16,7 +16,10 @@ tags:
   - "Tutup Kas"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan format transaksi, kas, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mencatat-stok-masuk-dan-keluar"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laporan penjualan harian membantu pemilik usaha mengetahui apa yang terjadi hari ini sebelum informasi bercampur dengan hari berikutnya. Format yang baik tidak harus panjang. Ia cukup menjawab beberapa pertanyaan penting: berapa transaksi selesai, produk apa yang bergerak, bagaimana pelanggan membayar, apakah ada diskon atau retur, berapa uang yang seharusnya ada, dan kejadian apa yang perlu diperhatikan kembali.

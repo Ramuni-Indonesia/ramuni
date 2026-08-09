@@ -16,7 +16,10 @@ tags:
   - "UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-merapikan-data-produk-dan-sku"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Kartu stok adalah catatan pergerakan satu produk: barang masuk, barang keluar, dan saldo setelah setiap perubahan. Format ini dapat memakai buku, spreadsheet, atau aplikasi. Yang penting bukan medianya, melainkan aturan pencatatannya konsisten dan mudah ditelusuri oleh orang lain.

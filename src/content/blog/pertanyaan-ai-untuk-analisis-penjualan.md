@@ -16,7 +16,10 @@ tags:
   - "AI UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-memilih-metrik-bisnis-untuk-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 AI dapat membantu pemilik usaha menata pertanyaan tentang penjualan, tetapi kualitas jawaban sangat bergantung pada pertanyaan dan data yang diberikan. Prompt yang hanya meminta “analisis penjualan saya” cenderung menghasilkan jawaban umum. Prompt yang menjelaskan periode, definisi, konteks, serta format keluaran lebih mudah diperiksa dan lebih kecil risikonya untuk ditafsirkan berlebihan.

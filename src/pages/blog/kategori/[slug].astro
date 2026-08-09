@@ -33,7 +33,10 @@ const meta: BlogCategoryMeta = getBlogCategory(slug || '') || {
 };
 const sortedPosts = getVisibleBlogPosts(posts);
 const featured = sortedPosts[0];
-const articleList = sortedPosts.slice(1);
+// Category archives are intentionally compact: the canonical blog archive and
+// crawlable pagination expose the full collection, while a capped visual list
+// prevents a category page from eagerly fetching every cover image.
+const articleList = sortedPosts.slice(1, 11);
 const isThin = !isBlogCategoryIndexable(sortedPosts);
 const categoryCtaId = `category-${slug || 'blog'}-decision-cta`;
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);

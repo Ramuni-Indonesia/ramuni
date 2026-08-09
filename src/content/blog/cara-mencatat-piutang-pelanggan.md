@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Piutang Pelanggan untuk Usaha Kecil"
-description: "Cara mencatat piutang pelanggan: buat daftar transaksi tempo, catat nilai, tanggal, status, bukti pembayaran, dan tindak lanjut agar penjualan kredit tidak tertukar dengan kas yang tersedia."
+description: "Cara mencatat piutang pelanggan: buat daftar transaksi tempo, catat nilai, tanggal, status, bukti pembayaran, dan tindak lanjut agar penjualan kredit tidak tertukar dengan kas yang"
 dek: "Piutang adalah tagihan pelanggan yang belum menjadi kas. Catatan sederhana yang konsisten membantu usaha menindaklanjuti pembayaran tanpa mencampur penjualan, kas, dan data pelanggan."
 cover: "/website-original/blog/generated/cara-mencatat-piutang-pelanggan.webp"
 coverAlt: "Pemilik usaha mengatur kartu tagihan pelanggan dan status pembayaran pada papan kalender abstrak, di samping paket barang dan kalkulator"
@@ -16,7 +16,10 @@ tags:
   - "Tagihan Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mencatat-keluhan-pelanggan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Piutang pelanggan adalah nilai transaksi yang belum dibayar penuh oleh pelanggan menurut catatan dan kesepakatan yang digunakan usaha. Ia dapat membantu penjualan pada kondisi tertentu, tetapi bukan uang yang tersedia untuk membayar stok atau tagihan hari ini. Ketika piutang tidak dicatat dengan jelas, pemilik dapat mengira penjualan meningkat sementara kas justru semakin ketat.

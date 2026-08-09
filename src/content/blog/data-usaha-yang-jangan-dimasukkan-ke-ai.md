@@ -13,7 +13,10 @@ categorySlug: "ai-untuk-umkm"
 tags: ["Data Usaha", "Privasi AI", "Keamanan Data"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan privasi, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -43,8 +46,8 @@ updateSummary: "Naskah baru tentang minimisasi data dan batas aman saat mengguna
 related: ["apa-itu-ai-business-companion", "cara-memeriksa-data-sebelum-menggunakan-ai", "batasan-ai-dalam-mengelola-bisnis"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Saat memakai AI untuk membantu membaca bisnis, pertanyaan pertama bukan "data apa yang paling banyak tersedia?", tetapi "data apa yang benar-benar diperlukan untuk menjawab pertanyaan ini?". Data yang berlebihan meningkatkan risiko tanpa selalu meningkatkan kualitas jawaban. Banyak analisis penjualan dapat dilakukan tanpa nama, alamat, nomor telepon, atau rincian pembayaran pelanggan.

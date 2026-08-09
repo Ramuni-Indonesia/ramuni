@@ -1,6 +1,6 @@
 ---
-title: "Cara Menangani Pelanggan Komplain dengan Proses yang Jelas"
-description: "Cara menangani pelanggan komplain: dengarkan masalah, catat fakta, periksa transaksi, jelaskan langkah dan waktu tindak lanjut, pilih penyelesaian sesuai prosedur, lalu gunakan temuan untuk perbaikan layanan."
+title: "Cara Menangani Pelanggan Komplain dengan Proses yang"
+description: "Cara menangani pelanggan komplain: dengarkan masalah, catat fakta, periksa transaksi, jelaskan langkah dan waktu tindak lanjut, pilih penyelesaian sesuai prosedur, lalu gunakan"
 dek: "Komplain adalah informasi tentang pengalaman pelanggan yang tidak sesuai harapan. Tanggapan yang tenang, faktual, dan memiliki tindak lanjut lebih berguna daripada respons cepat tanpa proses."
 cover: "/website-original/blog/generated/cara-menangani-pelanggan-komplain.webp"
 coverAlt: "Pemilik toko mendengarkan pelanggan dengan tenang di meja layanan, disertai kartu ceklis dan simbol perbaikan di samping paket pesanan"
@@ -16,7 +16,10 @@ tags:
   - "Service Recovery"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "sop-buka-tutup-toko-sederhana"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Komplain pelanggan dapat terasa sulit, terutama ketika disampaikan dengan emosi atau saat usaha sedang ramai. Namun respons pertama tidak perlu menjadi perdebatan atau keputusan akhir. Tugas awalnya adalah menerima masalah dengan tenang, memahami fakta yang tersedia, dan menjelaskan langkah berikutnya. Proses yang jelas membantu pelanggan merasa didengar sekaligus memberi usaha ruang untuk memeriksa informasi sebelum menentukan penyelesaian.

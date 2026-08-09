@@ -1,6 +1,6 @@
 ---
-title: "Cara Membaca Penjualan per Jam untuk Menentukan Jam Ramai"
-description: "Cara membaca penjualan per jam: pilih waktu transaksi yang konsisten, kelompokkan jam, hitung jumlah transaksi dan nilai penjualan, beri konteks, lalu uji perubahan kecil pada staf dan stok."
+title: "Cara Membaca Penjualan per Jam untuk Menentukan Jam"
+description: "Cara membaca penjualan per jam: pilih waktu transaksi yang konsisten, kelompokkan jam, hitung jumlah transaksi dan nilai penjualan, beri konteks, lalu uji perubahan kecil pada staf"
 dek: "Laporan per jam membantu toko memahami kapan pelanggan datang dan kapan proses perlu diperkuat. Namun jam ramai perlu dibaca bersama hari, stok, kanal, dan kapasitas layanan."
 cover: "/website-original/blog/generated/cara-membaca-penjualan-per-jam.webp"
 coverAlt: "Pemilik toko mengatur kartu jam abstrak, struk, dan rak produk untuk melihat pola waktu penjualan"
@@ -16,7 +16,10 @@ tags:
   - "Analisis Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan data, proses layanan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "sop-buka-tutup-toko-sederhana"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Penjualan per jam membantu usaha melihat ritme yang tidak tampak dalam total harian. Total omzet satu hari mungkin terlihat baik, tetapi tidak memberi tahu apakah antrean menumpuk pada siang hari, apakah stok kosong sebelum sore, atau apakah dua staf justru banyak menunggu pada jam sepi. Dengan melihat waktu transaksi secara teratur, toko dapat menyiapkan barang, jadwal kerja, dan layanan berdasarkan pola yang lebih nyata.

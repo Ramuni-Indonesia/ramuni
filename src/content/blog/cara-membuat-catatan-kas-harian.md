@@ -16,7 +16,10 @@ tags:
   - "UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "laporan-laba-rugi-sederhana-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Catatan kas harian mencatat uang yang benar-benar masuk dan keluar dalam satu hari. Catatan ini membantu usaha memeriksa apakah uang tunai, transfer, atau pengeluaran kecil memiliki jejak yang jelas. Ia berbeda dari omzet: penjualan dapat terjadi hari ini tetapi dibayar besok, sedangkan uang masuk bisa berasal dari pelunasan transaksi lama.

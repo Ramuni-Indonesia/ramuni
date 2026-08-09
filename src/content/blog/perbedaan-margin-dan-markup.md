@@ -16,7 +16,10 @@ tags:
   - "Harga Jual"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "produk-terlaris-belum-tentu-paling-untung"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Margin dan markup sering dipakai untuk membicarakan harga produk, tetapi keduanya tidak berarti sama. Keduanya memakai selisih antara harga jual dan biaya. Perbedaannya ada pada angka pembagi: margin membandingkan selisih itu dengan harga jual, sementara markup membandingkannya dengan biaya.

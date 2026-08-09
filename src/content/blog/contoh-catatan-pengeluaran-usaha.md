@@ -1,6 +1,6 @@
 ---
 title: "Contoh Catatan Pengeluaran Usaha yang Mudah Dipakai"
-description: "Contoh catatan pengeluaran usaha untuk UMKM: kolom wajib, kategori biaya, cara menyimpan bukti, rekonsiliasi kas, dan langkah mengubah catatan harian menjadi ringkasan yang dapat ditindaklanjuti."
+description: "Contoh catatan pengeluaran usaha untuk UMKM: kolom wajib, kategori biaya, cara menyimpan bukti, rekonsiliasi kas, dan langkah mengubah catatan harian menjadi ringkasan yang dapat"
 dek: "Catatan pengeluaran yang berguna tidak perlu rumit. Yang penting, setiap biaya memiliki tanggal, tujuan, kategori, bukti, dan status pembayaran yang dapat ditelusuri."
 cover: "/website-original/blog/generated/contoh-catatan-pengeluaran-usaha.webp"
 coverAlt: "Pemilik usaha meninjau buku pengeluaran, struk belanja, kalkulator, dan amplop kategori biaya di meja kerja"
@@ -16,7 +16,10 @@ tags:
   - "Catatan Keuangan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-memisahkan-uang-pribadi-dan-uang-usaha"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Catatan pengeluaran usaha menjawab pertanyaan yang sering terasa sederhana tetapi penting: uang keluar untuk apa, kapan, dari mana dibayar, dan apakah buktinya tersedia? Tanpa jawaban tersebut, pemilik mudah mengira kas habis karena biaya kecil, padahal mungkin ada pembelian stok besar, pembayaran utang, atau pengambilan pribadi yang tercampur di daftar yang sama.

@@ -16,7 +16,10 @@ tags:
   - "Validasi Data"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-memilih-metrik-bisnis-untuk-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Sebelum menggunakan AI untuk menganalisis bisnis, periksa apakah data yang akan dipakai memang menjawab pertanyaan yang benar. Data dapat terlihat rapi dalam spreadsheet atau aplikasi, tetapi tetap menyesatkan bila periode keliru, definisi berubah, satuan bercampur, transaksi belum selesai, atau kejadian penting tidak ditandai.

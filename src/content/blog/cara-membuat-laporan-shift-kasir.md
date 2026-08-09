@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Laporan Shift Kasir yang Rapi"
-description: "Cara membuat laporan shift kasir: catat kas awal dan akhir, transaksi, pembayaran non tunai, pembatalan, serah-terima, serta temuan yang perlu ditindaklanjuti agar operasi toko lebih tertib."
+description: "Cara membuat laporan shift kasir: catat kas awal dan akhir, transaksi, pembayaran non tunai, pembatalan, serah-terima, serta temuan yang perlu ditindaklanjuti agar operasi toko"
 dek: "Laporan shift kasir merangkum apa yang terjadi selama satu giliran kerja. Format yang ringkas membantu penerima shift mengetahui kas, transaksi tertunda, dan tindakan yang tidak boleh terlewat."
 cover: "/website-original/blog/generated/cara-membuat-laporan-shift-kasir.webp"
 coverAlt: "Ilustrasi meja serah-terima shift kasir dengan baki kas, amplop tersegel, clipboard kosong, struk, terminal pembayaran, dan dua area kasir"
@@ -16,7 +16,10 @@ tags:
   - "Operasional Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "12 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "contoh-laporan-penjualan-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laporan shift kasir adalah ringkasan kondisi transaksi dan kas pada satu giliran kerja. Ia menjembatani kasir yang selesai bertugas, penerima shift, dan penanggung jawab toko. Tanpa laporan yang jelas, informasi penting sering hanya disampaikan lisan: ada pembayaran yang belum cocok, stok yang perlu diperiksa, pembatalan yang belum selesai, atau selisih yang ditemukan tetapi tidak memiliki jejak.

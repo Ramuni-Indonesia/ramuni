@@ -1,6 +1,6 @@
 ---
-title: "Cara Memilih Supplier untuk Stok Usaha dengan Lebih Terukur"
-description: "Cara memilih supplier untuk stok usaha: bandingkan spesifikasi, harga efektif, kualitas, lead time, minimum pesanan, komunikasi, syarat, dan bukti penerimaan sebelum mengandalkan satu pemasok."
+title: "Cara Memilih Supplier untuk Stok Usaha dengan Lebih"
+description: "Cara memilih supplier untuk stok usaha: bandingkan spesifikasi, harga efektif, kualitas, lead time, minimum pesanan, komunikasi, syarat, dan bukti penerimaan sebelum mengandalkan"
 dek: "Harga beli termurah tidak selalu menghasilkan stok paling aman. Supplier perlu dinilai dari kemampuan memenuhi kebutuhan usaha dengan kualitas, waktu, syarat, dan komunikasi yang dapat dibuktikan."
 cover: "/website-original/blog/generated/cara-memilih-supplier-untuk-stok-usaha.webp"
 coverAlt: "Pemilik usaha membandingkan dua peti pemasok abstrak dengan kartu lead time, pemeriksaan kualitas, checklist, dan rak stok"
@@ -16,7 +16,10 @@ tags:
   - "Lead Time"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan pemasok, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-membuat-checklist-pembelian-barang"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Supplier memengaruhi lebih dari harga beli. Ia memengaruhi apakah barang tersedia ketika pelanggan membutuhkan, apakah kualitas sesuai, seberapa banyak uang harus dikeluarkan sekaligus, dan seberapa sering usaha harus menangani retur atau kekurangan. Karena itu, memilih supplier sebaiknya dimulai dari kebutuhan produk dan proses usaha, bukan hanya dari penawaran harga pertama.

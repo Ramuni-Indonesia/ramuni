@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengukur Kepuasan Pelanggan Sederhana untuk UMKM"
-description: "Cara mengukur kepuasan pelanggan sederhana: pilih momen, ajukan pertanyaan singkat, kumpulkan umpan balik seperlunya, baca pola bersama keluhan dan transaksi, lalu lakukan perbaikan yang dapat diuji."
+description: "Cara mengukur kepuasan pelanggan sederhana: pilih momen, ajukan pertanyaan singkat, kumpulkan umpan balik seperlunya, baca pola bersama keluhan dan transaksi, lalu lakukan"
 dek: "Survei kepuasan tidak harus panjang. Satu atau dua pertanyaan yang muncul pada waktu tepat dapat memberi arah perbaikan bila jawabannya dicatat, dibaca, dan ditindaklanjuti dengan jujur."
 cover: "/website-original/blog/generated/cara-mengukur-kepuasan-pelanggan-sederhana.webp"
 coverAlt: "Pemilik toko meninjau token umpan balik wajah senang, netral, dan kurang puas di samping kotak saran serta paket pesanan"
@@ -16,7 +16,10 @@ tags:
   - "Layanan UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membuat-kartu-pelanggan-sederhana"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Mengukur kepuasan pelanggan tidak harus dimulai dari survei panjang atau skor yang sulit dianalisis. Usaha kecil dapat memulai dengan satu pertanyaan ringkas pada momen yang tepat, misalnya setelah pesanan diterima atau layanan selesai. Yang lebih penting dari jumlah jawaban adalah apakah usaha tahu alasan bertanya, dapat membaca pola, dan memiliki tindakan yang realistis ketika masalah muncul.

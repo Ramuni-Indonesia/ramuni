@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengevaluasi Promo Penjualan agar Tidak Hanya Mengejar Omzet"
+title: "Cara Mengevaluasi Promo Penjualan agar Tidak Hanya"
 description: "Cara mengevaluasi promo penjualan: tetapkan tujuan dan batas, bandingkan periode setara, hitung penjualan bersih, biaya, margin, stok, retur, serta dampak setelah promo selesai."
 dek: "Promo yang ramai belum tentu menguntungkan atau layak diulang. Evaluasi yang sederhana membantu usaha melihat transaksi tambahan, pengorbanan harga, beban proses, dan dampak pada pelanggan."
 cover: "/website-original/blog/generated/cara-mengevaluasi-promo-penjualan.webp"
@@ -16,7 +16,10 @@ tags:
   - "Penjualan Bersih"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan promosi, biaya, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengatur-stok-usaha-fnb"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Promo dapat membantu usaha memperkenalkan produk, mendorong pelanggan mencoba, mengurangi stok tertentu, atau menjaga penjualan pada periode sepi. Namun promo juga dapat menurunkan harga efektif, menambah beban layanan, mempercepat stok habis, dan menimbulkan keluhan bila syaratnya tidak jelas. Karena itu, evaluasi perlu dimulai sebelum promo berjalan, bukan hanya setelah melihat total omzet.

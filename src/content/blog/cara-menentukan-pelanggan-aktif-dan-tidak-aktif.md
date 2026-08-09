@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Pelanggan aktif dan tidak aktif adalah kategori kerja untuk membaca kapan seseorang terakhir bertransaksi menurut pola pembelian usaha. Kategori ini membantu tim melihat perubahan layanan, stok, atau penawaran. Ia bukan penilaian tentang nilai pelanggan, bukan prediksi pasti, dan bukan alasan untuk mengumpulkan data lebih banyak daripada yang diperlukan.

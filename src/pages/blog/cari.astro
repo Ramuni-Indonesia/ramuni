@@ -88,7 +88,7 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
     </div>
   </section>
 
-  <script is:inline define:vars={{ articles, quickTopics }}>
+  <script is:inline define:vars={{ quickTopics }}>
     const query = new URLSearchParams(window.location.search).get('q')?.trim() || '';
     const input = document.querySelector('#search-query');
     const summary = document.querySelector('#search-summary');
@@ -137,6 +137,18 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
 
     if (input instanceof HTMLInputElement) input.value = query;
     if (summary && results && query) {
+      void (async () => {
+      let articles;
+      try {
+        const response = await fetch('/blog-search-index.json', { headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('search_index_unavailable');
+        articles = await response.json();
+        if (!Array.isArray(articles)) throw new Error('search_index_invalid');
+      } catch {
+        summary.textContent = 'Pencarian belum tersedia. Coba buka kategori artikel.';
+        results.replaceChildren(createQuickTopics('Indeks pencarian sedang tidak tersedia. Pilih kategori berikut.'));
+        return;
+      }
       const terms = query.toLocaleLowerCase('id-ID').split(/\s+/).filter(Boolean);
       const matches = articles.filter((article) => {
         const haystack = [article.title, article.dek, article.category, article.author, ...article.tags]
@@ -199,6 +211,7 @@ const quickTopics = [...topicMap.values()].slice(0, 3);
 
         results.append(list);
       }
+      })();
     }
   </script>
 </BaseLayout>

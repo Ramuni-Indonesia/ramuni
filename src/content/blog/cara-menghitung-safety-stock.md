@@ -1,6 +1,6 @@
 ---
-title: "Cara Menghitung Safety Stock untuk Usaha Kecil dengan Data Sederhana"
-description: "Cara menghitung safety stock: pilih produk prioritas, catat pemakaian dan lead time, buat buffer dari variasi yang nyata, uji batasnya, lalu tinjau risiko stok kosong dan stok berlebih."
+title: "Cara Menghitung Safety Stock untuk Usaha Kecil dengan"
+description: "Cara menghitung safety stock: pilih produk prioritas, catat pemakaian dan lead time, buat buffer dari variasi yang nyata, uji batasnya, lalu tinjau risiko stok kosong dan stok"
 dek: "Safety stock adalah cadangan untuk ketidakpastian, bukan target untuk menimbun semua barang. Gunakan data pemakaian, waktu tunggu, usia simpan, dan kas agar buffer tetap masuk akal."
 cover: "/website-original/blog/generated/cara-menghitung-safety-stock.webp"
 coverAlt: "Pemilik usaha menempatkan cadangan kotak produk di stok belakang dengan kartu permintaan abstrak, kalender pengiriman, dan checklist"
@@ -16,7 +16,10 @@ tags:
   - "Persediaan Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan data stok, lead time, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mencatat-stok-masuk-dan-keluar"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Safety stock atau stok pengaman adalah cadangan yang disimpan untuk menghadapi ketidakpastian. Ketidakpastian bisa datang dari pemakaian yang lebih tinggi dari biasanya, pengiriman pemasok yang terlambat, atau selisih kecil pada catatan stok. Ia bukan alasan untuk menumpuk semua barang sebanyak mungkin. Cadangan yang terlalu besar mengikat kas, memenuhi ruang, dan meningkatkan risiko barang usang atau rusak.

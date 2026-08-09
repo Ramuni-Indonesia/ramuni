@@ -13,7 +13,10 @@ categorySlug: "ai-untuk-umkm"
 tags: ["Otomasi", "Rekomendasi AI", "Persetujuan Manusia"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, proses, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru yang membedakan tugas otomatis dengan rekomendasi AI
 related: ["apa-itu-ai-business-companion", "batasan-ai-dalam-mengelola-bisnis", "cara-mengecek-hasil-ai-yang-tidak-masuk-akal"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Otomasi dan rekomendasi AI sama-sama dapat mengurangi pekerjaan berulang, tetapi keduanya tidak sama. Otomasi menjalankan aturan yang telah ditentukan. Rekomendasi AI membantu menyusun kemungkinan berdasarkan data atau instruksi. Kesalahan paling berisiko terjadi ketika rekomendasi dianggap sebagai perintah lalu langsung dijalankan.

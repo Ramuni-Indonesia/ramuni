@@ -13,7 +13,10 @@ categorySlug: "strategi-per-industri"
 tags: ["Laporan Barbershop", "Penjualan Jasa", "Usaha Jasa"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan laporan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang rekap penjualan harian untuk usaha barbersho
 related: ["contoh-laporan-penjualan-harian", "cara-membuat-laporan-shift-kasir", "cara-membuat-catatan-kas-harian"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laporan penjualan barbershop membantu pemilik melihat apa yang benar-benar terjadi selama satu hari: layanan yang selesai, produk yang terjual, cara pelanggan membayar, pembatalan, kas, dan masalah yang perlu diteruskan. Total omzet saja tidak cukup bila tidak jelas pembentuknya.

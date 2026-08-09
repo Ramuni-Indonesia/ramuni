@@ -1,6 +1,6 @@
 ---
 title: "Perbedaan Laba Kotor dan Laba Bersih untuk UMKM"
-description: "Pahami perbedaan laba kotor dan laba bersih: komponen perhitungan, contoh sederhana, cara membaca biaya operasi, serta kesalahan umum agar pemilik usaha tidak menyimpulkan hasil dari satu angka saja."
+description: "Pahami perbedaan laba kotor dan laba bersih: komponen perhitungan, contoh sederhana, cara membaca biaya operasi, serta kesalahan umum agar pemilik usaha tidak menyimpulkan hasil"
 dek: "Laba kotor menunjukkan selisih penjualan dan harga pokok. Laba bersih melihat hasil setelah biaya serta unsur lain yang relevan dicatat. Keduanya menjawab pertanyaan yang berbeda."
 cover: "/website-original/blog/generated/perbedaan-laba-kotor-dan-laba-bersih.webp"
 coverAlt: "Dua wadah transparan berisi balok hijau dan biru dengan token biaya terracotta, kalkulator, serta bentuk bukti transaksi tanpa tulisan"
@@ -16,7 +16,10 @@ tags:
   - "Keuangan UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membuat-laporan-bisnis-bulanan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laba kotor dan laba bersih sering disebut bergantian, padahal keduanya menjawab pertanyaan yang berbeda. Laba kotor membantu melihat selisih antara penjualan dan harga pokok. Laba bersih melangkah lebih jauh dengan memperhitungkan biaya serta unsur lain yang relevan menurut pencatatan usaha. Jika pemilik hanya melihat satu angka, masalah harga, biaya operasi, atau kas dapat tersembunyi.

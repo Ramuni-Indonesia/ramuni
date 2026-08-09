@@ -16,7 +16,10 @@ tags:
   - "Biaya Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "8 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membuat-target-penjualan-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Titik impas, atau break-even point (BEP), adalah perkiraan batas penjualan ketika pendapatan yang dihitung sudah menutup biaya yang dimasukkan ke dalam model. Angka ini membantu usaha menyusun pertanyaan: berapa unit atau nilai penjualan minimum yang perlu dicapai agar biaya periode tersebut tertutup?

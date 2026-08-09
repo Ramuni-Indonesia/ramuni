@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat SOP Kasir Sederhana untuk Toko"
-description: "Cara membuat SOP kasir sederhana: tentukan alur buka kas, verifikasi transaksi, penanganan pembayaran, koreksi, serah-terima, rekap, dan tindak lanjut selisih agar proses toko lebih rapi."
+description: "Cara membuat SOP kasir sederhana: tentukan alur buka kas, verifikasi transaksi, penanganan pembayaran, koreksi, serah-terima, rekap, dan tindak lanjut selisih agar proses toko"
 dek: "SOP kasir membantu transaksi, kas, dan serah-terima berjalan dengan urutan yang sama. Buat aturan yang singkat, dapat dijalankan saat ramai, serta punya langkah jelas saat terjadi selisih."
 cover: "/website-original/blog/generated/cara-membuat-sop-kasir.webp"
 coverAlt: "Kasir mengikuti alur ceklis visual dari kas awal, pemindaian produk, bukti transaksi, hingga penyerahan belanja kepada pelanggan"
@@ -16,7 +16,10 @@ tags:
   - "Rekap Kas"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "12 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "contoh-laporan-penjualan-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 SOP kasir adalah urutan kerja yang membantu transaksi pelanggan, kas, bukti pembayaran, dan serah-terima tercatat dengan cara yang sama. Ia bukan sekadar daftar tombol pada mesin kasir. Prosedur yang baik menjelaskan siapa melakukan apa, kapan transaksi dianggap selesai, bagaimana pembatalan dicatat, dan apa yang dilakukan ketika kas atau sistem tidak sesuai.

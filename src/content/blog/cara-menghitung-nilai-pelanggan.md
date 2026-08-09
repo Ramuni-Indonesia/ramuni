@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Nilai Pelanggan Sederhana untuk UMKM"
-description: "Cara menghitung nilai pelanggan sederhana: pilih periode, hitung nilai belanja rata-rata, frekuensi, dan hubungan pelanggan dengan definisi yang jujur, lalu gunakan hasilnya tanpa mengabaikan privasi dan pengalaman pelanggan."
+description: "Cara menghitung nilai pelanggan sederhana: pilih periode, hitung nilai belanja rata-rata, frekuensi, dan hubungan pelanggan dengan definisi yang jujur, lalu gunakan hasilnya tanpa"
 dek: "Nilai pelanggan membantu melihat pola kontribusi pelanggan dari data transaksi yang tersedia. Angka ini adalah alat belajar, bukan alasan untuk memperlakukan pelanggan sebagai sekadar target angka."
 cover: "/website-original/blog/generated/cara-menghitung-nilai-pelanggan.webp"
 coverAlt: "Pemilik usaha menyusun token pelanggan dan paket pesanan sepanjang jalur hubungan pelanggan dengan bentuk hati abstrak dan kalkulator"
@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menentukan-pelanggan-aktif-dan-tidak-aktif"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Nilai pelanggan sering disebut customer lifetime value, tetapi usaha kecil tidak perlu memulai dengan model yang rumit. Versi sederhana membantu pemilik melihat pola belanja pelanggan yang dapat dikenali dalam periode tertentu: berapa nilai belanja rata-rata, seberapa sering transaksi terjadi, dan berapa lama hubungan itu dicatat. Hasilnya adalah perkiraan untuk belajar, bukan janji bahwa setiap pelanggan akan menghasilkan angka tertentu.

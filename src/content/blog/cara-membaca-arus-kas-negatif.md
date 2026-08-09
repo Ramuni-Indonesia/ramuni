@@ -16,7 +16,10 @@ tags:
   - "Kas Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mencatat-penjualan-kredit"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Arus kas negatif terjadi ketika uang yang keluar dalam periode tertentu lebih besar daripada uang yang benar-benar masuk. Kondisi ini dapat muncul pada usaha yang sedang membeli stok sebelum musim ramai, menunggu pembayaran pelanggan, melunasi tagihan, atau mengalami penjualan yang menurun. Karena itu, arus kas negatif tidak otomatis menjelaskan seluruh kondisi laba, tetapi tetap merupakan sinyal penting tentang kemampuan usaha membayar kebutuhan pada waktunya.

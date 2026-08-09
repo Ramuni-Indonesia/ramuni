@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengelola Stok Toko Fashion berdasarkan Ukuran dan Warna"
+title: "Cara Mengelola Stok Toko Fashion berdasarkan Ukuran dan"
 description: "Panduan mengelola stok toko fashion berdasarkan model, ukuran, warna, musim, varian, penerimaan, penjualan, retur, dan pemeriksaan fisik."
 dek: "Pada toko fashion, satu model bukan satu stok. Ukuran, warna, kondisi, dan musim membuat setiap varian perlu dicatat secara terpisah agar keputusan belanja tidak keliru."
 cover: "/website-original/blog/generated/cara-mengelola-stok-toko-fashion.webp"
@@ -13,7 +13,10 @@ categorySlug: "strategi-per-industri"
 tags: ["Stok Toko Fashion", "SKU Fashion", "Stok Varian"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang mengelola varian stok pada toko fashion."
 related: ["cara-merapikan-data-produk-dan-sku", "cara-mengelola-stok-produk-varian", "cara-mengatur-stok-produk-musiman"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok fashion perlu dibaca sampai tingkat varian. Satu kemeja dapat tersedia dalam beberapa ukuran dan warna, tetapi pelanggan tidak membeli "total kemeja". Mereka mencari ukuran dan warna tertentu. Jika catatan hanya menyimpan total model, toko dapat terlihat memiliki stok padahal varian yang diminta sudah habis.

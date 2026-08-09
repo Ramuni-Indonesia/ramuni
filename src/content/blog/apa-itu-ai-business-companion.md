@@ -16,7 +16,10 @@ tags:
   - "Insight Bisnis"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "batasan-ai-dalam-mengelola-bisnis"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 AI Business Companion adalah istilah untuk alat AI yang membantu pemilik usaha memahami pertanyaan bisnis dari data yang tersedia. Perannya dapat berupa merangkum perubahan penjualan, menyusun daftar hal yang perlu diperiksa, membantu membuat draf catatan rapat, atau mengingatkan konteks yang belum lengkap. Ia bukan pengganti orang yang memahami toko, pelanggan, pemasok, dan keadaan lapangan.

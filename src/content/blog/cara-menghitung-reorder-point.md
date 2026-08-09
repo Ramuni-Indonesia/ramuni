@@ -16,7 +16,10 @@ tags:
   - "Inventori UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan angka contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "8 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "panduan-membaca-stok-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Reorder point adalah batas stok yang memberi sinyal bahwa suatu barang perlu diperiksa untuk persiapan pesan ulang. Ia tidak berarti barang harus langsung dibeli. Sebelum memesan, usaha tetap perlu melihat stok fisik, pesanan pelanggan, barang dalam perjalanan, ruang penyimpanan, dan kas yang tersedia.

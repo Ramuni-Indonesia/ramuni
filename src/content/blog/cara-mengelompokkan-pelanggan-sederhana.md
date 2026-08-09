@@ -16,7 +16,10 @@ tags:
   - "Data Pelanggan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menghitung-repeat-customer-rate"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Mengelompokkan pelanggan berarti menyusun pelanggan ke beberapa kelompok dengan aturan yang membantu usaha mengambil tindakan yang relevan. Tujuannya bukan memberi label pada orang atau mengumpulkan sebanyak mungkin informasi pribadi. Tujuannya adalah memahami pola transaksi yang sudah ada agar layanan, stok, dan komunikasi dapat diperbaiki dengan cara yang wajar.

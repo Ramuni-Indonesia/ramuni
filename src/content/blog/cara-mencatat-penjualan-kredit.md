@@ -1,6 +1,6 @@
 ---
-title: "Cara Mencatat Penjualan Kredit agar Piutang dan Kas Tidak Tercampur"
-description: "Cara mencatat penjualan kredit: buat bukti transaksi, catat nilai dan jatuh tempo, pisahkan piutang dari kas, rekam penerimaan serta koreksi, lalu tinjau umur piutang secara berkala."
+title: "Cara Mencatat Penjualan Kredit agar Piutang dan Kas"
+description: "Cara mencatat penjualan kredit: buat bukti transaksi, catat nilai dan jatuh tempo, pisahkan piutang dari kas, rekam penerimaan serta koreksi, lalu tinjau umur piutang secara"
 dek: "Penjualan kredit dapat mendukung hubungan usaha, tetapi transaksi yang belum dibayar bukan kas. Catatan yang konsisten membantu pemilik melihat kewajiban pelanggan, jatuh tempo, dan dampaknya pada arus uang."
 cover: "/website-original/blog/generated/cara-mencatat-penjualan-kredit.webp"
 coverAlt: "Pemilik usaha mengatur kartu tagihan abstrak, kalender jatuh tempo, bukti pembayaran, baki kas, dan folder pesanan"
@@ -16,7 +16,10 @@ tags:
   - "Arus Kas"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan piutang, arus kas, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menghitung-hpp-produk"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Penjualan kredit terjadi ketika barang atau layanan sudah diserahkan, tetapi pembayaran dilakukan kemudian sesuai kesepakatan. Bagi usaha kecil, kredit dapat membantu pelanggan tertentu atau menjaga alur kerja sama. Namun transaksi kredit juga membawa risiko: kas belum tersedia ketika usaha perlu membayar pemasok, bukti pembayaran mudah tercecer, dan saldo tagihan dapat keliru bila pembayaran sebagian atau retur tidak dicatat.

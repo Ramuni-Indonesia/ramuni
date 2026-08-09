@@ -16,7 +16,10 @@ tags:
   - "Metrik Bisnis"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan rumus, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menghitung-laba-kotor"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Pertumbuhan penjualan sering dipakai untuk menjawab pertanyaan sederhana: apakah penjualan usaha naik atau turun? Angka persentase dapat membantu membandingkan periode, tetapi mudah disalahartikan bila dasar perbandingannya tidak jelas. Kenaikan 50 persen terdengar tinggi, namun bisa berasal dari nominal kecil. Sebaliknya, kenaikan nominal besar mungkin terlihat sebagai persentase kecil bila periode sebelumnya sudah tinggi.

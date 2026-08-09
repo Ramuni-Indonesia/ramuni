@@ -16,7 +16,10 @@ tags:
   - "Supplier"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses pembelian, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "kartu-stok-sederhana-untuk-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Checklist pembelian barang membantu usaha memeriksa apa yang sebenarnya diperlukan sebelum memesan ke pemasok. Tanpa urutan ini, pembelian mudah didorong oleh ingatan, diskon sementara, atau kekhawatiran stok habis. Akibatnya bisa berupa barang menumpuk, pesanan ganda, kas tertahan, atau produk penting justru tidak dipesan tepat waktu.

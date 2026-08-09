@@ -13,7 +13,10 @@ categorySlug: "ai-untuk-umkm"
 tags: ["Pertanyaan Bisnis", "Prompt UMKM", "Analisis AI"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan AI, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang menyusun pertanyaan bisnis yang terukur dan 
 related: ["apa-itu-ai-business-companion", "cara-memeriksa-data-sebelum-menggunakan-ai", "cara-menilai-insight-ai-untuk-bisnis"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Pertanyaan bisnis untuk AI bukan mantra agar jawaban otomatis benar. Pertanyaan yang baik adalah batas kerja: apa yang ingin dipahami, data apa yang boleh dipakai, periode mana yang dibandingkan, dan apa yang masih perlu diperiksa manusia. Batas ini membuat jawaban lebih mudah dibaca serta lebih mudah dibantah bila tidak sesuai bukti.

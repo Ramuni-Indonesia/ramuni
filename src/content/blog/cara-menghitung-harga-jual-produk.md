@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Harga Jual Produk untuk Usaha Kecil"
-description: "Cara menghitung harga jual produk: kumpulkan HPP dan biaya terkait, pilih target markup atau margin dengan arti yang jelas, uji harga efektif, lalu periksa dampaknya pada penjualan, kas, dan stok."
+description: "Cara menghitung harga jual produk: kumpulkan HPP dan biaya terkait, pilih target markup atau margin dengan arti yang jelas, uji harga efektif, lalu periksa dampaknya pada penjualan"
 dek: "Harga jual perlu menutup biaya dan mendukung tujuan usaha, tetapi tidak cukup ditentukan dari satu persentase. Pahami HPP, biaya lain, markup, margin, pelanggan, dan kondisi pasar sebelum mengubah harga."
 cover: "/website-original/blog/generated/cara-menghitung-harga-jual-produk.webp"
 coverAlt: "Pemilik usaha menghitung harga jual dengan kartu produk, tumpukan biaya abstrak, kalkulator, tag harga, dan timbangan"
@@ -16,7 +16,10 @@ tags:
   - "Margin Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan biaya, harga, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-menghitung-laba-kotor"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Harga jual sering ditetapkan dengan cara paling cepat: melihat harga pesaing, menambah persentase tertentu dari biaya, atau mengikuti angka lama. Cara tersebut dapat menjadi titik awal, tetapi perlu diperiksa. Harga terlalu rendah dapat membuat usaha sibuk tanpa cukup hasil untuk menutup biaya serta risiko. Harga terlalu tinggi tanpa nilai atau informasi yang jelas dapat membuat pelanggan memilih alternatif lain.

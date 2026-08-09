@@ -13,7 +13,10 @@ categorySlug: "strategi-per-industri"
 tags: ["Penjualan Laundry", "Laporan Laundry", "Usaha Jasa"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses layanan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang pencatatan penjualan dan status layanan pada
 related: ["cara-mencatat-penjualan-harian", "cara-membuat-catatan-kas-harian", "contoh-laporan-penjualan-harian"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Pencatatan laundry perlu mengikuti alur layanan, bukan hanya uang yang diterima. Satu pesanan dapat masuk hari ini, diproses besok, dibayar di awal atau saat selesai, lalu diambil beberapa hari kemudian. Nomor tiket atau referensi layanan membantu menghubungkan semua tahap tanpa mengandalkan ingatan.

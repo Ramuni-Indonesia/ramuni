@@ -1,6 +1,6 @@
 ---
-title: "Cara Membaca Penjualan saat Hari Libur untuk Merencanakan Toko"
-description: "Cara membaca penjualan saat hari libur: bandingkan periode setara, pisahkan produk dan kanal, catat stok serta jam buka, lalu rencanakan persediaan dan layanan tanpa menebak lonjakan."
+title: "Cara Membaca Penjualan saat Hari Libur untuk"
+description: "Cara membaca penjualan saat hari libur: bandingkan periode setara, pisahkan produk dan kanal, catat stok serta jam buka, lalu rencanakan persediaan dan layanan tanpa menebak"
 dek: "Hari libur dapat mengubah waktu belanja, jenis produk, kapasitas layanan, dan ketersediaan stok. Catatan yang tepat membantu usaha melihat pola tanpa menganggap setiap libur akan menghasilkan angka yang sama."
 cover: "/website-original/blog/generated/cara-membaca-penjualan-saat-hari-libur.webp"
 coverAlt: "Pemilik toko memeriksa kartu kalender abstrak, stok produk, struk, dan grafik tren sederhana pada periode hari libur"
@@ -16,7 +16,10 @@ tags:
   - "Perencanaan Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan data musiman, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-menghitung-pertumbuhan-penjualan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Hari libur dapat membuat pola belanja berubah secara cepat. Ada toko yang lebih ramai pada pagi hari karena pelanggan memiliki waktu luang, ada usaha yang justru sepi karena pelanggan bepergian, dan ada produk tertentu yang meningkat sementara produk lain menurun. Karena pola sangat bergantung pada jenis usaha serta lokasi, total omzet satu hari libur tidak cukup untuk membuat rencana tahun depan.

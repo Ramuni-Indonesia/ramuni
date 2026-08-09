@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Shift Karyawan Toko yang Teratur"
-description: "Cara membuat jadwal shift karyawan toko: petakan jam operasional, kebutuhan pekerjaan, serah-terima, ketersediaan staf, perubahan jadwal, dan evaluasi agar toko tetap siap melayani tanpa jadwal yang membingungkan."
+description: "Cara membuat jadwal shift karyawan toko: petakan jam operasional, kebutuhan pekerjaan, serah-terima, ketersediaan staf, perubahan jadwal, dan evaluasi agar toko tetap siap melayani"
 dek: "Jadwal shift yang baik tidak hanya mengisi nama pada kalender. Ia menghubungkan jam ramai, pekerjaan pembukaan dan penutupan, serah-terima, serta cara menangani perubahan dengan komunikasi yang jelas."
 cover: "/website-original/blog/generated/cara-membuat-shift-karyawan-toko.webp"
 coverAlt: "Manajer toko dan dua staf menyusun blok jadwal shift tanpa tulisan pada papan kalender di dekat meja kasir dan rak produk"
@@ -16,7 +16,10 @@ tags:
   - "Operasional Retail"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membuat-laporan-shift-kasir"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Jadwal shift karyawan toko bukan sekadar kalender berisi nama. Ia menentukan siapa yang membuka area, melayani pelanggan pada jam ramai, menangani kas, menerima barang, menutup toko, dan menyerahkan informasi ke petugas berikutnya. Jika jadwal dibuat tanpa melihat pekerjaan nyata, toko dapat kekurangan dukungan pada saat penting atau staf tidak tahu apa yang perlu diselesaikan saat shift dimulai.

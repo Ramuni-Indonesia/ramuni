@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan praktik data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mencatat-keluhan-pelanggan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Ketika usaha mulai mencatat pelanggan, formulir dan spreadsheet mudah bertambah panjang. Ada kolom yang dibuat karena “siapa tahu nanti berguna”, ada tangkapan layar percakapan yang disimpan tanpa batas, dan ada daftar kontak lama yang tidak pernah dipakai lagi. Kebiasaan tersebut dapat membuat pekerjaan lebih rumit dan meningkatkan risiko bila data diakses atau dibagikan secara tidak tepat.

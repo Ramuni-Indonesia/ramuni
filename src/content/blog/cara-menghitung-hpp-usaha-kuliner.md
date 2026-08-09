@@ -13,7 +13,10 @@ categorySlug: "strategi-per-industri"
 tags: ["HPP Usaha Kuliner", "Biaya Per Porsi", "Harga Menu"]
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan angka contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -38,8 +41,8 @@ updateSummary: "Naskah baru tentang menghitung biaya per porsi dari resep yang d
 related: ["cara-menghitung-hpp-produk", "laporan-laba-rugi-sederhana-umkm", "cara-mengukur-dampak-diskon-terhadap-laba"]
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 HPP usaha kuliner membantu pemilik memahami biaya yang melekat pada satu porsi atau satu batch resep. HPP bukan harga jual dan bukan laba. Ia menjadi dasar untuk membaca dampak perubahan harga bahan, ukuran porsi, kemasan, atau hasil produksi sebelum memutuskan harga menu.

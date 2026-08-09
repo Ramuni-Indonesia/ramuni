@@ -1,5 +1,5 @@
 ---
-title: "Cara Menentukan Produk Pelengkap yang Relevan untuk Pelanggan"
+title: "Cara Menentukan Produk Pelengkap yang Relevan untuk"
 description: "Cara menentukan produk pelengkap: lihat pola pesanan, kebutuhan penggunaan, ketersediaan stok, margin, dan keluhan; lalu uji pasangan produk kecil dengan pengukuran yang jelas."
 dek: "Produk pelengkap yang baik membantu pelanggan menyelesaikan kebutuhan yang sudah mereka pilih. Ia tidak harus berupa tambahan mahal, dan tidak boleh mengorbankan kejelasan atau kepercayaan pelanggan."
 cover: "/website-original/blog/generated/cara-menentukan-produk-pelengkap.webp"
@@ -16,7 +16,10 @@ tags:
   - "Bundling Produk"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan data produk, stok, harga, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengurangi-stok-mati"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Produk pelengkap adalah barang yang masuk akal digunakan bersama produk utama atau membantu pelanggan menyelesaikan kebutuhan yang sudah ada. Contohnya, wadah untuk makanan siap santap, baterai untuk perangkat tertentu, atau bahan pendukung untuk produk utama. Tujuannya bukan membuat pelanggan membeli lebih banyak dengan tekanan. Tujuannya memudahkan pilihan yang memang relevan dan jelas nilainya.

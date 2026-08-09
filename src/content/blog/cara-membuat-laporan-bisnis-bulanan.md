@@ -16,7 +16,10 @@ tags:
   - "UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan angka contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "checklist-review-bisnis-mingguan-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laporan bisnis bulanan membantu pemilik usaha melihat apa yang berubah selama satu periode dan apa yang perlu dikerjakan setelahnya. Laporan ini tidak harus menjadi tumpukan tabel. Yang lebih penting adalah angka berasal dari catatan yang dapat diperiksa, dibandingkan dengan konteks yang tepat, dan menghasilkan keputusan yang jelas.

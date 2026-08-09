@@ -16,7 +16,10 @@ tags:
   - "Dashboard Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan definisi metrik, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "laporan-laba-rugi-sederhana-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Metrik bisnis adalah angka atau ukuran yang membantu usaha melihat kondisi dan mengambil keputusan. Masalahnya, usaha mudah mengumpulkan banyak angka tanpa tahu apa yang harus dilakukan setelah membacanya. Dashboard penuh grafik tidak akan membantu bila pemilik tidak tahu definisinya, sumber datanya, atau keputusan apa yang mungkin berubah karena angka tersebut.

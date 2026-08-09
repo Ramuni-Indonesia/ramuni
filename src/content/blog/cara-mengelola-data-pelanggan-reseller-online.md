@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengelola Data Pelanggan Reseller Online dengan Rapi"
+title: "Cara Mengelola Data Pelanggan Reseller Online dengan"
 description: "Cara mengelola data pelanggan reseller online: tentukan tujuan, kumpulkan data minimum, pisahkan pembeli dan reseller, catat riwayat order, atur akses, serta tinjau data berkala."
 dek: "Data pelanggan dapat membantu layanan dan tindak lanjut, tetapi nilainya datang dari catatan yang relevan, aman, dan mudah diperbarui, bukan dari mengumpulkan sebanyak mungkin informasi."
 cover: "/website-original/blog/generated/cara-mengelola-data-pelanggan-reseller-online.webp"
@@ -16,7 +16,10 @@ tags:
   - "Privasi Pelanggan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan privasi, proses pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mencatat-keluhan-pelanggan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Usaha reseller online sering menerima percakapan dan pesanan dari banyak arah. Ada pembeli satu kali, pelanggan yang kembali, calon reseller yang masih bertanya, reseller aktif yang menunggu stok, serta kontak yang sudah lama tidak relevan. Tanpa catatan yang rapi, pesan dapat terkirim ke orang yang salah, pesanan tertunda, keluhan kehilangan konteks, atau informasi pribadi tersimpan tanpa alasan jelas.

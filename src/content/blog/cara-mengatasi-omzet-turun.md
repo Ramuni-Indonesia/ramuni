@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengatasi Omzet Turun dengan Pemeriksaan Data yang Bertahap"
+title: "Cara Mengatasi Omzet Turun dengan Pemeriksaan Data yang"
 description: "Cara mengatasi omzet turun: pastikan data benar, bandingkan periode sebanding, pecah perubahan menurut produk dan kanal, cek stok serta layanan, lalu uji satu perbaikan kecil."
 dek: "Omzet turun adalah sinyal untuk diperiksa, bukan diagnosis tunggal. Cari perubahan pada jumlah transaksi, nilai pesanan, produk, stok, harga, kanal, dan layanan sebelum mengambil tindakan besar."
 cover: "/website-original/blog/generated/cara-mengatasi-omzet-turun.webp"
@@ -16,7 +16,10 @@ tags:
   - "Evaluasi Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan data penjualan, stok, layanan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengevaluasi-promo-penjualan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Saat omzet turun, dorongan pertama sering kali membuat promo, menurunkan harga, atau membeli stok baru. Tindakan tersebut dapat membantu dalam keadaan tertentu, tetapi juga dapat memperbesar masalah bila penyebabnya belum dipahami. Omzet adalah hasil dari beberapa hal sekaligus: jumlah transaksi, nilai rata-rata pesanan, harga efektif, produk yang tersedia, kanal, waktu operasi, serta proses layanan.

@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Konversi Penjualan Sederhana untuk Usaha"
-description: "Cara menghitung konversi penjualan sederhana: pilih satu tahap, hitung transaksi selesai dibagi calon pelanggan pada tahap yang sama, bandingkan periode setara, lalu perbaiki hambatan dengan uji kecil."
+description: "Cara menghitung konversi penjualan sederhana: pilih satu tahap, hitung transaksi selesai dibagi calon pelanggan pada tahap yang sama, bandingkan periode setara, lalu perbaiki"
 dek: "Konversi tidak harus menjadi metrik rumit. Yang penting adalah menyebut dengan jelas siapa yang dihitung di awal, tindakan apa yang dihitung di akhir, serta status mana yang dianggap selesai."
 cover: "/website-original/blog/generated/cara-menghitung-konversi-penjualan-sederhana.webp"
 coverAlt: "Pemilik usaha menyusun kartu pengunjung, percakapan, pesanan, dan transaksi selesai dengan kalkulator di meja kerja"
@@ -16,7 +16,10 @@ tags:
   - "Transaksi Selesai"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan definisi metrik, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-menentukan-pelanggan-aktif-dan-tidak-aktif"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Konversi penjualan menjawab pertanyaan sederhana: dari orang yang masuk ke suatu tahap, berapa yang akhirnya menyelesaikan tindakan yang kita ukur? Untuk usaha kecil, metrik ini bisa membantu melihat apakah hambatan terjadi saat calon pelanggan bertanya, saat memilih produk, saat pembayaran, atau saat pesanan diproses. Tetapi angka konversi hanya berguna bila tahap awal dan akhir didefinisikan secara jelas.

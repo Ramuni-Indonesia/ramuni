@@ -16,7 +16,10 @@ tags:
   - "Harga Jual"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "8 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "laporan-laba-rugi-sederhana-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 HPP atau harga pokok penjualan membantu usaha membaca biaya yang melekat pada produk. Angka ini berguna untuk memeriksa apakah harga dan promo masih masuk akal, tetapi bukan satu-satunya angka untuk menentukan harga jual. Pasar, kapasitas, margin, biaya operasional, dan tujuan usaha tetap perlu dipertimbangkan.

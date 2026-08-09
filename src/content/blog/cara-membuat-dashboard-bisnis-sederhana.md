@@ -16,7 +16,10 @@ tags:
   - "Ringkasan Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan angka contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "10 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membaca-penjualan-per-produk"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Dashboard bisnis sederhana adalah ringkasan yang membantu pemilik usaha melihat perubahan penting tanpa membuka semua catatan satu per satu. Tujuannya bukan membuat tampilan yang penuh grafik. Tujuannya adalah menjawab pertanyaan rutin, misalnya apakah penjualan bergerak, kas perlu diperiksa, stok tertentu menipis, atau ada pekerjaan yang harus dituntaskan minggu ini.

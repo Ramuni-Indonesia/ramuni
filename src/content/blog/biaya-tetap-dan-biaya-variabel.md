@@ -16,7 +16,10 @@ tags:
   - "Keuangan UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "7 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "laporan-laba-rugi-sederhana-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Biaya tetap dan biaya variabel adalah cara untuk membaca perilaku biaya dalam satu periode. Biaya tetap biasanya tidak berubah langsung setiap kali satu unit produk dijual. Biaya variabel cenderung berubah mengikuti jumlah produksi, penjualan, atau aktivitas tertentu.

@@ -1,6 +1,6 @@
 ---
-title: "Cara Mengelola Stok Produk Varian agar Tidak Salah Ukuran atau Warna"
-description: "Cara mengelola stok produk varian: buat SKU dan atribut yang konsisten, pisahkan lokasi serta status, catat pergerakan tiap varian, baca penjualan per varian, lalu tinjau stok mati dan stok kosong."
+title: "Cara Mengelola Stok Produk Varian agar Tidak Salah"
+description: "Cara mengelola stok produk varian: buat SKU dan atribut yang konsisten, pisahkan lokasi serta status, catat pergerakan tiap varian, baca penjualan per varian, lalu tinjau stok mati"
 dek: "Total stok satu produk dapat terlihat aman padahal varian yang dicari pelanggan sudah habis. Catatan per ukuran, warna, kemasan, atau model membantu usaha melihat persediaan yang benar-benar tersedia."
 cover: "/website-original/blog/generated/cara-mengelola-stok-produk-varian.webp"
 coverAlt: "Pemilik usaha memeriksa beberapa varian kotak produk berwarna dan berukuran berbeda yang tersusun di tray terpisah"
@@ -16,7 +16,10 @@ tags:
   - "Katalog Stok"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan SKU, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengurangi-stok-mati"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Produk dengan ukuran, warna, model, rasa, kemasan, atau kapasitas berbeda membutuhkan catatan stok yang lebih rinci daripada satu total produk. Sebuah toko bisa mencatat 100 unit produk A, tetapi pelanggan tetap tidak dapat membeli jika varian yang mereka cari sudah kosong. Sebaliknya, total yang terlihat banyak dapat menutupi satu varian yang tidak bergerak dan semakin lama menjadi stok mati.

@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Utang Usaha ke Supplier dengan Rapi"
-description: "Cara mencatat utang usaha ke supplier: catat pembelian tempo, nomor bukti, nilai, tanggal jatuh tempo, pembayaran sebagian, dan rekonsiliasi agar kewajiban serta kas usaha dapat dipantau."
+description: "Cara mencatat utang usaha ke supplier: catat pembelian tempo, nomor bukti, nilai, tanggal jatuh tempo, pembayaran sebagian, dan rekonsiliasi agar kewajiban serta kas usaha dapat"
 dek: "Utang kepada supplier perlu dicatat saat transaksi dan ditinjau sebelum jatuh tempo. Daftar yang sederhana membantu usaha membedakan pembelian baru, tagihan lama, dan pembayaran yang sudah dilakukan."
 cover: "/website-original/blog/generated/cara-mencatat-utang-usaha-ke-supplier.webp"
 coverAlt: "Pemilik toko menyortir invoice supplier ke dalam wadah berdasarkan waktu pembayaran, di samping kotak barang dan kalkulator"
@@ -16,7 +16,10 @@ tags:
   - "Pembelian Tempo"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan kas, pencatatan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-membaca-arus-kas-negatif"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Pembelian tempo dapat membantu usaha menjaga ketersediaan barang, tetapi juga menambah kewajiban yang harus dibayar sesuai syarat yang disepakati. Jika utang supplier hanya diingat atau dicatat saat uang keluar, pemilik bisa lupa kapan tagihan jatuh tempo, membayar dua kali, atau mengira kas lebih longgar daripada kenyataannya.

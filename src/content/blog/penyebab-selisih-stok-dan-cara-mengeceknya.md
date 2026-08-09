@@ -1,5 +1,5 @@
 ---
-title: "Penyebab Selisih Stok dan Cara Mengeceknya sebelum Koreksi"
+title: "Penyebab Selisih Stok dan Cara Mengeceknya sebelum"
 description: "Penyebab selisih stok dan cara mengeceknya: hitung ulang, periksa satuan, lokasi, penerimaan, penjualan, retur, barang rusak, transaksi tertunda, lalu buat koreksi dengan bukti."
 dek: "Selisih stok bukan sekadar angka yang perlu disamakan. Ia adalah petunjuk untuk memeriksa proses penerimaan, penjualan, lokasi, satuan, retur, dan kondisi barang sebelum saldo diubah."
 cover: "/website-original/blog/generated/penyebab-selisih-stok-dan-cara-mengeceknya.webp"
@@ -16,7 +16,10 @@ tags:
   - "Audit Stok"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses stok, koreksi, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-menghitung-safety-stock"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Selisih stok terjadi ketika jumlah fisik tidak sama dengan saldo pada catatan. Perbedaan ini dapat membuat usaha membeli terlalu banyak, mengalami stok kosong, salah membaca biaya, atau kehilangan waktu saat melayani pelanggan. Namun selisih bukan bukti tunggal bahwa barang hilang atau seseorang melakukan kesalahan. Sering kali penyebabnya adalah satuan berbeda, penerimaan yang belum dicatat, retur yang bercampur, atau transaksi di sekitar waktu pemeriksaan.

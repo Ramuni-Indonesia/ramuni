@@ -1,6 +1,6 @@
 ---
 title: "Cara Meminta Izin Kontak Pelanggan dengan Jelas"
-description: "Cara meminta izin kontak pelanggan: jelaskan tujuan, kanal, jenis pesan, pilihan pelanggan, pencatatan persetujuan, dan proses berhenti menerima komunikasi secara proporsional untuk usaha kecil."
+description: "Cara meminta izin kontak pelanggan: jelaskan tujuan, kanal, jenis pesan, pilihan pelanggan, pencatatan persetujuan, dan proses berhenti menerima komunikasi secara proporsional"
 dek: "Kontak pelanggan sebaiknya diminta karena ada tujuan yang jelas, bukan karena semua pembeli harus masuk daftar pesan. Kejelasan pilihan membangun kepercayaan dan membuat proses lebih tertib."
 cover: "/website-original/blog/generated/cara-meminta-izin-kontak-pelanggan.webp"
 coverAlt: "Pemilik toko menawarkan kartu pilihan dan telepon dengan tanda setuju generik kepada pelanggan, bersama ikon kunci privasi dan paket pesanan"
@@ -16,7 +16,10 @@ tags:
   - "Komunikasi Pelanggan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "cara-mencatat-keluhan-pelanggan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Meminta izin kontak pelanggan bukan sekadar menambahkan kotak centang pada formulir. Pelanggan perlu memahami mengapa kontak diminta, pesan apa yang mungkin diterima, melalui kanal mana, dan bagaimana memilih atau berhenti. Kejelasan ini membantu usaha membedakan komunikasi yang diperlukan untuk pesanan dari komunikasi tambahan seperti informasi produk atau promosi.

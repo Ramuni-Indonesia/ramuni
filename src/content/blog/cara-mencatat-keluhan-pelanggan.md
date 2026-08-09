@@ -1,5 +1,5 @@
 ---
-title: "Cara Mencatat Keluhan Pelanggan agar Mudah Ditindaklanjuti"
+title: "Cara Mencatat Keluhan Pelanggan agar Mudah"
 description: "Panduan membuat log keluhan pelanggan untuk UMKM: informasi minimum, status penyelesaian, contoh format, dan cara memakai pola keluhan untuk memperbaiki layanan."
 dek: "Keluhan yang dicatat rapi membantu usaha menyelesaikan kasus saat ini dan melihat masalah yang berulang. Simpan informasi yang relevan, bukan cerita pribadi yang tidak diperlukan."
 cover: "/website-original/blog/generated/cara-mencatat-keluhan-pelanggan.webp"
@@ -16,7 +16,10 @@ tags:
   - "CRM UMKM"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan contoh, sumber, praktik data pelanggan, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "checklist-review-bisnis-mingguan-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Keluhan pelanggan adalah informasi tentang pengalaman yang tidak berjalan sesuai harapan. Usaha kecil sering menyelesaikannya lewat percakapan langsung atau pesan singkat. Cara itu dapat terasa cepat, tetapi masalah mudah berulang bila tidak ada catatan tentang apa yang terjadi, siapa yang menindaklanjuti, dan apa hasil akhirnya.

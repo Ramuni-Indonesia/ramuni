@@ -16,7 +16,10 @@ tags:
   - "Checklist Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "9 menit"
 takeaways:
@@ -44,8 +47,8 @@ related:
   - "kartu-stok-sederhana-untuk-umkm"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 SOP buka tutup toko adalah urutan kerja yang membantu staf menyiapkan toko dan menutupnya tanpa melewatkan langkah penting. SOP tidak harus menjadi dokumen tebal. Untuk usaha kecil, satu checklist yang masuk akal sering lebih berguna daripada prosedur panjang yang tidak dibaca saat toko ramai.

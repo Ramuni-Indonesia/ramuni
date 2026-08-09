@@ -1,6 +1,6 @@
 ---
-title: "Cara Mengukur Perputaran Stok untuk Menilai Pergerakan Barang"
-description: "Cara mengukur perputaran stok: pilih periode dan definisi biaya yang konsisten, hitung biaya barang terjual dibanding rata-rata persediaan, baca hasil per kategori, lalu cek stok kosong serta stok mati."
+title: "Cara Mengukur Perputaran Stok untuk Menilai Pergerakan"
+description: "Cara mengukur perputaran stok: pilih periode dan definisi biaya yang konsisten, hitung biaya barang terjual dibanding rata-rata persediaan, baca hasil per kategori, lalu cek stok"
 dek: "Perputaran stok menunjukkan seberapa sering persediaan bergerak dalam periode tertentu. Angka ini berguna untuk pertanyaan, bukan target tunggal, karena produk cepat habis juga dapat berarti stok terlalu sedikit."
 cover: "/website-original/blog/generated/cara-mengukur-perputaran-stok.webp"
 coverAlt: "Pemilik usaha mengatur alur kotak produk berputar dengan kartu catatan dan rak berisi satu barang yang bergerak lambat"
@@ -16,7 +16,10 @@ tags:
   - "Stok Lambat"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan persediaan, biaya, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengatur-stok-produk-musiman"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Perputaran stok atau inventory turnover membantu usaha melihat seberapa sering persediaan bergerak dalam satu periode. Angka ini dapat menunjukkan barang yang lambat, modal yang tertahan, atau kategori yang perlu diperiksa lebih dekat. Namun perputaran bukan lomba untuk membuat angka setinggi mungkin. Produk yang sangat cepat habis bisa memberi rasio tinggi tetapi tetap menyebabkan pelanggan tidak menemukan barang saat diperlukan.

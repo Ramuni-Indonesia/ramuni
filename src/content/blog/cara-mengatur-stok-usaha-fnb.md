@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengatur Stok Usaha F&B agar Bahan Tidak Banyak Terbuang"
+title: "Cara Mengatur Stok Usaha F&B agar Bahan Tidak Banyak"
 description: "Cara mengatur stok usaha F&B: daftar bahan per menu, catat penerimaan dan pemakaian, pakai FIFO, hitung kebutuhan, tetapkan batas stok, dan pantau bahan berisiko terbuang."
 dek: "Stok makanan dan minuman tidak cukup dikelola dengan menghitung jumlah barang. Usia simpan, resep, perubahan penjualan, dan waktu pengadaan perlu masuk ke catatan harian."
 cover: "/website-original/blog/generated/cara-mengatur-stok-usaha-fnb.webp"
@@ -16,7 +16,10 @@ tags:
   - "Waste Makanan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
 editorialStatus: "Menunggu peninjauan stok, proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
 readingTime: "11 menit"
 takeaways:
@@ -49,8 +52,8 @@ related:
   - "cara-mengurangi-stok-mati"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok usaha makanan dan minuman bergerak lebih cepat daripada banyak jenis usaha lain. Bahan segar memiliki usia simpan pendek, satu bahan dapat dipakai oleh beberapa menu, ukuran kirim pemasok tidak selalu sama dengan ukuran resep, dan penjualan akhir pekan dapat berbeda jauh dengan hari biasa. Bila stok hanya dihitung saat belanja, usaha mudah mengalami dua masalah sekaligus: bahan habis ketika menu dicari pelanggan, atau bahan tersisa hingga rusak.
