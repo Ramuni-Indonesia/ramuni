@@ -114,3 +114,5 @@ Hindari kesalahan berikut:
 - Mengumpulkan data pelanggan atau staf yang tidak diperlukan hanya demi dashboard.
 
 Metrik yang baik membuat usaha lebih jelas tentang apa yang terjadi dan apa yang diuji berikutnya. Mulai dari sedikit angka yang dapat dipercaya, dokumentasikan artinya, lalu perbaiki proses pencatatan dan keputusan secara bertahap.
+
+Saat usaha menggunakan aplikasi atau spreadsheet baru, jangan langsung memindahkan seluruh daftar metrik. Uji tiga metrik utama selama satu periode dan cocokkan hasilnya dengan catatan lama. Periksa apakah definisi, tanggal, satuan, dan status transaksi masih sama. Jika angka berbeda, cari penyebab sebelum membuat target baru. Dokumentasikan perubahan sistem dan pemilik pemeriksaan supaya tren berikutnya tidak terlihat berubah hanya karena cara pengambilan data berganti.
