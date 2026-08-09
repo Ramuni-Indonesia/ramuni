@@ -134,4 +134,15 @@ Setelah beberapa periode, lihat apakah shift benar-benar mendukung pekerjaan. Ku
 
 SOP kasir juga perlu selaras dengan jadwal. Baca [SOP kasir](/blog/cara-membuat-sop-kasir/) untuk memastikan peran yang dijadwalkan memiliki prosedur jelas bagi kas, pembatalan, serta selisih.
 
+## Publikasikan versi jadwal yang mudah dikenali
+
+Setelah jadwal disetujui, beri penanda versi atau tanggal pembaruan dan tempatkan di kanal yang memang dipakai tim. Bila ada perubahan darurat, perbarui versi resmi terlebih dahulu lalu beri tahu semua petugas yang terdampak. Hindari mengandalkan tangkapan layar lama atau pesan pribadi sebagai sumber akhir, karena mudah menimbulkan salah paham saat shift dimulai.
+
+| Praktik kecil | Manfaat |
+| --- | --- |
+| Tanggal pembaruan terlihat | Tim tahu jadwal mana yang terbaru |
+| Satu kanal resmi | Mengurangi versi yang saling bertentangan |
+| Konfirmasi petugas terdampak | Perubahan tidak hanya terlihat tetapi juga diketahui |
+| Catatan alasan perubahan | Membantu peninjauan pola kebutuhan kemudian |
+
 Kesalahan umum adalah membuat jadwal hanya berdasarkan nama yang tersedia, mengubahnya tanpa versi resmi, tidak memberi waktu serah-terima, dan tidak meninjau beban nyata. Mulailah dengan satu minggu, beberapa peran inti, serta cara perubahan yang jelas. Shift yang teratur membantu toko siap melayani pelanggan sekaligus memberi staf kepastian tentang tugas dan informasi yang perlu dibawa ke giliran berikutnya.
