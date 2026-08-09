@@ -124,6 +124,20 @@ Setelah pola terlihat, pilih perbaikan yang memberi manfaat nyata: memastikan st
 
 Artikel [menentukan pelanggan aktif dan tidak aktif](/blog/cara-menentukan-pelanggan-aktif-dan-tidak-aktif/) membantu menyusun definisi status secara hati-hati. Bila usaha menghubungi pelanggan, pastikan tujuan serta dasar komunikasi jelas dan tersedia pilihan yang sesuai untuk berhenti menerima pesan.
 
+## Validasi angka sebelum membandingkan periode
+
+Sebelum membandingkan nilai pelanggan bulan ini dengan periode sebelumnya, periksa kembali transaksi yang batal, pembayaran yang belum berstatus selesai, duplikasi kode, dan perubahan cara pencatatan. Perbedaan definisi sering lebih besar dampaknya daripada perubahan perilaku pelanggan yang ingin dianalisis.
+
+| Cek validasi | Alasan |
+| --- | --- |
+| Kode pelanggan yang ganda | Satu orang tidak dihitung sebagai beberapa profil tanpa dasar |
+| Transaksi batal atau retur | Nilai tidak terlihat lebih besar dari transaksi yang benar-benar selesai |
+| Periode yang sama | Perbandingan tidak dipengaruhi jumlah hari atau musim yang berbeda tanpa catatan |
+| Perubahan harga atau kanal | Hasil dapat dijelaskan tanpa menyimpulkan perubahan loyalitas secara tergesa-gesa |
+| Cakupan data | Pembaca memahami pelanggan mana yang memang masuk perhitungan |
+
+Simpan definisi, tanggal penarikan data, dan alasan setiap penyesuaian di catatan analisis. Praktik kecil ini membuat hasil dapat ditinjau ulang ketika staf, proses, atau sistem berubah. Jika data terlalu terbatas, nyatakan keterbatasannya dan gunakan temuan sebagai pertanyaan untuk riset layanan, bukan sebagai dasar keputusan yang terlalu jauh.
+
 ## Kesalahan umum dan langkah berikutnya
 
 Kesalahan umum adalah menyebut nilai penjualan sebagai nilai pelanggan, menggunakan data pelanggan tanpa batas tujuan yang jelas, menilai semua pelanggan dari rata-rata, serta menyimpulkan hubungan akan berlangsung selamanya dari beberapa transaksi. Kesalahan lain adalah mencampur nilai transaksi dengan laba tanpa melihat harga pokok dan biaya pelayanan.
