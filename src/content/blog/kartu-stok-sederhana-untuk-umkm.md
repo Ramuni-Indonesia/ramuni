@@ -74,6 +74,33 @@ Barang masuk dapat berasal dari penerimaan pemasok, retur pelanggan yang layak j
 
 Hindari mengubah saldo semata-mata agar kartu sama dengan hitungan fisik. Jika ada perbedaan, catat sebagai selisih dan telusuri transaksi terkait. [Stok opname](/blog/cara-melakukan-stok-opname/) digunakan untuk membandingkan catatan dengan jumlah nyata, bukan untuk menghapus jejak kesalahan.
 
+## Tentukan kapan orang boleh mengoreksi saldo
+
+Koreksi adalah transaksi tersendiri, bukan pengganti untuk transaksi yang terlupa. Buat aturan sederhana: orang yang menemukan selisih boleh menuliskan temuan, tetapi perubahan saldo dilakukan setelah ada bukti atau persetujuan yang jelas. Aturan ini menjaga kartu tetap jujur ketika ada kehilangan, barang rusak, salah hitung, atau transaksi kasir yang belum masuk.
+
+Gunakan format keterangan yang konsisten, misalnya `Koreksi +2: dua unit penerimaan 8 Agustus belum dicatat, dicek oleh A` atau `Rusak -1: kemasan bocor, foto dan laporan tersedia`. Hindari keterangan “perbaikan saldo” tanpa sebab. Jika akar masalah belum ditemukan, tulis “selisih menunggu penelusuran” dan jangan menyamarkannya sebagai penjualan atau barang masuk.
+
+| Kejadian | Cara mencatat | Yang perlu disimpan |
+| --- | --- | --- |
+| Nota pemasok menyebut 24 unit, fisik hanya 22 | Masuk 22; catat kekurangan 2 unit pada keterangan | Nota, foto atau laporan penerimaan, dan tindak lanjut ke pemasok |
+| Kasir menjual 5 unit, tetapi rekap belum masuk | Keluar 5 dengan penanda rekap tertunda | Rekap kasir saat tersedia dan nama petugas |
+| Satu unit rusak di rak | Keluar 1 sebagai barang rusak, bukan penjualan | Catatan kondisi dan persetujuan bila diperlukan |
+| Hitungan fisik berbeda dari kartu | Catat selisih terpisah sambil menelusuri | Hasil hitung, periode pemeriksaan, dan keputusan akhir |
+
+Dengan cara ini, kartu stok dapat menjawab pertanyaan “apa yang berubah?” tanpa memaksa tim mengingat percakapan yang terjadi berhari-hari lalu.
+
+## Buat alur pencatatan untuk hari yang sibuk
+
+Kartu sering gagal bukan karena formatnya salah, tetapi karena transaksi terjadi lebih cepat daripada kebiasaan mencatat. Pilih satu titik pencatatan yang realistis. Untuk toko kecil, penerimaan dapat dicatat saat barang diperiksa, penjualan dicatat dari rekap pada akhir shift, dan transaksi tidak biasa dicatat segera oleh orang yang menanganinya. Jangan mengharuskan dua orang menulis angka yang sama di dua tempat bila tidak ada proses rekonsiliasi yang jelas.
+
+Pada hari ramai, gunakan daftar sementara yang diberi waktu dan nama petugas. Sebelum tutup, pindahkan setiap baris ke kartu stok dan cocokkan dengan bukti. Jika belum selesai, jangan menganggap saldo final; beri status “menunggu pembaruan” dan jadwalkan penyelesaiannya sebelum transaksi berikutnya menumpuk. Cara ini lebih aman daripada mengisi angka perkiraan agar tabel tampak lengkap.
+
+## Siapkan pemeriksaan mingguan yang singkat
+
+Setiap minggu, pilih beberapa kartu: produk cepat bergerak, produk bernilai tinggi, barang yang banyak diretur, dan produk yang baru mengalami koreksi. Cocokkan saldo terakhir dengan bukti masuk/keluar serta hitungan fisik terbatas. Fokus pada pola, misalnya koreksi terus muncul pada jam tertentu atau satuan selalu keliru ketika barang dikonversi dari dus ke unit.
+
+Hasil pemeriksaan sebaiknya berakhir pada tindakan kecil: memperjelas nama produk, memperbaiki titik pencatatan, atau menugaskan satu orang untuk memeriksa penerimaan. Kartu stok bukan tujuan akhir. Ia adalah jejak yang membantu usaha mencegah kesalahan berulang sebelum dampaknya menjadi selisih besar.
+
 ## Tutup hari dengan pemeriksaan ringan
 
 Pada akhir hari, pilih produk penting atau cepat bergerak untuk diperiksa. Bandingkan kartu dengan rekap transaksi dan penerimaan yang terjadi hari itu. Bila satu transaksi belum masuk, beri penanda sementara dan catat siapa yang akan melengkapinya.
