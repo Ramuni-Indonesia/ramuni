@@ -16,6 +16,19 @@ export const SITEMAP_CHILD_FILES = Object.freeze(
   SITEMAP_GROUPS.map((group) => `sitemap-${group}.xml`),
 );
 
+// The blog is deliberately a nested sitemap index. Article URLs and editorial
+// profiles have different update cadences, while the blog archive itself is a
+// regular site page and belongs in sitemap-pages.xml.
+export const SITEMAP_BLOG_CHILD_FILES = Object.freeze([
+  'sitemap-blog-posts.xml',
+  'sitemap-blog-authors.xml',
+]);
+
+export const SITEMAP_URLSET_FILES = Object.freeze([
+  ...SITEMAP_GROUPS.filter((group) => group !== 'blog').map((group) => `sitemap-${group}.xml`),
+  ...SITEMAP_BLOG_CHILD_FILES,
+]);
+
 const EDITORIAL_TRUST_ROUTES = new Set([
   '/blog/kebijakan-editorial/',
   '/blog/metodologi-fact-check/',
@@ -38,7 +51,8 @@ export function sitemapGroupForPath(pathname) {
   if (path === '/industri/' || path.startsWith('/industri/')) return 'industries';
 
   if (EDITORIAL_TRUST_ROUTES.has(path)) return 'pages';
-  if (path === '/blog/' || path.startsWith('/blog/')) return 'blog';
+  if (path === '/blog/') return 'pages';
+  if (path.startsWith('/blog/')) return 'blog';
 
   if (
     path === '/sumber-daya/'

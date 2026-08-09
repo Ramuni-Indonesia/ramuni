@@ -3,8 +3,10 @@ import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolvePublicEnvironment } from '../src/config/public-environment.mjs';
 import {
+  SITEMAP_BLOG_CHILD_FILES,
   SITEMAP_CHILD_FILES,
   SITEMAP_INDEX_FILES,
+  SITEMAP_URLSET_FILES,
   normalizeSitemapPath,
   sitemapGroupForPath,
 } from './sitemap-policy.mjs';
@@ -658,11 +660,11 @@ function sitemapLocPaths(xml, sourceFile) {
 }
 
 if (publicEnvironment.indexingEnabled) {
-  for (const file of [...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES]) {
+  for (const file of [...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES, ...SITEMAP_BLOG_CHILD_FILES]) {
     if (!rootSitemapSet.has(file)) failures.push(`sitemap: missing ${file}`);
   }
   for (const file of rootSitemapFiles) {
-    if (![...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES].includes(file)) failures.push(`sitemap: unexpected file ${file}`);
+    if (![...SITEMAP_INDEX_FILES, ...SITEMAP_CHILD_FILES, ...SITEMAP_BLOG_CHILD_FILES].includes(file)) failures.push(`sitemap: unexpected file ${file}`);
   }
 
   const expectedChildRoutes = new Set(SITEMAP_CHILD_FILES.map((file) => normalizeRoute(`/${file}`)));
@@ -674,9 +676,16 @@ if (publicEnvironment.indexingEnabled) {
     for (const route of locs) if (!expectedChildRoutes.has(route)) failures.push(`${indexFile}: unexpected child sitemap ${route}`);
   }
 
-  for (const file of SITEMAP_CHILD_FILES) {
+  if (rootSitemapSet.has('sitemap-blog.xml')) {
+    const xml = await readFile(join(root, 'sitemap-blog.xml'), 'utf8');
+    const expectedBlogChildren = new Set(SITEMAP_BLOG_CHILD_FILES.map((file) => normalizeRoute(`/${file}`)));
+    const locs = new Set(sitemapLocPaths(xml, 'sitemap-blog.xml'));
+    for (const route of expectedBlogChildren) if (!locs.has(route)) failures.push(`sitemap-blog.xml: missing child sitemap ${route}`);
+    for (const route of locs) if (!expectedBlogChildren.has(route)) failures.push(`sitemap-blog.xml: unexpected child sitemap ${route}`);
+  }
+
+  for (const file of SITEMAP_URLSET_FILES) {
     if (!rootSitemapSet.has(file)) continue;
-    const expectedGroup = file.match(/^sitemap-([a-z]+)\.xml$/)?.[1];
     const xml = await readFile(join(root, file), 'utf8');
     for (const route of sitemapLocPaths(xml, file)) {
       const page = pages.get(route);
@@ -685,7 +694,12 @@ if (publicEnvironment.indexingEnabled) {
       sitemapUrls.set(route, file);
       if (!page) failures.push(`${file}: missing page ${route}`);
       else if (page.noindex) failures.push(`${file}: noindex page included ${route}`);
-      else if (sitemapGroupForPath(normalizeSitemapPath(route)) !== expectedGroup) failures.push(`${file}: wrong group for ${route}`);
+      else if (file === 'sitemap-blog-posts.xml' && (!/^\/blog\/[^/]+\/$/.test(normalizeSitemapPath(route)) || !page.html.includes('BlogPosting'))) failures.push(`${file}: non-article route ${route}`);
+      else if (file === 'sitemap-blog-authors.xml' && !/^\/blog\/penulis\/[^/]+\/$/.test(normalizeSitemapPath(route))) failures.push(`${file}: non-author route ${route}`);
+      else if (!SITEMAP_BLOG_CHILD_FILES.includes(file)) {
+        const expectedGroup = file.match(/^sitemap-([a-z]+)\.xml$/)?.[1];
+        if (sitemapGroupForPath(normalizeSitemapPath(route)) !== expectedGroup) failures.push(`${file}: wrong group for ${route}`);
+      }
     }
   }
 }

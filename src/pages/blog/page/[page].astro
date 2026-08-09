@@ -57,6 +57,7 @@ const schema = [
   description={pageDescription}
   canonical={canonical}
   pageType="CollectionPage"
+  noindex={true}
   schema={schema}
   previousPage={page.currentPage > 1 ? getBlogPageHref(page.currentPage - 1) : undefined}
   nextPage={page.currentPage < page.totalPages ? getBlogPageHref(page.currentPage + 1) : undefined}
