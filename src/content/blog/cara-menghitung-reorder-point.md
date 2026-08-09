@@ -103,6 +103,25 @@ Ketika batas terlewati, jangan langsung menghasilkan pembelian tanpa peninjauan.
 
 Untuk produk yang sering memiliki selisih, lakukan [stok opname](/blog/cara-melakukan-stok-opname/) lebih dulu. Untuk produk yang bergerak cepat, baca [panduan stok harian](/blog/panduan-membaca-stok-harian/) agar pemeriksaan dilakukan sebelum jam ramai. Dengan cara ini, reorder point menjadi alat untuk menata perhatian tim, bukan angka yang bekerja tanpa konteks.
 
+## Putuskan tindakan berdasarkan situasinya
+
+Sinyal yang sama dapat menghasilkan keputusan yang berbeda. Karena itu, gunakan reorder point sebagai awal percakapan singkat, bukan sebagai perintah yang mengabaikan kondisi hari ini. Tabel berikut menunjukkan pertanyaan yang perlu diajukan sebelum pesanan dibuat.
+
+| Situasi saat batas tercapai | Yang dicek lebih dulu | Tindakan yang mungkin |
+| --- | --- | --- |
+| Stok siap jual 36 unit, batas 38 unit, penjualan normal | Pesanan pemasok yang masih berjalan dan saldo fisik | Pesan sesuai kebutuhan periode berikutnya bila belum ada barang datang |
+| Stok 36 unit, tetapi 20 unit sedang dikirim dan tiba besok | Bukti pesanan, jumlah, dan jadwal penerimaan | Pantau penerimaan; jangan membuat pesanan ganda hanya karena angka sistem rendah |
+| Stok 36 unit menjelang promosi akhir pekan | Proyeksi tambahan permintaan, kapasitas rak, dan umur simpan | Sesuaikan jumlah atau percepat pesanan setelah risiko promosi dicatat |
+| Stok 36 unit, pemasok sering mengirim tidak lengkap | Riwayat pesanan parsial dan alternatif pemasok | Konfirmasi ketersediaan; pertimbangkan pesanan lebih awal atau pemasok cadangan |
+
+Dalam praktik, tulis satu alasan singkat di catatan stok, misalnya: “batas tercapai; menunggu 20 unit dari PO-014, cek kembali besok pukul 10.00.” Catatan seperti ini mencegah dua orang melakukan pemesanan untuk kebutuhan yang sama. Ia juga membuat keputusan dapat ditinjau ketika terjadi kelebihan barang atau rak kembali kosong.
+
+## Tinjau rumus setelah keputusan, bukan hanya sebelum pesan
+
+Reorder point membaik jika hasilnya dibandingkan dengan kejadian nyata. Setiap kali barang tiba, catat apakah persediaan sempat habis, terlalu lama menumpuk, atau cukup sampai penerimaan. Setelah tiga sampai lima siklus pemesanan, lihat pola yang berulang. Bila barang sering kosong sebelum pemasok datang, masalahnya bisa berada pada rata-rata pemakaian, waktu tunggu, atau stok pengaman. Bila barang menumpuk, periksa apakah batas dibuat berdasarkan masa promosi yang sudah lewat atau karena stok dalam perjalanan tidak ikut dihitung.
+
+Jangan mengubah semua komponen sekaligus. Misalnya, jika dua pengiriman terlambat karena hari libur, naikkan sementara asumsi waktu tunggu dan catat alasannya. Pada periode berikutnya, bandingkan kembali dengan penerimaan aktual. Pendekatan bertahap membuat tim tahu perubahan mana yang benar-benar membantu dan menjaga angka batas tetap mudah dijelaskan kepada orang yang mengambil alih pencatatan.
+
 ## Kesalahan yang perlu dihindari
 
 - Menggunakan satu hari ramai sebagai rata-rata semua hari.
