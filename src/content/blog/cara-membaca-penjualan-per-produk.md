@@ -29,7 +29,7 @@ takeaways:
   - "Gunakan satu daftar kecil produk yang perlu diperiksa, bukan mencoba mengubah semua produk sekaligus."
 faqs:
   - question: "Apa yang perlu dilihat dari laporan penjualan per produk?"
-    answer: "Mulai dari nilai penjualan, unit terjual, jumlah transaksi, diskon, retur, ketersediaan stok, dan—bila datanya siap—HPP atau margin."
+    answer: "Mulai dari nilai penjualan, unit terjual, jumlah transaksi, diskon, retur, ketersediaan stok, serta HPP atau margin bila datanya siap."
   - question: "Apakah produk terlaris selalu harus dipromosikan?"
     answer: "Tidak selalu. Produk terlaris mungkin sudah sering dibeli tanpa promo, memiliki stok terbatas, atau memberi margin yang tipis. Periksa tujuannya sebelum menambah promosi."
   - question: "Berapa produk yang sebaiknya diperiksa?"
