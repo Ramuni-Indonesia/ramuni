@@ -123,4 +123,18 @@ Jika perlu mengubah harga, lakukan perubahan dengan tujuan, periode, produk, kan
 
 Bandingkan hasil dengan periode sepadan. Jangan menyimpulkan harga baru berhasil hanya dari omzet. Baca unit, margin, biaya, retur, keluhan, serta dampak pada stok. Artikel [cara menghitung laba kotor](/blog/cara-menghitung-laba-kotor/) memberi cara membaca hubungan penjualan serta HPP sebagai salah satu dasar evaluasi.
 
+## Tinjau pembulatan dan perubahan biaya secara teratur
+
+Hasil rumus sering menghasilkan angka yang tidak praktis untuk ditampilkan atau dibayar. Pembulatan boleh dilakukan sesuai kebijakan usaha, tetapi tulis harga sebelum dan sesudah pembulatan agar dampaknya terlihat. Jangan membulatkan tanpa memeriksa apakah margin berubah cukup besar, terutama pada produk berharga rendah atau volume tinggi.
+
+Biaya juga dapat berubah karena pemasok, kemasan, pengiriman, kanal, atau bahan. Tetapkan momen peninjauan, misalnya ketika ada penerimaan baru dengan biaya berbeda, perubahan biaya kanal, atau setiap periode laporan. Hindari menunggu sampai arus kas tertekan untuk menyadari harga efektif tidak lagi menutup biaya. Bila harga tidak diubah, catat alasan seperti strategi sementara, stok lama, atau pertimbangan pelanggan agar keputusan dapat dievaluasi kemudian.
+
+| Kejadian | Tindakan peninjauan |
+| --- | --- |
+| HPP berubah | Perbarui skenario harga serta margin kotor |
+| Biaya kanal berubah | Periksa harga efektif di kanal terkait |
+| Diskon berulang | Hitung hasil setelah pengurang, bukan harga daftar |
+| Produk atau kemasan berubah | Cek ulang satuan, biaya, dan informasi pelanggan |
+| Harga dibulatkan | Simpan dasar perhitungan dan dampaknya |
+
 Kesalahan umum adalah mencampur markup dengan margin, memakai HPP yang tidak diperiksa, melupakan biaya kanal, memberi diskon tanpa batas, dan mengubah banyak variabel sekaligus. Harga jual yang baik dapat dijelaskan: biaya serta tujuan jelas, informasi pelanggan jujur, dan perubahan dievaluasi dengan data. Rumus membantu memulai, tetapi keputusan akhir tetap perlu mempertimbangkan kemampuan usaha melayani dan menjaga keberlanjutan operasi.
