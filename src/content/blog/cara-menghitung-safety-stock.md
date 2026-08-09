@@ -131,4 +131,6 @@ Catat setiap kejadian yang menunjukkan buffer terlalu kecil atau terlalu besar. 
 
 Artikel [cara mencatat stok masuk dan keluar](/blog/cara-mencatat-stok-masuk-dan-keluar/) memberi dasar agar saldo dan alasan penyesuaian dapat ditelusuri. Tanpa catatan penerimaan, pemakaian, rusak, dan koreksi, safety stock hanya akan menjadi angka di atas perkiraan yang tidak pernah diuji.
 
+Saat stok mencapai titik cek, buat keputusan dengan catatan singkat: saldo saat ini, pesanan yang masih datang, pemakaian beberapa hari terakhir, kondisi pemasok, serta alasan jumlah yang dipilih. Jika ternyata pembelian dikurangi karena kas terbatas atau barang mendekati usia simpan, tulis alasan tersebut. Catatan keputusan membantu usaha mengevaluasi apakah masalah berikutnya berasal dari buffer, keterlambatan pemasok, atau batas pembelian yang memang dipilih dengan sadar.
+
 Kesalahan umum adalah memakai satu buffer untuk semua barang, memakai angka tertinggi tanpa konteks, menambah cadangan tanpa memeriksa usia simpan, serta menganggap safety stock menghapus risiko stok kosong. Buffer yang baik justru membantu usaha melihat risiko dengan lebih jelas. Mulai dari produk penting, data sederhana, dan perubahan kecil yang bisa ditinjau setelah setiap siklus pembelian.
