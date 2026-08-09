@@ -12,6 +12,16 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+### Published production batch — `90b38bd1a1e7`
+
+- Production release is active at `20260809T145718Z-90b38bd1a1e7-production` under `/var/www/ramuni-staging/releases/`, atomically promoted to `/var/www/ramuni-staging/current`. The previous `da11511a5724` release remains available for rollback.
+- Public verification passed for `https://www.ramuni.id/`, the `ramuni.id` → `www` redirect, `/robots.txt`, the sitemap index and all nested sitemap files, plus the free-tour and published blog routes. Public sitemaps expose 16 page URLs, 17 reviewed blog posts, 1 author profile, 10 product URLs, 6 solution URLs, 7 industry URLs, and 52 resource URLs.
+- The sitemap architecture is production-safe: `/sitemap.xml` is an index; `/sitemap-blog.xml` is a nested blog index that points to post and author sitemaps; all entries have truthful `lastmod` values. Blog pagination and category listings remain excluded from the sitemap and use `noindex,follow`.
+- The free-tour, contact, and floating WhatsApp forms use the CRM public lead endpoint. The public form is enabled, CORS accepts `https://www.ramuni.id`, and a non-personal deployment QA submission received the required `201` / `accepted` response. Client-side WhatsApp handoff occurs only after that acceptance; the deprecated fallback copy is absent.
+- CMS build provider is pinned to the same `90b38bd1a1e728c4fdd8006c42d41f47cea2b4fe` source commit, preventing a future CMS event from rebuilding the previous marketing version.
+- The repository contains 100 prepared article records, but only 17 records have genuine reviewed/indexable metadata and are published. The remaining 80 draft/noindex records deliberately stay inaccessible and out of all sitemaps until a real editor approves their exact revisions; do not convert them to `reviewed` by metadata-only automation.
+- Production build and static audit passed: 138 HTML files covering metadata, social previews, accessibility, JSON-LD/schema, links, sitemap/noindex rules, robots, documentation encoding, and asset budgets.
+
 ### Published staging batch — `ec8cd35457b3`
 
 - Simplified `/blog/` into an article-first editorial archive: compact positioning, modern search, crawlable category shortcuts, one featured story, direct latest-article grid, pagination, restrained editorial links, and a compact closing CTA.
