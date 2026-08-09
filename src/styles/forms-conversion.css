@@ -116,24 +116,8 @@
   font-weight: 800;
 }
 
-.lead-form .form-unavailable {
-  border-left: 0;
-  border-radius: 18px;
-  background: var(--yellow-18);
-  padding: 18px 20px;
-}
-
-.lead-form .form-unavailable p {
-  margin-top: 8px;
-  color: var(--ink-72);
-}
-
-.lead-form .form-unavailable .button {
-  margin-top: 16px;
-}
-
-/* CRM-first consultation flow. The floating panel is user-triggered and only
-   hands off to WhatsApp after a durable CRM acceptance. */
+/* The floating consultation is user-triggered. It hands off through CRM when
+   configured, or opens WhatsApp directly when CRM intake is unavailable. */
 .lead-form__step {
   min-width: 0;
   margin: 0;
