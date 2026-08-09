@@ -127,6 +127,20 @@ Total piutang dapat tampak besar, tetapi tidak semuanya dapat dipakai untuk memb
 
 Artikel [membaca arus kas negatif](/blog/cara-membaca-arus-kas-negatif/) membantu melihat perbedaan waktu penerimaan dan pembayaran. Jangan mengubah proyeksi kas hanya karena tagihan tercatat; gunakan status dan bukti untuk membedakan dana yang sudah diterima dengan yang masih diharapkan.
 
+## Rekonsiliasi dan evaluasi syarat transaksi
+
+Pada akhir minggu atau periode yang dipilih, cocokkan daftar piutang dengan penjualan, bukti pembayaran, pembatalan, dan catatan komunikasi. Tujuannya adalah menemukan kesalahan lebih awal: pembayaran sudah masuk tetapi belum dialokasikan, invoice tercatat dua kali, nilai transaksi berubah, atau tagihan seharusnya sudah ditutup. Simpan jejak koreksi sehingga angka dapat dijelaskan saat ditinjau kembali.
+
+| Pemeriksaan | Tindakan bila ada selisih |
+| --- | --- |
+| Nilai penjualan dan nilai tagihan | Periksa dokumen sumber dan status pengiriman atau layanan |
+| Pembayaran masuk dan daftar piutang | Cocokkan referensi serta metode sebelum mengurangi saldo |
+| Tagihan tanpa tindak lanjut | Tentukan pemilik tindakan dan tanggal peninjauan berikutnya |
+| Data kontak berlebihan atau lama | Kurangi atau perbarui sesuai kebutuhan yang sah |
+| Pola keterlambatan berulang | Tinjau syarat transaksi, proses persetujuan, dan risiko usaha |
+
+Evaluasi bertujuan memperbaiki proses untuk transaksi baru, bukan menyalahkan pelanggan dari satu kejadian. Bila usaha mengubah batas kredit, uang muka, atau tempo, dokumentasikan kebijakan tersebut dan komunikasikan dengan jelas sebelum transaksi berikutnya. Pertimbangkan dampaknya bagi pelanggan, kas, dan kemampuan operasional usaha.
+
 ## Kesalahan umum dan langkah awal
 
 Kesalahan umum meliputi mencatat piutang setelah terlambat, mencampur tagihan pelanggan berbeda dalam satu angka, menandai lunas tanpa bukti, serta menyimpan data pelanggan lebih banyak dari yang diperlukan. Kesalahan lain adalah memperlakukan piutang sebagai omzet sekaligus kas tanpa membedakan waktunya.
