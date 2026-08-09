@@ -121,3 +121,5 @@ Jangan menonaktifkan catatan lama sebelum data awal, hasil ekspor, dan alur kore
 - Memindahkan seluruh proses tanpa pilot dan tanpa rencana kembali bila masalah muncul.
 
 Aplikasi pencatatan yang tepat membuat informasi lebih mudah diperiksa dan tindakan lebih jelas. Mulai dari kebutuhan yang kecil tetapi nyata, uji proses penting, dokumentasikan hasil, lalu ambil keputusan berdasarkan bukti pada saat evaluasi. Dengan pendekatan ini, usaha dapat berubah secara bertahap tanpa bergantung pada janji fitur yang belum dibuktikan dalam proses sendiri.
+
+Simpan lembar evaluasi beserta tanggal pengujian, versi aplikasi yang diuji, alur yang dicoba, hambatan, dan keputusan akhir. Informasi vendor dapat berubah; sebelum memperpanjang atau menaikkan paket, ulangi pemeriksaan kebutuhan, biaya, ekspor, dan akses berdasarkan kondisi saat itu. Jangan menganggap pengalaman uji satu orang mewakili seluruh tim. Libatkan pengguna yang benar-benar mencatat transaksi, menerima barang, atau menutup kas agar keputusan mempertimbangkan pekerjaan nyata dari awal sampai akhir.
