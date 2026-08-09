@@ -108,3 +108,5 @@ Saat menilai penghematan, tulis dampak yang diharapkan dan risiko yang mungkin m
 Jika penjualan turun, biaya tetap tidak selalu langsung turun bersama volume. Jika produksi naik, biaya variabel biasanya perlu diperiksa lebih dahulu. Pemisahan ini membantu usaha melihat apakah masalah datang dari harga, volume, biaya per unit, atau komitmen biaya periode.
 
 Hubungkan hasilnya dengan [laporan laba rugi sederhana](/blog/laporan-laba-rugi-sederhana-umkm/) agar biaya tidak dibaca terpisah dari pendapatan dan hasil usaha. Catat perubahan besar, alasan, serta periode pemeriksaannya. Kebiasaan kecil ini membuat klasifikasi biaya menjadi alat kerja, bukan sekadar istilah akuntansi.
+
+Tinjau daftar minimal setiap kali ada kontrak baru, perubahan pemasok, kanal penjualan baru, atau lonjakan volume yang tidak biasa. Jangan mengganti klasifikasi hanya agar hasil periode terlihat lebih baik. Bila aturan berubah karena bukti baru, simpan alasan dan tanggal mulainya, lalu jelaskan bahwa perbandingan dengan periode sebelumnya memakai dasar berbeda. Transparansi kecil ini menjaga angka tetap berguna untuk pemilik usaha dan tim operasional.
