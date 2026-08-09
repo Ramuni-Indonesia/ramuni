@@ -7,6 +7,7 @@ coverAlt: "Pemilik toko mencatat barang masuk dan barang keluar pada daftar pers
 coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
+publishedAt: 2026-08-09
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:

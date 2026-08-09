@@ -7,6 +7,7 @@ coverAlt: "Pemilik usaha membandingkan dua perhitungan harga dan biaya produk pa
 coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
+publishedAt: 2026-08-09
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:

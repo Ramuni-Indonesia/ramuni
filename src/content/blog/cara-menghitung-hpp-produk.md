@@ -7,6 +7,7 @@ coverAlt: "Pemilik usaha menghitung biaya bahan, kemasan, dan HPP produk di meja
 coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
+publishedAt: 2026-08-09
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
