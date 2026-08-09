@@ -17,8 +17,11 @@ tags:
   - "Operasional Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; menunggu review isi, metadata, dan cover sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan proses pemeriksaan stok, batasan, metadata, dan cover."
 readingTime: "8 menit"
 takeaways:
   - "Gunakan daftar barang dan satuan yang konsisten sebelum mulai menghitung fisik."
@@ -40,8 +43,8 @@ related:
   - "cara-merapikan-data-produk-dan-sku"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Stok opname adalah pemeriksaan jumlah barang fisik terhadap catatan persediaan. Tujuannya bukan membuat angka cepat terlihat sama, melainkan menemukan perbedaan yang perlu ditelusuri sebelum memengaruhi pembelian, penjualan, atau laporan usaha.

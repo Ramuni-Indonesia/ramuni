@@ -17,8 +17,11 @@ tags:
   - "Pemilik Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; menunggu review isi, metadata, dan cover sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan rumus, pembanding periode, batasan, metadata, dan cover."
 readingTime: "8 menit"
 takeaways:
   - "Rata-rata transaksi adalah omzet dibagi jumlah transaksi pada periode yang sama."
@@ -40,8 +43,8 @@ related:
   - "produk-terlaris-belum-tentu-paling-untung"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Rata-rata transaksi menunjukkan nilai belanja rata-rata setiap kali pembeli menyelesaikan transaksi. Angka ini membantu pemilik usaha melihat apakah omzet berubah karena **lebih banyak transaksi**, karena **nilai belanja per transaksi lebih besar**, atau karena gabungan keduanya.

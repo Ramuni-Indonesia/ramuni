@@ -17,8 +17,11 @@ tags:
   - "Operasional Toko"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; menunggu review isi, metadata, dan cover sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan status transaksi, batasan, metadata, dan cover."
 readingTime: "8 menit"
 takeaways:
   - "Catat tanggal, transaksi, produk atau layanan, nilai, metode pembayaran, dan status transaksi secara konsisten."
@@ -40,8 +43,8 @@ related:
   - "cara-menghitung-rata-rata-transaksi"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Catatan penjualan harian yang baik membantu usaha menjawab tiga hal: apa yang terjual, berapa nilainya, dan apakah pembayaran atau koreksinya sudah jelas. Tanpa tiga hal ini, rekap omzet mudah berbeda dengan kas, stok, atau laporan yang dibuat di akhir minggu.

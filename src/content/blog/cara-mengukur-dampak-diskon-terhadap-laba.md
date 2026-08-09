@@ -17,8 +17,11 @@ tags:
   - "Promosi"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; membutuhkan peninjauan keuangan sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan contoh, batasan edukasi keuangan, sumber, metadata, dan cover."
 readingTime: "8 menit"
 takeaways:
   - "Nilai promo perlu dibaca bersama HPP dan biaya lain, bukan dari omzet saja."
@@ -45,8 +48,8 @@ related:
   - "cara-menghitung-rata-rata-transaksi"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Diskon sering terlihat berhasil ketika omzet naik. Namun omzet bukan satu-satunya angka yang perlu dibaca. Sebelum menjalankan promo, usaha perlu tahu berapa harga yang diterima setelah diskon, berapa HPP setiap unit, dan apakah ada biaya tambahan seperti materi promosi, biaya layanan, atau pengiriman.

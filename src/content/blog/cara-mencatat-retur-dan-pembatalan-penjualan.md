@@ -17,8 +17,11 @@ tags:
   - "Pencatatan Penjualan"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; menunggu review isi dan hubungan catatan penjualan, kas, serta stok."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan status koreksi, batasan, metadata, dan cover."
 readingTime: "7 menit"
 takeaways:
   - "Retur dan pembatalan perlu status serta jejak transaksi, bukan penghapusan diam-diam."
@@ -40,8 +43,8 @@ related:
   - "panduan-membaca-stok-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Retur dan pembatalan dapat membuat rekap penjualan membingungkan ketika transaksi dihapus tanpa jejak. Cara yang lebih aman adalah mempertahankan catatan awal lalu memberi status koreksi. Dengan begitu, usaha dapat melihat nilai penjualan, uang yang diterima, barang yang kembali, dan alasan perubahan tanpa menebak di akhir periode.

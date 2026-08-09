@@ -17,8 +17,11 @@ tags:
   - "Stok"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; membutuhkan review sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan pembacaan produk, batasan, metadata, dan cover."
 readingTime: "8 menit"
 takeaways:
   - "Baca nilai penjualan dan jumlah unit bersama-sama karena keduanya menjawab pertanyaan berbeda."
@@ -40,8 +43,8 @@ related:
   - "cara-membaca-omzet-harian"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Laporan penjualan per produk membantu usaha melihat item mana yang perlu diperiksa lebih dulu. Namun, jangan langsung menyimpulkan dari satu urutan “paling laris”. Produk dapat tinggi nilainya tetapi jarang terjual, sering terjual tetapi margin tipis, atau laris justru ketika stoknya hampir habis.

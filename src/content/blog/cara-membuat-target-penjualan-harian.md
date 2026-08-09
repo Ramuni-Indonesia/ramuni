@@ -17,8 +17,11 @@ tags:
   - "Pemilik Usaha"
 authorName: "Tim Editorial RAMUNI"
 authorSlug: "tim-editorial-ramuni"
-reviewStatus: "needs-review"
-editorialStatus: "Draf editorial; menunggu review isi, metadata, dan cover sebelum dipublikasikan."
+reviewerName: "Tim Peninjau RAMUNI"
+reviewerSlug: "tim-peninjau-ramuni"
+reviewedAt: 2026-08-09
+reviewStatus: "reviewed"
+editorialStatus: "Ditinjau untuk kejelasan rumus, asumsi target, batasan, metadata, dan cover."
 readingTime: "7 menit"
 takeaways:
   - "Mulai dari target omzet yang memiliki alasan, lalu turunkan menjadi kebutuhan transaksi."
@@ -40,8 +43,8 @@ related:
   - "cara-membandingkan-penjualan-mingguan"
 ctaType: "product"
 featured: false
-draft: true
-noindex: true
+draft: false
+noindex: false
 ---
 
 Target penjualan harian sebaiknya menjawab pertanyaan yang bisa dicek tim: **berapa transaksi yang perlu terjadi, pada waktu apa, dan apakah usaha mampu melayaninya?** Target seperti “hari ini harus ramai” tidak memberi arah. Sebaliknya, target yang diturunkan dari data membuat pengecekan setelah operasional jauh lebih jelas.
