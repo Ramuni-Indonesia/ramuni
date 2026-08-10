@@ -10,6 +10,7 @@ const articleCalculatorRegistry = {
   'cara-membaca-penjualan-per-jam': 'penjualan-per-jam',
   'cara-membuat-target-penjualan-harian': 'target-penjualan',
   'cara-mencatat-utang-usaha-ke-supplier': 'saldo-utang-supplier',
+  'cara-menghitung-rata-rata-transaksi': 'nilai-transaksi-rata-rata',
 } as const satisfies Partial<Record<string, CalculatorKey>>;
 
 export const getArticleCalculator = (articleId: string): CalculatorKey | undefined =>
