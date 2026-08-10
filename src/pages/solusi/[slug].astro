@@ -7,7 +7,9 @@ import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
+import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
+import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { solutionNarratives } from '../../data/pageNarratives';
@@ -158,6 +160,8 @@ const faqSchema = {
         </aside>
       </div>
     </section>
+
+    <SearchIntentPaths path={searchIntentPaths[`solution:${solution.slug}`]} />
 
     <section class="section sd-faq-close" aria-labelledby="faq-title">
       <div class="container sd-faq__layout">

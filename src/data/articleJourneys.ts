@@ -81,6 +81,26 @@ export const articleJourneys: Record<string, ArticleJourney> = {
     stages: ['Kumpulkan', 'Ringkas', 'Jelaskan', 'Tindak lanjut'],
     metric: 'Ringkasan periode',
   },
+  'operasional-usaha': {
+    label: 'Laporan & Insight',
+    productTitle: 'Laporan Bisnis RAMUNI',
+    productHref: '/produk/laporan-insight/',
+    tourHref: '/tour-produk-gratis/?intent=report',
+    title: 'Buat pekerjaan rutin lebih mudah ditinjau bersama tim.',
+    text: 'Lihat contoh alur menyatukan catatan, pemeriksaan, dan tindak lanjut tanpa mengubah SOP usaha secara mendadak.',
+    stages: ['Catat', 'Samakan', 'Periksa', 'Tindak lanjut'],
+    metric: 'Pemeriksaan rutin',
+  },
+  'penjualan-pemasaran': {
+    label: 'Penjualan',
+    productTitle: 'Penjualan RAMUNI',
+    productHref: '/produk/penjualan/',
+    tourHref: '/tour-produk-gratis/?intent=sales',
+    title: 'Evaluasi perubahan penjualan sebelum memilih promosi berikutnya.',
+    text: 'Lihat contoh alur membandingkan produk, waktu, dan periode sebelum menjadikan satu angka sebagai keputusan.',
+    stages: ['Transaksi', 'Bandingkan', 'Baca pola', 'Tentukan'],
+    metric: 'Perubahan penjualan',
+  },
 };
 
 export const getArticleJourney = (categorySlug: string): ArticleJourney =>

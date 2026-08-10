@@ -236,6 +236,39 @@ export const getVisibleBlogPosts = (posts: BlogPost[], includeEditorialPreview =
 export const isIndexableReviewedPost = (post: BlogPost): boolean => !post.data.draft && !post.data.noindex && post.data.reviewStatus === 'reviewed';
 export const isBlogCategoryIndexable = (posts: BlogPost[]): boolean => posts.filter(isIndexableReviewedPost).length >= BLOG_CATEGORY_INDEXABLE_ARTICLE_MINIMUM;
 
+/**
+ * Keeps editorially selected recommendations first, then fills any gap with
+ * genuinely related published articles. This prevents a useful article from
+ * becoming an internal-link dead end when its frontmatter is incomplete.
+ */
+export const getRelatedBlogPosts = (post: BlogPost, posts: BlogPost[], limit = 4): BlogPost[] => {
+  const published = posts.filter((candidate) => candidate.id !== post.id && !candidate.data.draft);
+  const byId = new Map(published.map((candidate) => [candidate.id, candidate]));
+  const selected: BlogPost[] = [];
+  for (const id of post.data.related) {
+    const candidate = byId.get(id);
+    if (candidate && !selected.some((entry) => entry.id === candidate.id)) selected.push(candidate);
+    if (selected.length === limit) return selected;
+  }
+
+  const currentTags = new Set(post.data.tags.map((tag) => tag.toLocaleLowerCase('id-ID')));
+  const remaining = published
+    .filter((candidate) => !selected.some((entry) => entry.id === candidate.id))
+    .map((candidate) => {
+      const sharedTags = candidate.data.tags.filter((tag) => currentTags.has(tag.toLocaleLowerCase('id-ID'))).length;
+      const sameCategory = candidate.data.categorySlug === post.data.categorySlug ? 1 : 0;
+      return { candidate, score: sameCategory * 10 + sharedTags * 3 };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((left, right) => right.score - left.score || right.candidate.data.publishedAt.valueOf() - left.candidate.data.publishedAt.valueOf() || left.candidate.id.localeCompare(right.candidate.id, 'id-ID'));
+
+  for (const { candidate } of remaining) {
+    selected.push(candidate);
+    if (selected.length === limit) break;
+  }
+  return selected;
+};
+
 export type BlogPagination = { items: BlogPost[]; currentPage: number; totalPages: number; totalItems: number; startPosition: number };
 export const paginateBlogPosts = (posts: BlogPost[], requestedPage: number, pageSize = BLOG_PAGE_SIZE): BlogPagination => {
   const totalItems = posts.length;

@@ -7,7 +7,9 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import ProductReadinessBoard from '../../components/product/ProductReadinessBoard.astro';
 import ProductAudienceExplorer from '../../components/product/ProductAudienceExplorer.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
+import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
+import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
@@ -264,6 +266,8 @@ const structuredData = [
       industries={detail.industries}
       heading={narrative?.industryHeading || 'Gunakan konteks yang sesuai dengan cara usaha bekerja.'}
     />
+
+    <SearchIntentPaths path={searchIntentPaths[`product:${product.slug}`]} />
 
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">
