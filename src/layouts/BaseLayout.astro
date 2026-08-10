@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ConsentManager from '../components/ConsentManager.astro';
+import ClarityTracking from '../components/ClarityTracking.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 import ParallaxMotion from '../components/ParallaxMotion.astro';
 import { releaseGates } from '../config/release';
@@ -162,6 +163,7 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     {chrome && <Footer />}
     {chrome && <FloatingContact />}
     <ConsentManager />
+    <ClarityTracking />
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>
     <script is:inline src="/scripts/mascot-motion.js"></script>
