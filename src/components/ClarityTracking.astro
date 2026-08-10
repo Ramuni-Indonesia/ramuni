@@ -2,27 +2,6 @@
   import Clarity from '@microsoft/clarity';
 
   const projectId = 'y090e5ap7q';
-  const storageKey = 'ramuni-consent-v1';
-  let initialized = false;
-
-  const hasAnalyticsConsent = () => {
-    try {
-      return Boolean(JSON.parse(localStorage.getItem(storageKey) || 'null')?.analytics);
-    } catch {
-      return false;
-    }
-  };
-
-  const startClarity = () => {
-    if (initialized || !hasAnalyticsConsent()) return;
-    initialized = true;
-    Clarity.init(projectId);
-    Clarity.consentV2({ ad_Storage: 'denied', analytics_Storage: 'granted' });
-  };
-
-  startClarity();
-  window.addEventListener('ramuni:consent', (event) => {
-    const choice = (event as CustomEvent<{ analytics?: boolean }>).detail;
-    if (choice?.analytics) startClarity();
-  });
+  Clarity.init(projectId);
+  Clarity.consentV2({ ad_Storage: 'denied', analytics_Storage: 'granted' });
 </script>
