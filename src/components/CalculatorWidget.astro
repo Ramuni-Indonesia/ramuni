@@ -9,6 +9,40 @@ interface Props {
 const { kind, embedded = false } = Astro.props;
 const calculator = calculators[kind];
 const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
+const calculatorJourneys = {
+  Laba: {
+    eyebrow: 'Lanjutkan pemeriksaan',
+    text: 'Hasil satu hitungan akan lebih berguna jika dibaca bersama laba, biaya, dan arus kas pada periode yang sama.',
+    label: 'Lihat cara memantau laba dan arus kas',
+    href: '/solusi/pantau-laba-dan-arus-kas/',
+  },
+  Kas: {
+    eyebrow: 'Lanjutkan pemeriksaan',
+    text: 'Hasil satu hitungan akan lebih berguna jika dibaca bersama laba, biaya, dan arus kas pada periode yang sama.',
+    label: 'Lihat cara memantau laba dan arus kas',
+    href: '/solusi/pantau-laba-dan-arus-kas/',
+  },
+  Stok: {
+    eyebrow: 'Lanjutkan pemeriksaan',
+    text: 'Setelah titik cek terlihat, bandingkan saldo, laju keluar, dan waktu isi ulang sebelum menentukan pesanan.',
+    label: 'Lihat cara mengelola stok',
+    href: '/solusi/kelola-stok/',
+  },
+  Penjualan: {
+    eyebrow: 'Lanjutkan pemeriksaan',
+    text: 'Gunakan hasil ini sebagai titik awal, lalu pecah perubahan menurut produk, waktu, dan transaksi sebelum memilih langkah.',
+    label: 'Lihat cara memahami perubahan omzet',
+    href: '/solusi/naikkan-omzet/',
+  },
+} as const;
+const calculatorJourney = kind === 'repeat-customer-rate'
+  ? {
+    eyebrow: 'Lanjutkan pemeriksaan',
+    text: 'Baca pembelian ulang bersama riwayat transaksi dan konteks layanan, tanpa menjadikan satu metrik sebagai kesimpulan tunggal.',
+    label: 'Lihat cara memahami pelanggan',
+    href: '/solusi/pahami-pelanggan/',
+  }
+  : calculatorJourneys[calculator.category];
 ---
 
 <section
@@ -48,6 +82,11 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       <span>{calculator.resultLabel}</span>
       <strong data-calculator-result>Belum dihitung</strong>
       <p data-calculator-note>{calculator.emptyNote}</p>
+      <div class="ramuni-calculator__conversion" data-calculator-conversion hidden>
+        <span>{calculatorJourney.eyebrow}</span>
+        <p>{calculatorJourney.text}</p>
+        <a href={calculatorJourney.href}>{calculatorJourney.label}<i aria-hidden="true">&rarr;</i></a>
+      </div>
       <div class="ramuni-calculator__formula"><small>Rumus yang dipakai</small><code>{calculator.formula}</code><p>{calculator.formulaNote}</p></div>
       <p class="ramuni-calculator__disclaimer">Hasil bersifat edukasi. Periksa kembali satuan, periode, dan catatan usaha Anda.</p>
     </div>
@@ -74,6 +113,7 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
     const form = widget.querySelector('form');
     const result = widget.querySelector<HTMLElement>('[data-calculator-result]');
     const note = widget.querySelector<HTMLElement>('[data-calculator-note]');
+    const conversion = widget.querySelector<HTMLElement>('[data-calculator-conversion]');
     const exampleButton = widget.querySelector<HTMLButtonElement>('[data-calculator-example]');
     if (!(form instanceof HTMLFormElement) || !result || !note) return;
 
@@ -104,6 +144,7 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
         : 'Periksa input';
       note.textContent = shouldUseCautionNote(kind, value) ? notes.caution || '' : notes.positive || '';
       widget.dataset.hasResult = 'true';
+      if (conversion) conversion.hidden = false;
       window.dispatchEvent(new CustomEvent('ramuni:calculator:used', {
         detail: { calculatorType: kind, pagePath: window.location.pathname },
       }));
@@ -113,6 +154,7 @@ const titleId = `calculator-${kind}-${embedded ? 'article' : 'page'}`;
       result.textContent = 'Belum dihitung';
       note.textContent = notes.empty || 'Isi semua angka untuk melihat hasil dan cara membacanya.';
       delete widget.dataset.hasResult;
+      if (conversion) conversion.hidden = true;
     });
   });
 </script>

@@ -69,6 +69,15 @@ const schema = [
     </div>
   </section>
 
+  <section class="section solutions-stage chapter" data-chapter="Solusi">
+    <div class="container solution-field">
+      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Pilih masalah yang ingin Anda pahami lebih dulu.</h2><p>Anda tidak perlu mengubah semuanya sekaligus. Buka satu masalah, lalu lihat data dan modul yang berkaitan.</p></div>
+      <div class="solution-paths">
+        {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}/`} class="solution-path reveal" style={`--i:${i}`}><span>0{i + 1}</span><div><h3>{solution.title}</h3><p>{solution.summary}</p></div><b aria-hidden="true">↗</b></a>)}
+      </div>
+    </div>
+  </section>
+
   <section class="section answer-stage chapter" data-chapter="Insight">
     <div class="container answer-theatre">
       <header class="answer-theatre__question reveal">
@@ -162,15 +171,6 @@ const schema = [
       <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Pilih bagian usaha yang ingin Anda pahami.</h2><p>Mulai dari pertanyaan yang paling dekat dengan pekerjaan hari ini.</p></header>
       <div class="module-map">
         {products.map((product, i) => <a class="module-cell reveal" href={`/produk/${product.slug}/`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><h3>{product.title}</h3><p>{product.question}</p><small>Pelajari modul</small></a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section solutions-stage chapter" data-chapter="Solusi">
-    <div class="container solution-field">
-      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Tidak perlu mengubah semuanya sekaligus.</h2><p>Pilih satu masalah yang paling mengganggu, lalu lihat data dan modul yang berkaitan.</p></div>
-      <div class="solution-paths">
-        {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}/`} class="solution-path reveal" style={`--i:${i}`}><span>0{i + 1}</span><div><h3>{solution.title}</h3><p>{solution.summary}</p></div><b aria-hidden="true">↗</b></a>)}
       </div>
     </div>
   </section>
