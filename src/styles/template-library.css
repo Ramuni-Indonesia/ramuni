@@ -41,3 +41,4 @@
 .template-preview__view-switch button{min-height:44px}
 @media(min-width:961px) and (max-width:1200px){.template-library-hero__grid{grid-template-columns:minmax(260px,1.16fr) minmax(340px,.84fr);gap:clamp(24px,3vw,40px)}.template-detail-hero__grid{grid-template-columns:minmax(260px,1.12fr) minmax(340px,.88fr);gap:clamp(24px,3vw,40px)}.template-library-hero__signal{width:100%;justify-self:stretch}}
 @media(max-width:1200px), (hover:none), (pointer:coarse){.template-catalog__card:hover .template-catalog__visual i,.template-catalog__card:focus-visible .template-catalog__visual i,.template-catalog__copy b span,.template-related__grid a:hover,.template-related__grid a:focus-visible{transform:none}.template-catalog__card:hover .template-catalog__visual i,.template-catalog__card:focus-visible .template-catalog__visual i{width:calc(88% - var(--line)*8%)}}
+@media(max-width:740px){.template-catalog__copy{min-height:0}}
