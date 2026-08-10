@@ -36,12 +36,10 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
 <span
   class:list={['dashboard-motion', 'dashboard-motion--' + focus, className]}
   style={`--dashboard-aspect:${aspectRatio};--dashboard-mobile-aspect:${mobileAspectRatio};--dashboard-scan-distance:calc(${scanDistance}cqw - 2px);--dashboard-mobile-scan-distance:calc(${mobileScanDistance}cqw - 2px)`}
-  role="img"
-  aria-label={label}
   data-dashboard-motion
   data-active="false"
 >
-  <span class="dashboard-motion__screen" aria-hidden="true">
+  <span class="dashboard-motion__screen">
     <picture>
       {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
       <img
@@ -49,7 +47,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
         src={src}
         width={width}
         height={height}
-        alt=""
+        alt={label}
         loading={priority ? 'eager' : 'lazy'}
         fetchpriority={priority ? 'high' : undefined}
         decoding="async"

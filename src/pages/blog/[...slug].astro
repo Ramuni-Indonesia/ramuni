@@ -183,7 +183,7 @@ const schema = [
 
           <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>
 
-          <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt="" /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}/`}>Lihat profil editorial</a></div></section>
+          <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt={`Foto ${author.name}`} /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}/`}>Lihat profil editorial</a></div></section>
 
         </div>
 
@@ -192,7 +192,7 @@ const schema = [
           <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
             <div class="article-rail-cta__visual" aria-hidden="true">
               <ol><li>Catat</li><li>Periksa</li><li>Tentukan</li></ol>
-              <img src={mascots.working2d.src} width={mascots.working2d.width} height={mascots.working2d.height} alt="" loading="lazy" decoding="async" />
+              <img src={mascots.working2d.src} width={mascots.working2d.width} height={mascots.working2d.height} alt="Maskot RAMUNI membantu meninjau catatan bisnis" loading="lazy" decoding="async" />
             </div>
             <small>Lihat alurnya</small>
             <strong id="article-rail-cta-title">Punya pertanyaan serupa?</strong>
