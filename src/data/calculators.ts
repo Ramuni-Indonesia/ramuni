@@ -11,7 +11,8 @@ export type CalculatorKey =
   | 'hpp-per-porsi'
   | 'target-penjualan'
   | 'repeat-customer-rate'
-  | 'safety-stock';
+  | 'safety-stock'
+  | 'penjualan-per-jam';
 
 export interface CalculatorField {
   name: string;
@@ -238,6 +239,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', text: 'Gabungkan pemakaian rata-rata, lead time, dan buffer saat menentukan titik cek stok.' },
       { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian/', text: 'Rapikan saldo, koreksi, dan waktu pemeriksaan produk.' },
+    ],
+  },
+  'penjualan-per-jam': {
+    title: 'Kalkulator Penjualan per Jam',
+    shortTitle: 'Bandingkan ritme penjualan',
+    decision: 'Hitung nilai penjualan rata-rata per jam sebagai titik awal untuk membaca beban layanan dan pola waktu.',
+    seoTitle: 'Kalkulator Penjualan per Jam untuk Toko',
+    metaDescription: 'Kalkulator penjualan per jam untuk toko. Hitung penjualan bersih per jam dari satu periode yang sebanding.',
+    keyword: 'kalkulator penjualan per jam',
+    category: 'Penjualan',
+    intent: 'Saat total harian tidak cukup menjelaskan jam ramai, beban layanan, atau waktu persiapan.',
+    formula: 'Rata-rata penjualan per jam = Penjualan bersih / Jam operasional',
+    formulaNote: 'Gunakan penjualan bersih dan jam buka dari periode yang sama. Hasil bukan pengganti laporan transaksi per blok jam.',
+    resultLabel: 'Rata-rata penjualan per jam',
+    emptyNote: 'Isi penjualan bersih dan jumlah jam operasional untuk periode yang sama.',
+    positiveNote: 'Bandingkan hasil hanya dengan hari atau shift yang sejenis, lalu buka jumlah transaksi, unit, dan stok per jam.',
+    cautionNote: 'Jam operasional harus lebih dari nol. Periksa juga apakah penjualan dan jam yang dipakai berasal dari periode yang setara.',
+    fields: [
+      { name: 'netSales', label: 'Penjualan bersih', unit: 'Rp', placeholder: '1800000', min: 0 },
+      { name: 'operatingHours', label: 'Jam operasional', unit: 'jam', placeholder: '12', min: 0, step: 'any' },
+    ],
+    example: { netSales: 1800000, operatingHours: 12 },
+    exampleLabel: 'Contoh: penjualan bersih Rp1,8 juta selama 12 jam buka',
+    nextSteps: ['Pecah transaksi ke blok satu atau dua jam, bukan hanya melihat rata-ratanya.', 'Bandingkan hari kerja dengan hari kerja dan akhir pekan dengan akhir pekan.', 'Catat antrean, stok kosong, promo, dan perubahan shift yang memengaruhi angka.'],
+    related: [
+      { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Bedakan perubahan karena jumlah pembeli atau nilai belanja per transaksi.' },
+      { label: 'SOP buka dan tutup toko', href: '/blog/sop-buka-tutup-toko-sederhana/', text: 'Bawa pola waktu ke persiapan dan penutupan operasional.' },
     ],
   },
   'arus-kas-bersih': {

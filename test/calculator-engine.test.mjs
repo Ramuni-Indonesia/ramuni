@@ -10,6 +10,7 @@ const regressionCases = [
   ['titik-impas', { fixed: 3000000, price: 35000, variable: 22000 }, 231, 'unit'],
   ['repeat-customer-rate', { identifiedCustomers: 200, returningCustomers: 70 }, 35, 'percent'],
   ['safety-stock', { maximumDailyUse: 12, maximumLeadTime: 5, averageDailyUse: 10, averageLeadTime: 3 }, 30, 'unit'],
+  ['penjualan-per-jam', { netSales: 1800000, operatingHours: 12 }, 150000, 'money'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
 ];

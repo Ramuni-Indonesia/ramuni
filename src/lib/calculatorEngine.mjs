@@ -34,6 +34,8 @@ export const calculateBusinessMetric = (kind, values) => {
       return unit(values.maximumDailyUse > 0 && values.maximumLeadTime > 0 && values.averageDailyUse > 0 && values.averageLeadTime > 0
         ? Math.ceil((values.maximumDailyUse * values.maximumLeadTime) - (values.averageDailyUse * values.averageLeadTime))
         : Number.NaN);
+    case 'penjualan-per-jam':
+      return money(values.operatingHours > 0 ? values.netSales / values.operatingHours : Number.NaN);
     case 'arus-kas-bersih':
       return money(values.cashIn - values.cashOut);
     case 'nilai-transaksi-rata-rata':
