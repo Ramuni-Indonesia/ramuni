@@ -3,6 +3,7 @@ export type CalculatorKey =
   | 'hpp'
   | 'reorder-stok'
   | 'margin-laba-kotor'
+  | 'laba-setelah-diskon'
   | 'titik-impas'
   | 'arus-kas-bersih'
   | 'nilai-transaksi-rata-rata'
@@ -156,6 +157,35 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', text: 'Hitung HPP sebelum membaca margin.' },
       { label: 'Solusi naikkan omzet', href: '/solusi/naikkan-omzet/', text: 'Lihat omzet bersama produk dan pelanggan.' },
+    ],
+  },
+  'laba-setelah-diskon': {
+    title: 'Kalkulator Laba per Unit Setelah Diskon',
+    shortTitle: 'Periksa laba setelah diskon',
+    decision: 'Hitung selisih per unit setelah harga promo, HPP, dan biaya promo per unit dikurangkan.',
+    seoTitle: 'Kalkulator Dampak Diskon pada Laba per Unit',
+    metaDescription: 'Kalkulator dampak diskon untuk UMKM. Periksa laba per unit setelah diskon, HPP, dan biaya promo tanpa menyimpan data.',
+    keyword: 'kalkulator dampak diskon pada laba',
+    category: 'Penjualan',
+    intent: 'Saat promo terlihat menaikkan omzet tetapi laba per unit perlu diperiksa terlebih dahulu.',
+    formula: 'Laba per unit setelah diskon = Harga normal x (1 - diskon) - HPP per unit - biaya promo per unit',
+    formulaNote: 'Masukkan biaya yang memang berubah karena satu unit promo. Gunakan satu produk dan satu skenario; biaya tetap periode tidak dimasukkan sebagai biaya per unit tanpa dasar alokasi yang konsisten.',
+    resultLabel: 'Laba per unit setelah diskon',
+    emptyNote: 'Isi harga normal, diskon, HPP, dan biaya promo per unit untuk melihat selisihnya.',
+    positiveNote: 'Bandingkan hasil dengan laba per unit tanpa promo, lalu cek jumlah unit tambahan dan tujuan promonya.',
+    cautionNote: 'Hasil nol atau negatif. Periksa kembali harga efektif, HPP, fee, biaya kemasan, dan batas diskon sebelum menjalankan promo.',
+    fields: [
+      { name: 'normalPrice', label: 'Harga normal per unit', unit: 'Rp', placeholder: '100000', min: 0 },
+      { name: 'discountPercent', label: 'Diskon', unit: '%', placeholder: '20', min: 0, max: 100, step: 'any' },
+      { name: 'unitCost', label: 'HPP per unit', unit: 'Rp', placeholder: '60000', min: 0 },
+      { name: 'promoCostPerUnit', label: 'Biaya promo per unit', unit: 'Rp', placeholder: '2000', min: 0 },
+    ],
+    example: { normalPrice: 100000, discountPercent: 20, unitCost: 60000, promoCostPerUnit: 2000 },
+    exampleLabel: 'Contoh: harga Rp100 ribu, diskon 20%, HPP Rp60 ribu, biaya promo Rp2 ribu per unit',
+    nextSteps: ['Hitung selisih dengan laba per unit sebelum promo.', 'Tentukan jumlah unit tambahan yang perlu diuji, bukan hanya target omzet.', 'Catat retur, pembatalan, dan biaya kanal selama periode promo.'],
+    related: [
+      { label: 'Kalkulator margin', href: '/kalkulator/margin-laba-kotor/', text: 'Baca hasil promo bersama margin kelompok produk.' },
+      { label: 'Panduan harga jual', href: '/blog/cara-menghitung-harga-jual-produk/', text: 'Tinjau harga dan HPP sebelum menetapkan diskon.' },
     ],
   },
   'titik-impas': {

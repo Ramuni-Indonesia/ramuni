@@ -24,6 +24,11 @@ export const calculateBusinessMetric = (kind, values) => {
       return unit(values.daily * values.lead + values.safety);
     case 'margin-laba-kotor':
       return percent(values.sales > 0 ? ((values.sales - values.cogs) / values.sales) * 100 : Number.NaN);
+    case 'laba-setelah-diskon':
+      return money(values.normalPrice >= 0 && values.discountPercent >= 0 && values.discountPercent <= 100
+        && values.unitCost >= 0 && values.promoCostPerUnit >= 0
+        ? (values.normalPrice * (1 - (values.discountPercent / 100))) - values.unitCost - values.promoCostPerUnit
+        : Number.NaN);
     case 'titik-impas':
       return unit(values.price > values.variable ? Math.ceil(values.fixed / (values.price - values.variable)) : Number.NaN);
     case 'repeat-customer-rate':
@@ -66,5 +71,6 @@ export const calculateBusinessMetric = (kind, values) => {
 /** @param {string | undefined} kind @param {number} value */
 export const shouldUseCautionNote = (kind, value) => !Number.isFinite(value)
   || value < 0
+  || (kind === 'laba-setelah-diskon' && value <= 0)
   || ((kind === 'reorder-stok' || kind === 'safety-stock') && value <= 0)
   || (kind === 'saldo-utang-supplier' && value < 0);
