@@ -19,6 +19,7 @@ export type CalculatorKey =
   | 'penjualan-bersih-harian'
   | 'saldo-stok'
   | 'selisih-stok'
+  | 'rasio-stok-mati'
   | 'saldo-utang-supplier';
 
 export interface CalculatorField {
@@ -439,6 +440,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Pemeriksa saldo stok', href: '/blog/cara-mencatat-stok-masuk-dan-keluar/', text: 'Hitung saldo buku dari pergerakan masuk dan keluar sebelum membandingkannya dengan fisik.' },
       { label: 'Panduan stok minimum', href: '/blog/cara-menentukan-stok-minimum-umkm/', text: 'Jangan memakai saldo yang belum diperiksa sebagai satu-satunya dasar pembelian.' },
+    ],
+  },
+  'rasio-stok-mati': {
+    title: 'Pemeriksa Rasio Nilai Stok Mati',
+    shortTitle: 'Periksa rasio stok mati',
+    decision: 'Hitung proporsi nilai stok tidak bergerak terhadap nilai stok yang tercakup sebagai titik awal untuk prioritas pemeriksaan.',
+    seoTitle: 'Kalkulator Rasio Stok Mati untuk UMKM',
+    metaDescription: 'Kalkulator rasio stok mati untuk UMKM. Bandingkan nilai stok tidak bergerak dengan nilai stok yang tercakup langsung di browser.',
+    keyword: 'kalkulator stok mati',
+    category: 'Stok',
+    intent: 'Saat modal tertahan pada barang lambat perlu diprioritaskan tanpa menyamakan semua stok lambat sebagai barang mati.',
+    formula: 'Rasio stok mati = Nilai stok tidak bergerak / Nilai stok yang tercakup x 100%',
+    formulaNote: 'Tentukan definisi tidak bergerak, periode, kondisi barang, dan metode nilai yang sama. Pembilang tidak boleh melebihi nilai stok yang tercakup.',
+    resultLabel: 'Rasio nilai stok mati',
+    emptyNote: 'Isi nilai stok tidak bergerak dan nilai stok yang tercakup dari dasar serta periode yang sama.',
+    positiveNote: 'Gunakan hasil untuk memprioritaskan pemeriksaan produk, umur barang, kondisi, dan pembelian; rasio bukan instruksi otomatis untuk memberi diskon.',
+    cautionNote: 'Periksa data: nilai stok tercakup harus lebih dari nol dan nilai stok tidak bergerak tidak boleh melebihi cakupan yang dipakai.',
+    fields: [
+      { name: 'deadStockValue', label: 'Nilai stok tidak bergerak', unit: 'Rp', placeholder: '3500000', min: 0 },
+      { name: 'coveredStockValue', label: 'Nilai stok yang tercakup', unit: 'Rp', placeholder: '20000000', min: 1 },
+    ],
+    example: { deadStockValue: 3500000, coveredStockValue: 20000000 },
+    exampleLabel: 'Contoh: nilai stok tidak bergerak Rp3,5 juta dari stok tercakup Rp20 juta',
+    nextSteps: ['Buka produk pembentuk nilai, umur barang, dan kondisi fisiknya.', 'Pisahkan stok lambat, musiman, rusak, dan tidak relevan sebelum memilih tindakan.', 'Tinjau pembelian baru, opsi retur pemasok, penempatan, bundel, dan dampak diskon terhadap laba.'],
+    related: [
+      { label: 'Kalkulator dampak diskon', href: '/blog/cara-mengukur-dampak-diskon-terhadap-laba/', text: 'Uji laba per unit sebelum mengadakan promo untuk mengurangi stok.' },
+      { label: 'Panduan stok opname', href: '/blog/cara-melakukan-stok-opname/', text: 'Pastikan nilai dan kondisi stok didasarkan pada pemeriksaan yang dapat ditelusuri.' },
     ],
   },
   'saldo-utang-supplier': {

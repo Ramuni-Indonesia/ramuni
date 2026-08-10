@@ -10,6 +10,7 @@ const articleCalculatorRegistry = {
   'cara-mencatat-penjualan-harian': 'penjualan-bersih-harian',
   'cara-mencatat-stok-masuk-dan-keluar': 'saldo-stok',
   'cara-melakukan-stok-opname': 'selisih-stok',
+  'cara-mengurangi-stok-mati': 'rasio-stok-mati',
   'cara-menghitung-titik-impas-usaha': 'titik-impas',
   'cara-menghitung-repeat-customer-rate': 'repeat-customer-rate',
   'cara-menghitung-hpp-usaha-kuliner': 'hpp-per-porsi',

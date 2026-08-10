@@ -57,6 +57,10 @@ export const calculateBusinessMetric = (kind, values) => {
         : Number.NaN);
     case 'selisih-stok':
       return unit(values.bookStock >= 0 && values.physicalStock >= 0 ? values.physicalStock - values.bookStock : Number.NaN);
+    case 'rasio-stok-mati':
+      return percent(values.coveredStockValue > 0 && values.deadStockValue >= 0 && values.deadStockValue <= values.coveredStockValue
+        ? (values.deadStockValue / values.coveredStockValue) * 100
+        : Number.NaN);
     case 'saldo-utang-supplier':
       return money(values.invoiceAmount >= 0 && values.allocatedPayment >= 0 ? values.invoiceAmount - values.allocatedPayment : Number.NaN);
     case 'arus-kas-bersih':
