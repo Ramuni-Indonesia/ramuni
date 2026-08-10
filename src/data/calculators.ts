@@ -12,6 +12,7 @@ export type CalculatorKey =
   | 'perubahan-omzet'
   | 'hpp-per-porsi'
   | 'target-penjualan'
+  | 'capaian-target-omzet'
   | 'repeat-customer-rate'
   | 'safety-stock'
   | 'penjualan-per-jam'
@@ -658,6 +659,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Hitung nilai transaksi rata-rata dari data periode sebelumnya.' },
       { label: 'Template penjualan harian', href: '/template/penjualan-harian/', text: 'Catat realisasi transaksi dan omzet per hari.' },
+    ],
+  },
+  'capaian-target-omzet': {
+    title: 'Kalkulator Capaian Target Omzet',
+    shortTitle: 'Periksa capaian target',
+    decision: 'Ubah realisasi omzet menjadi persentase terhadap target periode yang sama.',
+    seoTitle: 'Kalkulator Capaian Target Omzet untuk UMKM',
+    metaDescription: 'Kalkulator capaian target omzet untuk UMKM. Bandingkan realisasi dengan target periode yang sama langsung di browser.',
+    keyword: 'kalkulator capaian target omzet',
+    category: 'Penjualan',
+    intent: 'Saat omzet harian sudah dicatat tetapi tim belum tahu posisi realisasinya terhadap target yang disepakati.',
+    formula: 'Capaian target = Realisasi omzet / Target omzet x 100%',
+    formulaNote: 'Gunakan target dan realisasi dengan periode, kanal, dan definisi penjualan yang sama. Hasil di atas 100 persen bukan berarti laba atau kas otomatis sehat.',
+    resultLabel: 'Capaian target omzet',
+    emptyNote: 'Isi target omzet dan realisasi omzet untuk melihat persentase capaian.',
+    positiveNote: 'Baca capaian bersama jumlah transaksi, nilai rata-rata transaksi, diskon, stok, dan biaya sebelum mengambil keputusan.',
+    cautionNote: 'Target omzet harus lebih besar dari nol. Periksa apakah target dan realisasi memakai periode serta definisi yang sama.',
+    fields: [
+      { name: 'revenueTarget', label: 'Target omzet', unit: 'Rp', placeholder: '10000000', min: 1 },
+      { name: 'actualRevenue', label: 'Realisasi omzet', unit: 'Rp', placeholder: '8000000', min: 0 },
+    ],
+    example: { revenueTarget: 10000000, actualRevenue: 8000000 },
+    exampleLabel: 'Contoh mingguan: target Rp10 juta dengan realisasi Rp8 juta',
+    nextSteps: ['Pastikan hari dan jam operasional yang dipakai sudah setara.', 'Buka transaksi, produk, dan kanal yang membentuk selisih.', 'Tentukan satu tindakan operasional yang dapat dicek pada periode berikutnya.'],
+    related: [
+      { label: 'Kalkulator target penjualan', href: '/kalkulator/target-penjualan/', text: 'Ubah target omzet menjadi kebutuhan jumlah transaksi.' },
+      { label: 'Kalkulator perubahan omzet', href: '/kalkulator/perubahan-omzet/', text: 'Bandingkan capaian dengan perubahan dari periode sebelumnya.' },
     ],
   },
 };

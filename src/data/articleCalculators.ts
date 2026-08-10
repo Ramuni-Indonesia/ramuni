@@ -25,6 +25,8 @@ const articleCalculatorRegistry = {
   'cara-menghitung-reorder-point': 'reorder-stok',
   'cara-menghitung-margin-laba-kotor': 'margin-laba-kotor',
   'cara-mengukur-dampak-diskon-terhadap-laba': 'laba-setelah-diskon',
+  'cara-membaca-omzet-harian': 'capaian-target-omzet',
+  'cara-membaca-penjualan-per-produk': 'margin-laba-kotor',
 } as const satisfies Partial<Record<string, CalculatorKey>>;
 
 export const getArticleCalculator = (articleId: string): CalculatorKey | undefined =>

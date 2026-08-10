@@ -19,6 +19,7 @@ const regressionCases = [
   ['selisih-stok', { bookStock: 85, physicalStock: 82 }, -3, 'unit'],
   ['rasio-stok-mati', { deadStockValue: 3500000, coveredStockValue: 20000000 }, 17.5, 'percent'],
   ['saldo-utang-supplier', { invoiceAmount: 1500000, allocatedPayment: 500000 }, 1000000, 'money'],
+  ['capaian-target-omzet', { revenueTarget: 10000000, actualRevenue: 8000000 }, 80, 'percent'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
 ];
@@ -131,4 +132,10 @@ test('calculates simple cost per sellable portion', () => {
 test('rounds sales targets up to a whole transaction', () => {
   const result = calculateBusinessMetric('target-penjualan', { revenueTarget: 10000000, averageTransaction: 85000 });
   assert.deepEqual(result, { value: 118, format: 'unit', suffix: 'transaksi' });
+});
+
+test('rejects a zero revenue target when calculating target attainment', () => {
+  const result = calculateBusinessMetric('capaian-target-omzet', { revenueTarget: 0, actualRevenue: 8000000 });
+  assert.equal(Number.isFinite(result.value), false);
+  assert.equal(shouldUseCautionNote('capaian-target-omzet', result.value), true);
 });

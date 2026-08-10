@@ -83,6 +83,10 @@ export const calculateBusinessMetric = (kind, values) => {
       return unit(values.revenueTarget > 0 && values.averageTransaction > 0
         ? Math.ceil(values.revenueTarget / values.averageTransaction)
         : Number.NaN, 'transaksi');
+    case 'capaian-target-omzet':
+      return percent(values.revenueTarget > 0 && values.actualRevenue >= 0
+        ? (values.actualRevenue / values.revenueTarget) * 100
+        : Number.NaN);
     default:
       return { value: Number.NaN, format: 'number' };
   }
