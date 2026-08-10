@@ -79,7 +79,7 @@ const schema = [
             <h1>{template.title}</h1>
             <p class="lede">{template.summary}</p>
             <div class="button-row">
-              <a class="button button--primary" href="#pratinjau">Lihat dan unduh</a>
+              <a class="button button--primary" href="#pratinjau">Pratinjau & unduh CSV</a>
               <a class="button button--secondary" href="/template/">Lihat template lain</a>
             </div>
           </div>
@@ -104,12 +104,17 @@ const schema = [
       <div class="container template-how__layout">
         <div class="template-how__lead reveal">
           <p class="section-kicker">Cara pakai</p>
-          <h2 id="template-how-title">Dari catatan kosong sampai siap diperiksa.</h2>
-          <p>Gunakan urutan ini sebagai kebiasaan kerja, lalu sesuaikan nama kolom bila proses usaha Anda berbeda.</p>
+          <h2 id="template-how-title">Pakai dengan urutan yang mudah diulang.</h2>
+          <p>Ikuti langkah inti terlebih dahulu. Ubah nama kolom hanya jika proses usaha memang membutuhkannya.</p>
         </div>
         <ol class="template-how__steps">
           {template.instructions.map((item, index) => <li class="reveal" style={`--i:${index}`}><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}
         </ol>
+        <aside class="template-how__guardrails" aria-labelledby="template-guardrails-title">
+          <p class="section-kicker">Sebelum memakai</p>
+          <h3 id="template-guardrails-title">Batas penggunaan yang perlu diingat.</h3>
+          <ul>{template.limitations.map((limitation) => <li>{limitation}</li>)}</ul>
+        </aside>
       </div>
     </section>
 
@@ -125,18 +130,6 @@ const schema = [
       </div>
     </section>
 
-    <section class="section surface template-boundaries" aria-labelledby="template-boundaries-title">
-      <div class="container template-boundaries__grid">
-        <div>
-          <p class="section-kicker">Catatan penggunaan</p>
-          <h2 id="template-boundaries-title">Sederhana untuk mulai, jelas sebelum dipakai.</h2>
-        </div>
-        <ul>
-          {template.limitations.map((limitation) => <li>{limitation}</li>)}
-        </ul>
-      </div>
-    </section>
-
     <section class="section template-related" aria-labelledby="template-related-title">
       <div class="container">
         <div class="template-library-intro reveal"><div><p class="section-kicker">Gunakan bersama</p><h2 id="template-related-title">Baca catatan sebelum mengambil keputusan.</h2></div><p>Template menyimpan urutan data. Materi berikut membantu Anda membaca angka, istilah, dan cara penggunaannya.</p></div>
@@ -146,27 +139,5 @@ const schema = [
       </div>
     </section>
 
-    <section class="section template-download-stage">
-      <div class="container template-download-panel">
-        <div><p class="section-kicker">Versi {template.version}</p><h2>Simpan salinan. Isi dengan catatan Anda.</h2><p>File dilengkapi baris contoh dan petunjuk pengisian. Tidak perlu membuat akun.</p></div>
-        <div class="button-row"><a class="button button--primary" href={`/downloads/template/${template.downloadName}`} download data-template-download={template.slug}>Unduh CSV</a><a class="button button--secondary" href="#pratinjau">Lihat lagi contoh</a></div>
-      </div>
-    </section>
   </article>
 </BaseLayout>
-
-<script>
-  const bindTemplateDownloads = () => {
-    document.querySelectorAll<HTMLAnchorElement>('[data-template-download]').forEach((link) => {
-      if (link.dataset.trackingBound === 'true') return;
-      link.dataset.trackingBound = 'true';
-      link.addEventListener('click', () => {
-        window.dispatchEvent(new CustomEvent('ramuni:template:downloaded', {
-          detail: { templateSlug: link.dataset.templateDownload, gated: false, pagePath: window.location.pathname },
-        }));
-      });
-    });
-  };
-  bindTemplateDownloads();
-  document.addEventListener('astro:page-load', bindTemplateDownloads);
-</script>

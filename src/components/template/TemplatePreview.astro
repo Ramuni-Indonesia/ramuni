@@ -17,7 +17,7 @@ const payload = JSON.stringify({
 });
 ---
 
-<section class:list={['template-preview', { 'template-preview--embedded': embedded }]} data-template-preview aria-labelledby={previewId}>
+<section class:list={['template-preview', { 'template-preview--embedded': embedded }]} data-template-preview data-template-slug={template.slug} aria-labelledby={previewId}>
   <header class="template-preview__header">
     <div>
       <span>{embedded ? 'Template di artikel' : 'Pratinjau interaktif'}</span>
@@ -43,7 +43,7 @@ const payload = JSON.stringify({
     <p data-template-caption>Hapus atau ganti baris contoh sebelum digunakan.</p>
     <div class="button-row">
       <button class="button button--primary" type="button" data-template-download>Unduh CSV contoh</button>
-      <a class="button button--secondary" href={`/downloads/template/${template.downloadName}`} download>Unduhan langsung</a>
+      <a class="button button--secondary" href={`/downloads/template/${template.downloadName}`} download data-template-direct-download>Unduhan langsung</a>
     </div>
   </footer>
   <script is:inline type="application/json" data-template-payload set:html={payload} />
@@ -112,6 +112,15 @@ const payload = JSON.stringify({
       link.click();
       link.remove();
       URL.revokeObjectURL(link.href);
+      window.dispatchEvent(new CustomEvent('ramuni:template:downloaded', {
+        detail: { templateSlug: preview.dataset.templateSlug, gated: false, pagePath: window.location.pathname, variant: currentView },
+      }));
+    });
+
+    preview.querySelector<HTMLAnchorElement>('[data-template-direct-download]')?.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('ramuni:template:downloaded', {
+        detail: { templateSlug: preview.dataset.templateSlug, gated: false, pagePath: window.location.pathname, variant: 'direct' },
+      }));
     });
   });
 </script>
