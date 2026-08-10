@@ -1,5 +1,5 @@
 export const launchCta = {
-  label: 'Coba gratis',
+  label: 'Lihat contoh alur gratis',
   href: '/tour-produk-gratis/',
 };
 
