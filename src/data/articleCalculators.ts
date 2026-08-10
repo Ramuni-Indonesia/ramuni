@@ -27,6 +27,7 @@ const articleCalculatorRegistry = {
   'cara-mengukur-dampak-diskon-terhadap-laba': 'laba-setelah-diskon',
   'cara-membaca-omzet-harian': 'capaian-target-omzet',
   'cara-membaca-penjualan-per-produk': 'margin-laba-kotor',
+  'cara-membandingkan-penjualan-mingguan': 'perubahan-omzet',
 } as const satisfies Partial<Record<string, CalculatorKey>>;
 
 export const getArticleCalculator = (articleId: string): CalculatorKey | undefined =>
