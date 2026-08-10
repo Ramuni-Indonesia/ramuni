@@ -9,6 +9,7 @@ const regressionCases = [
   ['margin-laba-kotor', { sales: 15000000, cogs: 9750000 }, 35, 'percent'],
   ['titik-impas', { fixed: 3000000, price: 35000, variable: 22000 }, 231, 'unit'],
   ['repeat-customer-rate', { identifiedCustomers: 200, returningCustomers: 70 }, 35, 'percent'],
+  ['safety-stock', { maximumDailyUse: 12, maximumLeadTime: 5, averageDailyUse: 10, averageLeadTime: 3 }, 30, 'unit'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
 ];
@@ -37,6 +38,12 @@ test('rejects repeat customer totals that exceed the covered customer count', ()
   const result = calculateBusinessMetric('repeat-customer-rate', { identifiedCustomers: 20, returningCustomers: 21 });
   assert.equal(Number.isFinite(result.value), false);
   assert.equal(shouldUseCautionNote('repeat-customer-rate', result.value), true);
+});
+
+test('flags a safety stock result that does not leave a positive buffer', () => {
+  const result = calculateBusinessMetric('safety-stock', { maximumDailyUse: 10, maximumLeadTime: 3, averageDailyUse: 10, averageLeadTime: 3 });
+  assert.equal(result.value, 0);
+  assert.equal(shouldUseCautionNote('safety-stock', result.value), true);
 });
 
 test('calculates revenue change as a percentage', () => {

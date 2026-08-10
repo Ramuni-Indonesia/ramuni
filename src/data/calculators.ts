@@ -10,7 +10,8 @@ export type CalculatorKey =
   | 'perubahan-omzet'
   | 'hpp-per-porsi'
   | 'target-penjualan'
-  | 'repeat-customer-rate';
+  | 'repeat-customer-rate'
+  | 'safety-stock';
 
 export interface CalculatorField {
   name: string;
@@ -208,6 +209,35 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Data pelanggan minimum', href: '/blog/data-pelanggan-yang-perlu-dicatat-umkm/', text: 'Tentukan data yang memang diperlukan untuk layanan dan catatan transaksi.' },
       { label: 'Pelanggan kembali belanja', href: '/blog/cara-melihat-pelanggan-yang-kembali-belanja/', text: 'Baca riwayat pembelian tanpa menjadikan metrik sebagai pengawasan.' },
+    ],
+  },
+  'safety-stock': {
+    title: 'Kalkulator Safety Stock',
+    shortTitle: 'Uji buffer stok pengaman',
+    decision: 'Perkirakan buffer dari perbedaan pemakaian dan waktu tunggu yang benar-benar pernah terjadi.',
+    seoTitle: 'Kalkulator Safety Stock untuk Usaha Kecil',
+    metaDescription: 'Kalkulator safety stock untuk usaha kecil. Uji buffer stok pengaman dari pemakaian dan lead time tanpa menyimpan data.',
+    keyword: 'kalkulator safety stock',
+    category: 'Stok',
+    intent: 'Saat produk penting sering kosong atau cadangannya terasa terlalu besar.',
+    formula: 'Safety stock = (Pemakaian tertinggi x Lead time terpanjang) - (Pemakaian rata-rata x Lead time rata-rata)',
+    formulaNote: 'Gunakan satuan, produk, dan periode yang sama. Hasil adalah titik uji operasional, bukan jumlah pembelian otomatis.',
+    resultLabel: 'Buffer stok pengaman',
+    emptyNote: 'Isi pemakaian dan lead time yang berasal dari catatan produk yang sama.',
+    positiveNote: 'Bandingkan buffer dengan usia simpan, saldo layak pakai, kas, dan stok dalam perjalanan sebelum membuat pesanan.',
+    cautionNote: 'Periksa data: pemakaian serta lead time perlu lebih dari nol, dan hasil nol atau negatif perlu dibaca sebagai sinyal untuk meninjau asumsi.',
+    fields: [
+      { name: 'maximumDailyUse', label: 'Pemakaian tertinggi', unit: 'unit/hari', placeholder: '12', min: 0, step: 'any' },
+      { name: 'maximumLeadTime', label: 'Lead time terpanjang', unit: 'hari', placeholder: '5', min: 0, step: 'any' },
+      { name: 'averageDailyUse', label: 'Pemakaian rata-rata', unit: 'unit/hari', placeholder: '10', min: 0, step: 'any' },
+      { name: 'averageLeadTime', label: 'Lead time rata-rata', unit: 'hari', placeholder: '3', min: 0, step: 'any' },
+    ],
+    example: { maximumDailyUse: 12, maximumLeadTime: 5, averageDailyUse: 10, averageLeadTime: 3 },
+    exampleLabel: 'Contoh: tertinggi 12 unit/hari selama 5 hari, rata-rata 10 unit/hari selama 3 hari',
+    nextSteps: ['Periksa apakah barang mudah rusak atau mahal untuk disimpan.', 'Tambahkan kebutuhan lead time ke buffer hanya saat menghitung titik reorder.', 'Tinjau stok kosong, sisa, dan keterlambatan setelah satu atau dua siklus pesanan.'],
+    related: [
+      { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', text: 'Gabungkan pemakaian rata-rata, lead time, dan buffer saat menentukan titik cek stok.' },
+      { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian/', text: 'Rapikan saldo, koreksi, dan waktu pemeriksaan produk.' },
     ],
   },
   'arus-kas-bersih': {

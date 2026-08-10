@@ -30,6 +30,10 @@ export const calculateBusinessMetric = (kind, values) => {
       return percent(values.identifiedCustomers > 0 && values.returningCustomers >= 0 && values.returningCustomers <= values.identifiedCustomers
         ? (values.returningCustomers / values.identifiedCustomers) * 100
         : Number.NaN);
+    case 'safety-stock':
+      return unit(values.maximumDailyUse > 0 && values.maximumLeadTime > 0 && values.averageDailyUse > 0 && values.averageLeadTime > 0
+        ? Math.ceil((values.maximumDailyUse * values.maximumLeadTime) - (values.averageDailyUse * values.averageLeadTime))
+        : Number.NaN);
     case 'arus-kas-bersih':
       return money(values.cashIn - values.cashOut);
     case 'nilai-transaksi-rata-rata':
@@ -58,4 +62,4 @@ export const calculateBusinessMetric = (kind, values) => {
 /** @param {string | undefined} kind @param {number} value */
 export const shouldUseCautionNote = (kind, value) => !Number.isFinite(value)
   || value < 0
-  || (kind === 'reorder-stok' && value <= 0);
+  || ((kind === 'reorder-stok' || kind === 'safety-stock') && value <= 0);
