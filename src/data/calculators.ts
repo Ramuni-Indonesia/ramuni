@@ -17,6 +17,7 @@ export type CalculatorKey =
   | 'penjualan-per-jam'
   | 'konversi-penjualan'
   | 'penjualan-bersih-harian'
+  | 'saldo-stok'
   | 'saldo-utang-supplier';
 
 export interface CalculatorField {
@@ -382,6 +383,34 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Baca penjualan bersih bersama jumlah transaksi.' },
       { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Pisahkan nilai penjualan dari waktu uang diterima.' },
+    ],
+  },
+  'saldo-stok': {
+    title: 'Pemeriksa Saldo Stok',
+    shortTitle: 'Periksa saldo stok',
+    decision: 'Hitung saldo buku dari stok awal, penerimaan layak jual, dan stok keluar yang sudah memiliki bukti.',
+    seoTitle: 'Kalkulator Saldo Stok Masuk dan Keluar',
+    metaDescription: 'Kalkulator saldo stok untuk UMKM. Hitung stok awal ditambah stok masuk dikurangi stok keluar langsung di browser.',
+    keyword: 'kalkulator stok masuk dan keluar',
+    category: 'Stok',
+    intent: 'Saat kartu stok perlu diperiksa sebelum membandingkannya dengan hitungan fisik.',
+    formula: 'Saldo stok buku = Stok awal + Stok masuk layak jual - Stok keluar',
+    formulaNote: 'Gunakan satu produk, satu satuan, dan satu cut-off periode. Barang karantina, rusak, atau dalam perjalanan perlu memakai status sesuai aturan pencatatan, bukan dimasukkan otomatis sebagai stok siap jual.',
+    resultLabel: 'Saldo stok buku',
+    emptyNote: 'Isi stok awal, penerimaan layak jual, dan stok keluar untuk produk serta satuan yang sama.',
+    positiveNote: 'Bandingkan dengan hitungan fisik, transaksi tertunda, barang karantina, dan bukti pergerakan sebelum mengoreksi saldo.',
+    cautionNote: 'Hasil negatif. Periksa satuan, penerimaan, penjualan, retur, kerusakan, atau pergerakan yang mungkin tercatat ganda atau belum masuk.',
+    fields: [
+      { name: 'openingStock', label: 'Stok awal', unit: 'unit', placeholder: '120', min: 0, step: 'any' },
+      { name: 'receivedStock', label: 'Stok masuk layak jual', unit: 'unit', placeholder: '50', min: 0, step: 'any' },
+      { name: 'issuedStock', label: 'Stok keluar', unit: 'unit', placeholder: '85', min: 0, step: 'any' },
+    ],
+    example: { openingStock: 120, receivedStock: 50, issuedStock: 85 },
+    exampleLabel: 'Contoh: stok awal 120 unit, penerimaan layak jual 50 unit, keluar 85 unit',
+    nextSteps: ['Bandingkan saldo buku dengan stok fisik pada produk yang material.', 'Simpan penerimaan, retur, kerusakan, dan transfer sebagai peristiwa terpisah.', 'Tandai selisih serta buktinya sebelum membuat koreksi.'],
+    related: [
+      { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', text: 'Gunakan saldo yang cukup andal sebelum menentukan titik cek pesanan.' },
+      { label: 'Panduan stok opname', href: '/blog/cara-melakukan-stok-opname/', text: 'Bandingkan catatan dan hitungan fisik dengan urutan yang dapat ditelusuri.' },
     ],
   },
   'saldo-utang-supplier': {

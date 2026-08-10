@@ -51,6 +51,10 @@ export const calculateBusinessMetric = (kind, values) => {
       return money(values.grossSales >= 0 && values.merchantDiscounts >= 0 && values.approvedReturns >= 0
         ? values.grossSales - values.merchantDiscounts - values.approvedReturns
         : Number.NaN);
+    case 'saldo-stok':
+      return unit(values.openingStock >= 0 && values.receivedStock >= 0 && values.issuedStock >= 0
+        ? values.openingStock + values.receivedStock - values.issuedStock
+        : Number.NaN);
     case 'saldo-utang-supplier':
       return money(values.invoiceAmount >= 0 && values.allocatedPayment >= 0 ? values.invoiceAmount - values.allocatedPayment : Number.NaN);
     case 'arus-kas-bersih':
@@ -84,4 +88,5 @@ export const shouldUseCautionNote = (kind, value) => !Number.isFinite(value)
   || (kind === 'laba-setelah-diskon' && value <= 0)
   || ((kind === 'reorder-stok' || kind === 'safety-stock') && value <= 0)
   || (kind === 'konversi-penjualan' && value < 0)
+  || (kind === 'saldo-stok' && value < 0)
   || (kind === 'saldo-utang-supplier' && value < 0);

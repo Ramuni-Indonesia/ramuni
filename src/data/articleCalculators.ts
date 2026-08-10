@@ -7,6 +7,7 @@ const articleCalculatorRegistry = {
   'cara-menghitung-pertumbuhan-penjualan': 'perubahan-omzet',
   'cara-menghitung-konversi-penjualan-sederhana': 'konversi-penjualan',
   'cara-mencatat-penjualan-harian': 'penjualan-bersih-harian',
+  'cara-mencatat-stok-masuk-dan-keluar': 'saldo-stok',
   'cara-menghitung-titik-impas-usaha': 'titik-impas',
   'cara-menghitung-repeat-customer-rate': 'repeat-customer-rate',
   'cara-menghitung-hpp-usaha-kuliner': 'hpp-per-porsi',

@@ -15,6 +15,7 @@ const regressionCases = [
   ['penjualan-per-jam', { netSales: 1800000, operatingHours: 12 }, 150000, 'money'],
   ['konversi-penjualan', { eligibleProspects: 80, completedOutcomes: 20 }, 25, 'percent'],
   ['penjualan-bersih-harian', { grossSales: 2500000, merchantDiscounts: 125000, approvedReturns: 50000 }, 2325000, 'money'],
+  ['saldo-stok', { openingStock: 120, receivedStock: 50, issuedStock: 85 }, 85, 'unit'],
   ['saldo-utang-supplier', { invoiceAmount: 1500000, allocatedPayment: 500000 }, 1000000, 'money'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
@@ -83,6 +84,12 @@ test('flags a daily sales result that is negative after deductions', () => {
   });
   assert.equal(result.value, -10000);
   assert.equal(shouldUseCautionNote('penjualan-bersih-harian', result.value), true);
+});
+
+test('flags a negative book-stock result for review', () => {
+  const result = calculateBusinessMetric('saldo-stok', { openingStock: 10, receivedStock: 0, issuedStock: 12 });
+  assert.equal(result.value, -2);
+  assert.equal(shouldUseCautionNote('saldo-stok', result.value), true);
 });
 
 test('flags an invoice payment that exceeds its invoice value', () => {
