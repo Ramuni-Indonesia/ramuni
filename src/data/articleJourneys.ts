@@ -135,5 +135,19 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
 };
 
-export const getArticleJourney = (categorySlug: string): ArticleJourney =>
-  articleJourneys[categorySlug] || defaultJourney;
+const articleJourneyOverrides: Record<string, keyof typeof articleJourneys> = {
+  'cara-menghitung-hpp-usaha-kuliner': 'keuangan-umkm',
+  'cara-menghitung-safety-stock': 'stok-inventori',
+  'cara-mengatur-stok-usaha-fnb': 'stok-inventori',
+  'cara-mengatur-stok-toko-sembako': 'stok-inventori',
+  'cara-mengelola-stok-toko-fashion': 'stok-inventori',
+  'cara-mengelola-stok-produk-varian': 'stok-inventori',
+  'cara-mencatat-penjualan-toko-retail': 'penjualan-omzet',
+  'cara-mencatat-penjualan-usaha-laundry': 'penjualan-omzet',
+  'cara-membuat-laporan-penjualan-barbershop': 'penjualan-omzet',
+};
+
+export const getArticleJourney = (categorySlug: string, articleId?: string): ArticleJourney => {
+  const override = articleId ? articleJourneyOverrides[articleId] : undefined;
+  return articleJourneys[override || categorySlug] || defaultJourney;
+};

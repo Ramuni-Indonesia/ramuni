@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { categorySlug, articleId } = Astro.props;
-const journey = getArticleJourney(categorySlug);
+const journey = getArticleJourney(categorySlug, articleId);
 ---
 
 <aside class="article-inline-decision" aria-label={`Lanjut ke ${journey.nextTitle}`}>
