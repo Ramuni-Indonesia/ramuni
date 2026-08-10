@@ -21,7 +21,7 @@ reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
 reviewStatus: "reviewed"
 editorialStatus: "Ditinjau untuk kejelasan stok mati, kondisi barang, prioritas nilai, sumber, metadata, dan tautan internal."
-readingTime: "18 menit"
+readingTime: "14 menit"
 takeaways:
   - "Stok mati perlu dibedakan dari produk yang hanya bergerak lambat atau sedang menunggu musimnya."
   - "Gunakan data penjualan, kondisi fisik, umur barang, dan biaya penyimpanan sebelum menentukan tindakan."
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Pengelompokan stok pada artikel ini adalah alat operasional dan tidak menggantikan kebijakan akuntansi atau perpajakan usaha."
 disclaimer: "Penetapan harga, koreksi nilai persediaan, dan perlakuan pajak perlu mengikuti kondisi barang, kontrak pemasok, serta peninjauan profesional bila diperlukan."
-updateSummary: "Memperluas panduan dengan pemeriksa rasio stok mati, klasifikasi umur dan kondisi, eksperimen penanganan, serta pencegahan pembelian ulang yang dapat ditelusuri."
+updateSummary: "Merangkum panduan menjadi alur stok mati yang lebih praktis: klasifikasi, rasio nilai, umur dan kondisi, tindakan terbatas, pembelian, serta bukti hasil."
 related:
   - "cara-melakukan-stok-opname"
   - "cara-membaca-penjualan-per-produk"
@@ -106,20 +106,6 @@ Sebelum mengadakan diskon besar, buat satu lembar keputusan untuk tiap kelompok 
 | Apakah barang bisa dipakai dengan cara lain? | Bahan dapat menjadi paket sampel | Hitung nilai manfaatnya dan catat pengurangan stok |
 
 Contohnya, ada 40 unit produk yang tidak bergerak selama dua bulan. Sebelum memberi diskon 50 persen, pemilik usaha dapat mencoba memindahkan 10 unit ke area yang lebih terlihat selama satu minggu dan mencatat jumlah yang ditanyakan maupun terjual. Jika tidak ada respons, uji bundel kecil dengan produk pelengkap. Diskon lebih dalam baru dipertimbangkan setelah biaya dan tujuan jelas: mengurangi ruang, mengembalikan sebagian kas, atau menghentikan lini produk. Catatan hasil uji membantu menghindari promo yang diulang hanya karena terlihat ramai sesaat.
-
-## Hentikan sumber stok mati berikutnya
-
-Penanganan stok lama belum lengkap bila pembelian baru tetap berjalan dengan pola yang sama. Setelah menemukan barang mati, telusuri keputusan pembelian terakhir: siapa yang memesan, dasar jumlahnya, apakah ada minimum pembelian, dan apakah sisa stok sebelumnya terlihat saat pesanan dibuat. Perubahan kecil sering cukup, misalnya menahan pembelian sampai stok turun ke batas tertentu, memesan kemasan lebih kecil, atau meminta pemasok mengonfirmasi ketersediaan sebelum produk dipajang.
-
-Bedakan tindakan sementara dan keputusan permanen. Menunda pembelian satu siklus bukan berarti produk harus dihentikan selamanya. Tulis tanggal evaluasi, orang yang bertanggung jawab, serta ukuran keberhasilan yang mudah dibaca, misalnya “20 unit berkurang dalam empat minggu tanpa diskon di bawah biaya”. Jika ukuran itu tidak tercapai, tim dapat memilih tindakan berikutnya berdasarkan bukti, bukan menambah stok baru karena kebiasaan.
-
-## Buat pemeriksaan berulang yang ringan
-
-Setiap minggu atau bulan, pilih daftar kecil barang yang perlu dibaca: nilai stok tertinggi, barang paling lama tidak bergerak, barang mendekati masa simpan, dan barang dengan banyak koreksi. Jangan mencoba menyelesaikan seluruh katalog sekaligus.
-
-Catat hasilnya dalam tiga bagian: temuan, tindakan, dan tanggal cek berikutnya. Dari kebiasaan kecil ini, stok mati menjadi sinyal untuk memperbaiki pembelian dan penjualan berikutnya, bukan sekadar masalah yang disembunyikan di gudang.
-
-Mulailah dari daftar yang paling berdampak, bukan dari jumlah SKU terbanyak. Lima produk dengan nilai modal tertahan tinggi sering lebih penting untuk diperiksa daripada puluhan produk murah yang tersisa sedikit. Pada akhir setiap pemeriksaan, cocokkan keputusan dengan catatan kas dan pembelian berikutnya: apakah ruang menjadi lebih lega, apakah produk kembali bergerak, dan apakah pembelian baru benar-benar berkurang. Jangan menutup daftar hanya karena barang sudah dipindah ke sudut gudang; statusnya tetap perlu dibaca sampai terjual, dikembalikan, atau dipisahkan secara sah. Dengan evaluasi tersebut, tindakan terhadap stok mati menjadi proses yang dapat dipelajari, bukan sekadar acara cuci gudang.
 
 ## Tentukan definisi stok mati yang sesuai dengan barang Anda
 
