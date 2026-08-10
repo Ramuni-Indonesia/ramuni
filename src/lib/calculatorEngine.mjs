@@ -26,6 +26,10 @@ export const calculateBusinessMetric = (kind, values) => {
       return percent(values.sales > 0 ? ((values.sales - values.cogs) / values.sales) * 100 : Number.NaN);
     case 'titik-impas':
       return unit(values.price > values.variable ? Math.ceil(values.fixed / (values.price - values.variable)) : Number.NaN);
+    case 'repeat-customer-rate':
+      return percent(values.identifiedCustomers > 0 && values.returningCustomers >= 0 && values.returningCustomers <= values.identifiedCustomers
+        ? (values.returningCustomers / values.identifiedCustomers) * 100
+        : Number.NaN);
     case 'arus-kas-bersih':
       return money(values.cashIn - values.cashOut);
     case 'nilai-transaksi-rata-rata':

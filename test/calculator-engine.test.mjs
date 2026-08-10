@@ -8,6 +8,7 @@ const regressionCases = [
   ['reorder-stok', { daily: 18, lead: 4, safety: 25 }, 97, 'unit'],
   ['margin-laba-kotor', { sales: 15000000, cogs: 9750000 }, 35, 'percent'],
   ['titik-impas', { fixed: 3000000, price: 35000, variable: 22000 }, 231, 'unit'],
+  ['repeat-customer-rate', { identifiedCustomers: 200, returningCustomers: 70 }, 35, 'percent'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
 ];
@@ -30,6 +31,12 @@ test('rejects an impossible target margin', () => {
   const result = calculateBusinessMetric('harga-jual', { unitCost: 25000, targetMargin: 100 });
   assert.equal(Number.isFinite(result.value), false);
   assert.equal(shouldUseCautionNote('harga-jual', result.value), true);
+});
+
+test('rejects repeat customer totals that exceed the covered customer count', () => {
+  const result = calculateBusinessMetric('repeat-customer-rate', { identifiedCustomers: 20, returningCustomers: 21 });
+  assert.equal(Number.isFinite(result.value), false);
+  assert.equal(shouldUseCautionNote('repeat-customer-rate', result.value), true);
 });
 
 test('calculates revenue change as a percentage', () => {

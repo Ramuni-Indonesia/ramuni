@@ -9,7 +9,8 @@ export type CalculatorKey =
   | 'harga-jual'
   | 'perubahan-omzet'
   | 'hpp-per-porsi'
-  | 'target-penjualan';
+  | 'target-penjualan'
+  | 'repeat-customer-rate';
 
 export interface CalculatorField {
   name: string;
@@ -180,6 +181,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator laba', href: '/kalkulator/laba-usaha/', text: 'Lanjutkan ke laba periode setelah titik impas diketahui.' },
       { label: 'Kamus HPP', href: '/kamus-bisnis/hpp/', text: 'Samakan definisi biaya barang terlebih dahulu.' },
+    ],
+  },
+  'repeat-customer-rate': {
+    title: 'Kalkulator Repeat Customer Rate',
+    shortTitle: 'Periksa pelanggan yang kembali',
+    decision: 'Hitung proporsi pelanggan unik yang kembali tanpa memasukkan nama atau kontak pelanggan.',
+    seoTitle: 'Kalkulator Repeat Customer Rate untuk UMKM',
+    metaDescription: 'Kalkulator repeat customer rate untuk UMKM. Hitung pelanggan unik yang kembali berbelanja secara lokal di browser.',
+    keyword: 'kalkulator repeat customer rate',
+    category: 'Penjualan',
+    intent: 'Saat usaha ingin membaca pembelian ulang dari catatan pelanggan yang memang dapat digunakan.',
+    formula: 'Repeat customer rate = Pelanggan unik yang kembali / Pelanggan unik yang tercakup x 100%',
+    formulaNote: 'Masukkan jumlah pelanggan unik, bukan jumlah transaksi. Pembilang tidak boleh lebih besar daripada penyebut.',
+    resultLabel: 'Repeat customer rate',
+    emptyNote: 'Isi dua jumlah pelanggan unik dari periode dan aturan identitas yang sama.',
+    positiveNote: 'Tulis cakupan data dan bandingkan dengan periode setara sebelum menyimpulkan perubahan layanan atau penjualan.',
+    cautionNote: 'Periksa lagi: pelanggan kembali tidak boleh melebihi pelanggan unik yang tercakup, dan penyebut harus lebih dari nol.',
+    fields: [
+      { name: 'identifiedCustomers', label: 'Pelanggan unik yang tercakup', unit: 'pelanggan', placeholder: '200', min: 1, step: 1 },
+      { name: 'returningCustomers', label: 'Pelanggan unik yang kembali', unit: 'pelanggan', placeholder: '70', min: 0, step: 1 },
+    ],
+    example: { identifiedCustomers: 200, returningCustomers: 70 },
+    exampleLabel: 'Contoh: 200 pelanggan unik tercakup, 70 di antaranya pernah bertransaksi sebelumnya',
+    nextSteps: ['Catat definisi periode dan pengenal yang dipakai.', 'Pisahkan pelanggan anonim dari penyebut metrik ini.', 'Tinjau stok, layanan, dan keluhan sebelum mengubah komunikasi pelanggan.'],
+    related: [
+      { label: 'Data pelanggan minimum', href: '/blog/data-pelanggan-yang-perlu-dicatat-umkm/', text: 'Tentukan data yang memang diperlukan untuk layanan dan catatan transaksi.' },
+      { label: 'Pelanggan kembali belanja', href: '/blog/cara-melihat-pelanggan-yang-kembali-belanja/', text: 'Baca riwayat pembelian tanpa menjadikan metrik sebagai pengawasan.' },
     ],
   },
   'arus-kas-bersih': {
