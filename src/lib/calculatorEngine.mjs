@@ -47,6 +47,10 @@ export const calculateBusinessMetric = (kind, values) => {
       return percent(values.eligibleProspects > 0 && values.completedOutcomes >= 0 && values.completedOutcomes <= values.eligibleProspects
         ? (values.completedOutcomes / values.eligibleProspects) * 100
         : Number.NaN);
+    case 'penjualan-bersih-harian':
+      return money(values.grossSales >= 0 && values.merchantDiscounts >= 0 && values.approvedReturns >= 0
+        ? values.grossSales - values.merchantDiscounts - values.approvedReturns
+        : Number.NaN);
     case 'saldo-utang-supplier':
       return money(values.invoiceAmount >= 0 && values.allocatedPayment >= 0 ? values.invoiceAmount - values.allocatedPayment : Number.NaN);
     case 'arus-kas-bersih':

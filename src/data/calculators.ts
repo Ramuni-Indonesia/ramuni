@@ -16,6 +16,7 @@ export type CalculatorKey =
   | 'safety-stock'
   | 'penjualan-per-jam'
   | 'konversi-penjualan'
+  | 'penjualan-bersih-harian'
   | 'saldo-utang-supplier';
 
 export interface CalculatorField {
@@ -353,6 +354,34 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Bedakan perubahan jumlah transaksi dari nilai pesanan.' },
       { label: 'Panduan pertumbuhan penjualan', href: '/blog/cara-menghitung-pertumbuhan-penjualan/', text: 'Baca konversi bersama perubahan volume dan omzet.' },
+    ],
+  },
+  'penjualan-bersih-harian': {
+    title: 'Pemeriksa Penjualan Bersih Harian',
+    shortTitle: 'Periksa penjualan bersih',
+    decision: 'Kurangi diskon yang ditanggung usaha dan retur dari nilai penjualan bruto untuk satu periode harian.',
+    seoTitle: 'Kalkulator Penjualan Bersih Harian untuk UMKM',
+    metaDescription: 'Kalkulator penjualan bersih harian untuk UMKM. Periksa penjualan bruto setelah diskon dan retur langsung di browser.',
+    keyword: 'kalkulator penjualan bersih harian',
+    category: 'Penjualan',
+    intent: 'Saat rekap kasir perlu dibaca bersama diskon dan retur tanpa menghapus jejak transaksi.',
+    formula: 'Penjualan bersih = Penjualan bruto - Diskon yang ditanggung usaha - Retur yang disetujui',
+    formulaNote: 'Gunakan satu tanggal atau cut-off harian yang sama. Pembatalan, diskon pihak ketiga, dan pembayaran tertunda perlu mengikuti aturan pencatatan usaha yang ditulis jelas.',
+    resultLabel: 'Penjualan bersih harian',
+    emptyNote: 'Isi penjualan bruto, diskon yang ditanggung usaha, dan retur yang disetujui untuk periode yang sama.',
+    positiveNote: 'Cocokkan hasil dengan status transaksi, metode pembayaran, kas, dan laporan kanal sebelum menutup hari.',
+    cautionNote: 'Hasil negatif. Periksa apakah diskon atau retur tercatat ganda, periode tidak sama, atau penjualan bruto belum lengkap.',
+    fields: [
+      { name: 'grossSales', label: 'Penjualan bruto', unit: 'Rp', placeholder: '2500000', min: 0 },
+      { name: 'merchantDiscounts', label: 'Diskon ditanggung usaha', unit: 'Rp', placeholder: '125000', min: 0 },
+      { name: 'approvedReturns', label: 'Retur disetujui', unit: 'Rp', placeholder: '50000', min: 0 },
+    ],
+    example: { grossSales: 2500000, merchantDiscounts: 125000, approvedReturns: 50000 },
+    exampleLabel: 'Contoh: penjualan bruto Rp2,5 juta, diskon Rp125 ribu, retur Rp50 ribu',
+    nextSteps: ['Cocokkan transaksi selesai, batal, dan retur dengan bukti yang tersedia.', 'Pisahkan penjualan dari waktu pembayaran agar kas tidak tertukar dengan omzet.', 'Tandai selisih untuk ditelusuri, bukan dihapus agar rekap tampak cocok.'],
+    related: [
+      { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Baca penjualan bersih bersama jumlah transaksi.' },
+      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Pisahkan nilai penjualan dari waktu uang diterima.' },
     ],
   },
   'saldo-utang-supplier': {
