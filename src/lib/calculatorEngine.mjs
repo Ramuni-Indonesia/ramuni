@@ -36,6 +36,8 @@ export const calculateBusinessMetric = (kind, values) => {
         : Number.NaN);
     case 'penjualan-per-jam':
       return money(values.operatingHours > 0 ? values.netSales / values.operatingHours : Number.NaN);
+    case 'saldo-utang-supplier':
+      return money(values.invoiceAmount >= 0 && values.allocatedPayment >= 0 ? values.invoiceAmount - values.allocatedPayment : Number.NaN);
     case 'arus-kas-bersih':
       return money(values.cashIn - values.cashOut);
     case 'nilai-transaksi-rata-rata':
@@ -64,4 +66,5 @@ export const calculateBusinessMetric = (kind, values) => {
 /** @param {string | undefined} kind @param {number} value */
 export const shouldUseCautionNote = (kind, value) => !Number.isFinite(value)
   || value < 0
-  || ((kind === 'reorder-stok' || kind === 'safety-stock') && value <= 0);
+  || ((kind === 'reorder-stok' || kind === 'safety-stock') && value <= 0)
+  || (kind === 'saldo-utang-supplier' && value < 0);

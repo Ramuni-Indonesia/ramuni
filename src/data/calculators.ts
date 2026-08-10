@@ -12,7 +12,8 @@ export type CalculatorKey =
   | 'target-penjualan'
   | 'repeat-customer-rate'
   | 'safety-stock'
-  | 'penjualan-per-jam';
+  | 'penjualan-per-jam'
+  | 'saldo-utang-supplier';
 
 export interface CalculatorField {
   name: string;
@@ -266,6 +267,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Bedakan perubahan karena jumlah pembeli atau nilai belanja per transaksi.' },
       { label: 'SOP buka dan tutup toko', href: '/blog/sop-buka-tutup-toko-sederhana/', text: 'Bawa pola waktu ke persiapan dan penutupan operasional.' },
+    ],
+  },
+  'saldo-utang-supplier': {
+    title: 'Pemeriksa Saldo Invoice Supplier',
+    shortTitle: 'Periksa sisa utang invoice',
+    decision: 'Hitung sisa kewajiban pada satu invoice setelah pembayaran yang benar-benar telah dialokasikan.',
+    seoTitle: 'Kalkulator Saldo Utang Supplier untuk UMKM',
+    metaDescription: 'Kalkulator saldo utang supplier untuk UMKM. Periksa sisa invoice setelah pembayaran tanpa menyimpan data transaksi.',
+    keyword: 'kalkulator utang supplier',
+    category: 'Kas',
+    intent: 'Saat pembelian tempo dan pembayaran sebagian perlu dicocokkan dengan bukti invoice.',
+    formula: 'Sisa utang invoice = Nilai invoice - Pembayaran yang telah dialokasikan',
+    formulaNote: 'Gunakan satu invoice dan pembayaran yang benar-benar sudah dialokasikan. Hasil negatif perlu diperiksa bersama bukti koreksi atau pembayaran.',
+    resultLabel: 'Sisa utang invoice',
+    emptyNote: 'Isi nilai satu invoice dan total pembayaran yang telah dialokasikan ke invoice itu.',
+    positiveNote: 'Cocokkan hasil dengan invoice, penerimaan barang, bukti pembayaran, dan tanggal jatuh tempo sebelum memperbarui status.',
+    cautionNote: 'Periksa kembali: pembayaran tidak boleh melebihi nilai invoice kecuali ada kredit, koreksi, atau bukti lain yang dicatat terpisah.',
+    fields: [
+      { name: 'invoiceAmount', label: 'Nilai invoice', unit: 'Rp', placeholder: '1500000', min: 0 },
+      { name: 'allocatedPayment', label: 'Pembayaran telah dialokasikan', unit: 'Rp', placeholder: '500000', min: 0 },
+    ],
+    example: { invoiceAmount: 1500000, allocatedPayment: 500000 },
+    exampleLabel: 'Contoh: invoice Rp1,5 juta, pembayaran dialokasikan Rp500 ribu',
+    nextSteps: ['Tulis referensi invoice, tanggal, dan bukti pembayaran di daftar utang.', 'Jangan menganggap transfer gabungan lunas sebelum alokasi per invoice diperiksa.', 'Baca jatuh tempo bersama kas tersedia dan pesanan stok berikutnya.'],
+    related: [
+      { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Pisahkan kewajiban dari waktu uang benar-benar keluar.' },
+      { label: 'Daftar pembelian barang', href: '/blog/cara-membuat-daftar-pembelian-barang/', text: 'Hubungkan pembelian, penerimaan, dan dokumen sebelum pembayaran.' },
     ],
   },
   'arus-kas-bersih': {

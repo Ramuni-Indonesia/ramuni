@@ -11,6 +11,7 @@ const regressionCases = [
   ['repeat-customer-rate', { identifiedCustomers: 200, returningCustomers: 70 }, 35, 'percent'],
   ['safety-stock', { maximumDailyUse: 12, maximumLeadTime: 5, averageDailyUse: 10, averageLeadTime: 3 }, 30, 'unit'],
   ['penjualan-per-jam', { netSales: 1800000, operatingHours: 12 }, 150000, 'money'],
+  ['saldo-utang-supplier', { invoiceAmount: 1500000, allocatedPayment: 500000 }, 1000000, 'money'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
 ];
@@ -45,6 +46,12 @@ test('flags a safety stock result that does not leave a positive buffer', () => 
   const result = calculateBusinessMetric('safety-stock', { maximumDailyUse: 10, maximumLeadTime: 3, averageDailyUse: 10, averageLeadTime: 3 });
   assert.equal(result.value, 0);
   assert.equal(shouldUseCautionNote('safety-stock', result.value), true);
+});
+
+test('flags an invoice payment that exceeds its invoice value', () => {
+  const result = calculateBusinessMetric('saldo-utang-supplier', { invoiceAmount: 100000, allocatedPayment: 120000 });
+  assert.equal(result.value, -20000);
+  assert.equal(shouldUseCautionNote('saldo-utang-supplier', result.value), true);
 });
 
 test('calculates revenue change as a percentage', () => {
