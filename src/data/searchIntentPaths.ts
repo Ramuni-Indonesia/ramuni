@@ -7,12 +7,12 @@ export type SearchIntentPath = {
 };
 
 // This is deliberately a reader-facing intent map, not a list of keywords.
-// Each item answers a distinct question that is supported by the linked page.
+// Each item directs readers to a page that supports the stated need.
 export const searchIntentPaths: Record<string, SearchIntentPath> = {
   'product:asisten-ai': {
     eyebrow: 'Mulai dari pertanyaan yang bisa diuji',
     title: 'AI untuk bisnis perlu jawaban yang dapat diperiksa.',
-    intro: 'Pertanyaan yang jelas, periode yang tepat, dan angka asal jawaban membuat AI berguna sebagai pendamping membaca data—bukan pengganti keputusan pemilik usaha.',
+    intro: 'Pertanyaan yang jelas, periode yang tepat, dan angka asal jawaban membuat AI berguna sebagai pendamping membaca data, bukan pengganti keputusan pemilik usaha.',
     questions: [
       { title: 'Apa yang bisa ditanyakan?', text: 'Mulai dari perubahan omzet, produk yang bergerak, stok yang perlu diperiksa, atau biaya yang berubah pada periode tertentu.' },
       { title: 'Bagaimana memeriksa jawabannya?', text: 'Buka periode, transaksi, atau catatan yang menjadi dasar jawaban sebelum menjadikannya tindakan.' },

@@ -241,7 +241,7 @@ export const isBlogCategoryIndexable = (posts: BlogPost[]): boolean => posts.fil
  * genuinely related published articles. This prevents a useful article from
  * becoming an internal-link dead end when its frontmatter is incomplete.
  */
-export const getRelatedBlogPosts = (post: BlogPost, posts: BlogPost[], limit = 4): BlogPost[] => {
+export const getRelatedBlogPosts = (post: BlogPost, posts: BlogPost[], limit = 3): BlogPost[] => {
   const published = posts.filter((candidate) => candidate.id !== post.id && !candidate.data.draft);
   const byId = new Map(published.map((candidate) => [candidate.id, candidate]));
   const selected: BlogPost[] = [];
