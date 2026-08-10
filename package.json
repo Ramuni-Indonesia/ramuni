@@ -19,6 +19,7 @@
     "test:cms-provider": "node --test test/cms-build-provider.test.mjs",
     "test:r2-sync": "node --test test/sync-r2-assets.test.mjs",
     "audit": "node scripts/site-audit.mjs",
+    "audit:keywords": "node scripts/audit-keyword-map.mjs",
     "r2:sync": "node scripts/sync-r2-assets.mjs",
     "assets:cdn": "node scripts/rewrite-cdn-assets.mjs"
   },
