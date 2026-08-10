@@ -419,6 +419,7 @@ function auditAccessibility(html, route) {
     if (!getAttribute(tag, 'aria-label') && !referencedName(tag, idText)) failures.push(`${route}: dialog has no accessible label`);
   }
   const headings = [...html.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match) => ({ level: Number(match[1]), text: textContent(match[2]) }));
+  if (headings[0]?.level !== 1) failures.push(`${route}: first document heading must be h1`);
   for (let index = 1; index < headings.length; index += 1) {
     if (headings[index].level > headings[index - 1].level + 1) failures.push(`${route}: heading skips from h${headings[index - 1].level} to h${headings[index].level} (${headings[index].text})`);
   }

@@ -72,7 +72,7 @@ const groupActive = (item: MegaNavigationGroup) => {
               <div class="mega-columns">
                 {item.columns.map((column) => (
                   <section class="mega-column" aria-labelledby={`${groupId(item.label)}-${groupId(column.label)}`}>
-                    <h2 id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</h2>
+                    <p class="mega-column__label" id={`${groupId(item.label)}-${groupId(column.label)}`}>{column.label}</p>
                     <div class="mega-links">{column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} aria-current={exactCurrent(publicHref(link.href)) && publicHref(link.href) !== publicHref(item.href) ? 'page' : undefined} {...navigationIconAttributes(publicHref(link.href))}><span class="mega-link-copy"><strong>{linkLabelOverrides[link.href] || link.label}</strong>{(linkDescriptionOverrides[link.href] || link.description) && <span>{linkDescriptionOverrides[link.href] || link.description}</span>}</span></a>)}</div>
                   </section>
                 ))}
@@ -95,7 +95,7 @@ const groupActive = (item: MegaNavigationGroup) => {
                   <a class="mobile-hub" href={publicHref(item.href)} aria-current={exactCurrent(publicHref(item.href)) ? 'page' : undefined}>Buka {item.label}</a>
                   {item.columns.map((column) => (
                     <section>
-                      <h2>{column.label}</h2>
+                      <p class="mobile-menu__group-label">{column.label}</p>
                       {column.links.filter((link) => isPublicNavigationLink(link.href)).map((link) => <a href={publicHref(link.href)} aria-current={exactCurrent(publicHref(link.href)) && publicHref(link.href) !== publicHref(item.href) ? 'page' : undefined} {...navigationIconAttributes(publicHref(link.href))}><span>{linkLabelOverrides[link.href] || link.label}</span></a>)}
                     </section>
                   ))}
