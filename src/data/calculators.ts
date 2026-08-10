@@ -18,6 +18,7 @@ export type CalculatorKey =
   | 'konversi-penjualan'
   | 'penjualan-bersih-harian'
   | 'saldo-stok'
+  | 'selisih-stok'
   | 'saldo-utang-supplier';
 
 export interface CalculatorField {
@@ -411,6 +412,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', text: 'Gunakan saldo yang cukup andal sebelum menentukan titik cek pesanan.' },
       { label: 'Panduan stok opname', href: '/blog/cara-melakukan-stok-opname/', text: 'Bandingkan catatan dan hitungan fisik dengan urutan yang dapat ditelusuri.' },
+    ],
+  },
+  'selisih-stok': {
+    title: 'Pemeriksa Selisih Stok Opname',
+    shortTitle: 'Periksa selisih opname',
+    decision: 'Bandingkan hitungan fisik dengan saldo buku untuk satu produk serta satu satuan sebelum koreksi dibuat.',
+    seoTitle: 'Kalkulator Selisih Stok Opname',
+    metaDescription: 'Kalkulator selisih stok opname untuk UMKM. Bandingkan stok fisik dan saldo buku langsung di browser.',
+    keyword: 'kalkulator selisih stok opname',
+    category: 'Stok',
+    intent: 'Saat hitungan fisik perlu dibandingkan dengan kartu stok tanpa mengubah saldo terlalu cepat.',
+    formula: 'Selisih stok = Stok fisik - Saldo stok buku',
+    formulaNote: 'Gunakan satu produk, satu lokasi, satu satuan, dan cut-off yang sama. Hasil selisih adalah temuan untuk ditelusuri, bukan perintah otomatis untuk mengoreksi stok.',
+    resultLabel: 'Selisih stok fisik terhadap buku',
+    emptyNote: 'Isi saldo buku dan hitungan fisik dari produk, lokasi, serta satuan yang sama.',
+    positiveNote: 'Tidak ada selisih pada pemeriksaan ini. Simpan waktu, cakupan, dan bukti hitung; tetap periksa transaksi yang terjadi selama proses opname.',
+    cautionNote: 'Ada selisih atau input perlu diperiksa. Buka penerimaan, penjualan, retur, kerusakan, transfer, satuan, dan transaksi tertunda sebelum membuat koreksi.',
+    fields: [
+      { name: 'bookStock', label: 'Saldo stok buku', unit: 'unit', placeholder: '85', min: 0, step: 'any' },
+      { name: 'physicalStock', label: 'Stok fisik dihitung', unit: 'unit', placeholder: '82', min: 0, step: 'any' },
+    ],
+    example: { bookStock: 85, physicalStock: 82 },
+    exampleLabel: 'Contoh: saldo buku 85 unit, hitungan fisik 82 unit',
+    nextSteps: ['Simpan daftar hitung sebelum melihat atau mengubah saldo bila proses membutuhkan independensi.', 'Telusuri pergerakan sejak cut-off sebelumnya dan tandai bukti yang belum cocok.', 'Koreksi hanya setelah alasan, waktu, dan persetujuan sesuai proses tercatat.'],
+    related: [
+      { label: 'Pemeriksa saldo stok', href: '/blog/cara-mencatat-stok-masuk-dan-keluar/', text: 'Hitung saldo buku dari pergerakan masuk dan keluar sebelum membandingkannya dengan fisik.' },
+      { label: 'Panduan stok minimum', href: '/blog/cara-menentukan-stok-minimum-umkm/', text: 'Jangan memakai saldo yang belum diperiksa sebagai satu-satunya dasar pembelian.' },
     ],
   },
   'saldo-utang-supplier': {
