@@ -2,6 +2,7 @@ import type { CalculatorKey } from './calculators';
 
 const articleCalculatorRegistry = {
   'arus-kas-umkm-ringan': 'arus-kas-bersih',
+  'perbedaan-omzet-laba-dan-arus-kas': 'arus-kas-bersih',
   'cara-menghitung-laba-kotor': 'laba-kotor',
   'cara-menghitung-pertumbuhan-penjualan': 'perubahan-omzet',
   'cara-menghitung-konversi-penjualan-sederhana': 'konversi-penjualan',
