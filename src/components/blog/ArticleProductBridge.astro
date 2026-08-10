@@ -11,16 +11,16 @@ const { categorySlug, articleId } = Astro.props;
 const journey = getArticleJourney(categorySlug);
 ---
 
-<aside class="article-inline-decision" aria-label={`Lanjut ke ${journey.productTitle}`}>
+<aside class="article-inline-decision" aria-label={`Lanjut ke ${journey.nextTitle}`}>
   <BlogDecisionCTA
     id={`article-product-${articleId}`}
     eyebrow={`Lanjut ke ${journey.label}`}
     title={journey.title}
     text={journey.text}
-    primaryLabel={`Lihat ${journey.productTitle}`}
-    primaryHref={journey.productHref}
-    secondaryLabel="Lihat contoh alur gratis"
-    secondaryHref={journey.tourHref}
+    primaryLabel={`Lihat ${journey.nextTitle}`}
+    primaryHref={journey.nextHref}
+    secondaryLabel={`Pelajari ${journey.productTitle}`}
+    secondaryHref={journey.productHref}
     variant="article"
     stageLabels={journey.stages}
     metricLabel={journey.metric}

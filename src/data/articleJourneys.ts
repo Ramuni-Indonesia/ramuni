@@ -1,5 +1,7 @@
 export interface ArticleJourney {
   label: string;
+  nextTitle: string;
+  nextHref: string;
   productTitle: string;
   productHref: string;
   tourHref: string;
@@ -11,6 +13,8 @@ export interface ArticleJourney {
 
 const defaultJourney: ArticleJourney = {
   label: 'Dashboard Bisnis',
+  nextTitle: 'Solusi Laporan Bisnis',
+  nextHref: '/solusi/laporan-bisnis-otomatis/',
   productTitle: 'Dashboard Bisnis RAMUNI',
   productHref: '/produk/dashboard-bisnis/',
   tourHref: '/tour-produk-gratis/?intent=overview',
@@ -23,6 +27,8 @@ const defaultJourney: ArticleJourney = {
 export const articleJourneys: Record<string, ArticleJourney> = {
   'ai-untuk-umkm': {
     label: 'Asisten AI',
+    nextTitle: 'Asisten AI RAMUNI',
+    nextHref: '/produk/asisten-ai/',
     productTitle: 'Asisten AI RAMUNI',
     productHref: '/produk/asisten-ai/',
     tourHref: '/tour-produk-gratis/?intent=overview',
@@ -33,6 +39,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'keuangan-umkm': {
     label: 'Keuangan',
+    nextTitle: 'Solusi Laba & Arus Kas',
+    nextHref: '/solusi/pantau-laba-dan-arus-kas/',
     productTitle: 'Keuangan RAMUNI',
     productHref: '/produk/keuangan/',
     tourHref: '/tour-produk-gratis/?intent=finance',
@@ -43,6 +51,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'stok-inventori': {
     label: 'Inventori',
+    nextTitle: 'Solusi Kelola Stok',
+    nextHref: '/solusi/kelola-stok/',
     productTitle: 'Inventori RAMUNI',
     productHref: '/produk/inventori/',
     tourHref: '/tour-produk-gratis/?intent=stock',
@@ -53,6 +63,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'penjualan-omzet': {
     label: 'Penjualan',
+    nextTitle: 'Solusi Memahami Perubahan Omzet',
+    nextHref: '/solusi/naikkan-omzet/',
     productTitle: 'Penjualan RAMUNI',
     productHref: '/produk/penjualan/',
     tourHref: '/tour-produk-gratis/?intent=sales',
@@ -63,6 +75,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'pelanggan-crm': {
     label: 'Pelanggan',
+    nextTitle: 'Solusi Pahami Pelanggan',
+    nextHref: '/solusi/pahami-pelanggan/',
     productTitle: 'Pelanggan RAMUNI',
     productHref: '/produk/pelanggan/',
     tourHref: '/tour-produk-gratis/?intent=customer',
@@ -73,6 +87,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'operasional-bisnis': {
     label: 'Laporan & Insight',
+    nextTitle: 'Solusi Laporan Bisnis',
+    nextHref: '/solusi/laporan-bisnis-otomatis/',
     productTitle: 'Laporan Bisnis RAMUNI',
     productHref: '/produk/laporan-insight/',
     tourHref: '/tour-produk-gratis/?intent=report',
@@ -83,6 +99,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'operasional-usaha': {
     label: 'Laporan & Insight',
+    nextTitle: 'Solusi Laporan Bisnis',
+    nextHref: '/solusi/laporan-bisnis-otomatis/',
     productTitle: 'Laporan Bisnis RAMUNI',
     productHref: '/produk/laporan-insight/',
     tourHref: '/tour-produk-gratis/?intent=report',
@@ -93,6 +111,8 @@ export const articleJourneys: Record<string, ArticleJourney> = {
   },
   'penjualan-pemasaran': {
     label: 'Penjualan',
+    nextTitle: 'Solusi Memahami Perubahan Omzet',
+    nextHref: '/solusi/naikkan-omzet/',
     productTitle: 'Penjualan RAMUNI',
     productHref: '/produk/penjualan/',
     tourHref: '/tour-produk-gratis/?intent=sales',
@@ -100,6 +120,18 @@ export const articleJourneys: Record<string, ArticleJourney> = {
     text: 'Lihat contoh alur membandingkan produk, waktu, dan periode sebelum menjadikan satu angka sebagai keputusan.',
     stages: ['Transaksi', 'Bandingkan', 'Baca pola', 'Tentukan'],
     metric: 'Perubahan penjualan',
+  },
+  'strategi-per-industri': {
+    label: 'Konteks Industri',
+    nextTitle: 'Konteks Industri RAMUNI',
+    nextHref: '/industri/',
+    productTitle: 'Dashboard Bisnis RAMUNI',
+    productHref: '/produk/dashboard-bisnis/',
+    tourHref: '/tour-produk-gratis/?intent=overview',
+    title: 'Mulai dari ritme usaha sebelum membandingkan angkanya.',
+    text: 'Lihat contoh pertanyaan untuk jenis usaha Anda, lalu buka dashboard yang membantu menelusuri perubahan dengan periode yang setara.',
+    stages: ['Konteks usaha', 'Pilih metrik', 'Bandingkan', 'Periksa'],
+    metric: 'Pertanyaan sesuai industri',
   },
 };
 

@@ -24,7 +24,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Omzet', 'Produk terlaris', 'Perbandingan periode'],
     start: 'Pilih periode yang setara, periksa transaksi pembentuk omzet, lalu cari produk atau waktu yang benar-benar berubah.',
     steps: ['Pilih periode setara', 'Buka transaksi pembentuknya', 'Catat perubahan utama'],
-    cta: { title: 'Ingin melihat alur penjualan dari dekat?', label: 'Pelajari Penjualan', href: '/produk/penjualan/' },
+    cta: { title: 'Mulai dari perubahan omzet yang ingin diperiksa.', label: 'Lihat Solusi Omzet', href: '/solusi/naikkan-omzet/' },
   },
   {
     slug: 'stok-inventori',
@@ -35,7 +35,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Stok minimum', 'Pergerakan barang', 'Stock opname'],
     start: 'Mulai dari saldo terakhir dan tanggal pemeriksaan fisik. Lalu bandingkan dengan penjualan pada periode yang sama.',
     steps: ['Cek saldo terakhir', 'Bandingkan laju keluar', 'Tentukan barang yang diperiksa'],
-    cta: { title: 'Ingin melihat alur pemeriksaan stok?', label: 'Lihat Inventori', href: '/produk/inventori/' },
+    cta: { title: 'Mulai dari stok yang perlu diperiksa lebih dulu.', label: 'Lihat Solusi Stok', href: '/solusi/kelola-stok/' },
   },
   {
     slug: 'keuangan-umkm',
@@ -46,7 +46,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Arus kas', 'Biaya usaha', 'Laba dan margin'],
     start: 'Catat uang yang benar-benar masuk dan keluar. Jangan campur dengan penjualan yang belum dibayar.',
     steps: ['Pisahkan kas dan omzet', 'Kelompokkan pengeluaran', 'Periksa perubahan terbesar'],
-    cta: { title: 'Baca perjalanan uang dalam satu alur.', label: 'Pelajari Keuangan', href: '/produk/keuangan/' },
+    cta: { title: 'Mulai dari angka yang membuat kas terasa tidak sejalan.', label: 'Lihat Solusi Laba & Arus Kas', href: '/solusi/pantau-laba-dan-arus-kas/' },
   },
   {
     slug: 'pelanggan-crm',
@@ -57,7 +57,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Repeat customer', 'Riwayat pembelian', 'Izin data'],
     start: 'Pastikan identitas dan izin datanya jelas, lalu bandingkan jeda pembelian pada periode yang setara.',
     steps: ['Periksa izin data', 'Bandingkan riwayat', 'Tentukan tindak lanjut manusia'],
-    cta: { title: 'Pelajari pola pelanggan tanpa tindak lanjut otomatis.', label: 'Pelajari Pelanggan', href: '/produk/pelanggan/' },
+    cta: { title: 'Mulai dari riwayat pelanggan yang sudah tersedia.', label: 'Lihat Solusi Pelanggan', href: '/solusi/pahami-pelanggan/' },
   },
   {
     slug: 'operasional-bisnis',
@@ -68,7 +68,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Review mingguan', 'Kualitas catatan', 'Tanggung jawab tim'],
     start: 'Pilih satu proses yang sering bermasalah, catat sumber datanya, lalu tetapkan siapa yang memeriksa dan kapan.',
     steps: ['Pilih satu proses', 'Samakan catatan', 'Tetapkan pemeriksaan'],
-    cta: { title: 'Lihat ringkasan operasional dengan urutan yang jelas.', label: 'Pelajari Dashboard', href: '/produk/dashboard-bisnis/' },
+    cta: { title: 'Mulai dari laporan yang perlu dirapikan bersama tim.', label: 'Lihat Solusi Laporan Bisnis', href: '/solusi/laporan-bisnis-otomatis/' },
   },
   {
     slug: 'operasional-usaha',
@@ -79,7 +79,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['SOP toko', 'Catatan harian', 'Pemeriksaan tim'],
     start: 'Pilih satu pekerjaan yang berulang, tulis urutan sederhananya, lalu periksa apakah catatan dan penanggung jawabnya sudah jelas.',
     steps: ['Pilih pekerjaan berulang', 'Samakan catatan dan langkah', 'Tinjau bersama tim'],
-    cta: { title: 'Lihat bagaimana catatan harian dapat diringkas untuk ditindaklanjuti.', label: 'Pelajari Laporan & Insight', href: '/produk/laporan-insight/' },
+    cta: { title: 'Mulai dari satu laporan rutin yang perlu ditindaklanjuti.', label: 'Lihat Solusi Laporan Bisnis', href: '/solusi/laporan-bisnis-otomatis/' },
   },
   {
     slug: 'penjualan-pemasaran',
@@ -90,7 +90,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Evaluasi promo', 'Produk pelengkap', 'Pola transaksi'],
     start: 'Bandingkan periode yang setara, buka produk dan waktu yang berubah, lalu pilih satu pemeriksaan sebelum mengubah promosi.',
     steps: ['Bandingkan periode setara', 'Buka produk dan waktu', 'Uji satu langkah berikutnya'],
-    cta: { title: 'Baca perubahan omzet dari transaksi yang membentuknya.', label: 'Pelajari Penjualan', href: '/produk/penjualan/' },
+    cta: { title: 'Mulai dari perubahan penjualan yang perlu dipecah lebih dulu.', label: 'Lihat Solusi Omzet', href: '/solusi/naikkan-omzet/' },
   },
   {
     slug: 'ai-untuk-umkm',
