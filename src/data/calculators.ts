@@ -15,6 +15,7 @@ export type CalculatorKey =
   | 'repeat-customer-rate'
   | 'safety-stock'
   | 'penjualan-per-jam'
+  | 'konversi-penjualan'
   | 'saldo-utang-supplier';
 
 export interface CalculatorField {
@@ -325,6 +326,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Bedakan perubahan karena jumlah pembeli atau nilai belanja per transaksi.' },
       { label: 'SOP buka dan tutup toko', href: '/blog/sop-buka-tutup-toko-sederhana/', text: 'Bawa pola waktu ke persiapan dan penutupan operasional.' },
+    ],
+  },
+  'konversi-penjualan': {
+    title: 'Kalkulator Konversi Penjualan',
+    shortTitle: 'Periksa rasio konversi',
+    decision: 'Hitung proporsi hasil yang selesai dari calon pada satu tahap funnel yang didefinisikan jelas.',
+    seoTitle: 'Kalkulator Konversi Penjualan Sederhana',
+    metaDescription: 'Kalkulator konversi penjualan untuk UMKM. Hitung hasil akhir dibagi calon pada tahap awal, langsung di browser.',
+    keyword: 'kalkulator konversi penjualan',
+    category: 'Penjualan',
+    intent: 'Saat ingin memahami titik putus dari pertanyaan atau pesanan ke transaksi selesai.',
+    formula: 'Konversi penjualan = Hasil pada tahap akhir / Calon pada tahap awal x 100%',
+    formulaNote: 'Gunakan satu pasangan tahap, periode, dan aturan penghitungan yang sama. Jumlah hasil tidak boleh melebihi jumlah calon yang tercakup.',
+    resultLabel: 'Rasio konversi penjualan',
+    emptyNote: 'Isi jumlah calon dan hasil yang selesai untuk satu funnel yang sama.',
+    positiveNote: 'Baca hasil bersama volume calon, waktu respons, pembatalan, nilai transaksi, dan mutu layanan sebelum mengubah proses.',
+    cautionNote: 'Periksa data: calon harus lebih dari nol dan hasil tidak boleh lebih besar dari calon yang dihitung pada funnel serta periode yang sama.',
+    fields: [
+      { name: 'eligibleProspects', label: 'Calon pada tahap awal', unit: 'calon', placeholder: '80', min: 1, step: 1 },
+      { name: 'completedOutcomes', label: 'Hasil pada tahap akhir', unit: 'hasil', placeholder: '20', min: 0, step: 1 },
+    ],
+    example: { eligibleProspects: 80, completedOutcomes: 20 },
+    exampleLabel: 'Contoh: 80 pertanyaan produk yang tercakup, 20 menjadi transaksi selesai',
+    nextSteps: ['Tuliskan nama tahap awal dan akhir pada laporan.', 'Bandingkan dengan periode atau kanal yang benar-benar sebanding.', 'Periksa pembatalan, stok, informasi produk, dan waktu respons sebelum mengubah skrip atau promo.'],
+    related: [
+      { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Bedakan perubahan jumlah transaksi dari nilai pesanan.' },
+      { label: 'Panduan pertumbuhan penjualan', href: '/blog/cara-menghitung-pertumbuhan-penjualan/', text: 'Baca konversi bersama perubahan volume dan omzet.' },
     ],
   },
   'saldo-utang-supplier': {

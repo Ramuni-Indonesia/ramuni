@@ -13,6 +13,7 @@ const regressionCases = [
   ['repeat-customer-rate', { identifiedCustomers: 200, returningCustomers: 70 }, 35, 'percent'],
   ['safety-stock', { maximumDailyUse: 12, maximumLeadTime: 5, averageDailyUse: 10, averageLeadTime: 3 }, 30, 'unit'],
   ['penjualan-per-jam', { netSales: 1800000, operatingHours: 12 }, 150000, 'money'],
+  ['konversi-penjualan', { eligibleProspects: 80, completedOutcomes: 20 }, 25, 'percent'],
   ['saldo-utang-supplier', { invoiceAmount: 1500000, allocatedPayment: 500000 }, 1000000, 'money'],
   ['arus-kas-bersih', { cashIn: 9500000, cashOut: 11200000 }, -1700000, 'money'],
   ['nilai-transaksi-rata-rata', { revenue: 18000000, transactions: 420 }, 42857.142857142855, 'money'],
@@ -59,6 +60,12 @@ test('rejects repeat customer totals that exceed the covered customer count', ()
   const result = calculateBusinessMetric('repeat-customer-rate', { identifiedCustomers: 20, returningCustomers: 21 });
   assert.equal(Number.isFinite(result.value), false);
   assert.equal(shouldUseCautionNote('repeat-customer-rate', result.value), true);
+});
+
+test('rejects conversion outcomes that exceed eligible prospects', () => {
+  const result = calculateBusinessMetric('konversi-penjualan', { eligibleProspects: 20, completedOutcomes: 21 });
+  assert.equal(Number.isFinite(result.value), false);
+  assert.equal(shouldUseCautionNote('konversi-penjualan', result.value), true);
 });
 
 test('flags a safety stock result that does not leave a positive buffer', () => {
