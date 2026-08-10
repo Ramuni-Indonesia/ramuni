@@ -18,6 +18,8 @@ export const calculateBusinessMetric = (kind, values) => {
   switch (kind) {
     case 'laba-usaha':
       return money(values.income - values.cost);
+    case 'laba-kotor':
+      return money(values.netSales >= 0 && values.cogs >= 0 ? values.netSales - values.cogs : Number.NaN);
     case 'hpp':
       return money(values.opening + values.purchase - values.closing);
     case 'reorder-stok':

@@ -4,6 +4,7 @@ import { calculateBusinessMetric, shouldUseCautionNote } from '../src/lib/calcul
 
 const regressionCases = [
   ['laba-usaha', { income: 12500000, cost: 8750000 }, 3750000, 'money'],
+  ['laba-kotor', { netSales: 6000000, cogs: 3600000 }, 2400000, 'money'],
   ['hpp', { opening: 4000000, purchase: 6500000, closing: 3200000 }, 7300000, 'money'],
   ['reorder-stok', { daily: 18, lead: 4, safety: 25 }, 97, 'unit'],
   ['margin-laba-kotor', { sales: 15000000, cogs: 9750000 }, 35, 'percent'],
@@ -35,6 +36,12 @@ test('rejects an impossible target margin', () => {
   const result = calculateBusinessMetric('harga-jual', { unitCost: 25000, targetMargin: 100 });
   assert.equal(Number.isFinite(result.value), false);
   assert.equal(shouldUseCautionNote('harga-jual', result.value), true);
+});
+
+test('flags a negative gross-profit result for review', () => {
+  const result = calculateBusinessMetric('laba-kotor', { netSales: 60000, cogs: 75000 });
+  assert.equal(result.value, -15000);
+  assert.equal(shouldUseCautionNote('laba-kotor', result.value), true);
 });
 
 test('flags a discount scenario with no positive unit contribution', () => {

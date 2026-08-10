@@ -2,6 +2,7 @@ import type { CalculatorKey } from './calculators';
 
 const articleCalculatorRegistry = {
   'arus-kas-umkm-ringan': 'arus-kas-bersih',
+  'cara-menghitung-laba-kotor': 'laba-kotor',
   'cara-menghitung-titik-impas-usaha': 'titik-impas',
   'cara-menghitung-repeat-customer-rate': 'repeat-customer-rate',
   'cara-menghitung-hpp-usaha-kuliner': 'hpp-per-porsi',

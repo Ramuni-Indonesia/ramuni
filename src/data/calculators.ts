@@ -1,5 +1,6 @@
 export type CalculatorKey =
   | 'laba-usaha'
+  | 'laba-kotor'
   | 'hpp'
   | 'reorder-stok'
   | 'margin-laba-kotor'
@@ -74,6 +75,33 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     related: [
       { label: 'Panduan arus kas', href: '/panduan/memahami-arus-kas/', text: 'Lihat kenapa laba dan kas bisa berbeda.' },
       { label: 'Kamus omzet', href: '/kamus-bisnis/omzet/', text: 'Samakan dulu arti omzet sebelum menghitung laba.' },
+    ],
+  },
+  'laba-kotor': {
+    title: 'Kalkulator Laba Kotor',
+    shortTitle: 'Periksa laba kotor',
+    decision: 'Hitung selisih penjualan bersih dan HPP dari satu periode atau satu kelompok produk.',
+    seoTitle: 'Kalkulator Laba Kotor Gratis untuk UMKM',
+    metaDescription: 'Kalkulator laba kotor untuk UMKM. Hitung penjualan bersih dikurangi HPP dari periode yang sama, langsung di browser.',
+    keyword: 'kalkulator laba kotor',
+    category: 'Laba',
+    intent: 'Saat omzet tercatat tetapi sisa setelah biaya produk belum terlihat jelas.',
+    formula: 'Laba kotor = Penjualan bersih - HPP',
+    formulaNote: 'Gunakan penjualan setelah pengurang yang memang ditanggung usaha dan HPP untuk produk yang sama dalam periode yang sama.',
+    resultLabel: 'Laba kotor',
+    emptyNote: 'Isi penjualan bersih dan HPP untuk melihat selisihnya.',
+    positiveNote: 'Bandingkan hasil per produk atau periode, kemudian baca biaya operasi dan kas secara terpisah.',
+    cautionNote: 'Hasil nol atau negatif. Periksa harga efektif, diskon, retur, HPP, serta kesesuaian periode sebelum mengambil keputusan.',
+    fields: [
+      { name: 'netSales', label: 'Penjualan bersih', unit: 'Rp', placeholder: '6000000', min: 0 },
+      { name: 'cogs', label: 'HPP', unit: 'Rp', placeholder: '3600000', min: 0 },
+    ],
+    example: { netSales: 6000000, cogs: 3600000 },
+    exampleLabel: 'Contoh: penjualan bersih Rp6 juta dan HPP Rp3,6 juta',
+    nextSteps: ['Pecah hasil menurut produk atau kanal bila keputusannya berbeda.', 'Pastikan diskon, retur, dan HPP memakai dasar periode yang sama.', 'Baca margin dan biaya operasi sebelum mengubah harga atau pembelian.'],
+    related: [
+      { label: 'Kalkulator margin', href: '/kalkulator/margin-laba-kotor/', text: 'Ubah laba kotor menjadi persentase dari penjualan.' },
+      { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', text: 'Periksa dasar HPP sebelum menyimpulkan hasil.' },
     ],
   },
   hpp: {
