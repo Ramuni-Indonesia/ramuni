@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah. Format artikel ini adalah ringkasan operasional, bukan laporan keuangan formal."
 disclaimer: "Contoh laporan bersifat edukatif. Pengelompokan pendapatan, biaya, pajak, dan kewajiban formal perlu disesuaikan dengan pembukuan serta kondisi usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang ringkasan bisnis bulanan yang dapat ditindaklanjuti."
 related:
   - "laporan-laba-rugi-sederhana-umkm"
   - "cara-membuat-catatan-kas-harian"

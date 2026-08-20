@@ -46,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Terapkan kebijakan pencatatan sesuai kebutuhan dan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Pengelolaan bahan pangan perlu disesuaikan dengan keamanan pangan, kondisi penyimpanan, pemasok, resep, dan aturan yang berlaku di lokasi usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Byline dialihkan ke Desk Strategi Industri RAMUNI agar kepemilikan topik sesuai dengan konteks usaha makanan dan minuman. Isi, sumber, dan panduan operasional tidak berubah."
 related:
   - "cara-menghitung-reorder-point"
   - "apa-itu-lead-time-stok"

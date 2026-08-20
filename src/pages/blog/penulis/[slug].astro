@@ -4,6 +4,7 @@ import { getBlogPosts, type BlogPost } from '../../../lib/blog';
 import { getEditorialPerson, legacyAuthorRedirects } from '../../../data/editorialPeople';
 import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
+import '../../../styles/author-profile.css';
 
 export async function getStaticPaths() {
   const posts = (await getBlogPosts()).filter((post) => !post.data.draft);
@@ -22,7 +23,7 @@ const authorName = author.name;
 const sortedPosts = [...posts].sort((a, b) => (b.data.updatedAt || b.data.publishedAt).valueOf() - (a.data.updatedAt || a.data.publishedAt).valueOf());
 const shownPosts = sortedPosts.slice(0, 6);
 const categories = [...new Set(sortedPosts.map((post) => post.data.category))];
-const latestUpdate = sortedPosts[0]?.data.updatedAt || sortedPosts[0]?.data.publishedAt;
+const latestPublished = [...posts].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())[0]?.data.publishedAt;
 const profileIndexable = releaseGates.resourcePagesIndexable && author.profileType === 'person' && sortedPosts.length >= 2;
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const authorUrl = new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString();
@@ -33,7 +34,7 @@ const schema = [
     '@id': authorUrl,
     url: authorUrl,
     inLanguage: 'id-ID',
-    ...(latestUpdate ? { dateModified: latestUpdate.toISOString() } : {}),
+    ...(latestPublished ? { dateModified: latestPublished.toISOString() } : {}),
     mainEntity: {
       '@type': author.profileType === 'person' ? 'Person' : 'Organization',
       '@id': `${authorUrl}#author`,
@@ -54,7 +55,7 @@ const schema = [
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
       { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
-      { '@type': 'ListItem', position: 3, name: 'Penulis', item: new URL('/penulis/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: 'Penulis', item: new URL('/blog/penulis/', Astro.site || Astro.url.origin).toString() },
       { '@type': 'ListItem', position: 4, name: authorName, item: authorUrl },
     ],
   },
@@ -63,12 +64,12 @@ const schema = [
 <BaseLayout title={`${authorName} | Blog RAMUNI`} description={`${author.shortBio} Baca artikel dan kebijakan editorial RAMUNI.`} noindex={!profileIndexable} schema={schema}>
   <header class="author-hero"><div class="container author-profile">
     <div class="author-mark"><img src={author.photo} width="160" height="160" alt={author.photoAlt} /></div>
-    <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href="/penulis/">Penulis</a><span>/</span><span aria-current="page">{authorName}</span></nav><p class="eyebrow">Profil penulis</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div></div>
+    <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href="/blog/penulis/">Penulis</a><span>/</span><span aria-current="page">{authorName}</span></nav><p class="eyebrow">Profil penulis</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestPublished && <span>Artikel terakhir terbit {formatDate(latestPublished)}</span>}</div></div>
   </div></header>
 
   <section class="section author-about-stage" aria-labelledby="author-about-title"><div class="container author-about">
     <div><p class="section-kicker">Tentang penulis</p><h2 id="author-about-title">Tulisan yang bisa dibaca, diuji, dan dikoreksi.</h2></div>
-    <div class="author-about__body"><p>{author.fullBio}</p><div class="author-expertise" aria-label="Topik yang ditulis">{author.expertise.map((item) => <span>{item}</span>)}</div>{author.editorialNotice && <p class="author-notice"><strong>Transparansi profil:</strong> {author.editorialNotice}</p>}<p class="author-disclosure"><strong>Hubungan dengan RAMUNI:</strong> {author.disclosure}</p></div>
+    <div class="author-about__body"><p>{author.fullBio}</p><div class="author-expertise" aria-label="Topik yang ditulis">{author.expertise.map((item) => <span>{item}</span>)}</div><section class="author-standards" aria-labelledby="author-standards-title"><p class="section-kicker">Standar editorial</p><h3 id="author-standards-title">Cara naskah disusun.</h3><ul>{author.editorialStandards.map((item) => <li>{item}</li>)}</ul></section>{author.editorialNotice && <p class="author-notice"><strong>Transparansi profil:</strong> {author.editorialNotice}</p>}<p class="author-disclosure"><strong>Hubungan dengan RAMUNI:</strong> {author.disclosure}</p></div>
   </div></section>
 
   <section class="section surface author-articles-stage"><div class="container author-reading-layout"><div class="category-reading-head"><div><p class="section-kicker">Artikel terbaru</p><h2>Ditulis oleh penulis ini.</h2></div><p>Menampilkan pembaruan terbaru. Buka arsip blog untuk membaca semua artikel.</p></div><div class="reading-list reading-list--visual author-reading-list">{shownPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.readingTime}</small></div><small aria-hidden="true">Baca &rarr;</small></a>)}</div>{sortedPosts.length > shownPosts.length && <p class="author-archive-link"><a class="button button--secondary" href="/blog/">Lihat semua artikel</a></p>}</div></section>

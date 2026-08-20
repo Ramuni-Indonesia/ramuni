@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; contoh HPP ini bersifat edukatif dan bukan nasihat akuntansi atau pajak."
 disclaimer: "Perhitungan HPP perlu disesuaikan dengan proses produksi, pembukuan, perpajakan, dan kondisi usaha Anda. Bila diperlukan, konsultasikan dengan tenaga profesional."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Byline dialihkan ke Desk Keuangan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan perhitungan tidak berubah."
 related:
   - "produk-terlaris-belum-tentu-paling-untung"
   - "cara-mengukur-dampak-diskon-terhadap-laba"

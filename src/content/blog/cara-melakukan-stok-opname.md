@@ -7,7 +7,7 @@ coverAlt: "Dua pekerja toko menghitung persediaan di rak sambil mengisi daftar p
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan; kebijakan koreksi dan pencatatan perlu disesuaikan dengan proses usaha."
 disclaimer: "Artikel ini merupakan panduan operasional umum. Kebijakan koreksi persediaan perlu disesuaikan dengan proses dan tanggung jawab usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperluas panduan dengan pemeriksa selisih stok, metode hitung, cut-off pergerakan, prioritas risiko, dan tindak lanjut koreksi yang dapat ditelusuri."
 related:
   - "cara-menentukan-stok-minimum-umkm"
   - "panduan-membaca-stok-harian"

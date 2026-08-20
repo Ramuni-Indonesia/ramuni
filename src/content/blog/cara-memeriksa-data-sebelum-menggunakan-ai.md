@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk batas data pribadi saat menggunakan alat digital."
 disclaimer: "Artikel ini bersifat edukatif. Pemeriksaan data tidak menjamin hasil AI benar atau lengkap. Keputusan yang berdampak besar tetap memerlukan peninjauan sesuai konteks usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang checklist kualitas data sebelum analisis AI."
 related:
   - "cara-menilai-insight-ai-untuk-bisnis"
   - "pertanyaan-ai-untuk-analisis-penjualan"

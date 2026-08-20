@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Bukan rekomendasi pembelian atau penetapan harga produk tertentu."
 disclaimer: "Artikel ini bersifat edukatif. Keputusan produk, harga, promosi, dan persediaan perlu mempertimbangkan biaya, kapasitas, kualitas, kewajiban, serta kebutuhan pelanggan usaha masing-masing."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang memilih dan menguji produk pelengkap berdasarkan kebutuhan pelanggan serta data penjualan."
 related:
   - "cara-membaca-penjualan-per-produk"
   - "cara-menghitung-konversi-penjualan-sederhana"

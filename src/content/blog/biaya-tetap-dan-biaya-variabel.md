@@ -44,7 +44,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; pengelompokan operasional pada artikel ini bersifat edukatif."
 disclaimer: "Klasifikasi biaya untuk pencatatan, pajak, dan laporan formal perlu mengikuti kondisi serta kebijakan usaha yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperjelas definisi, contoh biaya tetap dan variabel, serta jalur lanjut ke istilah dan kalkulator titik impas."
 related:
   - "cara-menghitung-titik-impas-usaha"
   - "cara-menghitung-hpp-produk"

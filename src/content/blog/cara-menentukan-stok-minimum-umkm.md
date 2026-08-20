@@ -7,7 +7,7 @@ coverAlt: "Dashboard RAMUNI yang membantu membaca saldo stok, kebutuhan isi ulan
 coverWidth: 1280
 coverHeight: 720
 publishedAt: 2026-07-30
-updatedAt: 2026-08-20
+updatedAt: 2026-07-30
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum mengenai pencatatan dan penyajian keuangan entitas mikro, kecil, dan menengah. Kebijakan persediaan resmi perlu mengikuti standar dan kebutuhan usaha yang berlaku."
 disclaimer: "Contoh perhitungan bersifat edukasi. Sesuaikan angka dengan pola usaha, kondisi barang, pemasok, dan kebijakan pencatatan Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan metode sederhana menentukan stok minimum, stok pengaman, dan jadwal peninjauan."
 related:
   - "panduan-membaca-stok-harian"
   - "cara-merapikan-data-produk-dan-sku"

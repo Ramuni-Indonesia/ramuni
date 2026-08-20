@@ -312,7 +312,7 @@ function registerUnique(map, value, route, label) {
 }
 
 function isBlogArticleRoute(route) {
-  return /^\/blog\/[^/]+$/.test(route) && !EDITORIAL_TRUST_ROUTES.has(route);
+  return /^\/blog\/[^/]+$/.test(route) && route !== '/blog/penulis' && !EDITORIAL_TRUST_ROUTES.has(route);
 }
 
 function classSegment(html, className) {
@@ -532,7 +532,7 @@ function expectedPageType(route) {
   if (route === '/tentang') return 'AboutPage';
   if (route === '/kontak') return 'ContactPage';
   if (/^\/(sumber-daya|panduan|template|kalkulator|kamus-bisnis)$/.test(route)) return 'CollectionPage';
-  if (/^\/blog(?:\/page\/\d+|\/kategori\/[^/]+)?$/.test(route)) return 'CollectionPage';
+  if (/^\/blog(?:\/page\/\d+|\/kategori\/[^/]+|\/penulis)?$/.test(route)) return 'CollectionPage';
   return 'WebPage';
 }
 

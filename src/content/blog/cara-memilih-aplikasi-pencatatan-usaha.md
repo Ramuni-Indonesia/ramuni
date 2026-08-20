@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pertimbangan data pribadi dalam proses usaha."
 disclaimer: "Artikel ini bersifat edukatif dan netral. Jangan menganggap checklist sebagai jaminan keamanan, kepatuhan, kecocokan, atau performa aplikasi tertentu. Konfirmasi informasi vendor dan kebutuhan usaha pada saat evaluasi."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang evaluasi aplikasi pencatatan usaha secara terstruktur dan netral."
 related:
   - "cara-membuat-catatan-kas-harian"
   - "cara-membuat-laporan-bisnis-bulanan"

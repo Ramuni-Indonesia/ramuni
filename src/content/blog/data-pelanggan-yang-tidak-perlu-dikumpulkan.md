@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum tentang perlindungan data pribadi. Artikel ini bersifat edukatif dan bukan nasihat hukum atau kepatuhan."
 disclaimer: "Panduan ini bersifat umum. Kebutuhan data, dasar pemrosesan, pemberitahuan, retensi, keamanan, dan pemenuhan hak subjek data perlu disesuaikan dengan proses usaha serta ketentuan yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membatasi pengumpulan data pelanggan pada kebutuhan yang jelas."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-mengelompokkan-pelanggan-sederhana"

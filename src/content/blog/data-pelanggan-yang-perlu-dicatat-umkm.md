@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha memilih data pelanggan yang relevan sambil menjaga priv
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-20
+updatedAt: 2026-07-27
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -46,7 +46,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan teknis umum untuk risiko perlindungan data saat disimpan atau dikirim."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat hukum, keamanan, atau kepatuhan untuk usaha tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan matriks tujuan data, data yang perlu dihindari, serta checklist akses dan retensi."
 related:
   - "cara-melihat-pelanggan-yang-kembali-belanja"
   - "cara-merapikan-data-produk-dan-sku"

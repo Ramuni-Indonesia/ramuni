@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Penjualan Laundry", "Laporan Laundry", "Usaha Jasa"]
@@ -38,7 +37,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk membedakan catatan operasional dari kebutuhan pelaporan formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan tiket, keamanan barang, data pelanggan, pembayaran, dan kewajiban usaha dengan proses yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang pencatatan penjualan dan status layanan pada usaha laundry."
 related: ["cara-mencatat-penjualan-harian", "cara-membuat-catatan-kas-harian", "contoh-laporan-penjualan-harian"]
 ctaType: "product"
 featured: false

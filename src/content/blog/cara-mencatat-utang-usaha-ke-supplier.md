@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko menyortir invoice supplier ke dalam wadah berdasarkan wa
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait pencatatan entitas mikro, kecil, dan menengah. Artikel ini bukan petunjuk perlakuan akuntansi spesifik."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, hukum, atau pembiayaan. Perlakuan pencatatan dan ketentuan pembayaran perlu disesuaikan dengan dokumen serta kondisi usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperluas panduan dengan pemeriksa saldo invoice, alokasi pembayaran gabungan, prioritas jatuh tempo, jejak koreksi, dan ritme rekonsiliasi mingguan."
 related:
   - "cara-memilih-supplier-untuk-stok-usaha"
   - "cara-membuat-daftar-pembelian-barang"

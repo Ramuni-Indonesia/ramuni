@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Persetujuan dan bukti pembelian perlu disesuaikan dengan skala usaha."
 disclaimer: "Artikel ini bersifat edukatif. Keputusan pembelian perlu mempertimbangkan perjanjian, mutu, keselamatan, pajak, kas, dan kondisi usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membuat daftar pembelian barang yang menghubungkan kebutuhan stok, pemasok, dan penerimaan."
 related:
   - "cara-membuat-checklist-pembelian-barang"
   - "cara-menghitung-reorder-point"

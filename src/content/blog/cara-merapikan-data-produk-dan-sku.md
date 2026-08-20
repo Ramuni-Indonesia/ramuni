@@ -7,7 +7,7 @@ coverAlt: "Tim usaha merapikan nama produk, SKU, satuan, dan kategori dalam kata
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-20
+updatedAt: 2026-07-27
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -40,7 +40,7 @@ sources:
     url: "https://www.gs1.org/standards/id-keys/gtin"
     accessedAt: 2026-07-27
     note: "Rujukan untuk membedakan identitas barang global GTIN dari kode SKU internal yang dibuat usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan aturan nama, SKU internal, satuan, deduplikasi, dan migrasi bertahap."
 related:
   - "panduan-membaca-stok-harian"
   - "produk-terlaris-belum-tentu-paling-untung"

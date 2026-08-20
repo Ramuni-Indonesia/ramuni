@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Artikel ini membahas pencatatan operasional sederhana dan bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Praktik data pelanggan perlu disesuaikan dengan dasar pemrosesan, pemberitahuan, keamanan, kebijakan retensi, dan kewajiban usaha yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Byline dialihkan ke Desk Pelanggan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan perhitungan tidak berubah."
 related:
   - "cara-melihat-pelanggan-yang-kembali-belanja"
   - "data-pelanggan-yang-perlu-dicatat-umkm"

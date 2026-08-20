@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum tentang persediaan. Terapkan proses stok sesuai model serta kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, atau komersial. Periksa ketentuan kanal yang digunakan dan catatan biaya usaha sebelum mengambil keputusan."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membandingkan kontribusi penjualan online dan offline secara konsisten."
 related:
   - "cara-menghitung-pertumbuhan-penjualan"
   - "cara-mencatat-penjualan-toko-retail"

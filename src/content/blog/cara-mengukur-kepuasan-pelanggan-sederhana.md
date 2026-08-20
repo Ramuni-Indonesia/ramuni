@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; praktik pengumpulan umpan balik perlu disesuaikan dengan konteks dan ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum atau perlindungan data. Kumpulkan umpan balik dan data kontak seperlunya, jelaskan tujuan penggunaan, serta sesuaikan proses dengan ketentuan yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang survei kepuasan pelanggan yang singkat, dapat ditindaklanjuti, dan menghormati pilihan pelanggan."
 related:
   - "cara-mencatat-keluhan-pelanggan"
   - "cara-menghitung-repeat-customer-rate"

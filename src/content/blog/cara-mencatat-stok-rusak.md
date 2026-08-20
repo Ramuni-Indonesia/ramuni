@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pengurangan kehilangan dan pemborosan pangan. Terapkan prosedur keamanan serta penanganan sesuai jenis produk."
 disclaimer: "Artikel ini bersifat edukatif. Penanganan, penyimpanan, pengembalian, dan pemusnahan barang rusak harus mengikuti keselamatan, mutu, lingkungan, serta aturan yang berlaku untuk jenis produk usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang memisahkan, mencatat, dan menganalisis stok rusak untuk perbaikan proses persediaan."
 related:
   - "penyebab-selisih-stok-dan-cara-mengeceknya"
   - "cara-mencatat-stok-masuk-dan-keluar"

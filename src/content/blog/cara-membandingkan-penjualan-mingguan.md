@@ -7,7 +7,7 @@ coverAlt: "Perbandingan penjualan dua minggu dengan periode dan kanal yang setar
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
@@ -40,7 +40,7 @@ sources:
     url: "https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm"
     accessedAt: 2026-07-27
     note: "Rujukan umum pentingnya pencatatan yang konsisten; artikel ini tidak membahas perlakuan pajak tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan langkah rekonsiliasi periode, pembacaan penyumbang perubahan, contoh keputusan, dan checklist review mingguan."
 related:
   - "cara-membaca-omzet-harian"
   - "produk-terlaris-belum-tentu-paling-untung"

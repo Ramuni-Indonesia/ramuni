@@ -7,7 +7,7 @@ coverAlt: "Pemilik UMKM meninjau penjualan, stok, kas, pelanggan, dan pekerjaan 
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-20
+updatedAt: 2026-07-27
 category: "Operasional Bisnis"
 categorySlug: "operasional-bisnis"
 tags:
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan umum tentang pencatatan; checklist artikel ini bukan pengganti pembukuan atau kewajiban pajak resmi."
 disclaimer: "Checklist ini bersifat edukasi operasional umum dan bukan nasihat akuntansi, hukum, atau pajak untuk usaha tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan agenda review 30 menit dan format catatan tindak lanjut."
 related:
   - "cara-membandingkan-penjualan-mingguan"
   - "panduan-membaca-stok-harian"

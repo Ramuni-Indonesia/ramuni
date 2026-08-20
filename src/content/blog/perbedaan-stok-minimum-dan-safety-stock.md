@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Artikel ini bukan rekomendasi jumlah stok atau pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Batas stok tidak menjamin ketersediaan dan harus mempertimbangkan mutu, usia simpan, biaya, pemasok, ruang, serta arus kas usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membedakan stok minimum, safety stock, dan titik pemesanan pada catatan persediaan."
 related:
   - "cara-menghitung-safety-stock"
   - "cara-menghitung-reorder-point"

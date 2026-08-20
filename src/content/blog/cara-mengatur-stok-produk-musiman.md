@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Pertimbangkan kas serta bukti sebelum mengambil keputusan pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Permintaan musiman dipengaruhi kondisi lokal, cuaca, kebiasaan pelanggan, pemasok, dan faktor lain. Tidak ada perhitungan yang menjamin penjualan atau menghilangkan risiko stok sisa."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang merencanakan persediaan musiman dengan data, pembelian bertahap, dan kontrol sisa."
 related:
   - "cara-membaca-penjualan-saat-hari-libur"
   - "cara-menghitung-safety-stock"

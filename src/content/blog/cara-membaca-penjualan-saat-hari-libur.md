@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Bukan prediksi permintaan atau rekomendasi jumlah pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Perencanaan hari libur perlu mempertimbangkan kondisi lokal, keselamatan kerja, aturan yang berlaku, kapasitas pemasok, dan kemampuan usaha menanggung stok."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membaca pola penjualan hari libur untuk perencanaan stok dan layanan yang lebih hati-hati."
 related:
   - "cara-membaca-penjualan-per-jam"
   - "cara-mengatur-stok-usaha-fnb"

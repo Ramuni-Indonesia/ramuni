@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Laporan Barbershop", "Penjualan Jasa", "Usaha Jasa"]
@@ -38,7 +37,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk membedakan catatan operasional dan kebutuhan pelaporan formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pengelolaan kas, komisi, data pelanggan, dan kewajiban usaha dengan proses yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang rekap penjualan harian untuk usaha barbershop."
 related: ["contoh-laporan-penjualan-harian", "cara-membuat-laporan-shift-kasir", "cara-membuat-catatan-kas-harian"]
 ctaType: "product"
 featured: false

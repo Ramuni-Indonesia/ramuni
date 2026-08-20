@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; praktik pemrosesan data perlu disesuaikan dengan konteks dan ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum atau perlindungan data. Tentukan dasar pemrosesan, pemberitahuan, persetujuan bila diperlukan, dan mekanisme hak pelanggan sesuai ketentuan yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang meminta dan mengelola pilihan komunikasi pelanggan dengan tujuan yang jelas serta data minimum."
 related:
   - "data-pelanggan-yang-tidak-perlu-dikumpulkan"
   - "cara-membuat-kartu-pelanggan-sederhana"

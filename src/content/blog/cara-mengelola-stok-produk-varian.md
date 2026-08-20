@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Sesuaikan detail katalog dengan kapasitas operasional usaha."
 disclaimer: "Artikel ini bersifat edukatif. Struktur katalog, penamaan, dan proses stok perlu disesuaikan dengan jenis produk, kanal penjualan, dan kemampuan usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang mencatat dan meninjau stok per varian agar total produk tidak menutupi kekosongan atau sisa."
 related:
   - "cara-mencatat-stok-masuk-dan-keluar"
   - "cara-memilih-produk-untuk-stok-opname"

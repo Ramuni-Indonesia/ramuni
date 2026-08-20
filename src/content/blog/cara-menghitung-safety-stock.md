@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha menempatkan cadangan kotak produk di stok belakang deng
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Sesuaikan keputusan pembelian dengan kas serta kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Safety stock tidak menjamin ketersediaan barang dan tidak menggantikan pemeriksaan pemasok, mutu, usia simpan, kapasitas penyimpanan, serta arus kas."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Merangkum panduan menjadi alur safety stock yang lebih praktis: SKU prioritas, data pemakaian dan lead time, rumus buffer, kalkulator, rotasi, serta keputusan pesanan."
 related:
   - "cara-menghitung-reorder-point"
   - "apa-itu-lead-time-stok"

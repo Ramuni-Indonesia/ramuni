@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags: ["Cek Hasil AI", "Validasi Insight", "Halusinasi AI"]
@@ -38,7 +37,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pengukuran, pengelolaan, dan pemantauan risiko AI."
 disclaimer: "Artikel ini bersifat edukatif. Untuk keputusan berdampak besar, gunakan pemeriksaan dan persetujuan yang sesuai dengan risiko usaha."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang langkah memeriksa jawaban AI yang bertentangan dengan data atau konteks."
 related: ["cara-menilai-insight-ai-untuk-bisnis", "cara-menulis-pertanyaan-bisnis-untuk-ai", "batasan-ai-dalam-mengelola-bisnis"]
 ctaType: "product"
 featured: false

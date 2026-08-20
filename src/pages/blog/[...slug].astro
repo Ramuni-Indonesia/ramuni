@@ -23,6 +23,7 @@ const Content = renderedLocal?.Content;
 const headings = renderedLocal?.headings || getArticleHeadings(post);
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
 const updatedAt = post.data.updatedAt || post.data.publishedAt;
+const hasMaterialUpdate = Boolean(post.data.updatedAt);
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const relatedPosts = getRelatedBlogPosts(post, posts);
 const articleJourney = getArticleJourney(post.data.categorySlug, post.id);
@@ -158,7 +159,7 @@ const schema = [
           {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><strong>{post.data.reviewerName}</strong></div>}
           <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
         </div>
-        <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span><span>Diperbarui {formatDate(updatedAt)}</span><span>Waktu baca {post.data.readingTime}</span></div>
+        <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span>{hasMaterialUpdate && <span>Diperbarui {formatDate(updatedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>
         <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
         <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
@@ -195,7 +196,7 @@ const schema = [
             {post.data.disclaimer && <p class="article-disclaimer">{post.data.disclaimer}</p>}
           </section>
 
-          <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>
+          {hasMaterialUpdate && <section class="article-update" aria-labelledby="update-heading"><h2 id="update-heading">Riwayat pembaruan</h2><div><time datetime={updatedAt.toISOString()}>{formatDate(updatedAt)}</time><p>{post.data.updateSummary}</p></div></section>}
 
           <section class="article-people" aria-labelledby="author-heading"><img src={author.photo} width="96" height="96" alt={author.photoAlt} /><div><span class="article-people__role">Penulis</span><h2 id="author-heading">{author.name}</h2><p>{author.shortBio}</p><a class="text-link" href={`/blog/penulis/${author.slug}/`}>Lihat profil editorial</a></div></section>
 

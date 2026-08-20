@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Artikel ini bukan nasihat akuntansi atau target rasio usaha."
 disclaimer: "Artikel ini bersifat edukatif. Perputaran stok tidak menggantikan penilaian biaya, mutu, keselamatan, arus kas, kontrak pemasok, atau kebutuhan pelanggan."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang menghitung dan membaca perputaran stok secara proporsional."
 related:
   - "cara-mengurangi-stok-mati"
   - "cara-menghitung-hpp-produk"

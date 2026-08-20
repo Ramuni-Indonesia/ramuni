@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Artikel ini membahas pengelompokan operasional sederhana dan bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Pastikan tujuan, dasar pemrosesan, keamanan, pembatasan akses, retensi, serta komunikasi kepada pelanggan sesuai ketentuan dan proses usaha yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang segmentasi pelanggan sederhana yang berfokus pada riwayat transaksi relevan."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-melihat-pelanggan-yang-kembali-belanja"

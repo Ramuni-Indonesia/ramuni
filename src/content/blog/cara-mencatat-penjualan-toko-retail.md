@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -46,7 +45,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Bukan panduan pengoperasian kasir toko retail."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Gunakan prosedur serta bukti transaksi yang sesuai dengan model usaha dan kewajiban yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang alur pencatatan penjualan, kas, dan stok untuk toko retail."
 related:
   - "cara-membuat-catatan-kas-harian"
   - "cara-mencatat-stok-masuk-dan-keluar"

@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; contoh margin dan markup adalah ilustrasi edukatif."
 disclaimer: "Artikel ini bukan rekomendasi harga atau nasihat akuntansi dan pajak. Pertimbangkan biaya, pasar, persaingan, dan kondisi usaha secara menyeluruh."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang perbedaan dasar pembagian margin dan markup."
 related:
   - "cara-menghitung-hpp-produk"
   - "cara-mengukur-dampak-diskon-terhadap-laba"

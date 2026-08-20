@@ -51,7 +51,7 @@ export function sitemapGroupForPath(pathname) {
   if (path === '/industri/' || path.startsWith('/industri/')) return 'industries';
 
   if (EDITORIAL_TRUST_ROUTES.has(path)) return 'pages';
-  if (path === '/blog/') return 'pages';
+  if (path === '/blog/' || path === '/blog/penulis/') return 'pages';
   if (path.startsWith('/blog/')) return 'blog';
 
   if (

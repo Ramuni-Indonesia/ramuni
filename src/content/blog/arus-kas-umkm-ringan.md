@@ -7,7 +7,7 @@ coverAlt: "Pemilik UMKM memeriksa aliran uang masuk dan keluar dari catatan usah
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-25
-updatedAt: 2026-08-20
+updatedAt: 2026-07-25
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan standar akuntansi Indonesia untuk laporan arus kas; contoh artikel disederhanakan untuk edukasi dan bukan panduan penyusunan laporan keuangan resmi."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat pajak, akuntansi, atau keuangan untuk usaha tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "perbedaan-omzet-laba-dan-arus-kas"
   - "laporan-laba-rugi-sederhana-umkm"

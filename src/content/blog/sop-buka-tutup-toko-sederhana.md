@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pentingnya kondisi kerja yang aman dan sehat. Checklist dalam artikel ini adalah contoh operasional, bukan standar keselamatan atau kepatuhan formal."
 disclaimer: "Contoh ini bersifat edukatif. Toko perlu menyesuaikan prosedur dengan bangunan, produk, peralatan, keselamatan, keamanan, perjanjian kerja, dan ketentuan yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang checklist buka tutup toko yang singkat dan dapat ditindaklanjuti."
 related:
   - "checklist-review-bisnis-mingguan-umkm"
   - "cara-membuat-catatan-kas-harian"

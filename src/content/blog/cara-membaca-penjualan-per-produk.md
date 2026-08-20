@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko membandingkan beberapa kelompok produk dan catatan penju
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; pembacaan produk perlu disesuaikan dengan data serta kebijakan usaha."
 disclaimer: "Contoh pada artikel ini hanya untuk menjelaskan cara membaca catatan produk. Keputusan pembelian, harga, dan promosi perlu mempertimbangkan kondisi usaha Anda sendiri."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan kerangka kontribusi produk, pembacaan margin, pemeriksaan stok, dan rutinitas keputusan mingguan."
 related:
   - "produk-terlaris-belum-tentu-paling-untung"
   - "cara-menentukan-stok-minimum-umkm"

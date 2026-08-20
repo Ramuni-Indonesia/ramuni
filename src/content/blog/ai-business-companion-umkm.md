@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha meninjau catatan dan arah keputusan bersama pendamping 
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-25
-updatedAt: 2026-08-20
+updatedAt: 2026-07-25
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan kerangka manajemen risiko AI untuk transparansi, pengukuran risiko, dan pengawasan manusia; artikel ini menerapkannya sebagai prinsip edukatif, bukan penilaian kepatuhan."
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "apa-itu-ai-business-companion"
   - "cara-memeriksa-data-sebelum-menggunakan-ai"

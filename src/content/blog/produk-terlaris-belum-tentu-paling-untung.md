@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha membandingkan jumlah terjual dengan laba setiap produk"
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-20
+updatedAt: 2026-07-27
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; definisi biaya dan perlakuan pajak perlu dikonfirmasi dengan tenaga profesional."
 disclaimer: "Contoh ini bersifat edukasi umum, bukan perhitungan akuntansi, pajak, atau rekomendasi harga untuk usaha tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Menambahkan contoh kontribusi produk dan cara membaca margin sederhana."
 related:
   - "cara-membaca-omzet-harian"
   - "perbedaan-omzet-laba-dan-arus-kas"

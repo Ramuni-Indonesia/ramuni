@@ -24,7 +24,7 @@ Status: static SEO foundation is implemented. Public-domain validation, final sc
 | `/blog` | Generic page schema when indexable; supplied `CollectionPage` and `BreadcrumbList` |
 | `/blog/[slug]` | Supplied `BlogPosting` and `BreadcrumbList`; current fixtures are noindex |
 | `/blog/kategori/[slug]` | Supplied `CollectionPage` and `BreadcrumbList`; current thin categories are noindex |
-| `/penulis` | Supplied `CollectionPage`, `ItemList`, and `BreadcrumbList`; indexable with the approved resource release gate |
+| `/blog/penulis` | Supplied `CollectionPage`, `ItemList`, and `BreadcrumbList`; indexable with the approved resource release gate; `/penulis` redirects here |
 | `/blog/penulis/[slug]` | Supplied `ProfilePage` with a transparent editorial pen-name `Person` entity and `BreadcrumbList`; indexable with the approved resource release gate |
 | `/kalkulator/[slug]` | Supplied `WebApplication` and `BreadcrumbList`; generic page schema only after approval and indexing |
 

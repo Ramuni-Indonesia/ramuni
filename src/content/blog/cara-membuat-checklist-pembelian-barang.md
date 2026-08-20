@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Checklist pembelian dalam artikel ini adalah alat operasional sederhana, bukan kebijakan akuntansi atau kontrak pemasok."
 disclaimer: "Contoh ini bersifat edukatif. Pembelian perlu menyesuaikan arus kas, masa simpan, kontrak pemasok, mutu barang, kapasitas penyimpanan, serta proses usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang daftar pemeriksaan sebelum dan sesudah pembelian barang."
 related:
   - "cara-menghitung-reorder-point"
   - "apa-itu-lead-time-stok"

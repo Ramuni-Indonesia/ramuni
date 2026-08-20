@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha membandingkan dua kartu grafik batang abstrak, garis tr
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan untuk entitas mikro, kecil, dan menengah. Artikel ini menggunakan contoh perhitungan edukatif."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi atau keuangan. Gunakan data yang sesuai dengan kebijakan pencatatan usaha dan pertimbangkan biaya serta risiko sebelum mengambil keputusan."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperluas panduan dengan kalkulator perubahan omzet, analisis harga-volume-mix, pembacaan kanal, batas forecast, dan ritme evaluasi yang dapat ditelusuri."
 related:
   - "cara-membaca-penjualan-per-produk"
   - "cara-memilih-metrik-bisnis-untuk-umkm"

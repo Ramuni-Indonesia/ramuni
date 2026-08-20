@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait pencatatan entitas mikro, kecil, dan menengah. Artikel ini bukan petunjuk perlakuan akuntansi spesifik."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, hukum, atau perbankan. Sesuaikan pencatatan dan penggunaan rekening dengan bentuk usaha serta kewajiban yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang membangun batas praktis antara uang pribadi, modal pemilik, biaya usaha, dan kas operasional."
 related:
   - "cara-membuat-catatan-kas-harian"
   - "cara-membuat-laporan-bisnis-bulanan"

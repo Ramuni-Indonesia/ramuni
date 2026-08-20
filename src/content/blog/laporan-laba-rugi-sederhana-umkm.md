@@ -7,7 +7,7 @@ coverAlt: "Dashboard RAMUNI yang menampilkan ringkasan penjualan, biaya, dan per
 coverWidth: 1280
 coverHeight: 720
 publishedAt: 2026-07-30
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum penyajian laporan keuangan untuk entitas mikro, kecil, dan menengah. Penerapan resmi perlu disesuaikan dengan standar dan kebutuhan usaha."
 disclaimer: "Konten ini bersifat edukasi umum, bukan nasihat akuntansi atau pajak. Gunakan tenaga profesional untuk kebutuhan pelaporan resmi."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperluas panduan dengan kalkulator laba usaha, cut-off periode, pembacaan biaya dan margin, analisis perubahan, serta review laporan yang dapat ditelusuri."
 related:
   - "perbedaan-omzet-laba-dan-arus-kas"
   - "produk-terlaris-belum-tentu-paling-untung"

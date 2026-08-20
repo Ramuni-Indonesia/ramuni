@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha kuliner menimbang bahan dan memeriksa buku resep serta 
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["HPP Usaha Kuliner", "Biaya Per Porsi", "Harga Menu"]
@@ -38,7 +38,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum tentang pencatatan usaha. Contoh HPP ini adalah alat pengelolaan internal, bukan nasihat akuntansi atau pajak."
 disclaimer: "Contoh ini bersifat edukatif. Sesuaikan biaya, pajak, keamanan pangan, dan penetapan harga dengan kondisi serta kewajiban usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Merangkum panduan menjadi alur HPP kuliner yang lebih praktis: kartu resep, pemakaian bahan, waste, biaya per porsi, harga efektif, dan perubahan menu."
 related: ["cara-menghitung-hpp-produk", "laporan-laba-rugi-sederhana-umkm", "cara-mengukur-dampak-diskon-terhadap-laba"]
 ctaType: "product"
 featured: false

@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko memeriksa sisa stok dan laju penjualan harian"
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-25
-updatedAt: 2026-08-20
+updatedAt: 2026-07-25
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -39,7 +39,7 @@ sources:
     url: "https://web.iaiglobal.or.id/PSAK-Umum/16"
     accessedAt: 2026-07-27
     note: "Rujukan standar akuntansi Indonesia mengenai persediaan; langkah pemeriksaan stok harian dalam artikel adalah panduan operasional sederhana, bukan penerapan PSAK 202."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
 related:
   - "cara-mencatat-stok-masuk-dan-keluar"
   - "cara-menghitung-reorder-point"

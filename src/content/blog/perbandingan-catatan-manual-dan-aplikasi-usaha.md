@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai manajemen keamanan informasi. Artikel ini bukan audit atau jaminan keamanan catatan manual maupun aplikasi."
 disclaimer: "Perbandingan ini bersifat edukatif dan netral. Kondisi aplikasi, biaya, dukungan, keamanan, serta kesesuaian proses perlu diverifikasi langsung pada saat evaluasi."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang pemilihan proses catatan manual atau aplikasi dengan uji yang dapat diperiksa."
 related:
   - "cara-memilih-aplikasi-pencatatan-usaha"
   - "cara-membuat-catatan-kas-harian"

@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Panduan operasional ini bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Penggunaan data pelanggan perlu mempertimbangkan tujuan, dasar pemrosesan, keamanan, pembatasan akses, retensi, serta kewajiban usaha yang berlaku."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Byline dialihkan ke Desk Pelanggan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan penggunaan data tidak berubah."
 related:
   - "cara-mengelompokkan-pelanggan-sederhana"
   - "cara-melihat-pelanggan-yang-kembali-belanja"

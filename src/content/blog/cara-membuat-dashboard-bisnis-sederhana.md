@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "Operasional Bisnis"
 categorySlug: "operasional-bisnis"
 tags:
@@ -41,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk membedakan ringkasan operasional dari kebutuhan pencatatan dan pelaporan keuangan formal."
 disclaimer: "Artikel ini bersifat edukatif. Dashboard internal bukan pengganti laporan keuangan, pajak, atau pemeriksaan profesional yang diperlukan usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang menyusun dashboard usaha yang ringkas, dapat diperiksa, dan dapat ditindaklanjuti."
 related:
   - "cara-membuat-laporan-bisnis-bulanan"
   - "checklist-review-bisnis-mingguan-umkm"

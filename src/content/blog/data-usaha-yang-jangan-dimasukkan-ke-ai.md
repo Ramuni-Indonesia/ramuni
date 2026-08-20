@@ -8,7 +8,6 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags: ["Data Usaha", "Privasi AI", "Keamanan Data"]
@@ -43,7 +42,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk tata kelola risiko dan konteks penggunaan AI."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum atau keamanan. Sesuaikan penggunaan data dengan kewajiban, perjanjian, dan kebijakan yang berlaku pada usaha Anda."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Naskah baru tentang minimisasi data dan batas aman saat menggunakan AI untuk kebutuhan usaha."
 related: ["apa-itu-ai-business-companion", "cara-memeriksa-data-sebelum-menggunakan-ai", "batasan-ai-dalam-mengelola-bisnis"]
 ctaType: "product"
 featured: false

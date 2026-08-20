@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko kain membandingkan label promo, catatan biaya, dan kalku
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-10
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; penerapan akuntansi serta pajak perlu disesuaikan dengan kondisi usaha dan peninjauan profesional."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat akuntansi, pajak, atau penetapan harga untuk usaha tertentu."
-updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
+updateSummary: "Memperluas panduan dengan kalkulator laba setelah diskon, cara menguji volume tambahan, biaya kanal, bundel, batas promo, dan evaluasi yang dapat ditelusuri."
 related:
   - "produk-terlaris-belum-tentu-paling-untung"
   - "laporan-laba-rugi-sederhana-umkm"
