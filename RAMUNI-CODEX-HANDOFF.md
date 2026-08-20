@@ -12,6 +12,15 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+### Published production batch — `a59edd07f1b4`
+
+- Production release `20260820T152940Z-a59edd07f1b4` is active at `https://www.ramuni.id/`. It contains the copy revision from `6e660fc` plus the public-release-gate correction in `a59edd0`.
+- Homepage and shared product, solution, industry, role, conversion, and contact copy were reviewed using the `no-ai-slop` checklist: generic contrast openers and abstract CTA copy were replaced with direct explanations of the data, example flow, and next action. No fabricated result, customer, metric, or availability claim was added.
+- `src/data/pageLastmods.ts` is the page-family revision register. The homepage, 9 product pages, 5 solution pages, 6 industry pages, 4 role pages, free-tour, and contact route now emit `dateModified: 2026-08-20` in visible JSON-LD. The production sitemap generator uses these values as truthful per-route `lastmod` values.
+- Five existing reviewed articles now use their relevant editorial desk byline, with a visible 20 August update note that explains the byline-only change: HPP products → Desk Keuangan; stock movement → Desk Operasional; F&B stock → Desk Strategi Industri; repeat customer rate and customer status → Desk Pelanggan. All four new desk profiles now have two articles, return `index,follow`, and appear in `sitemap-blog-authors.xml`.
+- Production deployment now takes explicit `RAMUNI_PUBLIC_CLAIM_PAGES_APPROVED`, `RAMUNI_PUBLIC_RESOURCE_REVIEW_APPROVED`, `RAMUNI_PUBLIC_CALCULATOR_REVIEW_APPROVED`, and `RAMUNI_PUBLIC_SECURITY_REVIEW_APPROVED` inputs. They default to `false` and are passed unchanged into build and audit. The deploy health check verifies an approved product and author profile are indexable and present in their sitemap; do not deploy approved public families without setting the corresponding gate explicitly.
+- Verification passed: Astro check, 35 calculator tests, a 255-page production audit, `npm audit --audit-level=high`, live homepage copy, and live `index,follow`/sitemap checks for product, solution, industry, role, and author routes. Public sitemap counts verified: 9 product entries, 5 solutions, 6 industries, and 4 new author profiles at `lastmod 2026-08-20`.
+
 ### Published production batch — `90b38bd1a1e7`
 
 - Production release is active at `20260809T145718Z-90b38bd1a1e7-production` under `/var/www/ramuni-staging/releases/`, atomically promoted to `/var/www/ramuni-staging/current`. The previous `da11511a5724` release remains available for rollback.
