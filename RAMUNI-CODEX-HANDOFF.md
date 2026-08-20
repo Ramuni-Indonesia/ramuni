@@ -12,6 +12,15 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
+### Published production batch — `fc1457c2dee1`
+
+- Production release `20260820T162719Z-fc1457c2dee1` is active at `https://www.ramuni.id/`; artifact SHA-256: `7a7eb6d979f7d98f55c21661807cab82bd435202ca5a8e93b9f8ce8f0a1b19dd`.
+- The generic article bylines were removed. All 103 current articles now use one of four transparent Indonesian editorial pen names: Alya Pramesti for keuangan, Bima Ardiansyah for operasional and stok, Citra Maheswari for penjualan dan pelanggan, and Dimas Wicaksana for strategi serta AI. The profiles state that they are editorial pen names and describe their real editorial remit and review method; they do not assert unverifiable personal education or employment credentials.
+- New `/penulis/` is a mobile-responsive editorial directory with four profile cards, focus areas, article counts, latest updates, editorial-policy links, and existing approved illustrative profile assets. It uses `WebPage`, `CollectionPage`, `BreadcrumbList`, and `ItemList` schema; author profiles use `ProfilePage`, `Person`, and `BreadcrumbList` schema.
+- `/penulis/` is in `sitemap-pages.xml`; the four profiles are in `sitemap-blog-authors.xml`. Each has truthful `lastmod 2026-08-20`, `index,follow`, self-canonical `https://www.ramuni.id/...`, and `hreflang id-ID` under the approved resource-release gate.
+- `ops/nginx/www.ramuni.id.conf` is the checked-in production Nginx source for this virtual host. The host now uses it after a successful `nginx -t` and reload. Retired generic byline URLs return HTTP 301 to the relevant author page or `/penulis/`; backup: `/etc/nginx/config-backups/www.ramuni.id.bak-author-redirects-20260820T1633Z`.
+- Verification passed: Node 22 Astro check (136 files, zero errors/warnings/hints), production 260-page build, production static audit, keyword-map audit (5,000 keywords across 100 mapped groups), CMS article-candidate render, dependency audit with zero high-severity vulnerabilities, deployment health checks, and public checks for directory metadata, schema, sitemap entries, and author redirects.
+
 ### Published production batch — `172b727d76c0`
 
 - Production release `20260820T155249Z-172b727d76c0` is active at `https://www.ramuni.id/`; artifact SHA-256: `cc75c7784621162d55989d4ace0547229d7272b5e3e676ed4397e6ea708902a9`.
