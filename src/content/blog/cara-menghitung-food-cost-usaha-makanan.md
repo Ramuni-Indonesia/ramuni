@@ -7,11 +7,12 @@ coverAlt: "Pemilik usaha makanan memeriksa biaya bahan dan kemasan untuk satu me
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-20
+updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Food Cost", "HPP Kuliner", "Usaha Makanan", "Harga Menu"]
-authorName: "Desk Strategi Industri RAMUNI"
-authorSlug: "desk-strategi-industri-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-20
@@ -44,7 +45,7 @@ sources:
     accessedAt: 2026-08-20
     note: "Rujukan umum untuk memahami bahwa pencatatan persediaan memerlukan dasar biaya dan periode yang konsisten."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, perpajakan, keamanan pangan, atau penetapan harga yang dipersonalisasi. Sesuaikan pencatatan biaya, bahan, porsi, dan kewajiban usaha dengan kondisi operasional Anda."
-updateSummary: "Naskah baru yang menjelaskan food cost per menu dan per periode, contoh perhitungan, pengaruh susut, serta tautan ke alat hitung dan panduan terkait."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["cara-menghitung-hpp-usaha-kuliner", "cara-mengatur-stok-usaha-fnb", "cara-menghitung-harga-jual-produk"]
 ctaType: "product"
 featured: false

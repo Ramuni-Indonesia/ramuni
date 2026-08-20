@@ -278,6 +278,8 @@
 .article-rail-cta{display:grid;gap:10px;overflow:visible}
 .article-rail-cta .button{width:100%;white-space:normal;text-align:center}
 .article-rail-cta a.button{color:var(--white)}
+
+.author-notice{margin-top:18px!important;padding:16px 18px;border-left:3px solid var(--teal);background:var(--teal-12);font-size:.94rem!important}
 @media(max-width:740px){.blog-hero h1,.article-hero h1,.category-hero h1,.author-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;letter-spacing:-.045em;overflow-wrap:break-word;hyphens:none;text-wrap:balance}.editorial-card figure,.editorial-card:nth-child(even) figure{aspect-ratio:16/10}.article-toc-mobile{padding:14px}.article-toc-mobile ol{gap:4px}}
 
 /* Editorial rhythm: each section uses a different composition family. */

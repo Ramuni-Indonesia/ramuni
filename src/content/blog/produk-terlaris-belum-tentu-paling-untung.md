@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha membandingkan jumlah terjual dengan laba setiap produk"
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-07-27
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Produk Terlaris"
   - "Margin"
   - "Laba"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; definisi biaya dan perlakuan pajak perlu dikonfirmasi dengan tenaga profesional."
 disclaimer: "Contoh ini bersifat edukasi umum, bukan perhitungan akuntansi, pajak, atau rekomendasi harga untuk usaha tertentu."
-updateSummary: "Menambahkan contoh kontribusi produk dan cara membaca margin sederhana."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-omzet-harian"
   - "perbedaan-omzet-laba-dan-arus-kas"

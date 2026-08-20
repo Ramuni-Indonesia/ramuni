@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Stok Musiman"
   - "Persediaan Musiman"
   - "Perencanaan Stok"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Pertimbangkan kas serta bukti sebelum mengambil keputusan pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Permintaan musiman dipengaruhi kondisi lokal, cuaca, kebiasaan pelanggan, pemasok, dan faktor lain. Tidak ada perhitungan yang menjamin penjualan atau menghilangkan risiko stok sisa."
-updateSummary: "Naskah baru tentang merencanakan persediaan musiman dengan data, pembelian bertahap, dan kontrol sisa."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-penjualan-saat-hari-libur"
   - "cara-menghitung-safety-stock"

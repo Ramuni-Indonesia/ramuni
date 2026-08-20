@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Aplikasi Pencatatan"
   - "Digitalisasi UMKM"
   - "Operasional Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pertimbangan data pribadi dalam proses usaha."
 disclaimer: "Artikel ini bersifat edukatif dan netral. Jangan menganggap checklist sebagai jaminan keamanan, kepatuhan, kecocokan, atau performa aplikasi tertentu. Konfirmasi informasi vendor dan kebutuhan usaha pada saat evaluasi."
-updateSummary: "Naskah baru tentang evaluasi aplikasi pencatatan usaha secara terstruktur dan netral."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membuat-catatan-kas-harian"
   - "cara-membuat-laporan-bisnis-bulanan"

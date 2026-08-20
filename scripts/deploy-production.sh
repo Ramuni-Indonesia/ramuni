@@ -191,9 +191,13 @@ for attempt in 1 2 3 4 5; do
     fi
     if [[ $ramuni_resource_review_approved == true ]]; then
       ramuni_authors_sitemap=$(ramuni_request "$ramuni_origin/sitemap-blog-authors.xml")
-      grep -Fq '<loc>https://www.ramuni.id/blog/penulis/desk-keuangan-ramuni/</loc>' <<<"$ramuni_authors_sitemap"
-      ramuni_author_page=$(ramuni_request "$ramuni_origin/blog/penulis/desk-keuangan-ramuni/")
+      grep -Fq '<loc>https://www.ramuni.id/blog/penulis/alya-pramesti/</loc>' <<<"$ramuni_authors_sitemap"
+      ramuni_pages_sitemap=$(ramuni_request "$ramuni_origin/sitemap-pages.xml")
+      grep -Fq '<loc>https://www.ramuni.id/penulis/</loc>' <<<"$ramuni_pages_sitemap"
+      ramuni_author_page=$(ramuni_request "$ramuni_origin/blog/penulis/alya-pramesti/")
       grep -Fqi '<meta name="robots" content="index,follow">' <<<"$ramuni_author_page"
+      ramuni_writers_page=$(ramuni_request "$ramuni_origin/penulis/")
+      grep -Fqi '<link rel="canonical" href="https://www.ramuni.id/penulis/">' <<<"$ramuni_writers_page"
     fi
     ramuni_blog_sitemap=$(ramuni_request "$ramuni_origin/sitemap-blog-posts.xml")
     for slug in cara-menghitung-food-cost-usaha-makanan cara-mengatur-stok-bahan-baku-bakery contoh-laporan-kas-harian-kedai-makanan; do

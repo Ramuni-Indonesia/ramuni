@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
   - "Evaluasi Promo"
   - "Diskon Usaha"
   - "Penjualan Bersih"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Bukan rekomendasi harga, diskon, atau pembelian produk tertentu."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat keuangan atau penetapan harga. Pastikan ketentuan promo, informasi harga, stok, serta kapasitas layanan sesuai dengan kondisi usaha."
-updateSummary: "Naskah baru tentang mengevaluasi hasil promo dengan melihat penjualan, biaya, stok, dan dampak sesudahnya."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-pertumbuhan-penjualan"
   - "cara-menghitung-laba-kotor"

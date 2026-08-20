@@ -8,11 +8,12 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Stok Toko Fashion", "SKU Fashion", "Stok Varian"]
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -37,7 +38,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Proses ini adalah contoh kontrol operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pencatatan, penanganan retur, penyimpanan, dan kebijakan diskon dengan kondisi usaha Anda."
-updateSummary: "Naskah baru tentang mengelola varian stok pada toko fashion."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["cara-merapikan-data-produk-dan-sku", "cara-mengelola-stok-produk-varian", "cara-mengatur-stok-produk-musiman"]
 ctaType: "product"
 featured: false

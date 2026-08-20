@@ -7,15 +7,15 @@ coverAlt: "Perbandingan penjualan dua minggu dengan periode dan kanal yang setar
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Penjualan Mingguan"
   - "Perbandingan Periode"
   - "Dashboard Bisnis"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +40,7 @@ sources:
     url: "https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm"
     accessedAt: 2026-07-27
     note: "Rujukan umum pentingnya pencatatan yang konsisten; artikel ini tidak membahas perlakuan pajak tertentu."
-updateSummary: "Menambahkan langkah rekonsiliasi periode, pembacaan penyumbang perubahan, contoh keputusan, dan checklist review mingguan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-omzet-harian"
   - "produk-terlaris-belum-tentu-paling-untung"

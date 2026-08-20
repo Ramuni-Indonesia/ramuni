@@ -7,20 +7,20 @@ coverAlt: "Dashboard RAMUNI yang membantu membaca saldo stok, kebutuhan isi ulan
 coverWidth: 1280
 coverHeight: 720
 publishedAt: 2026-07-30
-updatedAt: 2026-07-30
+updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
   - "Stok Minimum"
   - "Reorder Point"
   - "Inventori UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
 reviewStatus: "reviewed"
-editorialStatus: "Disusun Tim Editorial RAMUNI; menunggu tinjauan editorial sebelum indeksasi."
+editorialStatus: "Disusun untuk peninjauan editorial sebelum indeksasi."
 readingTime: "8 menit"
 takeaways:
   - "Stok minimum perlu membaca pemakaian atau penjualan harian bersama waktu tunggu pemasok."
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum mengenai pencatatan dan penyajian keuangan entitas mikro, kecil, dan menengah. Kebijakan persediaan resmi perlu mengikuti standar dan kebutuhan usaha yang berlaku."
 disclaimer: "Contoh perhitungan bersifat edukasi. Sesuaikan angka dengan pola usaha, kondisi barang, pemasok, dan kebijakan pencatatan Anda."
-updateSummary: "Menambahkan metode sederhana menentukan stok minimum, stok pengaman, dan jadwal peninjauan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "panduan-membaca-stok-harian"
   - "cara-merapikan-data-produk-dan-sku"

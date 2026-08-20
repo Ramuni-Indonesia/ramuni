@@ -7,15 +7,15 @@ coverAlt: "Dua pekerja toko menghitung persediaan di rak sambil mengisi daftar p
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
   - "Stok Opname"
   - "Inventori"
   - "Operasional Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan; kebijakan koreksi dan pencatatan perlu disesuaikan dengan proses usaha."
 disclaimer: "Artikel ini merupakan panduan operasional umum. Kebijakan koreksi persediaan perlu disesuaikan dengan proses dan tanggung jawab usaha Anda."
-updateSummary: "Memperluas panduan dengan pemeriksa selisih stok, metode hitung, cut-off pergerakan, prioritas risiko, dan tindak lanjut koreksi yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menentukan-stok-minimum-umkm"
   - "panduan-membaca-stok-harian"

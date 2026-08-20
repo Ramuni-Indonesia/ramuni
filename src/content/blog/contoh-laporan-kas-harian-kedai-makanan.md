@@ -7,11 +7,12 @@ coverAlt: "Pemilik kedai makanan memeriksa catatan kas, bukti pembayaran, dan re
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-20
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags: ["Laporan Kas Harian", "Kedai Makanan", "Arus Kas", "Catatan Usaha"]
-authorName: "Desk Keuangan RAMUNI"
-authorSlug: "desk-keuangan-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-20
@@ -44,7 +45,7 @@ sources:
     accessedAt: 2026-08-20
     note: "Rujukan umum untuk membedakan dasar pencatatan dan komponen laporan. Usaha dengan kebutuhan pelaporan formal perlu menggunakan kebijakan serta tenaga profesional yang sesuai."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi, pajak, hukum, atau pengendalian internal yang dipersonalisasi. Sesuaikan alur kas, akses uang, bukti transaksi, dan kewajiban usaha dengan kondisi serta peraturan yang berlaku."
-updateSummary: "Naskah baru yang memberi format laporan kas harian kedai makanan, contoh rekonsiliasi, pembacaan selisih, dan jalur lanjutan ke kalkulator arus kas."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["cara-membuat-catatan-kas-harian", "perbedaan-omzet-laba-dan-arus-kas", "laporan-laba-rugi-sederhana-umkm"]
 ctaType: "product"
 featured: false

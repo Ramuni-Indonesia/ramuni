@@ -7,11 +7,12 @@ coverAlt: "Pemilik bakery memeriksa tepung, telur, mentega, kemasan, dan kartu s
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-20
+updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Stok Bakery", "Bahan Baku", "Inventori F&B", "Produksi Roti"]
-authorName: "Desk Operasional RAMUNI"
-authorSlug: "desk-operasional-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-20
@@ -44,7 +45,7 @@ sources:
     accessedAt: 2026-08-20
     note: "Rujukan umum untuk memahami pentingnya dasar pencatatan persediaan yang konsisten."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pembelian, produksi, penyimpanan, keamanan pangan, dan pencatatan bahan dengan jenis produk, label, peralatan, prosedur, serta ketentuan usaha Anda."
-updateSummary: "Naskah baru tentang pembacaan stok bahan bakery: prioritas bahan, alokasi batch, titik reorder, penerimaan, susut, dan ritme pemeriksaan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["cara-mengatur-stok-usaha-fnb", "cara-menghitung-safety-stock", "cara-mencatat-stok-rusak"]
 ctaType: "product"
 featured: false

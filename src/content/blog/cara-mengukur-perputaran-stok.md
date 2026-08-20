@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Perputaran Stok"
   - "Inventory Turnover"
   - "Stok Lambat"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Artikel ini bukan nasihat akuntansi atau target rasio usaha."
 disclaimer: "Artikel ini bersifat edukatif. Perputaran stok tidak menggantikan penilaian biaya, mutu, keselamatan, arus kas, kontrak pemasok, atau kebutuhan pelanggan."
-updateSummary: "Naskah baru tentang menghitung dan membaca perputaran stok secara proporsional."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mengurangi-stok-mati"
   - "cara-menghitung-hpp-produk"

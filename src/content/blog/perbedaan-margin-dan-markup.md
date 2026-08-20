@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Margin"
   - "Markup"
   - "Harga Jual"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; contoh margin dan markup adalah ilustrasi edukatif."
 disclaimer: "Artikel ini bukan rekomendasi harga atau nasihat akuntansi dan pajak. Pertimbangkan biaya, pasar, persaingan, dan kondisi usaha secara menyeluruh."
-updateSummary: "Naskah baru tentang perbedaan dasar pembagian margin dan markup."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-hpp-produk"
   - "cara-mengukur-dampak-diskon-terhadap-laba"

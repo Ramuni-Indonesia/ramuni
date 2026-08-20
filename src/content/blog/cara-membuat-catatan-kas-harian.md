@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Kas Harian"
   - "Catatan Keuangan"
   - "UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum IAI mengenai laporan arus kas; format catatan harian ini adalah alat operasional sederhana, bukan laporan keuangan formal."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi, perpajakan, atau pengendalian internal untuk kondisi tertentu."
-updateSummary: "Naskah baru tentang catatan kas dan pemeriksaan saldo harian."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "perbedaan-omzet-laba-dan-arus-kas"
   - "cara-mencatat-penjualan-harian"

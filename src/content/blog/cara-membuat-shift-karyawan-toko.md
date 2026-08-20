@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Shift Karyawan"
   - "Jadwal Toko"
   - "Operasional Retail"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai kondisi kerja yang aman dan sehat. Artikel ini adalah contoh operasional, bukan nasihat ketenagakerjaan atau standar kepatuhan formal."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat ketenagakerjaan atau hukum. Sesuaikan jadwal, waktu kerja, istirahat, keselamatan, perjanjian kerja, dan ketentuan yang berlaku dengan kondisi usaha Anda."
-updateSummary: "Naskah baru tentang menyusun shift toko dari kebutuhan kerja, serah-terima, komunikasi perubahan, dan evaluasi beban operasional."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "sop-buka-tutup-toko-sederhana"
   - "cara-membuat-sop-kasir"

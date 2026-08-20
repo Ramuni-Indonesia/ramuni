@@ -7,15 +7,15 @@ coverAlt: "Pemilik UMKM meninjau penjualan, stok, kas, pelanggan, dan pekerjaan 
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-07-27
+updatedAt: 2026-08-20
 category: "Operasional Bisnis"
 categorySlug: "operasional-bisnis"
 tags:
   - "Review Mingguan"
   - "Operasional UMKM"
   - "Checklist Bisnis"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan umum tentang pencatatan; checklist artikel ini bukan pengganti pembukuan atau kewajiban pajak resmi."
 disclaimer: "Checklist ini bersifat edukasi operasional umum dan bukan nasihat akuntansi, hukum, atau pajak untuk usaha tertentu."
-updateSummary: "Menambahkan agenda review 30 menit dan format catatan tindak lanjut."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membandingkan-penjualan-mingguan"
   - "panduan-membaca-stok-harian"

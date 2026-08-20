@@ -8,15 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Retur Penjualan"
   - "Pembatalan Transaksi"
   - "Pencatatan Penjualan"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; aturan retur dan pengembalian dana mengikuti kebijakan usaha serta ketentuan yang berlaku."
 disclaimer: "Aturan retur, pembatalan, dan pengembalian dana perlu disesuaikan dengan kebijakan usaha, metode pembayaran, serta ketentuan yang berlaku."
-updateSummary: "Draf awal catatan retur dan pembatalan dengan fokus pada jejak transaksi serta penyebab koreksi."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mencatat-penjualan-harian"
   - "cara-membaca-omzet-harian"

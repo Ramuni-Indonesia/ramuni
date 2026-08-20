@@ -7,15 +7,15 @@ coverAlt: "Visual perbedaan omzet, laba, dan arus kas dalam kegiatan usaha sehar
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Omzet"
   - "Laba"
   - "Arus Kas"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; perlakuan transaksi dan pajak mengikuti ketentuan serta kondisi usaha."
 disclaimer: "Artikel ini bersifat edukasi umum dan bukan nasihat akuntansi, keuangan, atau pajak untuk usaha tertentu."
-updateSummary: "Memperluas panduan dengan pemeriksa arus kas bersih, urutan membaca tiga angka, contoh transaksi lintas waktu, dan ritme rekonsiliasi yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "arus-kas-umkm-ringan"
   - "cara-membaca-omzet-harian"

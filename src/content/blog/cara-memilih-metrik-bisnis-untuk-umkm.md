@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Metrik Bisnis"
   - "KPI UMKM"
   - "Dashboard Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai informasi keuangan UMKM. Contoh metrik operasional ini bersifat edukatif, bukan standar laporan formal."
 disclaimer: "Contoh metrik bersifat edukatif. Pilihan indikator, definisi biaya, pembukuan, dan keputusan bisnis perlu disesuaikan dengan kondisi usaha Anda."
-updateSummary: "Naskah baru tentang memilih metrik bisnis yang memicu tindakan nyata."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membuat-laporan-bisnis-bulanan"
   - "cara-membaca-omzet-harian"

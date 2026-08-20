@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Piutang Pelanggan"
   - "Penjualan Kredit"
   - "Tagihan Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; kebutuhan pemrosesan data perlu disesuaikan dengan konteks dan ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, hukum, penagihan, atau perlindungan data. Sesuaikan dokumen, komunikasi, serta pemrosesan data dengan ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang daftar piutang pelanggan yang dapat ditelusuri dari transaksi tempo hingga pembayaran dan tindak lanjut."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mencatat-penjualan-kredit"
   - "cara-membaca-arus-kas-negatif"

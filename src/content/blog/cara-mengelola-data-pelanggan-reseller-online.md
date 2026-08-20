@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Data Pelanggan"
   - "Reseller Online"
   - "Privasi Pelanggan"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pengelolaan risiko sistem digital. Bukan panduan kepatuhan hukum Indonesia."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum atau kepatuhan. Untuk kebutuhan khusus, termasuk penggunaan data dalam skala besar atau lintas pihak, periksa kewajiban yang relevan dan mintalah saran profesional bila diperlukan."
-updateSummary: "Naskah baru tentang pengelolaan data pembeli dan reseller online secara relevan serta bertanggung jawab."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mengelompokkan-pelanggan-sederhana"
   - "data-pelanggan-yang-tidak-perlu-dikumpulkan"

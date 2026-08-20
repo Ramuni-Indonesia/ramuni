@@ -17,8 +17,8 @@ tags:
   - "Selisih Data Stok"
   - "Koreksi Persediaan"
   - "Audit Stok"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -50,7 +50,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Sesuaikan kewenangan koreksi dan bukti dengan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Investigasi selisih, penanganan barang, dan koreksi persediaan harus mengikuti prosedur usaha, keselamatan, serta kewajiban yang berlaku."
-updateSummary: "Menambahkan istilah selisih stok opname dan selisih data stok, pertanyaan pemeriksaan, serta tautan template opname."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-memilih-produk-untuk-stok-opname"
   - "cara-mencatat-stok-masuk-dan-keluar"

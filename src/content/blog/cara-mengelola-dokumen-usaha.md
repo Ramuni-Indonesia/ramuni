@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Dokumen Usaha"
   - "Arsip Invoice"
   - "Bukti Transaksi"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; pengelolaan dokumen perlu disesuaikan dengan konteks serta ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, hukum, atau perlindungan data. Sesuaikan jenis dokumen, retensi, akses, dan keamanan dengan kegiatan usaha serta ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang membuat arsip dokumen usaha yang dapat ditemukan, ditinjau, dan dijaga sesuai tujuan kerja."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "contoh-catatan-pengeluaran-usaha"
   - "cara-mencatat-utang-usaha-ke-supplier"

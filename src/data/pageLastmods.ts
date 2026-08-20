@@ -10,4 +10,5 @@ export const pageLastmods = {
   role: '2026-08-20',
   tour: '2026-08-20',
   contact: '2026-08-20',
+  writers: '2026-08-20',
 } as const;

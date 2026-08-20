@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
   - "Insight AI"
   - "AI Bisnis"
   - "Validasi Data"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pertimbangan data pribadi saat memakai alat digital."
 disclaimer: "Artikel ini bersifat edukatif. Jangan menggunakan output AI sebagai satu-satunya dasar untuk keputusan hukum, pajak, keuangan, ketenagakerjaan, keselamatan, harga, atau tindakan yang berdampak besar tanpa pemeriksaan yang sesuai."
-updateSummary: "Naskah baru tentang verifikasi insight AI sebelum digunakan dalam keputusan usaha."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "ai-business-companion-umkm"
   - "cara-memilih-metrik-bisnis-untuk-umkm"

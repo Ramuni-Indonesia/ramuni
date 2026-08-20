@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko memeriksa struk dan catatan penjualan untuk membandingka
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Rata-Rata Transaksi"
   - "Penjualan"
   - "Pemilik Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; penerapan akuntansi serta pajak perlu disesuaikan dengan kondisi usaha."
 disclaimer: "Contoh angka pada artikel ini bersifat ilustratif. Gunakan catatan transaksi dan biaya usaha Anda sendiri sebelum menentukan tindakan."
-updateSummary: "Memperluas panduan dengan kalkulator nilai transaksi, pembacaan mix produk dan kanal, pemeriksaan outlier, eksperimen paket, dan ritme evaluasi yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-omzet-harian"
   - "cara-membandingkan-penjualan-mingguan"

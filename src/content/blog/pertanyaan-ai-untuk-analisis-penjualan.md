@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
   - "Prompt AI"
   - "Analisis Penjualan"
   - "AI UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pertimbangan data pribadi saat memakai alat digital."
 disclaimer: "Contoh pertanyaan bersifat edukatif. Jangan menggunakan output AI sebagai satu-satunya dasar untuk keputusan harga, keuangan, pajak, hukum, ketenagakerjaan, atau tindakan yang berdampak besar tanpa pemeriksaan yang sesuai."
-updateSummary: "Naskah baru tentang menyusun pertanyaan AI yang membantu verifikasi analisis penjualan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menilai-insight-ai-untuk-bisnis"
   - "cara-membaca-penjualan-per-produk"

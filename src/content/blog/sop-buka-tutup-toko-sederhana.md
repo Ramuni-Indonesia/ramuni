@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "SOP Toko"
   - "Operasional Toko"
   - "Checklist Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pentingnya kondisi kerja yang aman dan sehat. Checklist dalam artikel ini adalah contoh operasional, bukan standar keselamatan atau kepatuhan formal."
 disclaimer: "Contoh ini bersifat edukatif. Toko perlu menyesuaikan prosedur dengan bangunan, produk, peralatan, keselamatan, keamanan, perjanjian kerja, dan ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang checklist buka tutup toko yang singkat dan dapat ditindaklanjuti."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "checklist-review-bisnis-mingguan-umkm"
   - "cara-membuat-catatan-kas-harian"

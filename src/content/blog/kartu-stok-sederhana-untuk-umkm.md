@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
   - "Kartu Stok"
   - "Pencatatan Persediaan"
   - "UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Format kartu dalam artikel adalah contoh operasional sederhana, bukan format akuntansi wajib."
 disclaimer: "Format contoh perlu disesuaikan dengan satuan produk, proses penerimaan, kebijakan koreksi, dan kebutuhan usaha."
-updateSummary: "Naskah baru tentang format kartu stok dan pemeriksaan saldo."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "panduan-membaca-stok-harian"
   - "cara-melakukan-stok-opname"

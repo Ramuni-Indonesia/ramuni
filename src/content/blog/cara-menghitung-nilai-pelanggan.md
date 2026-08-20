@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Nilai Pelanggan"
   - "Customer Lifetime Value"
   - "CRM UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; praktik pemrosesan data perlu disesuaikan dengan konteks dan ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum, perlindungan data, atau keuangan. Gunakan data pelanggan secara proporsional, transparan, dan sesuai ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang menghitung nilai pelanggan sebagai perkiraan yang transparan dengan data transaksi minimum dan pembacaan yang bertanggung jawab."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-repeat-customer-rate"
   - "cara-mengelompokkan-pelanggan-sederhana"

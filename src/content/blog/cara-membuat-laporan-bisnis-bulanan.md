@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Laporan Bisnis"
   - "Evaluasi Bulanan"
   - "UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah. Format artikel ini adalah ringkasan operasional, bukan laporan keuangan formal."
 disclaimer: "Contoh laporan bersifat edukatif. Pengelompokan pendapatan, biaya, pajak, dan kewajiban formal perlu disesuaikan dengan pembukuan serta kondisi usaha Anda."
-updateSummary: "Naskah baru tentang ringkasan bisnis bulanan yang dapat ditindaklanjuti."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "laporan-laba-rugi-sederhana-umkm"
   - "cara-membuat-catatan-kas-harian"

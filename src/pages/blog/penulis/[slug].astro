@@ -1,48 +1,77 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getBlogPosts } from '../../../lib/blog';
-import { getEditorialPerson } from '../../../data/editorialPeople';
+import { getBlogPosts, type BlogPost } from '../../../lib/blog';
+import { getEditorialPerson, legacyAuthorRedirects } from '../../../data/editorialPeople';
 import { releaseGates } from '../../../config/release';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
   const posts = (await getBlogPosts()).filter((post) => !post.data.draft);
   const authors = [...new Set(posts.map((post) => post.data.authorSlug))];
-  return authors.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.authorSlug === slug) } }));
+  return [
+    ...authors.map((slug) => ({ params: { slug }, props: { posts: posts.filter((post) => post.data.authorSlug === slug) } })),
+    ...Object.entries(legacyAuthorRedirects).map(([slug, redirectTo]) => ({ params: { slug }, props: { posts: [], redirectTo } })),
+  ];
 }
 
-const { posts } = Astro.props;
-const author = getEditorialPerson(posts[0]?.data.authorSlug || 'tim-editorial-ramuni');
+const { posts = [], redirectTo } = Astro.props as { posts?: BlogPost[]; redirectTo?: string };
+if (redirectTo) return Astro.redirect(redirectTo, 301);
+
+const author = getEditorialPerson(posts[0]?.data.authorSlug || 'alya-pramesti');
 const authorName = author.name;
 const sortedPosts = [...posts].sort((a, b) => (b.data.updatedAt || b.data.publishedAt).valueOf() - (a.data.updatedAt || a.data.publishedAt).valueOf());
 const shownPosts = sortedPosts.slice(0, 6);
 const categories = [...new Set(sortedPosts.map((post) => post.data.category))];
 const latestUpdate = sortedPosts[0]?.data.updatedAt || sortedPosts[0]?.data.publishedAt;
-const profileIndexable = releaseGates.resourcePagesIndexable && sortedPosts.length >= 2;
+const profileIndexable = releaseGates.resourcePagesIndexable && author.profileType === 'person' && sortedPosts.length >= 2;
 const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(value);
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  mainEntity: {
-    '@type': author.profileType === 'person' ? 'Person' : 'Organization',
-    name: author.name,
-    description: author.shortBio,
-    memberOf: author.profileType === 'person' ? { '@type': 'Organization', name: author.organization } : undefined,
+const authorUrl = new URL(`/blog/penulis/${author.slug}/`, Astro.site || Astro.url.origin).toString();
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': authorUrl,
+    url: authorUrl,
+    inLanguage: 'id-ID',
+    ...(latestUpdate ? { dateModified: latestUpdate.toISOString() } : {}),
+    mainEntity: {
+      '@type': author.profileType === 'person' ? 'Person' : 'Organization',
+      '@id': `${authorUrl}#author`,
+      name: author.name,
+      description: author.shortBio,
+      url: authorUrl,
+      image: new URL(author.photo, Astro.site || Astro.url.origin).toString(),
+      ...(author.profileType === 'person' ? {
+        jobTitle: author.role,
+        worksFor: { '@type': 'Organization', name: author.organization },
+        knowsAbout: author.expertise,
+      } : {}),
+    },
   },
-};
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 3, name: 'Penulis', item: new URL('/penulis/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 4, name: authorName, item: authorUrl },
+    ],
+  },
+];
 ---
 <BaseLayout title={`${authorName} | Blog RAMUNI`} description={`${author.shortBio} Baca artikel dan kebijakan editorial RAMUNI.`} noindex={!profileIndexable} schema={schema}>
   <header class="author-hero"><div class="container author-profile">
     <div class="author-mark"><img src={author.photo} width="160" height="160" alt={author.photoAlt} /></div>
-    <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><span>Penulis</span></nav><p class="eyebrow">Profil Editorial</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div></div>
+    <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href="/penulis/">Penulis</a><span>/</span><span aria-current="page">{authorName}</span></nav><p class="eyebrow">Profil penulis</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestUpdate && <span>Diperbarui {formatDate(latestUpdate)}</span>}</div></div>
   </div></header>
 
   <section class="section author-about-stage" aria-labelledby="author-about-title"><div class="container author-about">
-    <div><p class="section-kicker">Tentang tim</p><h2 id="author-about-title">Tulisan yang bisa dibaca, diuji, dan dikoreksi.</h2></div>
-    <div class="author-about__body"><p>{author.fullBio}</p><div class="author-expertise" aria-label="Topik yang ditulis">{author.expertise.map((item) => <span>{item}</span>)}</div><p class="author-disclosure"><strong>Hubungan dengan RAMUNI:</strong> {author.disclosure}</p></div>
+    <div><p class="section-kicker">Tentang penulis</p><h2 id="author-about-title">Tulisan yang bisa dibaca, diuji, dan dikoreksi.</h2></div>
+    <div class="author-about__body"><p>{author.fullBio}</p><div class="author-expertise" aria-label="Topik yang ditulis">{author.expertise.map((item) => <span>{item}</span>)}</div>{author.editorialNotice && <p class="author-notice"><strong>Transparansi profil:</strong> {author.editorialNotice}</p>}<p class="author-disclosure"><strong>Hubungan dengan RAMUNI:</strong> {author.disclosure}</p></div>
   </div></section>
 
-  <section class="section surface author-articles-stage"><div class="container author-reading-layout"><div class="category-reading-head"><div><p class="section-kicker">Artikel terbaru</p><h2>Ditulis oleh tim ini.</h2></div><p>Menampilkan pembaruan terbaru. Buka arsip blog untuk membaca semua artikel.</p></div><div class="reading-list reading-list--visual author-reading-list">{shownPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.readingTime}</small></div><small aria-hidden="true">Baca &rarr;</small></a>)}</div>{sortedPosts.length > shownPosts.length && <p class="author-archive-link"><a class="button button--secondary" href="/blog/">Lihat semua artikel</a></p>}</div></section>
+  <section class="section surface author-articles-stage"><div class="container author-reading-layout"><div class="category-reading-head"><div><p class="section-kicker">Artikel terbaru</p><h2>Ditulis oleh penulis ini.</h2></div><p>Menampilkan pembaruan terbaru. Buka arsip blog untuk membaca semua artikel.</p></div><div class="reading-list reading-list--visual author-reading-list">{shownPosts.map((post) => <a class="reading-row" href={`/blog/${post.id}/`}><figure><img src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt={post.data.coverAlt} loading="lazy" /></figure><div><span>{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.dek}</p><small>{post.data.readingTime}</small></div><small aria-hidden="true">Baca &rarr;</small></a>)}</div>{sortedPosts.length > shownPosts.length && <p class="author-archive-link"><a class="button button--secondary" href="/blog/">Lihat semua artikel</a></p>}</div></section>
 
   <section class="section editorial-trust-stage"><div class="container editorial-trust-layout"><div><p class="section-kicker">Akuntabilitas</p><h2>Cara kerja editorial kami.</h2><p>Setiap artikel mencantumkan tanggal pembaruan, cara contoh disusun, konteks penggunaan, dan jalur koreksi yang dapat diakses pembaca.</p><ul class="editorial-checklist" aria-label="Bukti editorial"><li>Contoh dan catatan metode</li><li>Fitur yang disebutkan</li><li>Riwayat pembaruan artikel</li></ul></div><nav class="editorial-policy-links" aria-label="Kebijakan editorial"><a href="/blog/kebijakan-editorial/">Kebijakan editorial</a><a href="/blog/metodologi-fact-check/">Metodologi pengecekan fakta</a><a href="/blog/kebijakan-sumber/">Kebijakan sumber</a><a href="/blog/koreksi/">Kirim koreksi</a></nav></div></section>
 </BaseLayout>

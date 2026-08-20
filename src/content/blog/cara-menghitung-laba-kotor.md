@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha kecil membandingkan nota penjualan dan catatan biaya pr
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Laba Kotor"
   - "HPP"
   - "Keuangan UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah. Contoh dalam artikel ini bersifat edukatif dan bukan nasihat akuntansi atau pajak."
 disclaimer: "Contoh perhitungan bersifat edukatif. Pengelompokan pendapatan, HPP, pajak, dan biaya untuk laporan formal perlu disesuaikan dengan kondisi usaha serta arahan profesional bila diperlukan."
-updateSummary: "Memperluas panduan dengan kalkulator laba kotor, rekonsiliasi penjualan dan HPP, pembacaan kanal serta mix produk, dan ritme evaluasi yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-hpp-produk"
   - "perbedaan-margin-dan-markup"

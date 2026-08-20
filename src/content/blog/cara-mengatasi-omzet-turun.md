@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
   - "Omzet Turun"
   - "Analisis Penjualan"
   - "Evaluasi Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum tentang persediaan. Bukan rekomendasi strategi harga atau pembelian."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat keuangan atau komersial. Kondisi pasar, biaya, kewajiban, serta kapasitas usaha perlu dipertimbangkan sebelum melakukan perubahan besar."
-updateSummary: "Naskah baru tentang memeriksa penyebab omzet turun dan menguji perbaikan secara bertahap."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-pertumbuhan-penjualan"
   - "cara-membaca-penjualan-per-produk"

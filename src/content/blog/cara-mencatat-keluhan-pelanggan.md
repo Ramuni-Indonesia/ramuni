@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Keluhan Pelanggan"
   - "Layanan Pelanggan"
   - "CRM UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait data pribadi dalam catatan keluhan pelanggan."
 disclaimer: "Contoh ini bersifat edukatif. Penanganan komplain, penggantian, pencatatan bukti, dan penggunaan data perlu disesuaikan dengan produk, kebijakan usaha, kontrak, serta ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang log keluhan pelanggan dan tindak lanjut yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-melihat-pelanggan-yang-kembali-belanja"

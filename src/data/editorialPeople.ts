@@ -9,6 +9,7 @@ export type EditorialPerson = {
   fullBio: string;
   expertise: string[];
   disclosure: string;
+  editorialNotice?: string;
   languages: string[];
   profileType: 'organization' | 'person';
   professionalUrls: string[];
@@ -16,21 +17,83 @@ export type EditorialPerson = {
 
 export const editorialPeople: EditorialPerson[] = [
   {
-    slug: 'tim-editorial-ramuni',
-    name: 'Tim Editorial RAMUNI',
-    role: 'Tim konten dan riset produk',
+    slug: 'alya-pramesti',
+    name: 'Alya Pramesti',
+    role: 'Penulis editorial keuangan UMKM',
     organization: 'RAMUNI',
-    photo: '/brand/ramuni-mark-color.webp',
-    photoAlt: 'Tanda RAMUNI untuk profil Tim Editorial RAMUNI',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-keuangan.webp',
+    photoAlt: 'Foto profil ilustratif untuk Alya Pramesti, nama pena editorial RAMUNI',
     shortBio:
-      'Menyusun panduan praktis agar pemilik UMKM dapat membaca penjualan, stok, kas, pelanggan, dan AI dengan konteks yang jelas.',
+      'Menulis panduan untuk membedakan omzet, biaya, HPP, laba, dan arus kas dengan contoh yang dapat diperiksa ulang.',
     fullBio:
-      'Tim Editorial RAMUNI mengubah pertanyaan operasional sehari-hari menjadi panduan yang mudah diperiksa. Setiap artikel memakai ilustrasi yang jelas, menjelaskan konteks penggunaan, dan menghindari klaim hasil bisnis yang tidak dapat dibuktikan.',
-    expertise: ['Metrik dasar usaha', 'Operasional UMKM', 'Stok dan arus kas', 'Penggunaan AI', 'Bahasa edukasi produk'],
+      'Alya Pramesti adalah nama pena editorial RAMUNI untuk topik keuangan usaha sehari-hari. Naskah yang memakai byline ini mengurai angka dari catatan transaksi, biaya produk, dan kas menjadi langkah yang bisa ditelusuri kembali. Fokus penulisannya adalah membedakan istilah yang sering tercampur, menuliskan asumsi perhitungan, lalu menunjukkan batas penggunaan setiap contoh agar pembaca tidak mengambil keputusan hanya dari satu angka.',
+    expertise: ['HPP dan margin', 'Laba serta arus kas', 'Catatan keuangan UMKM', 'Contoh perhitungan bisnis'],
     disclosure:
-      'Profil ini mewakili tim internal RAMUNI. Artikel edukasi bukan nasihat pajak, akuntansi, hukum, atau keputusan bisnis yang dipersonalisasi.',
+      'Alya Pramesti adalah nama pena editorial, bukan profil profesional pribadi. Materi diterbitkan untuk pendidikan dan tidak menggantikan nasihat akuntansi, pajak, hukum, atau keputusan keuangan yang dipersonalisasi.',
+    editorialNotice:
+      'Profil ini menggunakan nama pena editorial. Keterangan yang ditampilkan menjelaskan fokus penulisan dan proses editorial RAMUNI, bukan riwayat pendidikan atau pekerjaan pribadi.',
     languages: ['Bahasa Indonesia'],
-    profileType: 'organization',
+    profileType: 'person',
+    professionalUrls: [],
+  },
+  {
+    slug: 'bima-ardiansyah',
+    name: 'Bima Ardiansyah',
+    role: 'Penulis editorial operasional UMKM',
+    organization: 'RAMUNI',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-operasional.webp',
+    photoAlt: 'Foto profil ilustratif untuk Bima Ardiansyah, nama pena editorial RAMUNI',
+    shortBio:
+      'Membuat panduan stok, pemeriksaan harian, pembelian, dan pencatatan operasional yang dapat diterapkan bertahap.',
+    fullBio:
+      'Bima Ardiansyah adalah nama pena editorial RAMUNI untuk panduan kerja yang berulang di toko dan usaha kecil. Artikel yang menggunakan byline ini memecah pekerjaan seperti menerima barang, mencatat mutasi, memeriksa selisih, dan menyusun daftar pembelian menjadi urutan yang jelas. Setiap naskah mengutamakan jejak catatan, titik pemeriksaan, dan penyesuaian terhadap kondisi barang atau tim, bukan janji otomasi atau hasil bisnis tertentu.',
+    expertise: ['Stok dan inventori', 'Pemeriksaan operasional', 'Pembelian dan penerimaan', 'SOP usaha kecil'],
+    disclosure:
+      'Bima Ardiansyah adalah nama pena editorial, bukan profil profesional pribadi. Contoh proses perlu disesuaikan dengan jenis barang, tim, keamanan pangan, dan kebijakan usaha masing-masing.',
+    editorialNotice:
+      'Profil ini menggunakan nama pena editorial. Keterangan yang ditampilkan menjelaskan fokus penulisan dan proses editorial RAMUNI, bukan riwayat pendidikan atau pekerjaan pribadi.',
+    languages: ['Bahasa Indonesia'],
+    profileType: 'person',
+    professionalUrls: [],
+  },
+  {
+    slug: 'citra-maheswari',
+    name: 'Citra Maheswari',
+    role: 'Penulis editorial penjualan dan pelanggan UMKM',
+    organization: 'RAMUNI',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-pelanggan.webp',
+    photoAlt: 'Foto profil ilustratif untuk Citra Maheswari, nama pena editorial RAMUNI',
+    shortBio:
+      'Membahas penjualan, catatan pelanggan, pembelian ulang, dan penggunaan data yang proporsional untuk UMKM.',
+    fullBio:
+      'Citra Maheswari adalah nama pena editorial RAMUNI untuk materi tentang penjualan, layanan, dan pola pembelian pelanggan. Tulisan dengan byline ini membantu pembaca membaca transaksi menurut produk, kanal, waktu, dan riwayat layanan tanpa menebak kebutuhan pribadi pelanggan. Pendekatannya menempatkan izin, konteks, dan pemeriksaan manusia sebagai bagian dari keputusan sebelum data dipakai untuk tindak lanjut.',
+    expertise: ['Penjualan dan omzet', 'Pelanggan berulang', 'Catatan layanan', 'Privasi data pelanggan'],
+    disclosure:
+      'Citra Maheswari adalah nama pena editorial, bukan profil profesional pribadi. Materi bukan izin untuk menghubungi pelanggan tanpa dasar, persetujuan, atau kebijakan yang sesuai.',
+    editorialNotice:
+      'Profil ini menggunakan nama pena editorial. Keterangan yang ditampilkan menjelaskan fokus penulisan dan proses editorial RAMUNI, bukan riwayat pendidikan atau pekerjaan pribadi.',
+    languages: ['Bahasa Indonesia'],
+    profileType: 'person',
+    professionalUrls: [],
+  },
+  {
+    slug: 'dimas-wicaksana',
+    name: 'Dimas Wicaksana',
+    role: 'Penulis editorial strategi usaha dan AI',
+    organization: 'RAMUNI',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-strategi-industri.webp',
+    photoAlt: 'Foto profil ilustratif untuk Dimas Wicaksana, nama pena editorial RAMUNI',
+    shortBio:
+      'Menghubungkan pertanyaan strategi usaha dan penggunaan AI dengan data yang perlu diperiksa sebelum mengambil langkah.',
+    fullBio:
+      'Dimas Wicaksana adalah nama pena editorial RAMUNI untuk topik konteks industri, pengambilan keputusan, dan penggunaan AI dalam usaha kecil. Naskah yang memakai byline ini menerjemahkan masalah seperti perubahan pola jual, kebutuhan evaluasi, atau jawaban AI yang perlu ditinjau menjadi pertanyaan pemeriksaan yang lebih konkret. Pembaca diajak melihat bukti, periode data, batas rekomendasi, dan tindakan kecil yang dapat diuji tanpa menganggap AI sebagai pengganti keputusan manusia.',
+    expertise: ['Strategi usaha kecil', 'Konteks industri', 'Pemeriksaan insight AI', 'Metrik untuk pengambilan keputusan'],
+    disclosure:
+      'Dimas Wicaksana adalah nama pena editorial, bukan profil profesional pribadi. Contoh kasus bersifat edukatif dan tidak mewakili pelanggan atau hasil penggunaan produk RAMUNI.',
+    editorialNotice:
+      'Profil ini menggunakan nama pena editorial. Keterangan yang ditampilkan menjelaskan fokus penulisan dan proses editorial RAMUNI, bukan riwayat pendidikan atau pekerjaan pribadi.',
+    languages: ['Bahasa Indonesia'],
+    profileType: 'person',
     professionalUrls: [],
   },
   {
@@ -46,85 +109,23 @@ export const editorialPeople: EditorialPerson[] = [
       'Tim Peninjau RAMUNI melakukan pemeriksaan editorial sebelum panduan ditandai siap untuk publikasi dan pengindeksan.',
     expertise: ['Peninjauan editorial', 'Akurasi konteks bisnis', 'Kejelasan sumber', 'Konten edukasi UMKM'],
     disclosure:
-      'Profil ini mewakili fungsi peninjauan internal RAMUNI dan berbeda dari tim penyusun artikel.',
-    languages: ['Bahasa Indonesia'],
-    profileType: 'organization',
-    professionalUrls: [],
-  },
-  {
-    slug: 'desk-keuangan-ramuni',
-    name: 'Desk Keuangan RAMUNI',
-    role: 'Kontributor editorial keuangan UMKM',
-    organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-keuangan.webp',
-    photoAlt: 'Foto profil ilustratif untuk Desk Keuangan RAMUNI',
-    shortBio:
-      'Menyusun panduan untuk membedakan omzet, biaya, HPP, laba, dan arus kas dengan contoh yang dapat diperiksa ulang.',
-    fullBio:
-      'Desk Keuangan RAMUNI menulis materi edukasi untuk membantu pemilik usaha memahami hubungan antara catatan transaksi, biaya produk, kas, dan laporan sederhana. Setiap contoh memakai angka ilustratif dan tidak menggantikan nasihat akuntansi, pajak, atau keputusan keuangan yang dipersonalisasi.',
-    expertise: ['HPP dan margin', 'Laba serta arus kas', 'Catatan keuangan UMKM', 'Contoh perhitungan bisnis'],
-    disclosure:
-      'Desk ini adalah fungsi editorial internal RAMUNI. Foto profil adalah representasi visual fiktif, bukan foto individu yang dapat dihubungi. Materi diterbitkan untuk pendidikan dan perlu disesuaikan dengan catatan serta kewajiban usaha masing-masing.',
-    languages: ['Bahasa Indonesia'],
-    profileType: 'organization',
-    professionalUrls: [],
-  },
-  {
-    slug: 'desk-operasional-ramuni',
-    name: 'Desk Operasional RAMUNI',
-    role: 'Kontributor editorial operasional UMKM',
-    organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-operasional.webp',
-    photoAlt: 'Foto profil ilustratif untuk Desk Operasional RAMUNI',
-    shortBio:
-      'Membuat panduan stok, pemeriksaan harian, pembelian, dan pencatatan operasional yang bisa diterapkan bertahap.',
-    fullBio:
-      'Desk Operasional RAMUNI membahas pekerjaan yang berulang di toko dan usaha kecil, mulai dari penerimaan barang sampai pemeriksaan stok dan tindak lanjut. Fokusnya adalah membantu pembaca membuat jejak catatan yang jelas, bukan menjanjikan otomasi atau hasil bisnis tertentu.',
-    expertise: ['Stok dan inventori', 'Pemeriksaan operasional', 'Pembelian dan penerimaan', 'SOP usaha kecil'],
-    disclosure:
-      'Desk ini adalah fungsi editorial internal RAMUNI. Foto profil adalah representasi visual fiktif, bukan foto individu yang dapat dihubungi. Contoh proses perlu disesuaikan dengan kondisi barang, tim, keamanan pangan, dan kebijakan usaha Anda.',
-    languages: ['Bahasa Indonesia'],
-    profileType: 'organization',
-    professionalUrls: [],
-  },
-  {
-    slug: 'desk-strategi-industri-ramuni',
-    name: 'Desk Strategi Industri RAMUNI',
-    role: 'Kontributor editorial konteks industri UMKM',
-    organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-strategi-industri.webp',
-    photoAlt: 'Foto profil ilustratif untuk Desk Strategi Industri RAMUNI',
-    shortBio:
-      'Menghubungkan pertanyaan operasional dengan konteks usaha makanan, retail, jasa, dan bentuk usaha kecil lainnya.',
-    fullBio:
-      'Desk Strategi Industri RAMUNI menyusun panduan berbasis situasi kerja yang umum ditemui UMKM. Materi memecah masalah menjadi data yang perlu diperiksa, batasan keputusan, dan langkah kecil yang dapat diuji tanpa mengklaim hasil yang pasti.',
-    expertise: ['Usaha makanan dan minuman', 'Retail kecil', 'Pola penjualan', 'Keputusan berbasis catatan'],
-    disclosure:
-      'Desk ini adalah fungsi editorial internal RAMUNI. Foto profil adalah representasi visual fiktif, bukan foto individu yang dapat dihubungi. Contoh kasus bersifat edukatif dan tidak mewakili pelanggan atau hasil penggunaan produk RAMUNI.',
-    languages: ['Bahasa Indonesia'],
-    profileType: 'organization',
-    professionalUrls: [],
-  },
-  {
-    slug: 'desk-pelanggan-ramuni',
-    name: 'Desk Pelanggan RAMUNI',
-    role: 'Kontributor editorial pelanggan dan layanan UMKM',
-    organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-pelanggan.webp',
-    photoAlt: 'Foto profil ilustratif untuk Desk Pelanggan RAMUNI',
-    shortBio:
-      'Membahas catatan pelanggan, layanan, pembelian ulang, dan penggunaan data yang proporsional untuk UMKM.',
-    fullBio:
-      'Desk Pelanggan RAMUNI membuat materi tentang cara membaca pola layanan dan transaksi tanpa mengumpulkan atau menggunakan data pelanggan secara berlebihan. Panduan selalu menempatkan izin, konteks, dan pemeriksaan manusia sebagai bagian dari keputusan.',
-    expertise: ['Pelanggan berulang', 'Catatan layanan', 'Privasi data pelanggan', 'Pola transaksi'],
-    disclosure:
-      'Desk ini adalah fungsi editorial internal RAMUNI. Foto profil adalah representasi visual fiktif, bukan foto individu yang dapat dihubungi. Materi bukan izin untuk menghubungi pelanggan tanpa dasar, persetujuan, atau kebijakan yang sesuai.',
+      'Profil ini mewakili fungsi peninjauan internal RAMUNI dan berbeda dari penulis artikel.',
     languages: ['Bahasa Indonesia'],
     profileType: 'organization',
     professionalUrls: [],
   },
 ];
 
+export const editorialWriters = editorialPeople.filter((person) => person.profileType === 'person');
+
+export const legacyAuthorRedirects: Record<string, string> = {
+  'tim-editorial-ramuni': '/penulis/',
+  'desk-keuangan-ramuni': '/blog/penulis/alya-pramesti/',
+  'desk-operasional-ramuni': '/blog/penulis/bima-ardiansyah/',
+  'desk-pelanggan-ramuni': '/blog/penulis/citra-maheswari/',
+  'desk-strategi-industri-ramuni': '/blog/penulis/dimas-wicaksana/',
+};
+
 export function getEditorialPerson(slug: string) {
-  return editorialPeople.find((person) => person.slug === slug) || editorialPeople[0];
+  return editorialPeople.find((person) => person.slug === slug) || editorialWriters[0];
 }

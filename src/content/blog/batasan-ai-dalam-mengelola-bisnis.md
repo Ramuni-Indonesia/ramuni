@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
   - "Batasan AI"
   - "AI UMKM"
   - "Keputusan Bisnis"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pertimbangan data pribadi dalam penggunaan alat digital."
 disclaimer: "Artikel ini bersifat edukatif. Jangan memakai output AI sebagai pengganti nasihat hukum, pajak, akuntansi, ketenagakerjaan, keamanan, atau keputusan profesional lain yang memerlukan peninjauan sesuai konteks."
-updateSummary: "Naskah baru tentang peran AI sebagai alat bantu dan batas keputusan manusia dalam usaha."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menilai-insight-ai-untuk-bisnis"
   - "pertanyaan-ai-untuk-analisis-penjualan"

@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha membaca omzet harian bersama rincian transaksi dan wakt
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Omzet Harian"
   - "Penjualan"
   - "Pemilik Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum tentang pembukuan dan pencatatan; penerapan pajak mengikuti kondisi serta ketentuan usaha masing-masing."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat akuntansi atau pajak untuk usaha tertentu."
-updateSummary: "Menambahkan kalkulator capaian target, kerangka analisis harian, contoh keputusan, dan checklist pemeriksaan transaksi."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membandingkan-penjualan-mingguan"
   - "produk-terlaris-belum-tentu-paling-untung"

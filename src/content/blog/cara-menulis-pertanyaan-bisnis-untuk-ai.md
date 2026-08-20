@@ -8,11 +8,12 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags: ["Pertanyaan Bisnis", "Prompt UMKM", "Analisis AI"]
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -37,7 +38,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai konteks, pengukuran, transparansi, dan pengawasan risiko AI."
 disclaimer: "Artikel ini bersifat edukatif. Jawaban AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan usaha."
-updateSummary: "Naskah baru tentang menyusun pertanyaan bisnis yang terukur dan dapat diperiksa."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["apa-itu-ai-business-companion", "cara-memeriksa-data-sebelum-menggunakan-ai", "cara-menilai-insight-ai-untuk-bisnis"]
 ctaType: "product"
 featured: false

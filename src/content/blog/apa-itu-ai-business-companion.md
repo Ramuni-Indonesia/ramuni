@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
   - "AI Business Companion"
   - "AI untuk UMKM"
   - "Insight Bisnis"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk mempertimbangkan data pribadi saat menggunakan alat digital."
 disclaimer: "Artikel ini bersifat edukatif. Hasil AI tidak menggantikan pemeriksaan manusia, nasihat profesional, atau keputusan yang perlu mempertimbangkan kondisi usaha serta kewajiban yang berlaku."
-updateSummary: "Naskah baru yang menjelaskan peran, batas, dan cara memakai AI Business Companion sebagai alat bantu."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-memeriksa-data-sebelum-menggunakan-ai"
   - "cara-menilai-insight-ai-untuk-bisnis"

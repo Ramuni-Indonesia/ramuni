@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Laporan Shift Kasir"
   - "Serah Terima Kas"
   - "Operasional Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai kondisi kerja yang aman dan sehat. Format ini adalah contoh operasional, bukan standar keselamatan atau kepatuhan formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan laporan dengan alat pembayaran, keamanan kas, kebijakan kerja, penugasan, dan ketentuan yang berlaku di usaha Anda."
-updateSummary: "Naskah baru tentang format laporan shift kasir yang dapat ditelusuri saat serah-terima dan dipakai untuk menindaklanjuti temuan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membuat-sop-kasir"
   - "cara-membuat-catatan-kas-harian"

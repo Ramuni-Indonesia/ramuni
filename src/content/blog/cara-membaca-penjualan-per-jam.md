@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko mengatur kartu jam abstrak, struk, dan rak produk untuk 
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
   - "Penjualan per Jam"
   - "Jam Ramai"
   - "Analisis Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Artikel ini memberi contoh analisis operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif. Pola jam penjualan berbeda menurut lokasi, produk, kanal, musim, dan jam buka. Uji perubahan secara terbatas sebelum mengubah jadwal atau pembelian besar."
-updateSummary: "Memperluas panduan dengan kalkulator penjualan per jam, pemeriksaan kualitas waktu transaksi, matriks beban layanan, dan eksperimen shift yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-penjualan-per-produk"
   - "cara-menghitung-pertumbuhan-penjualan"

@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko meninjau pola pelanggan yang kembali berbelanja"
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-27
-updatedAt: 2026-07-27
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Pelanggan Kembali"
   - "Repeat Customer"
   - "CRM UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan hukum utama tentang pelindungan data pribadi di Indonesia; penerapan pada proses tertentu perlu ditinjau tenaga hukum."
 disclaimer: "Konten ini bersifat edukasi umum dan bukan nasihat hukum. Pastikan dasar pemrosesan, pemberitahuan, akses, retensi, dan pilihan pelanggan ditinjau sesuai kegiatan usaha Anda."
-updateSummary: "Menambahkan definisi pelanggan kembali, prinsip privasi, dan contoh pembacaan kelompok."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-membandingkan-penjualan-mingguan"

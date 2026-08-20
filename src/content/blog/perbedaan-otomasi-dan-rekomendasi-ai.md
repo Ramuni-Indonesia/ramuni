@@ -8,11 +8,12 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags: ["Otomasi", "Rekomendasi AI", "Persetujuan Manusia"]
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -37,7 +38,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk tata kelola, pengukuran risiko, dan pengawasan manusia pada sistem AI."
 disclaimer: "Artikel ini bersifat edukatif. Rancang proses otomasi dan persetujuan sesuai risiko, kebijakan, serta kondisi usaha Anda."
-updateSummary: "Naskah baru yang membedakan tugas otomatis dengan rekomendasi AI dan titik pemeriksaan manusia."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["apa-itu-ai-business-companion", "batasan-ai-dalam-mengelola-bisnis", "cara-mengecek-hasil-ai-yang-tidak-masuk-akal"]
 ctaType: "product"
 featured: false

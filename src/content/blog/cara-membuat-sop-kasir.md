@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "SOP Kasir"
   - "Operasional Toko"
   - "Rekap Kas"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai kondisi kerja yang aman dan sehat. Artikel ini adalah contoh operasional, bukan standar keselamatan atau kepatuhan formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan prosedur dengan perangkat, keamanan kas, jam kerja, keselamatan, kebijakan internal, perjanjian kerja, dan ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang SOP kasir yang dapat dijalankan, direkonsiliasi, dan ditinjau saat terjadi selisih atau perubahan proses."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "sop-buka-tutup-toko-sederhana"
   - "cara-membuat-catatan-kas-harian"

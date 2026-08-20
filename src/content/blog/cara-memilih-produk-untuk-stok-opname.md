@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Stok Opname"
   - "Audit Stok"
   - "Persediaan Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait pencatatan usaha. Sesuaikan prosedur pemeriksaan dengan skala dan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Stok opname dan koreksi persediaan perlu disesuaikan dengan prosedur, bukti, peran, serta kewajiban pencatatan usaha."
-updateSummary: "Naskah baru tentang menentukan prioritas produk dan jadwal stok opname secara berbasis risiko."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mencatat-stok-masuk-dan-keluar"
   - "cara-mengurangi-stok-mati"

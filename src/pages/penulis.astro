@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { editorialWriters } from '../data/editorialPeople';
+import { pageLastmods } from '../data/pageLastmods';
+import { releaseGates } from '../config/release';
+import { getBlogPosts } from '../lib/blog';
+import '../styles/blog.css';
+import '../styles/author-directory.css';
+
+const posts = (await getBlogPosts()).filter((post) => !post.data.draft);
+const writers = editorialWriters.map((writer) => {
+  const articles = posts
+    .filter((post) => post.data.authorSlug === writer.slug)
+    .sort((left, right) => (right.data.updatedAt || right.data.publishedAt).valueOf() - (left.data.updatedAt || left.data.publishedAt).valueOf());
+  return { writer, articles, latestUpdate: articles[0]?.data.updatedAt || articles[0]?.data.publishedAt };
+});
+const pageUrl = new URL('/penulis/', Astro.site || Astro.url.origin).toString();
+const lastmod = pageLastmods.writers;
+const directoryIndexable = releaseGates.resourcePagesIndexable && writers.length >= 3 && writers.every(({ articles }) => articles.length > 0);
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: 'Penulis RAMUNI',
+    description: 'Kenali penulis editorial RAMUNI yang membahas keuangan, operasional, penjualan, pelanggan, strategi usaha, dan penggunaan AI untuk UMKM.',
+    inLanguage: 'id-ID',
+    dateModified: `${lastmod}T12:00:00+07:00`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    url: pageUrl,
+    name: 'Penulis RAMUNI',
+    description: 'Kenali penulis editorial RAMUNI yang membahas keuangan, operasional, penjualan, pelanggan, strategi usaha, dan penggunaan AI untuk UMKM.',
+    inLanguage: 'id-ID',
+    dateModified: `${lastmod}T12:00:00+07:00`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
+      { '@type': 'ListItem', position: 2, name: 'Penulis', item: pageUrl },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Penulis editorial RAMUNI',
+    numberOfItems: writers.length,
+    itemListElement: writers.map(({ writer }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Person',
+        name: writer.name,
+        jobTitle: writer.role,
+        url: new URL(`/blog/penulis/${writer.slug}/`, Astro.site || Astro.url.origin).toString(),
+      },
+    })),
+  },
+];
+---
+<BaseLayout
+  title="Penulis RAMUNI | Editorial Bisnis UMKM"
+  description="Kenali penulis editorial RAMUNI yang membahas keuangan, operasional, penjualan, pelanggan, strategi usaha, dan penggunaan AI untuk UMKM."
+  pageType="CollectionPage"
+  noindex={!directoryIndexable}
+  schema={schema}
+  keywords={['penulis bisnis UMKM', 'editorial RAMUNI', 'panduan keuangan UMKM', 'panduan stok usaha', 'panduan penjualan UMKM']}
+>
+  <header class="author-directory-hero">
+    <div class="container author-directory-hero__layout">
+      <div>
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><span aria-current="page">Penulis</span></nav>
+        <p class="eyebrow">Editorial RAMUNI</p>
+        <h1>Kenali penulis RAMUNI.</h1>
+        <p class="lede">Setiap byline membantu Anda melihat fokus topik, cara artikel disusun, dan panduan lain yang relevan untuk usaha Anda.</p>
+      </div>
+      <div class="author-directory-visual" aria-label="Potret ilustratif penulis editorial RAMUNI">
+        {writers.map(({ writer }) => <img src={writer.photo} width="320" height="320" alt={writer.photoAlt} decoding="async" />)}
+      </div>
+    </div>
+  </header>
+
+  <section class="section author-directory-stage" aria-labelledby="writer-list-heading">
+    <div class="container">
+      <div class="author-directory-intro">
+        <h2 id="writer-list-heading">Pilih topik yang ingin Anda pahami.</h2>
+        <p>Penulis dibagi berdasarkan fokus editorial. Artikel tetap melalui proses peninjauan sebelum dinyatakan siap untuk publikasi.</p>
+      </div>
+      <div class="author-directory-grid">
+        {writers.map(({ writer, articles, latestUpdate }) => <article class="author-directory-card">
+          <figure><img src={writer.photo} width="320" height="320" alt={writer.photoAlt} loading="lazy" decoding="async" /></figure>
+          <div class="author-directory-card__body">
+            <p class="author-directory-card__role">{writer.role}</p>
+            <h2><a href={`/blog/penulis/${writer.slug}/`}>{writer.name}</a></h2>
+            <p>{writer.shortBio}</p>
+            <ul aria-label={`Fokus tulisan ${writer.name}`}>{writer.expertise.slice(0, 3).map((item) => <li>{item}</li>)}</ul>
+            <div class="author-directory-card__meta"><span>{articles.length} artikel</span>{latestUpdate && <span>Diperbarui {new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }).format(latestUpdate)}</span>}</div>
+            <a class="text-link" href={`/blog/penulis/${writer.slug}/`}>Buka profil {writer.name}</a>
+          </div>
+        </article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section author-directory-standard" aria-labelledby="editorial-standard-heading">
+    <div class="container author-directory-standard__layout">
+      <div>
+        <h2 id="editorial-standard-heading">Byline yang lebih jelas, proses yang tetap terbuka.</h2>
+        <p>Profil penulis memakai nama pena editorial agar cakupan topik mudah dikenali. Kami menjelaskan fokus dan cara kerja editorialnya tanpa membuat klaim pendidikan atau riwayat kerja yang tidak dapat diverifikasi.</p>
+      </div>
+      <nav aria-label="Kebijakan editorial"><a href="/blog/kebijakan-editorial/">Kebijakan editorial</a><a href="/blog/metodologi-fact-check/">Metodologi pengecekan fakta</a><a href="/blog/koreksi/">Kirim koreksi</a></nav>
+    </div>
+  </section>
+</BaseLayout>

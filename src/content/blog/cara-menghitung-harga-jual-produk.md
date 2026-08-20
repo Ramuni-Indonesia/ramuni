@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha menghitung harga jual dengan kartu produk, tumpukan bia
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Harga Jual"
   - "HPP Produk"
   - "Margin Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -46,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Penetapan harga harus mempertimbangkan biaya dan kondisi usaha sendiri."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat keuangan, akuntansi, pajak, atau penetapan harga. Periksa biaya, ketentuan, posisi pasar, dan kewajiban usaha sebelum mengubah harga."
-updateSummary: "Memperluas panduan dengan kalkulator target margin, lembar skenario kanal, pemeriksaan pembulatan, tata kelola perubahan harga, dan batas penggunaan rumus."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-hpp-produk"
   - "perbedaan-margin-dan-markup"

@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha memeriksa grafik titik impas dan kalkulator di meja ker
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Titik Impas"
   - "Break Even Point"
   - "Biaya Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; contoh BEP adalah ilustrasi edukatif."
 disclaimer: "Contoh ini bukan proyeksi laba atau nasihat keuangan. Sesuaikan komponen biaya, pajak, kapasitas, dan risiko usaha sebelum mengambil keputusan."
-updateSummary: "Memperluas panduan dengan lembar skenario BEP, langkah audit biaya, pembacaan kapasitas, dan rutinitas keputusan mingguan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-hpp-produk"
   - "laporan-laba-rugi-sederhana-umkm"

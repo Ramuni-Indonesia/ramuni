@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Penjualan Kredit"
   - "Piutang Usaha"
   - "Arus Kas"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan entitas mikro, kecil, dan menengah. Artikel ini tidak menggantikan kebijakan akuntansi atau saran profesional."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, atau hukum. Syarat kredit, penagihan, dan perlakuan pencatatan perlu disesuaikan dengan transaksi serta kewajiban usaha."
-updateSummary: "Naskah baru tentang pencatatan penjualan kredit, penerimaan pembayaran, dan peninjauan piutang."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membuat-catatan-kas-harian"
   - "cara-membuat-laporan-bisnis-bulanan"

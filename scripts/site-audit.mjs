@@ -547,7 +547,9 @@ for (const [route, page] of pages) {
   if (/^\/blog\/penulis\/[^/]+$/.test(route)) {
     requireSchemaTypes(route, page, ['ProfilePage']);
     const profile = schemaEntity(page, 'ProfilePage');
-    if (profile?.mainEntity?.['@type'] !== 'Organization') failures.push(`${route}: ProfilePage mainEntity must be an Organization`);
+    const mainEntityType = profile?.mainEntity?.['@type'];
+    if (!['Organization', 'Person'].includes(mainEntityType)) failures.push(`${route}: ProfilePage mainEntity must be a Person or Organization`);
+    if (mainEntityType === 'Person' && (!profile.mainEntity?.name || profile.mainEntity?.worksFor?.['@type'] !== 'Organization')) failures.push(`${route}: Person ProfilePage mainEntity requires a name and organization`);
   }
   if (route === '/harga') requireSchemaTypes(route, page, ['SoftwareApplication', 'BreadcrumbList']);
   if (/^\/kalkulator\/[^/]+$/.test(route)) requireSchemaTypes(route, page, ['WebApplication', 'BreadcrumbList']);

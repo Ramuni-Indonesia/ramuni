@@ -17,8 +17,8 @@ tags:
   - "Format Laporan Penjualan"
   - "Rekap Transaksi"
   - "Tutup Kas"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -50,7 +50,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Cek stok dalam contoh ini adalah kontrol operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Sesuaikan bukti, prosedur kas, serta pencatatan dengan kegiatan dan kewajiban usaha."
-updateSummary: "Menambahkan format pembukuan penjualan harian, pembeda laporan omzet, tautan template, dan penjelasan istilah pencarian yang paling relevan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-mencatat-penjualan-toko-retail"
   - "cara-membuat-catatan-kas-harian"

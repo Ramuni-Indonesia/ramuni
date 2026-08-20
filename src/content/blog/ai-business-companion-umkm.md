@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha meninjau catatan dan arah keputusan bersama pendamping 
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-25
-updatedAt: 2026-07-25
+updatedAt: 2026-08-20
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
 tags:
   - "AI untuk UMKM"
   - "Pemilik Usaha"
   - "Pemula"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-07-27
     note: "Rujukan kerangka manajemen risiko AI untuk transparansi, pengukuran risiko, dan pengawasan manusia; artikel ini menerapkannya sebagai prinsip edukatif, bukan penilaian kepatuhan."
 disclaimer: "Konten ini bersifat edukasi umum. Hasil AI tetap perlu diperiksa manusia sebelum dipakai untuk keputusan bisnis."
-updateSummary: "Memperjelas contoh, langkah pemeriksaan, dan cara menggunakan panduan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "apa-itu-ai-business-companion"
   - "cara-memeriksa-data-sebelum-menggunakan-ai"

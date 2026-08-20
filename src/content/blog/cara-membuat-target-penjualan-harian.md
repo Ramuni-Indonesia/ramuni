@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha makanan menyusun rencana target penjualan pada kalender
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Target Penjualan"
   - "Omzet"
   - "Pemilik Usaha"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; target penjualan perlu disesuaikan dengan data dan kapasitas usaha."
 disclaimer: "Contoh pada artikel ini bersifat edukasi. Target tidak menjamin hasil dan perlu disesuaikan dengan kondisi serta kapasitas usaha Anda."
-updateSummary: "Memperluas panduan dengan kalkulator target transaksi, pembagian target berbasis pola hari, uji kapasitas, dan ritme evaluasi harian yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-rata-rata-transaksi"
   - "cara-membaca-omzet-harian"

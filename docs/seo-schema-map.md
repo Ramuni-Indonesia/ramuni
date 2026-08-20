@@ -24,7 +24,8 @@ Status: static SEO foundation is implemented. Public-domain validation, final sc
 | `/blog` | Generic page schema when indexable; supplied `CollectionPage` and `BreadcrumbList` |
 | `/blog/[slug]` | Supplied `BlogPosting` and `BreadcrumbList`; current fixtures are noindex |
 | `/blog/kategori/[slug]` | Supplied `CollectionPage` and `BreadcrumbList`; current thin categories are noindex |
-| `/blog/penulis/[slug]` | Supplied `ProfilePage` with an organization entity; current profile is noindex |
+| `/penulis` | Supplied `CollectionPage`, `ItemList`, and `BreadcrumbList`; indexable with the approved resource release gate |
+| `/blog/penulis/[slug]` | Supplied `ProfilePage` with a transparent editorial pen-name `Person` entity and `BreadcrumbList`; indexable with the approved resource release gate |
 | `/kalkulator/[slug]` | Supplied `WebApplication` and `BreadcrumbList`; generic page schema only after approval and indexing |
 
 Some industry, role, guide, glossary, and support pages currently render HTML breadcrumbs manually but do not yet emit `BreadcrumbList`. Product-like schema, offers, ratings, customer evidence, and FAQ schema are not inferred where they are not explicitly implemented. Do not claim otherwise in validation reports.

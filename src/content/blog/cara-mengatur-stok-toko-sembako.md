@@ -7,12 +7,12 @@ coverAlt: "Pemilik toko sembako memeriksa kartu stok di antara minyak goreng, te
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
 tags: ["Stok Toko Sembako", "Inventori Warung", "Belanja Grosir"]
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Dimas Wicaksana"
+authorSlug: "dimas-wicaksana"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -37,7 +37,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Contoh ini adalah kontrol operasional sederhana, bukan penerapan standar akuntansi formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pembelian, penyimpanan, keamanan pangan, dan pencatatan dengan kondisi barang serta ketentuan usaha Anda."
-updateSummary: "Memperluas panduan dengan kalkulator titik reorder, pemetaan barang prioritas, penerimaan, kas belanja, dan ritme pemeriksaan yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related: ["cara-mencatat-stok-masuk-dan-keluar", "cara-menentukan-stok-minimum-umkm", "cara-melakukan-stok-opname"]
 ctaType: "product"
 featured: false

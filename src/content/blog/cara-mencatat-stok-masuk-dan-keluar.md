@@ -14,8 +14,8 @@ tags:
   - "Stok Masuk"
   - "Stok Keluar"
   - "Pencatatan Persediaan"
-authorName: "Desk Operasional RAMUNI"
-authorSlug: "desk-operasional-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Alur pencatatan dalam artikel ini adalah contoh operasional sederhana, bukan kebijakan akuntansi wajib."
 disclaimer: "Format pencatatan perlu disesuaikan dengan proses usaha, satuan produk, dan kebijakan koreksi yang berlaku."
-updateSummary: "Byline dialihkan ke Desk Operasional RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan pencatatan tidak berubah."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "kartu-stok-sederhana-untuk-umkm"
   - "cara-melakukan-stok-opname"

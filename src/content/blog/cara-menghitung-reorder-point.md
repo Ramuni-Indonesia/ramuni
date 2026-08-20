@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko memeriksa rak persediaan dan daftar kebutuhan pesan ulan
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
   - "Reorder Point"
   - "Stok Minimum"
   - "Inventori UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Rumus dalam artikel ini adalah alat operasional sederhana dan bukan pengganti kebijakan akuntansi usaha."
 disclaimer: "Contoh angka hanya untuk pendidikan. Keputusan pembelian perlu mempertimbangkan umur simpan, arus kas, kesepakatan pemasok, dan kondisi fisik barang."
-updateSummary: "Merangkum panduan menjadi alur reorder point yang lebih praktis: pemakaian, lead time, stok pengaman, ketersediaan nyata, kalkulator, dan keputusan pesanan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menentukan-stok-minimum-umkm"
   - "cara-melakukan-stok-opname"

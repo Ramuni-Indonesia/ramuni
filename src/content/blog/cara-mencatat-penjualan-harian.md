@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko mencatat struk transaksi ke buku penjualan di meja kasir
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
 tags:
   - "Pencatatan Penjualan"
   - "Penjualan Harian"
   - "Operasional Toko"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan keuangan entitas mikro, kecil, dan menengah; pencatatan dan perpajakan perlu mengikuti kondisi serta ketentuan usaha."
 disclaimer: "Artikel ini membahas pencatatan operasional dasar dan bukan nasihat akuntansi atau pajak untuk kondisi usaha tertentu."
-updateSummary: "Memperluas panduan dengan pemeriksa penjualan bersih, cut-off harian, rekonsiliasi metode pembayaran, koreksi, dan ritme penutupan yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membaca-omzet-harian"
   - "cara-membandingkan-penjualan-mingguan"

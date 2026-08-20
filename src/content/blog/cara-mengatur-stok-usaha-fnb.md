@@ -15,8 +15,8 @@ tags:
   - "Stok F&B"
   - "Bahan Baku"
   - "Waste Makanan"
-authorName: "Desk Strategi Industri RAMUNI"
-authorSlug: "desk-strategi-industri-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -46,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Terapkan kebijakan pencatatan sesuai kebutuhan dan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Pengelolaan bahan pangan perlu disesuaikan dengan keamanan pangan, kondisi penyimpanan, pemasok, resep, dan aturan yang berlaku di lokasi usaha."
-updateSummary: "Byline dialihkan ke Desk Strategi Industri RAMUNI agar kepemilikan topik sesuai dengan konteks usaha makanan dan minuman. Isi, sumber, dan panduan operasional tidak berubah."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-reorder-point"
   - "apa-itu-lead-time-stok"

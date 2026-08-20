@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "Laba Kotor"
   - "Laba Bersih"
   - "Keuangan UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Alya Pramesti"
+authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait pencatatan entitas mikro, kecil, dan menengah. Artikel ini bukan petunjuk perlakuan akuntansi spesifik."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, pajak, atau hukum. Klasifikasi serta pelaporan transaksi perlu disesuaikan dengan kondisi usaha dan ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang membaca laba kotor dan laba bersih secara berbeda tanpa mengabaikan biaya, kas, dan bukti transaksi."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-laba-kotor"
   - "cara-menghitung-margin-laba-kotor"

@@ -8,14 +8,15 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Daftar Pembelian"
   - "Belanja Usaha"
   - "Stok Barang"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Bima Ardiansyah"
+authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Persetujuan dan bukti pembelian perlu disesuaikan dengan skala usaha."
 disclaimer: "Artikel ini bersifat edukatif. Keputusan pembelian perlu mempertimbangkan perjanjian, mutu, keselamatan, pajak, kas, dan kondisi usaha."
-updateSummary: "Naskah baru tentang membuat daftar pembelian barang yang menghubungkan kebutuhan stok, pemasok, dan penerimaan."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-membuat-checklist-pembelian-barang"
   - "cara-menghitung-reorder-point"

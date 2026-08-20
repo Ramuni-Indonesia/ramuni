@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha menyusun kartu pengunjung, percakapan, pesanan, dan tra
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
   - "Konversi Penjualan"
   - "Calon Pelanggan"
   - "Transaksi Selesai"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Citra Maheswari"
+authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Artikel ini menggunakan contoh metrik operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif. Konversi tidak mengukur seluruh kualitas usaha dan tidak menggantikan penilaian tentang layanan, etika komunikasi, biaya, atau kepuasan pelanggan."
-updateSummary: "Memperluas panduan dengan kalkulator konversi, pemeriksaan kohort dan kanal, mutu data, eksperimen layanan, serta ritme review yang dapat ditelusuri."
+updateSummary: "Byline diperbarui sesuai fokus editorial penulis. Isi, sumber, contoh, dan panduan artikel tidak berubah."
 related:
   - "cara-menghitung-pertumbuhan-penjualan"
   - "cara-membaca-penjualan-per-jam"
