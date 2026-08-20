@@ -22,7 +22,7 @@ export const editorialPeople: EditorialPerson[] = [
     name: 'Alya Pramesti',
     role: 'Penulis editorial keuangan UMKM',
     organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-keuangan-v2.webp',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-keuangan-v3.webp',
     photoAlt: 'Foto profil ilustratif untuk Alya Pramesti, nama pena editorial RAMUNI',
     shortBio:
       'Menulis panduan untuk membedakan omzet, biaya, HPP, laba, dan arus kas dengan contoh yang dapat diperiksa ulang.',
@@ -47,7 +47,7 @@ export const editorialPeople: EditorialPerson[] = [
     name: 'Bima Ardiansyah',
     role: 'Penulis editorial operasional UMKM',
     organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-operasional-v2.webp',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-operasional-v3.webp',
     photoAlt: 'Foto profil ilustratif untuk Bima Ardiansyah, nama pena editorial RAMUNI',
     shortBio:
       'Membuat panduan stok, pemeriksaan harian, pembelian, dan pencatatan operasional yang dapat diterapkan bertahap.',
@@ -72,7 +72,7 @@ export const editorialPeople: EditorialPerson[] = [
     name: 'Citra Maheswari',
     role: 'Penulis editorial penjualan dan pelanggan UMKM',
     organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-pelanggan-v2.webp',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-pelanggan-v3.webp',
     photoAlt: 'Foto profil ilustratif untuk Citra Maheswari, nama pena editorial RAMUNI',
     shortBio:
       'Membahas penjualan, catatan pelanggan, pembelian ulang, dan penggunaan data yang proporsional untuk UMKM.',
@@ -97,7 +97,7 @@ export const editorialPeople: EditorialPerson[] = [
     name: 'Dimas Wicaksana',
     role: 'Penulis editorial strategi usaha dan AI',
     organization: 'RAMUNI',
-    photo: '/website-original/editorial/authors/ramuni-author-desk-strategi-industri-v2.webp',
+    photo: '/website-original/editorial/authors/ramuni-author-desk-strategi-industri-v3.webp',
     photoAlt: 'Foto profil ilustratif untuk Dimas Wicaksana, nama pena editorial RAMUNI',
     shortBio:
       'Menghubungkan pertanyaan strategi usaha dan penggunaan AI dengan data yang perlu diperiksa sebelum mengambil langkah.',
