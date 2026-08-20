@@ -457,6 +457,16 @@ The current batch materially increases real product evidence and motion, but sev
 - R2 synchronized the changed chat script and stylesheet. Cloudflare initially served the prior unversioned objects, so only `scripts/lead-form.js` and `styles/floating-contact-chat.css` were purged after activation. The live CDN script now contains the new conversation runtime and WhatsApp message template.
 - No raster image generation or editing was required for this release. Disposable QA output was kept outside the repository and canonical build artifacts are removed after the documentation update; immutable releases and published Git commits remain preserved.
 
+## Production author-directory and editorial-date release, 2026-08-20
+
+- Published runtime commits: `50baa589799f` (transparent author directory, canonical routes, date correction, and distinct portraits) and `2661e5821e8e` (portrait delivery budget correction). The deployed production artifact is release `20260820T175925Z-2661e5821e8e`, SHA `2661e5821e8ede4a7beb986ceeac19f916b10ad9`, with artifact SHA-256 `72c844f26963d73f9dc9ae8be9a2096797753e4335021705db1c75a69a5fc46b`.
+- The author directory is canonical at `/blog/penulis/`; `/penulis`, `/penulis/`, and the generic retired byline resolve with one HTTP 301 to that URL. Individual profiles remain under `/blog/penulis/{slug}/`.
+- The four profiles use transparent editorial pen names and distinctly composed illustrative portraits. They do not claim personal degrees, employment history, or unverified credentials. Delivery uses 480×600 WebP v3 assets (16–24 KB each) to keep the directory's eager image payload within the 150 KB budget.
+- The byline migration no longer overwrites public article dates. The 95 artificial `updatedAt` values were removed, the earlier genuine updated dates were restored, and the public template only displays `Diperbarui` for a material stored update. Sitemap lastmod values follow the resulting real publication/update dates.
+- Node 22 Astro check and production build completed; post-CDN `npm run audit` passed all 261 generated HTML files. A first post-CDN audit correctly rejected the heavier v2 portrait payload before activation; the v3 optimization was committed, rebuilt, audited, and then deployed atomically.
+- Public production verification passed for `/healthz`, the author directory canonical, author sitemap membership, the v3 portrait CDN asset, and the article date contract. `/blog/penulis/` returns 200 with its self-canonical; legacy directory routes return HTTP 301; `pertanyaan-ai-untuk-analisis-penjualan` shows `Diterbitkan 9 Agustus 2026` without a false update label.
+- The active host had a stale Nginx redirect configuration that routed `/blog/penulis/` back to `/penulis/`. `scripts/install-production-ops.sh` was added and pushed in `69c2e1a`, with the Docker reload fallback corrected in `552b445`. It saves backups, installs the checked-in production vhost and security snippet, runs `nginx -t`, then reloads Nginx. The checked-in configuration is now active and the HTTP redirect/canonical checks pass.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
