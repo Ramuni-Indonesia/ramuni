@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-07-30 Asia/Jakarta
+Snapshot date: 2026-08-20 Asia/Jakarta
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -11,6 +11,16 @@ Canonical branch: `main`
 This is the current operational handoff for the RAMUNI Astro marketing and blog site. It must never contain plaintext PATs, API tokens, passwords, secret environment values, real lead PII, or tenant data.
 
 ## Current release
+
+### Published production batch — `172b727d76c0`
+
+- Production release `20260820T155249Z-172b727d76c0` is active at `https://www.ramuni.id/`; artifact SHA-256: `cc75c7784621162d55989d4ace0547229d7272b5e3e676ed4397e6ea708902a9`.
+- This is the first content pass explicitly prioritized with the supplied Search Console workbook. Its active data covers 9–18 August 2026. The workbook contains daily trend, query, landing-page, country, device, search-appearance, and filter tabs; it should be used as an early directional baseline, not as enough data to make broad ranking or backlink conclusions.
+- `/blog/contoh-laporan-penjualan-harian/` now directly serves the observed report-format intent with the revised title `Contoh Laporan Penjualan Harian untuk Pembukuan Toko`, an explanation of the difference between an omzet report and a full daily sales report, a contextual link to the daily-sales template, and a product bridge to Penjualan.
+- `/blog/biaya-tetap-dan-biaya-variabel/` now answers the observed comparison and example queries in its first paragraph, title, FAQ, and body. It connects the classification decision to the glossary terms and the break-even calculator before the product bridge to Keuangan.
+- `/blog/penyebab-selisih-stok-dan-cara-mengeceknya/` now explicitly covers `selisih stok opname` and `selisih data stok`, adds a matching FAQ, and links to the stock-opname template. The `frekuensi pembelian` glossary definition now begins with the direct definition and adds a relevant repeat-customer guide.
+- The three revised article records have truthful `updatedAt: 2026-08-20`; their public `BlogPosting.dateModified` and `sitemap-blog-posts.xml` entries publish `lastmod 2026-08-20`. All checked pages are public with `index,follow`, self-canonical `https://www.ramuni.id/...`, and the robots file advertises the root sitemap.
+- Verification passed: Node 22 Astro check (135 files, 0 errors/warnings/hints), 255-page production build and static SEO/accessibility/schema/internal-link/sitemap audit, `audit:keywords` (5,000 keywords across 100 mapped groups), and dependency audit with zero vulnerabilities. The atomic deploy rebuilt the exact committed SHA, left all 202 R2 objects unchanged, and passed health/canonical/robots/sitemap checks.
 
 ### Published production batch — `a59edd07f1b4`
 
