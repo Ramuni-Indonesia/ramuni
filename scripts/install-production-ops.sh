@@ -37,7 +37,7 @@ ramuni_reload_nginx() {
     sudo -n systemctl reload nginx
     return
   fi
-  /usr/bin/docker run --rm --network none --pid host --entrypoint /bin/sh -v /:/host nginx:alpine \
+  /usr/bin/docker run --rm --network none --pid host --privileged --entrypoint /bin/sh -v /:/host nginx:alpine \
     -c 'exec chroot /host /usr/sbin/nginx -s reload'
 }
 
