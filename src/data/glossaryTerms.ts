@@ -452,10 +452,10 @@ export const glossaryTerms: GlossaryTerm[] = [
   },
   {
     slug: 'frekuensi-pembelian',
-    title: 'Frekuensi pembelian',
+    title: 'Frekuensi Pembelian',
     short: 'Purchase frequency',
     category: 'Pelanggan',
-    definition: 'Rata-rata berapa kali pelanggan melakukan pembelian dalam periode tertentu.',
+    definition: 'Frekuensi pembelian adalah rata-rata berapa kali pelanggan melakukan pembelian dalam periode tertentu.',
     use: 'Untuk melihat seberapa sering pelanggan kembali bertransaksi',
     links: ['Jumlah transaksi', 'Pelanggan unik', 'Periode'],
     why: 'Membantu membedakan pertumbuhan yang berasal dari lebih banyak pelanggan dengan pertumbuhan karena pelanggan yang sama membeli lebih sering.',
@@ -472,6 +472,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     related: [
       { title: 'Arti pelanggan berulang', type: 'Kamus', href: '/kamus-bisnis/pelanggan-berulang/' },
       { title: 'Arti retensi pelanggan', type: 'Kamus', href: '/kamus-bisnis/retensi-pelanggan/' },
+      { title: 'Cara menghitung repeat customer rate', type: 'Panduan', href: '/blog/cara-menghitung-repeat-customer-rate/' },
       { title: 'Produk Pelanggan', type: 'Produk', href: '/produk/pelanggan/' },
     ],
   },

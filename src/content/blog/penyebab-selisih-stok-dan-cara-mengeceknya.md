@@ -1,17 +1,20 @@
 ---
-title: "Penyebab Selisih Stok dan Cara Mengeceknya"
-description: "Penyebab selisih stok dan cara mengeceknya: hitung ulang, periksa satuan, lokasi, penerimaan, penjualan, retur, barang rusak, transaksi tertunda, lalu buat koreksi dengan bukti."
-dek: "Selisih stok bukan sekadar angka yang perlu disamakan. Ia adalah petunjuk untuk memeriksa proses penerimaan, penjualan, lokasi, satuan, retur, dan kondisi barang sebelum saldo diubah."
+title: "Penyebab Selisih Stok Opname dan Cara Mengeceknya"
+description: "Penyebab selisih stok opname dan selisih data stok: hitung ulang, periksa satuan, lokasi, penerimaan, penjualan, retur, barang rusak, dan transaksi tertunda."
+dek: "Selisih stok opname adalah petunjuk untuk memeriksa penerimaan, penjualan, lokasi, satuan, retur, dan kondisi barang sebelum saldo diubah."
 cover: "/website-original/blog/generated/penyebab-selisih-stok-dan-cara-mengeceknya.webp"
 coverAlt: "Pemilik usaha membandingkan kartu hitungan rak dan kartu catatan stok dengan kaca pembesar, struk, dan kotak barang rusak"
 coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Selisih Stok"
+  - "Selisih Stok Opname"
+  - "Selisih Data Stok"
   - "Koreksi Persediaan"
   - "Audit Stok"
 authorName: "Tim Editorial RAMUNI"
@@ -33,6 +36,8 @@ faqs:
     answer: "Tidak. Selisih dapat berasal dari proses pencatatan, status barang, satuan, atau waktu transaksi. Pemeriksaan perlu dilakukan sebelum menyimpulkan penyebab atau mengambil tindakan terhadap orang tertentu."
   - question: "Kapan saldo stok boleh dikoreksi?"
     answer: "Setelah hitung ulang dan pemeriksaan bukti sesuai prosedur usaha. Catat alasan, jumlah, pihak yang meninjau, serta dampak pada barang rusak, retur, atau status lain yang relevan."
+  - question: "Apa penyebab umum terjadinya selisih saat stok opname?"
+    answer: "Penyebab yang sering muncul adalah hitungan atau satuan yang tidak sama, barang berada di lokasi lain, transaksi di sekitar waktu opname, penerimaan belum dicatat, retur atau barang rusak belum dipisahkan, dan koreksi lama yang tidak memiliki bukti."
 sources:
   - title: "PSAK 14 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
@@ -45,7 +50,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Sesuaikan kewenangan koreksi dan bukti dengan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Investigasi selisih, penanganan barang, dan koreksi persediaan harus mengikuti prosedur usaha, keselamatan, serta kewajiban yang berlaku."
-updateSummary: "Naskah baru tentang menemukan penyebab selisih stok dan membuat koreksi yang dapat ditelusuri."
+updateSummary: "Menambahkan istilah selisih stok opname dan selisih data stok, pertanyaan pemeriksaan, serta tautan template opname."
 related:
   - "cara-memilih-produk-untuk-stok-opname"
   - "cara-mencatat-stok-masuk-dan-keluar"
@@ -56,11 +61,11 @@ draft: false
 noindex: false
 ---
 
-Selisih stok terjadi ketika jumlah fisik tidak sama dengan saldo pada catatan. Perbedaan ini dapat membuat usaha membeli terlalu banyak, mengalami stok kosong, salah membaca biaya, atau kehilangan waktu saat melayani pelanggan. Namun selisih bukan bukti tunggal bahwa barang hilang atau seseorang melakukan kesalahan. Sering kali penyebabnya adalah satuan berbeda, penerimaan yang belum dicatat, retur yang bercampur, atau transaksi di sekitar waktu pemeriksaan.
+Selisih stok opname terjadi ketika jumlah fisik tidak sama dengan saldo pada catatan. Selisih data stok seperti ini dapat membuat usaha membeli terlalu banyak, mengalami stok kosong, salah membaca biaya, atau kehilangan waktu saat melayani pelanggan. Namun selisih bukan bukti tunggal bahwa barang hilang atau seseorang melakukan kesalahan. Sering kali penyebabnya adalah satuan berbeda, penerimaan yang belum dicatat, retur yang bercampur, atau transaksi di sekitar waktu pemeriksaan.
 
 Langkah yang aman adalah memperlakukan selisih sebagai pertanyaan yang perlu ditelusuri. Hitung ulang, periksa lokasi serta status barang, kemudian cocokkan dengan bukti pergerakan. Setelah penyebab cukup jelas, buat koreksi yang menyimpan jejak. Dengan cara ini, usaha tidak hanya menyamakan angka hari ini, tetapi juga memperbaiki proses yang menciptakan selisih.
 
-## Pastikan hitungan fisik dan satuan terlebih dahulu
+## Periksa selisih stok opname dan satuan terlebih dahulu
 
 Mulai dari barang dan lokasi yang sama dengan catatan. Hitung ulang, bila perlu oleh orang kedua untuk produk penting. Periksa apakah jumlah dibaca per unit, pak, dus, kilogram, atau satuan lain. Satu dus yang dicatat sebagai satu unit dapat menciptakan selisih besar walaupun tidak ada barang yang hilang.
 
@@ -74,6 +79,8 @@ Mulai dari barang dan lokasi yang sama dengan catatan. Hitung ulang, bila perlu 
 | Penghitungan ulang | Apakah selisih tetap muncul setelah cek kedua? |
 
 Jangan menghitung saat stok masih bergerak tanpa menandai barang masuk atau keluar. Jika toko tetap beroperasi, catat transaksi yang terjadi selama pemeriksaan agar produk tidak dihitung dua kali atau sama sekali tidak masuk dalam saldo.
+
+Gunakan [template stok opname](/template/stok-opname/) untuk menyamakan kolom hitung fisik, saldo catatan, selisih, alasan, dan peninjau. Template tidak menentukan penyebab selisih, tetapi mencegah bukti pemeriksaan tersebar di banyak catatan.
 
 ## Periksa lima jalur pergerakan barang
 

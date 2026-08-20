@@ -60,6 +60,18 @@ const articleResources = {
     primary: { label: 'Buka template HPP produk', href: '/template/hpp-produk/' },
     secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
   },
+  'contoh-laporan-penjualan-harian': {
+    title: 'Mulai dari format yang bisa dipakai setiap hari.',
+    text: 'Gunakan template rekap untuk memisahkan transaksi, diskon, retur, dan penjualan bersih sebelum menilai perubahan omzet.',
+    primary: { label: 'Buka template penjualan harian', href: '/template/penjualan-harian/' },
+    secondary: { label: 'Pelajari modul penjualan', href: '/produk/penjualan/' },
+  },
+  'biaya-tetap-dan-biaya-variabel': {
+    title: 'Uji asumsi biaya dengan satu perhitungan sederhana.',
+    text: 'Masukkan harga, biaya variabel, dan biaya periode untuk melihat batas penjualan yang perlu diperiksa bersama kapasitas usaha.',
+    primary: { label: 'Gunakan kalkulator titik impas', href: '/kalkulator/titik-impas/' },
+    secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
+  },
 } as const;
 const articleResource = articleResources[post.id as keyof typeof articleResources];
 const reviewerProfile = post.data.reviewerSlug ? getEditorialPerson(post.data.reviewerSlug) : undefined;
