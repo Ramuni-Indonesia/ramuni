@@ -645,7 +645,18 @@ const sitemapUrls = new Map();
 
 function sitemapLocPaths(xml, sourceFile) {
   const routes = [];
-  for (const match of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+  const entryPattern = /<sitemapindex\b/i.test(xml) ? /<sitemap>([\s\S]*?)<\/sitemap>/g : /<url>([\s\S]*?)<\/url>/g;
+  for (const entry of xml.matchAll(entryPattern)) {
+    const match = entry[1].match(/<loc>([^<]+)<\/loc>/);
+    if (!match) {
+      failures.push(`${sourceFile}: sitemap entry missing loc`);
+      continue;
+    }
+    const lastmod = entry[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    if (!lastmod) failures.push(`${sourceFile}: sitemap entry missing lastmod (${match[1]})`);
+    else if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod) || Number.isNaN(Date.parse(`${lastmod}T00:00:00Z`))) {
+      failures.push(`${sourceFile}: sitemap entry has invalid lastmod ${lastmod} (${match[1]})`);
+    }
     try {
       const loc = new URL(match[1]);
       if (loc.protocol !== 'https:') failures.push(`${sourceFile}: sitemap URL must use HTTPS (${loc.href})`);

@@ -7,6 +7,7 @@ import {
   SITEMAP_GROUPS,
   SITEMAP_INDEX_FILES,
   normalizeSitemapPath,
+  sitemapLastmodForPath,
   sitemapGroupForPath,
 } from './sitemap-policy.mjs';
 
@@ -223,7 +224,7 @@ export function ramuniSitemapArchitecture({ site, indexingEnabled }) {
             isBlogPost: hasSchemaType(html, 'BlogPosting'),
             // Articles keep their own content timestamp. Stable public pages
             // use the reviewed site-revision date, never the build clock.
-            lastmod: latestSchemaDate(html) || fallbackLastmod,
+            lastmod: latestSchemaDate(html) || sitemapLastmodForPath(route) || fallbackLastmod,
           });
         }
 
