@@ -8,19 +8,20 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Pelanggan Aktif"
   - "Retensi Pelanggan"
   - "CRM UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Desk Pelanggan RAMUNI"
+authorSlug: "desk-pelanggan-ramuni"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover."
 readingTime: "9 menit"
 takeaways:
   - "Pelanggan aktif ditentukan oleh aturan waktu transaksi yang sesuai dengan siklus pembelian usaha."
@@ -40,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Panduan operasional ini bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Penggunaan data pelanggan perlu mempertimbangkan tujuan, dasar pemrosesan, keamanan, pembatasan akses, retensi, serta kewajiban usaha yang berlaku."
-updateSummary: "Naskah baru tentang penetapan status pelanggan berdasarkan riwayat transaksi yang relevan."
+updateSummary: "Byline dialihkan ke Desk Pelanggan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan penggunaan data tidak berubah."
 related:
   - "cara-mengelompokkan-pelanggan-sederhana"
   - "cara-melihat-pelanggan-yang-kembali-belanja"

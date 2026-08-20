@@ -6,6 +6,7 @@ import PageHero from '../../components/PageHero.astro';
 import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
 import { releaseGates } from '../../config/release';
+import { pageLastmods } from '../../data/pageLastmods';
 
 type IndustryBrief = {
   fit: string[];
@@ -216,8 +217,20 @@ const supportingProducts = products.filter((product) => brief.modules.includes(p
 const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug));
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
+const canonicalPath = `/industri/${industry.slug}/`;
+const industryUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': industryUrl,
+  url: industryUrl,
+  name: `RAMUNI untuk ${industry.title}`,
+  description: `RAMUNI untuk konteks ${industry.title}: alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.`,
+  dateModified: pageLastmods.industry,
+  inLanguage: 'id-ID',
+};
 ---
-<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
   <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat contoh alur gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
 
@@ -247,7 +260,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
         id="signals"
         eyebrow={'Papan konteks ' + industry.title}
         title={headings.signals}
-        description="Pindah antar-lensa untuk melihat hubungan masalah, catatan, dan pertanyaan tanpa membaca seluruh halaman sekaligus."
+        description="Pilih satu sudut untuk melihat masalah, catatan pendukung, dan pertanyaan lanjutan tanpa mencari semuanya di halaman ini."
         panes={[
           { label: 'Masalah', title: 'Kenali kejadian yang perlu perhatian lebih dulu.', items: brief.pains },
           { label: 'Catatan', title: 'Periksa sumber data yang menjelaskan kejadian.', items: brief.dataNeeds },
@@ -308,7 +321,7 @@ const relatedResources = resources.filter((resource) => brief.resourceHrefs.incl
         headingId="cta-title"
         eyebrow={'Simulasi untuk ' + industry.title}
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
-        body="Bawa pertanyaan utama, cara menyiapkan data, dan alur fitur yang paling relevan untuk usaha Anda."
+        body="Bawa satu pertanyaan usaha. Kami tunjukkan data yang biasa diperiksa, contoh alurnya, dan fitur yang dapat dibahas lebih lanjut."
         primaryLabel="Lihat contoh alur gratis"
         primaryHref="/tour-produk-gratis/"
         secondaryLabel="Lihat Solusi"

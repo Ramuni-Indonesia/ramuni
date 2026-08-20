@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/LeadForm.astro';
+import { pageLastmods } from '../data/pageLastmods';
 import '../styles/contact-page.css';
 import '../styles/forms-conversion.css';
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
-const schema = {
+const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${siteOrigin}/#organization`,
@@ -17,6 +18,19 @@ const schema = {
     url: `${siteOrigin}/kontak/`,
   },
 };
+const schema = [
+  organizationSchema,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${siteOrigin}/kontak/#webpage`,
+    url: `${siteOrigin}/kontak/`,
+    name: 'Kontak RAMUNI',
+    description: 'Hubungi RAMUNI untuk membahas sesi coba gratis, pertanyaan produk, atau kerja sama tanpa mengirim data sensitif.',
+    dateModified: pageLastmods.contact,
+    inLanguage: 'id-ID',
+  },
+];
 const contactPaths = [
   ['Coba gratis', 'Lihat apakah RAMUNI cocok untuk alur usaha Anda.', 'Jenis usaha + masalah utama'],
   ['Pertanyaan produk', 'Tanya fitur, data yang dibutuhkan, atau alur yang paling sesuai.', 'Konteks singkat tanpa data sensitif'],
@@ -26,7 +40,7 @@ const contactPaths = [
 const safeBrief = [
   ['Boleh dikirim', 'Peran Anda, jenis usaha, masalah yang ingin dipahami.'],
   ['Jangan dikirim', 'Password, token, data pelanggan, transaksi rinci.'],
-  ['Langkah berikut', 'Tim mengarahkan ke sesi coba gratis, bantuan, keamanan, atau sumber yang tepat.'],
+  ['Langkah berikut', 'Tim akan mengarahkan Anda ke sesi coba gratis, bantuan, keamanan, atau sumber daya yang sesuai.'],
 ];
 ---
 <BaseLayout title="Kontak RAMUNI" description="Hubungi RAMUNI untuk membahas sesi coba gratis, pertanyaan produk, atau kerja sama tanpa mengirim data sensitif." schema={schema}>
@@ -34,8 +48,8 @@ const safeBrief = [
     <div class="container contact-conversion-page__layout">
       <div class="contact-conversion-page__intro reveal is-visible">
         <p class="section-kicker">Kontak RAMUNI</p>
-        <h1 id="contact-form">Ceritakan satu masalah usaha. Kami arahkan ke langkah yang tepat.</h1>
-        <p class="lede">Ceritakan kebutuhan Anda agar tim kami dapat mengarahkan ke sesi coba gratis, bantuan, keamanan, atau kerja sama yang sesuai.</p>
+        <h1 id="contact-form">Ceritakan satu masalah usaha. Kami bantu menentukan langkah awalnya.</h1>
+        <p class="lede">Sampaikan kebutuhan Anda agar tim RAMUNI dapat mengarahkan ke sesi coba gratis, bantuan, keamanan, atau pembahasan kerja sama.</p>
         <p class="contact-conversion-page__safe">Jangan sertakan data pelanggan, transaksi, kata sandi, atau token.</p>
         <nav class="contact-conversion-links" aria-label="Tautan bantuan kontak">
           <a href="/bantuan/">Pusat Bantuan</a>

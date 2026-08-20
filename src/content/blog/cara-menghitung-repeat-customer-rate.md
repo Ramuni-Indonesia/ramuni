@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko menyambut pelanggan yang kembali sambil meninjau catatan
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
   - "Repeat Customer"
   - "Retensi Pelanggan"
   - "CRM UMKM"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Desk Pelanggan RAMUNI"
+authorSlug: "desk-pelanggan-ramuni"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Artikel ini membahas pencatatan operasional sederhana dan bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Praktik data pelanggan perlu disesuaikan dengan dasar pemrosesan, pemberitahuan, keamanan, kebijakan retensi, dan kewajiban usaha yang berlaku."
-updateSummary: "Memperluas panduan dengan kalkulator pelanggan unik, batas cakupan data, cohort sederhana, pemeriksaan kualitas catatan, dan eksperimen layanan yang terukur."
+updateSummary: "Byline dialihkan ke Desk Pelanggan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan perhitungan tidak berubah."
 related:
   - "cara-melihat-pelanggan-yang-kembali-belanja"
   - "data-pelanggan-yang-perlu-dicatat-umkm"

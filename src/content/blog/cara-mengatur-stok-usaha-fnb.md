@@ -8,19 +8,20 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
   - "Stok F&B"
   - "Bahan Baku"
   - "Waste Makanan"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Desk Strategi Industri RAMUNI"
+authorSlug: "desk-strategi-industri-ramuni"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan stok, proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk konteks stok usaha makanan dan minuman, sumber, metadata, tautan internal, dan cover."
 readingTime: "11 menit"
 takeaways:
   - "Catat bahan baku dengan satuan resep, usia simpan, lokasi, dan status layak pakai agar angka stok memiliki arti operasional."
@@ -45,7 +46,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Terapkan kebijakan pencatatan sesuai kebutuhan dan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Pengelolaan bahan pangan perlu disesuaikan dengan keamanan pangan, kondisi penyimpanan, pemasok, resep, dan aturan yang berlaku di lokasi usaha."
-updateSummary: "Naskah baru tentang pengaturan stok bahan baku untuk usaha makanan dan minuman."
+updateSummary: "Byline dialihkan ke Desk Strategi Industri RAMUNI agar kepemilikan topik sesuai dengan konteks usaha makanan dan minuman. Isi, sumber, dan panduan operasional tidak berubah."
 related:
   - "cara-menghitung-reorder-point"
   - "apa-itu-lead-time-stok"

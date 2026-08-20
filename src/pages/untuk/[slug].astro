@@ -6,6 +6,7 @@ import PageHero from '../../components/PageHero.astro';
 import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, roles } from '../../data/site';
 import { releaseGates } from '../../config/release';
+import { pageLastmods } from '../../data/pageLastmods';
 
 const roleContext: Record<string, {
   workflow: string[];
@@ -127,8 +128,19 @@ const closingLinks = role.slug === 'kasir'
       { label: 'Lihat Peran Pemilik', href: '/untuk/pemilik-usaha/', className: 'button button--secondary' },
     ]
   : [{ label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' }];
+const roleUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': roleUrl,
+  url: roleUrl,
+  name: seo.title,
+  description: seo.description,
+  dateModified: pageLastmods.role,
+  inLanguage: 'id-ID',
+};
 ---
-<BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable}>
+<BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
   <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" visual="guide" visualScene={roleVisualScene} visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
 
@@ -219,7 +231,7 @@ const closingLinks = role.slug === 'kasir'
         headingId="role-cta-title"
         eyebrow={'Langkah berikutnya untuk ' + role.title}
         title={context.headings.closing}
-        body="Lihat alur yang relevan, periksa bukti, lalu bahas langkah yang paling sesuai untuk usaha Anda."
+        body="Lihat contoh pekerjaan untuk peran ini, periksa catatan pendukungnya, lalu bahas langkah yang dapat diterapkan di usaha Anda."
         primaryLabel={closingLinks[0]?.label}
         primaryHref={closingLinks[0]?.href}
         secondaryLabel={closingLinks[1]?.label}

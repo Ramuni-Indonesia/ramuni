@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/LeadForm.astro';
+import { pageLastmods } from '../data/pageLastmods';
 import '../styles/product-tour.css';
 
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
@@ -10,6 +11,7 @@ const schema = {
   name: 'Coba alur RAMUNI gratis sesuai kebutuhan usaha Anda',
   url: new URL('/tour-produk-gratis/', siteOrigin).toString(),
   description: 'Pilih satu masalah bisnis untuk mendapatkan contoh alur RAMUNI yang relevan tanpa menyiapkan data bisnis.',
+  dateModified: pageLastmods.tour,
   inLanguage: 'id-ID',
 };
 ---

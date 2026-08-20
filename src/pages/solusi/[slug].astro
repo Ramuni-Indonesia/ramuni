@@ -13,6 +13,7 @@ import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { solutionNarratives } from '../../data/pageNarratives';
+import { pageLastmods } from '../../data/pageLastmods';
 import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
 
@@ -46,8 +47,22 @@ const faqSchema = {
     acceptedAnswer: { '@type': 'Answer', text: item.answer },
   })),
 };
+const solutionUrl = new URL(`/solusi/${solution.slug}/`, Astro.site || Astro.url.origin).toString();
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': solutionUrl,
+    url: solutionUrl,
+    name: `${solution.title} | RAMUNI`,
+    description: solution.metaDescription,
+    dateModified: pageLastmods.solution,
+    inLanguage: 'id-ID',
+  },
+  faqSchema,
+];
 ---
-<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={faqSchema}>
+<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`} data-solution={solution.slug} data-cms-snapshot={cmsSnapshotId}>
     <section class="sd-hero" aria-labelledby="solution-title">
       <div class="container sd-hero__layout">
@@ -75,7 +90,7 @@ const faqSchema = {
           <header class="sd-problem__heading reveal">
             <p class="section-kicker">Kenali masalahnya</p>
             <h2 id="problem-title">{narrative?.symptomHeading || 'Apakah ini terjadi di usaha Anda?'}</h2>
-            <p>Cocokkan gejala dengan catatan yang tersedia. Satu tanda belum cukup untuk menyimpulkan penyebab.</p>
+            <p>Cocokkan gejala dengan catatan yang tersedia. Periksa lebih dari satu tanda sebelum menentukan penyebabnya.</p>
           </header>
           <ol class="sd-symptoms">
             {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
@@ -102,7 +117,7 @@ const faqSchema = {
         <header class="sd-section-heading reveal">
           <p class="section-kicker">Cara kerja</p>
           <h2 id="workflow-title">{narrative?.comparisonHeading || 'Dari catatan usaha ke keputusan yang tetap Anda pegang.'}</h2>
-          <p>Anda tetap bisa melihat periode dan angka yang dipakai pada setiap tahap.</p>
+          <p>Setiap tahap memperlihatkan periode dan angka yang dipakai sebelum tim memilih tindakan.</p>
         </header>
         <SolutionWorkflow steps={solution.workflow} />
       </div>
@@ -117,7 +132,7 @@ const faqSchema = {
         <header class="reveal">
           <p class="section-kicker">Alur yang terhubung</p>
           <h2 id="capabilities-title">{narrative?.moduleHeading || 'Modul yang membantu alur ini.'}</h2>
-          <p>Buka modul yang relevan, lalu pilih konteks usaha untuk melihat titik pemeriksaan yang berbeda.</p>
+          <p>Buka modul yang berkaitan dengan masalahnya, lalu lihat titik pemeriksaan sesuai jenis usaha Anda.</p>
         </header>
         <div class="sd-capabilities__workspace">
           <div class="sd-capability-list">
@@ -134,7 +149,7 @@ const faqSchema = {
             ))}
           </div>
           <aside class="sd-context-rail" aria-labelledby="context-title">
-            <div><span>Konteks usaha</span><h3 id="context-title">{narrative?.industryHeading || 'Masalah yang sama muncul dengan ritme berbeda.'}</h3></div>
+            <div><span>Konteks usaha</span><h3 id="context-title">{narrative?.industryHeading || 'Jenis usaha menentukan catatan mana yang perlu diperiksa lebih dulu.'}</h3></div>
             <nav class="sd-industry-list sd-industry-list--compact" aria-label="Contoh berdasarkan industri">
               {solution.industries.map((industry, index) => (
                 <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat konteks</b></a>

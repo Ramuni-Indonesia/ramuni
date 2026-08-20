@@ -6,13 +6,14 @@ import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
+import { pageLastmods } from '../data/pageLastmods';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
 const productDashboard = dashboardVisuals.productOverview;
 
 const faq = [
-  ['Apakah RAMUNI adalah ERP?', 'RAMUNI bukan ERP rumit. Fokusnya membantu UMKM memahami kondisi bisnis dan memilih langkah berikutnya.'],
+  ['Apakah RAMUNI adalah ERP?', 'RAMUNI membantu UMKM membaca kondisi bisnis dan memilih langkah berikutnya. Fokusnya ada pada penjualan, stok, kas, pelanggan, serta bukti di balik perubahan angka.'],
   ['Apakah AI menjalankan transaksi otomatis?', 'Tidak. AI menjelaskan konteks. Tindakan tetap diputuskan manusia.'],
   ['Data apa yang dibutuhkan?', 'Mulai dari catatan operasional yang tersedia. Jalur input dijelaskan sebelum proses dimulai.'],
   ['Apakah saya bisa langsung mencoba?', 'Ya. Ajukan sesi coba gratis, lalu tim kami akan membantu menyiapkan akses yang sesuai.'],
@@ -39,6 +40,7 @@ const organizationId = `${siteOrigin}/#organization`;
 const schema = [
   { '@context': 'https://schema.org', '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', url: siteOrigin, logo: `${siteOrigin}/brand/ramuni-mark-color.webp`, description: 'Aplikasi bisnis untuk membantu UMKM memahami penjualan, stok, keuangan, dan pelanggan.' },
   { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${siteOrigin}/#website`, url: siteOrigin, name: 'RAMUNI', inLanguage: 'id-ID', publisher: { '@id': organizationId } },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${siteOrigin}/#webpage`, url: siteOrigin, name: 'Aplikasi Bisnis UMKM: Penjualan, Stok, dan Keuangan | RAMUNI', dateModified: pageLastmods.homepage, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'RAMUNI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: 'Aplikasi bisnis UMKM untuk membaca perubahan penjualan, stok, keuangan, dan pelanggan dengan bukti yang dapat diperiksa.', offers: undefined },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
 ];
@@ -61,7 +63,7 @@ const schema = [
   <section class="section problem-chapter chapter" data-chapter="Masalah">
     <div class="container problem-landscape">
       <header class="problem-landscape__head reveal">
-        <p class="section-kicker">Satu angka jarang bercerita lengkap.</p>
+        <p class="section-kicker">Satu angka jarang cukup untuk menjelaskan perubahan.</p>
         <h2>Lihat hubungan yang sulit terbaca saat data masih terpisah.</h2>
         <p>Pilih situasi yang paling dekat dengan usaha Anda. Contoh dashboard akan menunjukkan konteks yang perlu dibuka, bukan memberi jawaban tanpa dasar.</p>
       </header>
@@ -117,7 +119,7 @@ const schema = [
   <section id="dashboard-product-proof" class="section dashboard-stage dashboard-stage--editorial chapter" data-chapter="Dashboard">
     <div class="container dashboard-gallery">
       <header class="dashboard-gallery__head reveal">
-        <div><p class="section-kicker">Bukan sekadar grafik</p><h2>Pertanyaan datang dulu.</h2></div>
+        <div><p class="section-kicker">Mulai dari pertanyaan usaha</p><h2>Pertanyaan datang dulu.</h2></div>
         <div><strong>Angka menjelaskan setelahnya.</strong><p>RAMUNI merangkum perubahan dalam bahasa sehari-hari, lalu membuka konteks yang perlu Anda periksa.</p><a class="text-link" href="/produk/dashboard-bisnis/">Pelajari Dashboard Bisnis</a></div>
       </header>
       <figure class="dashboard-product-shot reveal">
@@ -159,7 +161,7 @@ const schema = [
                 <li><span>04</span><strong>Pemeriksaan</strong></li>
               </ol>
             </div>
-            <figcaption><strong>Data masuk. Insight muncul.</strong><span>Setiap kesimpulan tetap punya konteks.</span></figcaption>
+            <figcaption><strong>Jawaban menunjukkan dasar bacanya.</strong><span>Setiap kesimpulan tetap punya konteks.</span></figcaption>
           </figure>
         </div>
       </div>

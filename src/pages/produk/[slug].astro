@@ -13,6 +13,7 @@ import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
+import { pageLastmods } from '../../data/pageLastmods';
 import { listProductRouteModels, type ProductRouteModel } from '../../content-gateway/site-records';
 import { releaseGates } from '../../config/release';
 import '../../styles/product-detail.css';
@@ -109,6 +110,7 @@ const structuredData = [
     url: productUrl,
     name: seo?.title || `${product.title} RAMUNI`,
     description: seo?.description || detail.heroLead,
+    dateModified: pageLastmods.product,
     inLanguage: 'id-ID',
     isPartOf: {
       '@type': 'WebSite',
@@ -161,7 +163,7 @@ const structuredData = [
             <a class="button button--primary" href={tourHref}>Lihat contoh alur gratis</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
-          <p class="pd-hero__availability">Mulai dari satu kebutuhan, lalu lihat bagaimana data, alur kerja, dan tindak lanjutnya saling terhubung.</p>
+          <p class="pd-hero__availability">Bawa satu kebutuhan. Periksa contoh data, alur kerja, dan tindak lanjutnya sebelum membahas akses.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />
@@ -175,7 +177,7 @@ const structuredData = [
           <header>
             <span>Situasi awal</span>
             <h2 id="product-problem-title">{narrative?.problemHeading || 'Masalahnya terlihat sederhana. Jejaknya sering tersebar.'}</h2>
-            <p>Tiga situasi ini sering muncul sebagai satu masalah. Buka satu per satu agar penyebabnya tidak tercampur.</p>
+            <p>Tiga situasi ini dapat muncul bersamaan. Periksa satu per satu agar tim tidak memakai satu dugaan untuk semua penyebab.</p>
           </header>
           <ol>
             {detail.problems.map((problem, index) => (
@@ -220,7 +222,7 @@ const structuredData = [
         </div>
         <header class="pd-section-heading">
           <h2 id="product-benefits-title">{narrative?.featureHeading || 'Dari informasi ke keputusan yang lebih jelas.'}</h2>
-          <p>Setiap manfaat menjawab satu hal: apa artinya bagi pekerjaan Anda.</p>
+          <p>Setiap bagian menjelaskan apa yang dapat diperiksa atau dilakukan setelahnya.</p>
         </header>
         <div class="pd-benefit-grid">
           {detail.benefits.map((benefit, index) => (
@@ -239,7 +241,7 @@ const structuredData = [
       <div class="container pd-workflow__layout">
         <header>
           <h2 id="product-workflow-title">{narrative?.workflowHeading || 'Empat langkah dari data ke tindakan.'}</h2>
-          <p>Urutannya tetap dapat diperiksa pada setiap tahap.</p>
+          <p>Setiap tahap menunjukkan data yang dipakai dan alasan untuk melangkah berikutnya.</p>
         </header>
         <ol class="pd-workflow__steps reveal">
           {detail.workflow.map((step, index) => (
@@ -272,7 +274,7 @@ const structuredData = [
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">
         <div class="pd-related__modules">
-          <h2 id="product-related-title">Lanjutkan dari catatan yang sama.</h2>
+          <h2 id="product-related-title">Lanjutkan dari catatan yang masih berkaitan.</h2>
           <div>
             {relatedProducts.map((related, index) => (
               <a href={`/produk/${related.slug}/`}>
@@ -310,7 +312,7 @@ const structuredData = [
           headingId="product-next-step-title"
           eyebrow="Contoh alur gratis"
           title={detail.closing}
-          body={`${detail.outcome} Lihat cara kerja ${product.title}, lalu bahas fitur yang paling relevan sebelum akses.`}
+          body={`${detail.outcome} Lihat cara kerja ${product.title} pada contoh aman, lalu bahas fitur yang sesuai dengan masalah yang Anda bawa.`}
           primaryLabel="Lihat contoh alur gratis"
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Produk"

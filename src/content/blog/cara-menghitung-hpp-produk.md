@@ -7,15 +7,15 @@ coverAlt: "Pemilik usaha menghitung biaya bahan, kemasan, dan HPP produk di meja
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
   - "HPP Produk"
   - "Biaya Produksi"
   - "Harga Jual"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Desk Keuangan RAMUNI"
+authorSlug: "desk-keuangan-ramuni"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -41,7 +41,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; contoh HPP ini bersifat edukatif dan bukan nasihat akuntansi atau pajak."
 disclaimer: "Perhitungan HPP perlu disesuaikan dengan proses produksi, pembukuan, perpajakan, dan kondisi usaha Anda. Bila diperlukan, konsultasikan dengan tenaga profesional."
-updateSummary: "Merangkum panduan menjadi alur HPP yang lebih praktis: komponen biaya, rumus produk dagang, SKU, koreksi stok, margin, serta tautan ke kalkulator dan template kerja."
+updateSummary: "Byline dialihkan ke Desk Keuangan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan perhitungan tidak berubah."
 related:
   - "produk-terlaris-belum-tentu-paling-untung"
   - "cara-mengukur-dampak-diskon-terhadap-laba"

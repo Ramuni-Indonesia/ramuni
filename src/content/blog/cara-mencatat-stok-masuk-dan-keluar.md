@@ -7,15 +7,15 @@ coverAlt: "Pemilik toko mencatat barang masuk dan barang keluar pada daftar pers
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
   - "Stok Masuk"
   - "Stok Keluar"
   - "Pencatatan Persediaan"
-authorName: "Tim Editorial RAMUNI"
-authorSlug: "tim-editorial-ramuni"
+authorName: "Desk Operasional RAMUNI"
+authorSlug: "desk-operasional-ramuni"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-10
@@ -40,7 +40,7 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Alur pencatatan dalam artikel ini adalah contoh operasional sederhana, bukan kebijakan akuntansi wajib."
 disclaimer: "Format pencatatan perlu disesuaikan dengan proses usaha, satuan produk, dan kebijakan koreksi yang berlaku."
-updateSummary: "Merangkum panduan menjadi alur pencatatan stok yang lebih praktis: penerimaan, status barang, satuan, rekonsiliasi, retur, koreksi, dan tindak lanjut pembelian."
+updateSummary: "Byline dialihkan ke Desk Operasional RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan pencatatan tidak berubah."
 related:
   - "kartu-stok-sederhana-untuk-umkm"
   - "cara-melakukan-stok-opname"
