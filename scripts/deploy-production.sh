@@ -10,12 +10,30 @@ ramuni_origin=${RAMUNI_PRODUCTION_ORIGIN:-https://www.ramuni.id}
 ramuni_asset_base_url=${RAMUNI_ASSET_BASE_URL:-https://assets-staging.ramuni.id}
 ramuni_r2_env_file=${RAMUNI_R2_ENV_FILE:-/home/meetsin/.config/ramuni/r2.env}
 ramuni_lead_endpoint=${RAMUNI_PUBLIC_LEAD_ENDPOINT:-https://crm.ramuni.id/v1/public/lead-submissions}
+ramuni_claim_pages_approved=${RAMUNI_PUBLIC_CLAIM_PAGES_APPROVED:-false}
+ramuni_resource_review_approved=${RAMUNI_PUBLIC_RESOURCE_REVIEW_APPROVED:-false}
+ramuni_calculator_review_approved=${RAMUNI_PUBLIC_CALCULATOR_REVIEW_APPROVED:-false}
+ramuni_security_review_approved=${RAMUNI_PUBLIC_SECURITY_REVIEW_APPROVED:-false}
 ramuni_release_id="$(date -u +%Y%m%dT%H%M%SZ)-$(git -C "$ramuni_repo_dir" rev-parse --short=12 HEAD)"
 ramuni_release_dir="$ramuni_deploy_root/releases/$ramuni_release_id"
 ramuni_current_link="$ramuni_deploy_root/current"
 ramuni_previous_target=""
 ramuni_switched=0
 ramuni_privileged_mode=""
+
+for ramuni_gate_value in \
+  "$ramuni_claim_pages_approved" \
+  "$ramuni_resource_review_approved" \
+  "$ramuni_calculator_review_approved" \
+  "$ramuni_security_review_approved"; do
+  case "$ramuni_gate_value" in
+    true|false) ;;
+    *)
+      echo "Public release gates must be true or false." >&2
+      exit 2
+      ;;
+  esac
+done
 
 if sudo -n true >/dev/null 2>&1; then
   ramuni_privileged_mode=sudo
@@ -93,6 +111,10 @@ PUBLIC_INDEXING_ENABLED=true \
 PUBLIC_SITE_URL="$ramuni_origin" \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
 PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
+PUBLIC_CLAIM_PAGES_APPROVED="$ramuni_claim_pages_approved" \
+PUBLIC_RESOURCE_REVIEW_APPROVED="$ramuni_resource_review_approved" \
+PUBLIC_CALCULATOR_REVIEW_APPROVED="$ramuni_calculator_review_approved" \
+PUBLIC_SECURITY_REVIEW_APPROVED="$ramuni_security_review_approved" \
 npm run build
 PUBLIC_SITE_URL="$ramuni_origin" \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
@@ -102,6 +124,10 @@ PUBLIC_INDEXING_ENABLED=true \
 PUBLIC_SITE_URL="$ramuni_origin" \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
 PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
+PUBLIC_CLAIM_PAGES_APPROVED="$ramuni_claim_pages_approved" \
+PUBLIC_RESOURCE_REVIEW_APPROVED="$ramuni_resource_review_approved" \
+PUBLIC_CALCULATOR_REVIEW_APPROVED="$ramuni_calculator_review_approved" \
+PUBLIC_SECURITY_REVIEW_APPROVED="$ramuni_security_review_approved" \
 npm run audit
 npm audit --audit-level=high
 
@@ -157,6 +183,18 @@ for attempt in 1 2 3 4 5; do
     grep -Fxq 'Sitemap: https://www.ramuni.id/sitemap.xml' <<<"$ramuni_robots"
     ramuni_sitemap_index=$(ramuni_request "$ramuni_origin/sitemap.xml")
     grep -Fq 'sitemap-blog.xml' <<<"$ramuni_sitemap_index"
+    if [[ $ramuni_claim_pages_approved == true ]]; then
+      ramuni_products_sitemap=$(ramuni_request "$ramuni_origin/sitemap-products.xml")
+      grep -Fq '<loc>https://www.ramuni.id/produk/inventori/</loc>' <<<"$ramuni_products_sitemap"
+      ramuni_product_page=$(ramuni_request "$ramuni_origin/produk/inventori/")
+      grep -Fqi '<meta name="robots" content="index,follow">' <<<"$ramuni_product_page"
+    fi
+    if [[ $ramuni_resource_review_approved == true ]]; then
+      ramuni_authors_sitemap=$(ramuni_request "$ramuni_origin/sitemap-blog-authors.xml")
+      grep -Fq '<loc>https://www.ramuni.id/blog/penulis/desk-keuangan-ramuni/</loc>' <<<"$ramuni_authors_sitemap"
+      ramuni_author_page=$(ramuni_request "$ramuni_origin/blog/penulis/desk-keuangan-ramuni/")
+      grep -Fqi '<meta name="robots" content="index,follow">' <<<"$ramuni_author_page"
+    fi
     ramuni_blog_sitemap=$(ramuni_request "$ramuni_origin/sitemap-blog-posts.xml")
     for slug in cara-menghitung-food-cost-usaha-makanan cara-mengatur-stok-bahan-baku-bakery contoh-laporan-kas-harian-kedai-makanan; do
       grep -Fq "<loc>https://www.ramuni.id/blog/$slug/</loc><lastmod>2026-08-20</lastmod>" <<<"$ramuni_blog_sitemap"
