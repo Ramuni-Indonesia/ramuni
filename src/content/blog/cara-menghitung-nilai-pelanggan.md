@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Nilai Pelanggan Sederhana untuk UMKM"
-description: "Cara menghitung nilai pelanggan sederhana: pilih periode, hitung nilai belanja rata-rata, frekuensi, dan hubungan pelanggan dengan definisi yang jujur, lalu gunakan hasilnya tanpa"
+description: "Cara menghitung nilai pelanggan sederhana: pilih periode, hitung belanja rata-rata dan frekuensi, lalu gunakan hasilnya sebagai sinyal evaluasi yang jujur."
 dek: "Nilai pelanggan membantu melihat pola kontribusi pelanggan dari data transaksi yang tersedia. Angka ini adalah alat belajar, bukan alasan untuk memperlakukan pelanggan sebagai sekadar target angka."
 cover: "/website-original/blog/generated/cara-menghitung-nilai-pelanggan.webp"
 coverAlt: "Pemilik usaha menyusun token pelanggan dan paket pesanan sepanjang jalur hubungan pelanggan dengan bentuk hati abstrak dan kalkulator"

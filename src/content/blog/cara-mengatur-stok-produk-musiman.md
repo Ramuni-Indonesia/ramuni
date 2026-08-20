@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengatur Stok Produk Musiman tanpa Menumpuk Sisa"
-description: "Cara mengatur stok produk musiman: gunakan data periode sebanding, pisahkan produk dan kanal, rencanakan bertahap berdasarkan lead time serta kas, lalu pantau penjualan dan sisa"
+description: "Cara mengatur stok produk musiman: gunakan periode sebanding, pisahkan produk dan kanal, rencanakan bertahap berdasarkan lead time serta kas, lalu pantau sisa."
 dek: "Produk musiman dapat menaikkan permintaan dalam waktu singkat, tetapi pola tahun lalu bukan jaminan untuk tahun ini. Rencana bertahap membantu usaha menambah kesiapan tanpa mengunci modal pada stok berlebih."
 cover: "/website-original/blog/generated/cara-mengatur-stok-produk-musiman.webp"
 coverAlt: "Pemilik usaha menata kotak produk musiman, kartu kalender abstrak, grafik tren, peti pemasok, dan rak cadangan"

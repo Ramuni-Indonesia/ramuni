@@ -14,6 +14,10 @@ const articleCalculatorRegistry = {
   'cara-mengatur-stok-toko-sembako': 'reorder-stok',
   'cara-menghitung-titik-impas-usaha': 'titik-impas',
   'cara-menghitung-repeat-customer-rate': 'repeat-customer-rate',
+  'cara-melihat-pelanggan-yang-kembali-belanja': 'repeat-customer-rate',
+  'cara-menghitung-food-cost-usaha-makanan': 'hpp-per-porsi',
+  'cara-mengatur-stok-bahan-baku-bakery': 'reorder-stok',
+  'contoh-laporan-kas-harian-kedai-makanan': 'arus-kas-bersih',
   'cara-menghitung-hpp-usaha-kuliner': 'hpp-per-porsi',
   'cara-menghitung-safety-stock': 'safety-stock',
   'cara-menghitung-harga-jual-produk': 'harga-jual',
@@ -26,6 +30,7 @@ const articleCalculatorRegistry = {
   'cara-menghitung-margin-laba-kotor': 'margin-laba-kotor',
   'cara-mengukur-dampak-diskon-terhadap-laba': 'laba-setelah-diskon',
   'cara-membaca-omzet-harian': 'capaian-target-omzet',
+  'cara-mengatasi-omzet-turun': 'perubahan-omzet',
   'cara-membaca-penjualan-per-produk': 'margin-laba-kotor',
   'cara-membandingkan-penjualan-mingguan': 'perubahan-omzet',
 } as const satisfies Partial<Record<string, CalculatorKey>>;

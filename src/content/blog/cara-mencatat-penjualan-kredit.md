@@ -1,6 +1,6 @@
 ---
-title: "Cara Mencatat Penjualan Kredit agar Piutang dan Kas"
-description: "Cara mencatat penjualan kredit: buat bukti transaksi, catat nilai dan jatuh tempo, pisahkan piutang dari kas, rekam penerimaan serta koreksi, lalu tinjau umur piutang secara"
+title: "Cara Mencatat Penjualan Kredit agar Piutang Terkendali"
+description: "Cara mencatat penjualan kredit: buat bukti transaksi, catat nilai dan jatuh tempo, pisahkan piutang dari kas, rekam penerimaan, lalu tinjau umur piutang."
 dek: "Penjualan kredit dapat mendukung hubungan usaha, tetapi transaksi yang belum dibayar bukan kas. Catatan yang konsisten membantu pemilik melihat kewajiban pelanggan, jatuh tempo, dan dampaknya pada arus uang."
 cover: "/website-original/blog/generated/cara-mencatat-penjualan-kredit.webp"
 coverAlt: "Pemilik usaha mengatur kartu tagihan abstrak, kalender jatuh tempo, bukti pembayaran, baki kas, dan folder pesanan"

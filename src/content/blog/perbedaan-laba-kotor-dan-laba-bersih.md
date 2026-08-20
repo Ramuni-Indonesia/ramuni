@@ -1,6 +1,6 @@
 ---
 title: "Perbedaan Laba Kotor dan Laba Bersih untuk UMKM"
-description: "Pahami perbedaan laba kotor dan laba bersih: komponen perhitungan, contoh sederhana, cara membaca biaya operasi, serta kesalahan umum agar pemilik usaha tidak menyimpulkan hasil"
+description: "Pahami perbedaan laba kotor dan laba bersih: komponen perhitungan, contoh sederhana, biaya operasi, dan kesalahan umum saat membaca hasil usaha."
 dek: "Laba kotor menunjukkan selisih penjualan dan harga pokok. Laba bersih melihat hasil setelah biaya serta unsur lain yang relevan dicatat. Keduanya menjawab pertanyaan yang berbeda."
 cover: "/website-original/blog/generated/perbedaan-laba-kotor-dan-laba-bersih.webp"
 coverAlt: "Dua wadah transparan berisi balok hijau dan biru dengan token biaya terracotta, kalkulator, serta bentuk bukti transaksi tanpa tulisan"

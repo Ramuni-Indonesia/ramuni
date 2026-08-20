@@ -1,6 +1,6 @@
 ---
 title: "Contoh Catatan Pengeluaran Usaha yang Mudah Dipakai"
-description: "Contoh catatan pengeluaran usaha untuk UMKM: kolom wajib, kategori biaya, cara menyimpan bukti, rekonsiliasi kas, dan langkah mengubah catatan harian menjadi ringkasan yang dapat"
+description: "Contoh catatan pengeluaran usaha untuk UMKM: kolom wajib, kategori biaya, penyimpanan bukti, rekonsiliasi kas, dan cara membuat ringkasan harian."
 dek: "Catatan pengeluaran yang berguna tidak perlu rumit. Yang penting, setiap biaya memiliki tanggal, tujuan, kategori, bukti, dan status pembayaran yang dapat ditelusuri."
 cover: "/website-original/blog/generated/contoh-catatan-pengeluaran-usaha.webp"
 coverAlt: "Pemilik usaha meninjau buku pengeluaran, struk belanja, kalkulator, dan amplop kategori biaya di meja kerja"

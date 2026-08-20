@@ -1,6 +1,6 @@
 ---
-title: "Cara Mengelola Stok Produk Varian agar Tidak Salah"
-description: "Cara mengelola stok produk varian: buat SKU dan atribut yang konsisten, pisahkan lokasi serta status, catat pergerakan tiap varian, baca penjualan per varian, lalu tinjau stok mati"
+title: "Cara Mengelola Stok Produk Varian dengan Rapi"
+description: "Cara mengelola stok produk varian: buat SKU konsisten, pisahkan lokasi dan status, catat pergerakan tiap varian, lalu tinjau penjualan serta stok mati."
 dek: "Total stok satu produk dapat terlihat aman padahal varian yang dicari pelanggan sudah habis. Catatan per ukuran, warna, kemasan, atau model membantu usaha melihat persediaan yang benar-benar tersedia."
 cover: "/website-original/blog/generated/cara-mengelola-stok-produk-varian.webp"
 coverAlt: "Pemilik usaha memeriksa beberapa varian kotak produk berwarna dan berukuran berbeda yang tersusun di tray terpisah"

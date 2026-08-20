@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Laporan Shift Kasir yang Rapi"
-description: "Cara membuat laporan shift kasir: catat kas awal dan akhir, transaksi, pembayaran non tunai, pembatalan, serah-terima, serta temuan yang perlu ditindaklanjuti agar operasi toko"
+description: "Cara membuat laporan shift kasir: catat kas awal dan akhir, transaksi, pembayaran non tunai, pembatalan, serah-terima, dan temuan tindak lanjut."
 dek: "Laporan shift kasir merangkum apa yang terjadi selama satu giliran kerja. Format yang ringkas membantu penerima shift mengetahui kas, transaksi tertunda, dan tindakan yang tidak boleh terlewat."
 cover: "/website-original/blog/generated/cara-membuat-laporan-shift-kasir.webp"
 coverAlt: "Ilustrasi meja serah-terima shift kasir dengan baki kas, amplop tersegel, clipboard kosong, struk, terminal pembayaran, dan dua area kasir"

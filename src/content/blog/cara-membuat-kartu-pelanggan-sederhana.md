@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Kartu Pelanggan Sederhana untuk Usaha"
-description: "Cara membuat kartu pelanggan sederhana: tentukan tujuan, kumpulkan data minimum, catat riwayat transaksi seperlunya, atur akses dan retensi, lalu tinjau manfaatnya tanpa"
+description: "Cara membuat kartu pelanggan sederhana: tentukan tujuan, kumpulkan data minimum, catat riwayat seperlunya, atur akses dan retensi, lalu tinjau manfaatnya."
 dek: "Kartu pelanggan yang baik menyimpan informasi minimum untuk memberi layanan yang lebih konsisten. Mulai dari tujuan yang jelas, bukan dari keinginan mengumpulkan sebanyak mungkin data."
 cover: "/website-original/blog/generated/cara-membuat-kartu-pelanggan-sederhana.webp"
 coverAlt: "Pemilik usaha menyusun kartu profil pelanggan tanpa tulisan ke dalam kotak tertata dengan ikon privasi dan kunci"

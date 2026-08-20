@@ -17,8 +17,16 @@ const categories = blogCategories
   .map((category) => ({ ...category, count: posts.filter((post) => post.data.categorySlug === category.slug).length }))
   .filter((category) => category.count > 0);
 
+const problemPaths = [
+  { number: '01', title: 'Omzet turun atau berubah?', text: 'Pecah perubahan menurut transaksi, produk, kanal, dan waktu.', href: '/blog/cara-mengatasi-omzet-turun/', label: 'Baca panduan omzet' },
+  { number: '02', title: 'HPP dan margin belum jelas?', text: 'Mulai dari rumus, contoh, lalu uji harga jual dengan angka yang sama.', href: '/blog/cara-menghitung-hpp-produk/', label: 'Baca panduan HPP' },
+  { number: '03', title: 'Stok sering habis atau menumpuk?', text: 'Periksa laju keluar, lead time, stok pengaman, dan barang yang tidak bergerak.', href: '/blog/cara-menghitung-reorder-point/', label: 'Baca panduan stok' },
+  { number: '04', title: 'Omzet ada, tetapi kas terasa seret?', text: 'Pisahkan omzet, laba, dan arus kas sebelum memilih tindakan.', href: '/blog/perbedaan-omzet-laba-dan-arus-kas/', label: 'Baca panduan keuangan' },
+  { number: '05', title: 'Pelanggan jarang kembali?', text: 'Baca pola transaksi yang tersedia tanpa menebak kebutuhan pribadi pelanggan.', href: '/blog/cara-melihat-pelanggan-yang-kembali-belanja/', label: 'Baca panduan pelanggan' },
+];
+
 const schema = [
-  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan praktis untuk membaca penjualan, stok, keuangan, pelanggan, dan AI untuk UMKM.' },
+  { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan bisnis UMKM tentang HPP, stok, omzet, laba, arus kas, pelanggan, dan penggunaan AI dengan konteks yang jelas.' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Beranda', item: new URL('/', Astro.site || Astro.url.origin).toString() },
     { '@type': 'ListItem', position: 2, name: 'Blog RAMUNI', item: new URL('/blog/', Astro.site || Astro.url.origin).toString() },
@@ -32,8 +40,8 @@ const schema = [
 ];
 ---
 <BaseLayout
-  title="Blog Bisnis UMKM | RAMUNI"
-  description="Panduan praktis untuk memahami penjualan, stok, keuangan, pelanggan, dan penggunaan AI yang aman untuk UMKM."
+  title="Panduan Bisnis UMKM: Stok, Penjualan, dan Keuangan | RAMUNI"
+  description="Pelajari HPP, stok, omzet, laba, arus kas, dan pelanggan melalui panduan praktis, contoh, template, serta kalkulator bisnis gratis dari RAMUNI."
   pageType="CollectionPage"
   noindex={releaseGates.siteIndexable && page.totalItems === 0}
   schema={schema}
@@ -43,8 +51,8 @@ const schema = [
     <div class="container blog-archive-hero__layout">
       <div>
         <p class="eyebrow">Blog RAMUNI</p>
-        <h1>Panduan praktis untuk membaca bisnis.</h1>
-        <p class="lede">Temukan jawaban tentang penjualan, stok, keuangan, pelanggan, dan penggunaan AI untuk usaha. Semua ditulis agar mudah dipahami dan langsung bisa diperiksa.</p>
+        <h1>Panduan bisnis UMKM yang bisa langsung diperiksa.</h1>
+        <p class="lede">Temukan cara menghitung HPP, membaca omzet dan laba, mengelola stok, memahami pelanggan, serta memakai AI dengan konteks yang jelas.</p>
       </div>
       <form class="blog-search blog-search--archive" action="/blog/cari/" method="get" role="search">
         <label for="blog-query">Cari artikel</label>
@@ -58,12 +66,25 @@ const schema = [
     </nav>}
   </header>
 
+  <section class="section blog-problem-stage" aria-labelledby="problem-paths-heading">
+    <div class="container blog-problem-layout">
+      <header class="blog-section-lead">
+        <p class="section-kicker">Mulai dari masalah</p>
+        <h2 id="problem-paths-heading">Apa yang ingin Anda pahami hari ini?</h2>
+        <p>Pilih satu pertanyaan yang paling dekat dengan pekerjaan Anda. Dari sana, lanjutkan ke panduan, alat hitung, atau solusi yang relevan.</p>
+      </header>
+      <nav class="blog-problem-list" aria-label="Jalur bacaan berdasarkan masalah">
+        {problemPaths.map((path) => <a class="blog-problem-row" href={path.href}><span>{path.number}</span><div><strong>{path.title}</strong><p>{path.text}</p></div><b>{path.label} <i aria-hidden="true">&rarr;</i></b></a>)}
+      </nav>
+    </div>
+  </section>
+
   {featured && <section class="section blog-featured-simple" aria-labelledby="featured-heading">
     <div class="container">
       <a class="blog-featured-simple__card" href={`/blog/${featured.id}/`} aria-labelledby="featured-heading">
         <figure><img src={featured.data.cover} width={featured.data.coverWidth} height={featured.data.coverHeight} alt={featured.data.coverAlt} fetchpriority="high" /></figure>
         <div>
-          <span class="blog-featured-simple__label">Pilihan editor · {featured.data.category}</span>
+          <span class="blog-featured-simple__label">Mulai di sini · {featured.data.category}</span>
           <h2 id="featured-heading">{featured.data.title}</h2>
           <p>{featured.data.dek}</p>
           <small>{formatDate(featured.data.updatedAt || featured.data.publishedAt)} · {featured.data.readingTime}</small>
@@ -100,8 +121,9 @@ const schema = [
     <div class="container">
       <BlogDecisionCTA
         id="blog-final-cta"
-        title="Punya angka usaha yang belum jelas?"
-        text="Lihat bagaimana RAMUNI membantu menyusun catatan, memeriksa konteks, dan menentukan perhatian berikutnya."
+        title="Sudah menemukan masalahnya? Lihat alurnya."
+        text="Pilih satu kebutuhan usaha dan lihat contoh bagaimana RAMUNI menghubungkan catatan, bukti, dan langkah berikutnya sebelum Anda memutuskan."
+        primaryLabel="Mulai coba gratis"
         secondaryLabel="Pelajari Produk"
         secondaryHref="/produk/"
       />

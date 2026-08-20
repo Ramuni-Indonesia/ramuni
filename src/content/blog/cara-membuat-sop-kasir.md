@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat SOP Kasir Sederhana untuk Toko"
-description: "Cara membuat SOP kasir sederhana: tentukan alur buka kas, verifikasi transaksi, penanganan pembayaran, koreksi, serah-terima, rekap, dan tindak lanjut selisih agar proses toko"
+description: "Cara membuat SOP kasir sederhana: tentukan alur buka kas, verifikasi transaksi, pembayaran, koreksi, serah-terima, rekap, dan tindak lanjut selisih."
 dek: "SOP kasir membantu transaksi, kas, dan serah-terima berjalan dengan urutan yang sama. Buat aturan yang singkat, dapat dijalankan saat ramai, serta punya langkah jelas saat terjadi selisih."
 cover: "/website-original/blog/generated/cara-membuat-sop-kasir.webp"
 coverAlt: "Kasir mengikuti alur ceklis visual dari kas awal, pemindaian produk, bukti transaksi, hingga penyerahan belanja kepada pelanggan"

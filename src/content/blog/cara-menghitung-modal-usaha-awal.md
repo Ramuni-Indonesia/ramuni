@@ -1,6 +1,6 @@
 ---
-title: "Cara Menghitung Modal Usaha Awal dengan Rencana"
-description: "Cara menghitung modal usaha awal: petakan biaya sekali bayar, stok awal, biaya operasi, cadangan kas, sumber dana, serta uji rencana dengan skenario yang hati-hati sebelum memulai"
+title: "Cara Menghitung Modal Usaha Awal"
+description: "Cara menghitung modal usaha awal: petakan biaya sekali bayar, stok awal, biaya operasi, cadangan kas, dan sumber dana sebelum memulai."
 dek: "Modal awal bukan hanya harga peralatan atau stok pertama. Rencana yang jujur memasukkan biaya persiapan, kebutuhan operasi awal, waktu penerimaan, dan cadangan untuk risiko yang dapat diperkirakan."
 cover: "/website-original/blog/generated/cara-menghitung-modal-usaha-awal.webp"
 coverAlt: "Calon pemilik usaha menyusun kartu peralatan, stok, dokumen, dan cadangan kas pada rencana modal awal bersama kotak produk dan kalkulator"

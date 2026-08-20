@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Harga Jual Produk untuk Usaha Kecil"
-description: "Cara menghitung harga jual produk: kumpulkan HPP dan biaya terkait, pilih target markup atau margin dengan arti yang jelas, uji harga efektif, lalu periksa dampaknya pada penjualan"
+description: "Cara menghitung harga jual produk: kumpulkan HPP dan biaya terkait, pilih markup atau margin dengan arti jelas, uji harga efektif, lalu periksa dampaknya."
 dek: "Harga jual perlu menutup biaya dan mendukung tujuan usaha, tetapi tidak cukup ditentukan dari satu persentase. Pahami HPP, biaya lain, markup, margin, pelanggan, dan kondisi pasar sebelum mengubah harga."
 cover: "/website-original/blog/generated/cara-menghitung-harga-jual-produk.webp"
 coverAlt: "Pemilik usaha menghitung harga jual dengan kartu produk, tumpukan biaya abstrak, kalkulator, tag harga, dan timbangan"

@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengevaluasi Promo Penjualan agar Tidak Hanya"
+title: "Cara Mengevaluasi Promo Penjualan agar Menguntungkan"
 description: "Cara mengevaluasi promo penjualan: tetapkan tujuan dan batas, bandingkan periode setara, hitung penjualan bersih, biaya, margin, stok, retur, serta dampak setelah promo selesai."
 dek: "Promo yang ramai belum tentu menguntungkan atau layak diulang. Evaluasi yang sederhana membantu usaha melihat transaksi tambahan, pengorbanan harga, beban proses, dan dampak pada pelanggan."
 cover: "/website-original/blog/generated/cara-mengevaluasi-promo-penjualan.webp"

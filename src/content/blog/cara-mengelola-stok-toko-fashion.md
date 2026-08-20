@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengelola Stok Toko Fashion berdasarkan Ukuran dan"
+title: "Cara Mengelola Stok Toko Fashion berdasarkan Varian"
 description: "Panduan mengelola stok toko fashion berdasarkan model, ukuran, warna, musim, varian, penerimaan, penjualan, retur, dan pemeriksaan fisik."
 dek: "Pada toko fashion, satu model bukan satu stok. Ukuran, warna, kondisi, dan musim membuat setiap varian perlu dicatat secara terpisah agar keputusan belanja tidak keliru."
 cover: "/website-original/blog/generated/cara-mengelola-stok-toko-fashion.webp"

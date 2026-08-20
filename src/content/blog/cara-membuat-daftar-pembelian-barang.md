@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Daftar Pembelian Barang untuk Usaha"
-description: "Cara membuat daftar pembelian barang: mulai dari kebutuhan, cek stok dan pesanan berjalan, tulis satuan, supplier, harga efektif, waktu perlu, batas anggaran, persetujuan, serta"
+description: "Cara membuat daftar pembelian barang: cek kebutuhan, stok, pesanan berjalan, satuan, supplier, harga efektif, waktu perlu, anggaran, dan persetujuan."
 dek: "Daftar pembelian yang baik tidak dimulai dari barang yang terasa hampir habis. Ia menghubungkan kebutuhan penjualan, stok layak pakai, pesanan berjalan, lead time, kondisi pemasok, dan batas kas."
 cover: "/website-original/blog/generated/cara-membuat-daftar-pembelian-barang.webp"
 coverAlt: "Pemilik usaha menyusun checklist pembelian abstrak dengan rak stok, peti pengiriman, kalkulator, dan kartu produk"

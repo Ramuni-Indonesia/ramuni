@@ -140,6 +140,8 @@ const articleJourneyOverrides: Record<string, keyof typeof articleJourneys> = {
   'cara-menghitung-safety-stock': 'stok-inventori',
   'cara-mengatur-stok-usaha-fnb': 'stok-inventori',
   'cara-mengatur-stok-toko-sembako': 'stok-inventori',
+  'cara-mengatur-stok-bahan-baku-bakery': 'stok-inventori',
+  'cara-menghitung-food-cost-usaha-makanan': 'keuangan-umkm',
   'cara-mengelola-stok-toko-fashion': 'stok-inventori',
   'cara-mengelola-stok-produk-varian': 'stok-inventori',
   'cara-mencatat-penjualan-toko-retail': 'penjualan-omzet',

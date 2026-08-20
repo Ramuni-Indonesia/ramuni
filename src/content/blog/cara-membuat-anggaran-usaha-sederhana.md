@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Anggaran Usaha Sederhana untuk UMKM"
-description: "Cara membuat anggaran usaha sederhana: tetapkan periode, kumpulkan data, bedakan biaya tetap dan variabel, rencanakan kas, buat batas pengeluaran, lalu tinjau selisih anggaran"
+description: "Cara membuat anggaran usaha sederhana: tetapkan periode, kumpulkan data, bedakan biaya tetap dan variabel, rencanakan kas, lalu tinjau selisih."
 dek: "Anggaran usaha adalah rencana kerja untuk uang yang akan masuk dan keluar. Format sederhana membantu pemilik memilih prioritas sebelum kas terlanjur habis."
 cover: "/website-original/blog/generated/cara-membuat-anggaran-usaha-sederhana.webp"
 coverAlt: "Pemilik toko menyusun kartu kategori anggaran, struk, kalkulator, dan grafik abstrak di meja kerja"

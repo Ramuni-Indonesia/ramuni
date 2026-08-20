@@ -1,6 +1,6 @@
 ---
 title: "Cara Memisahkan Uang Pribadi dan Uang Usaha untuk UMKM"
-description: "Cara memisahkan uang pribadi dan uang usaha: pilih tempat terpisah, catat modal dan pengambilan pemilik, buat aturan pembayaran, rekonsiliasi rutin, serta tinjau kas sebelum"
+description: "Cara memisahkan uang pribadi dan uang usaha: gunakan tempat terpisah, catat modal dan pengambilan, buat aturan pembayaran, rekonsiliasi, lalu tinjau kas."
 dek: "Pemisahan uang tidak harus dimulai dari sistem yang rumit. Kebiasaan memberi label, mencatat perpindahan, dan membuat aturan pengambilan membantu pemilik melihat kas usaha yang sebenarnya."
 cover: "/website-original/blog/generated/cara-memisahkan-uang-pribadi-dan-uang-usaha.webp"
 coverAlt: "Pemilik usaha memisahkan uang ke dua tray berbeda bersama bukti belanja usaha, kartu rumah tangga abstrak, buku catatan, dan kalkulator"

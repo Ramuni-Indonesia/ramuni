@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengelola Dokumen Usaha agar Mudah Dicari"
-description: "Cara mengelola dokumen usaha: kelompokkan bukti transaksi, gunakan nama file konsisten, atur akses, simpan arsip fisik dan digital, tetapkan retensi, serta buat jadwal peninjauan"
+description: "Cara mengelola dokumen usaha: kelompokkan bukti transaksi, gunakan nama file konsisten, atur akses, simpan arsip, tetapkan retensi, dan jadwalkan peninjauan."
 dek: "Dokumen usaha tidak perlu disimpan dalam banyak folder tanpa aturan. Sistem sederhana dengan kategori, referensi, akses terbatas, dan jadwal peninjauan membuat bukti lebih mudah ditemukan saat dibutuhkan."
 cover: "/website-original/blog/generated/cara-mengelola-dokumen-usaha.webp"
 coverAlt: "Folder dan kotak arsip usaha yang tertata, lembar invoice tanpa tulisan, perangkat dengan ikon kunci, serta paket produk di meja kerja"

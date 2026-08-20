@@ -1,6 +1,6 @@
 ---
 title: "Cara Membaca Penjualan per Jam untuk Toko"
-description: "Cara membaca penjualan per jam: pilih waktu transaksi yang konsisten, kelompokkan jam, hitung jumlah transaksi dan nilai penjualan, beri konteks, lalu uji perubahan kecil pada staf"
+description: "Cara membaca penjualan per jam: kelompokkan transaksi, hitung jumlah dan nilainya, beri konteks hari serta stok, lalu uji perubahan kecil pada staf."
 dek: "Laporan per jam membantu toko memahami kapan pelanggan datang dan kapan proses perlu diperkuat. Namun jam ramai perlu dibaca bersama hari, stok, kanal, dan kapasitas layanan."
 cover: "/website-original/blog/generated/cara-membaca-penjualan-per-jam.webp"
 coverAlt: "Pemilik toko mengatur kartu jam abstrak, struk, dan rak produk untuk melihat pola waktu penjualan"

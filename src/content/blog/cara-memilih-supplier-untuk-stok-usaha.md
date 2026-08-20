@@ -1,6 +1,6 @@
 ---
-title: "Cara Memilih Supplier untuk Stok Usaha dengan Lebih"
-description: "Cara memilih supplier untuk stok usaha: bandingkan spesifikasi, harga efektif, kualitas, lead time, minimum pesanan, komunikasi, syarat, dan bukti penerimaan sebelum mengandalkan"
+title: "Cara Memilih Supplier untuk Stok Usaha"
+description: "Cara memilih supplier untuk stok usaha: bandingkan spesifikasi, harga efektif, kualitas, lead time, minimum pesanan, komunikasi, syarat, dan bukti penerimaan."
 dek: "Harga beli termurah tidak selalu menghasilkan stok paling aman. Supplier perlu dinilai dari kemampuan memenuhi kebutuhan usaha dengan kualitas, waktu, syarat, dan komunikasi yang dapat dibuktikan."
 cover: "/website-original/blog/generated/cara-memilih-supplier-untuk-stok-usaha.webp"
 coverAlt: "Pemilik usaha membandingkan dua peti pemasok abstrak dengan kartu lead time, pemeriksaan kualitas, checklist, dan rak stok"

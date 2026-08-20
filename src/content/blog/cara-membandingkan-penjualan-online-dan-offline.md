@@ -1,6 +1,6 @@
 ---
-title: "Cara Membandingkan Penjualan Online dan Offline dengan"
-description: "Cara membandingkan penjualan online dan offline: samakan periode dan status transaksi, pisahkan nilai bersih, biaya kanal, produk, pemenuhan, serta dampak layanan sebelum"
+title: "Cara Membandingkan Penjualan Online dan Offline"
+description: "Cara membandingkan penjualan online dan offline: samakan periode dan status transaksi, pisahkan nilai bersih, biaya kanal, produk, pemenuhan, dan dampak layanan."
 dek: "Kanal online dan toko fisik tidak perlu dipaksa menjadi sama. Perbandingan yang baik menunjukkan kontribusi, biaya, proses, dan kapasitas masing-masing agar keputusan tidak hanya berdasarkan omzet."
 cover: "/website-original/blog/generated/cara-membandingkan-penjualan-online-dan-offline.webp"
 coverAlt: "Pemilik usaha membandingkan kartu toko fisik dan pesanan online abstrak dengan timbangan, produk, dan struk"

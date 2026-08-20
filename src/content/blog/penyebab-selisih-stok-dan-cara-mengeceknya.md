@@ -1,5 +1,5 @@
 ---
-title: "Penyebab Selisih Stok dan Cara Mengeceknya sebelum"
+title: "Penyebab Selisih Stok dan Cara Mengeceknya"
 description: "Penyebab selisih stok dan cara mengeceknya: hitung ulang, periksa satuan, lokasi, penerimaan, penjualan, retur, barang rusak, transaksi tertunda, lalu buat koreksi dengan bukti."
 dek: "Selisih stok bukan sekadar angka yang perlu disamakan. Ia adalah petunjuk untuk memeriksa proses penerimaan, penjualan, lokasi, satuan, retur, dan kondisi barang sebelum saldo diubah."
 cover: "/website-original/blog/generated/penyebab-selisih-stok-dan-cara-mengeceknya.webp"

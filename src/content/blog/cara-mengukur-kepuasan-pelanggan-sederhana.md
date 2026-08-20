@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengukur Kepuasan Pelanggan Sederhana untuk UMKM"
-description: "Cara mengukur kepuasan pelanggan sederhana: pilih momen, ajukan pertanyaan singkat, kumpulkan umpan balik seperlunya, baca pola bersama keluhan dan transaksi, lalu lakukan"
+description: "Cara mengukur kepuasan pelanggan sederhana: pilih momen, ajukan pertanyaan singkat, baca pola bersama keluhan dan transaksi, lalu lakukan perbaikan."
 dek: "Survei kepuasan tidak harus panjang. Satu atau dua pertanyaan yang muncul pada waktu tepat dapat memberi arah perbaikan bila jawabannya dicatat, dibaca, dan ditindaklanjuti dengan jujur."
 cover: "/website-original/blog/generated/cara-mengukur-kepuasan-pelanggan-sederhana.webp"
 coverAlt: "Pemilik toko meninjau token umpan balik wajah senang, netral, dan kurang puas di samping kotak saran serta paket pesanan"

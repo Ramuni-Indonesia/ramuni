@@ -1,5 +1,5 @@
 ---
-title: "Cara Mencatat Keluhan Pelanggan agar Mudah"
+title: "Cara Mencatat Keluhan Pelanggan dengan Rapi"
 description: "Panduan membuat log keluhan pelanggan untuk UMKM: informasi minimum, status penyelesaian, contoh format, dan cara memakai pola keluhan untuk memperbaiki layanan."
 dek: "Keluhan yang dicatat rapi membantu usaha menyelesaikan kasus saat ini dan melihat masalah yang berulang. Simpan informasi yang relevan, bukan cerita pribadi yang tidak diperlukan."
 cover: "/website-original/blog/generated/cara-mencatat-keluhan-pelanggan.webp"

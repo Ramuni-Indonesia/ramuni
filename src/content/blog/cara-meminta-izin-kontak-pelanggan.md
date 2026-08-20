@@ -1,6 +1,6 @@
 ---
 title: "Cara Meminta Izin Kontak Pelanggan dengan Jelas"
-description: "Cara meminta izin kontak pelanggan: jelaskan tujuan, kanal, jenis pesan, pilihan pelanggan, pencatatan persetujuan, dan proses berhenti menerima komunikasi secara proporsional"
+description: "Cara meminta izin kontak pelanggan: jelaskan tujuan, kanal, jenis pesan, pilihan pelanggan, pencatatan persetujuan, dan cara berhenti menerima pesan."
 dek: "Kontak pelanggan sebaiknya diminta karena ada tujuan yang jelas, bukan karena semua pembeli harus masuk daftar pesan. Kejelasan pilihan membangun kepercayaan dan membuat proses lebih tertib."
 cover: "/website-original/blog/generated/cara-meminta-izin-kontak-pelanggan.webp"
 coverAlt: "Pemilik toko menawarkan kartu pilihan dan telepon dengan tanda setuju generik kepada pelanggan, bersama ikon kunci privasi dan paket pesanan"

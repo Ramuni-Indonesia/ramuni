@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengatur Stok Usaha F&B agar Bahan Tidak Banyak"
+title: "Cara Mengatur Stok F&B agar Tidak Terbuang"
 description: "Cara mengatur stok usaha F&B: daftar bahan per menu, catat penerimaan dan pemakaian, pakai FIFO, hitung kebutuhan, tetapkan batas stok, dan pantau bahan berisiko terbuang."
 dek: "Stok makanan dan minuman tidak cukup dikelola dengan menghitung jumlah barang. Usia simpan, resep, perubahan penjualan, dan waktu pengadaan perlu masuk ke catatan harian."
 cover: "/website-original/blog/generated/cara-mengatur-stok-usaha-fnb.webp"

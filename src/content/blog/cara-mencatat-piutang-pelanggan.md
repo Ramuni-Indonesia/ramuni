@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Piutang Pelanggan untuk Usaha Kecil"
-description: "Cara mencatat piutang pelanggan: buat daftar transaksi tempo, catat nilai, tanggal, status, bukti pembayaran, dan tindak lanjut agar penjualan kredit tidak tertukar dengan kas yang"
+description: "Cara mencatat piutang pelanggan: buat daftar transaksi tempo, catat nilai, tanggal, status, bukti pembayaran, dan tindak lanjut agar tidak tertukar dengan kas."
 dek: "Piutang adalah tagihan pelanggan yang belum menjadi kas. Catatan sederhana yang konsisten membantu usaha menindaklanjuti pembayaran tanpa mencampur penjualan, kas, dan data pelanggan."
 cover: "/website-original/blog/generated/cara-mencatat-piutang-pelanggan.webp"
 coverAlt: "Pemilik usaha mengatur kartu tagihan pelanggan dan status pembayaran pada papan kalender abstrak, di samping paket barang dan kalkulator"

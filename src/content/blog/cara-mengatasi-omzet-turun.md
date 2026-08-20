@@ -1,5 +1,5 @@
 ---
-title: "Cara Mengatasi Omzet Turun dengan Pemeriksaan Data yang"
+title: "Cara Mengatasi Omzet Turun dengan Data"
 description: "Cara mengatasi omzet turun: pastikan data benar, bandingkan periode sebanding, pecah perubahan menurut produk dan kanal, cek stok serta layanan, lalu uji satu perbaikan kecil."
 dek: "Omzet turun adalah sinyal untuk diperiksa, bukan diagnosis tunggal. Cari perubahan pada jumlah transaksi, nilai pesanan, produk, stok, harga, kanal, dan layanan sebelum mengambil tindakan besar."
 cover: "/website-original/blog/generated/cara-mengatasi-omzet-turun.webp"

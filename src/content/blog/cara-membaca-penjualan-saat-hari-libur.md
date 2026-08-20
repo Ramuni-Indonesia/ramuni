@@ -1,6 +1,6 @@
 ---
-title: "Cara Membaca Penjualan saat Hari Libur untuk"
-description: "Cara membaca penjualan saat hari libur: bandingkan periode setara, pisahkan produk dan kanal, catat stok serta jam buka, lalu rencanakan persediaan dan layanan tanpa menebak"
+title: "Cara Membaca Penjualan saat Hari Libur"
+description: "Cara membaca penjualan saat hari libur: bandingkan periode setara, pisahkan produk dan kanal, catat stok serta jam buka, lalu rencanakan persediaan tanpa menebak."
 dek: "Hari libur dapat mengubah waktu belanja, jenis produk, kapasitas layanan, dan ketersediaan stok. Catatan yang tepat membantu usaha melihat pola tanpa menganggap setiap libur akan menghasilkan angka yang sama."
 cover: "/website-original/blog/generated/cara-membaca-penjualan-saat-hari-libur.webp"
 coverAlt: "Pemilik toko memeriksa kartu kalender abstrak, stok produk, struk, dan grafik tren sederhana pada periode hari libur"

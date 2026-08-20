@@ -1,6 +1,6 @@
 ---
 title: "Perbedaan Stok Minimum dan Safety Stock untuk Usaha"
-description: "Pahami perbedaan stok minimum dan safety stock: fungsi, cara menetapkan, hubungannya dengan reorder point, contoh sederhana, serta kesalahan umum saat menggunakannya dalam usaha"
+description: "Pahami perbedaan stok minimum dan safety stock: fungsi, cara menetapkan, hubungan dengan reorder point, contoh, dan kesalahan umum penggunaannya."
 dek: "Stok minimum dan safety stock sama-sama membantu usaha menghindari kekosongan, tetapi keduanya menjawab pertanyaan yang berbeda. Pisahkan fungsinya agar pembelian tidak hanya mengikuti satu angka."
 cover: "/website-original/blog/generated/perbedaan-stok-minimum-dan-safety-stock.webp"
 coverAlt: "Pemilik usaha membandingkan baris stok kerja dan baris cadangan produk dengan checklist serta peti pengiriman"

@@ -8,6 +8,7 @@ import { getArticleHeadings, getBlogPosts, getRelatedBlogPosts } from '../../lib
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import { mascots } from '../../data/mascots';
+import { getArticleJourney } from '../../data/articleJourneys';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
 
@@ -24,6 +25,7 @@ const formatDate = (value: Date) => new Intl.DateTimeFormat('id-ID', { day: 'num
 const updatedAt = post.data.updatedAt || post.data.publishedAt;
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const relatedPosts = getRelatedBlogPosts(post, posts);
+const articleJourney = getArticleJourney(post.data.categorySlug, post.id);
 const author = getEditorialPerson(post.data.authorSlug);
 const embeddedCalculator = getArticleCalculator(post.id);
 const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
@@ -153,7 +155,7 @@ const schema = [
     <section class="article-reading-stage">
       <div class="container article-reading-grid">
         <div class="article-main">
-          <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol></section>
+          <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol><a class="article-short-answer__next" href={articleJourney.tourHref}>Coba alur {articleJourney.label.toLocaleLowerCase('id-ID')} gratis <i aria-hidden="true">&rarr;</i></a></section>
 
           {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></details>}
 
@@ -197,7 +199,7 @@ const schema = [
             <small>Lihat alurnya</small>
             <strong id="article-rail-cta-title">Punya masalah serupa?</strong>
             <p>Pilih satu masalah usaha dan lihat contoh alur serta modul yang relevan sebelum memutuskan.</p>
-            <a class="button button--primary" href="/tour-produk-gratis/">Lihat contoh alur gratis</a>
+            <a class="button button--primary" href={articleJourney.tourHref}>Mulai coba gratis</a>
           </section>
         </aside>
       </div>

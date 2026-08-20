@@ -1,5 +1,5 @@
 ---
-title: "Catatan Manual vs Aplikasi Usaha: Cara Memilih untuk"
+title: "Catatan Manual vs Aplikasi Usaha: Cara Memilih"
 description: "Perbandingan netral catatan manual dan aplikasi usaha untuk UMKM, meliputi proses kerja, ketelitian, akses, biaya perubahan, cadangan data, dan cara menjalankan uji terbatas."
 dek: "Manual dan aplikasi sama-sama dapat membantu bila prosesnya jelas. Pilihan yang tepat bergantung pada volume, tim, kebutuhan pemeriksaan, serta kemampuan menjaga catatan."
 cover: "/website-original/blog/generated/perbandingan-catatan-manual-dan-aplikasi-usaha.webp"

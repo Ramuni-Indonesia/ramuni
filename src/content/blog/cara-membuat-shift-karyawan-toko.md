@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Shift Karyawan Toko yang Teratur"
-description: "Cara membuat jadwal shift karyawan toko: petakan jam operasional, kebutuhan pekerjaan, serah-terima, ketersediaan staf, perubahan jadwal, dan evaluasi agar toko tetap siap melayani"
+description: "Cara membuat jadwal shift karyawan toko: petakan jam operasional, pekerjaan, serah-terima, ketersediaan staf, perubahan jadwal, dan evaluasi layanan."
 dek: "Jadwal shift yang baik tidak hanya mengisi nama pada kalender. Ia menghubungkan jam ramai, pekerjaan pembukaan dan penutupan, serah-terima, serta cara menangani perubahan dengan komunikasi yang jelas."
 cover: "/website-original/blog/generated/cara-membuat-shift-karyawan-toko.webp"
 coverAlt: "Manajer toko dan dua staf menyusun blok jadwal shift tanpa tulisan pada papan kalender di dekat meja kasir dan rak produk"

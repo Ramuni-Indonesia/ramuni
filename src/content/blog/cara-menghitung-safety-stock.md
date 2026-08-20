@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Safety Stock untuk Usaha Kecil"
-description: "Cara menghitung safety stock: pilih produk prioritas, catat pemakaian dan lead time, buat buffer dari variasi yang nyata, uji batasnya, lalu tinjau risiko stok kosong dan stok"
+description: "Cara menghitung safety stock: pilih produk prioritas, catat pemakaian dan lead time, buat buffer dari variasi nyata, lalu tinjau risiko stok kosong."
 dek: "Safety stock adalah cadangan untuk ketidakpastian, bukan target untuk menimbun semua barang. Gunakan data pemakaian, waktu tunggu, usia simpan, dan kas agar buffer tetap masuk akal."
 cover: "/website-original/blog/generated/cara-menghitung-safety-stock.webp"
 coverAlt: "Pemilik usaha menempatkan cadangan kotak produk di stok belakang dengan kartu permintaan abstrak, kalender pengiriman, dan checklist"

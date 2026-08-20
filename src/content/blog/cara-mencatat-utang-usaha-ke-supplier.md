@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Utang Usaha ke Supplier dengan Rapi"
-description: "Cara mencatat utang usaha ke supplier: catat pembelian tempo, nomor bukti, nilai, tanggal jatuh tempo, pembayaran sebagian, dan rekonsiliasi agar kewajiban serta kas usaha dapat"
+description: "Cara mencatat utang usaha ke supplier: catat pembelian tempo, nomor bukti, nilai, jatuh tempo, pembayaran sebagian, dan rekonsiliasi kewajiban."
 dek: "Utang kepada supplier perlu dicatat saat transaksi dan ditinjau sebelum jatuh tempo. Daftar yang sederhana membantu usaha membedakan pembelian baru, tagihan lama, dan pembayaran yang sudah dilakukan."
 cover: "/website-original/blog/generated/cara-mencatat-utang-usaha-ke-supplier.webp"
 coverAlt: "Pemilik toko menyortir invoice supplier ke dalam wadah berdasarkan waktu pembayaran, di samping kotak barang dan kalkulator"

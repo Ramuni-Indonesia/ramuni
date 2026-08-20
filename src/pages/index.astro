@@ -37,21 +37,21 @@ const workflowStages = [
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
 const organizationId = `${siteOrigin}/#organization`;
 const schema = [
-  { '@context': 'https://schema.org', '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', url: siteOrigin, logo: `${siteOrigin}/brand/ramuni-mark-color.webp`, description: 'AI Business Companion untuk UMKM Indonesia.' },
+  { '@context': 'https://schema.org', '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', url: siteOrigin, logo: `${siteOrigin}/brand/ramuni-mark-color.webp`, description: 'Aplikasi bisnis untuk membantu UMKM memahami penjualan, stok, keuangan, dan pelanggan.' },
   { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${siteOrigin}/#website`, url: siteOrigin, name: 'RAMUNI', inLanguage: 'id-ID', publisher: { '@id': organizationId } },
-  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'RAMUNI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: 'AI Business Companion untuk membantu UMKM memahami kondisi bisnis.', offers: undefined },
+  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'RAMUNI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: 'Aplikasi bisnis UMKM untuk membaca perubahan penjualan, stok, keuangan, dan pelanggan dengan bukti yang dapat diperiksa.', offers: undefined },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
 ];
 ---
-<BaseLayout title="RAMUNI | AI Business Companion untuk UMKM Indonesia" description="Pahami kondisi bisnis dan tentukan perhatian berikutnya bersama RAMUNI, AI Business Companion untuk UMKM Indonesia." schema={schema}>
+<BaseLayout title="Aplikasi Bisnis UMKM: Penjualan, Stok, dan Keuangan | RAMUNI" description="RAMUNI membantu UMKM membaca penjualan, stok, kas, dan pelanggan dalam satu alur, lalu membuka bukti sebelum menentukan langkah bisnis berikutnya." schema={schema}>
   <section class="home-hero chapter" data-chapter="Pembuka">
     <div class="container hero-composition">
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
-        <h1>Pahami bisnis Anda. Tahu langkah berikutnya.</h1>
-        <p class="lede">RAMUNI membantu Anda melihat perubahan penting pada penjualan, stok, kas, dan pelanggan. Buka angka pendukung sebelum mengambil keputusan.</p>
+        <h1>Pahami penjualan, stok, dan keuangan. Tahu langkah berikutnya.</h1>
+        <p class="lede">RAMUNI menyatukan catatan penjualan, stok, kas, dan pelanggan, lalu menunjukkan perubahan serta bukti yang perlu diperiksa sebelum Anda bertindak.</p>
         <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard RAMUNI</a></div>
-        <p class="hero-cta-note">Mulai dari satu masalah usaha, lalu lihat contoh alur dan modul yang relevan sebelum memutuskan.</p>
+        <p class="hero-cta-note">Pilih satu masalah dan isi kontak singkat. Tim RAMUNI akan menunjukkan contoh alur yang relevan lewat WhatsApp, tanpa meminta data bisnis Anda.</p>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
@@ -226,10 +226,21 @@ const schema = [
     </div>
   </section>
 
-  <section class="section pricing-stage chapter" data-chapter="Akses">
+  <section class="section pricing-stage chapter" data-chapter="Coba gratis">
     <div class="container pricing-composition">
       <div class="pricing-word reveal">Coba<br />Gratis</div>
-      <div class="pricing-copy reveal"><h2>Mulai dari satu masalah yang ingin Anda pahami.</h2><p>Lihat contoh alur RAMUNI untuk masalah tersebut, lalu bahas fitur yang relevan sebelum memutuskan.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Lihat contoh alur gratis</a></div></div>
+      <div class="pricing-copy reveal">
+        <p class="section-kicker">Yang Anda dapat saat memulai</p>
+        <h2>Lihat cara RAMUNI membaca satu masalah usaha Anda.</h2>
+        <p>Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Anda akan melihat data yang perlu diperiksa dan modul yang relevan sebelum memutuskan.</p>
+        <ol class="pricing-steps">
+          <li><span>01</span><strong>Pilih satu masalah yang paling mendesak.</strong></li>
+          <li><span>02</span><strong>Lihat contoh data, bukti, dan alur pemeriksaannya.</strong></li>
+          <li><span>03</span><strong>Bahas modul dan langkah lanjutan lewat WhatsApp.</strong></li>
+        </ol>
+        <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a></div>
+        <small>Tanpa perlu menyiapkan data bisnis untuk memulai.</small>
+      </div>
     </div>
   </section>
 
@@ -243,8 +254,8 @@ const schema = [
   <section class="section closing-stage chapter" data-chapter="Penutup">
     <div class="container closing-composition reveal">
       <p>Meramu insight. Memberi arah.</p>
-      <h2>Pilih satu masalah. Mulai dari sana.</h2>
-      <a class="button button--primary" href="/tour-produk-gratis/">Bahas masalah usaha Anda</a>
+      <h2>Siap melihat masalah usaha dengan lebih jelas?</h2>
+      <a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a>
     </div>
   </section>
   <script is:inline type="module" src="/scripts/home-interactions.js"></script>

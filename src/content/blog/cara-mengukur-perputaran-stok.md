@@ -1,6 +1,6 @@
 ---
-title: "Cara Mengukur Perputaran Stok untuk Menilai Pergerakan"
-description: "Cara mengukur perputaran stok: pilih periode dan definisi biaya yang konsisten, hitung biaya barang terjual dibanding rata-rata persediaan, baca hasil per kategori, lalu cek stok"
+title: "Cara Mengukur Perputaran Stok"
+description: "Cara mengukur perputaran stok: pilih periode dan definisi biaya konsisten, bandingkan biaya barang terjual dengan rata-rata persediaan, lalu cek stok."
 dek: "Perputaran stok menunjukkan seberapa sering persediaan bergerak dalam periode tertentu. Angka ini berguna untuk pertanyaan, bukan target tunggal, karena produk cepat habis juga dapat berarti stok terlalu sedikit."
 cover: "/website-original/blog/generated/cara-mengukur-perputaran-stok.webp"
 coverAlt: "Pemilik usaha mengatur alur kotak produk berputar dengan kartu catatan dan rak berisi satu barang yang bergerak lambat"

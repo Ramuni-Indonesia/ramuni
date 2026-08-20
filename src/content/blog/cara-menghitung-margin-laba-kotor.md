@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Margin Laba Kotor dengan Contoh"
-description: "Pelajari cara menghitung margin laba kotor: tentukan penjualan dan harga pokok, gunakan rumus yang tepat, baca hasilnya per produk, dan hindari kekeliruan antara margin, markup"
+description: "Pelajari cara menghitung margin laba kotor: tentukan penjualan dan harga pokok, gunakan rumus tepat, baca hasil per produk, dan bedakan margin dari markup."
 dek: "Margin laba kotor menunjukkan bagian penjualan yang tersisa setelah harga pokok dikurangkan. Angka ini berguna untuk membaca produk, harga, dan biaya pokok sebelum menyimpulkan laba usaha."
 cover: "/website-original/blog/generated/cara-menghitung-margin-laba-kotor.webp"
 coverAlt: "Pemilik toko membandingkan kartu produk abstrak dan timbangan biaya dengan nilai jual, bersama kalkulator serta bukti transaksi"

@@ -1,6 +1,6 @@
 ---
-title: "Cara Memilih Produk untuk Stok Opname agar Pemeriksaan"
-description: "Cara memilih produk untuk stok opname: prioritaskan nilai, pergerakan, risiko selisih, usia simpan, dan dampak layanan; buat jadwal cek bergilir serta catat penyebab perbedaan"
+title: "Cara Memilih Produk untuk Stok Opname"
+description: "Cara memilih produk untuk stok opname: prioritaskan nilai, pergerakan, risiko selisih, usia simpan, dan dampak layanan, lalu buat jadwal cek bergilir."
 dek: "Stok opname tidak selalu harus dimulai dari menghitung seluruh barang sekaligus. Prioritas berbasis risiko membantu usaha menangkap selisih penting lebih cepat tanpa menghentikan operasi terlalu lama."
 cover: "/website-original/blog/generated/cara-memilih-produk-untuk-stok-opname.webp"
 coverAlt: "Pekerja usaha memeriksa kotak produk prioritas di rak gudang dengan clipboard checklist abstrak dan timbangan kecil"
