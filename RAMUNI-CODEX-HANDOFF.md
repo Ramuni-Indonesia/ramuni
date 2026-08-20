@@ -467,6 +467,14 @@ The current batch materially increases real product evidence and motion, but sev
 - Public production verification passed for `/healthz`, the author directory canonical, author sitemap membership, the v3 portrait CDN asset, and the article date contract. `/blog/penulis/` returns 200 with its self-canonical; legacy directory routes return HTTP 301; `pertanyaan-ai-untuk-analisis-penjualan` shows `Diterbitkan 9 Agustus 2026` without a false update label.
 - The active host had a stale Nginx redirect configuration that routed `/blog/penulis/` back to `/penulis/`. `scripts/install-production-ops.sh` was added and pushed in `69c2e1a`, with the Docker reload fallback corrected in `552b445`. It saves backups, installs the checked-in production vhost and security snippet, runs `nginx -t`, then reloads Nginx. The checked-in configuration is now active and the HTTP redirect/canonical checks pass.
 
+## Production sitemap lastmod coverage release, 2026-08-20
+
+- Published runtime commit: `56a07711e065` (`fix(seo): require complete sitemap lastmod coverage`). Atomic production release: `20260820T181751Z-56a07711e065`; artifact SHA-256: `b193458fa9e175a18a6b40ee1da14c14a4dc415e6211ebc535ec608cb71672d0`.
+- Sitemap generation now assigns a real, route-specific `lastmod` to every static page, while articles retain their schema-backed published/material-update dates and author profiles retain their derived editorial dates. The build audit now rejects any sitemap index or URL-set entry that omits or malforms `lastmod`.
+- Full production verification passed for both sitemap indexes and all eight URL-set documents: every `<loc>` has one valid, non-future `lastmod`. The public sitemap contains the canonical `/blog/penulis/` directory and all four author profiles; it contains no retired `/penulis` URLs.
+- All 162 public page URLs listed by the URL-set sitemaps returned HTTP 200. The article date contract remains intact: `pertanyaan-ai-untuk-analisis-penjualan` displays `Diterbitkan 9 Agustus 2026`, has no false update label, and carries `2026-08-09` in the blog-post sitemap.
+- Before activation, the production build, CDN synchronization, and post-CDN audit completed successfully for all 261 generated HTML files. The release was activated atomically and `/healthz` reports the release, SHA, artifact digest, and deployment timestamp.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
