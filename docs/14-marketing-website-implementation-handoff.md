@@ -107,3 +107,18 @@ Evidence files:
 10. Run mobile and desktop PSI against the final public domain and resolve any CDN-specific regressions.
 11. Submit and validate the sitemap in Google Search Console and Bing Webmaster Tools after the production domain is live.
 12. Run production Rich Results validation for indexable route families after final schema approval.
+
+## GSC SEO production refresh - 21 August 2026
+
+The GSC-led on-page refresh shipped from commit `c0bbcbb8ee1ed515eceacd8ba0417a9e1589f176`.
+
+- Primary pages refreshed: daily sales report, fixed versus variable costs, and stock discrepancy investigation.
+- Position-opportunity pages refreshed: repeat customer rate, sales growth, cashier SOP, complaint logging and handling, stock minimum versus safety stock, safety stock guide, reorder point, minimum stock, and daily stock guide.
+- Internal-link clusters now connect sales, inventory, finance, customer, glossary, calculator, template, product, and solution intents with varied contextual anchors.
+- Safety-stock intent is separated into glossary definition, calculation guide, calculator, and stock-minimum comparison. Each route links to the appropriate neighboring intent instead of competing for one query.
+- Reviewed calculator, glossary, and daily-stock guide routes now emit `dateModified` when they are materially updated. Updated articles retain self-canonical, `id-ID` and `x-default` hreflang, `index,follow`, reviewed metadata, and structured sources.
+- Validation: production build generated 264 pages; `astro check`, `npm run audit`, `npm run audit:keywords`, and `npm audit --audit-level=high` passed. The keyword audit verified 5,000 keywords across 100 groups.
+- Sitemap output: root 6 entries, pages 16, products 10, solutions 6, resources 64, blog posts 106, and blog authors 4. All sitemap entries have valid `lastmod`; updated target URLs carry `2026-08-21`.
+- Production release: `20260821T165213Z-c0bbcbb8ee1e`; artifact SHA-256 `ed26cf032a4a579b7a44a1944871238052aaca8bd6a5422d110a6ebf91f1fbe3`.
+- Live smoke test passed for all refreshed articles, guide, glossary, and calculator: HTTP 200, `index,follow`, self-canonical, both hreflang variants, and `dateModified` `2026-08-21`. `/healthz` reports the exact commit and artifact digest above.
+- No raster assets changed in this batch. R2 sync was intentionally skipped with the verified-assets marker; the existing public CDN asset set remains unchanged.
