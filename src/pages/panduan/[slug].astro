@@ -7,7 +7,8 @@ export function getStaticPaths() {
   const guides = {
   'membaca-stok-harian': {
     slug: 'membaca-stok-harian',
-    title: 'Membaca stok harian',
+    title: 'Panduan Membaca Stok Harian untuk UMKM',
+    updatedAt: '2026-08-21',
     query: 'Produk mana yang perlu dicek lebih dulu?',
     outcome: 'Menemukan stok yang perlu diperiksa sebelum jam ramai.',
     time: '6 menit',
@@ -23,10 +24,13 @@ export function getStaticPaths() {
       { type: 'Kalkulator', title: 'Titik reorder stok', text: 'Perkirakan batas stok untuk mulai memeriksa pemesanan.', href: '/kalkulator/reorder-stok/' },
       { type: 'Template', title: 'Stok harian', text: 'Catat saldo awal, barang masuk, barang keluar, dan alasan selisih.', href: '/template/stok-harian/' },
       { type: 'Kamus', title: 'Stok pengaman', text: 'Pahami fungsi cadangan stok dan cara menggunakannya.', href: '/kamus-bisnis/stok-pengaman/' },
+      { type: 'Artikel', title: 'Penyebab selisih stok', text: 'Telusuri selisih fisik dan catatan sebelum membuat koreksi.', href: '/blog/penyebab-selisih-stok-dan-cara-mengeceknya/' },
+      { type: 'Artikel', title: 'Cara menghitung safety stock', text: 'Hubungkan pembacaan saldo dengan buffer dan waktu tunggu.', href: '/blog/cara-menghitung-safety-stock/' },
     ],
   },
   'memahami-arus-kas': {
     slug: 'memahami-arus-kas',
+    updatedAt: undefined,
     title: 'Memahami arus kas',
     query: 'Kenapa omzet naik tetapi kas terasa sempit?',
     outcome: 'Membaca arah uang masuk dan keluar dalam satu periode.',
@@ -47,6 +51,7 @@ export function getStaticPaths() {
   },
   'menilai-insight-ai': {
     slug: 'menilai-insight-ai',
+    updatedAt: undefined,
     title: 'Menilai insight AI',
     query: 'Apa yang perlu dicek sebelum mengikuti saran AI?',
     outcome: 'Memeriksa jawaban AI sebelum menjadikannya dasar keputusan.',
@@ -79,6 +84,7 @@ const schema = [
     description: guide.outcome,
     url: guideUrl,
     inLanguage: 'id-ID',
+    ...(guide.updatedAt ? { dateModified: guide.updatedAt } : {}),
     totalTime: guide.time === '7 menit' ? 'PT7M' : guide.time === '6 menit' ? 'PT6M' : 'PT5M',
     step: guide.steps.map((step, index) => ({ '@type': 'HowToStep', position: index + 1, name: step.title, text: step.text })),
   },

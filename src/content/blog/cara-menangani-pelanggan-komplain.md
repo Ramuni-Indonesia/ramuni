@@ -8,6 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-21
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -18,9 +19,9 @@ authorName: "Citra Maheswari"
 authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan contoh, praktik data pelanggan, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk intent penanganan komplain, praktik data pelanggan, sumber, metadata, dan tautan internal."
 readingTime: "11 menit"
 takeaways:
   - "Mulai dengan mendengarkan dan mencatat fakta masalah, referensi transaksi, waktu, serta hasil yang diharapkan pelanggan tanpa membuat janji sebelum pemeriksaan."
@@ -40,11 +41,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi; pencatatan keluhan perlu disesuaikan dengan konteks dan ketentuan yang berlaku."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat hukum atau penyelesaian sengketa. Sesuaikan ketentuan layanan, dokumentasi, komunikasi, dan perlindungan data dengan kewajiban yang berlaku."
-updateSummary: "Naskah baru tentang menangani komplain dengan alur faktual, tindak lanjut yang dapat ditelusuri, dan perbaikan proses layanan."
+updateSummary: "Memisahkan alur penanganan komplain dari format log keluhan, serta menambah jalur ke produk pelanggan dan evaluasi layanan."
 related:
   - "cara-mencatat-keluhan-pelanggan"
   - "cara-mengukur-kepuasan-pelanggan-sederhana"
   - "sop-buka-tutup-toko-sederhana"
+  - "cara-mengelompokkan-pelanggan-sederhana"
 ctaType: "product"
 featured: false
 draft: false
@@ -54,6 +56,8 @@ noindex: false
 Komplain pelanggan dapat terasa sulit, terutama ketika disampaikan dengan emosi atau saat usaha sedang ramai. Namun respons pertama tidak perlu menjadi perdebatan atau keputusan akhir. Tugas awalnya adalah menerima masalah dengan tenang, memahami fakta yang tersedia, dan menjelaskan langkah berikutnya. Proses yang jelas membantu pelanggan merasa didengar sekaligus memberi usaha ruang untuk memeriksa informasi sebelum menentukan penyelesaian.
 
 Jangan memperlakukan setiap komplain sebagai serangan pribadi atau, sebaliknya, sebagai alasan memberi janji yang belum dapat dipenuhi. Gunakan nada yang hormat, dokumentasikan informasi yang relevan, dan tetapkan waktu pembaruan yang realistis. Dengan cara ini, keluhan dapat berubah menjadi masukan untuk memperbaiki layanan, produk, pengiriman, atau komunikasi.
+
+Pisahkan percakapan penyelesaian dari log pola. Setelah tindakan untuk satu kasus jelas, gunakan [format mencatat keluhan pelanggan](/blog/cara-mencatat-keluhan-pelanggan/) untuk menyimpan status dan bukti minimum. Tinjau pola bersama [Produk Pelanggan RAMUNI](/produk/pelanggan/) dan [cara mengelompokkan pelanggan sederhana](/blog/cara-mengelompokkan-pelanggan-sederhana/) tanpa mengubah komplain menjadi label pribadi.
 
 ## Terima komplain dengan tenang dan fokus pada fakta
 

@@ -8,6 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-21
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -18,9 +19,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan proses operasional, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk alur kasir, serah-terima, sumber, metadata, tautan internal, dan batas keamanan operasional."
 readingTime: "12 menit"
 takeaways:
   - "SOP kasir perlu menjelaskan urutan kas awal, transaksi, metode pembayaran, bukti, koreksi, serah-terima, dan penanganan selisih dengan pemilik tugas yang jelas."
@@ -40,11 +41,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai kondisi kerja yang aman dan sehat. Artikel ini adalah contoh operasional, bukan standar keselamatan atau kepatuhan formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan prosedur dengan perangkat, keamanan kas, jam kerja, keselamatan, kebijakan internal, perjanjian kerja, dan ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang SOP kasir yang dapat dijalankan, direkonsiliasi, dan ditinjau saat terjadi selisih atau perubahan proses."
+updateSummary: "Memperjelas SOP kasir sebagai cornerstone operasional dengan jalur ke pencatatan penjualan, template, dan modul penjualan."
 related:
   - "sop-buka-tutup-toko-sederhana"
   - "cara-membuat-catatan-kas-harian"
   - "contoh-laporan-penjualan-harian"
+  - "cara-mencatat-penjualan-harian"
 ctaType: "product"
 featured: false
 draft: false
@@ -54,6 +56,8 @@ noindex: false
 SOP kasir adalah urutan kerja yang membantu transaksi pelanggan, kas, bukti pembayaran, dan serah-terima tercatat dengan cara yang sama. Ia bukan sekadar daftar tombol pada mesin kasir. Prosedur yang baik menjelaskan siapa melakukan apa, kapan transaksi dianggap selesai, bagaimana pembatalan dicatat, dan apa yang dilakukan ketika kas atau sistem tidak sesuai.
 
 Usaha kecil tidak membutuhkan dokumen yang panjang untuk memulai. Fokuslah pada langkah yang benar-benar terjadi setiap hari, terutama saat toko ramai atau saat pergantian orang. SOP harus cukup ringkas untuk dibaca dan cukup jelas untuk membantu staf mengambil tindakan tanpa menebak.
+
+SOP kasir sebaiknya berujung pada catatan yang dapat dicocokkan. Tautkan langkah rekap ke [cara mencatat penjualan harian](/blog/cara-mencatat-penjualan-harian/), gunakan [template penjualan harian](/template/penjualan-harian/) bila format belum seragam, dan hubungkan pemilik dengan [Produk Penjualan RAMUNI](/produk/penjualan/) untuk alur transaksi yang lebih konsisten.
 
 ## Petakan alur transaksi yang nyata
 

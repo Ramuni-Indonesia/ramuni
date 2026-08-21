@@ -20,6 +20,7 @@ const schema = [
     description: term.definition,
     url: termUrl,
     inLanguage: 'id-ID',
+    ...(term.updatedAt ? { dateModified: term.updatedAt } : {}),
     inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Kamus Bisnis RAMUNI', url: glossaryUrl },
   },
   {

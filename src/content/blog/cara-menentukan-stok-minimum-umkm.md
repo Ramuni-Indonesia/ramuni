@@ -7,7 +7,7 @@ coverAlt: "Dashboard RAMUNI yang membantu membaca saldo stok, kebutuhan isi ulan
 coverWidth: 1280
 coverHeight: 720
 publishedAt: 2026-07-30
-updatedAt: 2026-07-30
+updatedAt: 2026-08-21
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -18,9 +18,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Disusun untuk peninjauan editorial sebelum indeksasi."
+editorialStatus: "Ditinjau untuk intent stok minimum, pembagian safety stock, sumber, metadata, dan tautan internal."
 readingTime: "8 menit"
 takeaways:
   - "Stok minimum perlu membaca pemakaian atau penjualan harian bersama waktu tunggu pemasok."
@@ -41,9 +41,11 @@ sources:
     accessedAt: 2026-07-30
     note: "Rujukan umum mengenai pencatatan dan penyajian keuangan entitas mikro, kecil, dan menengah. Kebijakan persediaan resmi perlu mengikuti standar dan kebutuhan usaha yang berlaku."
 disclaimer: "Contoh perhitungan bersifat edukasi. Sesuaikan angka dengan pola usaha, kondisi barang, pemasok, dan kebijakan pencatatan Anda."
-updateSummary: "Menambahkan metode sederhana menentukan stok minimum, stok pengaman, dan jadwal peninjauan."
+updateSummary: "Memperjelas peran stok minimum sebagai batas kerja dan menghubungkannya dengan safety stock, reorder point, kalkulator, serta panduan stok harian."
 related:
   - "panduan-membaca-stok-harian"
+  - "perbedaan-stok-minimum-dan-safety-stock"
+  - "cara-menghitung-safety-stock"
   - "cara-merapikan-data-produk-dan-sku"
   - "produk-terlaris-belum-tentu-paling-untung"
   - "checklist-review-bisnis-mingguan-umkm"
@@ -56,6 +58,8 @@ noindex: false
 Stok minimum membantu pemilik usaha mengetahui **kapan sebuah barang mulai perlu diperiksa sebelum habis**. Angka ini bukan target pembelian dan bukan perintah otomatis untuk memesan. Fungsinya adalah memberi waktu untuk membuka data, memeriksa kondisi fisik, dan memilih tindakan yang sesuai.
 
 Jika batas dibuat terlalu rendah, barang dapat habis sebelum pemasok mengirim. Jika terlalu tinggi, uang dan ruang penyimpanan tertahan pada barang yang belum tentu cepat terjual. Karena itu, stok minimum perlu dihitung dari pola yang benar-benar terjadi di usaha Anda.
+
+Gunakan halaman ini untuk menentukan batas kerja, bukan untuk mendefinisikan semua buffer. Bandingkan hasil dengan [stok minimum versus safety stock](/blog/perbedaan-stok-minimum-dan-safety-stock/), [cara menghitung safety stock](/blog/cara-menghitung-safety-stock/), dan [kamus stok pengaman](/kamus-bisnis/stok-pengaman/) agar intent dan keputusan pembelian tetap terpisah.
 
 ## Mulai dari tiga angka yang dapat diperiksa
 

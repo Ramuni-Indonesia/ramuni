@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko memeriksa rak persediaan dan daftar kebutuhan pesan ulan
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-21
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 tags:
@@ -18,9 +18,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-10
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Ditinjau untuk kejelasan angka, sumber, metadata, dan tautan internal."
+editorialStatus: "Ditinjau untuk intent reorder point, pembagian safety stock, sumber, metadata, dan tautan internal."
 readingTime: "14 menit"
 takeaways:
   - "Reorder point adalah batas untuk mulai memeriksa kebutuhan pesan ulang, bukan tombol pembelian otomatis."
@@ -41,9 +41,11 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Rumus dalam artikel ini adalah alat operasional sederhana dan bukan pengganti kebijakan akuntansi usaha."
 disclaimer: "Contoh angka hanya untuk pendidikan. Keputusan pembelian perlu mempertimbangkan umur simpan, arus kas, kesepakatan pemasok, dan kondisi fisik barang."
-updateSummary: "Merangkum panduan menjadi alur reorder point yang lebih praktis: pemakaian, lead time, stok pengaman, ketersediaan nyata, kalkulator, dan keputusan pesanan."
+updateSummary: "Memperjelas reorder point sebagai halaman kapan memeriksa, lalu menghubungkannya dua arah dengan safety stock, perbandingan, dan stok minimum."
 related:
   - "cara-menentukan-stok-minimum-umkm"
+  - "cara-menghitung-safety-stock"
+  - "perbedaan-stok-minimum-dan-safety-stock"
   - "cara-melakukan-stok-opname"
   - "panduan-membaca-stok-harian"
 ctaType: "product"
@@ -55,6 +57,8 @@ noindex: false
 Reorder point adalah batas stok yang memberi sinyal bahwa suatu barang perlu diperiksa untuk persiapan pesan ulang. Ia tidak berarti barang harus langsung dibeli. Sebelum memesan, usaha tetap perlu melihat stok fisik, pesanan pelanggan, barang dalam perjalanan, ruang penyimpanan, dan kas yang tersedia.
 
 Tujuan batas ini sederhana: jangan baru mulai mencari pemasok ketika rak sudah kosong. Dengan waktu pemeriksaan yang cukup, pemilik usaha dapat memilih pemasok, mengecek harga, dan memastikan barang yang dipesan memang masih diperlukan.
+
+Reorder point bukan sinonim stok minimum atau safety stock. Baca [perbedaan stok minimum dan safety stock](/blog/perbedaan-stok-minimum-dan-safety-stock/) untuk membedakan batas kerja dan buffer, lalu gunakan [kamus stok pengaman](/kamus-bisnis/stok-pengaman/) ketika definisi istilah perlu disamakan di tim.
 
 ## Gunakan tiga angka yang bisa ditelusuri
 

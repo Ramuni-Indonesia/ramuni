@@ -42,6 +42,7 @@ export interface CalculatorDefinition {
   keyword: string;
   category: 'Laba' | 'Stok' | 'Kas' | 'Penjualan';
   intent: string;
+  updatedAt?: string;
   formula: string;
   formulaNote: string;
   resultLabel: string;
@@ -146,6 +147,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     metaDescription: 'Kalkulator reorder stok untuk memperkirakan kapan stok perlu dicek berdasarkan pemakaian harian, lead time, dan stok pengaman.',
     keyword: 'kalkulator reorder stok',
     category: 'Stok',
+    updatedAt: '2026-08-21',
     intent: 'Saat produk cepat habis dan waktu pesan ulang sering terlambat.',
     formula: 'Titik reorder = Pemakaian harian x Lead time + Stok pengaman',
     formulaNote: 'Angka ini adalah titik pemeriksaan, bukan perintah otomatis untuk membeli.',
@@ -162,6 +164,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh barang laris: 18 unit per hari, lead time 4 hari, cadangan 25 unit',
     nextSteps: ['Pisahkan produk cepat dan lambat bergerak.', 'Cek lead time pemasok yang sering berubah.', 'Gunakan template stok agar pemeriksaan berikutnya punya jejak.'],
     related: [
+      { label: 'Cara menghitung safety stock', href: '/blog/cara-menghitung-safety-stock/', text: 'Pisahkan buffer stok dari titik pemeriksaan pemesanan.' },
+      { label: 'Perbedaan stok minimum dan safety stock', href: '/blog/perbedaan-stok-minimum-dan-safety-stock/', text: 'Bedakan batas operasional sebelum menafsirkan hasil.' },
       { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian/', text: 'Susun urutan membaca stok sebelum pesan ulang.' },
       { label: 'Template stok', href: '/template/stok-harian/', text: 'Catat stok harian dengan format sederhana.' },
     ],
@@ -258,6 +262,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     metaDescription: 'Kalkulator repeat customer rate untuk UMKM. Hitung pelanggan unik yang kembali berbelanja secara lokal di browser.',
     keyword: 'kalkulator repeat customer rate',
     category: 'Penjualan',
+    updatedAt: '2026-08-21',
     intent: 'Saat usaha ingin membaca pembelian ulang dari catatan pelanggan yang memang dapat digunakan.',
     formula: 'Repeat customer rate = Pelanggan unik yang kembali / Pelanggan unik yang tercakup x 100%',
     formulaNote: 'Masukkan jumlah pelanggan unik, bukan jumlah transaksi. Pembilang tidak boleh lebih besar daripada penyebut.',
@@ -273,6 +278,8 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh: 200 pelanggan unik tercakup, 70 di antaranya pernah bertransaksi sebelumnya',
     nextSteps: ['Catat definisi periode dan pengenal yang dipakai.', 'Pisahkan pelanggan anonim dari penyebut metrik ini.', 'Tinjau stok, layanan, dan keluhan sebelum mengubah komunikasi pelanggan.'],
     related: [
+      { label: 'Cara menghitung repeat customer rate', href: '/blog/cara-menghitung-repeat-customer-rate/', text: 'Baca rumus, periode, dan batas interpretasi metrik.' },
+      { label: 'Frekuensi pembelian pelanggan', href: '/kamus-bisnis/frekuensi-pembelian/', text: 'Bedakan pelanggan yang kembali dari frekuensi transaksi.' },
       { label: 'Data pelanggan minimum', href: '/blog/data-pelanggan-yang-perlu-dicatat-umkm/', text: 'Tentukan data yang memang diperlukan untuk layanan dan catatan transaksi.' },
       { label: 'Pelanggan kembali belanja', href: '/blog/cara-melihat-pelanggan-yang-kembali-belanja/', text: 'Baca riwayat pembelian tanpa menjadikan metrik sebagai pengawasan.' },
     ],
@@ -285,6 +292,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     metaDescription: 'Kalkulator safety stock untuk usaha kecil. Uji buffer stok pengaman dari pemakaian dan lead time tanpa menyimpan data.',
     keyword: 'kalkulator safety stock',
     category: 'Stok',
+    updatedAt: '2026-08-21',
     intent: 'Saat produk penting sering kosong atau cadangannya terasa terlalu besar.',
     formula: 'Safety stock = (Pemakaian tertinggi x Lead time terpanjang) - (Pemakaian rata-rata x Lead time rata-rata)',
     formulaNote: 'Gunakan satuan, produk, dan periode yang sama. Hasil adalah titik uji operasional, bukan jumlah pembelian otomatis.',
@@ -302,6 +310,9 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh: tertinggi 12 unit/hari selama 5 hari, rata-rata 10 unit/hari selama 3 hari',
     nextSteps: ['Periksa apakah barang mudah rusak atau mahal untuk disimpan.', 'Tambahkan kebutuhan lead time ke buffer hanya saat menghitung titik reorder.', 'Tinjau stok kosong, sisa, dan keterlambatan setelah satu atau dua siklus pesanan.'],
     related: [
+      { label: 'Cara menghitung safety stock', href: '/blog/cara-menghitung-safety-stock/', text: 'Ikuti panduan rumus dan asumsi sebelum menguji angka.' },
+      { label: 'Arti stok pengaman', href: '/kamus-bisnis/stok-pengaman/', text: 'Mulai dari definisi buffer dan batas penggunaannya.' },
+      { label: 'Stok minimum vs safety stock', href: '/blog/perbedaan-stok-minimum-dan-safety-stock/', text: 'Pilih istilah yang sesuai dengan keputusan operasional.' },
       { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', text: 'Gabungkan pemakaian rata-rata, lead time, dan buffer saat menentukan titik cek stok.' },
       { label: 'Panduan stok harian', href: '/panduan/membaca-stok-harian/', text: 'Rapikan saldo, koreksi, dan waktu pemeriksaan produk.' },
     ],
@@ -424,6 +435,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     metaDescription: 'Kalkulator selisih stok opname untuk UMKM. Bandingkan stok fisik dan saldo buku langsung di browser.',
     keyword: 'kalkulator selisih stok opname',
     category: 'Stok',
+    updatedAt: '2026-08-21',
     intent: 'Saat hitungan fisik perlu dibandingkan dengan kartu stok tanpa mengubah saldo terlalu cepat.',
     formula: 'Selisih stok = Stok fisik - Saldo stok buku',
     formulaNote: 'Gunakan satu produk, satu lokasi, satu satuan, dan cut-off yang sama. Hasil selisih adalah temuan untuk ditelusuri, bukan perintah otomatis untuk mengoreksi stok.',
@@ -439,6 +451,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh: saldo buku 85 unit, hitungan fisik 82 unit',
     nextSteps: ['Simpan daftar hitung sebelum melihat atau mengubah saldo bila proses membutuhkan independensi.', 'Telusuri pergerakan sejak cut-off sebelumnya dan tandai bukti yang belum cocok.', 'Koreksi hanya setelah alasan, waktu, dan persetujuan sesuai proses tercatat.'],
     related: [
+      { label: 'Penyebab selisih stok', href: '/blog/penyebab-selisih-stok-dan-cara-mengeceknya/', text: 'Ikuti rumus, contoh kasus, dan checklist sebelum koreksi.' },
       { label: 'Pemeriksa saldo stok', href: '/blog/cara-mencatat-stok-masuk-dan-keluar/', text: 'Hitung saldo buku dari pergerakan masuk dan keluar sebelum membandingkannya dengan fisik.' },
       { label: 'Panduan stok minimum', href: '/blog/cara-menentukan-stok-minimum-umkm/', text: 'Jangan memakai saldo yang belum diperiksa sebagai satu-satunya dasar pembelian.' },
     ],
@@ -586,6 +599,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     metaDescription: 'Kalkulator perubahan dan pertumbuhan omzet gratis untuk UMKM. Bandingkan omzet periode awal dan akhir dengan rumus persentase terbuka.',
     keyword: 'kalkulator pertumbuhan omzet',
     category: 'Penjualan',
+    updatedAt: '2026-08-21',
     intent: 'Saat ingin tahu seberapa besar omzet naik atau turun dibanding periode sebelumnya.',
     formula: 'Perubahan omzet = (Omzet akhir - Omzet awal) / Omzet awal x 100%',
     formulaNote: 'Gunakan periode dengan durasi, hari operasional, kanal, dan definisi omzet yang sama. Omzet awal tidak boleh nol.',
@@ -601,6 +615,7 @@ export const calculators: Record<CalculatorKey, CalculatorDefinition> = {
     exampleLabel: 'Contoh mingguan: omzet naik dari Rp12 juta menjadi Rp13,8 juta',
     nextSteps: ['Pastikan jumlah hari dan jam operasional setara.', 'Pisahkan perubahan jumlah transaksi dan nilai transaksi rata-rata.', 'Periksa diskon, retur, stok kosong, dan kanal penjualan.'],
     related: [
+      { label: 'Cara menghitung pertumbuhan penjualan', href: '/blog/cara-menghitung-pertumbuhan-penjualan/', text: 'Hubungkan persentase dengan produk, transaksi, dan periode.' },
       { label: 'Kamus pertumbuhan penjualan', href: '/kamus-bisnis/pertumbuhan-penjualan/', text: 'Pahami cara membaca perubahan nominal dan persentase.' },
       { label: 'Kalkulator rata-rata transaksi', href: '/kalkulator/nilai-transaksi-rata-rata/', text: 'Lihat apakah perubahan datang dari nilai belanja per transaksi.' },
     ],

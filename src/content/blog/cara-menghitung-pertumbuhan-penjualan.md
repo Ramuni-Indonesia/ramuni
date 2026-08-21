@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha membandingkan dua kartu grafik batang abstrak, garis tr
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-21
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -18,9 +18,9 @@ authorName: "Citra Maheswari"
 authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-10
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Ditinjau untuk kejelasan rumus, periode pembanding, sumber data, metadata, dan tautan internal."
+editorialStatus: "Ditinjau untuk kejelasan rumus, periode pembanding, sumber data, metadata, tautan internal, dan jalur penjualan."
 readingTime: "18 menit"
 takeaways:
   - "Bandingkan periode yang setara dan gunakan definisi penjualan yang sama sebelum menghitung pertumbuhan."
@@ -40,11 +40,13 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan untuk entitas mikro, kecil, dan menengah. Artikel ini menggunakan contoh perhitungan edukatif."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi atau keuangan. Gunakan data yang sesuai dengan kebijakan pencatatan usaha dan pertimbangkan biaya serta risiko sebelum mengambil keputusan."
-updateSummary: "Memperluas panduan dengan kalkulator perubahan omzet, analisis harga-volume-mix, pembacaan kanal, batas forecast, dan ritme evaluasi yang dapat ditelusuri."
+updateSummary: "Memperkuat intent pertumbuhan penjualan dengan jalur ke laporan bulanan, kamus pertumbuhan, kalkulator perubahan omzet, dan produk penjualan."
 related:
   - "cara-membaca-penjualan-per-produk"
   - "cara-memilih-metrik-bisnis-untuk-umkm"
   - "cara-menghitung-laba-kotor"
+  - "cara-membuat-laporan-penjualan-bulanan"
+  - "cara-membaca-omzet-harian"
 ctaType: "product"
 featured: false
 draft: false
@@ -54,6 +56,8 @@ noindex: false
 Pertumbuhan penjualan sering dipakai untuk menjawab pertanyaan sederhana: apakah penjualan usaha naik atau turun? Angka persentase dapat membantu membandingkan periode, tetapi mudah disalahartikan bila dasar perbandingannya tidak jelas. Kenaikan 50 persen terdengar tinggi, namun bisa berasal dari nominal kecil. Sebaliknya, kenaikan nominal besar mungkin terlihat sebagai persentase kecil bila periode sebelumnya sudah tinggi.
 
 Gunakan pertumbuhan sebagai satu alat baca, bukan satu-satunya penilaian. Sebelum menghitung, pastikan data transaksi, periode, dan definisi penjualan konsisten. Setelah menghitung, bandingkan hasil dengan jumlah produk, harga efektif, promo, stok, retur, dan biaya. Dengan cara ini, angka pertumbuhan menjadi awal percakapan yang lebih baik, bukan alasan untuk mengambil kesimpulan terburu-buru.
+
+Mulai dari [kamus pertumbuhan penjualan](/kamus-bisnis/pertumbuhan-penjualan/) bila istilahnya belum seragam. Untuk laporan yang dapat ditinjau ulang, hubungkan hasil dengan [laporan penjualan bulanan](/blog/cara-membuat-laporan-penjualan-bulanan/) dan [Produk Penjualan RAMUNI](/produk/penjualan/), bukan hanya satu persentase di akhir periode.
 
 ## Pilih dua periode yang benar-benar sebanding
 

@@ -1,6 +1,6 @@
 ---
-title: "Cara Mencatat Keluhan Pelanggan dengan Rapi"
-description: "Panduan membuat log keluhan pelanggan untuk UMKM: informasi minimum, status penyelesaian, contoh format, dan cara memakai pola keluhan untuk memperbaiki layanan."
+title: "Cara Mencatat Keluhan Pelanggan: Format dan Contoh"
+description: "Cara mencatat keluhan pelanggan untuk UMKM: format log, informasi minimum, status penyelesaian, contoh, dan cara membaca pola layanan."
 dek: "Keluhan yang dicatat rapi membantu usaha menyelesaikan kasus saat ini dan melihat masalah yang berulang. Simpan informasi yang relevan, bukan cerita pribadi yang tidak diperlukan."
 cover: "/website-original/blog/generated/cara-mencatat-keluhan-pelanggan.webp"
 coverAlt: "Pemilik toko mencatat keluhan pelanggan secara tenang di buku catatan pada meja layanan"
@@ -8,6 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-21
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -18,9 +19,9 @@ authorName: "Citra Maheswari"
 authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan contoh, sumber, praktik data pelanggan, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk intent pencatatan keluhan, praktik data pelanggan, sumber, metadata, dan tautan internal."
 readingTime: "9 menit"
 takeaways:
   - "Log keluhan perlu mencatat fakta kasus, tindakan, pemilik tindak lanjut, dan status penyelesaian."
@@ -45,10 +46,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait data pribadi dalam catatan keluhan pelanggan."
 disclaimer: "Contoh ini bersifat edukatif. Penanganan komplain, penggantian, pencatatan bukti, dan penggunaan data perlu disesuaikan dengan produk, kebijakan usaha, kontrak, serta ketentuan yang berlaku."
-updateSummary: "Naskah baru tentang log keluhan pelanggan dan tindak lanjut yang dapat ditelusuri."
+updateSummary: "Memisahkan intent log keluhan dari panduan menangani komplain, serta menambah jalur ke kepuasan dan produk pelanggan."
 related:
   - "data-pelanggan-yang-perlu-dicatat-umkm"
   - "cara-melihat-pelanggan-yang-kembali-belanja"
+  - "cara-menangani-pelanggan-komplain"
+  - "cara-mengukur-kepuasan-pelanggan-sederhana"
   - "checklist-review-bisnis-mingguan-umkm"
 ctaType: "product"
 featured: false
@@ -59,6 +62,8 @@ noindex: false
 Keluhan pelanggan adalah informasi tentang pengalaman yang tidak berjalan sesuai harapan. Usaha kecil sering menyelesaikannya lewat percakapan langsung atau pesan singkat. Cara itu dapat terasa cepat, tetapi masalah mudah berulang bila tidak ada catatan tentang apa yang terjadi, siapa yang menindaklanjuti, dan apa hasil akhirnya.
 
 Log keluhan tidak perlu rumit atau berisi seluruh cerita pribadi pelanggan. Tujuannya adalah menyimpan fakta yang diperlukan untuk menyelesaikan kasus dengan adil serta melihat pola perbaikan. Mulai dari format yang bisa diisi dalam beberapa menit, lalu tinjau secara rutin agar kasus tidak hilang setelah percakapan selesai.
+
+Pencatatan berbeda dari penanganan. Gunakan [panduan menangani komplain pelanggan](/blog/cara-menangani-pelanggan-komplain/) untuk urutan menerima, memeriksa, dan memberi pembaruan. Setelah kasus selesai, ringkas polanya di [Produk Pelanggan RAMUNI](/produk/pelanggan/) dan bandingkan dengan [cara mengukur kepuasan pelanggan](/blog/cara-mengukur-kepuasan-pelanggan-sederhana/) tanpa menyalin identitas yang tidak diperlukan.
 
 ## Bedakan keluhan, pertanyaan, dan permintaan biasa
 

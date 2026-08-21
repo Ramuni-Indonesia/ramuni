@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko menyambut pelanggan yang kembali sambil meninjau catatan
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-21
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 tags:
@@ -18,9 +18,9 @@ authorName: "Citra Maheswari"
 authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-10
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Ditinjau untuk kejelasan rumus, praktik data pelanggan, sumber, metadata, dan tautan internal."
+editorialStatus: "Ditinjau untuk kejelasan intent metrik, privasi data, sumber, metadata, tautan internal, dan calculator bridge."
 readingTime: "18 menit"
 takeaways:
   - "Repeat customer rate mengukur pelanggan yang kembali bertransaksi menurut definisi dan periode yang dijelaskan."
@@ -41,10 +41,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai perlindungan data pribadi. Artikel ini membahas pencatatan operasional sederhana dan bukan nasihat hukum atau kepatuhan."
 disclaimer: "Contoh ini bersifat edukatif. Praktik data pelanggan perlu disesuaikan dengan dasar pemrosesan, pemberitahuan, keamanan, kebijakan retensi, dan kewajiban usaha yang berlaku."
-updateSummary: "Byline dialihkan ke Desk Pelanggan RAMUNI agar kepemilikan topik sesuai dengan cakupan artikel. Isi, sumber, dan panduan perhitungan tidak berubah."
+updateSummary: "Memperjelas pembagian intent dengan kamus frekuensi pembelian dan kalkulator repeat customer rate, serta menambah jalur ke produk pelanggan."
 related:
   - "cara-melihat-pelanggan-yang-kembali-belanja"
   - "data-pelanggan-yang-perlu-dicatat-umkm"
+  - "cara-mengelompokkan-pelanggan-sederhana"
+  - "cara-menghitung-nilai-pelanggan"
   - "cara-membaca-omzet-harian"
 ctaType: "product"
 featured: false
@@ -73,6 +75,8 @@ Kata “kembali” harus dijelaskan. Dalam artikel ini, pelanggan kembali berart
 | Repeat customer rate | 35% |
 
 Pada contoh ini, 70 dibagi 200 menghasilkan 35 persen. Satu pelanggan yang belanja empat kali tetap dihitung satu kali dalam kelompok pelanggan yang kembali. Frekuensi transaksi dapat dicatat pada metrik lain agar satu pelanggan aktif tidak membuat angka pelanggan unik terlihat lebih tinggi dari kenyataan.
+
+Bedakan metrik ini dari [frekuensi pembelian pelanggan](/kamus-bisnis/frekuensi-pembelian/). Repeat customer rate bertanya berapa proporsi pelanggan yang kembali, sedangkan frekuensi membagi jumlah transaksi dengan pelanggan unik. Setelah definisi dan periode siap, uji angka agregat melalui [kalkulator repeat customer rate](/kalkulator/repeat-customer-rate/) dan baca hasilnya bersama alur [Produk Pelanggan RAMUNI](/produk/pelanggan/).
 
 ## Pastikan penyebutnya tidak menyesatkan
 

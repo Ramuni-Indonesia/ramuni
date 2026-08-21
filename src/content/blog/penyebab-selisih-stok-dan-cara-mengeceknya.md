@@ -1,6 +1,6 @@
 ---
-title: "Penyebab Selisih Stok Opname dan Cara Mengeceknya"
-description: "Penyebab selisih stok opname dan selisih data stok: hitung ulang, periksa satuan, lokasi, penerimaan, penjualan, retur, barang rusak, dan transaksi tertunda."
+title: "Penyebab Selisih Stok: Rumus, Contoh, dan Checklist"
+description: "Penyebab selisih stok: rumus, contoh kasus, checklist investigasi, koreksi, dan cara mencegah selisih berulang."
 dek: "Selisih stok opname adalah petunjuk untuk memeriksa penerimaan, penjualan, lokasi, satuan, retur, dan kondisi barang sebelum saldo diubah."
 cover: "/website-original/blog/generated/penyebab-selisih-stok-dan-cara-mengeceknya.webp"
 coverAlt: "Pemilik usaha membandingkan kartu hitungan rak dan kartu catatan stok dengan kaca pembesar, struk, dan kotak barang rusak"
@@ -54,6 +54,8 @@ updateSummary: "Menambahkan jalur lanjut ke laporan stok agar hasil pemeriksaan 
 related:
   - "cara-memilih-produk-untuk-stok-opname"
   - "cara-mencatat-stok-masuk-dan-keluar"
+  - "cara-melakukan-stok-opname"
+  - "cara-menentukan-stok-minimum-umkm"
   - "cara-menghitung-safety-stock"
   - "contoh-laporan-stok-barang-untuk-toko"
 ctaType: "product"
@@ -65,6 +67,22 @@ noindex: false
 Selisih stok opname terjadi ketika jumlah fisik tidak sama dengan saldo pada catatan. Selisih data stok seperti ini dapat membuat usaha membeli terlalu banyak, mengalami stok kosong, salah membaca biaya, atau kehilangan waktu saat melayani pelanggan. Namun selisih bukan bukti tunggal bahwa barang hilang atau seseorang melakukan kesalahan. Sering kali penyebabnya adalah satuan berbeda, penerimaan yang belum dicatat, retur yang bercampur, atau transaksi di sekitar waktu pemeriksaan.
 
 Langkah yang aman adalah memperlakukan selisih sebagai pertanyaan yang perlu ditelusuri. Hitung ulang, periksa lokasi serta status barang, kemudian cocokkan dengan bukti pergerakan. Setelah penyebab cukup jelas, buat koreksi yang menyimpan jejak. Dengan cara ini, usaha tidak hanya menyamakan angka hari ini, tetapi juga memperbaiki proses yang menciptakan selisih.
+
+## Rumus selisih stok dan contoh kasus
+
+Gunakan rumus yang sederhana dan tulis arah selisihnya:
+
+`selisih stok = stok fisik - saldo stok menurut catatan`
+
+Jika saldo catatan 85 unit dan hitungan fisik 82 unit, selisihnya adalah -3 unit. Angka negatif menunjukkan fisik lebih sedikit dari catatan, bukan langsung membuktikan penyebabnya. Simpan produk, lokasi, satuan, cut-off, serta orang yang menghitung agar hasil dapat diulang.
+
+| Produk | Saldo catatan | Fisik | Selisih | Status awal |
+| --- | ---: | ---: | ---: | --- |
+| Produk A | 85 | 82 | -3 | Hitung ulang dan cek transaksi |
+| Produk B | 40 | 42 | +2 | Periksa penerimaan atau transfer |
+| Kemasan C | 100 | 100 | 0 | Simpan bukti pemeriksaan |
+
+Gunakan [kalkulator selisih stok](/kalkulator/selisih-stok/) untuk pemeriksaan angka awal, lalu cocokkan hasilnya dengan [template stok opname](/template/stok-opname/). Kalkulator membantu menghitung selisih; ia tidak menentukan koreksi atau menyimpan bukti investigasi.
 
 ## Periksa selisih stok opname dan satuan terlebih dahulu
 
@@ -140,6 +158,16 @@ Koreksi stok dapat diperlukan setelah penyebab cukup diperiksa. Catat produk, lo
 | Tindak lanjut | Mencatat perubahan proses atau cek ulang yang diperlukan |
 
 Jangan menghapus catatan lama agar saldo baru terlihat rapi. Jejak koreksi membantu usaha menilai apakah perubahan proses benar-benar mengurangi selisih pada pemeriksaan berikutnya.
+
+## Checklist investigasi sebelum koreksi
+
+- [ ] Produk, varian, lokasi, dan satuan sudah sama.
+- [ ] Batas waktu stok opname dan transaksi setelah cut-off sudah dicatat.
+- [ ] Penerimaan, penjualan, pemakaian, retur, transfer, rusak, dan koreksi lama sudah diperiksa.
+- [ ] Hitungan fisik diulang untuk produk yang bernilai tinggi atau tetap selisih.
+- [ ] Alasan, bukti, tanggal, dan peninjau sudah disimpan sebelum saldo diubah.
+
+Jika satu butir belum terpenuhi, tandai sebagai masih ditelusuri. Tindakan ini lebih aman daripada membuat koreksi cepat yang menyembunyikan sumber masalah.
 
 ## Gunakan hasil untuk keputusan stok yang lebih baik
 

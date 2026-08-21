@@ -7,7 +7,7 @@ coverAlt: "Pemilik usaha menempatkan cadangan kotak produk di stok belakang deng
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-21
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -18,9 +18,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-10
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Ditinjau untuk kejelasan data stok, lead time, sumber, metadata, dan tautan internal."
+editorialStatus: "Ditinjau untuk intent panduan safety stock, rumus, sumber, metadata, tautan internal, dan calculator bridge."
 readingTime: "14 menit"
 takeaways:
   - "Safety stock adalah buffer untuk variasi pemakaian atau waktu tunggu, bukan jumlah tetap yang cocok untuk semua produk."
@@ -46,9 +46,11 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum untuk pencatatan usaha. Sesuaikan keputusan pembelian dengan kas serta kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Safety stock tidak menjamin ketersediaan barang dan tidak menggantikan pemeriksaan pemasok, mutu, usia simpan, kapasitas penyimpanan, serta arus kas."
-updateSummary: "Merangkum panduan menjadi alur safety stock yang lebih praktis: SKU prioritas, data pemakaian dan lead time, rumus buffer, kalkulator, rotasi, serta keputusan pesanan."
+updateSummary: "Memperkuat panduan safety stock sebagai halaman rumus dan proses, dengan link dua arah ke kamus, perbandingan, kalkulator, dan reorder point."
 related:
   - "cara-menghitung-reorder-point"
+  - "perbedaan-stok-minimum-dan-safety-stock"
+  - "cara-menentukan-stok-minimum-umkm"
   - "apa-itu-lead-time-stok"
   - "cara-mencatat-stok-masuk-dan-keluar"
 ctaType: "product"
@@ -58,6 +60,8 @@ noindex: false
 ---
 
 Safety stock atau stok pengaman adalah cadangan yang disimpan untuk menghadapi ketidakpastian. Ketidakpastian bisa datang dari pemakaian yang lebih tinggi dari biasanya, pengiriman pemasok yang terlambat, atau selisih kecil pada catatan stok. Ia bukan alasan untuk menumpuk semua barang sebanyak mungkin. Cadangan yang terlalu besar mengikat kas, memenuhi ruang, dan meningkatkan risiko barang usang atau rusak.
+
+Untuk definisi singkat, buka [kamus stok pengaman](/kamus-bisnis/stok-pengaman/). Gunakan artikel ini untuk rumus dan proses, lalu bandingkan hasilnya dengan [stok minimum versus safety stock](/blog/perbedaan-stok-minimum-dan-safety-stock/) serta [kalkulator safety stock](/kalkulator/safety-stock/) sebelum memasukkannya ke keputusan reorder.
 
 Untuk usaha kecil, cara terbaik memulai adalah memakai data sederhana yang sudah tersedia: pemakaian atau penjualan per periode, waktu tunggu pemasok, stok kosong yang pernah terjadi, serta kapasitas penyimpanan. Pilih beberapa produk yang paling penting, buat buffer yang dapat dijelaskan, lalu tinjau hasilnya. Angka akan membaik seiring catatan menjadi lebih konsisten.
 

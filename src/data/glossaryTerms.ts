@@ -25,6 +25,7 @@ export interface GlossaryTerm {
   visual: string[];
   formula?: string;
   formulaNote?: string;
+  updatedAt?: string;
   checks: GlossaryCheck[];
   related: GlossaryRelatedItem[];
 }
@@ -357,6 +358,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     title: 'Pertumbuhan penjualan',
     short: 'Pertumbuhan',
     category: 'Penjualan',
+    updatedAt: '2026-08-21',
     definition: 'Perubahan nilai penjualan dari satu periode pembanding ke periode berikutnya.',
     use: 'Untuk melihat arah perubahan dengan periode pembanding yang jelas',
     links: ['Periode awal', 'Periode akhir', 'Persentase'],
@@ -373,8 +375,10 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     related: [
       { title: 'Kalkulator perubahan omzet', type: 'Kalkulator', href: '/kalkulator/perubahan-omzet/' },
+      { title: 'Cara menghitung pertumbuhan penjualan', type: 'Panduan', href: '/blog/cara-menghitung-pertumbuhan-penjualan/' },
       { title: 'Arti omzet', type: 'Kamus', href: '/kamus-bisnis/omzet/' },
       { title: 'Nilai transaksi rata-rata', type: 'Kamus', href: '/kamus-bisnis/nilai-transaksi-rata-rata/' },
+      { title: 'Produk Penjualan', type: 'Produk', href: '/produk/penjualan/' },
     ],
   },
   {
@@ -455,6 +459,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     title: 'Frekuensi Pembelian',
     short: 'Purchase frequency',
     category: 'Pelanggan',
+    updatedAt: '2026-08-21',
     definition: 'Frekuensi pembelian adalah rata-rata berapa kali pelanggan melakukan pembelian dalam periode tertentu.',
     use: 'Untuk melihat seberapa sering pelanggan kembali bertransaksi',
     links: ['Jumlah transaksi', 'Pelanggan unik', 'Periode'],
@@ -473,6 +478,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       { title: 'Arti pelanggan berulang', type: 'Kamus', href: '/kamus-bisnis/pelanggan-berulang/' },
       { title: 'Arti retensi pelanggan', type: 'Kamus', href: '/kamus-bisnis/retensi-pelanggan/' },
       { title: 'Cara menghitung repeat customer rate', type: 'Panduan', href: '/blog/cara-menghitung-repeat-customer-rate/' },
+      { title: 'Kalkulator repeat customer rate', type: 'Kalkulator', href: '/kalkulator/repeat-customer-rate/' },
       { title: 'Produk Pelanggan', type: 'Produk', href: '/produk/pelanggan/' },
     ],
   },
@@ -579,6 +585,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     title: 'Stok pengaman',
     short: 'Cadangan',
     category: 'Stok',
+    updatedAt: '2026-08-21',
     definition: 'Cadangan stok untuk membantu menghadapi ketidakpastian permintaan atau pasokan.',
     use: 'Untuk menimbang risiko kehabisan stok',
     links: ['Pemakaian', 'Waktu tunggu', 'Cadangan'],
@@ -593,6 +600,9 @@ export const glossaryTerms: GlossaryTerm[] = [
       { title: 'Tinjau berkala', text: 'Ubah cadangan ketika pola permintaan, musim, pemasok, atau kapasitas berubah.' },
     ],
     related: [
+      { title: 'Cara menghitung safety stock', type: 'Panduan', href: '/blog/cara-menghitung-safety-stock/' },
+      { title: 'Perbedaan stok minimum dan safety stock', type: 'Panduan', href: '/blog/perbedaan-stok-minimum-dan-safety-stock/' },
+      { title: 'Kalkulator safety stock', type: 'Kalkulator', href: '/kalkulator/safety-stock/' },
       { title: 'Kalkulator titik reorder', type: 'Kalkulator', href: '/kalkulator/reorder-stok/' },
       { title: 'Arti titik pemesanan ulang', type: 'Kamus', href: '/kamus-bisnis/titik-pemesanan-ulang/' },
       { title: 'Panduan membaca stok', type: 'Panduan', href: '/panduan/membaca-stok-harian/' },

@@ -8,6 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
+updatedAt: 2026-08-21
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -18,9 +19,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan definisi stok, data, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk pembagian intent stok minimum, safety stock, sumber, metadata, tautan internal, dan calculator bridge."
 readingTime: "10 menit"
 takeaways:
   - "Stok minimum adalah batas kerja yang memicu pemeriksaan atau pemesanan, sedangkan safety stock adalah cadangan untuk menghadapi ketidakpastian."
@@ -45,10 +46,11 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Artikel ini bukan rekomendasi jumlah stok atau pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Batas stok tidak menjamin ketersediaan dan harus mempertimbangkan mutu, usia simpan, biaya, pemasok, ruang, serta arus kas usaha."
-updateSummary: "Naskah baru tentang membedakan stok minimum, safety stock, dan titik pemesanan pada catatan persediaan."
+updateSummary: "Menegaskan pembagian intent perbandingan stok minimum versus safety stock, serta menambah jalur dua arah ke kamus dan kalkulator."
 related:
   - "cara-menghitung-safety-stock"
   - "cara-menghitung-reorder-point"
+  - "cara-menentukan-stok-minimum-umkm"
   - "apa-itu-lead-time-stok"
 ctaType: "product"
 featured: false
@@ -59,6 +61,8 @@ noindex: false
 Stok minimum dan safety stock sering dipakai bergantian, padahal keduanya dapat memiliki fungsi berbeda dalam pengelolaan persediaan. Saat istilah tidak dibedakan, tim bisa salah memahami kapan harus memesan, berapa stok yang seharusnya tidak dipakai untuk kebutuhan rutin, atau mengapa barang sering kosong meski terlihat masih ada di gudang.
 
 Tidak ada satu definisi operasional yang wajib dipakai semua usaha. Karena itu, yang paling penting adalah menulis arti istilah di kartu stok atau prosedur kerja. Artikel ini memakai stok minimum sebagai batas kerja yang memicu pemeriksaan atau tindakan, dan safety stock sebagai cadangan untuk variasi permintaan atau keterlambatan. Dengan definisi yang jelas, angka dapat ditinjau dan tidak sekadar diwariskan dari kebiasaan lama.
+
+Jika yang dicari adalah arti istilah, mulai dari [kamus stok pengaman](/kamus-bisnis/stok-pengaman/). Jika yang dicari adalah angka buffer, gunakan [kalkulator safety stock](/kalkulator/safety-stock/) setelah membaca [panduan menghitung safety stock](/blog/cara-menghitung-safety-stock/). Halaman ini tetap menjadi rujukan perbandingan, bukan pengganti dua intent tersebut.
 
 ## Stok minimum adalah batas kerja untuk mengambil tindakan
 

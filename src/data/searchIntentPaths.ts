@@ -61,8 +61,10 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     ],
     links: [
       { label: 'Mencatat penjualan harian', href: '/blog/cara-mencatat-penjualan-harian/', description: 'Buat catatan transaksi yang siap dibaca kembali.' },
+      { label: 'Contoh laporan penjualan harian', href: '/blog/contoh-laporan-penjualan-harian/', description: 'Pilih format omzet, pembayaran, kas, dan stok untuk toko atau UMKM.' },
+      { label: 'Menghitung pertumbuhan penjualan', href: '/blog/cara-menghitung-pertumbuhan-penjualan/', description: 'Bandingkan periode dengan rumus dan konteks yang terlihat.' },
       { label: 'Membaca penjualan per jam', href: '/blog/cara-membaca-penjualan-per-jam/', description: 'Cari pola waktu tanpa mengabaikan konteks operasional.' },
-      { label: 'Memahami perubahan omzet', href: '/solusi/naikkan-omzet/', description: 'Telusuri perubahan tanpa menjanjikan hasil penjualan.' },
+      { label: 'Kalkulator target penjualan', href: '/kalkulator/target-penjualan/', description: 'Uji kebutuhan transaksi dari target omzet.' },
     ],
   },
   'product:inventori': {
@@ -75,8 +77,10 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     ],
     links: [
       { label: 'Menghitung reorder point', href: '/blog/cara-menghitung-reorder-point/', description: 'Gunakan titik cek sebagai pemicu pemeriksaan, bukan tombol beli otomatis.' },
+      { label: 'Menghitung safety stock', href: '/blog/cara-menghitung-safety-stock/', description: 'Pisahkan buffer ketidakpastian dari batas stok minimum.' },
+      { label: 'Menyelidiki selisih stok', href: '/blog/penyebab-selisih-stok-dan-cara-mengeceknya/', description: 'Cocokkan stok fisik, saldo buku, dan bukti pergerakan.' },
       { label: 'Cara stok opname', href: '/blog/cara-melakukan-stok-opname/', description: 'Cocokkan catatan dengan kondisi fisik.' },
-      { label: 'Kalkulator reorder stok', href: '/kalkulator/reorder-stok/', description: 'Hitung contoh titik pemeriksaan dengan asumsi yang terlihat.' },
+      { label: 'Kalkulator safety stock', href: '/kalkulator/safety-stock/', description: 'Uji buffer stok dengan asumsi yang terlihat.' },
     ],
   },
   'product:keuangan': {
@@ -89,6 +93,8 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     ],
     links: [
       { label: 'Omzet, laba, dan arus kas', href: '/blog/perbedaan-omzet-laba-dan-arus-kas/', description: 'Bedakan tiga angka sebelum menyimpulkan kondisi usaha.' },
+      { label: 'Biaya tetap dan variabel', href: '/blog/biaya-tetap-dan-biaya-variabel/', description: 'Kelompokkan biaya toko, kuliner, dan jasa sebelum membaca HPP.' },
+      { label: 'Kalkulator HPP', href: '/kalkulator/hpp/', description: 'Uji HPP dengan periode dan dasar pencatatan yang konsisten.' },
       { label: 'Laporan laba rugi sederhana', href: '/blog/laporan-laba-rugi-sederhana-umkm/', description: 'Susun komponen pendapatan, HPP, dan biaya.' },
       { label: 'Pantau laba dan arus kas', href: '/solusi/pantau-laba-dan-arus-kas/', description: 'Lihat langkah pemeriksaan yang berurutan.' },
     ],
@@ -103,8 +109,10 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     ],
     links: [
       { label: 'Menentukan pelanggan aktif dan tidak aktif', href: '/blog/cara-menentukan-pelanggan-aktif-dan-tidak-aktif/', description: 'Baca jeda pembelian secara hati-hati.' },
+      { label: 'Menghitung repeat customer rate', href: '/blog/cara-menghitung-repeat-customer-rate/', description: 'Pisahkan pembelian ulang dari frekuensi transaksi.' },
+      { label: 'Frekuensi pembelian pelanggan', href: '/kamus-bisnis/frekuensi-pembelian/', description: 'Samakan definisi transaksi, pelanggan unik, dan periode.' },
       { label: 'Meminta izin kontak pelanggan', href: '/blog/cara-meminta-izin-kontak-pelanggan/', description: 'Gunakan dasar persetujuan yang jelas.' },
-      { label: 'Pahami pelanggan', href: '/solusi/pahami-pelanggan/', description: 'Lihat alur dari riwayat ke pemeriksaan berikutnya.' },
+      { label: 'Mencatat keluhan pelanggan', href: '/blog/cara-mencatat-keluhan-pelanggan/', description: 'Pisahkan pencatatan masalah dari proses penanganannya.' },
     ],
   },
   'product:laporan-insight': {
@@ -202,6 +210,7 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     links: [
       { label: 'Checklist review bisnis mingguan', href: '/blog/checklist-review-bisnis-mingguan-umkm/', description: 'Buat urutan evaluasi yang dapat diulang.' },
       { label: 'Contoh laporan penjualan harian', href: '/blog/contoh-laporan-penjualan-harian/', description: 'Lihat isi ringkasan sebelum menentukan formatnya.' },
+      { label: 'Laporan bisnis bulanan', href: '/blog/cara-membuat-laporan-bisnis-bulanan/', description: 'Hubungkan ringkasan harian dengan evaluasi periode.' },
       { label: 'Pelajari Laporan & Insight', href: '/produk/laporan-insight/', description: 'Buka cara ringkasan dibentuk dari catatan.' },
     ],
   },

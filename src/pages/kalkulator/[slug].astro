@@ -26,6 +26,7 @@ const schema = [
     browserRequirements: 'JavaScript',
     inLanguage: 'id-ID',
     description: calculator.metaDescription,
+    ...(calculator.updatedAt ? { dateModified: calculator.updatedAt } : {}),
     isAccessibleForFree: true,
   },
   {

@@ -1,6 +1,6 @@
 ---
-title: "Contoh Laporan Penjualan Harian untuk Pembukuan Toko"
-description: "Contoh laporan penjualan harian dan format pembukuan toko: rekap transaksi, omzet, pembayaran, diskon, retur, kas, stok penting, serta cara mengecek selisih."
+title: "Contoh Laporan Penjualan Harian + Template Gratis"
+description: "Contoh laporan penjualan harian untuk toko dan UMKM: format transaksi, omzet, kas, stok, template gratis, dan cara membuatnya di Excel."
 dek: "Gunakan satu format pembukuan penjualan harian untuk melihat transaksi, omzet, uang masuk, stok penting, dan kejadian yang perlu ditindaklanjuti besok."
 cover: "/website-original/blog/generated/contoh-laporan-penjualan-harian.webp"
 coverAlt: "Pemilik toko menyusun laporan penjualan harian, struk, kalkulator, baki kas, dan kartu produk di meja kerja"
@@ -52,6 +52,7 @@ sources:
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Sesuaikan bukti, prosedur kas, serta pencatatan dengan kegiatan dan kewajiban usaha."
 updateSummary: "Menambahkan jalur lanjut dari rekap harian ke laporan penjualan bulanan agar total harian dapat dibandingkan dengan konteks periode yang setara."
 related:
+  - "cara-mencatat-penjualan-harian"
   - "cara-mencatat-penjualan-toko-retail"
   - "cara-membuat-catatan-kas-harian"
   - "cara-mencatat-stok-masuk-dan-keluar"
@@ -65,6 +66,18 @@ noindex: false
 Contoh laporan penjualan harian membantu pemilik usaha mengetahui apa yang terjadi hari ini sebelum informasi bercampur dengan hari berikutnya. Format pembukuan penjualan harian yang baik tidak harus panjang. Ia cukup menjawab beberapa pertanyaan penting: berapa transaksi selesai, produk apa yang bergerak, bagaimana pelanggan membayar, apakah ada diskon atau retur, berapa uang yang seharusnya ada, dan kejadian apa yang perlu diperhatikan kembali.
 
 Jangan menjadikan laporan sebagai pekerjaan administratif yang dikerjakan berhari-hari kemudian. Catat transaksi saat terjadi dan susun rekap pada waktu tutup yang konsisten. Jika ada selisih, tulis apa adanya lalu telusuri dengan bukti. Catatan yang jujur lebih bermanfaat daripada laporan yang terlihat rapi tetapi tidak dapat dijelaskan.
+
+## Apa itu laporan penjualan harian?
+
+Laporan penjualan harian adalah ringkasan satu hari operasi yang menjelaskan transaksi selesai, nilai penjualan, metode pembayaran, pengurang seperti diskon atau retur, kas, stok prioritas, dan kejadian penting. Ia lebih lengkap daripada angka omzet saja, tetapi tetap lebih ringkas daripada laporan bulanan. Batas tanggal dan definisi setiap kolom harus tertulis agar laporan dapat dibandingkan dengan hari lain.
+
+Untuk pembukuan manual, gunakan satu halaman bernomor atau satu lembar spreadsheet per tanggal. Tulis siapa yang menutup laporan dan sampai jam berapa transaksi dihitung. Untuk toko retail, pisahkan kanal pembayaran dan retur dari penjualan bersih agar kas fisik tidak tercampur dengan transaksi yang masih menunggu penyelesaian.
+
+## Cara membuat laporan penjualan harian dengan Excel
+
+Mulai dengan kolom tanggal, nomor transaksi, kanal, metode pembayaran, nilai sebelum diskon, diskon, retur, penjualan bersih, dan status. Gunakan rumus yang sama setiap hari, kunci sel rumus bila spreadsheet dipakai bersama, lalu simpan salinan sebelum koreksi. [Template penjualan harian](/template/penjualan-harian/) menyediakan struktur awal; artikel [cara mencatat penjualan harian](/blog/cara-mencatat-penjualan-harian/) membantu memisahkan pencatatan transaksi dari rekap tutup hari.
+
+Jangan membuat dashboard yang lebih rumit daripada data sumbernya. Tambahkan kolom stok, kas, atau catatan kejadian hanya bila ada orang yang akan memeriksanya. Saat laporan mulai dipakai untuk perbandingan, pastikan hari libur, jam buka, promo, dan transaksi tertunda diberi catatan sehingga perubahan tidak dibaca di luar konteks.
 
 ## Contoh format pembukuan penjualan harian
 
@@ -162,7 +175,11 @@ Rutinitas membuat laporan lebih dapat dipercaya. Pada waktu tutup yang disepakat
 
 Jika laporan diserahkan ke orang lain, tulis waktu serah-terima, dokumen atau bukti yang ikut disimpan, serta hal yang masih perlu diperiksa. Hindari mengirim foto atau salinan data pelanggan ke grup yang tidak memerlukan akses. Simpan bukti transaksi di tempat yang terkendali dan gunakan hanya selama diperlukan untuk layanan, pencatatan, serta penelusuran yang sah. Kebiasaan ini menjaga laporan tetap berguna tanpa memperluas akses data secara sembarangan.
 
-Kesalahan umum adalah mencatat total tanpa metode pembayaran, mencampur kas dengan penjualan, menghapus transaksi batal tanpa jejak, serta menunda pengecekan sampai akhir minggu. Contoh laporan ini dapat diperkecil atau diperluas sesuai usaha, tetapi prinsipnya tetap sama: data yang konsisten, bukti yang dapat ditelusuri, dan catatan yang membantu tindakan esok hari.
+## Kesalahan umum saat membuat laporan penjualan harian
+
+Kesalahan yang sering terjadi adalah mencatat total tanpa metode pembayaran, mencampur kas dengan penjualan, menghapus transaksi batal tanpa jejak, menyalin angka dari hari yang berbeda, serta menunda pengecekan sampai akhir minggu. Periksa empat hal sebelum laporan ditutup: semua transaksi memiliki status, pengurang punya bukti, kas fisik memiliki batas waktu, dan stok prioritas memakai satuan yang sama.
+
+Contoh laporan ini dapat diperkecil atau diperluas sesuai usaha, tetapi prinsipnya tetap sama: data yang konsisten, bukti yang dapat ditelusuri, dan catatan yang membantu tindakan esok hari. Setelah beberapa hari terkumpul, lanjutkan ke [laporan penjualan bulanan](/blog/cara-membuat-laporan-penjualan-bulanan/) agar perubahan periode dibaca dari rekap yang sama.
 
 ## Lanjutkan rekap harian menjadi laporan bulanan
 
