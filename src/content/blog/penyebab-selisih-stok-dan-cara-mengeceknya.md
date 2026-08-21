@@ -8,7 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-21
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
 tags:
@@ -21,9 +21,9 @@ authorName: "Bima Ardiansyah"
 authorSlug: "bima-ardiansyah"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan proses stok, koreksi, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk kejelasan proses stok, koreksi, sumber, metadata, tautan internal, dan cover."
 readingTime: "11 menit"
 takeaways:
   - "Jangan langsung mengubah saldo catatan saat stok fisik berbeda. Hitung ulang dan periksa bukti pergerakan barang terlebih dahulu."
@@ -50,11 +50,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Sesuaikan kewenangan koreksi dan bukti dengan kondisi usaha."
 disclaimer: "Artikel ini bersifat edukatif. Investigasi selisih, penanganan barang, dan koreksi persediaan harus mengikuti prosedur usaha, keselamatan, serta kewajiban yang berlaku."
-updateSummary: "Menambahkan istilah selisih stok opname dan selisih data stok, pertanyaan pemeriksaan, serta tautan template opname."
+updateSummary: "Menambahkan jalur lanjut ke laporan stok agar hasil pemeriksaan dapat diringkas sebagai prioritas pembelian, koreksi, dan tindak lanjut."
 related:
   - "cara-memilih-produk-untuk-stok-opname"
   - "cara-mencatat-stok-masuk-dan-keluar"
   - "cara-menghitung-safety-stock"
+  - "contoh-laporan-stok-barang-untuk-toko"
 ctaType: "product"
 featured: false
 draft: false
@@ -147,3 +148,7 @@ Saldo yang salah dapat membuat safety stock atau titik pemesanan tidak relevan. 
 Bagikan ringkasan koreksi kepada peran yang menerima, menyimpan, menjual, atau memakai barang agar langkah pencegahan dapat diterapkan pada titik proses yang tepat. Hindari menyebarkan tuduhan atau informasi yang tidak terbukti. Fokus pada bukti, perubahan proses, dan pemeriksaan ulang akan menjaga perbaikan tetap adil serta dapat diukur.
 
 Kesalahan umum adalah langsung mengoreksi, hanya memeriksa penjualan, mencampur barang rusak dengan layak jual, serta tidak menetapkan batas waktu pemeriksaan. Selisih stok akan lebih mudah diatasi bila usaha menghitung dengan benar, mengikuti jalur barang, menyimpan bukti, dan menjadikan hasil pemeriksaan sebagai perbaikan proses yang dapat diuji pada siklus berikutnya.
+
+## Ringkas hasil pemeriksaan untuk keputusan berikutnya
+
+Setelah selisih diperiksa, jangan biarkan temuannya tersebar di formulir opname. Ringkas barang yang sering selisih, saldo rendah, rusak, atau belum tuntas diperiksa beserta pemilik tindak lanjutnya. [Contoh laporan stok barang untuk toko](/blog/contoh-laporan-stok-barang-untuk-toko/) membedakan ringkasan tersebut dari kartu stok dan opname, sehingga keputusan pembelian tidak dibuat dari angka yang statusnya belum jelas.

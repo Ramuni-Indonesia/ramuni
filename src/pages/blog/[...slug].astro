@@ -73,6 +73,24 @@ const articleResources = {
     primary: { label: 'Gunakan kalkulator titik impas', href: '/kalkulator/titik-impas/' },
     secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
   },
+  'cara-membuat-laporan-penjualan-bulanan': {
+    title: 'Mulai dari rekap yang dapat dibandingkan.',
+    text: 'Gunakan format harian yang konsisten sebelum merangkum transaksi, diskon, retur, kanal, dan temuan bulan berjalan.',
+    primary: { label: 'Buka template penjualan harian', href: '/template/penjualan-harian/' },
+    secondary: { label: 'Pelajari modul penjualan', href: '/produk/penjualan/' },
+  },
+  'cara-menghitung-laba-bersih-usaha': {
+    title: 'Uji hubungan penjualan, HPP, dan biaya.',
+    text: 'Gunakan perhitungan awal untuk memeriksa komponen laba usaha sebelum membaca hasilnya bersama kas dan kewajiban periode.',
+    primary: { label: 'Gunakan kalkulator laba usaha', href: '/kalkulator/laba-usaha/' },
+    secondary: { label: 'Pelajari modul keuangan', href: '/produk/keuangan/' },
+  },
+  'contoh-laporan-stok-barang-untuk-toko': {
+    title: 'Bawa ringkasan ke pemeriksaan stok berikutnya.',
+    text: 'Catat saldo, status barang, fisik, selisih, dan tindak lanjut agar laporan tidak menggantikan kartu stok atau opname.',
+    primary: { label: 'Buka template stok harian', href: '/template/stok-harian/' },
+    secondary: { label: 'Pelajari modul inventori', href: '/produk/inventori/' },
+  },
 } as const;
 const articleResource = articleResources[post.id as keyof typeof articleResources];
 const reviewerProfile = post.data.reviewerSlug ? getEditorialPerson(post.data.reviewerSlug) : undefined;

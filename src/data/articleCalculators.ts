@@ -28,11 +28,13 @@ const articleCalculatorRegistry = {
   'cara-menghitung-hpp-produk': 'hpp',
   'cara-menghitung-reorder-point': 'reorder-stok',
   'cara-menghitung-margin-laba-kotor': 'margin-laba-kotor',
+  'cara-menghitung-laba-bersih-usaha': 'laba-usaha',
   'cara-mengukur-dampak-diskon-terhadap-laba': 'laba-setelah-diskon',
   'cara-membaca-omzet-harian': 'capaian-target-omzet',
   'cara-mengatasi-omzet-turun': 'perubahan-omzet',
   'cara-membaca-penjualan-per-produk': 'margin-laba-kotor',
   'cara-membandingkan-penjualan-mingguan': 'perubahan-omzet',
+  'contoh-laporan-stok-barang-untuk-toko': 'saldo-stok',
 } as const satisfies Partial<Record<string, CalculatorKey>>;
 
 export const getArticleCalculator = (articleId: string): CalculatorKey | undefined =>

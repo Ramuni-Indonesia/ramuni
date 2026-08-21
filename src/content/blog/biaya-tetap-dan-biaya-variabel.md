@@ -8,7 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-21
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 tags:
@@ -20,9 +20,9 @@ authorName: "Alya Pramesti"
 authorSlug: "alya-pramesti"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan contoh, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk kejelasan contoh, sumber, metadata, tautan internal, dan cover."
 readingTime: "7 menit"
 takeaways:
   - "Biaya tetap tidak selalu nol berubah, tetapi biasanya tidak berubah langsung setiap satu unit penjualan bertambah dalam periode pendek."
@@ -44,11 +44,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar pelaporan keuangan entitas mikro, kecil, dan menengah; pengelompokan operasional pada artikel ini bersifat edukatif."
 disclaimer: "Klasifikasi biaya untuk pencatatan, pajak, dan laporan formal perlu mengikuti kondisi serta kebijakan usaha yang berlaku."
-updateSummary: "Memperjelas definisi, contoh biaya tetap dan variabel, serta jalur lanjut ke istilah dan kalkulator titik impas."
+updateSummary: "Menambahkan jalur lanjut ke perhitungan laba bersih agar klasifikasi biaya dibaca bersama pendapatan, HPP, dan biaya periode yang relevan."
 related:
   - "cara-menghitung-titik-impas-usaha"
   - "cara-menghitung-hpp-produk"
   - "laporan-laba-rugi-sederhana-umkm"
+  - "cara-menghitung-laba-bersih-usaha"
 ctaType: "product"
 featured: false
 draft: false
@@ -121,3 +122,7 @@ Jika penjualan turun, biaya tetap tidak selalu langsung turun bersama volume. Ji
 Hubungkan hasilnya dengan [laporan laba rugi sederhana](/blog/laporan-laba-rugi-sederhana-umkm/) agar biaya tidak dibaca terpisah dari pendapatan dan hasil usaha. Catat perubahan besar, alasan, serta periode pemeriksaannya. Kebiasaan kecil ini membuat klasifikasi biaya menjadi alat kerja, bukan sekadar istilah akuntansi.
 
 Tinjau daftar minimal setiap kali ada kontrak baru, perubahan pemasok, kanal penjualan baru, atau lonjakan volume yang tidak biasa. Jangan mengganti klasifikasi hanya agar hasil periode terlihat lebih baik. Bila aturan berubah karena bukti baru, simpan alasan dan tanggal mulainya, lalu jelaskan bahwa perbandingan dengan periode sebelumnya memakai dasar berbeda. Transparansi kecil ini menjaga angka tetap berguna untuk pemilik usaha dan tim operasional.
+
+## Hubungkan klasifikasi biaya dengan laba bersih
+
+Setelah biaya dikelompokkan secara konsisten, baca hasilnya bersama pendapatan dan HPP dalam periode yang sama. Biaya tetap serta variabel membantu menjelaskan perilaku pengeluaran, tetapi keduanya belum menunjukkan hasil akhir usaha dengan sendirinya. Panduan [cara menghitung laba bersih usaha](/blog/cara-menghitung-laba-bersih-usaha/) menunjukkan urutan membaca komponen tersebut tanpa menyamakan laba dengan kas.

@@ -8,7 +8,7 @@ coverWidth: 640
 coverHeight: 360
 createdAt: 2026-08-09
 publishedAt: 2026-08-09
-updatedAt: 2026-08-20
+updatedAt: 2026-08-21
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
 tags:
@@ -21,9 +21,9 @@ authorName: "Citra Maheswari"
 authorSlug: "citra-maheswari"
 reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
-reviewedAt: 2026-08-09
+reviewedAt: 2026-08-21
 reviewStatus: "reviewed"
-editorialStatus: "Menunggu peninjauan format transaksi, kas, stok, sumber, metadata, tautan internal, dan cover sebelum publikasi."
+editorialStatus: "Ditinjau untuk kejelasan format transaksi, kas, stok, sumber, metadata, tautan internal, dan cover."
 readingTime: "11 menit"
 takeaways:
   - "Laporan harian perlu memisahkan penjualan, metode pembayaran, diskon, pembatalan, retur, uang laci, dan catatan kejadian."
@@ -50,11 +50,12 @@ sources:
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Cek stok dalam contoh ini adalah kontrol operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Sesuaikan bukti, prosedur kas, serta pencatatan dengan kegiatan dan kewajiban usaha."
-updateSummary: "Menambahkan format pembukuan penjualan harian, pembeda laporan omzet, tautan template, dan penjelasan istilah pencarian yang paling relevan."
+updateSummary: "Menambahkan jalur lanjut dari rekap harian ke laporan penjualan bulanan agar total harian dapat dibandingkan dengan konteks periode yang setara."
 related:
   - "cara-mencatat-penjualan-toko-retail"
   - "cara-membuat-catatan-kas-harian"
   - "cara-mencatat-stok-masuk-dan-keluar"
+  - "cara-membuat-laporan-penjualan-bulanan"
 ctaType: "product"
 featured: false
 draft: false
@@ -162,3 +163,7 @@ Rutinitas membuat laporan lebih dapat dipercaya. Pada waktu tutup yang disepakat
 Jika laporan diserahkan ke orang lain, tulis waktu serah-terima, dokumen atau bukti yang ikut disimpan, serta hal yang masih perlu diperiksa. Hindari mengirim foto atau salinan data pelanggan ke grup yang tidak memerlukan akses. Simpan bukti transaksi di tempat yang terkendali dan gunakan hanya selama diperlukan untuk layanan, pencatatan, serta penelusuran yang sah. Kebiasaan ini menjaga laporan tetap berguna tanpa memperluas akses data secara sembarangan.
 
 Kesalahan umum adalah mencatat total tanpa metode pembayaran, mencampur kas dengan penjualan, menghapus transaksi batal tanpa jejak, serta menunda pengecekan sampai akhir minggu. Contoh laporan ini dapat diperkecil atau diperluas sesuai usaha, tetapi prinsipnya tetap sama: data yang konsisten, bukti yang dapat ditelusuri, dan catatan yang membantu tindakan esok hari.
+
+## Lanjutkan rekap harian menjadi laporan bulanan
+
+Setelah setiap hari memakai definisi dan status transaksi yang sama, kumpulkan rekap ke dalam periode yang setara. Jangan hanya menjumlahkan omzet; sertakan transaksi selesai, diskon, retur, kanal, produk penting, dan catatan kejadian yang membantu menjelaskan perubahan. Panduan [cara membuat laporan penjualan bulanan](/blog/cara-membuat-laporan-penjualan-bulanan/) menunjukkan cara menyusun ringkasan tersebut tanpa menyamakan penjualan dengan kas atau laba.
