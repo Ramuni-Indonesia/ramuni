@@ -26,7 +26,7 @@ readingTime: "14 menit"
 takeaways:
   - "Laporan stok adalah ringkasan untuk memilih barang yang perlu diperiksa atau ditindaklanjuti; kartu stok mencatat pergerakan per SKU, sedangkan stok opname membandingkan catatan dengan fisik."
   - "Pisahkan saldo awal, penerimaan, barang keluar, retur, rusak, koreksi, saldo catatan, fisik, dan status tindak lanjut agar selisih tidak tertutup."
-  - "Fokuskan laporan pada produk cepat bergerak, bernilai tinggi, sering selisih, atau berisiko kosong—bukan seluruh daftar barang setiap kali."
+  - "Fokuskan laporan pada produk cepat bergerak, bernilai tinggi, sering selisih, atau berisiko kosong, bukan seluruh daftar barang setiap kali."
 faqs:
   - question: "Apa saja isi laporan stok barang sederhana?"
     answer: "Isi minimum dapat berupa SKU atau nama barang, satuan, saldo awal, masuk, keluar, retur atau rusak, koreksi beralasan, saldo menurut catatan, stok fisik jika diperiksa, selisih, status, dan tindak lanjut."
@@ -35,7 +35,7 @@ faqs:
   - question: "Apakah setiap selisih stok harus langsung dikoreksi?"
     answer: "Tidak. Hitung ulang dan periksa bukti penerimaan, transaksi, retur, barang rusak, satuan, batas waktu, serta status lokasi terlebih dahulu. Jika koreksi diperlukan sesuai prosedur usaha, simpan alasan, jumlah, tanggal, dan pihak yang meninjau."
 sources:
-  - title: "SAK EMKM — Persediaan"
+  - title: "SAK EMKM - Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
     url: "https://www.iaiglobal.or.id/v03/files/file_sak/emkm/files/basic-html/page33.html"
     accessedAt: 2026-08-21
@@ -79,7 +79,7 @@ Contoh berikut memakai satuan yang konsisten untuk setiap produk. Angka bersifat
 | Minuman A | 48 | 72 | 91 | 1 rusak | 28 | 28 | 0 | Cukup, pantau pesanan |
 | Produk B | 20 | 0 | 16 | 0 | 4 | 3 | -1 | Hitung ulang dan cek transaksi |
 | Kemasan C | 300 | 200 | 420 | 0 | 80 | 80 | 0 | Pesan untuk minggu depan |
-| Barang D | 35 | 10 | 6 | 2 retur layak jual | 41 | Belum dihitung | — | Periksa saat opname terjadwal |
+| Barang D | 35 | 10 | 6 | 2 retur layak jual | 41 | Belum dihitung | - | Periksa saat opname terjadwal |
 
 Pada contoh tersebut, saldo catatan dihitung dari saldo awal ditambah penerimaan, dikurangi barang keluar, lalu disesuaikan dengan status seperti barang rusak atau retur. Jangan memasukkan retur layak jual, barang rusak, dan koreksi dalam satu kolom tanpa penjelasan. Ketiganya dapat mengubah keputusan yang berbeda.
 

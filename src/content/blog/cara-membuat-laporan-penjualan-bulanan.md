@@ -35,7 +35,7 @@ faqs:
   - question: "Bagaimana membandingkan penjualan bulan ini dengan bulan lalu?"
     answer: "Bandingkan periode yang setara, lalu beri konteks seperti jumlah hari buka, promo, stok kosong, perubahan harga, kanal, hari libur, dan transaksi yang belum selesai. Jangan menyimpulkan penyebab hanya dari total omzet."
 sources:
-  - title: "SAK EMKM — Laporan Laba Rugi"
+  - title: "SAK EMKM - Laporan Laba Rugi"
     publisher: "Ikatan Akuntan Indonesia"
     url: "https://www.iaiglobal.or.id/v03/files/file_sak/emkm/files/basic-html/page23.html"
     accessedAt: 2026-08-21

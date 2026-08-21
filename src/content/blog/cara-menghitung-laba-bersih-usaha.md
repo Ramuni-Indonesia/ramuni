@@ -35,12 +35,12 @@ faqs:
   - question: "Biaya apa yang sering terlupa saat menghitung laba bersih?"
     answer: "Tergantung usaha, tetapi yang sering perlu diperiksa antara lain diskon dan retur, biaya kanal atau pembayaran, kemasan, sewa, gaji atau jasa, listrik, pengiriman, bunga, pajak, dan biaya lain yang benar-benar terkait periode tersebut. Jangan memasukkan atau mengeluarkan biaya hanya agar hasil tampak lebih baik."
 sources:
-  - title: "SAK EMKM — Laporan Laba Rugi"
+  - title: "SAK EMKM - Laporan Laba Rugi"
     publisher: "Ikatan Akuntan Indonesia"
     url: "https://www.iaiglobal.or.id/v03/files/file_sak/emkm/files/basic-html/page23.html"
     accessedAt: 2026-08-21
     note: "Rujukan umum bahwa laporan laba rugi menyajikan kinerja untuk suatu periode dan mencakup penghasilan serta beban yang diakui dalam periode tersebut. Contoh dalam artikel ini disederhanakan untuk tujuan edukasi."
-  - title: "SAK EMKM — Penyesuaian Dasar Kas Menjadi Akrual"
+  - title: "SAK EMKM - Penyesuaian Dasar Kas Menjadi Akrual"
     publisher: "Ikatan Akuntan Indonesia"
     url: "https://www.iaiglobal.or.id/v03/files/file_sak/emkm/files/basic-html/page60.html"
     accessedAt: 2026-08-21
@@ -76,7 +76,7 @@ Untuk dasar istilah, baca [perbedaan laba kotor dan laba bersih](/blog/perbedaan
 
 ## Susun komponen perhitungan dalam satu periode
 
-Pilih satu periode yang jelas, misalnya 1–31 Agustus. Ambil pendapatan dan beban yang sesuai dengan periode tersebut menurut aturan pencatatan usaha. Jangan mengambil satu angka total tanpa tahu transaksi atau bukti yang membentuknya.
+Pilih satu periode yang jelas, misalnya 1 sampai 31 Agustus. Ambil pendapatan dan beban yang sesuai dengan periode tersebut menurut aturan pencatatan usaha. Jangan mengambil satu angka total tanpa tahu transaksi atau bukti yang membentuknya.
 
 | Komponen | Contoh isi | Pemeriksaan minimum |
 | --- | --- | --- |
@@ -145,4 +145,4 @@ Gunakan [Kalkulator Laba Usaha](/kalkulator/laba-usaha/) untuk menguji hubungan 
 
 Kesalahan umum adalah memakai omzet sebagai laba, menyamakan laba dengan kas, mengabaikan diskon atau retur, dan mencampur pengambilan pribadi ke biaya usaha tanpa label. Kesalahan lain adalah membandingkan biaya satu bulan dengan penjualan bulan lain atau mengubah kategori agar hasil terlihat lebih baik.
 
-Mulailah dengan periode, definisi, dan bukti yang jelas. Simpan catatan asumsi bila ada angka yang masih sementara. Ketika laporan sudah konsisten beberapa periode, pemilik dapat melihat perubahan biaya serta hasil dengan pertanyaan yang lebih baik—tanpa memperlakukan rumus sebagai pengganti pemeriksaan manusia.
+Mulailah dengan periode, definisi, dan bukti yang jelas. Simpan catatan asumsi bila ada angka yang masih sementara. Ketika laporan sudah konsisten beberapa periode, pemilik dapat melihat perubahan biaya serta hasil dengan pertanyaan yang lebih baik, tanpa memperlakukan rumus sebagai pengganti pemeriksaan manusia.
