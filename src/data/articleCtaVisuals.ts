@@ -98,7 +98,7 @@ export function getArticleCtaCopy(articleTitle: string, journey: ArticleJourney)
   const label = journey.label.toLocaleLowerCase('id-ID');
 
   return {
-    title: `Lanjutkan ${topic.toLocaleLowerCase('id-ID')} melalui alur ${label} yang dapat diperiksa.`,
-    text: `${journey.text} Hubungkan pembahasan “${articleTitle}” dengan catatan yang sudah tersedia sebelum memilih langkah berikutnya.`,
+    title: `Lanjutkan ${topic.toLocaleLowerCase('id-ID')} melalui alur ${label}.`,
+    text: `Setelah membahas ${topic.toLocaleLowerCase('id-ID')}, lanjutkan dari catatan usaha ke langkah ${label} yang dapat diperiksa.`,
   };
 }
