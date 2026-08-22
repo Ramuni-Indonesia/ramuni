@@ -65,23 +65,56 @@ const categoryVisuals: Record<string, ArticleCtaVisual> = {
 };
 
 const visualOverrides: Record<string, string> = {
-  'cara-menghitung-hpp-usaha-kuliner': 'keuangan-umkm',
-  'cara-menghitung-food-cost-usaha-makanan': 'keuangan-umkm',
-  'cara-menghitung-safety-stock': 'stok-inventori',
-  'cara-mengatur-stok-usaha-fnb': 'stok-inventori',
-  'cara-mengatur-stok-toko-sembako': 'stok-inventori',
-  'cara-mengatur-stok-bahan-baku-bakery': 'stok-inventori',
-  'cara-mengelola-stok-toko-fashion': 'stok-inventori',
-  'cara-mengelola-stok-produk-varian': 'stok-inventori',
-  'cara-mencatat-penjualan-toko-retail': 'penjualan-omzet',
-  'cara-mencatat-penjualan-usaha-laundry': 'penjualan-omzet',
-  'cara-membuat-laporan-penjualan-barbershop': 'penjualan-omzet',
+  'cara-membuat-laporan-penjualan-bulanan': 'contoh-laporan-penjualan-harian',
+  'cara-menentukan-stok-minimum-umkm': 'cara-menghitung-reorder-point',
+  'cara-mengatur-stok-bahan-baku-bakery': 'cara-mengatur-stok-usaha-fnb',
+  'cara-menghitung-food-cost-usaha-makanan': 'cara-menghitung-hpp-usaha-kuliner',
+  'cara-menghitung-frekuensi-pembelian-pelanggan': 'cara-menghitung-repeat-customer-rate',
+  'cara-menghitung-laba-bersih-usaha': 'arus-kas-umkm-ringan',
+  'contoh-laporan-kas-harian-kedai-makanan': 'arus-kas-umkm-ringan',
+  'contoh-laporan-stok-barang-untuk-toko': 'kartu-stok-sederhana-untuk-umkm',
+  'laporan-laba-rugi-sederhana-umkm': 'perbedaan-laba-kotor-dan-laba-bersih',
 };
+
+const largeVisualIds = new Set([
+  'ai-business-companion-umkm',
+  'arus-kas-umkm-ringan',
+  'cara-membaca-omzet-harian',
+  'cara-membandingkan-penjualan-mingguan',
+  'cara-melihat-pelanggan-yang-kembali-belanja',
+  'cara-merapikan-data-produk-dan-sku',
+  'checklist-review-bisnis-mingguan-umkm',
+  'data-pelanggan-yang-perlu-dicatat-umkm',
+  'perbedaan-omzet-laba-dan-arus-kas',
+  'produk-terlaris-belum-tentu-paling-untung',
+  'panduan-membaca-stok-harian',
+]);
 
 const fallbackVisual = categoryVisuals['operasional-bisnis'];
 
-export function getArticleCtaVisual(categorySlug: string, articleId?: string): ArticleCtaVisual {
-  const visualKey = articleId ? visualOverrides[articleId] || categorySlug : categorySlug;
+export function getArticleCtaVisual(categorySlug: string, articleId?: string, articleTitle?: string): ArticleCtaVisual {
+  if (articleId) {
+    const visualKey = visualOverrides[articleId];
+    if (visualKey) {
+      const width = largeVisualIds.has(visualKey) ? 768 : 640;
+      return {
+        src: `/website-original/blog/generated/${visualKey}.webp`,
+        width,
+        height: width * 9 / 16,
+        alt: articleTitle ? `Visual pendukung untuk ${articleTitle.toLocaleLowerCase('id-ID')}.` : 'Visual pendukung alur usaha RAMUNI.',
+      };
+    }
+
+    const width = largeVisualIds.has(articleId) ? 768 : 640;
+    return {
+      src: `/website-original/blog/generated/${articleId}.webp`,
+      width,
+      height: width * 9 / 16,
+      alt: articleTitle ? `Visual pendukung untuk ${articleTitle.toLocaleLowerCase('id-ID')}.` : 'Visual pendukung alur usaha RAMUNI.',
+    };
+  }
+
+  const visualKey = categorySlug;
   return categoryVisuals[visualKey] || fallbackVisual;
 }
 
@@ -94,11 +127,13 @@ function topicFromTitle(title: string): string {
 }
 
 export function getArticleCtaCopy(articleTitle: string, journey: ArticleJourney): Pick<ArticleJourney, 'title' | 'text'> {
-  const topic = topicFromTitle(articleTitle);
-  const label = journey.label.toLocaleLowerCase('id-ID');
+  const topic = topicFromTitle(articleTitle).toLocaleLowerCase('id-ID');
+  const compactTopic = topic.length > 42 ? `${topic.slice(0, 42).replace(/\s+\S*$/, '')}…` : topic;
+  const readableTopic = compactTopic.charAt(0).toLocaleUpperCase('id-ID') + compactTopic.slice(1);
+  const label = journey.label;
 
   return {
-    title: `Lanjutkan ${topic.toLocaleLowerCase('id-ID')} melalui alur ${label}.`,
-    text: `Setelah membahas ${topic.toLocaleLowerCase('id-ID')}, lanjutkan dari catatan usaha ke langkah ${label} yang dapat diperiksa.`,
+    title: `${readableTopic} · ${label}`,
+    text: `Lihat alur ${label.toLocaleLowerCase('id-ID')} yang relevan untuk catatan usaha ini.`,
   };
 }

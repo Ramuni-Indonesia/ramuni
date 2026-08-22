@@ -28,7 +28,7 @@ const hasMaterialUpdate = Boolean(post.data.updatedAt);
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const relatedPosts = getRelatedBlogPosts(post, posts);
 const articleJourney = getArticleJourney(post.data.categorySlug, post.id);
-const articleCtaVisual = getArticleCtaVisual(post.data.categorySlug, post.id);
+const articleCtaVisual = getArticleCtaVisual(post.data.categorySlug, post.id, post.data.title);
 const author = getEditorialPerson(post.data.authorSlug);
 const embeddedCalculator = getArticleCalculator(post.id);
 const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
@@ -240,10 +240,10 @@ const schema = [
               <img class="article-rail-cta__banner" src={articleCtaVisual.src} width={articleCtaVisual.width} height={articleCtaVisual.height} alt={articleCtaVisual.alt} loading="lazy" decoding="async" />
               <span class="article-rail-cta__shade" aria-hidden="true"></span>
               <span class="article-rail-cta__content">
-                <span class="article-rail-cta__eyebrow">Lihat alurnya</span>
-                <strong id="article-rail-cta-title">Punya masalah serupa?</strong>
-                <span class="article-rail-cta__text">Lihat contoh alur dan modul yang relevan sebelum memutuskan.</span>
-                <span class="article-rail-cta__action">Mulai coba gratis <i aria-hidden="true">&rarr;</i></span>
+                <span class="article-rail-cta__eyebrow">{articleJourney.label}</span>
+                <strong id="article-rail-cta-title">Lanjutkan dari sini.</strong>
+                <span class="article-rail-cta__text">Lihat alur yang relevan untuk usaha Anda.</span>
+                <span class="article-rail-cta__action">Lihat alur <i aria-hidden="true">&rarr;</i></span>
               </span>
             </a>
           </section>
