@@ -621,9 +621,7 @@
 .article-rail-cta__content strong{margin-top:6px;color:var(--white);font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.02;letter-spacing:-.035em}
 .article-rail-cta__text{margin-top:7px;color:rgb(255 255 255/.7);font-size:.75rem;line-height:1.4}
 
-/* Keep the lead story editorial and proportional; the image supports the story instead of becoming the page. */
 .featured-story{grid-template-columns:minmax(0,1.18fr) minmax(270px,.62fr);min-height:clamp(390px,32vw,500px)}
-.featured-visual{min-height:clamp(390px,32vw,500px);padding:clamp(14px,2.2vw,30px)}
-.featured-visual img{object-fit:cover}
+.featured-visual{min-height:clamp(390px,32vw,500px)}
 @media(max-width:960px){.featured-story{grid-template-columns:1fr;min-height:0}.featured-visual{min-height:0;aspect-ratio:16/9}}
-@media(max-width:740px){.featured-visual{aspect-ratio:16/9;padding:0}}
+@media(max-width:740px){.featured-visual{aspect-ratio:16/9}}
