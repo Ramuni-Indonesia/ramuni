@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-21
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P0"
 tags:
   - "Reorder Point"
   - "Stok Minimum"

@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P2"
 tags: ["Stok Toko Sembako", "Inventori Warung", "Belanja Grosir"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

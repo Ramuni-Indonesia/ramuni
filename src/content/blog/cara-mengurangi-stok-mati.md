@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P0"
 tags:
   - "Stok Mati"
   - "Persediaan"

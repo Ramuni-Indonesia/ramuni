@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P0"
 tags:
   - "HPP Produk"
   - "Biaya Produksi"

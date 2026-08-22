@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P1"
 tags:
   - "Nilai Pelanggan"
   - "Customer Lifetime Value"

@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P1"
 tags: ["HPP Usaha Kuliner", "Biaya Per Porsi", "Harga Menu"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

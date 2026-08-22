@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P2"
 tags:
   - "Kepuasan Pelanggan"
   - "Feedback Pelanggan"

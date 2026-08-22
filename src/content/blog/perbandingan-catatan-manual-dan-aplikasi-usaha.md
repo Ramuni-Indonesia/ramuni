@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
+deliveryPriority: "P1"
 tags:
   - "Catatan Manual"
   - "Aplikasi Usaha"

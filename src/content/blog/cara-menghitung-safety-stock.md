@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-21
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
+deliveryPriority: "P0"
 tags:
   - "Safety Stock"
   - "Stok Pengaman"

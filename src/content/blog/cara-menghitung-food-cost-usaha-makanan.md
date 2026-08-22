@@ -9,6 +9,7 @@ coverHeight: 360
 publishedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P1"
 tags: ["Food Cost", "HPP Kuliner", "Usaha Makanan", "Harga Menu"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

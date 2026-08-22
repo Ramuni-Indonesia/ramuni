@@ -10,6 +10,7 @@ createdAt: 2026-08-21
 publishedAt: 2026-08-21
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P1"
 tags:
   - "Laporan Stok Barang"
   - "Stok Toko"

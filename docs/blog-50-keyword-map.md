@@ -12,6 +12,7 @@ Tujuan: membangun topical authority RAMUNI untuk pemilik UMKM Indonesia melalui 
 - Tautan keluar memprioritaskan regulasi, standar, dokumentasi resmi, dan penelitian primer. Halaman kompetitor dapat dijadikan referensi pembanding yang faktual bila relevan, diberi konteks, dan tidak dipakai hanya untuk mengejar outbound link. Tidak ada tautan ke HashMicro.
 - Artikel perbandingan tidak membuat klaim fitur, harga, atau hasil tanpa sumber serta tanggal pemeriksaan. Halaman yang berubah cepat harus direview ulang sebelum dipublikasikan.
 - Ranking tidak dapat dijanjikan. Sasaran yang dapat dikendalikan adalah kesesuaian intent, kedalaman yang berguna, struktur yang dapat dibaca, sumber yang jelas, tautan internal, dan kualitas teknis.
+- Urutan eksekusi per URL ditandai `deliveryPriority` (`P0`, `P1`, atau `P2`) dan diringkas dalam [matriks prioritas blog](./blog-priority-matrix.md). Label ini mengatur backlog, bukan status indeksasi atau jaminan ranking.
 
 ## Arsitektur tautan
 

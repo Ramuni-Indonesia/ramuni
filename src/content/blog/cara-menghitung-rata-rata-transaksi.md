@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
+deliveryPriority: "P1"
 tags:
   - "Rata-Rata Transaksi"
   - "Penjualan"

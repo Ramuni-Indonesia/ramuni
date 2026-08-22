@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P2"
 tags:
   - "Lead Time"
   - "Pemasok"

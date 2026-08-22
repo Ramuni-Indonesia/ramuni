@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Operasional Bisnis"
 categorySlug: "operasional-bisnis"
+deliveryPriority: "P2"
 tags:
   - "Review Mingguan"
   - "Operasional UMKM"

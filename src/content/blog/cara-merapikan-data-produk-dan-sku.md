@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P2"
 tags:
   - "SKU"
   - "Data Produk"

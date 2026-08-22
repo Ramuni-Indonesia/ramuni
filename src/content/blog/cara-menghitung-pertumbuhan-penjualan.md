@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-21
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
+deliveryPriority: "P0"
 tags:
   - "Pertumbuhan Penjualan"
   - "Analisis Omzet"

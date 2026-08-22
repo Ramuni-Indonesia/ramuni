@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P1"
 tags:
   - "Titik Impas"
   - "Break Even Point"

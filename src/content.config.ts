@@ -17,6 +17,7 @@ const blog = defineCollection({
     updatedAt: z.coerce.date().optional(),
     category: z.string(),
     categorySlug: z.string(),
+    deliveryPriority: z.enum(['P0', 'P1', 'P2']).default('P2'),
     tags: z.array(z.string()).default([]),
     authorName: z.string(),
     authorSlug: z.string(),

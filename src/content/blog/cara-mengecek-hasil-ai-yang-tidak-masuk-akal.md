@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
+deliveryPriority: "P1"
 tags: ["Cek Hasil AI", "Validasi Insight", "Halusinasi AI"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

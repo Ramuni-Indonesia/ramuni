@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P1"
 tags:
   - "Produk Terlaris"
   - "Margin"

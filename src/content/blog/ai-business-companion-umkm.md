@@ -10,6 +10,7 @@ publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
+deliveryPriority: "P2"
 tags:
   - "AI untuk UMKM"
   - "Pemilik Usaha"

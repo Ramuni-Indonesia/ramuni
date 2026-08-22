@@ -11,6 +11,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-20
 category: "Operasional Usaha"
 categorySlug: "operasional-usaha"
+deliveryPriority: "P2"
 tags:
   - "Stok F&B"
   - "Bahan Baku"

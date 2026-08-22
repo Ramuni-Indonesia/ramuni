@@ -10,6 +10,7 @@ publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P1"
 tags:
   - "Stok"
   - "Pemilik Usaha"

@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-08-10
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P2"
 tags:
   - "Omzet"
   - "Laba"

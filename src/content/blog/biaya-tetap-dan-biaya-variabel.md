@@ -11,6 +11,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-21
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P0"
 tags:
   - "Biaya Tetap"
   - "Biaya Variabel"

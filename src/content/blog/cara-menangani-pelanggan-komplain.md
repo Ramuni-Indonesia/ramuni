@@ -11,6 +11,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-21
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P1"
 tags:
   - "Komplain Pelanggan"
   - "Layanan Pelanggan"

@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "AI untuk UMKM"
 categorySlug: "ai-untuk-umkm"
+deliveryPriority: "P2"
 tags:
   - "Batasan AI"
   - "AI UMKM"

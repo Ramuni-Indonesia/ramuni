@@ -10,6 +10,7 @@ createdAt: 2026-08-21
 publishedAt: 2026-08-21
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P0"
 tags:
   - "Laba Bersih"
   - "Laba Usaha"

@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
+deliveryPriority: "P2"
 tags:
   - "Penjualan Hari Libur"
   - "Tren Musiman"

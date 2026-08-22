@@ -10,6 +10,7 @@ createdAt: 2026-08-21
 publishedAt: 2026-08-21
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
+deliveryPriority: "P0"
 tags:
   - "Laporan Penjualan Bulanan"
   - "Rekap Penjualan"

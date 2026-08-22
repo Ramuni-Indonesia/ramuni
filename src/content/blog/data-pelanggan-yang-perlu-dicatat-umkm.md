@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-07-27
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P2"
 tags:
   - "Data Pelanggan"
   - "Privasi UMKM"

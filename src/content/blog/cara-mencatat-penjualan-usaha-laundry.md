@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P2"
 tags: ["Penjualan Laundry", "Laporan Laundry", "Usaha Jasa"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

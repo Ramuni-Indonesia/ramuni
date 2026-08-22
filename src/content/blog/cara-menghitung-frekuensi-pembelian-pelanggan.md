@@ -10,6 +10,7 @@ createdAt: 2026-08-22
 publishedAt: 2026-08-22
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P1"
 tags:
   - "Frekuensi Pembelian"
   - "Pelanggan Berulang"

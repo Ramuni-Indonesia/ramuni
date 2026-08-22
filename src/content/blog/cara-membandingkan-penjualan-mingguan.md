@@ -10,6 +10,7 @@ publishedAt: 2026-07-27
 updatedAt: 2026-08-10
 category: "Penjualan & Omzet"
 categorySlug: "penjualan-omzet"
+deliveryPriority: "P1"
 tags:
   - "Penjualan Mingguan"
   - "Perbandingan Periode"

@@ -11,6 +11,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-20
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
+deliveryPriority: "P1"
 tags:
   - "Pelanggan Aktif"
   - "Retensi Pelanggan"

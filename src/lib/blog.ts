@@ -34,6 +34,7 @@ type CmsArticlePayload = Partial<BlogData> & {
 
 const REVIEW_STATUSES = new Set(['draft-template', 'needs-review', 'reviewed']);
 const CTA_TYPES = new Set(['early-access', 'demo', 'product']);
+const DELIVERY_PRIORITIES = new Set(['P0', 'P1', 'P2']);
 const ARTICLE_SCHEMA_VERSION = '1';
 
 function requiredText(value: unknown, field: string): string {
@@ -158,8 +159,10 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
   if (page.canonicalPath !== `/blog/${slug}/`) throw new Error(`CMS article ${slug} canonical path does not match its slug`);
   const reviewStatus = requiredText(payload.reviewStatus, 'reviewStatus');
   const ctaType = requiredText(payload.ctaType, 'ctaType');
+  const deliveryPriority = optionalText(payload.deliveryPriority) || 'P2';
   if (!REVIEW_STATUSES.has(reviewStatus)) throw new Error(`CMS article ${slug} has an invalid reviewStatus`);
   if (!CTA_TYPES.has(ctaType)) throw new Error(`CMS article ${slug} has an invalid ctaType`);
+  if (!DELIVERY_PRIORITIES.has(deliveryPriority)) throw new Error(`CMS article ${slug} has an invalid deliveryPriority`);
   const takeaways = textArray(payload.takeaways, 'takeaways', 3);
   if (takeaways.length > 5) throw new Error(`CMS article ${slug} takeaways must contain at most 5 items`);
   const data = {
@@ -168,7 +171,7 @@ function parseCmsArticle(page: PublishedPage<CmsArticlePayload>): BlogPost {
     coverWidth: positiveInteger(payload.coverWidth, 'coverWidth', 1200), coverHeight: positiveInteger(payload.coverHeight, 'coverHeight', 675),
     createdAt: dateValue(payload.createdAt ?? payload.created_at, 'createdAt', true),
     publishedAt: dateValue(payload.publishedAt, 'publishedAt')!,
-    updatedAt: dateValue(payload.updatedAt, 'updatedAt', true), category: requiredText(payload.category, 'category'), categorySlug: requiredSlug(payload.categorySlug, 'categorySlug'),
+    updatedAt: dateValue(payload.updatedAt, 'updatedAt', true), category: requiredText(payload.category, 'category'), categorySlug: requiredSlug(payload.categorySlug, 'categorySlug'), deliveryPriority: deliveryPriority as BlogData['deliveryPriority'],
     tags: payload.tags == null ? [] : textArray(payload.tags, 'tags'), authorName: requiredText(payload.authorName, 'authorName'), authorSlug: requiredSlug(payload.authorSlug, 'authorSlug'),
     reviewerName: optionalText(payload.reviewerName), reviewerSlug: payload.reviewerSlug == null ? undefined : requiredSlug(payload.reviewerSlug, 'reviewerSlug'), reviewedAt: dateValue(payload.reviewedAt ?? payload.reviewed_at, 'reviewedAt', true), reviewStatus: reviewStatus as BlogData['reviewStatus'],
     editorialStatus: requiredText(payload.editorialStatus, 'editorialStatus'), readingTime: requiredText(payload.readingTime, 'readingTime'), takeaways,

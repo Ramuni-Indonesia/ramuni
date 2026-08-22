@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-10
 category: "Penjualan & Pemasaran"
 categorySlug: "penjualan-pemasaran"
+deliveryPriority: "P2"
 tags:
   - "Penjualan per Jam"
   - "Jam Ramai"

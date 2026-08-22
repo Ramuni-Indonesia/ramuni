@@ -9,6 +9,7 @@ coverHeight: 360
 publishedAt: 2026-08-20
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P2"
 tags: ["Stok Bakery", "Bahan Baku", "Inventori F&B", "Produksi Roti"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"

@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Operasional Bisnis"
 categorySlug: "operasional-bisnis"
+deliveryPriority: "P1"
 tags:
   - "Dashboard Bisnis"
   - "KPI UMKM"

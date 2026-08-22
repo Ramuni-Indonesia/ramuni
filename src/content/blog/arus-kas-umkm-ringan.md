@@ -10,6 +10,7 @@ publishedAt: 2026-07-25
 updatedAt: 2026-07-25
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P0"
 tags:
   - "Arus Kas"
   - "Pemilik Usaha"

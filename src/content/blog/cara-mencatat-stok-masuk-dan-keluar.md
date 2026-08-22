@@ -10,6 +10,7 @@ publishedAt: 2026-08-09
 updatedAt: 2026-08-20
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
+deliveryPriority: "P1"
 tags:
   - "Stok Masuk"
   - "Stok Keluar"

@@ -9,6 +9,7 @@ coverHeight: 360
 publishedAt: 2026-08-20
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
+deliveryPriority: "P2"
 tags: ["Laporan Kas Harian", "Kedai Makanan", "Arus Kas", "Catatan Usaha"]
 authorName: "Alya Pramesti"
 authorSlug: "alya-pramesti"

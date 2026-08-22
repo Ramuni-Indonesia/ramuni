@@ -10,6 +10,7 @@ createdAt: 2026-08-09
 publishedAt: 2026-08-09
 category: "Strategi per Industri"
 categorySlug: "strategi-per-industri"
+deliveryPriority: "P2"
 tags: ["Stok Toko Fashion", "SKU Fashion", "Stok Varian"]
 authorName: "Dimas Wicaksana"
 authorSlug: "dimas-wicaksana"
