@@ -128,6 +128,7 @@ export const searchIntentPaths: Record<string, SearchIntentPath> = {
     links: [
       { label: 'Menentukan pelanggan aktif dan tidak aktif', href: '/blog/cara-menentukan-pelanggan-aktif-dan-tidak-aktif/', description: 'Baca jeda pembelian secara hati-hati.' },
       { label: 'Menghitung repeat customer rate', href: '/blog/cara-menghitung-repeat-customer-rate/', description: 'Pisahkan pembelian ulang dari frekuensi transaksi.' },
+      { label: 'Menghitung frekuensi pembelian', href: '/blog/cara-menghitung-frekuensi-pembelian-pelanggan/', description: 'Hitung transaksi per pelanggan unik dengan cakupan yang jelas.' },
       { label: 'Frekuensi pembelian pelanggan', href: '/kamus-bisnis/frekuensi-pembelian/', description: 'Samakan definisi transaksi, pelanggan unik, dan periode.' },
       { label: 'Meminta izin kontak pelanggan', href: '/blog/cara-meminta-izin-kontak-pelanggan/', description: 'Gunakan dasar persetujuan yang jelas.' },
       { label: 'Mencatat keluhan pelanggan', href: '/blog/cara-mencatat-keluhan-pelanggan/', description: 'Pisahkan pencatatan masalah dari proses penanganannya.' },

@@ -478,6 +478,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       { title: 'Arti pelanggan berulang', type: 'Kamus', href: '/kamus-bisnis/pelanggan-berulang/' },
       { title: 'Arti retensi pelanggan', type: 'Kamus', href: '/kamus-bisnis/retensi-pelanggan/' },
       { title: 'Cara menghitung repeat customer rate', type: 'Panduan', href: '/blog/cara-menghitung-repeat-customer-rate/' },
+      { title: 'Cara menghitung frekuensi pembelian', type: 'Panduan', href: '/blog/cara-menghitung-frekuensi-pembelian-pelanggan/' },
       { title: 'Kalkulator repeat customer rate', type: 'Kalkulator', href: '/kalkulator/repeat-customer-rate/' },
       { title: 'Produk Pelanggan', type: 'Produk', href: '/produk/pelanggan/' },
     ],
