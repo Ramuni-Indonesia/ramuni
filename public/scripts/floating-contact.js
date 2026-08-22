@@ -13,8 +13,8 @@ const initialiseFloatingContact = () => {
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const autoOpenContext = document.body.dataset.popupContext === 'blog' ? 'blog' : 'site';
-  const autoOpenKey = `ramuni-lead-popup-auto-opened-v1-${autoOpenContext}`;
-  const autoOpenClosedKey = `ramuni-lead-popup-auto-closed-v1-${autoOpenContext}`;
+  const autoOpenKey = 'ramuni-lead-popup-auto-opened-v2';
+  const autoOpenClosedKey = 'ramuni-lead-popup-auto-closed-v2';
   const contactAutoOpenKey = 'ramuni-floating-contact-auto-opened-v5';
   const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
