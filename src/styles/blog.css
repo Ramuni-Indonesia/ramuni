@@ -181,12 +181,15 @@
 .article-content>p:first-child{font-size:clamp(1.18rem,2vw,1.38rem);line-height:1.7;color:var(--ink)}
 .article-content :where(h2){max-width:17ch;letter-spacing:-.045em;text-wrap:balance}
 .article-content>:where(p,ul,ol,blockquote){max-width:72ch}
-.article-content table{display:block;width:100%;margin:clamp(28px,4vw,42px) 0;border-collapse:collapse;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;font-size:.92rem}
-.article-content :where(th,td){min-width:150px;padding:14px 16px;border-bottom:1px solid var(--ink-10);text-align:left;vertical-align:top}
+.article-table-scroll{position:relative;width:100%;max-width:100%;margin:clamp(28px,4vw,42px) 0;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;scrollbar-color:var(--teal) var(--rice);border-block:1px solid var(--ink-20);background:var(--white)}
+.article-table-scroll::before{display:none;content:'Geser horizontal untuk melihat kolom lain';padding:9px 14px;border-bottom:1px solid var(--ink-10);color:var(--ink-56);font-size:.68rem;font-weight:800;letter-spacing:.02em}
+.article-table-scroll[data-overflow='true']::before{display:block}
+.article-content table{display:table;width:max-content;min-width:100%;margin:0;border-collapse:separate;border-spacing:0;font-size:.92rem}
+.article-content :where(th,td){min-width:150px;padding:14px 16px;border-bottom:1px solid var(--ink-10);text-align:left;vertical-align:top;white-space:normal}
 .article-content th{background:var(--rice);color:var(--ink);font-size:.78rem;font-weight:800}
 .article-content tbody tr:last-child td{border-bottom:1px solid var(--ink-20)}
-.article-content :where(th,td):first-child{position:sticky;left:0;min-width:140px;background:var(--white)}
-.article-content th:first-child{background:var(--rice)}
+.article-content :where(th,td):first-child{position:sticky;left:0;z-index:2;min-width:140px;background:var(--white);box-shadow:8px 0 14px -14px var(--ink)}
+.article-content th:first-child{z-index:4;background:var(--rice)}
 .article-body-figure{max-width:72ch;margin:clamp(30px,5vw,52px) 0}
 .article-body-figure img{display:block;width:100%;height:auto;background:var(--rice)}
 .article-body-figure figcaption{margin-top:10px;color:var(--ink-72);font-size:.78rem;line-height:1.55}
@@ -218,7 +221,8 @@
   .editorial-card .story-micro{opacity:1;transform:none;width:calc(100% - 28px);right:14px;bottom:14px}
   .article-hero h1{font-size:clamp(3rem,14vw,4.6rem)}
   .article-cover>div{min-height:0}
-  .article-content table{margin-inline:calc(var(--page-gutter,20px)*-1);width:calc(100% + var(--page-gutter,20px)*2);padding-inline:var(--page-gutter,20px)}
+  .article-table-scroll{margin-inline:calc(var(--page-gutter,20px)*-1);width:calc(100% + var(--page-gutter,20px)*2);padding-inline:var(--page-gutter,20px)}
+  .article-table-scroll::before{margin-inline:calc(var(--page-gutter,20px)*-1);padding-inline:var(--page-gutter,20px)}
 }
 
 .article-reading-progress{position:fixed;top:0;right:0;left:0;z-index:40;height:3px;background:transparent;pointer-events:none}
@@ -511,7 +515,16 @@
 .article-content{line-height:1.72}
 .article-content :where(h2,h3){margin-top:1.85em;margin-bottom:.58em}
 .article-content :where(p,ul,ol,blockquote){margin-block:1.02em}
-.article-content table{margin:clamp(22px,3vw,34px) 0}
+.article-table-scroll{margin:clamp(22px,3vw,34px) 0}
+
+/* Article copy stays editorial and readable: never justify narrow columns. */
+.article-content{text-align:left}
+.article-content :where(p,li,blockquote,h2,h3){text-align:left}
+.article-content>:where(p,ul,ol,blockquote){max-width:80ch}
+@media(max-width:740px){
+  .article-table-scroll{margin-inline:calc(var(--page-gutter,20px)*-1);width:calc(100% + var(--page-gutter,20px)*2);padding-inline:var(--page-gutter,20px)}
+  .article-table-scroll::before{margin-inline:calc(var(--page-gutter,20px)*-1);padding-inline:var(--page-gutter,20px)}
+}
 
 /* Article-first archive: simple editorial discovery without stacked journey panels. */
 .blog-archive-hero{padding:clamp(52px,7vw,96px) 0 0;background:var(--rice);border-bottom:1px solid var(--ink-10)}

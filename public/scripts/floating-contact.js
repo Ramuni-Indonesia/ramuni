@@ -5,6 +5,7 @@ const initialiseFloatingContact = () => {
   actions.dataset.floatingBound = 'true';
 
   const scrollButton = actions.querySelector('[data-scroll-top]');
+  const scrollProgress = actions.querySelector('[data-scroll-progress]');
   const scrollSentinel = document.querySelector('[data-scroll-top-sentinel]');
   const openButton = actions.querySelector('[data-contact-open]');
   const dialog = document.querySelector('[data-contact-dialog]');
@@ -18,6 +19,23 @@ const initialiseFloatingContact = () => {
   let chatStylesFailed = false;
   let openingPromise;
   let openingSource;
+  let progressFrame;
+  const progressCircumference = 2 * Math.PI * 22;
+
+  const updateScrollProgress = () => {
+    if (!(scrollProgress instanceof SVGCircleElement)) return;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    scrollProgress.style.strokeDasharray = `${progressCircumference}`;
+    scrollProgress.style.strokeDashoffset = `${progressCircumference * (1 - progress)}`;
+  };
+  const scheduleScrollProgress = () => {
+    if (progressFrame) return;
+    progressFrame = window.requestAnimationFrame(() => {
+      progressFrame = undefined;
+      updateScrollProgress();
+    });
+  };
 
   const ensureChatStyles = () => {
     if (chatStylePromise) return chatStylePromise;
@@ -130,6 +148,9 @@ const initialiseFloatingContact = () => {
 
   let scrollObserver;
   if (scrollButton instanceof HTMLButtonElement) {
+    updateScrollProgress();
+    window.addEventListener('scroll', scheduleScrollProgress, { passive: true });
+    window.addEventListener('resize', scheduleScrollProgress, { passive: true });
     if (scrollSentinel instanceof HTMLElement && 'IntersectionObserver' in window) {
       scrollObserver = new IntersectionObserver(([entry]) => {
         scrollButton.hidden = entry?.isIntersecting ?? true;
@@ -181,7 +202,7 @@ const initialiseFloatingContact = () => {
     autoCheckFrame = window.requestAnimationFrame(() => { void checkAutoOpen(); });
   }
   const setupAutoOpen = () => {
-    if (isAutoOpenExcluded()) return;
+    if (document.body.dataset.whatsappAutoOpen !== 'true' || isAutoOpenExcluded()) return;
     autoTracking = true;
     window.addEventListener('scroll', scheduleAutoOpenCheck, { passive: true });
     window.addEventListener('resize', scheduleAutoOpenCheck, { passive: true });
@@ -225,6 +246,9 @@ const initialiseFloatingContact = () => {
   document.addEventListener('astro:before-swap', () => {
     stopAutoTracking();
     scrollObserver?.disconnect();
+    window.removeEventListener('scroll', scheduleScrollProgress);
+    window.removeEventListener('resize', scheduleScrollProgress);
+    if (progressFrame) window.cancelAnimationFrame(progressFrame);
   }, { once: true });
 
   window.requestAnimationFrame(() => window.requestAnimationFrame(setupAutoOpen));

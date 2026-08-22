@@ -164,7 +164,7 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredDataDocument && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataDocument)} />}
   </head>
-  <body>
+  <body data-whatsapp-auto-open="false">
     <a class="skip-link" href="#main">Lewati ke konten</a>
     {chrome && <Header />}
     <main id="main"><slot /></main>

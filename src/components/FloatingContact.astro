@@ -2,7 +2,13 @@
 import LeadForm from './LeadForm.astro';
 ---
 <div class="floating-actions" data-floating-actions>
-  <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden><span aria-hidden="true">&uarr;</span></button>
+  <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden>
+    <svg class="floating-actions__progress" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+      <circle class="floating-actions__progress-track" cx="26" cy="26" r="22"></circle>
+      <circle class="floating-actions__progress-value" cx="26" cy="26" r="22" data-scroll-progress></circle>
+    </svg>
+    <span class="floating-actions__top-arrow" aria-hidden="true"></span>
+  </button>
   <button class="floating-actions__contact" type="button" data-contact-open aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-dialog">
     <span class="floating-actions__whatsapp" aria-hidden="true">
       <img src="/icons/whatsapp-mark.svg" width="28" height="28" alt="Ikon WhatsApp" loading="lazy" decoding="async" />

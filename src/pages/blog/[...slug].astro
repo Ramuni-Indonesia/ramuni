@@ -243,6 +243,24 @@ const schema = [
   {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width={related.data.coverWidth} height={related.data.coverHeight} alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <script>
+    const enhanceArticleTables = () => {
+      document.querySelectorAll('.article-content table').forEach((table) => {
+        if (!(table instanceof HTMLTableElement) || table.parentElement?.classList.contains('article-table-scroll')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'article-table-scroll';
+        wrapper.setAttribute('role', 'region');
+        wrapper.setAttribute('tabindex', '0');
+        wrapper.setAttribute('aria-label', 'Tabel artikel; geser horizontal untuk melihat kolom lain');
+        table.parentNode?.insertBefore(wrapper, table);
+        wrapper.append(table);
+        const syncOverflow = () => wrapper.dataset.overflow = table.scrollWidth > wrapper.clientWidth + 2 ? 'true' : 'false';
+        syncOverflow();
+        window.addEventListener('resize', syncOverflow, { passive: true });
+      });
+    };
+    enhanceArticleTables();
+    document.addEventListener('astro:page-load', enhanceArticleTables);
+
     const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
     const tocTargets = tocLinks
       .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
