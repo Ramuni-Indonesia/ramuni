@@ -234,14 +234,16 @@ const schema = [
         <aside class="article-rail" aria-label="Navigasi artikel">
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
           <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
-            <a class="article-rail-cta__visual" href={articleJourney.tourHref} aria-label={`Mulai coba gratis dari artikel ${post.data.title}`}>
+            <a class="article-rail-cta__card" href={articleJourney.tourHref} aria-labelledby="article-rail-cta-title">
               <img class="article-rail-cta__banner" src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt="Visual konteks artikel" loading="lazy" decoding="async" />
-              <ol><li>Catat</li><li>Periksa</li><li>Tentukan</li></ol>
+              <span class="article-rail-cta__shade" aria-hidden="true"></span>
+              <span class="article-rail-cta__content">
+                <span class="article-rail-cta__eyebrow">Lihat alurnya</span>
+                <strong id="article-rail-cta-title">Punya masalah serupa?</strong>
+                <span class="article-rail-cta__text">Lihat contoh alur dan modul yang relevan sebelum memutuskan.</span>
+                <span class="article-rail-cta__action">Mulai coba gratis <i aria-hidden="true">&rarr;</i></span>
+              </span>
             </a>
-            <small>Lihat alurnya</small>
-            <strong id="article-rail-cta-title">Punya masalah serupa?</strong>
-            <p>Pilih satu masalah usaha dan lihat contoh alur serta modul yang relevan sebelum memutuskan.</p>
-            <a class="button button--primary" href={articleJourney.tourHref}>Mulai coba gratis</a>
           </section>
         </aside>
       </div>

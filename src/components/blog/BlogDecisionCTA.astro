@@ -42,28 +42,43 @@ const banner = bannerSrc
   : mascots.dashboardGuide;
 ---
 
-<div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]}>
-  <div class="blog-decision-cta__copy">
-    <p class="section-kicker">{eyebrow}</p>
-    <h2 id={`${id}-heading`}>{title}</h2>
-    <p>{text}</p>
-    <div class="blog-decision-cta__actions">
-      <a class="button button--primary" href={primaryHref}>{primaryLabel}</a>
-      {secondaryLabel && secondaryHref && <a class="button button--secondary" href={secondaryHref}>{secondaryLabel}</a>}
-    </div>
+{variant === 'article' ? (
+  <div id={id} class="blog-decision-cta blog-decision-cta--article">
+    <a class="blog-decision-cta__full-visual" href={primaryHref} aria-labelledby={`${id}-heading`}>
+      <img class="blog-decision-cta__full-image" src={banner.src} width={banner.width} height={banner.height} alt={bannerAlt} loading="lazy" decoding="async" />
+      <span class="blog-decision-cta__full-shade" aria-hidden="true"></span>
+      <span class="blog-decision-cta__full-content">
+        <span class="blog-decision-cta__full-kicker">{eyebrow}</span>
+        <strong id={`${id}-heading`}>{title}</strong>
+        <span class="blog-decision-cta__full-text">{text}</span>
+        <span class="blog-decision-cta__full-action">{primaryLabel}<i aria-hidden="true">&rarr;</i></span>
+      </span>
+    </a>
   </div>
-
-  <a class="blog-decision-cta__visual" href={primaryHref} aria-label={`${primaryLabel}: ${title}`}>
-    <div class="blog-decision-cta__media">
-      <img class="blog-decision-cta__banner" src={banner.src} width={banner.width} height={banner.height} alt={bannerAlt} loading="lazy" decoding="async" />
-      <div class="blog-decision-cta__visual-head">
-        <span>Alur yang dapat diperiksa</span>
-        <small>{metricLabel}</small>
+) : (
+  <div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]}>
+    <div class="blog-decision-cta__copy">
+      <p class="section-kicker">{eyebrow}</p>
+      <h2 id={`${id}-heading`}>{title}</h2>
+      <p>{text}</p>
+      <div class="blog-decision-cta__actions">
+        <a class="button button--primary" href={primaryHref}>{primaryLabel}</a>
+        {secondaryLabel && secondaryHref && <a class="button button--secondary" href={secondaryHref}>{secondaryLabel}</a>}
       </div>
     </div>
-    <ol class="blog-decision-cta__steps">
-      {stageLabels.map((label, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><span>{label}</span><i aria-hidden="true"></i></li>)}
-    </ol>
-    <p class="blog-decision-cta__note">Mulai dari catatan yang sudah ada. Periksa konteksnya, lalu pilih satu langkah yang masuk akal untuk usaha Anda.</p>
-  </a>
-</div>
+
+    <a class="blog-decision-cta__visual" href={primaryHref} aria-label={`${primaryLabel}: ${title}`}>
+      <div class="blog-decision-cta__media">
+        <img class="blog-decision-cta__banner" src={banner.src} width={banner.width} height={banner.height} alt={bannerAlt} loading="lazy" decoding="async" />
+        <div class="blog-decision-cta__visual-head">
+          <span>Alur yang dapat diperiksa</span>
+          <small>{metricLabel}</small>
+        </div>
+      </div>
+      <ol class="blog-decision-cta__steps">
+        {stageLabels.map((label, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><span>{label}</span><i aria-hidden="true"></i></li>)}
+      </ol>
+      <p class="blog-decision-cta__note">Mulai dari catatan yang sudah ada. Periksa konteksnya, lalu pilih satu langkah yang masuk akal untuk usaha Anda.</p>
+    </a>
+  </div>
+)}
