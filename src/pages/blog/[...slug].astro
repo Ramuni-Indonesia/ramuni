@@ -193,7 +193,10 @@ const schema = [
         <div class="article-main">
           <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol><a class="article-short-answer__next" href={articleJourney.tourHref}>Coba alur {articleJourney.label.toLocaleLowerCase('id-ID')} gratis <i aria-hidden="true">&rarr;</i></a></section>
 
-          {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></details>}
+          {toc.length > 0 && <details class="article-toc-mobile" data-article-toc>
+            <summary><span>Lihat isi artikel</span><i aria-hidden="true">+</i></summary>
+            <ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol>
+          </details>}
 
           <div class="article-content" data-visual-placement={visualPlacement.mode} data-visual-anchor={visualPlacement.anchor}>
             {Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}
@@ -212,7 +215,10 @@ const schema = [
           {post.data.faqs.length > 0 && <section class="article-faq" aria-labelledby="article-faq-heading">
             <p class="section-kicker">FAQ</p>
             <h2 id="article-faq-heading">Pertanyaan yang sering muncul</h2>
-            <div class="article-faq__list">{post.data.faqs.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+            <div class="article-faq__list">{post.data.faqs.map((item, index) => <details class="article-faq__item">
+              <summary><span class="article-faq__index">{String(index + 1).padStart(2, '0')}</span><strong>{item.question}</strong><i aria-hidden="true">+</i></summary>
+              <div class="article-faq__answer"><p>{item.answer}</p></div>
+            </details>)}</div>
           </section>}
 
           <section class="article-method" aria-labelledby="source-heading"><h2 id="source-heading">Sumber dan catatan metode</h2>
@@ -288,6 +294,12 @@ const schema = [
         else link.removeAttribute('aria-current');
       });
     };
+    document.querySelectorAll<HTMLAnchorElement>('[data-article-toc] [data-toc-link]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const toc = link.closest('[data-article-toc]');
+        if (toc instanceof HTMLDetailsElement) window.requestAnimationFrame(() => { toc.open = false; });
+      });
+    });
     if (tocTargets.length) {
       setActiveToc(tocTargets[0].id);
       if ('IntersectionObserver' in window) {
@@ -301,6 +313,12 @@ const schema = [
   </script>
 
 </BaseLayout>
+
+<style is:global>
+  .article-faq__list{display:grid;gap:10px;margin-top:24px;border-top:0}.article-faq__item{padding:0!important;border:1px solid var(--ink-10);background:var(--white);transition:border-color var(--fast),background var(--fast),box-shadow var(--fast)}.article-faq__item[open]{border-color:var(--teal);background:var(--rice);box-shadow:0 12px 32px rgb(11 48 69/.07)}.article-faq__item summary{display:grid;grid-template-columns:38px minmax(0,1fr) 28px;gap:14px;align-items:center;padding:20px 22px;cursor:pointer;list-style:none;font-weight:400}.article-faq__item summary::-webkit-details-marker{display:none}.article-faq__index{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:var(--yellow);color:var(--ink);font-size:.68rem;font-weight:900;font-variant-numeric:tabular-nums}.article-faq__item summary strong{font-size:.98rem;line-height:1.4}.article-faq__item summary i{display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:1.1rem;font-style:normal;line-height:1;transition:transform var(--fast),background var(--fast),color var(--fast)}.article-faq__item[open] summary i{transform:rotate(45deg);background:var(--teal);color:var(--white)}.article-faq__answer{padding:0 64px 22px 74px}.article-faq__answer p{max-width:64ch;margin:0;color:var(--ink-72);line-height:1.7}.article-faq__item summary:focus-visible{outline:3px solid var(--teal-12);outline-offset:-3px}
+  @media(max-width:1200px){.article-toc-mobile[data-article-toc]{position:sticky;bottom:max(74px,calc(env(safe-area-inset-bottom) + 68px));z-index:30;display:block;margin:0 0 30px;padding:0;border:1px solid var(--ink-20);border-radius:14px;background:rgb(255 255 255/.96);box-shadow:0 12px 34px rgb(11 48 69/.14);backdrop-filter:blur(12px)}.article-toc-mobile[data-article-toc] summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 17px;list-style:none;color:var(--ink)}.article-toc-mobile[data-article-toc] summary::-webkit-details-marker{display:none}.article-toc-mobile[data-article-toc] summary i{display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:1.15rem;font-style:normal;line-height:1;transition:transform var(--fast),background var(--fast),color var(--fast)}.article-toc-mobile[data-article-toc][open] summary i{transform:rotate(45deg);background:var(--teal);color:var(--white)}.article-toc-mobile[data-article-toc] ol{max-height:min(48dvh,390px);overflow:auto;margin:0;padding:0 17px 14px;gap:4px}.article-toc-mobile[data-article-toc] summary:focus-visible{outline:3px solid var(--teal-12);outline-offset:-3px}}
+  @media(max-width:740px){.article-toc-mobile[data-article-toc]{bottom:max(72px,calc(env(safe-area-inset-bottom) + 66px));margin-inline:0}.article-faq__item summary{grid-template-columns:32px minmax(0,1fr) 26px;gap:10px;padding:15px 14px}.article-faq__item summary strong{font-size:.92rem}.article-faq__index{width:28px;height:28px}.article-faq__answer{padding:0 14px 17px 56px}}
+</style>
 
 {articleResource && !embeddedCalculator && <style is:global>
   .article-resource-bridge{display:grid;grid-template-columns:1fr minmax(260px,.72fr);gap:clamp(26px,5vw,58px);margin:clamp(48px,7vw,76px) 0;padding:clamp(26px,4vw,42px);background:var(--rice);border-top:4px solid var(--teal)}

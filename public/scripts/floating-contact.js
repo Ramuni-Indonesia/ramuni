@@ -11,7 +11,7 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v3';
+  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v4';
   const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
