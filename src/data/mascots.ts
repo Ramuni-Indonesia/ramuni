@@ -14,6 +14,11 @@ export const mascots = {
     width: 560,
     height: 560,
   },
+  dashboardGuide: {
+    src: '/website-original/mascot/ramuni-mascot-dashboard-guide-hashmicro.webp',
+    width: 1280,
+    height: 720,
+  },
   workLoop2d: {
     src: '/website-original/mascot/ramuni-mascot-work-loop-poster.webp',
     width: 376,

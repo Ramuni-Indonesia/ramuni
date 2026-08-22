@@ -236,8 +236,8 @@ const schema = [
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
           <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
             <div class="article-rail-cta__visual" aria-hidden="true">
+              <img class="article-rail-cta__banner" src={mascots.dashboardGuide.src} width={mascots.dashboardGuide.width} height={mascots.dashboardGuide.height} alt="" loading="lazy" decoding="async" />
               <ol><li>Catat</li><li>Periksa</li><li>Tentukan</li></ol>
-              <img src={mascots.working2d.src} width={mascots.working2d.width} height={mascots.working2d.height} alt="Maskot RAMUNI membantu meninjau catatan bisnis" loading="lazy" decoding="async" />
             </div>
             <small>Lihat alurnya</small>
             <strong id="article-rail-cta-title">Punya masalah serupa?</strong>

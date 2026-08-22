@@ -29,7 +29,7 @@ const {
   metricLabel = 'Contoh pembacaan',
 } = Astro.props;
 
-const mascot = mascots.working2d || mascots.decisionVisual;
+const banner = mascots.dashboardGuide;
 ---
 
 <div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]}>
@@ -44,6 +44,7 @@ const mascot = mascots.working2d || mascots.decisionVisual;
   </div>
 
   <div class="blog-decision-cta__visual" aria-label="Alur singkat dari catatan usaha menuju langkah berikutnya.">
+    <img class="blog-decision-cta__banner" src={banner.src} width={banner.width} height={banner.height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
     <div class="blog-decision-cta__visual-head">
       <span>Alur yang dapat diperiksa</span>
       <small>{metricLabel}</small>
@@ -52,6 +53,5 @@ const mascot = mascots.working2d || mascots.decisionVisual;
       {stageLabels.map((label, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><span>{label}</span><i aria-hidden="true"></i></li>)}
     </ol>
     <p class="blog-decision-cta__note">Mulai dari catatan yang sudah ada. Periksa konteksnya, lalu pilih satu langkah yang masuk akal untuk usaha Anda.</p>
-    <img class="blog-decision-cta__mascot" data-mascot-motion="observe" src={mascot.src} width={mascot.width} height={mascot.height} alt="Maskot RAMUNI membantu meninjau keputusan" aria-hidden="true" loading="lazy" decoding="async" />
   </div>
 </div>
