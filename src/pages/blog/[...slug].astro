@@ -8,7 +8,7 @@ import { getArticleHeadings, getBlogPosts, getRelatedBlogPosts } from '../../lib
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import { getArticleJourney } from '../../data/articleJourneys';
-import { getArticleCtaVisual } from '../../data/articleCtaVisuals';
+import { getArticleCtaCopy, getArticleCtaVisual } from '../../data/articleCtaVisuals';
 import { getArticleVisualPlacement } from '../../data/articleVisualPlacement';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
@@ -28,7 +28,8 @@ const hasMaterialUpdate = Boolean(post.data.updatedAt);
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const relatedPosts = getRelatedBlogPosts(post, posts);
 const articleJourney = getArticleJourney(post.data.categorySlug, post.id);
-const articleCtaVisual = getArticleCtaVisual(post.data.categorySlug, post.id, post.data.title);
+const articleCtaVisual = getArticleCtaVisual(post.data.categorySlug, post.data.title, post.data.cover);
+const articleCtaCopy = getArticleCtaCopy(post.data.title, articleJourney);
 const author = getEditorialPerson(post.data.authorSlug);
 const embeddedCalculator = getArticleCalculator(post.id);
 const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
@@ -211,7 +212,7 @@ const schema = [
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
 
-          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} articleTitle={post.data.title} />
+          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} articleTitle={post.data.title} articleCover={post.data.cover} />
 
           {post.data.faqs.length > 0 && <section class="article-faq" aria-labelledby="article-faq-heading">
             <p class="section-kicker">FAQ</p>
@@ -240,9 +241,9 @@ const schema = [
               <img class="article-rail-cta__banner" src={articleCtaVisual.src} width={articleCtaVisual.width} height={articleCtaVisual.height} alt={articleCtaVisual.alt} loading="lazy" decoding="async" />
               <span class="article-rail-cta__shade" aria-hidden="true"></span>
               <span class="article-rail-cta__content">
-                <span class="article-rail-cta__eyebrow">{articleJourney.label}</span>
-                <strong id="article-rail-cta-title">Lanjutkan dari sini.</strong>
-                <span class="article-rail-cta__text">Lihat alur yang relevan untuk usaha Anda.</span>
+                <span class="article-rail-cta__eyebrow">Lanjut ke {articleJourney.label}</span>
+                <strong id="article-rail-cta-title">{articleCtaCopy.title}</strong>
+                <span class="article-rail-cta__text">{articleCtaCopy.text}</span>
                 <span class="article-rail-cta__action">Lihat alur <i aria-hidden="true">&rarr;</i></span>
               </span>
             </a>
