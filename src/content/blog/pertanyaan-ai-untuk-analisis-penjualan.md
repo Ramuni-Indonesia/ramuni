@@ -1,6 +1,6 @@
 ---
 title: "Pertanyaan AI untuk Analisis Penjualan yang Lebih Aman"
-description: "Contoh pertanyaan AI untuk membantu analisis penjualan UMKM, lengkap dengan konteks data, batasan, pertanyaan verifikasi, dan langkah manusia sebelum mengambil tindakan."
+description: "Contoh pertanyaan AI untuk analisis penjualan UMKM, dengan konteks data, batasan, verifikasi, dan langkah manusia sebelum mengambil tindakan."
 dek: "Pertanyaan AI yang baik menjelaskan data, periode, definisi, dan keluaran yang diinginkan. Gunakan jawaban untuk memeriksa data dan menyusun hipotesis, bukan untuk memutuskan bisnis otomatis."
 cover: "/website-original/blog/generated/pertanyaan-ai-untuk-analisis-penjualan.webp"
 coverAlt: "Pemilik usaha menyusun kartu pertanyaan kosong dan checklist di samping laporan penjualan serta kalkulator"

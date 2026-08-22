@@ -37,7 +37,7 @@ faqs:
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"
-    url: "https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm"
+    url: "https://jdih.kemenkeu.go.id/api/download/fulltext/2007/28TAHUN2007UU.htm"
     accessedAt: 2026-07-27
     note: "Rujukan umum tentang pencatatan; checklist artikel ini bukan pengganti pembukuan atau kewajiban pajak resmi."
 disclaimer: "Checklist ini bersifat edukasi operasional umum dan bukan nasihat akuntansi, hukum, atau pajak untuk usaha tertentu."
@@ -167,4 +167,4 @@ Checklist penutup:
 
 Review mingguan yang konsisten membuat tim belajar dari keputusan sebelumnya. Minggu berikutnya, mulai dengan memeriksa apakah tindakan selesai dan apakah masalah berubah-baru kemudian membuka temuan baru.
 
-Jika catatan mingguan akan dipakai untuk pembukuan atau pajak, periksa [ketentuan umum perpajakan di JDIH Kementerian Keuangan](https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm) dan mintalah bantuan profesional sesuai kebutuhan usaha.
+Jika catatan mingguan akan dipakai untuk pembukuan atau pajak, periksa [ketentuan umum perpajakan di JDIH Kementerian Keuangan](https://jdih.kemenkeu.go.id/api/download/fulltext/2007/28TAHUN2007UU.htm) dan mintalah bantuan profesional sesuai kebutuhan usaha.

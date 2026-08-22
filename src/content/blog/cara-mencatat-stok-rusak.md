@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Stok Rusak agar Saldo dan Penyebabnya"
-description: "Cara mencatat stok rusak: pisahkan barang, catat produk, jumlah, satuan, kondisi, penyebab, waktu, lokasi, bukti, dan tindakan; lalu tinjau pola untuk mencegah kerusakan berulang."
+description: "Cara mencatat stok rusak: tulis produk, jumlah, kondisi, penyebab, waktu, lokasi, bukti, dan tindakan, lalu tinjau pola kerusakan."
 dek: "Barang rusak tidak boleh dibiarkan tetap terlihat sebagai stok layak jual. Catatan yang konsisten membantu usaha menjaga saldo, menilai kerugian, dan memperbaiki penerimaan, penyimpanan, atau proses pemakaian."
 cover: "/website-original/blog/generated/cara-mencatat-stok-rusak.webp"
 coverAlt: "Pekerja usaha memisahkan kotak barang rusak ke tempat karantina sambil memeriksa checklist dan bukti penerimaan"

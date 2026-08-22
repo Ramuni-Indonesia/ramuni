@@ -1,6 +1,6 @@
 ---
 title: "Cara Mengelola Data Pelanggan Reseller Online"
-description: "Cara mengelola data pelanggan reseller online: tentukan tujuan, kumpulkan data minimum, pisahkan pembeli dan reseller, catat riwayat order, atur akses, serta tinjau data berkala."
+description: "Cara mengelola data pelanggan reseller online: tetapkan tujuan, kumpulkan data minimum, pisahkan pembeli, catat order, atur akses, dan tinjau berkala."
 dek: "Data pelanggan dapat membantu layanan dan tindak lanjut, tetapi nilainya datang dari catatan yang relevan, aman, dan mudah diperbarui, bukan dari mengumpulkan sebanyak mungkin informasi."
 cover: "/website-original/blog/generated/cara-mengelola-data-pelanggan-reseller-online.webp"
 coverAlt: "Pemilik usaha online menata kartu pelanggan abstrak, tag kategori, daftar tindak lanjut, dan paket di meja kerja"

@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Konversi Penjualan Sederhana untuk Usaha"
-description: "Cara menghitung konversi penjualan sederhana: pilih satu tahap, bagi transaksi selesai dengan calon pelanggan pada tahap yang sama, bandingkan periode, lalu perbaiki."
+description: "Cara menghitung konversi penjualan: pilih satu tahap, bagi transaksi selesai dengan calon pada tahap sama, bandingkan periode, lalu perbaiki."
 dek: "Konversi tidak harus menjadi metrik rumit. Yang penting adalah menyebut dengan jelas siapa yang dihitung di awal, tindakan apa yang dihitung di akhir, serta status mana yang dianggap selesai."
 cover: "/website-original/blog/generated/cara-menghitung-konversi-penjualan-sederhana.webp"
 coverAlt: "Pemilik usaha menyusun kartu pengunjung, percakapan, pesanan, dan transaksi selesai dengan kalkulator di meja kerja"

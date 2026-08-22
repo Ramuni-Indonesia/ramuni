@@ -37,7 +37,7 @@ faqs:
 sources:
   - title: "Undang-Undang Nomor 28 Tahun 2007 tentang Ketentuan Umum dan Tata Cara Perpajakan"
     publisher: "JDIH Kementerian Keuangan"
-    url: "https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm"
+    url: "https://jdih.kemenkeu.go.id/api/download/fulltext/2007/28TAHUN2007UU.htm"
     accessedAt: 2026-07-27
     note: "Rujukan umum pentingnya pencatatan yang konsisten; artikel ini tidak membahas perlakuan pajak tertentu."
 updateSummary: "Menambahkan langkah rekonsiliasi periode, pembacaan penyumbang perubahan, contoh keputusan, dan checklist review mingguan."
@@ -144,7 +144,7 @@ Checklist perbandingan mingguan:
 
 Perbandingan mingguan yang baik tidak harus rumit. Kualitasnya ditentukan oleh kesetaraan periode, keterlacakan transaksi, dan kejujuran dalam memisahkan fakta dari dugaan.
 
-Untuk kebutuhan pembukuan dan pajak, periksa [ketentuan umum perpajakan di JDIH Kementerian Keuangan](https://jdih.kemenkeu.go.id/fulltext/2007/28TAHUN2007UU.htm) atau tenaga profesional yang memahami kondisi usaha Anda.
+Untuk kebutuhan pembukuan dan pajak, periksa [ketentuan umum perpajakan di JDIH Kementerian Keuangan](https://jdih.kemenkeu.go.id/api/download/fulltext/2007/28TAHUN2007UU.htm) atau tenaga profesional yang memahami kondisi usaha Anda.
 
 ## Tentukan pertanyaan sebelum memilih angka pembanding
 

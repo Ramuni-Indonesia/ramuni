@@ -1,6 +1,6 @@
 ---
 title: "Contoh Laporan Kas Harian Kedai Makanan"
-description: "Contoh laporan kas harian kedai makanan untuk mencatat saldo awal, penjualan tunai, pembayaran non-tunai, belanja, pengeluaran, setoran, selisih, dan tindak lanjut."
+description: "Contoh laporan kas harian kedai untuk mencatat saldo awal, penjualan, pembayaran non-tunai, belanja, pengeluaran, setoran, dan selisih."
 dek: "Laporan kas harian yang berguna tidak hanya menulis uang masuk dan keluar. Ia menjelaskan jalur pembayaran, bukti transaksi, saldo fisik, pengeluaran yang sah, serta hal yang harus diperiksa sebelum hari berikutnya."
 cover: "/website-original/blog/generated/cara-membuat-catatan-kas-harian.webp"
 coverAlt: "Pemilik kedai makanan memeriksa catatan kas, bukti pembayaran, dan rekap penjualan setelah operasional selesai"

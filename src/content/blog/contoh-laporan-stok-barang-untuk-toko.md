@@ -1,6 +1,6 @@
 ---
 title: "Contoh Laporan Stok Barang untuk Toko"
-description: "Contoh laporan stok barang untuk toko: saldo awal, masuk, keluar, koreksi, stok fisik, selisih, dan tindak lanjut agar keputusan pembelian lebih mudah diperiksa."
+description: "Contoh laporan stok toko berisi saldo awal, barang masuk-keluar, koreksi, stok fisik, selisih, dan tindak lanjut untuk keputusan pembelian."
 dek: "Laporan stok merangkum barang yang perlu diperiksa selama satu periode. Bedakan ia dari kartu stok per SKU dan stok opname agar angka tidak dipakai untuk tujuan yang salah."
 cover: "/website-original/blog/generated/kartu-stok-sederhana-untuk-umkm.webp"
 coverAlt: "Petugas toko memeriksa kartu stok, rak produk, dan tabel persediaan untuk menelusuri saldo barang"

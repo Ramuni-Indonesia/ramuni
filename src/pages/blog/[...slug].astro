@@ -138,16 +138,19 @@ const schema = [
     datePublished: post.data.publishedAt.toISOString(),
     dateModified: updatedAt.toISOString(),
     author: { '@type': author.profileType === 'person' ? 'Person' : 'Organization', '@id': `${authorUrl}#author`, name: author.name, url: authorUrl },
-    ...(reviewer ? {
-      reviewedBy: {
-        '@type': reviewer.profileType === 'person' ? 'Person' : 'Organization',
-        name: reviewer.name,
-        url: new URL(`/blog/penulis/${reviewer.slug}/`, Astro.site || Astro.url.origin).toString(),
-      },
-      ...(post.data.reviewedAt ? { lastReviewed: post.data.reviewedAt.toISOString() } : {}),
-    } : {}),
     publisher: { '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', logo: { '@type': 'ImageObject', url: new URL('/brand/ramuni-mark-color.webp', Astro.site || Astro.url.origin).toString() } },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': articleUrl,
+      ...(reviewer ? {
+        reviewedBy: {
+          '@type': reviewer.profileType === 'person' ? 'Person' : 'Organization',
+          name: reviewer.name,
+          url: new URL(`/blog/penulis/${reviewer.slug}/`, Astro.site || Astro.url.origin).toString(),
+        },
+        ...(post.data.reviewedAt ? { lastReviewed: post.data.reviewedAt.toISOString() } : {}),
+      } : {}),
+    },
   },
   {
     '@context': 'https://schema.org',

@@ -1,6 +1,6 @@
 ---
 title: "Batasan AI dalam Mengelola Bisnis UMKM"
-description: "Panduan memahami batas AI untuk UMKM: hal yang dapat dibantu, keputusan yang tetap memerlukan manusia, risiko data dan konteks, serta cara menetapkan persetujuan."
+description: "Pahami batas AI untuk UMKM: apa yang bisa dibantu, keputusan yang butuh manusia, risiko data dan konteks, serta cara menetapkan persetujuan."
 dek: "AI dapat membantu merangkum dan menyusun pilihan, tetapi tidak memahami seluruh konteks usaha atau menanggung akibat keputusan. Tetapkan batas penggunaan sebelum alat dipakai."
 cover: "/website-original/blog/generated/batasan-ai-dalam-mengelola-bisnis.webp"
 coverAlt: "Pemilik usaha menghentikan sementara kartu saran abstrak sambil memeriksa buku catatan dan bukti usaha"

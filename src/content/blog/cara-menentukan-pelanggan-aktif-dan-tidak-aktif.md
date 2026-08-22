@@ -1,6 +1,6 @@
 ---
 title: "Cara Menentukan Pelanggan Aktif dan Tidak Aktif"
-description: "Panduan menentukan pelanggan aktif dan belum kembali dari riwayat transaksi, dengan contoh periode, pemeriksaan data, dan cara menindaklanjuti secara bertanggung jawab."
+description: "Panduan menentukan pelanggan aktif dan belum kembali dari riwayat transaksi, contoh periode, pemeriksaan data, dan tindak lanjut yang bertanggung jawab."
 dek: "Status pelanggan aktif sebaiknya mengikuti siklus pembelian yang nyata. Gunakan sebagai sinyal layanan dan evaluasi, bukan label permanen atau alasan mengirim pesan berlebihan."
 cover: "/website-original/blog/generated/cara-menentukan-pelanggan-aktif-dan-tidak-aktif.webp"
 coverAlt: "Pemilik toko meninjau kalender dan kartu transaksi anonim untuk melihat kunjungan pelanggan terbaru"

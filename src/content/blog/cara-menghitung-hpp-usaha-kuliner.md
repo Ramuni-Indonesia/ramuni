@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung HPP Usaha Kuliner per Porsi"
-description: "Cara menghitung HPP usaha kuliner per porsi dari bahan, kemasan, biaya langsung, hasil resep, susut, dan pencatatan perubahan harga agar harga menu lebih terukur."
+description: "Cara menghitung HPP usaha kuliner per porsi dari bahan, kemasan, biaya langsung, hasil resep, susut, dan perubahan harga agar harga menu terukur."
 dek: "HPP per porsi dimulai dari resep yang dapat diulang. Hitung bahan yang benar-benar dipakai, hasil jadi, kemasan, dan susut yang relevan sebelum menilai harga menu."
 cover: "/website-original/blog/generated/cara-menghitung-hpp-usaha-kuliner.webp"
 coverAlt: "Pemilik usaha kuliner menimbang bahan dan memeriksa buku resep serta kalkulator di meja persiapan"

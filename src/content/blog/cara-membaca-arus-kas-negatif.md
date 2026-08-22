@@ -1,6 +1,6 @@
 ---
 title: "Cara Membaca Arus Kas Negatif pada Usaha Kecil"
-description: "Pahami arus kas negatif pada UMKM: bedakan dari rugi, petakan waktu uang masuk dan keluar, cari penyebabnya, cek kewajiban, lalu susun tindakan berdasarkan data kas yang nyata."
+description: "Pahami arus kas negatif pada UMKM, bedakan dari rugi, petakan waktu uang masuk-keluar, cari penyebab, lalu susun tindakan berbasis data."
 dek: "Arus kas negatif berarti uang keluar dalam periode tertentu lebih besar daripada uang masuk yang benar-benar diterima. Memahaminya dengan waktu dan bukti membantu pemilik bertindak tanpa panik."
 cover: "/website-original/blog/generated/cara-membaca-arus-kas-negatif.webp"
 coverAlt: "Pemilik usaha mengamati dua wadah transparan berisi aliran uang masuk dan keluar, kalender, struk, serta kalkulator"

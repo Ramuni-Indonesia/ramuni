@@ -1,6 +1,6 @@
 ---
 title: "Cara Menangani Komplain Pelanggan dengan Proses Jelas"
-description: "Cara menangani komplain pelanggan: dengarkan masalah, catat fakta, periksa transaksi, jelaskan tindak lanjut, dan gunakan pola keluhan untuk memperbaiki layanan."
+description: "Cara menangani komplain pelanggan: dengarkan, catat fakta, periksa transaksi, jelaskan tindak lanjut, lalu gunakan pola keluhan untuk memperbaiki layanan."
 dek: "Komplain adalah informasi tentang pengalaman pelanggan yang tidak sesuai harapan. Tanggapan yang tenang, faktual, dan memiliki tindak lanjut lebih berguna daripada respons cepat tanpa proses."
 cover: "/website-original/blog/generated/cara-menangani-pelanggan-komplain.webp"
 coverAlt: "Pemilik toko mendengarkan pelanggan dengan tenang di meja layanan, disertai kartu ceklis dan simbol perbaikan di samping paket pesanan"

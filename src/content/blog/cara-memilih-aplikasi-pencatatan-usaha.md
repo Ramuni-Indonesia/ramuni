@@ -1,6 +1,6 @@
 ---
 title: "Cara Memilih Aplikasi Pencatatan Usaha untuk UMKM"
-description: "Kerangka netral memilih aplikasi pencatatan usaha: kebutuhan kerja, uji alur, data, akses, biaya, ekspor, dukungan, dan rencana penerapan tanpa klaim produk tertentu."
+description: "Kerangka netral memilih aplikasi pencatatan usaha: kebutuhan kerja, alur, data, akses, biaya, ekspor, dukungan, dan uji penerapan."
 dek: "Aplikasi yang tepat adalah yang membantu proses usaha saat ini dan dapat diuji dengan data terbatas. Mulai dari kebutuhan, bukan dari daftar fitur atau promosi."
 cover: "/website-original/blog/generated/cara-memilih-aplikasi-pencatatan-usaha.webp"
 coverAlt: "Pemilik usaha membandingkan buku catatan, tablet generik, dan checklist pemilihan aplikasi di meja toko"

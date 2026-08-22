@@ -1,6 +1,6 @@
 ---
 title: "Cara Mencatat Penjualan Toko Retail agar Kas dan Stok"
-description: "Cara mencatat penjualan toko retail: tetapkan waktu transaksi, pisahkan pembayaran, catat diskon dan retur, tutup kas harian, cocokkan stok, lalu tinjau selisih."
+description: "Cara mencatat penjualan toko retail: tetapkan waktu, pisahkan pembayaran, catat diskon-retur, tutup kas, cocokkan stok, dan tinjau selisih."
 dek: "Catatan penjualan retail yang berguna bukan sekadar total omzet. Catatan perlu menjawab produk apa yang keluar, bagaimana pelanggan membayar, dan mengapa kas atau stok berbeda dari catatan."
 cover: "/website-original/blog/generated/cara-mencatat-penjualan-toko-retail.webp"
 coverAlt: "Pemilik toko retail mencocokkan buku penjualan, baki struk, kalkulator, laci kas, dan rak produk"

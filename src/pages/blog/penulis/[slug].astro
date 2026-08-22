@@ -61,7 +61,7 @@ const schema = [
   },
 ];
 ---
-<BaseLayout title={`${authorName} | Blog RAMUNI`} description={`${author.shortBio} Baca artikel dan kebijakan editorial RAMUNI.`} noindex={!profileIndexable} schema={schema}>
+<BaseLayout title={`${authorName} | Blog RAMUNI`} description={`${author.shortBio} Profil editorial RAMUNI.`} noindex={!profileIndexable} schema={schema}>
   <header class="author-hero"><div class="container author-profile">
     <div class="author-mark"><img src={author.photo} width="160" height="160" alt={author.photoAlt} /></div>
     <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href="/blog/penulis/">Penulis</a><span>/</span><span aria-current="page">{authorName}</span></nav><p class="eyebrow">Profil penulis</p><h1>{authorName}</h1><p class="author-role">{author.role} · {author.organization}</p><p class="lede">{author.shortBio}</p><div class="author-stats" aria-label="Ringkasan profil editorial"><span>{sortedPosts.length} artikel terbit</span><span>{categories.length} topik</span>{latestPublished && <span>Artikel terakhir terbit {formatDate(latestPublished)}</span>}</div></div>

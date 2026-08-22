@@ -1,6 +1,6 @@
 ---
 title: "Cara Menghitung Pertumbuhan Penjualan untuk Usaha Kecil"
-description: "Cara menghitung pertumbuhan penjualan: pilih periode sebanding, pakai rumus persentase, cek nilai dasar, pisahkan efek harga dan volume, lalu baca hasil bersama konteks usaha."
+description: "Cara menghitung pertumbuhan penjualan dengan periode sebanding, rumus persentase, nilai dasar, efek harga-volume, dan konteks usaha."
 dek: "Persentase pertumbuhan membantu melihat perubahan penjualan, tetapi angka itu baru bermakna bila periode, definisi, nilai dasar, dan peristiwa usaha diperiksa bersama."
 cover: "/website-original/blog/generated/cara-menghitung-pertumbuhan-penjualan.webp"
 coverAlt: "Pemilik usaha membandingkan dua kartu grafik batang abstrak, garis tren naik, kalkulator, dan struk di meja kerja"

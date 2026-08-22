@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Laporan Bisnis Bulanan untuk UMKM"
-description: "Panduan membuat laporan bisnis bulanan dari penjualan, biaya, kas, stok, pelanggan, dan tindakan berikutnya agar pemilik UMKM dapat membaca perubahan dengan jelas."
+description: "Panduan membuat laporan bisnis bulanan dari penjualan, biaya, kas, stok, dan pelanggan agar perubahan usaha mudah dibaca dan ditindaklanjuti."
 dek: "Laporan bulanan yang berguna tidak harus panjang. Pilih angka yang dapat diperiksa, bandingkan dengan periode setara, lalu tulis tindakan yang benar-benar akan dikerjakan."
 cover: "/website-original/blog/generated/cara-membuat-laporan-bisnis-bulanan.webp"
 coverAlt: "Pemilik usaha meninjau ringkasan laporan bulanan, nota, kalkulator, dan produk di meja kerja"

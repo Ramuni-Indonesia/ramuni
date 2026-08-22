@@ -1,6 +1,6 @@
 ---
 title: "Cara Menentukan Produk Pelengkap yang Relevan"
-description: "Cara menentukan produk pelengkap: lihat pola pesanan, kebutuhan penggunaan, ketersediaan stok, margin, dan keluhan; lalu uji pasangan produk kecil dengan pengukuran yang jelas."
+description: "Cara menentukan produk pelengkap dari pola pesanan, kebutuhan, stok, margin, dan keluhan, lalu menguji pasangan produk dengan ukuran yang jelas."
 dek: "Produk pelengkap yang baik membantu pelanggan menyelesaikan kebutuhan yang sudah mereka pilih. Ia tidak harus berupa tambahan mahal, dan tidak boleh mengorbankan kejelasan atau kepercayaan pelanggan."
 cover: "/website-original/blog/generated/cara-menentukan-produk-pelengkap.webp"
 coverAlt: "Pemilik usaha menata dua produk abstrak yang saling melengkapi, keranjang, checklist, dan struk di meja toko"

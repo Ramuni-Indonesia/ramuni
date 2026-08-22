@@ -1,6 +1,6 @@
 ---
 title: "Cara Membuat Checklist Pembelian Barang untuk UMKM"
-description: "Panduan membuat checklist pembelian barang dari kebutuhan stok, pemasok, harga, waktu tunggu, penerimaan, hingga tindak lanjut agar pembelian lebih mudah ditelusuri."
+description: "Panduan checklist pembelian barang dari kebutuhan stok, pemasok, harga, waktu tunggu, penerimaan, hingga tindak lanjut yang mudah ditelusuri."
 dek: "Checklist pembelian membantu usaha memeriksa kebutuhan sebelum mengirim pesanan. Gunakan sebagai urutan kerja, bukan alasan membeli lebih banyak daripada yang diperlukan."
 cover: "/website-original/blog/generated/cara-membuat-checklist-pembelian-barang.webp"
 coverAlt: "Pemilik usaha memeriksa persediaan dan clipboard checklist pembelian di area stok toko"

@@ -1,6 +1,6 @@
 ---
 title: "Cara Menilai Insight AI untuk Bisnis sebelum Bertindak"
-description: "Panduan memeriksa insight AI untuk UMKM: cek tujuan, data sumber, asumsi, risiko, bukti pendukung, percobaan kecil, dan keputusan manusia sebelum melakukan perubahan."
+description: "Panduan menilai insight AI untuk UMKM: periksa tujuan, sumber data, asumsi, risiko, bukti, uji kecil, dan keputusan manusia sebelum bertindak."
 dek: "Insight AI dapat membantu menyusun pertanyaan atau hipotesis. Ia tidak menggantikan data sumber, konteks usaha, atau tanggung jawab manusia atas keputusan."
 cover: "/website-original/blog/generated/cara-menilai-insight-ai-untuk-bisnis.webp"
 coverAlt: "Pemilik usaha membandingkan kartu saran abstrak dengan laporan penjualan dan bukti transaksi sebelum mengambil keputusan"
