@@ -487,16 +487,13 @@
   .author-about-stage,.author-articles-stage{padding-block:54px}
 }
 
-/* Keep article covers editorial and proportionate on wide screens. */
 @media(min-width:961px){
-  .article-head{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(32px,5vw,76px)}
-  .article-hero-copy{min-width:0}
-  .article-hero-copy .article-category{margin-bottom:14px}
+  .article-head{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(30px,4vw,64px)}
   .article-hero-copy h1{max-width:13ch;font-size:clamp(2.5rem,4.3vw,4.55rem);line-height:.98}
   .article-hero-copy .article-dek{max-width:48ch;font-size:clamp(1rem,1.35vw,1.18rem);line-height:1.55}
-  .article-cover{max-width:none;margin:0;align-self:center}
+  .article-cover{margin:0}
   .article-cover>div{padding:clamp(10px,1.4vw,18px);border-radius:18px}
-  .article-cover img{aspect-ratio:16/10;border-radius:10px}
+  .article-cover img{aspect-ratio:16/10}
 }
 
 .blog-page-archive-hero .category-masthead__title h1{max-width:16ch}
