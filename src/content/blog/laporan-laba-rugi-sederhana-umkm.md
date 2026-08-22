@@ -2,10 +2,10 @@
 title: "Cara Membuat Laporan Laba Rugi Sederhana untuk UMKM"
 description: "Panduan membuat laporan laba rugi sederhana UMKM dari pendapatan, HPP, biaya usaha, periode, dan catatan sumber angka."
 dek: "Laporan laba rugi membantu menjawab apakah pendapatan pada satu periode cukup menutup biaya, bukan berapa uang yang tersisa di rekening."
-cover: "/website-original/dashboards/ramuni-dashboard-cash-flow.webp"
-coverAlt: "Dashboard RAMUNI yang menampilkan ringkasan penjualan, biaya, dan perubahan kas untuk pemeriksaan laporan"
-coverWidth: 1280
-coverHeight: 720
+cover: "/website-original/blog/generated/article-visuals/laporan-laba-rugi-sederhana-umkm.webp"
+coverAlt: "Visual penjelas laporan laba rugi sederhana dengan pendapatan, biaya, dan hasil usaha"
+coverWidth: 1200
+coverHeight: 675
 publishedAt: 2026-07-30
 updatedAt: 2026-08-10
 category: "Keuangan UMKM"

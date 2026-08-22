@@ -193,7 +193,7 @@ const schema = [
 
           {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></details>}
 
-          <ArticleContextVisual articleId={post.id} />
+          <ArticleContextVisual articleId={post.id} articleTitle={post.data.title} articleDescription={post.data.description} />
 
           <div class="article-content">{Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}</div>
 

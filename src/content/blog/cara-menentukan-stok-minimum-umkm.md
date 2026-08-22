@@ -2,10 +2,10 @@
 title: "Cara Menentukan Stok Minimum untuk UMKM"
 description: "Panduan menentukan stok minimum UMKM dari laju penjualan, waktu tunggu pemasok, variasi permintaan, dan kondisi stok fisik."
 dek: "Stok minimum bukan angka yang dipasang sekali. Nilainya perlu mengikuti kecepatan barang keluar, waktu pemasok, dan risiko kehabisan."
-cover: "/website-original/dashboards/ramuni-dashboard-inventory-reorder.webp"
-coverAlt: "Dashboard RAMUNI yang membantu membaca saldo stok, kebutuhan isi ulang, dan prioritas pemeriksaan"
-coverWidth: 1280
-coverHeight: 720
+cover: "/website-original/blog/generated/article-visuals/cara-menentukan-stok-minimum-umkm.webp"
+coverAlt: "Visual penjelas cara menentukan stok minimum dari laju penjualan dan waktu tunggu pemasok"
+coverWidth: 1200
+coverHeight: 675
 publishedAt: 2026-07-30
 updatedAt: 2026-08-21
 category: "Stok & Inventori"
