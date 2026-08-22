@@ -11,7 +11,8 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v2';
+  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v3';
+  const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
   let restoreFocusOnClose = false;
@@ -21,6 +22,12 @@ const initialiseFloatingContact = () => {
   let openingSource;
   let progressFrame;
   const progressCircumference = 2 * Math.PI * 22;
+  const track = (eventName, properties = {}) => {
+    const detail = { ...properties };
+    window.dispatchEvent(new CustomEvent(`ramuni:analytics:${eventName}`, { detail }));
+    if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: eventName, ...detail });
+    if (typeof window.clarity === 'function') window.clarity('event', eventName);
+  };
 
   const updateScrollProgress = () => {
     if (!(scrollProgress instanceof SVGCircleElement)) return;
@@ -124,7 +131,7 @@ const initialiseFloatingContact = () => {
         if (source === 'manual' && focus) focusContactField();
         return source === 'manual';
       }
-      if (source === 'scroll-depth' && (isAutoOpenExcluded() || hasAutoOpenBlocker())) return false;
+      if (source !== 'manual' && (isAutoOpenExcluded() || hasAutoOpenBlocker())) return false;
       restoreFocusOnClose = source === 'manual';
       openButton?.setAttribute('aria-expanded', 'true');
       dialog.dataset.openSource = source;
@@ -136,6 +143,7 @@ const initialiseFloatingContact = () => {
         openButton?.setAttribute('aria-expanded', 'false');
         return false;
       }
+      track('lead_popup_opened', { source });
       storageSet(autoOpenKey, 'true');
       if (focus) window.setTimeout(focusContactField, 0);
       return true;
@@ -168,6 +176,9 @@ const initialiseFloatingContact = () => {
   let autoResizeObserver;
   let bodyStateObserver;
   let autoCheckFrame;
+  let autoOpenTimer;
+  let autoOpenReady = false;
+  let autoOpenTrigger = 'scroll-depth';
   let autoTracking = false;
   const isHalfwayDownPage = () => {
     const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -184,6 +195,8 @@ const initialiseFloatingContact = () => {
     document.removeEventListener('close', scheduleAutoOpenCheck, true);
     autoResizeObserver?.disconnect();
     bodyStateObserver?.disconnect();
+    if (autoOpenTimer) window.clearTimeout(autoOpenTimer);
+    autoOpenTimer = undefined;
     if (autoCheckFrame) window.cancelAnimationFrame(autoCheckFrame);
     autoCheckFrame = undefined;
   };
@@ -193,8 +206,12 @@ const initialiseFloatingContact = () => {
       stopAutoTracking();
       return;
     }
-    if (!isHalfwayDownPage() || hasAutoOpenBlocker()) return;
-    const opened = await openContact({ modal: false, focus: false, source: 'scroll-depth' });
+    if (isHalfwayDownPage()) {
+      autoOpenReady = true;
+      autoOpenTrigger = 'scroll-depth';
+    }
+    if (!autoOpenReady || hasAutoOpenBlocker()) return;
+    const opened = await openContact({ modal: false, focus: false, source: autoOpenTrigger });
     if (opened || isAutoOpenExcluded() || chatStylesFailed) stopAutoTracking();
   };
   function scheduleAutoOpenCheck() {
@@ -214,6 +231,11 @@ const initialiseFloatingContact = () => {
       ? new MutationObserver(scheduleAutoOpenCheck)
       : undefined;
     bodyStateObserver?.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    autoOpenTimer = window.setTimeout(() => {
+      autoOpenReady = true;
+      autoOpenTrigger = 'time-60s';
+      scheduleAutoOpenCheck();
+    }, autoOpenDelayMs);
     scheduleAutoOpenCheck();
   };
 

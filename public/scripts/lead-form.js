@@ -19,6 +19,12 @@ const initialiseLeadForms = () => {
   const piiPattern = /(?:[^\s@]+@[^\s@]+\.[^\s@]+)|(?:\+?\d[\d\s().-]{7,}\d)/i;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const requestTimeoutMs = 15000;
+  const track = (eventName, properties = {}) => {
+    const detail = { ...properties };
+    window.dispatchEvent(new CustomEvent(`ramuni:analytics:${eventName}`, { detail }));
+    if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: eventName, ...detail });
+    if (typeof window.clarity === 'function') window.clarity('event', eventName);
+  };
 
   const clean = (value, max = 200) => String(value || '').replace(/[\u0000-\u001f\u007f<>]/g, '').trim().slice(0, max);
   const key = (value, fallback) => clean(value, 80).toLowerCase().replace(/&/g, ' and ').replace(/\+/g, ' plus ')
@@ -391,6 +397,7 @@ const initialiseLeadForms = () => {
         if (response.status !== 201 || receipt?.status !== 'accepted' || typeof receipt?.submission_id !== 'string') {
           throw new Error('lead_not_accepted');
         }
+        track('lead_form_accepted', { form_type: kind, form_location: location });
         window.dispatchEvent(new CustomEvent('ramuni:lead:accepted', {
           detail: { leadType: kind, attributionPresent: true, acceptedAt: new Date().toISOString() },
         }));
