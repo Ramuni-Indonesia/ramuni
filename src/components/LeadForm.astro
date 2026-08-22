@@ -8,8 +8,9 @@ interface Props {
   location?: string;
   compact?: boolean;
   variant?: 'standard' | 'chat';
+  flow?: 'consultation' | 'trial';
 }
-const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard' } = Astro.props;
+const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard', flow = 'consultation' } = Astro.props;
 const labels = { 'early-access': 'Ajukan akses', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
@@ -19,6 +20,7 @@ const isChat = variant === 'chat';
 <form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact, 'lead-form--chat': isChat }]} action={enabled ? endpoint : undefined} method="post"
   data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
   data-enabled={String(enabled)} data-lead-variant={variant} novalidate>
+  <input type="hidden" name="leadFlow" value={flow} />
   {isProgressive && !isChat && <ol class="lead-form__steps" aria-label="Langkah formulir konsultasi">
     <li data-step-indicator="1" data-active="true" aria-current="step">Kontak</li><li data-step-indicator="2">Kebutuhan</li><li data-step-indicator="3">Konfirmasi</li>
   </ol>}

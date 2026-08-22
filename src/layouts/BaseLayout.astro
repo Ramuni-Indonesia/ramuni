@@ -50,6 +50,8 @@ const absoluteNextPage = nextPage ? new URL(nextPage, Astro.site || Astro.url.or
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
 const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
+const isBlogContext = pathname === '/blog/' || pathname.startsWith('/blog/');
+const popupContext = isBlogContext ? 'blog' : 'site';
 const inferredPageType = pageType
   || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
   || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)
@@ -164,12 +166,12 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredDataDocument && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataDocument)} />}
   </head>
-  <body data-whatsapp-auto-open={pathname.startsWith('/blog/') ? 'true' : 'false'}>
+  <body data-whatsapp-auto-open={chrome ? 'true' : 'false'} data-popup-context={popupContext}>
     <a class="skip-link" href="#main">Lewati ke konten</a>
     {chrome && <Header />}
     <main id="main"><slot /></main>
     {chrome && <Footer />}
-    {chrome && <FloatingContact />}
+    {chrome && <FloatingContact context={popupContext} />}
     <ClarityTracking />
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>

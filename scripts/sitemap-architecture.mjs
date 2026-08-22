@@ -258,7 +258,11 @@ export function ramuniSitemapArchitecture({ site, indexingEnabled }) {
         }
         await writeFile(join(root, 'sitemap-blog.xml'), renderIndex(blogSitemaps.map(({ file, entries }) => ({
           loc: `${siteOrigin}/${file}`,
-          lastmod: latestEntryLastmod(entries) || fallbackLastmod,
+          // Keep the nested index entry dated even when an editorial child
+          // sitemap is temporarily empty (for example while author profiles
+          // are noindex). The blog archive review date is the truthful stable
+          // fallback; never use the build clock.
+          lastmod: latestEntryLastmod(entries) || sitemapLastmodForPath('/blog/') || fallbackLastmod,
         }))), 'utf8');
 
         const rootSitemaps = SITEMAP_CHILD_FILES.map((file) => {

@@ -11,10 +11,13 @@ const initialiseFloatingContact = () => {
   const dialog = document.querySelector('[data-contact-dialog]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v4';
+  const autoOpenKey = 'ramuni-floating-contact-auto-opened-v5';
   const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
+  const flowButtons = Array.from(dialog?.querySelectorAll('[data-contact-flow]') || []);
+  const leadForm = dialog?.querySelector('[data-lead-form]');
+  const contactCopies = Array.from(dialog?.querySelectorAll('[data-contact-copy]') || []);
   let restoreFocusOnClose = false;
   let chatStylePromise;
   let chatStylesFailed = false;
@@ -99,6 +102,24 @@ const initialiseFloatingContact = () => {
     const firstField = dialog?.querySelector('.lead-form__step[data-active] input:not([type="hidden"]), .lead-form__step[data-active] textarea, .lead-form__step[data-active] button') || closeButton;
     if (firstField instanceof HTMLElement) firstField.focus({ preventScroll: true });
   };
+  const setContactFlow = (flow = 'consultation') => {
+    const nextFlow = flow === 'trial' ? 'trial' : 'consultation';
+    flowButtons.forEach((button) => {
+      if (button instanceof HTMLButtonElement) button.setAttribute('aria-pressed', String(button.dataset.contactFlow === nextFlow));
+    });
+    if (leadForm instanceof HTMLFormElement) {
+      leadForm.dataset.leadFlow = nextFlow;
+      const intent = leadForm.querySelector('input[name="intent"]');
+      if (intent instanceof HTMLInputElement) intent.value = nextFlow === 'trial' ? 'overview' : 'support';
+      const flowField = leadForm.querySelector('input[name="leadFlow"]');
+      if (flowField instanceof HTMLInputElement) flowField.value = nextFlow;
+    }
+    contactCopies.forEach((copy) => {
+      if (copy instanceof HTMLElement) copy.hidden = copy.dataset.contactCopy !== nextFlow;
+    });
+    if (dialog instanceof HTMLDialogElement) dialog.dataset.contactFlow = nextFlow;
+  };
+  setContactFlow('consultation');
   const openContact = ({ modal = true, focus = true, source = 'manual' } = {}) => {
     if (!(dialog instanceof HTMLDialogElement)) return Promise.resolve(false);
     if (dialog.open) {
@@ -183,7 +204,7 @@ const initialiseFloatingContact = () => {
   const isHalfwayDownPage = () => {
     const pageHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
     const maxScroll = Math.max(0, pageHeight - window.innerHeight);
-    if (maxScroll < 360 || pageHeight <= 0) return false;
+    if (maxScroll <= 0 || pageHeight <= 0) return false;
     return window.scrollY / maxScroll >= 0.5;
   };
   const stopAutoTracking = () => {
@@ -240,7 +261,13 @@ const initialiseFloatingContact = () => {
   };
 
   openButton?.addEventListener('click', () => {
+    setContactFlow(openButton.dataset.contactFlow || 'consultation');
     void openContact({ modal: true, focus: true, source: 'manual' });
+  });
+
+  flowButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement) || button === openButton) return;
+    button.addEventListener('click', () => setContactFlow(button.dataset.contactFlow || 'consultation'));
   });
 
   closeButton?.addEventListener('click', () => {

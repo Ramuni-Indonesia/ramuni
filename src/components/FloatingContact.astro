@@ -1,5 +1,12 @@
 ---
 import LeadForm from './LeadForm.astro';
+
+interface Props {
+  context?: 'blog' | 'site';
+}
+
+const { context = 'site' } = Astro.props;
+const isBlog = context === 'blog';
 ---
 <div class="floating-actions" data-floating-actions>
   <button class="floating-actions__top" type="button" data-scroll-top aria-label="Kembali ke bagian atas halaman" hidden>
@@ -9,23 +16,35 @@ import LeadForm from './LeadForm.astro';
     </svg>
     <span class="floating-actions__top-arrow" aria-hidden="true"></span>
   </button>
-  <button class="floating-actions__contact" type="button" data-contact-open aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-dialog">
+  <button class="floating-actions__contact" type="button" data-contact-open data-contact-flow="consultation" aria-haspopup="dialog" aria-expanded="false" aria-controls="contact-dialog">
     <span class="floating-actions__whatsapp" aria-hidden="true">
       <img src="/icons/whatsapp-mark.svg" width="28" height="28" alt="Ikon WhatsApp" loading="lazy" decoding="async" />
     </span>
-    <span><small>WhatsApp RAMUNI</small>Konsultasi gratis</span>
+    <span><small>WhatsApp RAMUNI</small>Mulai konsultasi</span>
   </button>
 </div>
 <span class="scroll-top-sentinel" data-scroll-top-sentinel aria-hidden="true"></span>
-<dialog class="contact-dialog" id="contact-dialog" data-contact-dialog aria-labelledby="contact-dialog-title" aria-label="Konsultasi bersama tim RAMUNI">
+<dialog class:list={['contact-dialog', `contact-dialog--${context}`]} id="contact-dialog" data-contact-dialog data-popup-context={context} aria-labelledby="contact-dialog-title" aria-label="Hubungi tim RAMUNI">
   <div class="contact-dialog__panel">
     <header class="contact-dialog__header">
       <span class="contact-dialog__avatar" aria-hidden="true"><img src="/icons/whatsapp-mark.svg" width="24" height="24" alt="Ikon WhatsApp" loading="lazy" decoding="async" /></span>
-      <div><strong id="contact-dialog-title">Tim RAMUNI</strong><span class="contact-dialog__status">Online untuk membantu</span></div>
+      <div><strong id="contact-dialog-title">{isBlog ? 'Lanjut dari artikel' : 'Mulai bersama RAMUNI'}</strong><span class="contact-dialog__status">{isBlog ? 'Bantu pilih langkah berikutnya' : 'Tim RAMUNI siap membantu'}</span></div>
       <button class="contact-dialog__close" type="button" data-contact-close aria-label="Tutup percakapan">×</button>
     </header>
     <div class="contact-dialog__form">
-      <LeadForm kind="contact" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim" compact variant="chat" />
+      <div class="contact-dialog__intro">
+        <p data-contact-copy="consultation">Ceritakan konteks usaha Anda. Setelah diterima, kita lanjutkan di WhatsApp.</p>
+        <p data-contact-copy="trial" hidden>Isi singkat kebutuhan Anda untuk menyiapkan langkah coba gratis.</p>
+      </div>
+      <div class="contact-dialog__choices" role="group" aria-label="Pilih tujuan">
+        <button class="contact-dialog__choice" type="button" data-contact-flow="consultation" aria-pressed="true">
+          <strong>Mulai konsultasi</strong><span>Bahas kebutuhan di WhatsApp</span>
+        </button>
+        <button class="contact-dialog__choice" type="button" data-contact-flow="trial" aria-pressed="false">
+          <strong>Coba gratis</strong><span>Siapkan akses dan langkah awal</span>
+        </button>
+      </div>
+      <LeadForm kind="contact" flow="consultation" mode="progressive" handoff="whatsapp" location="floating-consultation" submitLabel="Kirim" compact variant="chat" />
     </div>
   </div>
 </dialog>

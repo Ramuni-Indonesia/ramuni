@@ -1,16 +1,17 @@
 const initialiseLeadForms = () => {
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
-  const whatsappMessageTemplate = [
-    'Halo RAMUNI, saya tertarik mencoba RAMUNI.',
+  const whatsappMessageTemplate = (flow = 'consultation') => [
+    flow === 'trial' ? 'Halo RAMUNI, saya tertarik mencoba RAMUNI.' : 'Halo RAMUNI, saya ingin mulai konsultasi.',
     '',
+    `Tujuan: ${flow === 'trial' ? 'Coba gratis' : 'Mulai konsultasi'}`,
     'Nama usaha: [isi nama usaha]',
     'Produk atau solusi: [isi yang ingin dibahas]',
     'Kebutuhan utama: [jelaskan singkat]',
     'Waktu yang nyaman untuk dihubungi: [isi waktu]',
   ].join('\n');
-  const whatsappHandoffUrl = () => {
+  const whatsappHandoffUrl = (flow = 'consultation') => {
     const url = new URL(officialWhatsAppUrl);
-    url.searchParams.set('text', whatsappMessageTemplate);
+    url.searchParams.set('text', whatsappMessageTemplate(flow));
     return url.toString();
   };
   const allowedIntents = new Set(['overview', 'catalog', 'sales', 'stock', 'finance', 'customer', 'report', 'support']);
@@ -324,6 +325,7 @@ const initialiseLeadForms = () => {
       const data = new FormData(form);
       const kind = form.dataset.leadForm || 'contact';
       const location = key(form.dataset.leadLocation, 'inline');
+      const flow = form.dataset.leadFlow === 'trial' ? 'trial' : 'consultation';
       const captureId = form.dataset.captureId || randomId('capture');
       const idempotencyKey = form.dataset.idempotencyKey || randomId('lead-key');
       const intent = key(data.get('intent'), 'support');
@@ -349,7 +351,7 @@ const initialiseLeadForms = () => {
         form_location: location,
         page_path: window.location.pathname,
         page_type: key(window.location.pathname.split('/').filter(Boolean)[0], 'home'),
-        cta_id: key(kind + '-' + location + '-submit', 'lead-submit'),
+        cta_id: key(flow + '-' + kind + '-' + location + '-submit', 'lead-submit'),
         cta_text_key: key(submitButton.textContent, 'submit'),
         cta_intent: intent,
         locale: 'id-ID',
@@ -406,7 +408,7 @@ const initialiseLeadForms = () => {
         if (form.dataset.leadHandoff === 'whatsapp') {
           updateChatProgress('Siap. WhatsApp RAMUNI akan terbuka dengan pesan yang tinggal Anda lengkapi.', 'success');
           setStatus('Detail diterima. Membuka WhatsApp RAMUNI...', 'success');
-          window.setTimeout(() => window.location.assign(whatsappHandoffUrl()), reducedMotion.matches ? 0 : 620);
+          window.setTimeout(() => window.location.assign(whatsappHandoffUrl(flow)), reducedMotion.matches ? 0 : 620);
           return;
         }
         setStatus('Terkirim. Mengarahkan ke halaman konfirmasi...', 'success');
