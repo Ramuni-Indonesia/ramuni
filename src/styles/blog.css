@@ -100,7 +100,7 @@
 .blog-search label{display:block;margin-bottom:14px;font-size:.76rem;font-weight:800}
 .blog-search .search-line button{border-radius:0;padding-inline:20px}
 .blog-featured-stage{padding-top:0}
-.featured-story{grid-template-columns:minmax(0,1.34fr) minmax(330px,.66fr);min-height:680px;border-radius:0;background:var(--ink);color:var(--white);box-shadow:none;text-decoration:none}
+.featured-story{grid-template-columns:minmax(0,1.18fr) minmax(270px,.62fr);min-height:680px;border-radius:0;background:var(--ink);color:var(--white);box-shadow:none;text-decoration:none}
 .featured-story:hover,.featured-story:focus-visible{color:var(--white)}
 .featured-visual{min-height:680px;padding:clamp(20px,3vw,42px);background:var(--yellow);isolation:isolate}
 .featured-visual img{width:100%;max-width:none;height:100%;max-height:none;aspect-ratio:auto;border-radius:0;box-shadow:none;object-fit:cover;transition:transform 800ms var(--ease)}
@@ -440,7 +440,7 @@
 
 @media(max-width:960px){
   .featured-story,.featured-visual{min-height:0}
-  .featured-visual{aspect-ratio:16/10}
+  .featured-visual{aspect-ratio:16/9}
   .author-reading-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:740px){
@@ -456,7 +456,7 @@
 
 .blog-hero-grid{gap:clamp(32px,5vw,72px)}
 .blog-hero-side{gap:20px}
-.featured-story,.featured-visual{min-height:clamp(430px,43vw,540px)}
+.featured-story,.featured-visual{min-height:clamp(390px,32vw,500px)}
 .blog-latest-stage .editorial-card p{max-width:52ch}
 .article-hero{padding-block:clamp(42px,5.5vw,76px)}
 .article-head{max-width:1180px}
@@ -620,8 +620,3 @@
 .article-rail-cta__content{padding:14px 16px 16px}
 .article-rail-cta__content strong{margin-top:6px;color:var(--white);font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.02;letter-spacing:-.035em}
 .article-rail-cta__text{margin-top:7px;color:rgb(255 255 255/.7);font-size:.75rem;line-height:1.4}
-
-.featured-story{grid-template-columns:minmax(0,1.18fr) minmax(270px,.62fr);min-height:clamp(390px,32vw,500px)}
-.featured-visual{min-height:clamp(390px,32vw,500px)}
-@media(max-width:960px){.featured-story{grid-template-columns:1fr;min-height:0}.featured-visual{min-height:0;aspect-ratio:16/9}}
-@media(max-width:740px){.featured-visual{aspect-ratio:16/9}}
