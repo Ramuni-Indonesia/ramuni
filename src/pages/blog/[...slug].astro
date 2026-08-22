@@ -253,9 +253,6 @@ const schema = [
         wrapper.setAttribute('aria-label', 'Tabel artikel; geser horizontal untuk melihat kolom lain');
         table.parentNode?.insertBefore(wrapper, table);
         wrapper.append(table);
-        const syncOverflow = () => wrapper.dataset.overflow = table.scrollWidth > wrapper.clientWidth + 2 ? 'true' : 'false';
-        syncOverflow();
-        window.addEventListener('resize', syncOverflow, { passive: true });
       });
     };
     enhanceArticleTables();

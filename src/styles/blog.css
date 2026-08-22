@@ -182,8 +182,6 @@
 .article-content :where(h2){max-width:17ch;letter-spacing:-.045em;text-wrap:balance}
 .article-content>:where(p,ul,ol,blockquote){max-width:72ch}
 .article-table-scroll{width:100%;margin:clamp(28px,4vw,42px) 0;overflow-x:auto;border-block:1px solid var(--ink-20);background:var(--white)}
-.article-table-scroll::before{display:none;content:'Geser horizontal untuk melihat kolom lain';padding:9px 14px;border-bottom:1px solid var(--ink-10);color:var(--ink-56);font-size:.68rem;font-weight:800}
-.article-table-scroll[data-overflow='true']::before{display:block}
 .article-content table{display:table;width:max-content;min-width:100%;margin:0;border-collapse:separate;border-spacing:0;font-size:.92rem}
 .article-content :where(th,td){min-width:150px;padding:14px 16px;border-bottom:1px solid var(--ink-10);text-align:left;vertical-align:top}
 .article-content th{background:var(--rice);color:var(--ink);font-size:.78rem;font-weight:800}
@@ -520,7 +518,6 @@
 .article-content>:where(p,ul,ol,blockquote){max-width:80ch}
 @media(max-width:740px){
   .article-table-scroll{margin-inline:calc(var(--page-gutter,20px)*-1);width:calc(100% + var(--page-gutter,20px)*2);padding-inline:var(--page-gutter,20px)}
-  .article-table-scroll::before{margin-inline:calc(var(--page-gutter,20px)*-1);padding-inline:var(--page-gutter,20px)}
 }
 
 /* Article-first archive: simple editorial discovery without stacked journey panels. */
