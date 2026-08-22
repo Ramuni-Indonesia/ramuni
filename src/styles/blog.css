@@ -487,6 +487,13 @@
   .author-about-stage,.author-articles-stage{padding-block:54px}
 }
 
+/* Keep article covers editorial and proportionate on wide screens. */
+@media(min-width:961px){
+  .article-cover{max-width:min(100%,960px);margin-inline:0}
+  .article-cover>div{padding:clamp(12px,1.8vw,22px);border-radius:18px}
+  .article-cover img{aspect-ratio:16/9;border-radius:10px}
+}
+
 .blog-page-archive-hero .category-masthead__title h1{max-width:16ch}
 
 .article-content{line-height:1.72}

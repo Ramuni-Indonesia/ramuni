@@ -57,11 +57,21 @@ const initialiseLeadForms = () => {
       return randomId(prefix);
     }
   };
-  const normalizePhone = (value) => {
+  const normalizeCountry = (value) => {
+    let country = clean(value, 8).replace(/[^\d+]/g, '');
+    if (!country.startsWith('+')) country = '+' + country;
+    return /^\+[1-9]\d{0,3}$/.test(country) ? country : '+62';
+  };
+  const normalizePhone = (value, countryCode = '+62') => {
     let phone = clean(value, 24).replace(/[\s().-]/g, '');
     if (phone.startsWith('00')) phone = '+' + phone.slice(2);
-    if (phone.startsWith('0')) phone = '+62' + phone.slice(1);
-    if (phone.startsWith('62')) phone = '+' + phone;
+    if (!phone.startsWith('+')) {
+      const country = normalizeCountry(countryCode);
+      const countryDigits = country.slice(1);
+      if (phone.startsWith('0')) phone = country + phone.slice(1);
+      else if (phone.startsWith(countryDigits)) phone = '+' + phone;
+      else phone = country + phone;
+    }
     return /^\+[1-9]\d{7,14}$/.test(phone) ? phone : '';
   };
   const maskPhone = (value) => {
@@ -136,6 +146,8 @@ const initialiseLeadForms = () => {
     const submitButton = submitButtons[0];
     const status = form.querySelector('.form-status');
     const chatHistory = form.querySelector('[data-chat-history]');
+    const phoneCountryField = form.querySelector('select[name="phoneCountry"]');
+    const selectedPhoneCountry = () => phoneCountryField instanceof HTMLSelectElement ? phoneCountryField.value : '+62';
     let stepIndex = 0;
     let retryPayload = null;
 
@@ -251,7 +263,7 @@ const initialiseLeadForms = () => {
             ? 'Masukkan nama agar kami dapat menyapa Anda dengan tepat.'
             : 'Ceritakan singkat hal yang ingin Anda rapikan atau pahami.');
         }
-        if (field.name === 'phone' && !normalizePhone(field.value)) {
+        if (field.name === 'phone' && !normalizePhone(field.value, selectedPhoneCountry())) {
           field.setCustomValidity('Masukkan nomor WhatsApp aktif, contoh 08123456789 atau +628123456789.');
         }
         if (!field.checkValidity()) {
@@ -365,7 +377,7 @@ const initialiseLeadForms = () => {
       const payload = retryPayload || {
         full_name: clean(data.get('name'), 150),
         email: clean(data.get('email'), 254).toLowerCase(),
-        phone_e164: normalizePhone(data.get('phone')),
+        phone_e164: normalizePhone(data.get('phone'), selectedPhoneCountry()),
         company_name: clean(data.get('business'), 150),
         industry_key: key(data.get('industry'), 'unknown'),
         business_size_key: key(data.get('businessSize'), 'unknown'),

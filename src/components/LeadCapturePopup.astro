@@ -8,11 +8,11 @@ interface Props {
 const { context = 'site' } = Astro.props;
 const isBlog = context === 'blog';
 const asideVisual = isBlog
-  ? '/website-original/blog/generated/article-visuals/data-pelanggan-yang-perlu-dicatat-umkm.webp'
-  : '/website-original/context/ramuni-context-cash-report.webp';
+  ? '/website-original/context/ramuni-context-sales-customer.webp'
+  : '/website-original/context/ramuni-context-stock-operations.webp';
 const asideVisualLabel = isBlog
-  ? 'Visual catatan pelanggan dan langkah pemeriksaan usaha'
-  : 'Visual ringkasan arus kas dan sinyal usaha';
+  ? 'Ilustrasi pemilik usaha memahami pola pelanggan dan transaksi'
+  : 'Ilustrasi pemilik usaha memeriksa stok dan alur operasional';
 ---
 <dialog class:list={['lead-capture-dialog', `lead-capture-dialog--${context}`]} id="lead-capture-dialog" data-lead-popup data-lead-popup-context={context} aria-label="Formulir RAMUNI" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-description">
   <div class="lead-capture-dialog__shell">
@@ -22,7 +22,6 @@ const asideVisualLabel = isBlog
       <p>{isBlog ? 'Isi kontak singkat agar tim dapat mengarahkan Anda ke alur yang relevan, tanpa perlu menyiapkan data bisnis.' : 'Pilih jalur yang Anda butuhkan, lalu lihat cara RAMUNI membantu membaca kondisi usaha.'}</p>
       <figure class="lead-capture-dialog__aside-visual">
         <div class="lead-capture-dialog__aside-visual-image" role="img" aria-label={asideVisualLabel} style={`--lead-capture-image: url("${asideVisual}")`}></div>
-        <figcaption>{isBlog ? 'Dari catatan yang ada menuju langkah yang bisa diuji.' : 'Sinyal usaha diringkas menjadi langkah yang bisa ditindaklanjuti.'}</figcaption>
       </figure>
       <ul class="lead-capture-dialog__signals" aria-label="Manfaat mengisi formulir">
         <li><span>01</span>Tanpa komitmen dan tanpa data sensitif</li>
