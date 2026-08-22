@@ -7,6 +7,12 @@ interface Props {
 
 const { context = 'site' } = Astro.props;
 const isBlog = context === 'blog';
+const asideVisual = isBlog
+  ? '/website-original/blog/generated/article-visuals/data-pelanggan-yang-perlu-dicatat-umkm.webp'
+  : '/website-original/context/ramuni-context-cash-report.webp';
+const asideVisualLabel = isBlog
+  ? 'Visual catatan pelanggan dan langkah pemeriksaan usaha'
+  : 'Visual ringkasan arus kas dan sinyal usaha';
 ---
 <dialog class:list={['lead-capture-dialog', `lead-capture-dialog--${context}`]} id="lead-capture-dialog" data-lead-popup data-lead-popup-context={context} aria-label="Formulir RAMUNI" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-description">
   <div class="lead-capture-dialog__shell">
@@ -14,6 +20,10 @@ const isBlog = context === 'blog';
       <span class="lead-capture-dialog__eyebrow">{isBlog ? 'Dari bacaan ke langkah berikutnya' : 'Contoh alur RAMUNI'}</span>
       <h2>{isBlog ? 'Jadikan masalah usaha lebih mudah diperiksa.' : 'Mulai dari masalah yang paling dekat.'}</h2>
       <p>{isBlog ? 'Isi kontak singkat agar tim dapat mengarahkan Anda ke alur yang relevan, tanpa perlu menyiapkan data bisnis.' : 'Pilih jalur yang Anda butuhkan, lalu lihat cara RAMUNI membantu membaca kondisi usaha.'}</p>
+      <figure class="lead-capture-dialog__aside-visual">
+        <div class="lead-capture-dialog__aside-visual-image" role="img" aria-label={asideVisualLabel} style={`--lead-capture-image: url("${asideVisual}")`}></div>
+        <figcaption>{isBlog ? 'Dari catatan yang ada menuju langkah yang bisa diuji.' : 'Sinyal usaha diringkas menjadi langkah yang bisa ditindaklanjuti.'}</figcaption>
+      </figure>
       <ul class="lead-capture-dialog__signals" aria-label="Manfaat mengisi formulir">
         <li><span>01</span>Tanpa komitmen dan tanpa data sensitif</li>
         <li><span>02</span>Respons diarahkan sesuai kebutuhan usaha</li>
@@ -26,15 +36,7 @@ const isBlog = context === 'blog';
         <button class="lead-capture-dialog__close" type="button" data-lead-popup-close aria-label="Tutup formulir">×</button>
       </header>
       <p class="lead-capture-dialog__description" id="lead-capture-description">Isi form seperti saat memulai tour produk gratis. Tim menerima detailnya sebelum langkah berikutnya dibuka.</p>
-      <div class="lead-capture-dialog__flows" role="group" aria-label="Pilih tujuan formulir">
-        <button class="lead-capture-dialog__flow" type="button" data-lead-popup-flow="consultation" aria-pressed="false">
-          <strong>Mulai konsultasi</strong><span>Bahas kebutuhan di WhatsApp</span>
-        </button>
-        <button class="lead-capture-dialog__flow" type="button" data-lead-popup-flow="trial" aria-pressed="true">
-          <strong>Coba gratis</strong><span>Lihat contoh alur RAMUNI</span>
-        </button>
-      </div>
-      <LeadForm kind="demo" flow="trial" handoff="whatsapp" location="auto-lead-popup" submitLabel="Coba gratis" />
+      <LeadForm kind="demo" handoff="whatsapp" location="auto-lead-popup" submitChoices />
     </section>
   </div>
 </dialog>

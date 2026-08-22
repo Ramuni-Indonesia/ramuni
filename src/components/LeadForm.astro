@@ -9,8 +9,9 @@ interface Props {
   compact?: boolean;
   variant?: 'standard' | 'chat';
   flow?: 'consultation' | 'trial';
+  submitChoices?: boolean;
 }
-const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard', flow } = Astro.props;
+const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard', flow, submitChoices = false } = Astro.props;
 const labels = { 'early-access': 'Ajukan akses', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
@@ -77,10 +78,19 @@ const isChat = variant === 'chat';
       </fieldset>
     </>
   )}
-  {enabled && !isChat ? <div class="form-actions">
+  {enabled && !isChat ? <div class:list={['form-actions', { 'lead-form__choice-actions': submitChoices }] }>
     {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
     {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
-    <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>
+    {submitChoices ? <>
+      <button class="button lead-form__choice-button lead-form__choice-button--consultation" type="submit" name="leadFlow" value="consultation" data-lead-submit-flow="consultation" hidden={isProgressive ? true : undefined}>
+        <span>Mulai konsultasi</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H11l-5 3v-3.5H5v-9.5Zm3.5 4.75h7M8.5 13h4" /></svg>
+      </button>
+      <button class="button lead-form__choice-button lead-form__choice-button--trial" type="submit" name="leadFlow" value="trial" data-lead-submit-flow="trial" hidden={isProgressive ? true : undefined}>
+        <span>Coba gratis</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+      </button>
+    </> : <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>}
     <p class="form-status" role="status" aria-live="polite"></p>
   </div> : null}
 </form>

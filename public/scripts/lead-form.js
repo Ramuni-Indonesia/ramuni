@@ -131,7 +131,9 @@ const initialiseLeadForms = () => {
     const indicators = Array.from(form.querySelectorAll('[data-step-indicator]'));
     const nextButtons = Array.from(form.querySelectorAll('[data-progress-next]'));
     const backButton = form.querySelector('[data-progress-back]');
-    const submitButton = form.querySelector('button[type="submit"]');
+    const submitButtons = Array.from(form.querySelectorAll('button[type="submit"]'))
+      .filter((button) => button instanceof HTMLButtonElement);
+    const submitButton = submitButtons[0];
     const status = form.querySelector('.form-status');
     const chatHistory = form.querySelector('[data-chat-history]');
     let stepIndex = 0;
@@ -318,6 +320,12 @@ const initialiseLeadForms = () => {
         retryPayload = null;
       }
     });
+    submitButtons.forEach((button) => button.addEventListener('click', () => {
+      if (form.dataset.submitting !== 'true') {
+        delete form.dataset.idempotencyKey;
+        retryPayload = null;
+      }
+    }));
 
     if (form.dataset.enabled !== 'true') {
       form.addEventListener('submit', (event) => event.preventDefault());
@@ -333,14 +341,23 @@ const initialiseLeadForms = () => {
       if (!validate(steps.flatMap((_, index) => fieldsForStep(index)))) return;
 
       const data = new FormData(form);
+      const activeSubmitButton = event.submitter instanceof HTMLButtonElement ? event.submitter : submitButton;
       const kind = form.dataset.leadForm || 'contact';
       const location = key(form.dataset.leadLocation, 'inline');
-      const flow = form.dataset.leadFlow === 'trial' || form.dataset.leadFlow === 'consultation'
-        ? form.dataset.leadFlow
+      const submittedFlow = activeSubmitButton.dataset.leadSubmitFlow;
+      const flow = submittedFlow === 'trial' || submittedFlow === 'consultation'
+        ? submittedFlow
+        : form.dataset.leadFlow === 'trial' || form.dataset.leadFlow === 'consultation'
+          ? form.dataset.leadFlow
         : '';
       const captureId = form.dataset.captureId || randomId('capture');
       const idempotencyKey = form.dataset.idempotencyKey || randomId('lead-key');
-      const intent = key(data.get('intent'), 'support');
+      const intent = flow === 'consultation'
+        ? 'support'
+        : flow === 'trial'
+          ? 'overview'
+          : key(data.get('intent'), 'support');
+      form.dataset.leadFlow = flow;
       const need = clean(data.get('need'), 2000);
       form.dataset.captureId = captureId;
       form.dataset.idempotencyKey = idempotencyKey;
@@ -364,7 +381,7 @@ const initialiseLeadForms = () => {
         page_path: window.location.pathname,
         page_type: key(window.location.pathname.split('/').filter(Boolean)[0], 'home'),
         cta_id: key((flow ? flow + '-' : '') + kind + '-' + location + '-submit', 'lead-submit'),
-        cta_text_key: key(submitButton.textContent, 'submit'),
+        cta_text_key: key(activeSubmitButton.textContent, 'submit'),
         cta_intent: intent,
         locale: 'id-ID',
         site_id: 'ramuni-id',
@@ -383,13 +400,18 @@ const initialiseLeadForms = () => {
         updateChatProgress('Terima kasih. Saya kirim detailnya ke tim RAMUNI terlebih dahulu.');
       }
       form.dataset.submitting = 'true';
-      const originalMarkup = submitButton.innerHTML;
-      const originalAriaLabel = submitButton.getAttribute('aria-label');
-      submitButton.disabled = true;
-      submitButton.setAttribute('aria-busy', 'true');
-      submitButton.dataset.loading = 'true';
-      if (form.dataset.leadVariant !== 'chat') submitButton.textContent = 'Mengirim...';
-      else submitButton.setAttribute('aria-label', 'Sedang mengirim detail konsultasi');
+      const originalButtonState = submitButtons.map((button) => ({
+        button,
+        markup: button.innerHTML,
+        ariaLabel: button.getAttribute('aria-label'),
+      }));
+      submitButtons.forEach((button) => {
+        button.disabled = true;
+        button.setAttribute('aria-busy', 'true');
+        button.dataset.loading = 'true';
+      });
+      if (form.dataset.leadVariant !== 'chat') activeSubmitButton.textContent = 'Mengirim...';
+      else activeSubmitButton.setAttribute('aria-label', 'Sedang mengirim detail konsultasi');
       setStatus('Sedang mengirim permintaan Anda.', 'loading');
 
       const controller = new AbortController();
@@ -430,12 +452,14 @@ const initialiseLeadForms = () => {
         window.location.assign(nextPath);
       } catch (error) {
         form.dataset.submitting = 'false';
-        submitButton.disabled = false;
-        submitButton.removeAttribute('aria-busy');
-        delete submitButton.dataset.loading;
-        submitButton.innerHTML = originalMarkup;
-        if (originalAriaLabel) submitButton.setAttribute('aria-label', originalAriaLabel);
-        else submitButton.removeAttribute('aria-label');
+        originalButtonState.forEach(({ button, markup, ariaLabel }) => {
+          button.disabled = false;
+          button.removeAttribute('aria-busy');
+          delete button.dataset.loading;
+          button.innerHTML = markup;
+          if (ariaLabel) button.setAttribute('aria-label', ariaLabel);
+          else button.removeAttribute('aria-label');
+        });
         const timedOut = error instanceof DOMException && error.name === 'AbortError';
         const message = timedOut
           ? 'Koneksi memerlukan waktu lebih lama. Ketuk kirim untuk mencoba lagi.'
