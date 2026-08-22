@@ -175,17 +175,19 @@ const schema = [
   <article data-cms-snapshot={post.snapshotId}>
     <header class="article-hero">
       <div class="container article-head">
-        <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
-        <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a>
-        <h1>{post.data.title}</h1>
-        <p class="article-dek">{post.data.dek}</p>
-        <div class="article-trust-row" aria-label="Akuntabilitas artikel">
-          <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}/`}>{post.data.authorName}</a></div>
-          {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><strong>{post.data.reviewerName}</strong></div>}
-          <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
+        <div class="article-hero-copy">
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span>/</span><a href="/blog/">Blog</a><span>/</span><a href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a><span>/</span><span aria-current="page">Artikel</span></nav>
+          <a class="article-category" href={`/blog/kategori/${post.data.categorySlug}/`}>{post.data.category}</a>
+          <h1>{post.data.title}</h1>
+          <p class="article-dek">{post.data.dek}</p>
+          <div class="article-trust-row" aria-label="Akuntabilitas artikel">
+            <div><span>Ditulis oleh</span><a href={`/blog/penulis/${post.data.authorSlug}/`}>{post.data.authorName}</a></div>
+            {hasVerifiedReviewer && <div><span>Ditinjau oleh</span><strong>{post.data.reviewerName}</strong></div>}
+            <div><span>Koreksi</span><a href="/blog/koreksi/">Sampaikan perbaikan</a></div>
+          </div>
+          <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span>{hasMaterialUpdate && <span>Diperbarui {formatDate(updatedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>
+          <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
         </div>
-        <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span>{hasMaterialUpdate && <span>Diperbarui {formatDate(updatedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>
-        <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
         <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas untuk membantu membaca isi artikel.</figcaption></figure>
       </div>
     </header>

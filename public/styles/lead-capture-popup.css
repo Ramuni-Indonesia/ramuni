@@ -8,13 +8,16 @@ html:has(.lead-capture-dialog[open]){overflow:hidden}
 .lead-capture-dialog__aside h2{margin:0;font-size:clamp(1.45rem,2.5vw,2.05rem);line-height:1.08;letter-spacing:-.035em}
 .lead-capture-dialog__aside p{margin:0;color:rgb(255 255 255/.76);font-size:.8rem;line-height:1.6}
 .lead-capture-dialog__aside-visual{position:relative;display:grid;min-height:142px;margin:3px 0 1px;overflow:hidden;border:1px solid rgb(255 255 255/.18);border-radius:16px;background:rgb(255 255 255/.08)}
+.lead-capture-dialog__aside-visual::after{position:absolute;inset:0;content:'';background:linear-gradient(180deg,transparent 28%,rgb(11 48 69/.74) 100%);pointer-events:none}
 .lead-capture-dialog__aside-visual-image{display:block;width:100%;height:142px;background-image:var(--lead-capture-image);background-position:center;background-size:cover;background-repeat:no-repeat}
+.lead-capture-dialog__aside-visual figcaption{position:absolute;right:11px;bottom:10px;left:11px;z-index:1;color:rgb(255 255 255/.88);font-size:.66rem;font-weight:700;line-height:1.35}
 .lead-capture-dialog__signals{display:grid;gap:11px;margin:6px 0 0;padding:0;list-style:none}
 .lead-capture-dialog__signals li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;align-items:start;color:rgb(255 255 255/.84);font-size:.7rem;line-height:1.45}
 .lead-capture-dialog__signals span{color:var(--yellow);font-weight:900}
 .lead-capture-dialog--blog .lead-capture-dialog__aside{background:#173f55}
 .lead-capture-dialog--site .lead-capture-dialog__aside{background:var(--teal)}
 .lead-capture-dialog--site .lead-capture-dialog__aside-visual{border-color:rgb(255 255 255/.3);background:rgb(255 255 255/.12)}
+.lead-capture-dialog--site .lead-capture-dialog__aside-visual::after{background:linear-gradient(180deg,transparent 22%,rgb(11 48 69/.58) 100%)}
 .lead-capture-dialog--site .lead-capture-dialog__eyebrow,.lead-capture-dialog--site .lead-capture-dialog__signals span{color:var(--white)}
 .lead-capture-dialog__main{min-width:0;padding:20px 24px 22px;background:var(--white)}
 .lead-capture-dialog__header{display:flex;align-items:start;justify-content:space-between;gap:16px}
