@@ -509,6 +509,15 @@ The current batch materially increases real product evidence and motion, but sev
 - The first automated activation probe rolled back because its local health probe did not observe the new release. The artifact itself passed every build/audit gate; after the rollback, the same release was activated in a controlled switch and `/healthz` plus representative routes confirmed the new release, SHA, and artifact digest. The previous release remains available as the rollback target.
 - No raster image generation or editing was required. The public schema validator endpoint returned HTTP 429 during the final follow-up check; live JSON-LD was still parsed directly and showed zero top-level reviewer fields on `BlogPosting` with the review data on `WebPage`.
 
+## Production GSC-led customer-frequency article release, 2026-08-22
+
+- Published source commit: `e675dd3652b36f74ec5783523b01648f3302fc34` (`feat(content): publish customer purchase frequency guide`). Atomic production release: `20260822T094751Z-e675dd3652b3`; artifact SHA-256: `47ac1e5b9eab94de980f9f378ebe33eee721f272c20b41380211826e9744ed5a`; deployed at `2026-08-22T09:51:17Z`.
+- Published `/blog/cara-menghitung-frekuensi-pembelian-pelanggan/` as a distinct calculation guide for the GSC-backed “frekuensi pembelian” intent. The guide separates valid transactions, unique customers, anonymous coverage, distribution, and period comparisons; it does not compete with the glossary definition or repeat customer rate.
+- Internal linking now connects the guide from the customer product intent map and the glossary term, while the repeat customer article links back to the guide and keeps its own proportion-of-returning-customers intent. The existing approved customer cover was reused; no raster generation or asset upload was required.
+- Production verification passed: Node 22 Astro check (137 files, 0 errors/warnings/hints), production build (265 pages), CDN rewrite (4,183 references in 259 files), full site audit (265 HTML files), keyword audit (5,000 keywords/100 groups), `git diff --check`, and `npm audit --audit-level=high` (0 vulnerabilities).
+- Live smoke passed: `/healthz` reports the release, source SHA, and artifact digest above; the article returns HTTP 200 with `index,follow`, self-canonical, `hreflang="id-ID"`, `hreflang="x-default"`, Ahrefs, idle Clarity, and JSON-LD contracts. `sitemap-blog-posts.xml` contains the article with `<lastmod>2026-08-22</lastmod>` and the public title matches the published article.
+- The source article and this handoff are pushed to `origin/main`. The previous production release remains available as the rollback target.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
