@@ -1,6 +1,7 @@
 .lead-capture-dialog:not([open]){display:none}
 .lead-capture-dialog{position:fixed;inset:50% auto auto 50%;z-index:1300;width:min(980px,calc(100vw - 40px));max-width:calc(100vw - 40px);margin:0;padding:0;border:1px solid var(--ink-10);border-radius:24px;overflow:hidden;background:var(--white);color:var(--ink);box-shadow:0 28px 100px rgb(11 48 69/.3);transform:translate(-50%,-50%);transform-origin:center}
-.lead-capture-dialog::backdrop{background:rgb(11 48 69/.5);backdrop-filter:blur(3px)}
+.lead-capture-dialog::backdrop{background:rgb(7 27 40/.68);backdrop-filter:blur(4px)}
+html:has(.lead-capture-dialog[open]){overflow:hidden}
 .lead-capture-dialog__shell{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);overflow:visible}
 .lead-capture-dialog__aside{display:grid;align-content:start;gap:11px;padding:24px 23px;background:var(--ink);color:var(--white)}
 .lead-capture-dialog__eyebrow{color:var(--yellow);font-size:.7rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}

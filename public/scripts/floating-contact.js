@@ -14,6 +14,7 @@ const initialiseFloatingContact = () => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const autoOpenContext = document.body.dataset.popupContext === 'blog' ? 'blog' : 'site';
   const autoOpenKey = `ramuni-lead-popup-auto-opened-v1-${autoOpenContext}`;
+  const autoOpenClosedKey = `ramuni-lead-popup-auto-closed-v1-${autoOpenContext}`;
   const contactAutoOpenKey = 'ramuni-floating-contact-auto-opened-v5';
   const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
@@ -129,6 +130,7 @@ const initialiseFloatingContact = () => {
   const isAutoOpenExcluded = () => {
     const path = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
     return storageGet(autoOpenKey) === 'true'
+      || storageGet(autoOpenClosedKey) === 'true'
       || excludedAutoPaths.some((prefix) => path.startsWith(prefix));
   };
   const hasAutoOpenBlocker = () => document.hidden
@@ -269,7 +271,7 @@ const initialiseFloatingContact = () => {
       autoOpenTrigger = 'scroll-depth';
     }
     if (!autoOpenReady || hasAutoOpenBlocker()) return;
-    const opened = await openLeadPopup({ modal: false, focus: false, source: autoOpenTrigger });
+    const opened = await openLeadPopup({ modal: true, focus: true, source: autoOpenTrigger });
     if (opened || isAutoOpenExcluded() || leadStylesFailed) stopAutoTracking();
   };
   function scheduleAutoOpenCheck() {
@@ -299,6 +301,11 @@ const initialiseFloatingContact = () => {
 
   openButton?.addEventListener('click', () => {
     void openContact({ modal: true, focus: true, source: 'manual' });
+  });
+
+  leadDialog?.addEventListener('close', () => {
+    if (leadDialog.dataset.openSource) storageSet(autoOpenClosedKey, 'true');
+    delete leadDialog.dataset.openSource;
   });
 
   closeButton?.addEventListener('click', () => {
