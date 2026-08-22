@@ -7,7 +7,6 @@ import ArticleProductBridge from '../../components/blog/ArticleProductBridge.ast
 import { getArticleHeadings, getBlogPosts, getRelatedBlogPosts } from '../../lib/blog';
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
-import { mascots } from '../../data/mascots';
 import { getArticleJourney } from '../../data/articleJourneys';
 import { getArticleVisualPlacement } from '../../data/articleVisualPlacement';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
@@ -210,7 +209,7 @@ const schema = [
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
 
-          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} />
+          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} bannerSrc={post.data.cover} bannerWidth={post.data.coverWidth} bannerHeight={post.data.coverHeight} bannerAlt={post.data.coverAlt} />
 
           {post.data.faqs.length > 0 && <section class="article-faq" aria-labelledby="article-faq-heading">
             <p class="section-kicker">FAQ</p>
@@ -236,7 +235,7 @@ const schema = [
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
           <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
             <div class="article-rail-cta__visual" aria-hidden="true">
-              <img class="article-rail-cta__banner" src={mascots.dashboardGuide.src} width={mascots.dashboardGuide.width} height={mascots.dashboardGuide.height} alt="" loading="lazy" decoding="async" />
+              <img class="article-rail-cta__banner" src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt="Visual konteks artikel" loading="lazy" decoding="async" />
               <ol><li>Catat</li><li>Periksa</li><li>Tentukan</li></ol>
             </div>
             <small>Lihat alurnya</small>

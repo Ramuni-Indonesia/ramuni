@@ -5,9 +5,13 @@ import { getArticleJourney } from '../../data/articleJourneys';
 interface Props {
   categorySlug: string;
   articleId: string;
+  bannerSrc?: string;
+  bannerWidth?: number;
+  bannerHeight?: number;
+  bannerAlt?: string;
 }
 
-const { categorySlug, articleId } = Astro.props;
+const { categorySlug, articleId, bannerSrc, bannerWidth, bannerHeight, bannerAlt } = Astro.props;
 const journey = getArticleJourney(categorySlug, articleId);
 ---
 
@@ -24,5 +28,9 @@ const journey = getArticleJourney(categorySlug, articleId);
     variant="article"
     stageLabels={journey.stages}
     metricLabel={journey.metric}
+    bannerSrc={bannerSrc}
+    bannerWidth={bannerWidth}
+    bannerHeight={bannerHeight}
+    bannerAlt={bannerAlt}
   />
 </aside>

@@ -13,6 +13,10 @@ interface Props {
   variant?: 'archive' | 'article';
   stageLabels?: [string, string, string, string];
   metricLabel?: string;
+  bannerSrc?: string;
+  bannerWidth?: number;
+  bannerHeight?: number;
+  bannerAlt?: string;
 }
 
 const {
@@ -27,9 +31,15 @@ const {
   variant = 'archive',
   stageLabels = ['Catatan', 'Bukti', 'Konteks', 'Arah'],
   metricLabel = 'Contoh pembacaan',
+  bannerSrc,
+  bannerWidth,
+  bannerHeight,
+  bannerAlt = 'Visual alur RAMUNI',
 } = Astro.props;
 
-const banner = mascots.dashboardGuide;
+const banner = bannerSrc
+  ? { src: bannerSrc, width: bannerWidth || 1280, height: bannerHeight || 720 }
+  : mascots.dashboardGuide;
 ---
 
 <div id={id} class:list={['blog-decision-cta', `blog-decision-cta--${variant}`]}>
@@ -44,10 +54,12 @@ const banner = mascots.dashboardGuide;
   </div>
 
   <div class="blog-decision-cta__visual" aria-label="Alur singkat dari catatan usaha menuju langkah berikutnya.">
-    <img class="blog-decision-cta__banner" src={banner.src} width={banner.width} height={banner.height} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-    <div class="blog-decision-cta__visual-head">
-      <span>Alur yang dapat diperiksa</span>
-      <small>{metricLabel}</small>
+    <div class="blog-decision-cta__media">
+      <img class="blog-decision-cta__banner" src={banner.src} width={banner.width} height={banner.height} alt={bannerAlt} loading="lazy" decoding="async" />
+      <div class="blog-decision-cta__visual-head">
+        <span>Alur yang dapat diperiksa</span>
+        <small>{metricLabel}</small>
+      </div>
     </div>
     <ol class="blog-decision-cta__steps">
       {stageLabels.map((label, index) => <li><b>{String(index + 1).padStart(2, '0')}</b><span>{label}</span><i aria-hidden="true"></i></li>)}
