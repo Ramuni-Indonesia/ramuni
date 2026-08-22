@@ -1,0 +1,41 @@
+---
+import LeadForm from './LeadForm.astro';
+
+interface Props {
+  context?: 'blog' | 'site';
+}
+
+const { context = 'site' } = Astro.props;
+const isBlog = context === 'blog';
+---
+<dialog class:list={['lead-capture-dialog', `lead-capture-dialog--${context}`]} id="lead-capture-dialog" data-lead-popup data-lead-popup-context={context} aria-label="Formulir RAMUNI" aria-labelledby="lead-capture-title" aria-describedby="lead-capture-description">
+  <div class="lead-capture-dialog__shell">
+    <aside class="lead-capture-dialog__aside">
+      <span class="lead-capture-dialog__eyebrow">{isBlog ? 'Dari bacaan ke langkah berikutnya' : 'Contoh alur RAMUNI'}</span>
+      <h2>{isBlog ? 'Jadikan masalah usaha lebih mudah diperiksa.' : 'Mulai dari masalah yang paling dekat.'}</h2>
+      <p>{isBlog ? 'Isi kontak singkat agar tim dapat mengarahkan Anda ke alur yang relevan, tanpa perlu menyiapkan data bisnis.' : 'Pilih jalur yang Anda butuhkan, lalu lihat cara RAMUNI membantu membaca kondisi usaha.'}</p>
+      <ul class="lead-capture-dialog__signals" aria-label="Manfaat mengisi formulir">
+        <li><span>01</span>Tanpa komitmen dan tanpa data sensitif</li>
+        <li><span>02</span>Respons diarahkan sesuai kebutuhan usaha</li>
+        <li><span>03</span>WhatsApp terbuka setelah CRM menerima detail</li>
+      </ul>
+    </aside>
+    <section class="lead-capture-dialog__main">
+      <header class="lead-capture-dialog__header">
+        <div><span>Mulai di sini</span><h3 id="lead-capture-title">Pilih cara Anda ingin melanjutkan</h3></div>
+        <button class="lead-capture-dialog__close" type="button" data-lead-popup-close aria-label="Tutup formulir">×</button>
+      </header>
+      <p class="lead-capture-dialog__description" id="lead-capture-description">Isi form seperti saat memulai tour produk gratis. Tim menerima detailnya sebelum langkah berikutnya dibuka.</p>
+      <div class="lead-capture-dialog__flows" role="group" aria-label="Pilih tujuan formulir">
+        <button class="lead-capture-dialog__flow" type="button" data-lead-popup-flow="consultation" aria-pressed="false">
+          <strong>Mulai konsultasi</strong><span>Bahas kebutuhan di WhatsApp</span>
+        </button>
+        <button class="lead-capture-dialog__flow" type="button" data-lead-popup-flow="trial" aria-pressed="true">
+          <strong>Coba gratis</strong><span>Lihat contoh alur RAMUNI</span>
+        </button>
+      </div>
+      <LeadForm kind="demo" flow="trial" handoff="whatsapp" location="auto-lead-popup" submitLabel="Coba gratis" />
+    </section>
+  </div>
+</dialog>
+<script is:inline type="module" src="/scripts/lead-popup.js"></script>

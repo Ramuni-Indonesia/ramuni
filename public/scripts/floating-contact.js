@@ -9,19 +9,20 @@ const initialiseFloatingContact = () => {
   const scrollSentinel = document.querySelector('[data-scroll-top-sentinel]');
   const openButton = actions.querySelector('[data-contact-open]');
   const dialog = document.querySelector('[data-contact-dialog]');
+  const leadDialog = document.querySelector('[data-lead-popup]');
   const closeButton = dialog?.querySelector('[data-contact-close]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const autoOpenContext = document.body.dataset.popupContext === 'blog' ? 'blog' : 'site';
-  const autoOpenKey = `ramuni-floating-contact-auto-opened-v5-${autoOpenContext}`;
+  const autoOpenKey = `ramuni-lead-popup-auto-opened-v1-${autoOpenContext}`;
+  const contactAutoOpenKey = 'ramuni-floating-contact-auto-opened-v5';
   const autoOpenDelayMs = 60000;
   const excludedAutoPaths = ['/tour-produk-gratis/', '/terima-kasih/', '/masuk/'];
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
-  const flowButtons = Array.from(dialog?.querySelectorAll('[data-contact-flow]') || []);
-  const leadForm = dialog?.querySelector('[data-lead-form]');
-  const contactCopies = Array.from(dialog?.querySelectorAll('[data-contact-copy]') || []);
   let restoreFocusOnClose = false;
   let chatStylePromise;
   let chatStylesFailed = false;
+  let leadStylePromise;
+  let leadStylesFailed = false;
   let openingPromise;
   let openingSource;
   let progressFrame;
@@ -83,6 +84,41 @@ const initialiseFloatingContact = () => {
     });
     return chatStylePromise;
   };
+  const ensureLeadPopupStyles = () => {
+    if (leadStylePromise) return leadStylePromise;
+    leadStylePromise = new Promise((resolve) => {
+      const existing = document.querySelector('link[data-lead-popup-style]');
+      if (existing instanceof HTMLLinkElement) {
+        if (existing.sheet || existing.dataset.loaded === 'true') resolve(true);
+        else if (existing.dataset.failed === 'true') {
+          leadStylesFailed = true;
+          resolve(false);
+        } else {
+          existing.addEventListener('load', () => resolve(true), { once: true });
+          existing.addEventListener('error', () => {
+            leadStylesFailed = true;
+            resolve(false);
+          }, { once: true });
+        }
+        return;
+      }
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/styles/lead-capture-popup.css';
+      link.dataset.leadPopupStyle = 'true';
+      link.addEventListener('load', () => {
+        link.dataset.loaded = 'true';
+        resolve(true);
+      }, { once: true });
+      link.addEventListener('error', () => {
+        leadStylesFailed = true;
+        link.dataset.failed = 'true';
+        resolve(false);
+      }, { once: true });
+      document.head.append(link);
+    });
+    return leadStylePromise;
+  };
 
   const storageGet = (key) => {
     try { return sessionStorage.getItem(key); } catch { return null; }
@@ -103,24 +139,6 @@ const initialiseFloatingContact = () => {
     const firstField = dialog?.querySelector('.lead-form__step[data-active] input:not([type="hidden"]), .lead-form__step[data-active] textarea, .lead-form__step[data-active] button') || closeButton;
     if (firstField instanceof HTMLElement) firstField.focus({ preventScroll: true });
   };
-  const setContactFlow = (flow = 'consultation') => {
-    const nextFlow = flow === 'trial' ? 'trial' : 'consultation';
-    flowButtons.forEach((button) => {
-      if (button instanceof HTMLButtonElement) button.setAttribute('aria-pressed', String(button.dataset.contactFlow === nextFlow));
-    });
-    if (leadForm instanceof HTMLFormElement) {
-      leadForm.dataset.leadFlow = nextFlow;
-      const intent = leadForm.querySelector('input[name="intent"]');
-      if (intent instanceof HTMLInputElement) intent.value = nextFlow === 'trial' ? 'overview' : 'support';
-      const flowField = leadForm.querySelector('input[name="leadFlow"]');
-      if (flowField instanceof HTMLInputElement) flowField.value = nextFlow;
-    }
-    contactCopies.forEach((copy) => {
-      if (copy instanceof HTMLElement) copy.hidden = copy.dataset.contactCopy !== nextFlow;
-    });
-    if (dialog instanceof HTMLDialogElement) dialog.dataset.contactFlow = nextFlow;
-  };
-  setContactFlow('consultation');
   const openContact = ({ modal = true, focus = true, source = 'manual' } = {}) => {
     if (!(dialog instanceof HTMLDialogElement)) return Promise.resolve(false);
     if (dialog.open) {
@@ -166,7 +184,7 @@ const initialiseFloatingContact = () => {
         return false;
       }
       track('lead_popup_opened', { source });
-      storageSet(autoOpenKey, 'true');
+      storageSet(contactAutoOpenKey, 'true');
       if (focus) window.setTimeout(focusContactField, 0);
       return true;
     })().finally(() => {
@@ -174,6 +192,24 @@ const initialiseFloatingContact = () => {
       openingSource = undefined;
     });
     return openingPromise;
+  };
+  const openLeadPopup = async ({ modal = false, focus = false, source = 'auto' } = {}) => {
+    if (!(leadDialog instanceof HTMLDialogElement)) return Promise.resolve(false);
+    if (leadDialog.open) return Promise.resolve(false);
+    if (source !== 'manual' && (isAutoOpenExcluded() || hasAutoOpenBlocker())) return Promise.resolve(false);
+    if (typeof leadDialog.showModal !== 'function' || typeof leadDialog.show !== 'function') return Promise.resolve(false);
+    if (!await ensureLeadPopupStyles()) return false;
+    try {
+      if (modal) leadDialog.showModal();
+      else leadDialog.show();
+    } catch {
+      return Promise.resolve(false);
+    }
+    leadDialog.dataset.openSource = source;
+    track('lead_popup_opened', { source, popup: 'lead-form' });
+    storageSet(autoOpenKey, 'true');
+    if (focus) window.setTimeout(() => leadDialog.querySelector('[data-lead-popup-close]')?.focus(), 0);
+    return Promise.resolve(true);
   };
 
   let scrollObserver;
@@ -233,15 +269,15 @@ const initialiseFloatingContact = () => {
       autoOpenTrigger = 'scroll-depth';
     }
     if (!autoOpenReady || hasAutoOpenBlocker()) return;
-    const opened = await openContact({ modal: false, focus: false, source: autoOpenTrigger });
-    if (opened || isAutoOpenExcluded() || chatStylesFailed) stopAutoTracking();
+    const opened = await openLeadPopup({ modal: false, focus: false, source: autoOpenTrigger });
+    if (opened || isAutoOpenExcluded() || leadStylesFailed) stopAutoTracking();
   };
   function scheduleAutoOpenCheck() {
     if (!autoTracking || autoCheckFrame) return;
     autoCheckFrame = window.requestAnimationFrame(() => { void checkAutoOpen(); });
   }
   const setupAutoOpen = () => {
-    if (document.body.dataset.whatsappAutoOpen !== 'true' || isAutoOpenExcluded()) return;
+    if (document.body.dataset.leadPopupAutoOpen !== 'true' || isAutoOpenExcluded()) return;
     autoTracking = true;
     window.addEventListener('scroll', scheduleAutoOpenCheck, { passive: true });
     window.addEventListener('resize', scheduleAutoOpenCheck, { passive: true });
@@ -262,13 +298,7 @@ const initialiseFloatingContact = () => {
   };
 
   openButton?.addEventListener('click', () => {
-    setContactFlow(openButton.dataset.contactFlow || 'consultation');
     void openContact({ modal: true, focus: true, source: 'manual' });
-  });
-
-  flowButtons.forEach((button) => {
-    if (!(button instanceof HTMLButtonElement) || button === openButton) return;
-    button.addEventListener('click', () => setContactFlow(button.dataset.contactFlow || 'consultation'));
   });
 
   closeButton?.addEventListener('click', () => {

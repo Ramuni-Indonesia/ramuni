@@ -1,15 +1,25 @@
 const initialiseLeadForms = () => {
   const officialWhatsAppUrl = 'https://wa.me/message/K35W6X6WT7YMJ1';
-  const whatsappMessageTemplate = (flow = 'consultation') => [
-    flow === 'trial' ? 'Halo RAMUNI, saya tertarik mencoba RAMUNI.' : 'Halo RAMUNI, saya ingin mulai konsultasi.',
-    '',
-    `Tujuan: ${flow === 'trial' ? 'Coba gratis' : 'Mulai konsultasi'}`,
-    'Nama usaha: [isi nama usaha]',
-    'Produk atau solusi: [isi yang ingin dibahas]',
-    'Kebutuhan utama: [jelaskan singkat]',
-    'Waktu yang nyaman untuk dihubungi: [isi waktu]',
-  ].join('\n');
-  const whatsappHandoffUrl = (flow = 'consultation') => {
+  const whatsappMessageTemplate = (flow) => {
+    if (!flow) return [
+      'Halo RAMUNI, saya tertarik mencoba RAMUNI.',
+      '',
+      'Nama usaha: [isi nama usaha]',
+      'Produk atau solusi: [isi yang ingin dibahas]',
+      'Kebutuhan utama: [jelaskan singkat]',
+      'Waktu yang nyaman untuk dihubungi: [isi waktu]',
+    ].join('\n');
+    return [
+      flow === 'trial' ? 'Halo RAMUNI, saya tertarik mencoba RAMUNI.' : 'Halo RAMUNI, saya ingin mulai konsultasi.',
+      '',
+      `Tujuan: ${flow === 'trial' ? 'Coba gratis' : 'Mulai konsultasi'}`,
+      'Nama usaha: [isi nama usaha]',
+      'Produk atau solusi: [isi yang ingin dibahas]',
+      'Kebutuhan utama: [jelaskan singkat]',
+      'Waktu yang nyaman untuk dihubungi: [isi waktu]',
+    ].join('\n');
+  };
+  const whatsappHandoffUrl = (flow) => {
     const url = new URL(officialWhatsAppUrl);
     url.searchParams.set('text', whatsappMessageTemplate(flow));
     return url.toString();
@@ -325,7 +335,9 @@ const initialiseLeadForms = () => {
       const data = new FormData(form);
       const kind = form.dataset.leadForm || 'contact';
       const location = key(form.dataset.leadLocation, 'inline');
-      const flow = form.dataset.leadFlow === 'trial' ? 'trial' : 'consultation';
+      const flow = form.dataset.leadFlow === 'trial' || form.dataset.leadFlow === 'consultation'
+        ? form.dataset.leadFlow
+        : '';
       const captureId = form.dataset.captureId || randomId('capture');
       const idempotencyKey = form.dataset.idempotencyKey || randomId('lead-key');
       const intent = key(data.get('intent'), 'support');
@@ -351,7 +363,7 @@ const initialiseLeadForms = () => {
         form_location: location,
         page_path: window.location.pathname,
         page_type: key(window.location.pathname.split('/').filter(Boolean)[0], 'home'),
-        cta_id: key(flow + '-' + kind + '-' + location + '-submit', 'lead-submit'),
+        cta_id: key((flow ? flow + '-' : '') + kind + '-' + location + '-submit', 'lead-submit'),
         cta_text_key: key(submitButton.textContent, 'submit'),
         cta_intent: intent,
         locale: 'id-ID',

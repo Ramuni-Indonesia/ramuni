@@ -25,26 +25,3 @@
 @media(prefers-reduced-motion:no-preference){.contact-dialog[open]{animation:contact-chat-open 280ms cubic-bezier(.22,1,.36,1) both}.lead-form--chat .lead-form__chat-message[data-chat-new='true']{animation:chat-bubble-rise 420ms cubic-bezier(.22,1,.36,1) both}.lead-form--chat .lead-form__chat-message--visitor[data-chat-new='true']{animation-delay:70ms}.lead-form--chat .lead-form__step[data-active] .chat-composer{animation:chat-composer-rise 360ms 150ms cubic-bezier(.22,1,.36,1) both}@keyframes contact-chat-open{from{opacity:0;transform:translate3d(0,14px,0) scale(.94)}to{opacity:1;transform:none}}@keyframes chat-step-enter{from{opacity:0}to{opacity:1}}@keyframes chat-bubble-rise{from{opacity:0;transform:translate3d(0,14px,0) scale(.99)}to{opacity:1;transform:none}}@keyframes chat-composer-rise{from{opacity:0}to{opacity:1}}@keyframes chat-send-spin{to{transform:rotate(1turn)}}}
 @media(max-width:640px){.contact-dialog{inset:auto 10px calc(env(safe-area-inset-bottom) + 72px);width:calc(100vw - 20px);max-width:calc(100vw - 20px);max-height:min(76dvh,660px);border-radius:18px}.contact-dialog__header{padding:13px 14px}.contact-dialog__form{padding:14px 13px calc(13px + env(safe-area-inset-bottom));scroll-padding-bottom:calc(18px + env(safe-area-inset-bottom))}.lead-form--chat .lead-form__chat-history{padding-left:8px}.lead-form--chat .lead-form__chat-message{max-width:90%}.lead-form--chat .chat-composer{grid-template-columns:minmax(0,1fr) auto}.lead-form--chat .chat-send{width:46px;min-width:46px;min-height:46px}}
 @media(prefers-reduced-motion:reduce){.contact-dialog__form{scroll-behavior:auto}.contact-dialog,.lead-form--chat .chat-send,.lead-form--chat .lead-form__step[data-active],.lead-form--chat .lead-form__chat-message,.lead-form--chat .chat-composer{animation:none;transition:none}.lead-form--chat .chat-send[data-loading='true']::after{animation-duration:1.4s}}
-
-/* Conversion choices stay readable above the progressive form and adapt to the page context. */
-.contact-dialog__intro{display:grid;gap:4px;margin:0 2px 12px;color:var(--ink-72);font-size:.78rem;line-height:1.5}
-.contact-dialog__intro p{margin:0}
-.contact-dialog__choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 16px}
-.contact-dialog__choice{display:grid;gap:3px;min-height:64px;padding:10px 11px;border:1px solid rgb(11 48 69/.14);border-radius:12px;background:rgb(255 255 255/.72);color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:border-color 180ms ease,background 180ms ease,color 180ms ease,transform 180ms ease}
-.contact-dialog__choice strong{font-size:.78rem;line-height:1.25}
-.contact-dialog__choice span{color:var(--ink-72);font-size:.68rem;line-height:1.35}
-.contact-dialog__choice:hover,.contact-dialog__choice:focus-visible{border-color:var(--teal);transform:translateY(-1px)}
-.contact-dialog__choice[aria-pressed='true']{border-color:var(--teal);background:var(--teal);color:var(--white);box-shadow:0 6px 16px rgb(11 48 69/.14)}
-.contact-dialog__choice[aria-pressed='true'] span{color:rgb(255 255 255/.8)}
-.contact-dialog--blog .contact-dialog__form{background:radial-gradient(rgb(255 255 255/.52) 1px,transparent 1px),radial-gradient(rgb(11 48 69/.045) 1px,transparent 1px),#efe7da;background-position:0 0,12px 12px;background-size:24px 24px}
-.contact-dialog--blog .contact-dialog__choice{border-radius:12px;background:rgb(255 255 255/.78)}
-.contact-dialog--blog .contact-dialog__choice[aria-pressed='true']{background:var(--teal)}
-.contact-dialog--site{width:min(420px,calc(100vw - 32px));border:1px solid rgb(11 48 69/.1);background:var(--white)}
-.contact-dialog--site .contact-dialog__header{background:var(--teal);color:var(--white)}
-.contact-dialog--site .contact-dialog__status{color:var(--white);opacity:.82}
-.contact-dialog--site .contact-dialog__avatar{background:var(--ink)}
-.contact-dialog--site .contact-dialog__form{padding:22px 18px 18px;background:var(--white)}
-.contact-dialog--site .contact-dialog__choice{background:var(--rice);border-radius:10px}
-.contact-dialog--site .contact-dialog__choice[aria-pressed='true']{background:var(--ink);border-color:var(--ink)}
-.contact-dialog--site .contact-dialog__choice:hover,.contact-dialog--site .contact-dialog__choice:focus-visible{border-color:var(--ink)}
-@media(max-width:640px){.contact-dialog--site{width:calc(100vw - 20px);max-width:calc(100vw - 20px)}.contact-dialog--site .contact-dialog__form{padding:16px 14px calc(14px + env(safe-area-inset-bottom))}.contact-dialog__choices{gap:7px}.contact-dialog__choice{min-height:60px;padding:9px 10px}}

@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ClarityTracking from '../components/ClarityTracking.astro';
 import FloatingContact from '../components/FloatingContact.astro';
+import LeadCapturePopup from '../components/LeadCapturePopup.astro';
 import ParallaxMotion from '../components/ParallaxMotion.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
@@ -166,12 +167,13 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredDataDocument && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataDocument)} />}
   </head>
-  <body data-whatsapp-auto-open={chrome ? 'true' : 'false'} data-popup-context={popupContext}>
+  <body data-lead-popup-auto-open={chrome ? 'true' : 'false'} data-whatsapp-auto-open={chrome ? 'true' : 'false'} data-popup-context={popupContext}>
     <a class="skip-link" href="#main">Lewati ke konten</a>
     {chrome && <Header />}
     <main id="main"><slot /></main>
     {chrome && <Footer />}
-    {chrome && <FloatingContact context={popupContext} />}
+    {chrome && <FloatingContact />}
+    {chrome && <LeadCapturePopup context={popupContext} />}
     <ClarityTracking />
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>
