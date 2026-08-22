@@ -498,6 +498,17 @@ The current batch materially increases real product evidence and motion, but sev
 - Exact public PageSpeed Insights scores were not re-run because the endpoint returned HTTP 429 and this host has no local Lighthouse/Chromium binary. The Clarity mitigation and generated/live HTML contracts were verified statically and in production; rerun PSI after its rate limit/cache window refreshes.
 - No raster image generation or editing was required. No package removal was needed because the unused Clarity dependency is outside the shipped runtime bundle.
 
+## Production Ahrefs follow-up remediation release, 2026-08-22
+
+- Published runtime commit: `87715a1dfb8987649e43d49c2792f51097927d4c` (`fix(seo): resolve ahrefs crawl findings`). Production release: `20260822T091509Z-87715a1dfb89`; artifact SHA-256: `8f61fffdfc8ec6b113319b193ef339391496d606731df1ae904ba8c51f07a438`; deployed at `2026-08-22T09:19:46Z`.
+- The five new Ahrefs exports from the Drive folder were reviewed. All 31 meta descriptions in the “too long” export now measure 129–154 characters. The five pages containing the JDIH Kemenkeu 308 URL now use its final `/api/download/` URL, which returns HTTP 200.
+- Twenty “only one dofollow inlink” pages now receive a contextual dofollow link from the relevant indexed product cluster (`/produk/penjualan/`, `/produk/inventori/`, `/produk/keuangan/`, `/produk/pelanggan/`, or `/produk/integrasi/`) in addition to their existing directory link. This covers the reported glossary, calculator, and article URLs without adding a generic link dump.
+- The 35 URLs in the “pages to submit to IndexNow” export were verified as HTTP 200, `index,follow`, canonical, and present in the appropriate public sitemap. This export is an advisory submission queue rather than a page defect, so no mass indexing request was sent.
+- Structured-data validation findings were traced to `reviewedBy` and `lastReviewed` being attached to `BlogPosting`, although Schema.org defines those properties for `WebPage`. They now live on the article’s nested `mainEntityOfPage` WebPage; JSON-LD remains a single `@context`/`@graph` document. Static JSON-LD shape checks and the full site audit pass.
+- Verification passed: Node 22 Astro check (137 files, 0 errors/warnings/hints), production build (264 pages), post-CDN rewrite and full site audit, live checks for all 31 meta targets and 35 IndexNow targets, all five redirect-source pages, all 20 added product-cluster links, `git diff --check`, and `npm audit --audit-level=high` (0 vulnerabilities). R2 reported `0 uploaded, 210 unchanged`.
+- The first automated activation probe rolled back because its local health probe did not observe the new release. The artifact itself passed every build/audit gate; after the rollback, the same release was activated in a controlled switch and `/healthz` plus representative routes confirmed the new release, SHA, and artifact digest. The previous release remains available as the rollback target.
+- No raster image generation or editing was required. The public schema validator endpoint returned HTTP 429 during the final follow-up check; live JSON-LD was still parsed directly and showed zero top-level reviewer fields on `BlogPosting` with the review data on `WebPage`.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
