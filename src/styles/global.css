@@ -238,7 +238,7 @@ body.menu-open .site-header{position:fixed;inset:0 0 auto;width:100%}body.menu-o
 /* Cross-page responsive type and card guardrails. */
 @media(max-width:740px){
   :where(.blog-hero,.article-hero,.category-hero,.author-hero,.resource-hub-hero,.learning-hero,.learning-detail-hero,.glossary-detail-hero,.template-library-hero,.template-detail-hero,.tools-hero,.tool-detail-hero) h1{max-width:100%;font-size:clamp(2.45rem,11vw,3.35rem);line-height:.98;letter-spacing:-.045em}
-  :where(.section-intro,.tools-section-head,.learning-section-head,.sd-section-heading,.resource-library__head,.resource-problem-stage__head) h2{max-width:100%;font-size:clamp(1.9rem,8.5vw,2.6rem);line-height:1.04}
+  :where(.section-intro,.tools-section-head,.learning-section-head,.sd-section-heading,.resource-library__head) h2{max-width:100%;font-size:clamp(1.9rem,8.5vw,2.6rem);line-height:1.04}
   :where(.card,.tool-card,.resource-format-card,.learning-related-card,.template-related__grid a,.tools-crosslink__grid a,.tool-related__grid a){min-width:0;overflow-wrap:break-word}
 }
 

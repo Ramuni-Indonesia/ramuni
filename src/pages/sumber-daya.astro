@@ -20,13 +20,6 @@ const resourceFormats = [
   { href: '/kamus-bisnis/', title: 'Kamus Bisnis', text: 'Cari arti istilah laporan sebelum membandingkan angka atau membahasnya bersama tim.', fit: 'Untuk menyamakan istilah', visual: 'glossary' },
 ];
 
-const paths = [
-  { question: 'Stok berubah, tetapi penyebabnya belum terlihat', href: '/panduan/membaca-stok-harian/', label: 'Baca panduan stok', visual: 'stock' },
-  { question: 'Omzet naik, tetapi laba belum terasa', href: '/kalkulator/laba-usaha/', label: 'Periksa laba sederhana', visual: 'profit' },
-  { question: 'Istilah di laporan masih membingungkan', href: '/kamus-bisnis/', label: 'Cari istilah bisnis', visual: 'terms' },
-  { question: 'Review mingguan belum punya urutan tetap', href: '/template/', label: 'Lihat struktur template', visual: 'weekly' },
-];
-
 const modes = [
   { id: 'baca', label: 'Baca', title: 'Mulai dari penjelasan', text: 'Artikel dan panduan menunjukkan urutan pemeriksaan sebelum Anda membuka alat.', steps: ['Pilih masalah', 'Baca contoh', 'Catat pertanyaan'] },
   { id: 'coba', label: 'Coba', title: 'Uji dengan angka contoh', text: 'Kalkulator dan template membantu memeriksa asumsi tanpa mengirim data usaha.', steps: ['Isi angka', 'Lihat cara hitung', 'Bandingkan hasil'] },
@@ -114,18 +107,6 @@ const schema = [
             <div class="resource-format-grid">
               {resourceFormats.map((item, index) => <a class="resource-format-card reveal" href={item.href} style={`--i:${index}`}><span>0{index + 1}</span><div class:list={['resource-format-card__visual', `resource-format-card__visual--${item.visual}`]} aria-hidden="true"><i></i><i></i><i></i><i></i><b class="resource-format-card__icon" {...navigationIconAttributes(item.href)}></b></div><div><small>{item.fit}</small><h3>{item.title}</h3><p>{item.text}</p></div><b>Buka {item.title} <i aria-hidden="true">&rarr;</i></b></a>)}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section resource-problem-stage" aria-labelledby="resource-problem-title">
-        <div class="container">
-          <div class="resource-problem-stage__head reveal"><p class="section-kicker">Mulai dari masalah</p><h2 id="resource-problem-title">Apa yang ingin Anda pahami hari ini?</h2><p>Pilih kalimat yang paling dekat. Setiap jalur membuka satu materi yang bisa langsung dipakai.</p></div>
-          <div class="resource-problem-deck">
-            {paths.map((item, index) => <a class:list={['resource-problem-card', `resource-problem-card--${item.visual}`, 'reveal']} href={item.href} style={`--i:${index}`}>
-              <div class="resource-problem-card__visual" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-              <span>0{index + 1}</span><h3>{item.question}</h3><b>{item.label} <i aria-hidden="true">&rarr;</i></b>
-            </a>)}
           </div>
         </div>
       </section>

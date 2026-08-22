@@ -9,6 +9,7 @@ import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import { mascots } from '../../data/mascots';
 import { getArticleJourney } from '../../data/articleJourneys';
+import { getArticleVisualPlacement } from '../../data/articleVisualPlacement';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
 
@@ -93,6 +94,7 @@ const articleResources = {
   },
 } as const;
 const articleResource = articleResources[post.id as keyof typeof articleResources];
+const visualPlacement = getArticleVisualPlacement(post.id, post.data.title, headings);
 const reviewerProfile = post.data.reviewerSlug ? getEditorialPerson(post.data.reviewerSlug) : undefined;
 const hasVerifiedReviewer = Boolean(
   post.data.reviewStatus === 'reviewed'
@@ -193,9 +195,10 @@ const schema = [
 
           {toc.length > 0 && <details class="article-toc-mobile"><summary>Lihat isi artikel</summary><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></details>}
 
-          <ArticleContextVisual articleId={post.id} articleTitle={post.data.title} articleDescription={post.data.description} />
-
-          <div class="article-content">{Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}</div>
+          <div class="article-content" data-visual-placement={visualPlacement.mode} data-visual-anchor={visualPlacement.anchor}>
+            {Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}
+            <ArticleContextVisual articleId={post.id} articleTitle={post.data.title} articleDescription={post.data.description} />
+          </div>
 
           {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}
 
@@ -243,6 +246,22 @@ const schema = [
   {relatedPosts.length > 0 && <section class="section article-related-stage" aria-labelledby="related-heading"><div class="container article-related-layout"><div class="article-related-head"><p class="section-kicker">Bacaan terkait</p><h2 id="related-heading">Lihat angka dari sisi lain.</h2><p>Pilih satu topik untuk melanjutkan, tanpa mengulang seluruh artikel.</p></div><div class="editorial-cards editorial-cards--compact">{relatedPosts.map((related, index) => <a class="editorial-card" href={`/blog/${related.id}/`}><figure><img src={related.data.cover} width={related.data.coverWidth} height={related.data.coverHeight} alt={related.data.coverAlt} loading="lazy" /></figure><div><div class="editorial-card__top"><span>{related.data.category}</span><b>0{index + 1}</b></div><h3>{related.data.title}</h3><p>{related.data.dek}</p><small>{related.data.readingTime}</small><i class="editorial-card__read">Baca artikel &rarr;</i></div></a>)}</div></div></section>}
 
   <script>
+    const placeArticleVisual = () => {
+      const content = document.querySelector('.article-content');
+      const visual = content?.querySelector('.article-context-visual');
+      if (!(content instanceof HTMLElement) || !(visual instanceof HTMLElement) || visual.dataset.placed === 'true') return;
+      const placement = content.dataset.visualPlacement;
+      const anchor = content.dataset.visualAnchor;
+      const headings = Array.from(content.querySelectorAll(':scope > h2'));
+      const target = placement === 'heading' && anchor
+        ? headings.find((heading) => heading.id === anchor)
+        : content.querySelector(':scope > table');
+      if (target instanceof HTMLElement) target.before(visual);
+      visual.dataset.placed = 'true';
+    };
+    placeArticleVisual();
+    document.addEventListener('astro:page-load', placeArticleVisual);
+
     const enhanceArticleTables = () => {
       document.querySelectorAll('.article-content table').forEach((table) => {
         if (!(table instanceof HTMLTableElement) || table.parentElement?.classList.contains('article-table-scroll')) return;

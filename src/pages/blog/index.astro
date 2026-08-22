@@ -17,14 +17,6 @@ const categories = blogCategories
   .map((category) => ({ ...category, count: posts.filter((post) => post.data.categorySlug === category.slug).length }))
   .filter((category) => category.count > 0);
 
-const problemPaths = [
-  { number: '01', title: 'Omzet turun atau berubah?', text: 'Pecah perubahan menurut transaksi, produk, kanal, dan waktu.', href: '/blog/cara-mengatasi-omzet-turun/', label: 'Baca panduan omzet' },
-  { number: '02', title: 'HPP dan margin belum jelas?', text: 'Mulai dari rumus, contoh, lalu uji harga jual dengan angka yang sama.', href: '/blog/cara-menghitung-hpp-produk/', label: 'Baca panduan HPP' },
-  { number: '03', title: 'Stok sering habis atau menumpuk?', text: 'Periksa laju keluar, lead time, stok pengaman, dan barang yang tidak bergerak.', href: '/blog/cara-menghitung-reorder-point/', label: 'Baca panduan stok' },
-  { number: '04', title: 'Omzet ada, tetapi kas terasa seret?', text: 'Pisahkan omzet, laba, dan arus kas sebelum memilih tindakan.', href: '/blog/perbedaan-omzet-laba-dan-arus-kas/', label: 'Baca panduan keuangan' },
-  { number: '05', title: 'Pelanggan jarang kembali?', text: 'Baca pola transaksi yang tersedia tanpa menebak kebutuhan pribadi pelanggan.', href: '/blog/cara-melihat-pelanggan-yang-kembali-belanja/', label: 'Baca panduan pelanggan' },
-];
-
 const schema = [
   { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Blog RAMUNI', url: new URL('/blog/', Astro.site || Astro.url.origin).toString(), description: 'Panduan bisnis UMKM tentang HPP, stok, omzet, laba, arus kas, pelanggan, dan penggunaan AI dengan konteks yang jelas.' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -65,19 +57,6 @@ const schema = [
       {categories.map((category) => <a href={`/blog/kategori/${category.slug}/`}>{category.name}<span>{category.count}</span></a>)}
     </nav>}
   </header>
-
-  <section class="section blog-problem-stage" aria-labelledby="problem-paths-heading">
-    <div class="container blog-problem-layout">
-      <header class="blog-section-lead">
-        <p class="section-kicker">Mulai dari masalah</p>
-        <h2 id="problem-paths-heading">Apa yang ingin Anda pahami hari ini?</h2>
-        <p>Pilih satu pertanyaan yang paling dekat dengan pekerjaan Anda. Dari sana, lanjutkan ke panduan, alat hitung, atau solusi yang relevan.</p>
-      </header>
-      <nav class="blog-problem-list" aria-label="Jalur bacaan berdasarkan masalah">
-        {problemPaths.map((path) => <a class="blog-problem-row" href={path.href}><span>{path.number}</span><div><strong>{path.title}</strong><p>{path.text}</p></div><b>{path.label} <i aria-hidden="true">&rarr;</i></b></a>)}
-      </nav>
-    </div>
-  </section>
 
   {featured && <section class="section blog-featured-simple" aria-labelledby="featured-heading">
     <div class="container">
