@@ -8,6 +8,7 @@ import { getArticleHeadings, getBlogPosts, getRelatedBlogPosts } from '../../lib
 import { getEditorialPerson } from '../../data/editorialPeople';
 import { getArticleCalculator } from '../../data/articleCalculators';
 import { getArticleJourney } from '../../data/articleJourneys';
+import { getArticleCtaVisual } from '../../data/articleCtaVisuals';
 import { getArticleVisualPlacement } from '../../data/articleVisualPlacement';
 import calculatorWidgetStyles from '../../styles/calculator-widget.css?inline';
 import '../../styles/blog.css';
@@ -27,6 +28,7 @@ const hasMaterialUpdate = Boolean(post.data.updatedAt);
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const relatedPosts = getRelatedBlogPosts(post, posts);
 const articleJourney = getArticleJourney(post.data.categorySlug, post.id);
+const articleCtaVisual = getArticleCtaVisual(post.data.categorySlug, post.id);
 const author = getEditorialPerson(post.data.authorSlug);
 const embeddedCalculator = getArticleCalculator(post.id);
 const CalculatorWidget = embeddedCalculator ? (await import('../../components/CalculatorWidget.astro')).default : undefined;
@@ -209,7 +211,7 @@ const schema = [
             <nav aria-label="Sumber daya kontekstual"><a href={articleResource.primary.href}>{articleResource.primary.label}<i aria-hidden="true">&rarr;</i></a><a href={articleResource.secondary.href}>{articleResource.secondary.label}<i aria-hidden="true">&rarr;</i></a></nav>
           </aside>}
 
-          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} bannerSrc={post.data.cover} bannerWidth={post.data.coverWidth} bannerHeight={post.data.coverHeight} bannerAlt={post.data.coverAlt} />
+          <ArticleProductBridge categorySlug={post.data.categorySlug} articleId={post.id} articleTitle={post.data.title} />
 
           {post.data.faqs.length > 0 && <section class="article-faq" aria-labelledby="article-faq-heading">
             <p class="section-kicker">FAQ</p>
@@ -235,7 +237,7 @@ const schema = [
           {toc.length > 0 && <nav><strong>Isi artikel</strong><ol>{toc.map((heading) => <li class={heading.depth === 3 ? 'toc-sub' : ''}><a href={`#${heading.slug}`} data-toc-link>{heading.text}</a></li>)}</ol></nav>}
           <section class="article-rail-cta" aria-labelledby="article-rail-cta-title">
             <a class="article-rail-cta__card" href={articleJourney.tourHref} aria-labelledby="article-rail-cta-title">
-              <img class="article-rail-cta__banner" src={post.data.cover} width={post.data.coverWidth} height={post.data.coverHeight} alt="Visual konteks artikel" loading="lazy" decoding="async" />
+              <img class="article-rail-cta__banner" src={articleCtaVisual.src} width={articleCtaVisual.width} height={articleCtaVisual.height} alt={articleCtaVisual.alt} loading="lazy" decoding="async" />
               <span class="article-rail-cta__shade" aria-hidden="true"></span>
               <span class="article-rail-cta__content">
                 <span class="article-rail-cta__eyebrow">Lihat alurnya</span>

@@ -1,26 +1,26 @@
 ---
 import BlogDecisionCTA from './BlogDecisionCTA.astro';
 import { getArticleJourney } from '../../data/articleJourneys';
+import { getArticleCtaCopy, getArticleCtaVisual } from '../../data/articleCtaVisuals';
 
 interface Props {
   categorySlug: string;
   articleId: string;
-  bannerSrc?: string;
-  bannerWidth?: number;
-  bannerHeight?: number;
-  bannerAlt?: string;
+  articleTitle: string;
 }
 
-const { categorySlug, articleId, bannerSrc, bannerWidth, bannerHeight, bannerAlt } = Astro.props;
+const { categorySlug, articleId, articleTitle } = Astro.props;
 const journey = getArticleJourney(categorySlug, articleId);
+const ctaCopy = getArticleCtaCopy(articleTitle, journey);
+const ctaVisual = getArticleCtaVisual(categorySlug, articleId);
 ---
 
 <aside class="article-inline-decision" aria-label={`Lanjut ke ${journey.nextTitle}`}>
   <BlogDecisionCTA
     id={`article-product-${articleId}`}
     eyebrow={`Lanjut ke ${journey.label}`}
-    title={journey.title}
-    text={journey.text}
+    title={ctaCopy.title}
+    text={ctaCopy.text}
     primaryLabel={`Lihat ${journey.nextTitle}`}
     primaryHref={journey.nextHref}
     secondaryLabel={`Pelajari ${journey.productTitle}`}
@@ -28,9 +28,9 @@ const journey = getArticleJourney(categorySlug, articleId);
     variant="article"
     stageLabels={journey.stages}
     metricLabel={journey.metric}
-    bannerSrc={bannerSrc}
-    bannerWidth={bannerWidth}
-    bannerHeight={bannerHeight}
-    bannerAlt={bannerAlt}
+    bannerSrc={ctaVisual.src}
+    bannerWidth={ctaVisual.width}
+    bannerHeight={ctaVisual.height}
+    bannerAlt={ctaVisual.alt}
   />
 </aside>
