@@ -1,5 +1,5 @@
 ---
-import '../styles/dashboard-motion.css';
+import dashboardMotionStyles from '../styles/dashboard-motion.css?inline';
 
 interface Props {
   class?: string;
@@ -32,6 +32,8 @@ const mobileAspectRatio = mobileWidth && mobileHeight ? `${mobileWidth}/${mobile
 const scanDistance = Math.round((height / width) * 8000) / 100;
 const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeight / mobileWidth) * 8000) / 100 : scanDistance;
 ---
+
+<style is:inline set:html={dashboardMotionStyles} />
 
 <span
   class:list={['dashboard-motion', 'dashboard-motion--' + focus, className]}
