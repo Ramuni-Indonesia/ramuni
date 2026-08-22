@@ -1,6 +1,6 @@
 ---
 title: "Cara Membaca Omzet Harian Tanpa Tertipu Satu Angka"
-description: "Panduan membaca omzet harian UMKM melalui transaksi, produk, waktu ramai, dan metode pembayaran."
+description: "Pelajari cara membaca omzet harian UMKM dari transaksi, produk, jam ramai, pembayaran, dan perbandingan periode agar keputusan tidak berhenti pada satu angka."
 dek: "Omzet harian baru berguna setelah Anda tahu transaksi apa yang membentuknya dan pembanding mana yang setara."
 cover: "/website-original/blog/generated/cara-membaca-omzet-harian.webp"
 coverAlt: "Pemilik usaha membaca omzet harian bersama rincian transaksi dan waktu penjualan"

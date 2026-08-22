@@ -35,9 +35,9 @@ faqs:
   - question: "Bagaimana jika data pemakaian belum lengkap?"
     answer: "Mulai dari catatan sederhana beberapa periode, gunakan buffer kecil yang dapat dipantau, dan hindari pembelian besar hanya dari dugaan. Catat stok kosong, sisa, serta waktu pengadaan untuk memperbaiki angka berikutnya."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Artikel ini memberi contoh operasional sederhana, bukan metode akuntansi atau prediksi permintaan."
   - title: "SAK EMKM"

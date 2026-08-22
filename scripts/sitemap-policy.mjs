@@ -40,6 +40,7 @@ const STATIC_ROUTE_LASTMODS = new Map([
   ['/blog/kebijakan-sumber/', '2026-07-26'],
   ['/blog/koreksi/', '2026-07-29'],
   ['/blog/metodologi-fact-check/', '2026-07-30'],
+  ['/keamanan/', '2026-08-20'],
   ['/blog/penulis/', '2026-08-20'],
   ['/kontak/', '2026-08-20'],
   ['/tentang/', '2026-08-10'],

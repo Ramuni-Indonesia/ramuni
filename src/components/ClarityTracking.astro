@@ -1,7 +1,23 @@
-<script>
-  import Clarity from '@microsoft/clarity';
+<script is:inline>
+  (() => {
+    const loadClarity = () => {
+      if (document.getElementById('clarity-script')) return;
 
-  const projectId = 'y090e5ap7q';
-  Clarity.init(projectId);
-  Clarity.consentV2({ ad_Storage: 'denied', analytics_Storage: 'granted' });
+      window.clarity = window.clarity || function clarity() {
+        (window.clarity.q = window.clarity.q || []).push(arguments);
+      };
+      const script = document.createElement('script');
+      script.async = true;
+      script.id = 'clarity-script';
+      script.src = 'https://www.clarity.ms/tag/y090e5ap7q';
+      document.head.appendChild(script);
+      window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadClarity, { timeout: 2000 });
+    } else {
+      window.setTimeout(loadClarity, 2000);
+    }
+  })();
 </script>

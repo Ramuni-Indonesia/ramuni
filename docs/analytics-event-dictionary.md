@@ -1,8 +1,8 @@
 # Analytics Event Dictionary
 
-Status: client-side consent and lead-acceptance signals are implemented. Vendor analytics and conversion delivery remain specification only; the site does not currently load GTM, GA4, Google Ads, Meta Pixel, or another analytics SDK.
+Status: client-side consent and lead-acceptance signals are implemented. Ahrefs Analytics and Microsoft Clarity run on the production build for aggregate audience/session measurement; GTM, GA4, Google Ads, Meta Pixel, and conversion delivery remain specification only.
 
-The consent component stores a first-party choice and dispatches `ramuni:consent`. This event is not yet mapped to Google Consent Mode v2 or any vendor tag.
+The consent component stores a first-party choice and dispatches `ramuni:consent`. This event is not yet mapped to Google Consent Mode v2 or any vendor tag. Ahrefs and Clarity do not receive the lead event payloads or form values.
 
 Enabled lead forms capture an allowlisted set of UTM parameters and advertising click IDs. The browser retains the first recorded touch and updates the last touch when a later attributed visit occurs. Both records are sanitized, limited in length, serialized into hidden form fields, and sent only with the lead submission. The receiving service must still validate these values before storage or use.
 

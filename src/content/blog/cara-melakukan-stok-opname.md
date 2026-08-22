@@ -36,7 +36,7 @@ faqs:
 sources:
   - title: "PSAK 202: Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar-Akuntansi-Keuangan/PSAK-202-Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan; kebijakan koreksi dan pencatatan perlu disesuaikan dengan proses usaha."
 disclaimer: "Artikel ini merupakan panduan operasional umum. Kebijakan koreksi persediaan perlu disesuaikan dengan proses dan tanggung jawab usaha Anda."

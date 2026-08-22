@@ -34,9 +34,9 @@ faqs:
   - question: "Bagaimana jika satu varian tidak bergerak?"
     answer: "Periksa permintaan, tampilan, harga efektif, stok lama, kualitas informasi, dan apakah varian tersebut masih relevan. Jangan menambah stok varian lain hanya berdasarkan total produk tanpa melihat per varian."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Struktur SKU dalam artikel ini adalah contoh kontrol operasional."
   - title: "SAK EMKM"

@@ -34,9 +34,9 @@ faqs:
   - question: "Apa yang dilakukan bila stok fisik berbeda dari catatan?"
     answer: "Pisahkan barang, hitung ulang, periksa satuan, lokasi, transaksi, penerimaan, retur, kerusakan, dan waktu pencatatan. Buat koreksi dengan alasan serta bukti, bukan hanya mengganti angka agar tampak sama."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum tentang persediaan. Artikel ini memberi contoh kontrol operasional sederhana untuk stok opname."
   - title: "SAK EMKM"

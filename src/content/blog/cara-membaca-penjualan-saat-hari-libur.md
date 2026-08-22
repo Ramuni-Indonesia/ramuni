@@ -39,9 +39,9 @@ sources:
     url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai pencatatan usaha. Analisis musiman pada artikel ini adalah contoh operasional sederhana."
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Bukan prediksi permintaan atau rekomendasi jumlah pembelian."
 disclaimer: "Artikel ini bersifat edukatif. Perencanaan hari libur perlu mempertimbangkan kondisi lokal, keselamatan kerja, aturan yang berlaku, kapasitas pemasok, dan kemampuan usaha menanggung stok."

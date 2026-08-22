@@ -44,9 +44,9 @@ sources:
     url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait pencatatan usaha. Format ini bersifat contoh operasional dan bukan pengganti pencatatan akuntansi sesuai kebutuhan usaha."
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Cek stok dalam contoh ini adalah kontrol operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Sesuaikan bukti, prosedur kas, serta pencatatan dengan kegiatan dan kewajiban usaha."

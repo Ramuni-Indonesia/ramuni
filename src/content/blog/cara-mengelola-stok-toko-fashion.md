@@ -31,9 +31,9 @@ faqs:
   - question: "Bagaimana menangani retur?"
     answer: "Periksa kondisi dan alasan retur. Catat sebagai kembali layak jual, perlu perbaikan, cacat, atau tidak layak agar saldo tersedia tetap jujur."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Proses ini adalah contoh kontrol operasional sederhana."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pencatatan, penanganan retur, penyimpanan, dan kebijakan diskon dengan kondisi usaha Anda."

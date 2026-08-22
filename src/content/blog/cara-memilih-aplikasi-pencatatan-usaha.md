@@ -34,11 +34,11 @@ faqs:
   - question: "Mengapa ekspor data penting?"
     answer: "Ekspor membantu usaha meninjau catatan, membuat cadangan, atau berpindah proses tanpa kehilangan akses pada informasi yang dibutuhkan. Uji format serta kelengkapan ekspor sebelum membuat keputusan."
 sources:
-  - title: "ISO/IEC 27001:2022 Information Security Management Systems"
-    publisher: "International Organization for Standardization"
-    url: "https://www.iso.org/standard/27001.html"
+  - title: "NIST Cybersecurity Framework"
+    publisher: "National Institute of Standards and Technology"
+    url: "https://www.nist.gov/cyberframework"
     accessedAt: 2026-08-09
-    note: "Rujukan umum mengenai sistem manajemen keamanan informasi. Artikel ini bukan sertifikasi keamanan, audit vendor, atau rekomendasi produk tertentu."
+    note: "Rujukan umum mengenai kerangka pengelolaan risiko keamanan siber. Artikel ini bukan sertifikasi keamanan, audit vendor, atau rekomendasi produk tertentu."
   - title: "UU Nomor 27 Tahun 2022 tentang Perlindungan Data Pribadi"
     publisher: "BPK RI JDIH"
     url: "https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022"

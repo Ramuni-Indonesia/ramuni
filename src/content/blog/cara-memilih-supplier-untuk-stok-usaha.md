@@ -34,9 +34,9 @@ faqs:
   - question: "Data apa yang dicatat untuk mengevaluasi supplier?"
     answer: "Catat tanggal pesan, tanggal barang siap dipakai, jumlah dipesan dan diterima, kondisi, harga efektif, minimum pesanan, masalah, serta tindak lanjut."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Artikel ini menyediakan kerangka evaluasi operasional pemasok."
   - title: "SAK EMKM"

@@ -38,9 +38,9 @@ sources:
     url: "https://jdih.kemkes.go.id/storage/documents/pdfs/2020permenkes017.pdf"
     accessedAt: 2026-08-20
     note: "Rujukan umum mengenai higiene dan penyimpanan bahan makanan. Artikel ini tidak menggantikan ketentuan keamanan pangan, label produk, maupun prosedur yang berlaku untuk usaha."
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-20
     note: "Rujukan umum untuk memahami pentingnya dasar pencatatan persediaan yang konsisten."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pembelian, produksi, penyimpanan, keamanan pangan, dan pencatatan bahan dengan jenis produk, label, peralatan, prosedur, serta ketentuan usaha Anda."

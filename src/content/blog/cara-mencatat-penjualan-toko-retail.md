@@ -39,9 +39,9 @@ sources:
     url: "https://web.iaiglobal.or.id/SAK-IAI/Tentang%20SAK%20EMKM#gsc.tab=0"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai standar akuntansi untuk entitas mikro, kecil, dan menengah. Pencatatan operasional perlu disesuaikan dengan kebutuhan usaha."
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Bukan panduan pengoperasian kasir toko retail."
 disclaimer: "Artikel ini bersifat edukatif dan bukan nasihat akuntansi atau perpajakan. Gunakan prosedur serta bukti transaksi yang sesuai dengan model usaha dan kewajiban yang berlaku."

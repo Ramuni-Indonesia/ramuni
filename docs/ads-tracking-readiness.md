@@ -1,6 +1,6 @@
 # Ads and Tracking Readiness
 
-Status: not ready for paid spend. No advertising or analytics vendor script is loaded by the current site.
+Status: not ready for paid spend. Ahrefs Analytics and Microsoft Clarity are loaded only on the production build; advertising, GA4, GTM, and conversion vendor tags remain disabled.
 
 ## Implemented foundation
 
@@ -9,6 +9,8 @@ Status: not ready for paid spend. No advertising or analytics vendor script is l
 - The first-party consent interface defaults analytics and marketing choices to off.
 - Static pages avoid unverified customer, pricing, integration, and outcome claims.
 - Dummy articles and unapproved resource or claim pages remain gated from indexing.
+- Ahrefs Analytics is loaded asynchronously with the approved site key on production pages only. It is an audience/SEO measurement signal, not a paid-media conversion tag.
+- Microsoft Clarity is scheduled after the browser is idle (or a two-second fallback) so its third-party work is outside the initial render path; its existing consent payload remains `ad_Storage: denied` and `analytics_Storage: granted`.
 
 ## Required before tags are enabled
 

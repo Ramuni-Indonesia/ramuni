@@ -34,9 +34,9 @@ faqs:
   - question: "Bagaimana menangani barang yang diterima tidak sesuai daftar?"
     answer: "Catat selisih jumlah, kondisi, dan rujukan pesanan. Pisahkan barang yang bermasalah dari stok layak pakai lalu tindak lanjuti sesuai prosedur serta kesepakatan dengan pemasok."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Daftar pembelian pada artikel ini adalah alat kontrol operasional sederhana."
   - title: "SAK EMKM"

@@ -35,9 +35,9 @@ faqs:
   - question: "Kapan batas stok harus ditinjau?"
     answer: "Tinjau saat pemakaian, pemasok, waktu tunggu, harga, usia simpan, ruang, atau pola musiman berubah. Tinjau pula setelah terjadi stok kosong atau sisa berulang."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Istilah operasional dalam artikel ini perlu disesuaikan dengan prosedur masing-masing usaha."
   - title: "SAK EMKM"

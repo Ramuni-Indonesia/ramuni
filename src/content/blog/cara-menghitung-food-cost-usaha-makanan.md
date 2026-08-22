@@ -40,7 +40,7 @@ sources:
     note: "Rujukan umum mengenai pelaporan keuangan entitas mikro, kecil, dan menengah. Contoh food cost pada artikel ini bersifat edukatif dan bukan penerapan akuntansi atau perpajakan formal."
   - title: "Pernyataan Standar Akuntansi Keuangan 14 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-20
     note: "Rujukan umum untuk memahami bahwa pencatatan persediaan memerlukan dasar biaya dan periode yang konsisten."
 disclaimer: "Artikel ini bersifat edukatif, bukan nasihat akuntansi, perpajakan, keamanan pangan, atau penetapan harga yang dipersonalisasi. Sesuaikan pencatatan biaya, bahan, porsi, dan kewajiban usaha dengan kondisi operasional Anda."

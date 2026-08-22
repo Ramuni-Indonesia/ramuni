@@ -115,6 +115,14 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
   ...(hasPageSchema ? [] : [webPageSchema]),
   ...schemaWithBreadcrumb,
 ];
+const structuredDataDocument = structuredData.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@graph': structuredData.map((entity) => {
+    const normalizedEntity = { ...(entity as Record<string, unknown>) };
+    delete normalizedEntity['@context'];
+    return normalizedEntity;
+  }),
+} : undefined;
 ---
 <!doctype html>
 <html lang="id">
@@ -151,9 +159,10 @@ const structuredData = effectiveNoindex ? schemaWithBreadcrumb : [
     <meta name="twitter:image" content={absoluteImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
     <title>{fullTitle}</title>
+    {releaseGates.environment === 'production' && <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="PsIaaBxnCUIP7WSPj21MOg" async></script>}
     {pathname !== '/' && <style is:inline>.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px)!important}.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:clamp(42px,5vw,72px) 0 clamp(58px,7vw,96px)!important}@media(max-width:740px){.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero,.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:38px 0 56px!important}}</style>}
     <script is:inline>document.documentElement.classList.add('js');</script>
-    {structuredData.length > 0 && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+    {structuredDataDocument && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataDocument)} />}
   </head>
   <body>
     <a class="skip-link" href="#main">Lewati ke konten</a>

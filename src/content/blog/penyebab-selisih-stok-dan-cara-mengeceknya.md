@@ -39,9 +39,9 @@ faqs:
   - question: "Apa penyebab umum terjadinya selisih saat stok opname?"
     answer: "Penyebab yang sering muncul adalah hitungan atau satuan yang tidak sama, barang berada di lokasi lain, transaksi di sekitar waktu opname, penerimaan belum dicatat, retur atau barang rusak belum dipisahkan, dan koreksi lama yang tidak memiliki bukti."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Alur pemeriksaan dalam artikel ini bersifat kontrol operasional sederhana."
   - title: "SAK EMKM"

@@ -34,9 +34,9 @@ faqs:
   - question: "Apa yang dilakukan jika penjualan musim ini lebih rendah?"
     answer: "Hentikan penambahan yang tidak perlu, cek stok dan pesanan berjalan, perbaiki informasi atau alokasi bila relevan, lalu rencanakan penanganan sisa yang tetap jujur serta sesuai kondisi barang."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Artikel ini memberikan kerangka perencanaan operasional, bukan prediksi permintaan."
   - title: "SAK EMKM"

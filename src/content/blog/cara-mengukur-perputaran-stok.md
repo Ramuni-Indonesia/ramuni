@@ -34,9 +34,9 @@ faqs:
   - question: "Bagaimana jika data biaya belum lengkap?"
     answer: "Mulai dari unit keluar dan rata-rata unit per kategori sebagai indikator operasional, sambil memperbaiki pencatatan biaya serta persediaan. Jangan menyebut hasil sederhana itu sebagai rasio keuangan yang presisi."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Contoh rasio pada artikel ini bersifat edukatif dan membutuhkan definisi biaya yang konsisten."
   - title: "SAK EMKM"

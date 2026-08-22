@@ -34,11 +34,11 @@ faqs:
   - question: "Apakah pindah ke aplikasi harus sekaligus?"
     answer: "Tidak. Uji pada satu proses, produk, atau shift terlebih dahulu. Bandingkan hasilnya, lalu perluas bila alur, data, dan pelatihan sudah cukup siap."
 sources:
-  - title: "ISO/IEC 27001:2022 Information Security Management Systems"
-    publisher: "International Organization for Standardization"
-    url: "https://www.iso.org/standard/27001.html"
+  - title: "NIST Cybersecurity Framework"
+    publisher: "National Institute of Standards and Technology"
+    url: "https://www.nist.gov/cyberframework"
     accessedAt: 2026-08-09
-    note: "Rujukan umum mengenai manajemen keamanan informasi. Artikel ini bukan audit atau jaminan keamanan catatan manual maupun aplikasi."
+    note: "Rujukan umum mengenai kerangka pengelolaan risiko keamanan siber. Artikel ini bukan audit atau jaminan keamanan catatan manual maupun aplikasi."
 disclaimer: "Perbandingan ini bersifat edukatif dan netral. Kondisi aplikasi, biaya, dukungan, keamanan, serta kesesuaian proses perlu diverifikasi langsung pada saat evaluasi."
 updateSummary: "Naskah baru tentang pemilihan proses catatan manual atau aplikasi dengan uji yang dapat diperiksa."
 related:

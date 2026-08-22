@@ -34,9 +34,9 @@ faqs:
   - question: "Mengapa alasan kerusakan perlu dicatat?"
     answer: "Alasan membantu usaha melihat pola. Kerusakan saat penerimaan, penyimpanan, pengemasan, atau pemakaian memerlukan perbaikan proses yang berbeda."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum terkait persediaan. Artikel ini membahas kontrol operasional untuk barang rusak, bukan perlakuan akuntansi spesifik."
   - title: "Food Loss and Food Waste"

@@ -31,9 +31,9 @@ faqs:
   - question: "Bagaimana jika catatan dan stok fisik berbeda?"
     answer: "Catat selisih, periksa penerimaan, penjualan, kerusakan, dan koreksi. Jangan langsung menimpa angka tanpa jejak penyebab."
 sources:
-  - title: "PSAK 14 Persediaan"
+  - title: "PSAK 202 Persediaan"
     publisher: "Ikatan Akuntan Indonesia"
-    url: "https://web.iaiglobal.or.id/SAK-IAI/Standar%20Akuntansi%20Keuangan/PSAK%2014%20Persediaan#gsc.tab=0"
+    url: "https://web.iaiglobal.or.id/SAK-IAI/PSAK%20Umum"
     accessedAt: 2026-08-09
     note: "Rujukan umum mengenai persediaan. Contoh ini adalah kontrol operasional sederhana, bukan penerapan standar akuntansi formal."
 disclaimer: "Artikel ini bersifat edukatif. Sesuaikan pembelian, penyimpanan, keamanan pangan, dan pencatatan dengan kondisi barang serta ketentuan usaha Anda."
