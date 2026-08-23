@@ -2463,3 +2463,8 @@
 .pd-hero__disclosure{max-width:56ch;margin-top:16px;color:var(--ink-56);font-size:.7rem;line-height:1.5}
 .pd-hero__canvas .product-canvas{box-shadow:none}
 @media(max-width:740px){.pd-status-label{order:3}.pd-hero h1{max-width:15ch;font-size:clamp(2.25rem,10vw,3.35rem)}}
+
+/* Editorial scale: give the evidence panel room without letting the hero headline dominate it. */
+.pd-page .pd-hero h1{max-width:15ch;font-size:clamp(2.45rem,3.75vw,4.2rem);line-height:1.03}
+.pd-page .pd-hero__lead{max-width:54ch}
+@media(max-width:740px){.pd-page .pd-hero h1{max-width:15ch;font-size:clamp(2.25rem,10vw,3.35rem)}}
