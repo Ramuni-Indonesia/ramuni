@@ -85,7 +85,7 @@
 
 /* Hero contract: a decision-led split with the interactive dashboard visible beside the copy. */
 .sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:minmax(0,.84fr) minmax(500px,1.16fr);gap:clamp(38px,5vw,74px);align-items:center}
-.sd-hero__copy,.sd-page--bridge .sd-hero__copy,.sd-page--timeline .sd-hero__copy{display:block;width:auto;margin:0;text-align:left;order:1}.sd-hero__meta{justify-content:flex-start}.sd-page h1{max-width:12ch;font-size:clamp(2.55rem,4.8vw,4.85rem);line-height:1}.sd-hero__copy .lede{max-width:48ch;margin-inline:0}.sd-hero__action{justify-content:flex-start;text-align:left}.sd-hero__visual,.sd-page--bridge .sd-hero__visual,.sd-page--timeline .sd-hero__visual{order:2;width:100%;max-width:none;margin:0;justify-self:stretch;transform:none}.sd-visual{max-height:none}
+.sd-hero__copy,.sd-page--bridge .sd-hero__copy,.sd-page--timeline .sd-hero__copy{display:block;width:auto;margin:0;text-align:left;order:1}.sd-hero__meta{justify-content:flex-start}.sd-page h1{max-width:14ch;font-size:clamp(2.45rem,3.8vw,4.25rem);line-height:1.03}.sd-hero__copy .lede{max-width:54ch;margin-inline:0}.sd-hero__action{justify-content:flex-start;text-align:left}.sd-hero__visual,.sd-page--bridge .sd-hero__visual,.sd-page--timeline .sd-hero__visual{order:2;width:100%;max-width:none;margin:0;justify-self:stretch;transform:none}.sd-visual{max-height:none}
 @media(max-width:1200px){.sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:1fr}.sd-hero__copy{max-width:760px}.sd-hero__visual{width:min(100%,760px);justify-self:center}}
 @media(min-width:961px) and (max-width:1200px){.sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:minmax(260px,.8fr) minmax(430px,1.2fr);gap:clamp(24px,3vw,42px)}.sd-hero__copy{max-width:none}.sd-hero__visual,.sd-page--bridge .sd-hero__visual,.sd-page--timeline .sd-hero__visual{width:100%;justify-self:stretch}}
 @media(max-width:767px){.sd-page h1{max-width:none;font-size:clamp(2.3rem,11vw,3.55rem)}.sd-hero__action{width:100%;grid-template-columns:1fr}.sd-hero__action .button{width:100%}.sd-visual__next{min-height:240px;padding:18px}}
@@ -117,8 +117,3 @@
 .sd-industry-list--compact a:nth-child(3) b{color:var(--yellow)}
 @media(max-width:1200px){.sd-context-rail{grid-template-columns:1fr}.sd-industry-list--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:740px){.sd-industry-list--compact{grid-template-columns:1fr}.sd-industry-list--compact a,.sd-industry-list--compact a:first-child{min-height:150px}.sd-context-rail{gap:20px}}
-
-/* Editorial scale: keep the solution title prominent while preserving visual proof beside it. */
-.sd-page .sd-hero h1{max-width:14ch;font-size:clamp(2.45rem,3.8vw,4.25rem);line-height:1.03}
-.sd-page .sd-hero__copy .lede{max-width:54ch}
-@media(max-width:767px){.sd-page .sd-hero h1{max-width:none;font-size:clamp(2.3rem,11vw,3.45rem)}}
