@@ -45,6 +45,21 @@
   resize: vertical;
 }
 
+.lead-form .phone-field-row {
+  display: grid;
+  grid-template-columns: minmax(104px, .34fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.lead-form .phone-field-row .field {
+  gap: 0;
+}
+
+.lead-form .phone-field-row select {
+  padding-inline: 10px;
+}
+
 .lead-form .field input:focus,
 .lead-form .field select:focus,
 .lead-form .field textarea:focus {

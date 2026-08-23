@@ -36,13 +36,64 @@
 
 .tour-form-layout {
   display: grid;
-  place-items: start center;
+  grid-template-columns: minmax(300px, .78fr) minmax(0, 1.22fr);
+  align-items: start;
+  gap: clamp(24px, 4vw, 58px);
+  max-width: 1180px;
+  margin-inline: auto;
   padding: clamp(34px, 6vw, 76px) clamp(18px, 5vw, 70px) clamp(58px, 8vw, 104px);
+}
+
+.tour-form-visual {
+  position: sticky;
+  top: 34px;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  color: var(--white);
+}
+
+.tour-form-visual__image {
+  aspect-ratio: 1;
+  width: 100%;
+  border: 1px solid rgb(255 255 255 / .22);
+  border-radius: 22px;
+  background: var(--ink) var(--tour-visual-image) center / cover no-repeat;
+  box-shadow: 12px 12px 0 var(--yellow);
+}
+
+.tour-form-visual figcaption {
+  display: grid;
+  gap: 7px;
+  padding: 20px 22px 22px;
+  border-radius: 16px;
+  background: var(--ink);
+}
+
+.tour-form-visual figcaption span {
+  color: var(--yellow);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.tour-form-visual figcaption strong {
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -.025em;
+}
+
+.tour-form-visual figcaption small {
+  color: rgb(255 255 255 / .74);
+  font-size: .78rem;
+  line-height: 1.55;
 }
 
 .tour-form-card {
   position: relative;
-  width: min(760px, 100%);
+  width: 100%;
   min-width: 0;
   padding: clamp(26px, 4vw, 52px);
   border: 1px solid var(--ink);
@@ -88,7 +139,7 @@
 
 .tour-form-card .lead-form { max-width: none; }
 .tour-form-card .lead-form .field label::after { content: ' *'; color: #9b2c2c; }
-.tour-form-card .lead-form .field--context label::after { content: ''; }
+.tour-form-card .lead-form .field--context label::after { content: ' *'; color: #9b2c2c; }
 .tour-form-card .lead-form .field input,
 .tour-form-card .lead-form .field select,
 .tour-form-card .lead-form .field textarea { border-radius: 8px; }
@@ -109,9 +160,18 @@
   .tour-minimal-head { min-height: 68px; padding-inline: 18px; }
   .tour-minimal-head img { width: 126px; }
   .tour-minimal-head > a:last-child { font-size: .7rem; }
-  .tour-form-layout { padding: 34px 18px 68px; }
+  .tour-form-layout { grid-template-columns: 1fr; gap: 28px; padding: 34px 18px 68px; }
+  .tour-form-visual { position: static; }
+  .tour-form-visual__image { width: min(100%, 330px); margin-inline: auto; box-shadow: 7px 7px 0 var(--yellow); }
+  .tour-form-visual figcaption { padding: 18px; }
   .tour-form-card__head > h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
   .tour-form-card { padding: 26px 20px; box-shadow: 7px 7px 0 var(--ink); }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .tour-form-layout { grid-template-columns: 1fr; gap: 34px; }
+  .tour-form-visual { position: static; }
+  .tour-form-visual__image { width: min(100%, 460px); margin-inline: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
