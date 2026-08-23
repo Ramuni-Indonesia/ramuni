@@ -1,35 +1,71 @@
-<!-- Homepage motion is intentionally small: it adds depth to proof cards without hiding content. -->
+<!-- Homepage motion: section-aware GSAP choreography with a reduced-motion escape hatch. -->
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const desktopMotion = window.matchMedia('(min-width: 1201px) and (hover: hover) and (pointer: fine)');
-  const root = document.querySelector<HTMLElement>('main');
+  const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+  const homeRoot = document.querySelector<HTMLElement>('[data-home-motion]')?.closest('main');
   let context: { revert: () => void } | undefined;
   let loader: IntersectionObserver | undefined;
 
   const initialise = async () => {
-    if (!root || reduceMotion.matches || !desktopMotion.matches || context) return;
+    if (!homeRoot || reduceMotion.matches || saveData || context) return;
     const [{ gsap }, { ScrollTrigger }] = await Promise.all([
       import('gsap'),
       import('gsap/ScrollTrigger'),
     ]);
-    if (!root || reduceMotion.matches || !desktopMotion.matches || context) return;
+    if (!homeRoot || reduceMotion.matches || saveData || context) return;
     gsap.registerPlugin(ScrollTrigger);
     context = gsap.context(() => {
-      const cards = root.querySelectorAll<HTMLElement>('.problem-point, .module-cell, .solution-path');
-      if (!cards.length) return;
-      gsap.fromTo(cards,
-        { y: 18, rotate: 0.35 },
-        {
-          immediateRender: false,
-          y: 0,
-          rotate: 0,
-          duration: 0.72,
-          stagger: 0.055,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: root, start: 'top 76%', once: true },
-        },
-      );
-    }, root);
+      const compact = window.matchMedia('(max-width: 740px)').matches;
+      const revealDistance = compact ? 14 : 24;
+      const revealDuration = compact ? 0.52 : 0.68;
+      const chapterDefaults = { duration: revealDuration, ease: 'power3.out' };
+
+      const heroCopy = homeRoot.querySelector<HTMLElement>('.home-hero .hero-copy');
+      const heroVisual = homeRoot.querySelector<HTMLElement>('.home-hero .hero-composition>div:last-child');
+      if (heroCopy || heroVisual) {
+        const heroTimeline = gsap.timeline({ defaults: chapterDefaults });
+        if (heroCopy) heroTimeline.fromTo(heroCopy, { autoAlpha: 0, y: revealDistance }, { autoAlpha: 1, y: 0 }, 0);
+        if (heroVisual) heroTimeline.fromTo(heroVisual, { autoAlpha: 0, y: revealDistance * .7, scale: .985 }, { autoAlpha: 1, y: 0, scale: 1 }, .12);
+      }
+
+      const chapterAnimations: Array<[string, string]> = [
+        ['.problem-chapter', '.problem-selector__questions button'],
+        ['.solutions-stage', '.solution-path'],
+        ['.answer-stage', '.answer-tile'],
+        ['.workflow-stage', '.workflow-focus__signal i'],
+        ['.dashboard-stage', '.dashboard-product-shot,.signal-story__frame'],
+        ['.modules-stage', '.module-cell'],
+        ['.industry-stage', '.industry-room__chart span'],
+        ['.start-stage', '.start-steps--horizontal li'],
+        ['.report-stage', '.report-signal'],
+        ['.trust-stage', '.trust-principle'],
+        ['.pricing-stage', '.pricing-word,.pricing-steps li'],
+        ['.faq-stage', '.faq-list details'],
+        ['.closing-stage', '.closing-composition'],
+      ];
+
+      chapterAnimations.forEach(([chapterSelector, targetSelector]) => {
+        const chapter = homeRoot.querySelector<HTMLElement>(chapterSelector);
+        const targets = chapter
+          ? Array.from(chapter.querySelectorAll<HTMLElement>(targetSelector))
+          : [];
+        if (!chapter || !targets.length) return;
+        const useOpacity = targetSelector.includes('answer-tile') || targetSelector.includes('industry-room__chart');
+        gsap.fromTo(targets,
+          useOpacity ? { autoAlpha: .18, y: revealDistance, scale: .985 } : { y: revealDistance },
+          {
+            ...chapterDefaults,
+            immediateRender: false,
+            autoAlpha: useOpacity ? 1 : undefined,
+            y: 0,
+            scale: 1,
+            stagger: compact ? .045 : .075,
+            scrollTrigger: { trigger: chapter, start: 'top 82%', once: true },
+          },
+        );
+      });
+
+    }, homeRoot);
   };
 
   const reset = () => {
@@ -41,7 +77,7 @@
 
   const arm = () => {
     reset();
-    if (!root || reduceMotion.matches || !desktopMotion.matches) return;
+    if (!homeRoot || reduceMotion.matches || saveData) return;
     if (!('IntersectionObserver' in window)) {
       void initialise();
       return;
@@ -51,16 +87,15 @@
       loader?.disconnect();
       loader = undefined;
       void initialise();
-    }, { rootMargin: '160px 0px' });
-    loader.observe(root);
+    }, { rootMargin: '240px 0px' });
+    loader.observe(homeRoot);
   };
 
   const onPreferenceChange = () => arm();
   reduceMotion.addEventListener('change', onPreferenceChange);
-  desktopMotion.addEventListener('change', onPreferenceChange);
+  document.addEventListener('astro:before-swap', reset, { once: true });
   window.addEventListener('pagehide', () => {
     reduceMotion.removeEventListener('change', onPreferenceChange);
-    desktopMotion.removeEventListener('change', onPreferenceChange);
     reset();
   }, { once: true });
   arm();

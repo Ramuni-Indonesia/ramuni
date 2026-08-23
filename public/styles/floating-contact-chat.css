@@ -1,5 +1,5 @@
 .contact-dialog:not([open]){display:none}
-.contact-dialog{position:fixed;inset:auto max(22px,env(safe-area-inset-right)) max(84px,calc(env(safe-area-inset-bottom) + 84px)) auto;width:min(392px,calc(100vw - 32px));max-width:calc(100vw - 32px);height:auto;max-height:min(680px,calc(100dvh - 112px));margin:0;padding:0;border:0;border-radius:18px;overflow:hidden;background:#efe7da;color:var(--ink);box-shadow:0 22px 70px rgb(11 48 69/.28);transform-origin:bottom right}
+.contact-dialog{position:fixed;z-index:1400;isolation:isolate;inset:auto max(22px,env(safe-area-inset-right)) max(84px,calc(env(safe-area-inset-bottom) + 84px)) auto;width:min(392px,calc(100vw - 32px));max-width:calc(100vw - 32px);height:auto;max-height:min(680px,calc(100dvh - 112px));margin:0;padding:0;border:0;border-radius:18px;overflow:hidden;background:#efe7da;color:var(--ink);box-shadow:0 22px 70px rgb(11 48 69/.28);transform-origin:bottom right}
 .contact-dialog::backdrop{background:rgb(11 48 69/.18);backdrop-filter:none}
 .contact-dialog__panel{display:grid;grid-template-rows:auto minmax(0,1fr);max-height:inherit;padding:0;background:#efe7da}
 .contact-dialog__header{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 14px 13px;background:var(--ink);color:var(--white)}
