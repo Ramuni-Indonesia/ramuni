@@ -14,6 +14,7 @@ ramuni_claim_pages_approved=${RAMUNI_PUBLIC_CLAIM_PAGES_APPROVED:-false}
 ramuni_resource_review_approved=${RAMUNI_PUBLIC_RESOURCE_REVIEW_APPROVED:-false}
 ramuni_calculator_review_approved=${RAMUNI_PUBLIC_CALCULATOR_REVIEW_APPROVED:-false}
 ramuni_security_review_approved=${RAMUNI_PUBLIC_SECURITY_REVIEW_APPROVED:-false}
+ramuni_pricing_approved=${RAMUNI_PUBLIC_PRICING_APPROVED:-false}
 ramuni_release_id="$(date -u +%Y%m%dT%H%M%SZ)-$(git -C "$ramuni_repo_dir" rev-parse --short=12 HEAD)"
 ramuni_release_dir="$ramuni_deploy_root/releases/$ramuni_release_id"
 ramuni_current_link="$ramuni_deploy_root/current"
@@ -34,6 +35,13 @@ for ramuni_gate_value in \
       ;;
   esac
 done
+case "$ramuni_pricing_approved" in
+  true|false) ;;
+  *)
+    echo "Public pricing gate must be true or false." >&2
+    exit 2
+    ;;
+esac
 
 if sudo -n true >/dev/null 2>&1; then
   ramuni_privileged_mode=sudo
@@ -115,6 +123,7 @@ PUBLIC_CLAIM_PAGES_APPROVED="$ramuni_claim_pages_approved" \
 PUBLIC_RESOURCE_REVIEW_APPROVED="$ramuni_resource_review_approved" \
 PUBLIC_CALCULATOR_REVIEW_APPROVED="$ramuni_calculator_review_approved" \
 PUBLIC_SECURITY_REVIEW_APPROVED="$ramuni_security_review_approved" \
+PUBLIC_PRICING_APPROVED="$ramuni_pricing_approved" \
 npm run build
 PUBLIC_SITE_URL="$ramuni_origin" \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
@@ -128,6 +137,7 @@ PUBLIC_CLAIM_PAGES_APPROVED="$ramuni_claim_pages_approved" \
 PUBLIC_RESOURCE_REVIEW_APPROVED="$ramuni_resource_review_approved" \
 PUBLIC_CALCULATOR_REVIEW_APPROVED="$ramuni_calculator_review_approved" \
 PUBLIC_SECURITY_REVIEW_APPROVED="$ramuni_security_review_approved" \
+PUBLIC_PRICING_APPROVED="$ramuni_pricing_approved" \
 npm run audit
 npm audit --audit-level=high
 

@@ -5,6 +5,8 @@ import { pageLastmods } from '../data/pageLastmods';
 import '../styles/product-tour.css';
 
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
+const requestedFlow = Astro.url.searchParams.get('flow') === 'consultation' ? 'consultation' : 'trial';
+const requestedPlan = Astro.url.searchParams.get('plan')?.replace(/[^a-z-]/gi, '').slice(0, 24) || '';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -42,8 +44,9 @@ const schema = {
             <span>Mulai coba gratis</span>
             <h1 id="tour-form-title">Mulai dari satu masalah usaha. Lihat alur RAMUNI yang relevan.</h1>
             <p>Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Isi kontak singkat, lalu lanjutkan bersama tim RAMUNI lewat WhatsApp. Anda tidak perlu menyiapkan data bisnis untuk memulai.</p>
+            {requestedPlan && <p class="tour-form-card__context">Konteks pilihan: <strong>{requestedPlan}</strong>. Tim akan memeriksa kecocokannya bersama Anda.</p>}
           </div>
-          <LeadForm kind="demo" handoff="whatsapp" submitLabel="Mulai coba gratis" />
+          <LeadForm kind="demo" handoff="whatsapp" submitLabel={requestedFlow === 'consultation' ? 'Mulai konsultasi' : 'Mulai coba gratis'} flow={requestedFlow} location="tour-pricing" />
         </div>
       </div>
     </div>

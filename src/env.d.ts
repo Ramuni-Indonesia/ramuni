@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_SECURITY_REVIEW_APPROVED?: string;
   readonly PUBLIC_CALCULATOR_REVIEW_APPROVED?: string;
   readonly PUBLIC_RESOURCE_REVIEW_APPROVED?: string;
+  readonly PUBLIC_PRICING_APPROVED?: string;
 }
 
 interface ImportMeta {

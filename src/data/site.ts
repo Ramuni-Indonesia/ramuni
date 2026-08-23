@@ -128,6 +128,8 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
       cta: 'Buka solusi',
     },
   },
+  { label: 'Fitur', href: '/features/' },
+  { label: 'Harga', href: '/pricing/' },
   {
     label: 'Sumber Daya',
     href: '/sumber-daya/',
@@ -188,6 +190,15 @@ export const footerNavigation: FooterNavigationGroup[] = [
       { label: 'Inventori', href: '/produk/inventori/' },
       { label: 'Keuangan', href: '/produk/keuangan/' },
       { label: 'Semua Produk', href: '/produk/' },
+    ],
+  },
+  {
+    label: 'Fitur & Harga',
+    links: [
+      { label: 'Semua Fitur', href: '/features/' },
+      { label: 'Bandingkan Paket', href: '/pricing/' },
+      { label: 'Pertanyaan Umum', href: '/faq/' },
+      { label: 'RAMUNI vs cara lama', href: '/compare/' },
     ],
   },
   {

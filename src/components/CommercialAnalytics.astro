@@ -1,0 +1,41 @@
+<script is:inline>
+  (() => {
+    const track = (eventName, detail = {}) => {
+      const safe = Object.fromEntries(Object.entries(detail).filter(([, value]) =>
+        ['string', 'number', 'boolean'].includes(typeof value) && String(value).length < 120));
+      window.dispatchEvent(new CustomEvent(`ramuni:analytics:${eventName}`, { detail: safe }));
+      if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: eventName, ...safe });
+      if (typeof window.clarity === 'function') window.clarity('event', eventName);
+    };
+    const pageRoot = document.querySelector('[data-commercial-page]');
+    const pageType = pageRoot?.getAttribute('data-commercial-page') || 'commercial';
+    const featureSlug = pageRoot?.getAttribute('data-feature-slug') || 'feature';
+    document.querySelectorAll('[data-analytics-event]').forEach((element) => {
+      if (!(element instanceof HTMLElement) || element.dataset.analyticsBound === 'true') return;
+      element.dataset.analyticsBound = 'true';
+      element.addEventListener('click', () => {
+        const eventName = element.dataset.analyticsEvent;
+        if (!eventName) return;
+        const detail = { page_type: pageType, location: element.dataset.analyticsLocation || pageType };
+        ['plan', 'billing_period', 'feature', 'destination'].forEach((key) => {
+          if (element.dataset[key]) detail[key] = element.dataset[key];
+        });
+        track(eventName, detail);
+        if (eventName === 'pricing_plan_click' || eventName === 'free_trial_click') track('cta_clicked', detail);
+        if (eventName === 'free_trial_click') track('signup_started', { page_type: pageType, source_cta: detail.location });
+        if (eventName === 'demo_request') track('demo_requested', detail);
+        if (eventName === 'contact_sales') track('cta_clicked', detail);
+      });
+    });
+    document.querySelectorAll('[data-faq-question]').forEach((element) => {
+      element.addEventListener('toggle', () => {
+        if (element.open) track('faq_open', { page_type: pageType, question_key: element.dataset.faqQuestion || 'faq' });
+      });
+    });
+    if (pageType === 'pricing') {
+      track('pricing_view', { page_type: pageType });
+      track('pricing_viewed', { pricing_version: 'validation-2026-08-23' });
+    }
+    if (pageType === 'feature') track('feature_view', { page_type: pageType, feature: featureSlug });
+  })();
+</script>

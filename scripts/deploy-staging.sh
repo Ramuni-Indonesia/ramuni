@@ -93,6 +93,7 @@ PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
 PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
+PUBLIC_PRICING_APPROVED=false \
 npm run build
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
@@ -102,6 +103,7 @@ PUBLIC_INDEXING_ENABLED=false \
 PUBLIC_SITE_URL=https://staging.ramuni.id \
 PUBLIC_ASSET_BASE_URL="$ramuni_asset_base_url" \
 PUBLIC_LEAD_ENDPOINT="$ramuni_lead_endpoint" \
+PUBLIC_PRICING_APPROVED=false \
 npm run audit
 npm audit --audit-level=high
 

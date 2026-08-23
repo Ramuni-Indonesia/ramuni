@@ -467,6 +467,10 @@ const initialiseLeadForms = () => {
           throw new Error('lead_not_accepted');
         }
         track('lead_form_accepted', { form_type: kind, form_location: location });
+        // Keep the requested commercial funnel names as privacy-safe aliases.
+        // They fire only after CRM returns a durable accepted receipt.
+        track(flow === 'consultation' ? 'contact_sales' : 'free_trial_click', { form_type: kind, form_location: location });
+        track(flow === 'consultation' ? 'demo_request' : 'generate_lead', { form_type: kind, form_location: location });
         window.dispatchEvent(new CustomEvent('ramuni:lead:accepted', {
           detail: { leadType: kind, attributionPresent: true, acceptedAt: new Date().toISOString() },
         }));

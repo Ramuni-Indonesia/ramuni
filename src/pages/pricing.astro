@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CommercialAnalytics from '../components/CommercialAnalytics.astro';
+import { pricingPlans, pricingRows } from '../data/commercial';
+import { pageLastmods } from '../data/pageLastmods';
+import { releaseGates } from '../config/release';
+import '../styles/commercial-pages.css';
+
+const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
+const canonical = new URL('/pricing/', siteOrigin).toString();
+const priceLabel = (value: number | null, annual = false) => {
+  if (!releaseGates.pricingPublic) return 'Harga sedang divalidasi';
+  if (value === null) return 'Hubungi kami';
+  if (value === 0) return 'Rp0';
+  return `Rp${new Intl.NumberFormat('id-ID').format(value)}${annual ? ' / tahun' : ' / bulan'}`;
+};
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Harga RAMUNI: Platform Bisnis dan AI untuk UMKM', description: 'Pilih paket RAMUNI untuk mengelola operasional, pengetahuan, website, pelanggan, dan analisis bisnis UMKM dalam satu platform.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: siteOrigin + '/' }, { '@type': 'ListItem', position: 2, name: 'Harga', item: canonical }] },
+  ...(releaseGates.pricingPublic ? [{ '@context': 'https://schema.org', '@type': 'OfferCatalog', name: 'Paket RAMUNI', url: canonical, itemListElement: pricingPlans.filter((plan) => plan.monthly !== null).map((plan) => ({ '@type': 'Offer', name: plan.name, priceCurrency: 'IDR', price: plan.monthly, url: `${canonical}#${plan.key}` })) }] : []),
+];
+---
+<BaseLayout title="Harga RAMUNI: Platform Bisnis dan AI untuk UMKM" description="Pilih paket RAMUNI untuk mengelola operasional, pengetahuan, website, pelanggan, dan analisis bisnis UMKM dalam satu platform." canonical="/pricing/" schema={schema} pageType="WebPage">
+  <div class="commercial-page" data-commercial-page="pricing" data-pricing-public={String(releaseGates.pricingPublic)}>
+    <section class="commercial-hero">
+      <div class="container commercial-hero__grid">
+        <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Harga' }]} /><p class="section-kicker">Paket RAMUNI</p><h1>Satu ruang kerja untuk membantu usaha bekerja lebih rapi.</h1></div>
+        <div class="commercial-hero__aside"><p>RAMUNI menggabungkan operasional, pengetahuan bisnis, laporan keuntungan, website, dan AI dalam alur yang mudah diperiksa.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location="pricing_hero" data-destination="tour">Coba RAMUNI gratis</a><a class="button button--secondary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="pricing_hero" data-destination="tour">Lihat demo</a></div><p class="commercial-hero__note">Tidak perlu kartu kredit untuk memulai sesi coba. Harga dan batas paket ditampilkan setelah validasi komersial selesai.</p></div>
+      </div>
+    </section>
+
+    <section class="commercial-section commercial-section--white" aria-labelledby="plans-title">
+      <div class="container">
+        <div class="commercial-section__head"><div><p class="section-kicker">Pilih ruang kerja</p><h2 id="plans-title">Paket mengikuti tahap kerja, bukan sekadar jumlah fitur.</h2></div><p>Gunakan kartu ini untuk memahami kecocokan awal. Status fitur yang belum rilis sengaja ditampilkan agar keputusan tidak dibangun dari janji yang belum terbukti.</p></div>
+        <div class="commercial-disclaimer" role="note"><strong>Transparan sejak awal.</strong><span>{releaseGates.pricingPublic ? 'Harga publik mengikuti versi komersial yang disetujui.' : 'Harga sedang divalidasi bersama biaya AI, storage, support, dan integrasi. Jangan anggap angka pada brief sebagai harga final.'}</span></div>
+        <div class="pricing-controls"><p>Perbandingan harga mengikuti periode yang dipilih.</p><div class="billing-toggle" role="group" aria-label="Periode harga"><button type="button" data-billing="monthly" aria-pressed="true">Bulanan</button><button type="button" data-billing="annual" aria-pressed="false" data-analytics-event="annual_toggle" data-analytics-location="pricing_controls">Tahunan <small>hemat setelah disetujui</small></button></div></div>
+        <div class="plan-grid" data-plan-grid>
+          {pricingPlans.map((plan) => <article id={plan.key} class:list={['plan-card', { 'plan-card--featured': plan.key === 'growth' }]}>
+            {plan.eyebrow && <span class="plan-card__badge">{plan.eyebrow}</span>}
+            <span class="plan-card__eyebrow">Untuk tahap kerja</span><h3>{plan.name}</h3><p class="plan-card__fit">{plan.fit}</p>
+            <div class="plan-card__price"><strong data-price-monthly={plan.monthly === null ? 'contact' : String(plan.monthly)} data-price-annual={plan.annual === null ? 'contact' : String(plan.annual)}>{priceLabel(plan.monthly)}</strong><small data-price-note>{plan.monthly === null ? 'Konfigurasi khusus' : releaseGates.pricingPublic ? 'per bulan' : 'menunggu persetujuan harga'}</small></div>
+            <ul class="plan-card__list">{plan.features.map((feature) => <li>{feature}</li>)}</ul>
+            <div class="plan-card__limits"><strong>Batas yang perlu dipahami</strong>{plan.limits.map((limit) => <span>{limit}</span>)}</div>
+            <a class="button button--primary" href={`/tour-produk-gratis/?plan=${plan.key}&flow=${plan.flow}`} data-analytics-event={plan.flow === 'consultation' ? 'contact_sales' : 'pricing_plan_click'} data-analytics-location="pricing_plan" data-plan={plan.key} data-billing-period="monthly" data-destination="tour">{plan.cta}</a>
+          </article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="commercial-section" aria-labelledby="matrix-title">
+      <div class="container"><div class="commercial-section__head"><div><p class="section-kicker">Perbandingan fitur</p><h2 id="matrix-title">Yang tersedia, yang sedang dirangkai, dan yang masih roadmap.</h2></div><p>Label ini mengikuti bukti rilis publik, bukan daftar aspirasi produk.</p></div><div class="matrix-wrap"><table class="feature-matrix"><thead><tr><th scope="col">Area kerja</th>{pricingPlans.map((plan) => <th scope="col">{plan.name}</th>)}</tr></thead><tbody>{pricingRows.map((row, index) => <>{(index === 0 || pricingRows[index - 1].group !== row.group) && <tr class="group-row"><td colspan={pricingPlans.length + 1}>{row.group}</td></tr>}<tr><th scope="row">{row.label}</th>{pricingPlans.map((plan) => <td><span class="matrix-status" data-status={row.statuses[plan.key]}>{row.statuses[plan.key]}</span></td>)}</tr></>)}</tbody></table></div></div>
+    </section>
+
+    <section class="commercial-section commercial-section--white" aria-labelledby="pricing-next-title"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Langkah berikutnya</p><h2 id="pricing-next-title">Belum yakin paket mana yang cocok?</h2><p>Mulai dari satu masalah usaha. Tim akan membantu memetakan alur tanpa meminta data sensitif.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location="pricing_final" data-destination="tour">Mulai sekarang</a><a class="button button--secondary" href="/faq/">Baca FAQ</a></div></div></div></section>
+  </div>
+  <CommercialAnalytics />
+  <script is:inline>
+    (() => {
+      const buttons = [...document.querySelectorAll('[data-billing]')];
+      const price = (value, period) => { if (value === 'contact') return 'Hubungi kami'; if (value === '0') return 'Rp0'; return `Rp${new Intl.NumberFormat('id-ID').format(Number(value))}${period === 'annual' ? ' / tahun' : ' / bulan'}`; };
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        const period = button.dataset.billing;
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        document.querySelectorAll('[data-price-monthly]').forEach((node) => { const value = node.dataset[`price${period[0].toUpperCase()}${period.slice(1)}`]; if (value) node.textContent = document.querySelector('.commercial-page')?.dataset.pricingPublic === 'true' ? price(value, period) : 'Harga sedang divalidasi'; const note = node.parentElement?.querySelector('[data-price-note]'); if (note && document.querySelector('.commercial-page')?.dataset.pricingPublic === 'true' && value !== 'contact') note.textContent = period === 'annual' ? 'per tahun' : 'per bulan'; });
+        document.querySelectorAll('[data-analytics-event="pricing_plan_click"]').forEach((link) => { link.dataset.billingPeriod = period; });
+      }));
+    })();
+  </script>
+</BaseLayout>
