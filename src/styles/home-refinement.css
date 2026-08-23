@@ -543,3 +543,28 @@
     word-break:normal;
   }
 }
+
+/* Hero conversion row: make the dashboard route feel like a deliberate
+   secondary action, while the no-data explanation reads as one compact step
+   at every breakpoint. */
+.hero-cta-row{align-items:center;gap:16px;margin-top:32px}
+.hero-cta-row .button{flex:0 0 auto}
+.hero-dashboard-link{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:11px 0;color:var(--teal);font-size:.92rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.hero-dashboard-link b{font-size:1.05rem;font-weight:400;line-height:1;transition:transform var(--fast) var(--ease)}
+.hero-dashboard-link:hover b,.hero-dashboard-link:focus-visible b{transform:translate(3px,-3px)}
+.hero-cta-note{display:grid;grid-template-columns:28px minmax(0,1fr);gap:11px;align-items:start;width:min(100%,48ch);max-width:none;margin:16px 0 0;padding:12px 14px;border-left:3px solid var(--yellow);background:var(--rice);color:var(--ink-72);font-size:.8rem;line-height:1.5}
+.hero-cta-note__index{color:var(--teal);font-size:.62rem;font-weight:800;letter-spacing:.08em;line-height:1.55}
+.hero-cta-note p{max-width:none;margin:0}
+.hero-cta-note strong{color:var(--ink);font-weight:800}
+
+@media(max-width:1200px){
+  .hero-cta-row{margin-top:28px}
+  .hero-cta-note{width:min(100%,52ch)}
+}
+
+@media(max-width:740px){
+  .hero-cta-row{display:grid;grid-template-columns:1fr;align-items:stretch;gap:8px;width:100%;margin-top:24px}
+  .hero-cta-row .button{width:100%;flex-basis:auto}
+  .hero-dashboard-link{width:100%;min-height:44px;padding:11px 13px;border:1px solid var(--ink-20);border-radius:999px;background:var(--white);font-size:.82rem}
+  .hero-cta-note{grid-template-columns:24px minmax(0,1fr);gap:9px;width:100%;margin-top:12px;padding:11px 12px;font-size:.74rem;line-height:1.45}
+}
