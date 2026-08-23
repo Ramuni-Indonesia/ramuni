@@ -117,3 +117,20 @@
 .sd-industry-list--compact a:nth-child(3) b{color:var(--yellow)}
 @media(max-width:1200px){.sd-context-rail{grid-template-columns:1fr}.sd-industry-list--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:740px){.sd-industry-list--compact{grid-template-columns:1fr}.sd-industry-list--compact a,.sd-industry-list--compact a:first-child{min-height:150px}.sd-context-rail{gap:20px}}
+
+/* The solution hero uses the same reading order as the product hero: copy
+   first, evidence second below desktop, with a smaller laptop on touch sizes. */
+@media(min-width:1201px){
+  .sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:minmax(380px,.92fr) minmax(0,1.08fr);gap:clamp(38px,5vw,74px)}
+  .sd-page h1{max-width:17ch;font-size:clamp(2.8rem,3.9vw,4.35rem);line-height:1.06;overflow-wrap:break-word}
+}
+@media(min-width:741px) and (max-width:1200px){
+  .sd-hero__layout,.sd-page--ledger .sd-hero__layout,.sd-page--editorial .sd-hero__layout{grid-template-columns:minmax(0,1fr);gap:clamp(34px,5vw,54px)}
+  .sd-hero__copy{width:min(100%,760px);max-width:760px}
+  .sd-hero__visual{width:min(100%,820px);justify-self:center}
+  .sd-page h1{max-width:20ch;font-size:clamp(2.6rem,6vw,4rem);line-height:1.05;overflow-wrap:break-word}
+}
+@media(max-width:740px){
+  .sd-hero__visual{width:calc(100% - 24px);margin-inline:auto}
+  .sd-page h1{max-width:100%;font-size:clamp(2.2rem,9vw,3.25rem);line-height:1.06;overflow-wrap:break-word}
+}

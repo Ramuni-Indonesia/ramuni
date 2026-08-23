@@ -540,13 +540,22 @@
 @media(min-width:741px) and (max-width:1200px){
   .home-hero .hero-composition{grid-template-columns:minmax(0,1fr);gap:clamp(34px,5vw,54px)}
   .home-hero .hero-copy{width:min(100%,820px);justify-items:start;margin:0;text-align:left}
-  .home-hero h1{max-width:16ch;font-size:clamp(2.8rem,6vw,4rem);line-height:1.02}
+  .home-hero h1{max-width:22ch;font-size:clamp(2.45rem,6vw,3.9rem);line-height:1.05;text-wrap:balance}
   .home-hero .lede{max-width:54ch}
   .home-hero .hero-copy .button-row{justify-content:flex-start}
-  .home-decision-demo{width:min(100%,980px);margin-inline:auto}
+  .home-decision-demo{width:min(100%,840px);margin-inline:auto}
   .home-hero-product{padding-bottom:18px}
   .home-hero-guide{position:relative;right:auto;bottom:auto;width:92px;height:92px;margin:-10px 10px 0 auto;transform:none}
   .home-hero-guide__mascot{--animated-muni-size:86px}
+}
+
+/* Keep the desktop headline editorial, but give long Indonesian words enough
+   measure to stay readable instead of dropping a single letter to a new line. */
+@media(min-width:1201px){
+  .home-hero .hero-composition{grid-template-columns:minmax(380px,.88fr) minmax(0,1.12fr);gap:clamp(34px,4vw,68px)}
+  .home-hero h1{max-width:16ch;font-size:clamp(2.8rem,4vw,4.25rem);line-height:1.06;text-wrap:balance;overflow-wrap:break-word}
+  .home-hero .lede{max-width:50ch}
+  .home-hero .hero-cta-note{width:min(100%,52ch)}
 }
 
 /* The same long-word guard applies to shared and specialized hero headings
