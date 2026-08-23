@@ -33,6 +33,14 @@ const solutionIntents: Record<string, string> = {
   'laporan-bisnis-otomatis': 'report',
 };
 const tourHref = `/tour-produk-gratis/?intent=${solutionIntents[solution.slug] || 'overview'}`;
+const solutionCtaLabels: Record<string, string> = {
+  'naikkan-omzet': 'Baca contoh omzet',
+  'kelola-stok': 'Cek prioritas stok',
+  'pantau-laba-dan-arus-kas': 'Buka alur keuangan',
+  'pahami-pelanggan': 'Lihat pola pelanggan',
+  'laporan-bisnis-otomatis': 'Lihat contoh laporan',
+};
+const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Lihat contoh alur gratis';
 const closingVisual = getSolutionContextVisual(solution.slug);
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
@@ -74,7 +82,7 @@ const structuredData = [
           <h1 id="solution-title">{solution.heroTitle}</h1>
           <p class="lede">{solution.heroText}</p>
           <div class="sd-hero__action">
-            <a class="button button--primary" href={tourHref}>Lihat contoh alur gratis</a>
+            <a class="button button--primary" href={tourHref}>{solutionCtaLabel}</a>
             <a class="button button--secondary" href="#workflow-title">Lihat cara kerja</a>
           </div>
         </div>
@@ -90,7 +98,7 @@ const structuredData = [
           <header class="sd-problem__heading reveal">
             <p class="section-kicker">Kenali masalahnya</p>
             <h2 id="problem-title">{narrative?.symptomHeading || 'Apakah ini terjadi di usaha Anda?'}</h2>
-            <p>Cocokkan gejala dengan catatan yang tersedia. Periksa lebih dari satu tanda sebelum menentukan penyebabnya.</p>
+            <p>Mulai dari tiga tanda yang paling mudah dikenali. Cocokkan dengan catatan yang tersedia sebelum menyimpulkan penyebabnya.</p>
           </header>
           <ol class="sd-symptoms">
             {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
@@ -117,7 +125,7 @@ const structuredData = [
         <header class="sd-section-heading reveal">
           <p class="section-kicker">Cara kerja</p>
           <h2 id="workflow-title">{narrative?.comparisonHeading || 'Dari catatan usaha ke keputusan yang tetap Anda pegang.'}</h2>
-          <p>Setiap tahap memperlihatkan periode dan angka yang dipakai sebelum tim memilih tindakan.</p>
+          <p>Di setiap tahap, periode dan angka yang dipakai tetap terlihat sebelum tim memilih tindakan.</p>
         </header>
         <SolutionWorkflow steps={solution.workflow} />
       </div>
@@ -132,7 +140,7 @@ const structuredData = [
         <header class="reveal">
           <p class="section-kicker">Alur yang terhubung</p>
           <h2 id="capabilities-title">{narrative?.moduleHeading || 'Modul yang membantu alur ini.'}</h2>
-          <p>Buka modul yang berkaitan dengan masalahnya, lalu lihat titik pemeriksaan sesuai jenis usaha Anda.</p>
+          <p>Hubungkan masalah ini ke modul yang paling relevan, lalu lihat titik pemeriksaan sesuai cara usaha Anda berjalan.</p>
         </header>
         <div class="sd-capabilities__workspace">
           <div class="sd-capability-list">
@@ -180,7 +188,7 @@ const structuredData = [
 
     <section class="section sd-faq-close" aria-labelledby="faq-title">
       <div class="container sd-faq__layout">
-        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pertanyaan yang perlu dijawab lebih dulu.</h2></header>
+        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pastikan titik awalnya masuk akal.</h2></header>
         <div class="sd-faq-list">
           {solution.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>
@@ -190,7 +198,7 @@ const structuredData = [
           eyebrow="Contoh alur gratis"
           title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
-          primaryLabel="Lihat contoh alur gratis"
+          primaryLabel={solutionCtaLabel}
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Solusi"
           secondaryHref="/solusi/"
