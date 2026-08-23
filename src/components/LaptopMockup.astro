@@ -4,8 +4,6 @@ interface Props {
   label?: string;
 }
 
-import '../styles/laptop-mockup.css';
-
 const { class: className = '', label = 'Tampilan produk RAMUNI dalam mockup laptop' } = Astro.props;
 ---
 
@@ -17,3 +15,5 @@ const { class: className = '', label = 'Tampilan produk RAMUNI dalam mockup lapt
   <span class="ramuni-laptop-hinge" aria-hidden="true"></span>
   <span class="ramuni-laptop-base" aria-hidden="true"></span>
 </span>
+
+<style is:inline>.ramuni-laptop-mockup{--b:clamp(8px,1.15vw,16px);--r:clamp(12px,1.55vw,22px);display:block;width:100%;min-width:0}.ramuni-laptop-frame{position:relative;display:block;padding:calc(var(--b) + 5px) var(--b) var(--b);border:1px solid rgb(11 48 69/.16);border-radius:var(--r) var(--r) 8px 8px;background:linear-gradient(145deg,#eef2f3,#d6dde0);box-shadow:0 20px 48px rgb(11 48 69/.15)}.ramuni-laptop-camera{position:absolute;z-index:2;top:6px;left:50%;width:5px;height:5px;border-radius:50%;background:#27333a;transform:translateX(-50%)}.ramuni-laptop-screen{display:block;width:100%;overflow:hidden;border:1px solid rgb(11 48 69/.2);border-radius:clamp(4px,.55vw,8px);background:var(--ink)}.ramuni-laptop-screen>*{min-width:0}.ramuni-laptop-hinge{display:block;width:14%;height:4px;margin:-1px auto 0;border-radius:0 0 7px 7px;background:#c3cdd1}.ramuni-laptop-base{display:block;width:108%;height:clamp(9px,1.15vw,16px);margin:-1px auto 0;border-radius:0 0 12px 12px;background:linear-gradient(#d9e0e2,#bdc8cc);box-shadow:0 8px 15px rgb(11 48 69/.13);clip-path:polygon(2% 0,98% 0,100% 72%,91% 100%,9% 100%,0 72%)}@media(max-width:740px){.ramuni-laptop-mockup{--b:8px;--r:15px}.ramuni-laptop-camera{top:5px;width:4px;height:4px}.ramuni-laptop-base{height:10px}}</style>
