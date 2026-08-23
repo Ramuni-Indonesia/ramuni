@@ -5,9 +5,11 @@ import DashboardMotion from '../components/DashboardMotion.astro';
 import HomeScrollMotion from '../components/HomeScrollMotion.astro';
 import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
+import ProductScreenshotRail from '../components/ProductScreenshotRail.astro';
 import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
+import { productScreenSets } from '../data/productScreens';
 import { pageLastmods } from '../data/pageLastmods';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
@@ -180,6 +182,14 @@ const schema = [
       </div>
     </div>
   </section>
+
+  <ProductScreenshotRail
+    id="homepage-product-screens"
+    eyebrow="Dari ruang kerja RAMUNI"
+    heading="Lihat tampilan yang dipakai untuk membaca pekerjaan harian."
+    body="Ringkasan, performa, dan aktivitas operasional berasal dari screen produk yang tersedia di workspace RAMUNI."
+    items={productScreenSets.overview}
+  />
 
   <section class="section modules-stage chapter" data-chapter="Produk">
     <div class="container module-atlas">

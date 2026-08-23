@@ -9,7 +9,9 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
+import { productScreenSets } from '../../data/productScreens';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
@@ -43,6 +45,7 @@ const solutionCtaLabels: Record<string, string> = {
 };
 const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Lihat contoh alur gratis';
 const closingVisual = getSolutionContextVisual(solution.slug);
+const screenSet = solution.slug === 'kelola-stok' ? productScreenSets.operations : solution.slug === 'naikkan-omzet' || solution.slug === 'pantau-laba-dan-arus-kas' || solution.slug === 'pahami-pelanggan' ? productScreenSets.performance : productScreenSets.overview;
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -96,6 +99,15 @@ const structuredData = [
     <div class="container">
       <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang dibuka sebelum memilih tindakan." body="Demo memperlihatkan konteks dan batasnya. Pricing membantu Anda memahami jalur akses yang sedang disiapkan." />
     </div>
+
+    <ProductScreenshotRail
+      id={`solution-${solution.slug}-screens`}
+      eyebrow="Screen yang berkaitan"
+      heading={`Lihat konteks produk untuk ${solution.title}.`}
+      body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; bukan pengganti status fitur atau jaminan hasil usaha."
+      items={screenSet}
+      compact
+    />
 
     <section class="section sd-problem" aria-labelledby="problem-title">
       <div class="container sd-problem__grid">

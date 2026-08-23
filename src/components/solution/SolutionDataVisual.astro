@@ -1,7 +1,7 @@
 ---
-import MarketingDashboardCanvas from '../MarketingDashboardCanvas.astro';
+import DashboardMotion from '../DashboardMotion.astro';
 import type { SolutionDetail } from '../../data/solutionDetails';
-import { getSolutionMarketingDashboardContext } from '../../data/marketingDashboardContexts';
+import { getSolutionDashboardVisual } from '../../data/dashboardVisuals';
 
 interface Props {
   visual: SolutionDetail['visual'];
@@ -9,15 +9,16 @@ interface Props {
 }
 
 const { visual, slug = '' } = Astro.props;
-const dashboardContext = getSolutionMarketingDashboardContext(slug);
+const dashboard = getSolutionDashboardVisual(slug);
+const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 'pantau-laba-dan-arus-kas', 'pahami-pelanggan'].includes(slug) ? 'performance' : 'overview';
 ---
 
 <div class={`solution-proof solution-proof--${visual.kind}`} aria-label={`Contoh visual untuk ${visual.title}`}>
-  <MarketingDashboardCanvas context={dashboardContext} priority />
+  <DashboardMotion focus={focus} priority label={`${dashboard.alt} Digunakan sebagai contoh untuk ${visual.title}.`} {...dashboard} />
 </div>
 
 <style>
-  .solution-proof{container-type:inline-size;min-width:0;margin:0;overflow:hidden}
+  .solution-proof{container-type:inline-size;min-width:0;margin:0;overflow:hidden}.solution-proof :global(.dashboard-motion){border-radius:18px;box-shadow:0 24px 60px rgb(11 48 69/.13)}
   @media(max-width:720px){.solution-proof{border-radius:16px}}
   @media(prefers-reduced-motion:reduce){.solution-proof *{animation:none!important;transition:none!important}}
 </style>

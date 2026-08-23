@@ -1,6 +1,6 @@
 ---
-import MarketingDashboardCanvas from '../MarketingDashboardCanvas.astro';
-import { getProductMarketingDashboardContext } from '../../data/marketingDashboardContexts';
+import DashboardMotion from '../DashboardMotion.astro';
+import { getProductDashboardVisual } from '../../data/dashboardVisuals';
 
 interface Props {
   slug?: string;
@@ -14,27 +14,17 @@ const {
   question = 'Apa yang perlu diperhatikan hari ini?',
 } = Astro.props;
 
-const isHub = slug === 'hub';
-const dashboardContext = getProductMarketingDashboardContext(slug);
+const dashboard = getProductDashboardVisual(slug);
+const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview';
 ---
 
-{isHub ? (
-  <div class="product-canvas product-canvas--hub-proof" aria-label="Contoh ruang kerja RAMUNI">
-    <MarketingDashboardCanvas context={dashboardContext} priority />
-  </div>
-) : (
-  <div class="product-canvas product-canvas--detail-proof" aria-label={`Ruang kerja ${title}: ${question}`}>
-    <MarketingDashboardCanvas context={dashboardContext} priority />
-  </div>
-)}
+<div class:list={['product-canvas', { 'product-canvas--hub-proof': slug === 'hub', 'product-canvas--detail-proof': slug !== 'hub' }]} aria-label={`Contoh tampilan ruang kerja ${title}: ${question}`}>
+  <DashboardMotion focus={focus} priority label={`${dashboard.alt} Digunakan sebagai contoh cara membaca ${title}.`} {...dashboard} />
+</div>
 
 <style>
-  .product-canvas{position:relative;min-width:0;margin:0;overflow:hidden}
-  .product-canvas--detail-proof{container-type:inline-size}
-  .product-canvas--detail-proof :global(.marketing-dashboard){border-color:rgb(11 48 69/.1);box-shadow:none}
-  .product-canvas--detail-proof :global(.marketing-dashboard__content){padding:12px}
-  .product-canvas--detail-proof :global(.marketing-dashboard__disclosure){display:none}
-  .product-canvas--detail-proof :global(.marketing-dashboard__shell){background:var(--white)}
+  .product-canvas{position:relative;min-width:0;margin:0;overflow:hidden}.product-canvas :global(.dashboard-motion){border-radius:18px;box-shadow:0 24px 60px rgb(11 48 69/.13)}
+  .product-canvas--detail-proof :global(.dashboard-motion){box-shadow:0 16px 42px rgb(11 48 69/.1)}
   @media(max-width:740px){.product-canvas{border-radius:16px}}
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}}
 </style>

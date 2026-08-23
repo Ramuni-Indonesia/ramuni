@@ -4,10 +4,12 @@ import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { heroContextVisuals } from '../../data/dashboardVisuals';
+import { productScreenSets } from '../../data/productScreens';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
@@ -67,6 +69,15 @@ const productFaq = [
         </div>
       </div>
     </section>
+
+    <ProductScreenshotRail
+      id="product-workspace-screens"
+      eyebrow="Screen workspace"
+      heading="Lihat modul dari layar yang benar-benar dipakai."
+      body="Mulai dari ringkasan, performa, atau aktivitas operasional. Setiap screen membantu tim menemukan titik pemeriksaan berikutnya."
+      items={productScreenSets.overview}
+      compact
+    />
 
     <section id="product-catalog" class="section product-catalog" aria-labelledby="product-catalog-title">
       <div class="container product-catalog__layout">

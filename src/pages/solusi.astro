@@ -3,10 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
 import DashboardMotion from '../components/DashboardMotion.astro';
+import ProductScreenshotRail from '../components/ProductScreenshotRail.astro';
 import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
 import { dashboardVisuals, heroContextVisuals } from '../data/dashboardVisuals';
+import { productScreenSets } from '../data/productScreens';
 import '../styles/other-pages-refinement.css';
 
 const solutionPreview = dashboardVisuals.productPerformance;
@@ -71,6 +73,15 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         </div>
       </div>
     </section>
+
+    <ProductScreenshotRail
+      id="solution-product-screens"
+      eyebrow="Screen berdasarkan masalah"
+      heading="Hubungkan gejala usaha ke tampilan yang perlu dibuka."
+      body="Screen performa dan operasional membantu memperjelas bagian mana yang sedang dibaca sebelum memilih tindakan."
+      items={productScreenSets.performance}
+      compact
+    />
 
     <section class="section solution-combinations" aria-labelledby="solution-combinations-title">
       <div class="container solution-combinations__layout">

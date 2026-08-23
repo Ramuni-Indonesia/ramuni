@@ -10,9 +10,11 @@ import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
+import { productScreenSets } from '../../data/productScreens';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
 import { pageLastmods } from '../../data/pageLastmods';
@@ -79,6 +81,11 @@ const productCtaLabels: Record<string, string> = {
 };
 const productCtaLabel = productCtaLabels[product.slug] || 'Lihat contoh alur gratis';
 const closingVisual = getProductContextVisual(product.slug);
+const screenSet = ['katalog-produk', 'inventori', 'integrasi'].includes(product.slug)
+  ? productScreenSets.operations
+  : ['penjualan', 'keuangan', 'pelanggan'].includes(product.slug)
+    ? productScreenSets.performance
+    : productScreenSets.overview;
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
@@ -217,6 +224,15 @@ const structuredData = [
         />
       </div>
     </section>
+
+    <ProductScreenshotRail
+      id={`product-${product.slug}-screens`}
+      eyebrow="Screen terkait"
+      heading={`Lihat bagaimana ${product.title} muncul di workspace RAMUNI.`}
+      body="Screen ini membantu menghubungkan pertanyaan halaman dengan konteks produk yang dapat dibuka dan diperiksa."
+      items={screenSet}
+      compact
+    />
 
     <section id="product-benefits" class="pd-benefits" data-section-id="product-benefits" data-analytics-id="product_benefit_decisions" aria-labelledby="product-benefits-title">
       <div class="container">
