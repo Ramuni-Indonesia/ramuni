@@ -33,10 +33,10 @@ Before implementation or broad status claims, read:
 
 ## Image generation and visual assets
 
-- Use only the `hashmicro-imagegen-native` plugin/capability for generated images/icons.
-- Run one image job at a time with `quality: medium`.
-- Do not use generic ImageGen if the HashMicro native plugin is available.
-- Do not automatically retry the same timed-out job.
+- For this RAMUNI workspace, use the built-in Codex image generator for all new raster images and image edits.
+- Do not use the HashMicro image-generation plugin for RAMUNI assets, even if it is available in the environment.
+- Run one built-in image job at a time and save project-bound assets under `outputs/` before integrating the optimized copy into `public/`.
+- Inspect every generated image before integration; preserve the RAMUNI palette and avoid text, logos, watermarks, and fabricated claims.
 - Mascot references are under `output/mascot-exploration/phase-1/`; Route A/Muni si Manyar is a working recommendation, not final approval.
 - Instagram launch art is style/reference only unless the user explicitly asks to reuse it. Website heroes need web-specific assets.
 
