@@ -1,0 +1,61 @@
+---
+interface Props {
+  class?: string;
+  label?: string;
+  mode?: 'responsive' | 'laptop' | 'tablet' | 'phone';
+}
+
+const {
+  class: className = '',
+  label = 'Tampilan produk RAMUNI dalam mockup perangkat',
+  mode = 'responsive',
+} = Astro.props;
+---
+
+<span class:list={['device-mockup', `device-mockup--${mode}`, className]} role="img" aria-label={label}>
+  <span class="device-mockup__frame">
+    <span class="device-mockup__camera" aria-hidden="true"></span>
+    <span class="device-mockup__screen"><slot /></span>
+  </span>
+  <span class="device-mockup__hinge" aria-hidden="true"></span>
+  <span class="device-mockup__base" aria-hidden="true"></span>
+</span>
+
+<style is:global>
+  .device-mockup{--device-border:rgb(11 48 69/.16);display:block;width:100%;min-width:0}
+  .device-mockup__frame{position:relative;display:block;width:100%;padding:clamp(9px,1.1vw,15px) clamp(9px,1.1vw,15px) clamp(8px,1vw,13px);border:1px solid var(--device-border);border-radius:clamp(12px,1.55vw,22px) clamp(12px,1.55vw,22px) 8px 8px;background:linear-gradient(145deg,#eef2f3,#d6dde0);box-shadow:0 20px 48px rgb(11 48 69/.15)}
+  .device-mockup__camera{position:absolute;z-index:2;top:5px;left:50%;width:5px;height:5px;border-radius:50%;background:#27333a;transform:translateX(-50%)}
+  .device-mockup__screen{display:block;width:100%;min-width:0;overflow:hidden;border:1px solid rgb(11 48 69/.2);border-radius:clamp(4px,.55vw,8px);background:var(--ink)}
+  .device-mockup__screen>*{min-width:0}
+  .device-mockup__hinge{display:block;width:14%;height:4px;margin:-1px auto 0;border-radius:0 0 7px 7px;background:#c3cdd1}
+  .device-mockup__base{display:block;width:108%;height:clamp(9px,1.15vw,16px);margin:-1px auto 0;border-radius:0 0 12px 12px;background:linear-gradient(#d9e0e2,#bdc8cc);box-shadow:0 8px 15px rgb(11 48 69/.13);clip-path:polygon(2% 0,98% 0,100% 72%,91% 100%,9% 100%,0 72%)}
+
+  .device-mockup--tablet,.device-mockup--phone{display:block}
+  .device-mockup--tablet .device-mockup__frame{width:min(100%,520px);margin-inline:auto;padding:10px;border-radius:22px;background:linear-gradient(145deg,#e9eef0,#cfd9dd)}
+  .device-mockup--tablet .device-mockup__screen{aspect-ratio:4/3;border-radius:12px}
+  .device-mockup--tablet .device-mockup__camera{top:5px;width:4px;height:4px}
+  .device-mockup--tablet .device-mockup__hinge,.device-mockup--tablet .device-mockup__base{display:none}
+  .device-mockup--phone{width:min(100%,240px);margin-inline:auto}
+  .device-mockup--phone .device-mockup__frame{aspect-ratio:9/16;padding:10px 8px 12px;border-radius:28px;background:linear-gradient(145deg,#e9eef0,#cbd6db);box-shadow:0 18px 38px rgb(11 48 69/.16)}
+  .device-mockup--phone .device-mockup__screen{height:100%;aspect-ratio:auto;border-radius:20px;background:#f4f7f5}
+  .device-mockup--phone .device-mockup__camera{top:6px;width:36px;height:4px;border-radius:99px;background:#27333a}
+  .device-mockup--phone .device-mockup__hinge,.device-mockup--phone .device-mockup__base{display:none}
+
+  @media (max-width:900px) and (min-width:621px){
+    .device-mockup--responsive .device-mockup__frame{width:min(100%,520px);margin-inline:auto;padding:10px;border-radius:22px;background:linear-gradient(145deg,#e9eef0,#cfd9dd)}
+    .device-mockup--responsive .device-mockup__screen{aspect-ratio:4/3;border-radius:12px}
+    .device-mockup--responsive .device-mockup__camera{top:5px;width:4px;height:4px}
+    .device-mockup--responsive .device-mockup__hinge,.device-mockup--responsive .device-mockup__base{display:none}
+    .device-mockup--responsive .product-screenshot-card__media{aspect-ratio:4/3!important}
+  }
+  @media (max-width:620px){
+    .device-mockup--responsive{width:min(100%,240px);margin-inline:auto}
+    .device-mockup--responsive .device-mockup__frame{aspect-ratio:9/16;padding:10px 8px 12px;border-radius:28px;background:linear-gradient(145deg,#e9eef0,#cbd6db);box-shadow:0 18px 38px rgb(11 48 69/.16)}
+    .device-mockup--responsive .device-mockup__screen{height:100%;aspect-ratio:auto;border-radius:20px;background:#f4f7f5}
+    .device-mockup--responsive .device-mockup__camera{top:6px;width:36px;height:4px;border-radius:99px;background:#27333a}
+    .device-mockup--responsive .device-mockup__hinge,.device-mockup--responsive .device-mockup__base{display:none}
+    .device-mockup--responsive .product-screenshot-card__media{aspect-ratio:9/16!important;background:#f4f7f5}
+    .device-mockup--responsive .product-screenshot-card__media img{object-fit:contain!important;padding:14px 8px}
+  }
+  @media(prefers-reduced-motion:reduce){.device-mockup__frame{transition:none}}
+</style>
