@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import { glossaryTerms } from '../../data/glossaryTerms';
 import '../../styles/learning-resource-pages.css';
@@ -98,5 +99,6 @@ const schema = [
         <div><p class="section-kicker">Cari istilah lain</p><h2>Samakan bahasa sebelum menyamakan keputusan.</h2><p>Kembali ke kamus untuk mencari istilah lain, atau buka panduan jika Anda sudah memiliki pertanyaan usaha yang ingin diperiksa.</p><div class="button-row"><a class="button button--primary" href="/kamus-bisnis/">Buka kamus</a><a class="button button--secondary" href="/panduan/">Pilih panduan</a></div></div>
       </div>
     </section>
+    <div class="container"><CommercialActionBar pageType="glossary-detail" location={`glossary_${term.slug}`} eyebrow="Lanjutkan dari definisi" title={`Gunakan ${term.title} dalam konteks usaha.`} body="Buka demo untuk melihat bagaimana istilah dibaca bersama catatan dan periode, tanpa membawa data bisnis." /></div>
   </article>
 </BaseLayout>

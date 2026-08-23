@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import { calculatorEntries } from '../../data/calculators';
 import { navigationIconAttributes } from '../../data/capabilityIcons';
@@ -118,5 +119,6 @@ const schema = [
         />
       </div>
     </section>
+    <div class="container"><CommercialActionBar pageType="calculator" location="calculator_index" eyebrow="Dari angka ke alur kerja" title="Sudah punya angka? Lihat bagaimana konteksnya dibahas." body="Kalkulator tetap edukatif. Gunakan demo untuk memahami jalur produk tanpa menganggap contoh sebagai hasil usaha Anda." /></div>
   </div>
 </BaseLayout>

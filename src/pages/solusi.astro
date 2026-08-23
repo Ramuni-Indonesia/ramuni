@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
 import DashboardMotion from '../components/DashboardMotion.astro';
+import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
 import { dashboardVisuals, heroContextVisuals } from '../data/dashboardVisuals';
@@ -43,6 +44,10 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
       </div>
     </section>
+
+    <div class="container">
+      <CommercialActionBar pageType="solutions" location="solutions_hero" eyebrow="Pilih jalur masalah" title="Mulai dari gejala yang terlihat, bukan dari nama fitur." body="Lihat demo untuk satu skenario, periksa pricing, atau bahas kebutuhan usaha yang lebih kompleks." />
+    </div>
 
     <section id="solution-directory" class="section surface solution-directory" aria-labelledby="solution-directory-title">
       <div class="container solution-directory__layout">

@@ -5,6 +5,7 @@ import DashboardMotion from '../components/DashboardMotion.astro';
 import HomeScrollMotion from '../components/HomeScrollMotion.astro';
 import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
+import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
 import { pageLastmods } from '../data/pageLastmods';
@@ -59,6 +60,17 @@ const schema = [
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
     <div class="hero-rule" aria-hidden="true"><span></span></div>
+  </section>
+
+  <div class="container">
+    <CommercialActionBar pageType="homepage" location="homepage_hero" eyebrow="Mulai dari pekerjaan nyata" title="Lihat apa yang masuk, dirapikan, dan bisa Anda periksa." body="Lihat demo tanpa membawa data sensitif, coba saat akses tersedia, atau buka pricing untuk memahami paket dan batas fitur." />
+  </div>
+
+  <section class="section home-input-output" aria-labelledby="home-input-output-title">
+    <div class="container">
+      <header><p class="section-kicker">Cara memulai</p><h2 id="home-input-output-title">Tidak perlu merapikan seluruh usaha sekaligus.</h2><p>Mulai dari satu catatan yang sudah ada, lalu lihat bagaimana konteksnya disusun sebelum keputusan dibuat.</p></header>
+      <ol><li><span>01</span><strong>Masukkan</strong><p>Transaksi, stok, biaya, atau catatan yang memang ingin dibaca.</p></li><li><span>02</span><strong>RAMUNI susun</strong><p>Periode, definisi, sumber, dan bagian yang masih perlu dilengkapi.</p></li><li><span>03</span><strong>Anda periksa</strong><p>Ringkasan, bukti pendukung, dan langkah berikutnya yang masuk akal.</p></li></ol>
+    </div>
   </section>
 
   <section class="section problem-chapter chapter" data-chapter="Masalah">
@@ -261,6 +273,11 @@ const schema = [
       <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a><a class="text-link text-link--large" href="/solusi/">Lihat semua solusi</a></div>
     </div>
   </section>
+  <style>
+    .home-input-output{background:var(--white)}
+    .home-input-output header{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:18px 72px;align-items:end;margin-bottom:38px}.home-input-output header .section-kicker{grid-column:1/-1;color:var(--teal)}.home-input-output header h2{max-width:18ch}.home-input-output header p:last-child{max-width:48ch;color:var(--ink-72)}.home-input-output ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;padding:0;list-style:none;background:var(--ink-10)}.home-input-output li{min-width:0;min-height:190px;padding:24px;background:var(--rice)}.home-input-output li span{display:block;color:var(--teal);font-size:.7rem;font-weight:800}.home-input-output li strong{display:block;margin-top:34px;font-size:1.18rem}.home-input-output li p{margin-top:10px;color:var(--ink-72);font-size:.84rem;line-height:1.5}
+    @media(max-width:760px){.home-input-output header{grid-template-columns:1fr;gap:16px}.home-input-output header .section-kicker{grid-column:auto}.home-input-output ol{grid-template-columns:1fr}.home-input-output li{min-height:0}.home-input-output li strong{margin-top:22px}}
+  </style>
   <script is:inline type="module" src="/scripts/home-interactions.js"></script>
   <HomeScrollMotion />
 </BaseLayout>

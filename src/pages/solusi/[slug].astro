@@ -6,6 +6,7 @@ import SolutionManualGap from '../../components/solution/SolutionManualGap.astro
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
@@ -91,6 +92,10 @@ const structuredData = [
         </div>
       </div>
     </section>
+
+    <div class="container">
+      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang dibuka sebelum memilih tindakan." body="Demo memperlihatkan konteks dan batasnya. Pricing membantu Anda memahami jalur akses yang sedang disiapkan." />
+    </div>
 
     <section class="section sd-problem" aria-labelledby="problem-title">
       <div class="container sd-problem__grid">

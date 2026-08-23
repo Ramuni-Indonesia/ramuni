@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { releaseGates } from '../config/release';
 import '../styles/section-variance.css';
 import '../styles/other-pages-refinement.css';
@@ -84,7 +85,14 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
     </div>
   </section>
 
-  <section class="section company-page__close"><div class="container company-page__closing reveal"><div><h2>Lihat apakah cara berpikir RAMUNI sesuai kebutuhan usaha Anda.</h2><p>Mulai dengan contoh alur yang sudah kami siapkan, tanpa perlu membawa data bisnis.</p></div><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Lihat contoh alur gratis</a><a class="button button--secondary" href="/kontak/">Bahas kebutuhan Anda</a></div></div></section>
+  <section class="section company-page__status" id="status-produk" aria-labelledby="status-title">
+    <div class="container company-status-grid">
+      <div><p class="eyebrow">Transparansi produk</p><h2 id="status-title">Yang sudah terlihat, dan yang masih kami bangun.</h2><p>RAMUNI tidak menampilkan fitur sebagai siap pakai sebelum alur, akses, dan batasnya diperiksa.</p></div>
+      <div class="company-status-columns"><div><span>Dapat diperiksa di situs</span><ul><li>Panduan, kalkulator, dan kamus bisnis edukatif.</li><li>Prinsip jawaban berbasis periode dan sumber.</li><li>Jalur demo serta formulir kontak yang masuk ke CRM.</li></ul></div><div><span>Masih mengikuti rilis</span><ul><li>Akses workspace produk dan status tiap kemampuan.</li><li>Multi-user, integrasi, serta paket berbayar.</li><li>Materi bukti produk yang belum memiliki sumber publik.</li></ul></div></div>
+    </div>
+  </section>
+
+  <div class="container"><CommercialActionBar pageType="about" location="about_close" eyebrow="Kenali cara kerja kami" title="Lihat demo, pricing, atau bahas kebutuhan usaha Anda." body="Kami akan menunjukkan alur yang relevan tanpa meminta data bisnis sensitif sebelum langkah berikutnya." /></div>
 </BaseLayout>
 
 <style>
@@ -151,5 +159,7 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
     .company-method__boundary{grid-template-columns:1fr;box-shadow:7px 7px 0 var(--yellow)}
     .company-method__boundary>span,.company-method__boundary h3,.company-method__boundary p{grid-column:auto}
   }
+  .company-page__status{background:var(--white)}.company-status-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(38px,8vw,110px);align-items:start}.company-status-grid>div:first-child p:last-child{max-width:48ch;margin-top:18px;color:var(--ink-72)}.company-status-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.company-status-columns>div{padding:22px;border:1px solid var(--ink-20);background:var(--rice)}.company-status-columns span{display:block;color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.company-status-columns ul{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}.company-status-columns li{padding-left:15px;position:relative;color:var(--ink-72);font-size:.82rem;line-height:1.5}.company-status-columns li::before{content:'·';position:absolute;left:0;color:var(--teal);font-weight:800}.company-page__status .money-action-bar{margin-bottom:0}
+  @media(max-width:760px){.company-status-grid,.company-status-columns{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){.company-story__scene img{animation:none}}
 </style>

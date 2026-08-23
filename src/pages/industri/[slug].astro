@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
 import { releaseGates } from '../../config/release';
@@ -314,6 +315,8 @@ const structuredData = {
       </div>
     </div>
   </section>
+
+  <div class="container"><CommercialActionBar pageType="industry" location={`industry_${industry.slug}`} eyebrow={`Jalur ${industry.title}`} title={`Mulai dari ritme ${industry.title}, bukan dari daftar fitur.`} body="Lihat demo tanpa membawa data sensitif, lalu cocokkan modul dan paket dengan kebutuhan yang benar-benar ada." /></div>
 
   <section class="section" id="cta" aria-labelledby="cta-title">
     <div class="container reveal">

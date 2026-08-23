@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { industries, products } from '../../data/site';
 import '../../styles/other-pages-refinement.css';
 
@@ -125,6 +126,8 @@ const industryLens = industries.map((industry) => ({
       </div>
     </div>
   </section>
+
+  <div class="container"><CommercialActionBar pageType="industries" location="industries_close" eyebrow="Pilih konteks usaha" title="Lihat demo sesuai ritme bisnis Anda." body="Pilih industri untuk membaca skenario yang relevan, lalu periksa pricing atau bahas kebutuhan tim." /></div>
 
   <section class="section industry-hub__closing" id="cta" aria-labelledby="industry-cta-title">
     <div class="container reveal">

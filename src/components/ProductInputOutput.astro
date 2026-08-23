@@ -1,0 +1,66 @@
+---
+interface Props { slug: string; title: string; }
+const { slug, title } = Astro.props;
+
+const map: Record<string, { input: string[]; process: string[]; output: string[] }> = {
+  'asisten-ai': {
+    input: ['Pertanyaan usaha dan periode yang dipilih', 'Data atau catatan yang diizinkan untuk dibaca'],
+    process: ['Menentukan konteks pertanyaan', 'Menghubungkan jawaban ke sumber yang tersedia', 'Menandai bagian yang masih perlu diperiksa'],
+    output: ['Ringkasan kondisi', 'Angka pendukung dan periode', 'Daftar pemeriksaan berikutnya'],
+  },
+  'dashboard-bisnis': {
+    input: ['Penjualan, stok, kas, dan pelanggan', 'Periode serta pembanding yang konsisten'],
+    process: ['Menyamakan periode dan definisi', 'Menyorot perubahan yang paling besar', 'Membuka metrik yang mendukung sorotan'],
+    output: ['Prioritas untuk dibuka', 'Perubahan utama', 'Konteks sebelum rapat atau tindakan'],
+  },
+  'katalog-produk': {
+    input: ['Nama produk, SKU, kategori, unit, dan harga', 'File CSV atau catatan yang tersedia'],
+    process: ['Mencocokkan identitas produk', 'Menandai baris kosong atau ganda', 'Meminta pemeriksaan sebelum dipakai bersama'],
+    output: ['Daftar produk yang lebih konsisten', 'Catatan data yang perlu dilengkapi', 'Dasar untuk transaksi dan stok'],
+  },
+  penjualan: {
+    input: ['Transaksi, produk, waktu, dan kanal', 'Periode pembanding yang sama'],
+    process: ['Mengelompokkan transaksi', 'Membandingkan perubahan menurut produk dan waktu', 'Memisahkan sinyal dari dugaan'],
+    output: ['Ringkasan omzet dan transaksi', 'Produk atau waktu yang berubah', 'Pertanyaan pemeriksaan berikutnya'],
+  },
+  inventori: {
+    input: ['Daftar produk dan saldo awal', 'Barang masuk, keluar, koreksi, serta laju penjualan'],
+    process: ['Menghitung saldo dan mutasi', 'Membandingkan laju dengan batas minimum', 'Menandai SKU yang perlu cek fisik'],
+    output: ['Prioritas pemeriksaan stok', 'Jejak mutasi dan selisih', 'Catatan sebelum restock disetujui'],
+  },
+  keuangan: {
+    input: ['Pemasukan dan pengeluaran', 'Kategori biaya serta periode pencatatan'],
+    process: ['Memisahkan omzet, biaya, laba, dan kas', 'Membandingkan periode yang setara', 'Menandai kategori yang perlu diverifikasi'],
+    output: ['Ringkasan laba dan arus kas', 'Perubahan biaya yang terlihat', 'Bahan pembahasan sebelum keputusan'],
+  },
+  pelanggan: {
+    input: ['Transaksi dengan identitas yang diizinkan', 'Periode dan aturan pelanggan yang konsisten'],
+    process: ['Menyatukan identitas sesuai izin', 'Menghitung pola pembelian ulang', 'Membatasi kesimpulan pada data yang tersedia'],
+    output: ['Pola pelanggan berulang', 'Segmen sederhana untuk ditinjau', 'Ide tindak lanjut yang tidak otomatis dikirim'],
+  },
+  'laporan-insight': {
+    input: ['Catatan penjualan, stok, kas, dan aktivitas', 'Periode serta definisi metrik'],
+    process: ['Merapikan sumber menjadi satu ringkasan', 'Membandingkan perubahan', 'Menautkan temuan ke bukti asal'],
+    output: ['Laporan harian atau mingguan', 'Temuan yang dapat dibahas', 'Daftar pemeriksaan tim'],
+  },
+  integrasi: {
+    input: ['Ekspor CSV atau jalur input yang tersedia', 'Pemetaan kolom dan aturan validasi'],
+    process: ['Memetakan data ke struktur RAMUNI', 'Memvalidasi format dan baris bermasalah', 'Menyimpan status proses untuk ditinjau'],
+    output: ['Status impor yang jelas', 'Daftar baris yang perlu diperbaiki', 'Sumber data yang bisa ditelusuri'],
+  },
+};
+const content = map[slug] || map['dashboard-bisnis'];
+---
+
+<section class="product-io" aria-labelledby={`${slug}-io-title`}>
+  <div class="product-io__head">
+    <div><span class="money-kicker">Bahan masuk sampai hasil</span><h2 id={`${slug}-io-title`}>{title}: apa yang Anda siapkan, dan apa yang dibaca kembali.</h2></div>
+    <div class="product-io__status"><span>Status halaman</span><strong>Concept Preview</strong><small>Contoh alur. Ketersediaan akses mengikuti rilis dan validasi produk.</small></div>
+  </div>
+  <div class="product-io__grid">
+    <article><span>01 · Input</span><h3>Data yang perlu disiapkan</h3><ul>{content.input.map((item) => <li>{item}</li>)}</ul></article>
+    <article><span>02 · Proses</span><h3>Yang dilakukan RAMUNI</h3><ul>{content.process.map((item) => <li>{item}</li>)}</ul></article>
+    <article><span>03 · Output</span><h3>Yang dapat Anda periksa</h3><ul>{content.output.map((item) => <li>{item}</li>)}</ul></article>
+  </div>
+  <p class="product-io__note">Tidak perlu membawa data bisnis untuk melihat contoh. Saat akses dibuka, mulai dari satu catatan yang memang ingin Anda rapikan.</p>
+</section>

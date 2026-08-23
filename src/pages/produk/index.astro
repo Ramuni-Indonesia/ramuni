@@ -4,6 +4,7 @@ import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { heroContextVisuals } from '../../data/dashboardVisuals';
@@ -49,6 +50,10 @@ const productFaq = [
         </div>
       </div>
     </section>
+
+    <div class="container">
+      <CommercialActionBar pageType="products" location="products_hero" eyebrow="Cari tahu sebelum memilih" title="Lihat apa yang masuk, diproses, dan keluar dari tiap modul." body="Mulai dari demo, cek paket dan batasnya, lalu pilih modul yang paling dekat dengan pekerjaan Anda." />
+    </div>
 
     <section id="product-system-connected" class="section surface product-system" aria-labelledby="product-system-title">
       <div class="container">

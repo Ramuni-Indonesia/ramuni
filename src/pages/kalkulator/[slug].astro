@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import CalculatorWidget from '../../components/CalculatorWidget.astro';
 import '../../styles/calculator-widget.css';
@@ -100,5 +101,6 @@ const schema = [
         <div>{commonFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
       </div>
     </section>
+    <div class="container"><CommercialActionBar pageType="calculator-detail" location={`calculator_${slug}`} eyebrow="Langkah setelah menghitung" title="Hubungkan hasil contoh dengan pertanyaan bisnis yang tepat." body="Pelajari demo dan pricing bila Anda ingin melihat cara data operasional dibahas dalam satu alur." /></div>
   </article>
 </BaseLayout>

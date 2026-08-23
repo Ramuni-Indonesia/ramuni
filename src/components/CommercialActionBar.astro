@@ -1,0 +1,39 @@
+---
+import CommercialAnalytics from './CommercialAnalytics.astro';
+
+interface Props {
+  pageType?: string;
+  location?: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  showSales?: boolean;
+}
+
+const {
+  pageType = 'money-site',
+  location = 'money_site_cta',
+  eyebrow = 'Langkah berikutnya',
+  title = 'Pilih cara mulai yang paling sesuai.',
+  body = 'Lihat contoh tanpa membawa data sensitif, mulai mencoba, atau periksa paket dan batas fitur yang sedang tersedia.',
+  showSales = true,
+} = Astro.props;
+---
+
+<section class="money-action-bar" data-commercial-page={pageType} data-commercial-location={location} aria-labelledby={`${location}-title`}>
+  <div class="money-action-bar__copy">
+    <span>{eyebrow}</span>
+    <h2 id={`${location}-title`}>{title}</h2>
+    <p>{body}</p>
+  </div>
+  <nav class="money-action-bar__actions" aria-label="Pilihan langkah berikutnya">
+    <a class="button button--primary" href="/tour-produk-gratis/?flow=demo" data-analytics-event="demo_request" data-analytics-location={location} data-destination="demo">Lihat Demo</a>
+    <a class="button button--secondary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location={location} data-destination="trial">Coba Gratis</a>
+    <a class="money-action-link" href="/pricing/" data-analytics-event="pricing_plan_click" data-analytics-location={location} data-destination="pricing">Lihat Pricing <span aria-hidden="true">↗</span></a>
+    {showSales && <a class="money-action-link" href="/tour-produk-gratis/?flow=consultation&plan=business" data-analytics-event="contact_sales" data-analytics-location={location} data-destination="sales">Hubungi Sales <span aria-hidden="true">↗</span></a>}
+  </nav>
+</section>
+<CommercialAnalytics />
+<style is:inline>
+  .money-action-bar{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin:clamp(28px,5vw,64px) auto;padding:24px;border:1px solid var(--ink-20);background:var(--white)}.money-action-bar__copy{max-width:54ch}.money-action-bar__copy>span,.money-kicker{display:block;color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.money-action-bar h2{margin-top:8px;max-width:24ch;font-size:clamp(1.45rem,2.5vw,2.2rem);line-height:1.12}.money-action-bar p{margin-top:8px;color:var(--ink-72);font-size:.84rem;line-height:1.5}.money-action-bar__actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}.money-action-bar__actions .button{white-space:nowrap}.money-action-link{color:var(--teal);font-size:.76rem;font-weight:800;text-decoration:none;white-space:nowrap}.money-action-link span{margin-left:3px}.product-io{margin:clamp(34px,6vw,88px) 0;padding:clamp(24px,4vw,40px);background:var(--ink);color:var(--white)}.product-io__head{display:flex;justify-content:space-between;gap:24px;margin-bottom:24px}.product-io__head h2{max-width:19ch;margin-top:8px;font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.08}.product-io__status{max-width:250px;padding-left:14px;border-left:2px solid var(--yellow)}.product-io__status span,.product-io__status strong,.product-io__status small{display:block}.product-io__status span{color:var(--yellow);font-size:.64rem;font-weight:800;text-transform:uppercase}.product-io__status strong{margin-top:4px;font-size:.82rem}.product-io__status small{margin-top:4px;color:#ffffffa8;font-size:.7rem;line-height:1.4}.product-io__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ffffff33}.product-io__grid article{padding:20px;background:var(--ink)}.product-io__grid article>span{color:var(--yellow);font-size:.64rem;font-weight:800;text-transform:uppercase}.product-io__grid h3{margin-top:14px;font-size:1rem}.product-io__grid ul{display:grid;gap:8px;margin:14px 0 0;padding:0;list-style:none}.product-io__grid li{padding-left:14px;color:#ffffffb8;font-size:.78rem;line-height:1.45}.product-io__grid li::before{content:'→';position:absolute;margin-left:-14px;color:var(--yellow)}.product-io__note{margin-top:16px;color:#ffffff9e;font-size:.72rem;line-height:1.45}@media(max-width:760px){.money-action-bar{grid-template-columns:1fr;padding:20px}.money-action-bar__actions{justify-content:flex-start}.money-action-bar__actions .button{flex:1}.product-io__head{flex-direction:column}.product-io__status{max-width:none}.product-io__grid{grid-template-columns:1fr}.product-io__grid article{padding:18px}}
+</style>

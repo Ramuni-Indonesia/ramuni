@@ -8,6 +8,8 @@ import ProductReadinessBoard from '../../components/product/ProductReadinessBoar
 import ProductAudienceExplorer from '../../components/product/ProductAudienceExplorer.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
+import CommercialActionBar from '../../components/CommercialActionBar.astro';
+import ProductInputOutput from '../../components/ProductInputOutput.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
@@ -182,6 +184,11 @@ const structuredData = [
         </div>
       </div>
     </section>
+
+    <div class="container">
+      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih jalur sesuai kesiapan" title={`Mulai dari ${product.title}, lalu periksa batasnya.`} body="Lihat demo dengan skenario aman, mulai mencoba saat akses tersedia, atau periksa pricing sebelum memilih jalur." />
+      <ProductInputOutput slug={product.slug} title={product.title} />
+    </div>
 
     <section id="product-problem" class="pd-problem" data-section-id="product-problem" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
       <div class="container pd-problem__layout">
