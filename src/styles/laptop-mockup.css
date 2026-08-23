@@ -1,0 +1,10 @@
+/* Keep product evidence inside a laptop frame without scaling the UI itself. */
+.ramuni-laptop-mockup{--laptop-bezel:clamp(8px,1.15vw,16px);--laptop-radius:clamp(12px,1.55vw,22px);display:block;width:100%;min-width:0;color:var(--ink)}
+.ramuni-laptop-frame{position:relative;display:block;width:100%;min-width:0;padding:calc(var(--laptop-bezel) + 5px) var(--laptop-bezel) var(--laptop-bezel);border:1px solid rgb(11 48 69/.16);border-radius:var(--laptop-radius) var(--laptop-radius) 8px 8px;background:linear-gradient(145deg,#eef2f3 0%,#d6dde0 100%);box-shadow:0 28px 70px rgb(11 48 69/.16),inset 0 1px 0 rgb(255 255 255/.78)}
+.ramuni-laptop-camera{position:absolute;z-index:2;top:6px;left:50%;width:5px;height:5px;border:1px solid rgb(255 255 255/.32);border-radius:50%;background:#27333a;box-shadow:0 0 0 1px rgb(11 48 69/.14);transform:translateX(-50%)}
+.ramuni-laptop-screen{display:block;width:100%;min-width:0;overflow:hidden;border:1px solid rgb(11 48 69/.2);border-radius:clamp(4px,.55vw,8px);background:var(--ink);box-shadow:0 2px 0 rgb(255 255 255/.25)}
+.ramuni-laptop-screen>*{min-width:0}
+.ramuni-laptop-hinge{display:block;width:14%;height:4px;margin:-1px auto 0;border-radius:0 0 7px 7px;background:#c3cdd1;box-shadow:inset 0 -1px 0 rgb(11 48 69/.12)}
+.ramuni-laptop-base{display:block;width:108%;height:clamp(9px,1.15vw,16px);margin:-1px auto 0;border:1px solid rgb(11 48 69/.16);border-top:0;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#d9e0e2 0%,#bdc8cc 100%);box-shadow:0 10px 18px rgb(11 48 69/.13),inset 0 1px 0 rgb(255 255 255/.62);clip-path:polygon(2% 0,98% 0,100% 72%,91% 100%,9% 100%,0 72%)}
+@media(max-width:740px){.ramuni-laptop-mockup{--laptop-bezel:8px;--laptop-radius:15px}.ramuni-laptop-camera{top:5px;width:4px;height:4px}.ramuni-laptop-base{height:10px}}
+@media(prefers-reduced-motion:reduce){.ramuni-laptop-frame,.ramuni-laptop-base{transition:none!important}}

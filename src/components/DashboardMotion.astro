@@ -1,5 +1,6 @@
 ---
 import dashboardMotionStyles from '../styles/dashboard-motion.css?inline';
+import LaptopMockup from './LaptopMockup.astro';
 
 interface Props {
   class?: string;
@@ -41,31 +42,33 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
   data-dashboard-motion
   data-active="false"
 >
-  <span class="dashboard-motion__screen">
-    <picture>
-      {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
-      <img
-        class="dashboard-motion__image"
-        src={src}
-        width={width}
-        height={height}
-        alt={label}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchpriority={priority ? 'high' : undefined}
-        decoding="async"
-      />
-    </picture>
-    <span class="dashboard-motion__scanline"></span>
-    <span class="dashboard-motion__callouts">
-      <span>Ringkasan</span>
-      <span>Bukti</span>
-      <span>Arah</span>
+  <LaptopMockup label={label}>
+    <span class="dashboard-motion__screen">
+      <picture>
+        {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
+        <img
+          class="dashboard-motion__image"
+          src={src}
+          width={width}
+          height={height}
+          alt={label}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchpriority={priority ? 'high' : undefined}
+          decoding="async"
+        />
+      </picture>
+      <span class="dashboard-motion__scanline"></span>
+      <span class="dashboard-motion__callouts">
+        <span>Ringkasan</span>
+        <span>Bukti</span>
+        <span>Arah</span>
+      </span>
+      <span class="dashboard-motion__insight">
+        <b>Insight bergerak</b>
+        <span>Perubahan ditandai, lalu konteksnya dibuka.</span>
+      </span>
     </span>
-    <span class="dashboard-motion__insight">
-      <b>Insight bergerak</b>
-      <span>Perubahan ditandai, lalu konteksnya dibuka.</span>
-    </span>
-  </span>
+  </LaptopMockup>
   <span class="dashboard-motion__timeline" aria-hidden="true">
     <i></i><i></i><i></i>
   </span>

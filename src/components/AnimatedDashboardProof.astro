@@ -8,30 +8,33 @@ const {
   class: className = '',
   label = 'Dashboard RAMUNI bergerak menampilkan ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
 } = Astro.props;
+import LaptopMockup from './LaptopMockup.astro';
 ---
 
-<span
-  class:list={['animated-dashboard-proof', className]}
-  role="img"
-  aria-label={label}
-  data-animate="false"
->
-  <video
-    class="animated-dashboard-proof__frame"
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    poster="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
-    aria-hidden="true"
-    tabindex="-1"
+<LaptopMockup label={label}>
+  <span
+    class:list={['animated-dashboard-proof', className]}
+    role="img"
+    aria-label={label}
+    data-animate="false"
   >
-    <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm" type="video/webm" />
-    <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4" type="video/mp4" />
-  </video>
-  <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-product-dashboard-overview.webp" width="1280" height="618" alt="Tampilan ringkasan dashboard produk RAMUNI" fetchpriority="high" decoding="async" aria-hidden="true" />
-  <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
-</span>
+    <video
+      class="animated-dashboard-proof__frame"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm" type="video/webm" />
+      <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4" type="video/mp4" />
+    </video>
+    <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-product-dashboard-overview.webp" width="1280" height="618" alt="Tampilan ringkasan dashboard produk RAMUNI" fetchpriority="high" decoding="async" aria-hidden="true" />
+    <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
+  </span>
+</LaptopMockup>
 
 <script>
   const animatedDashboardCleanups = new Map<HTMLElement, () => void>();
@@ -91,10 +94,10 @@ const {
     width:100%;
     aspect-ratio:1280/618;
     overflow:hidden;
-    border:1px solid rgb(11 48 69/.16);
-    border-radius:22px;
+    border:0;
+    border-radius:0;
     background:var(--rice);
-    box-shadow:0 24px 70px rgb(11 48 69/.13);
+    box-shadow:none;
     contain:paint;
     container-type:inline-size;
     --hero-dashboard-scan-distance:calc(38.6cqw - 2px);
@@ -151,7 +154,7 @@ const {
   }
 
   @media(max-width:740px){
-    .animated-dashboard-proof{aspect-ratio:1280/618;border-radius:16px;box-shadow:0 16px 38px rgb(11 48 69/.12)}
+    .animated-dashboard-proof{aspect-ratio:1280/618;border-radius:0;box-shadow:none}
   }
 
   @media(prefers-reduced-motion:reduce){

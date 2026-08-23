@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+  label?: string;
+}
+
+const { class: className = '', label = 'Tampilan produk RAMUNI dalam mockup laptop' } = Astro.props;
+---
+
+<span class:list={['ramuni-laptop-mockup', className]} role="img" aria-label={label}>
+  <span class="ramuni-laptop-frame">
+    <span class="ramuni-laptop-camera" aria-hidden="true"></span>
+    <span class="ramuni-laptop-screen"><slot /></span>
+  </span>
+  <span class="ramuni-laptop-hinge" aria-hidden="true"></span>
+  <span class="ramuni-laptop-base" aria-hidden="true"></span>
+</span>
