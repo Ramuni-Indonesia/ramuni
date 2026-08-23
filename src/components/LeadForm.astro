@@ -18,6 +18,7 @@ const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';
 const isChat = variant === 'chat';
+const phoneCountryData = phoneCountries.map(({ iso, value }) => `${iso}:${value}`).join(',');
 ---
 <form class:list={['lead-form', { 'lead-form--progressive': isProgressive, 'lead-form--compact': compact, 'lead-form--chat': isChat }]} action={enabled ? endpoint : undefined} method="post"
   data-lead-form={kind} data-lead-mode={mode} data-lead-handoff={handoff} data-lead-location={location}
@@ -57,7 +58,7 @@ const isChat = variant === 'chat';
         {isProgressive && <legend>Mulai dari kontak yang bisa dihubungi.</legend>}
         <div class="form-grid">
           <div class="field"><label for={kind + '-' + location + '-name'}>Nama lengkap</label><input id={kind + '-' + location + '-name'} name="name" autocomplete="name" placeholder="Nama Anda" required maxlength="150" /></div>
-          <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><div class="phone-field-row"><div class="field field--phone-country"><label class="visually-hidden" for={kind + '-' + location + '-phone-country'}>Kode negara</label><select id={kind + '-' + location + '-phone-country'} name="phoneCountry" aria-label="Kode negara" required>{phoneCountries.map((country) => <option value={country.value} selected={country.value === '+62'}>{country.label}</option>)}</select></div><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="8123 4567" required maxlength="24" /></div></div>
+          <div class="field"><label for={kind + '-' + location + '-phone'}>Nomor WhatsApp</label><div class="phone-field-row"><div class="field field--phone-country"><label class="visually-hidden" for={kind + '-' + location + '-phone-country'}>Kode negara</label><select id={kind + '-' + location + '-phone-country'} name="phoneCountry" aria-label="Kode negara" data-phone-countries={phoneCountryData} required><option value="+62" selected>🇮🇩 +62</option></select></div><input id={kind + '-' + location + '-phone'} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="8123 4567" required maxlength="24" /></div></div>
           <div class="field"><label for={kind + '-' + location + '-email'}>Email</label><input id={kind + '-' + location + '-email'} name="email" type="email" autocomplete="email" placeholder="nama@usaha.com" required maxlength="254" /></div>
           {submitChoices && <div class="field"><label for={kind + '-' + location + '-size'}>Jumlah karyawan</label><select id={kind + '-' + location + '-size'} name="businessSize" required><option value="" disabled selected>Pilih jumlah karyawan</option><option value="1">1 orang</option><option value="2-5">2 sampai 5 orang</option><option value="6-20">6 sampai 20 orang</option><option value="21-50">21 sampai 50 orang</option><option value="51-plus">Lebih dari 50 orang</option></select></div>}
         </div>

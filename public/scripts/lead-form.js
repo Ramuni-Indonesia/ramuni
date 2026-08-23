@@ -132,6 +132,26 @@ const initialiseLeadForms = () => {
     return payload;
   };
   const requestedIntent = key(new URLSearchParams(window.location.search).get('intent'), '');
+  const flagFromIso = (iso) => [...iso.toUpperCase()]
+    .map((letter) => String.fromCodePoint(127397 + letter.charCodeAt(0)))
+    .join('');
+  const populatePhoneCountries = (select) => {
+    if (!(select instanceof HTMLSelectElement) || select.dataset.phoneCountriesReady === 'true') return;
+    const entries = String(select.dataset.phoneCountries || '').split(',')
+      .map((entry) => entry.split(':'))
+      .filter(([iso, code]) => /^[A-Z]{2}$/.test(iso) && /^\+[1-9]\d{0,3}$/.test(code));
+    if (!entries.length) return;
+    const selected = select.value || '+62';
+    select.replaceChildren(...entries.map(([iso, code]) => {
+      const option = document.createElement('option');
+      option.value = code;
+      option.textContent = `${flagFromIso(iso)} ${code}`;
+      option.selected = code === selected;
+      return option;
+    }));
+    if (![...select.options].some((option) => option.selected)) select.value = '+62';
+    select.dataset.phoneCountriesReady = 'true';
+  };
 
   document.querySelectorAll('[data-lead-form]').forEach((form) => {
     if (!(form instanceof HTMLFormElement) || form.dataset.leadBound === 'true') return;
@@ -147,6 +167,7 @@ const initialiseLeadForms = () => {
     const status = form.querySelector('.form-status');
     const chatHistory = form.querySelector('[data-chat-history]');
     const phoneCountryField = form.querySelector('select[name="phoneCountry"]');
+    populatePhoneCountries(phoneCountryField);
     const selectedPhoneCountry = () => phoneCountryField instanceof HTMLSelectElement ? phoneCountryField.value : '+62';
     let stepIndex = 0;
     let retryPayload = null;

@@ -3,8 +3,6 @@
   max-width: 680px;
   display: grid;
   gap: 18px;
-  border-top: 0;
-  padding-top: 0;
 }
 
 .lead-form .form-grid {
@@ -16,7 +14,6 @@
 .lead-form .field {
   display: grid;
   gap: 8px;
-  margin: 0;
 }
 
 .lead-form .field label {
@@ -36,7 +33,6 @@
   padding: 12px 14px;
   color: var(--ink);
   font: inherit;
-  box-shadow: none;
   transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
@@ -50,14 +46,6 @@
   grid-template-columns: minmax(104px, .34fr) minmax(0, 1fr);
   gap: 10px;
   align-items: start;
-}
-
-.lead-form .phone-field-row .field {
-  gap: 0;
-}
-
-.lead-form .phone-field-row select {
-  padding-inline: 10px;
 }
 
 .lead-form .field input:focus,
@@ -96,7 +84,6 @@
 .lead-form .form-actions {
   display: grid;
   gap: 12px;
-  align-items: start;
   padding-top: 2px;
 }
 
@@ -170,7 +157,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: lead-step;
 }
 
 .lead-form__steps li {
@@ -255,10 +241,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .lead-form--progressive .lead-form__step[data-active] { animation: none; }
-}
-
-.mega-lead > strong {
-  text-wrap: balance;
 }
 
 .mega-links a {

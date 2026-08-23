@@ -22,6 +22,7 @@ const flagFromIso = (iso: string) => [...iso.toUpperCase()]
   .join('');
 
 export const phoneCountries = phoneCountryEntries.map(([iso, code]) => ({
+  iso,
   value: code,
   label: `${flagFromIso(iso)} ${code}`,
 }));
