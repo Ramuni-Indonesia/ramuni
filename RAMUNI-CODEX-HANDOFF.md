@@ -12,7 +12,16 @@ This is the current operational handoff for the RAMUNI Astro marketing and blog 
 
 ## Current release
 
-### Active production batch — `0cad9d2179ca`
+### Active production batch — `10b4f0b4c3f3`
+
+- Production release `20260823T031419Z-10b4f0b4c3f3` is active at `https://www.ramuni.id/`; artifact SHA-256: `40f56ddf0a5444c0a8c0c51264b5d3917f7f0eea2fb580b90e89e5a413d18602`. Health was verified at `2026-08-23T03:20:56Z`.
+- Public blog and money-site containers now use the available canvas more efficiently: the desktop maximum is 1400px with a 16px minimum side gutter, the 1201–1360px desktop band uses 1280px, and tablet/touch layouts use the same 16px minimum gutter. Mobile behavior remains unchanged.
+- Blog article hero containers now allow up to 1280px so the opening row does not leave an unnecessarily wide right/left margin; readable body measures and mobile breakpoints remain unchanged.
+- Verification passed: Node 22 Astro check/build (265 pages, 0 errors/warnings/hints), post-CDN rewrite, and the full production audit across 265 HTML files including metadata, schema, accessibility, internal links, sitemap/noindex/robots, and asset budgets. Dependency installation reported 0 vulnerabilities.
+- The first deploy attempt was correctly rejected before activation because `/blog/cari` was 0.1 kB over its CSS route budget after an optional article-rail rule; that rule was removed, the exact commit was rebuilt/audited, and the final release activated atomically. No R2 assets changed.
+- Live verification passed for `/healthz`, `/blog/cara-menghitung-frekuensi-pembelian-pelanggan/`, `/produk/penjualan/`, and the served `BaseLayout` stylesheet containing the tightened container values. Browser screenshot QA was not run because this host has no Playwright/Chromium binary.
+
+### Published production batch — `0cad9d2179ca`
 
 - Production release `20260823T024441Z-0cad9d2179ca` is active at `https://www.ramuni.id/`; artifact SHA-256: `3d70ae09c6ebd219d0a7a3a0b3870d39c26fb979a42283fa2add7ad141e14f2f`.
 - Two new square lead-form visuals were generated with the built-in Codex image generator, inspected, saved under `outputs/lead-popup/`, and integrated as optimized WebP assets: `ramuni-lead-customer-support.webp` for blog consultation and `ramuni-lead-free-demo.webp` for money-site/tour free-demo flows. No HashMicro image provider was used.
