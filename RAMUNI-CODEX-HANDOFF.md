@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-08-20 Asia/Jakarta
+Snapshot date: 2026-08-23 Europe/Berlin
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -11,6 +11,19 @@ Canonical branch: `main`
 This is the current operational handoff for the RAMUNI Astro marketing and blog site. It must never contain plaintext PATs, API tokens, passwords, secret environment values, real lead PII, or tenant data.
 
 ## Current release
+
+### Active production batch — `0cad9d2179ca`
+
+- Production release `20260823T024441Z-0cad9d2179ca` is active at `https://www.ramuni.id/`; artifact SHA-256: `3d70ae09c6ebd219d0a7a3a0b3870d39c26fb979a42283fa2add7ad141e14f2f`.
+- Two new square lead-form visuals were generated with the built-in Codex image generator, inspected, saved under `outputs/lead-popup/`, and integrated as optimized WebP assets: `ramuni-lead-customer-support.webp` for blog consultation and `ramuni-lead-free-demo.webp` for money-site/tour free-demo flows. No HashMicro image provider was used.
+- The lead popup and free-tour form now use the requested larger square visual treatment, responsive desktop/tablet/mobile layouts, required placeholders, employee-count field, and flag + country-code phone selector. All 243 country entries remain available; the selector is hydrated from a compact country map to keep HTML within the post-CDN budget.
+- Form CSS was trimmed only for redundant defaults, with the visible layout behavior retained. The production release gate passed after CDN rewrite: 265 generated HTML files, metadata/social/schema/accessibility/internal-link/sitemap/noindex/robots/asset-budget audit, and dependency installation with zero vulnerabilities.
+- Live verification passed for `/healthz`, `/blog/cara-menghitung-frekuensi-pembelian-pelanggan/`, `/produk/penjualan/`, `/tour-produk-gratis/`, both new WebP assets, the lead form script, and popup stylesheet. The site reports the release and artifact digest above.
+- Browser screenshot QA was not run because this host has no Playwright/Chromium binary. Static build/audit and live HTML/CSS/asset contracts passed; a follow-up visual check can be run when a browser runner is available.
+
+### Image-routing rule
+
+- For all future RAMUNI raster image generation or editing, use the built-in Codex image generator. Do not use HashMicro imagegen or another provider. Keep inspected source outputs under `outputs/` and integrate optimized copies under `public/`.
 
 ### Published production batch — `fc1457c2dee1`
 
@@ -294,12 +307,11 @@ Browser automation is now available through the pinned Docker Playwright runner.
 
 ## Image generation protocol
 
-- Route all raster generation and editing through the enabled `hashmicro-imagegen-native@hashmicro-xai-local` plugin.
-- Use its native generation/edit/result tools; do not use built-in ImageGen or the legacy CLI while the plugin is available.
-- Pass `codex/gpt-5.6-sol` when the active model is 5.6-sol.
-- Use one job at a time, medium quality unless the brief requires otherwise, and store generation sources below the active workspace `outputs/` directory.
+- Route all RAMUNI raster generation and editing through the built-in Codex image generator.
+- Do not use HashMicro imagegen, the legacy CLI, or another image provider for RAMUNI assets.
+- Use one job at a time, store generation sources below the active workspace `outputs/` directory, inspect every result, and integrate only optimized copies under `public/`.
 - Generate web-specific art in RAMUNI brand colors. Do not reuse Instagram artwork as a website hero unless explicitly approved.
-- Do not blindly resubmit an identical timed-out job. If the native plugin is unavailable, report the loading/configuration error and ask for a Codex restart instead of silently changing providers.
+- If the built-in generator is unavailable, report the loading/configuration error and ask for a Codex restart instead of silently changing providers.
 
 ## Preserved content-gateway WIP
 
@@ -330,7 +342,7 @@ The current batch materially increases real product evidence and motion, but sev
 - Continue differentiating tool cards and article imagery only where the topic benefits from it, while preserving the passing route CSS/image budgets.
 - The eight new article drafts require named editorial review before changing `reviewStatus` to `reviewed` or allowing production indexation; they intentionally remain absent from the production archive and sitemap.
 - Run human visual QA at the listed responsive widths before production promotion because browser automation remains unreliable on this host.
-- Keep new raster generation on the native HashMicro plugin and keep disposable source outputs outside the published tree.
+- Keep new raster generation on the built-in Codex generator and keep inspected source outputs under `outputs/` until the optimized copy is reviewed.
 
 ## Product-first visual and CRO release, 2026-07-27
 
@@ -394,7 +406,7 @@ The current batch materially increases real product evidence and motion, but sev
 - Deploy verification: the deploy script rebuilt with staging/noindex variables, synchronized the three Phase 1 mascot WebP assets to R2, rewrote CDN references, passed the full site audit across 98 HTML files, reported zero dependency vulnerabilities, compressed the release, switched the current symlink atomically, and passed local health verification.
 - Live verification: both loopback and public DNS health checks passed for `20260729T091116Z-440a233ce0be`. Representative live routes `/`, `/bantuan/`, `/produk/`, `/solusi/`, `/blog/`, and `/tour-produk-gratis/` returned HTTP 200 with `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml` and `/sitemap-index.xml` return 404.
 - Cleanup after verification removed canonical `node_modules`, `dist`, and `.astro` build artifacts, reclaiming roughly 362 MiB while preserving the immutable staging release and published Git commits.
-- No new raster image generation was run in this batch. If future generated visuals are needed, use the native HashMicro imagegen plugin only and save disposable outputs outside the published tree until reviewed.
+- No new raster image generation was run in this batch. Future generated visuals follow the current built-in Codex image-routing rule and are saved under `outputs/` until reviewed.
 
 ## Compact dashboard and continuous consultation release, 2026-07-29
 
@@ -405,7 +417,7 @@ The current batch materially increases real product evidence and motion, but sev
 - Verification passed: `git diff --check`; JavaScript syntax checks; Astro check with 128 files and 0 errors, warnings, or hints; staging build with 127 pages; 12/12 calculator tests; full static/site/SEO/performance audit; and `npm audit --audit-level=high` with 0 vulnerabilities.
 - Focused Docker Chromium QA covered the homepage, Asisten AI, stock solution, and consultation chat at 375, 768, and 1440 px. The consultation transcript preserved the preceding RAMUNI question, the visitor name, the next RAMUNI question, and a masked phone reply.
 - Live verification returned HTTP 200 for `/`, `/produk/asisten-ai/`, and `/solusi/kelola-stok/`. Each carries `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; homepage HTML contains `noindex,follow`; `/sitemap.xml` and `/sitemap-index.xml` return 404. Live HTML contains the new Asisten AI, homepage dashboard, and consultation transcript markers.
-- No raster image generation was required for this release. Future raster generation/editing must use the native HashMicro image plugin. Disposable browser QA screenshots and canonical build dependencies were removed after recording this evidence; the immutable staging release and published commit were preserved.
+- No raster image generation was required for this release. Future raster generation/editing follows the current built-in Codex image-routing rule. Disposable browser QA screenshots and canonical build dependencies were removed after recording this evidence; the immutable staging release and published commit were preserved.
 
 ## Product story cleanup and resource generator release, 2026-07-29
 
@@ -420,7 +432,7 @@ The current batch materially increases real product evidence and motion, but sev
 - Atomic staging release: `20260729T160254Z-c9ef0b49506c`; artifact SHA-256 `68eaf77c5b1606257a37194bbfb0b79fbd200a0fcaa811c71fe64b6baec2ca73`; current release path `/var/www/ramuni-staging/releases/20260729T160254Z-c9ef0b49506c`.
 - Live verification passed for `/healthz`, `/`, `/produk/inventori/`, `/produk/asisten-ai/`, `/solusi/kelola-stok/`, `/sumber-daya/`, `/kalkulator/`, and `/generator/lembar-stok-harian/`. Each returned HTTP 200 with `Cache-Control: no-store` and `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`; live HTML contains `noindex,follow`; `/sitemap.xml`, `/sitemap-index.xml`, and `/sitemap-blog.xml` return 404.
 - Live marker checks confirmed the generator has `Unduh Excel`, `CSV, Excel, atau PDF`, and the accessible export dialog label; Inventori contains the new readiness/audience wording.
-- No raster image generation was run in this batch. Future raster work must continue through the native HashMicro imagegen plugin only.
+- No raster image generation was run in this batch. Future raster work follows the current built-in Codex image-routing rule only.
 
 ## Homepage motion and consultation chat release, 2026-07-30
 
