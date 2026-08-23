@@ -188,7 +188,7 @@ const schema = [
           <div class="article-date-row"><span>Diterbitkan {formatDate(post.data.publishedAt)}</span>{hasMaterialUpdate && <span>Diperbarui {formatDate(updatedAt)}</span>}<span>Waktu baca {post.data.readingTime}</span></div>
           <div class="article-tags" aria-label="Topik artikel">{post.data.tags.map((tag) => <span>{tag}</span>)}</div>
         </div>
-        <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt={post.data.coverAlt} fetchpriority="high" /></div><figcaption>Visual ringkas untuk membantu membaca isi artikel.</figcaption></figure>
+        <figure class="article-cover" style={`--article-cover-ratio:${coverWidth}/${coverHeight}`}><div><img src={post.data.cover} width={coverWidth} height={coverHeight} alt="" fetchpriority="high" /></div></figure>
       </div>
     </header>
 
@@ -306,6 +306,44 @@ const schema = [
         if (toc instanceof HTMLDetailsElement) window.requestAnimationFrame(() => { toc.open = false; });
       });
     });
+    let articleTocDockCleanup: (() => void) | null = null;
+    const initArticleTocDock = () => {
+      articleTocDockCleanup?.();
+      const toc = document.querySelector<HTMLElement>('.article-toc-mobile[data-article-toc]');
+      const stage = toc?.closest('.article-reading-stage');
+      if (!(toc instanceof HTMLElement) || !(stage instanceof HTMLElement)) return;
+      const media = window.matchMedia('(max-width: 1200px)');
+      let frame = 0;
+      const update = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          frame = 0;
+          if (!media.matches) {
+            toc.classList.remove('is-floating');
+            return;
+          }
+          const stageRect = stage.getBoundingClientRect();
+          const tocRect = toc.getBoundingClientRect();
+          const dockHeight = Math.min(Math.max(toc.offsetHeight, 62), window.innerHeight * .56);
+          const hasPassedDockPoint = tocRect.top <= window.innerHeight - 96;
+          const canDock = stageRect.top <= window.innerHeight - 96 && stageRect.bottom > dockHeight + 32;
+          toc.classList.toggle('is-floating', hasPassedDockPoint && canDock);
+        });
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      media.addEventListener?.('change', update);
+      articleTocDockCleanup = () => {
+        window.removeEventListener('scroll', update);
+        window.removeEventListener('resize', update);
+        media.removeEventListener?.('change', update);
+        if (frame) window.cancelAnimationFrame(frame);
+        toc.classList.remove('is-floating');
+      };
+      update();
+    };
+    initArticleTocDock();
+    document.addEventListener('astro:page-load', initArticleTocDock);
     if (tocTargets.length) {
       setActiveToc(tocTargets[0].id);
       if ('IntersectionObserver' in window) {
@@ -322,7 +360,7 @@ const schema = [
 
 <style is:global>
   .article-faq__list{display:grid;gap:10px;margin-top:24px;border-top:0}.article-faq__item{padding:0!important;border:1px solid var(--ink-10);background:var(--white);transition:border-color var(--fast),background var(--fast),box-shadow var(--fast)}.article-faq__item[open]{border-color:var(--teal);background:var(--rice);box-shadow:0 12px 32px rgb(11 48 69/.07)}.article-faq__item summary{display:grid;grid-template-columns:38px minmax(0,1fr) 28px;gap:14px;align-items:center;padding:20px 22px;cursor:pointer;list-style:none;font-weight:400}.article-faq__item summary::-webkit-details-marker{display:none}.article-faq__index{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:var(--yellow);color:var(--ink);font-size:.68rem;font-weight:900;font-variant-numeric:tabular-nums}.article-faq__item summary strong{font-size:.98rem;line-height:1.4}.article-faq__item summary i{display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:1.1rem;font-style:normal;line-height:1;transition:transform var(--fast),background var(--fast),color var(--fast)}.article-faq__item[open] summary i{transform:rotate(45deg);background:var(--teal);color:var(--white)}.article-faq__answer{padding:0 64px 22px 74px}.article-faq__answer p{max-width:64ch;margin:0;color:var(--ink-72);line-height:1.7}.article-faq__item summary:focus-visible{outline:3px solid var(--teal-12);outline-offset:-3px}
-  @media(max-width:1200px){.article-toc-mobile[data-article-toc]{position:sticky;bottom:max(74px,calc(env(safe-area-inset-bottom) + 68px));z-index:30;display:block;margin:0 0 30px;padding:0;border:1px solid var(--ink-20);border-radius:14px;background:rgb(255 255 255/.96);box-shadow:0 12px 34px rgb(11 48 69/.14);backdrop-filter:blur(12px)}.article-toc-mobile[data-article-toc] summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 17px;list-style:none;color:var(--ink)}.article-toc-mobile[data-article-toc] summary::-webkit-details-marker{display:none}.article-toc-mobile[data-article-toc] summary i{display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:1.15rem;font-style:normal;line-height:1;transition:transform var(--fast),background var(--fast),color var(--fast)}.article-toc-mobile[data-article-toc][open] summary i{transform:rotate(45deg);background:var(--teal);color:var(--white)}.article-toc-mobile[data-article-toc] ol{max-height:min(48dvh,390px);overflow:auto;margin:0;padding:0 17px 14px;gap:4px}.article-toc-mobile[data-article-toc] summary:focus-visible{outline:3px solid var(--teal-12);outline-offset:-3px}}
+  @media(max-width:1200px){.article-toc-mobile[data-article-toc]{position:relative;bottom:auto;z-index:30;display:block;margin:0 0 30px;padding:0;border:1px solid var(--ink-20);border-radius:14px;background:rgb(255 255 255/.96);box-shadow:0 12px 34px rgb(11 48 69/.14);backdrop-filter:blur(12px);scroll-margin-bottom:120px}.article-toc-mobile[data-article-toc].is-floating{position:fixed;left:16px;right:16px;bottom:max(74px,calc(env(safe-area-inset-bottom) + 68px));z-index:80;margin:0;box-shadow:0 16px 42px rgb(11 48 69/.2)}.article-toc-mobile[data-article-toc] summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 17px;list-style:none;color:var(--ink)}.article-toc-mobile[data-article-toc] summary::-webkit-details-marker{display:none}.article-toc-mobile[data-article-toc] summary i{display:grid;width:26px;height:26px;place-items:center;border:1px solid var(--ink-20);border-radius:50%;color:var(--teal);font-size:1.15rem;font-style:normal;line-height:1;transition:transform var(--fast),background var(--fast),color var(--fast)}.article-toc-mobile[data-article-toc][open] summary i{transform:rotate(45deg);background:var(--teal);color:var(--white)}.article-toc-mobile[data-article-toc] ol{max-height:min(48dvh,390px);overflow:auto;margin:0;padding:0 17px 14px;gap:4px}.article-toc-mobile[data-article-toc] li,.article-toc-mobile[data-article-toc] a{min-width:0;overflow-wrap:anywhere}.article-toc-mobile[data-article-toc] summary:focus-visible{outline:3px solid var(--teal-12);outline-offset:-3px}}
   @media(max-width:740px){.article-toc-mobile[data-article-toc]{bottom:max(72px,calc(env(safe-area-inset-bottom) + 66px));margin-inline:0}.article-faq__item summary{grid-template-columns:32px minmax(0,1fr) 26px;gap:10px;padding:15px 14px}.article-faq__item summary strong{font-size:.92rem}.article-faq__index{width:28px;height:28px}.article-faq__answer{padding:0 14px 17px 56px}}
 </style>
 
