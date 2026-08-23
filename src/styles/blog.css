@@ -501,8 +501,6 @@
 .article-content{text-align:left}
 .article-content>:where(p,ul,ol,blockquote){max-width:80ch}
 @media(min-width:1201px){
-  /* Let the article rail sit closer to the reading column instead of leaving
-     a large unused middle band on wide blog screens. */
   .article-reading-grid{grid-template-columns:minmax(0,1fr) minmax(220px,260px);justify-content:start;gap:clamp(36px,4vw,60px)}
 }
 @media(max-width:740px){
