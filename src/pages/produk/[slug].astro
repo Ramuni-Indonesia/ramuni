@@ -64,6 +64,18 @@ const tourIntentByProduct: Record<string, string> = {
   integrasi: 'overview',
 };
 const tourHref = `/tour-produk-gratis/?intent=${tourIntentByProduct[product.slug] || 'overview'}`;
+const productCtaLabels: Record<string, string> = {
+  'asisten-ai': 'Tanya dengan contoh',
+  'dashboard-bisnis': 'Lihat ringkasan gratis',
+  'katalog-produk': 'Rapikan katalog',
+  penjualan: 'Baca contoh penjualan',
+  inventori: 'Cek alur stok',
+  keuangan: 'Lihat alur keuangan',
+  pelanggan: 'Pahami pola pelanggan',
+  'laporan-insight': 'Buka contoh laporan',
+  integrasi: 'Lihat jalur data',
+};
+const productCtaLabel = productCtaLabels[product.slug] || 'Lihat contoh alur gratis';
 const closingVisual = getProductContextVisual(product.slug);
 const narrative = productNarratives[product.slug];
 const seo = {
@@ -160,10 +172,10 @@ const structuredData = [
           <h1 id="product-title">{heroTitle}</h1>
           <p class="pd-hero__lead">{detail.heroLead}</p>
           <div class="button-row">
-            <a class="button button--primary" href={tourHref}>Lihat contoh alur gratis</a>
+            <a class="button button--primary" href={tourHref}>{productCtaLabel}</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
-          <p class="pd-hero__availability">Bawa satu kebutuhan. Periksa contoh data, alur kerja, dan tindak lanjutnya sebelum membahas akses.</p>
+          <p class="pd-hero__availability">Bawa satu kebutuhan. Periksa contoh data, alur kerja, dan batasnya sebelum membahas akses.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />
@@ -313,7 +325,7 @@ const structuredData = [
           eyebrow="Contoh alur gratis"
           title={detail.closing}
           body={`${detail.outcome} Lihat cara kerja ${product.title} pada contoh aman, lalu bahas fitur yang sesuai dengan masalah yang Anda bawa.`}
-          primaryLabel="Lihat contoh alur gratis"
+          primaryLabel={productCtaLabel}
           primaryHref={tourHref}
           secondaryLabel="Bandingkan Produk"
           secondaryHref="/produk/"

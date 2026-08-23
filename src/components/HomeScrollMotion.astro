@@ -1,0 +1,67 @@
+<!-- Homepage motion is intentionally small: it adds depth to proof cards without hiding content. -->
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const desktopMotion = window.matchMedia('(min-width: 1201px) and (hover: hover) and (pointer: fine)');
+  const root = document.querySelector<HTMLElement>('main');
+  let context: { revert: () => void } | undefined;
+  let loader: IntersectionObserver | undefined;
+
+  const initialise = async () => {
+    if (!root || reduceMotion.matches || !desktopMotion.matches || context) return;
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]);
+    if (!root || reduceMotion.matches || !desktopMotion.matches || context) return;
+    gsap.registerPlugin(ScrollTrigger);
+    context = gsap.context(() => {
+      const cards = root.querySelectorAll<HTMLElement>('.problem-point, .module-cell, .solution-path');
+      if (!cards.length) return;
+      gsap.fromTo(cards,
+        { y: 18, rotate: 0.35 },
+        {
+          immediateRender: false,
+          y: 0,
+          rotate: 0,
+          duration: 0.72,
+          stagger: 0.055,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: root, start: 'top 76%', once: true },
+        },
+      );
+    }, root);
+  };
+
+  const reset = () => {
+    loader?.disconnect();
+    loader = undefined;
+    context?.revert();
+    context = undefined;
+  };
+
+  const arm = () => {
+    reset();
+    if (!root || reduceMotion.matches || !desktopMotion.matches) return;
+    if (!('IntersectionObserver' in window)) {
+      void initialise();
+      return;
+    }
+    loader = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loader?.disconnect();
+      loader = undefined;
+      void initialise();
+    }, { rootMargin: '160px 0px' });
+    loader.observe(root);
+  };
+
+  const onPreferenceChange = () => arm();
+  reduceMotion.addEventListener('change', onPreferenceChange);
+  desktopMotion.addEventListener('change', onPreferenceChange);
+  window.addEventListener('pagehide', () => {
+    reduceMotion.removeEventListener('change', onPreferenceChange);
+    desktopMotion.removeEventListener('change', onPreferenceChange);
+    reset();
+  }, { once: true });
+  arm();
+</script>

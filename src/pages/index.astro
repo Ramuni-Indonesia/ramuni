@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedMuniWork from '../components/AnimatedMuniWork.astro';
 import DashboardMotion from '../components/DashboardMotion.astro';
+import HomeScrollMotion from '../components/HomeScrollMotion.astro';
 import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
@@ -46,12 +47,12 @@ const schema = [
 ];
 ---
 <BaseLayout title="Aplikasi Bisnis UMKM: Penjualan, Stok, dan Keuangan | RAMUNI" description="RAMUNI membantu UMKM membaca penjualan, stok, kas, dan pelanggan dalam satu alur, lalu membuka bukti sebelum menentukan langkah bisnis berikutnya." schema={schema}>
-  <section class="home-hero chapter" data-chapter="Pembuka">
+  <section class="home-hero chapter" data-chapter="Pembuka" data-home-motion>
     <div class="container hero-composition">
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
-        <h1>Pahami penjualan, stok, dan keuangan. Tahu langkah berikutnya.</h1>
-        <p class="lede">RAMUNI menyatukan catatan penjualan, stok, kas, dan pelanggan, lalu menunjukkan perubahan serta bukti yang perlu diperiksa sebelum Anda bertindak.</p>
+        <h1>Angka usaha berubah. Cari tahu apa yang menggerakkannya.</h1>
+        <p class="lede">RAMUNI menyatukan penjualan, stok, kas, dan pelanggan, lalu membantu Anda membuka penyebabnya sebelum memilih langkah.</p>
         <div class="button-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="text-link text-link--large" href="#dashboard-product-proof">Lihat dashboard RAMUNI</a></div>
         <p class="hero-cta-note">Pilih satu masalah dan isi kontak singkat. Tim RAMUNI akan menunjukkan contoh alur yang relevan lewat WhatsApp, tanpa meminta data bisnis Anda.</p>
       </div>
@@ -63,9 +64,9 @@ const schema = [
   <section class="section problem-chapter chapter" data-chapter="Masalah">
     <div class="container problem-landscape">
       <header class="problem-landscape__head reveal">
-        <p class="section-kicker">Satu angka jarang cukup untuk menjelaskan perubahan.</p>
-        <h2>Lihat hubungan yang sulit terbaca saat data masih terpisah.</h2>
-        <p>Pilih situasi yang paling dekat dengan usaha Anda. Contoh dashboard akan menunjukkan konteks yang perlu dibuka, bukan memberi jawaban tanpa dasar.</p>
+        <p class="section-kicker">Satu angka tidak pernah bercerita sendirian.</p>
+        <h2>Saat penjualan berubah, buka penyebabnya, bukan sekadar grafik.</h2>
+        <p>Pilih situasi yang paling dekat dengan pekerjaan Anda. Kami tunjukkan catatan mana yang perlu dibaca bersama dan mana yang masih perlu dicek.</p>
       </header>
       <HomepageProblemProof />
     </div>
@@ -73,7 +74,7 @@ const schema = [
 
   <section class="section solutions-stage chapter" data-chapter="Solusi">
     <div class="container solution-field">
-      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Pilih masalah yang ingin Anda pahami lebih dulu.</h2><p>Anda tidak perlu mengubah semuanya sekaligus. Buka satu masalah, lalu lihat data dan modul yang berkaitan.</p></div>
+      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Mulai dari hal yang sedang mengganggu pekerjaan.</h2><p>Anda tidak perlu merapikan semuanya sekaligus. Buka satu masalah, lalu lihat data dan modul yang memang berkaitan.</p></div>
       <div class="solution-paths">
         {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}/`} class="solution-path reveal" style={`--i:${i}`}><span>0{i + 1}</span><div><h3>{solution.title}</h3><p>{solution.summary}</p></div><b aria-hidden="true">↗</b></a>)}
       </div>
@@ -170,7 +171,7 @@ const schema = [
 
   <section class="section modules-stage chapter" data-chapter="Produk">
     <div class="container module-atlas">
-      <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Pilih bagian usaha yang ingin Anda pahami.</h2><p>Mulai dari pertanyaan yang paling dekat dengan pekerjaan hari ini.</p></header>
+      <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Buka angka yang paling sering Anda cari.</h2><p>Mulai dari pertanyaan yang muncul di pekerjaan hari ini, lalu telusuri modul yang bisa menjawabnya.</p></header>
       <div class="module-map">
         {products.map((product, i) => <a class="module-cell reveal" href={`/produk/${product.slug}/`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><h3>{product.title}</h3><p>{product.question}</p><small>Pelajari modul</small></a>)}
       </div>
@@ -257,8 +258,9 @@ const schema = [
     <div class="container closing-composition reveal">
       <p>Meramu insight. Memberi arah.</p>
       <h2>Siap melihat masalah usaha dengan lebih jelas?</h2>
-      <a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a>
+      <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a><a class="text-link text-link--large" href="/solusi/">Lihat semua solusi</a></div>
     </div>
   </section>
   <script is:inline type="module" src="/scripts/home-interactions.js"></script>
+  <HomeScrollMotion />
 </BaseLayout>

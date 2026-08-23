@@ -35,10 +35,10 @@ const productFaq = [
       <div class="container catalog-hero__layout">
         <div class="reveal is-visible">
           <p class="section-kicker">Produk RAMUNI</p>
-          <h1>Lihat contoh penjualan, stok, dan kas dalam satu layar.</h1>
+          <h1>Jangan mulai dari menu. Mulai dari pertanyaan yang harus dijawab.</h1>
         </div>
         <div class="catalog-hero__aside reveal is-visible">
-          <p>Tampilan RAMUNI memperlihatkan bagaimana catatan usaha dibaca bersama, perubahan penting dibuka, lalu sumber angkanya ditelusuri.</p>
+          <p>Setiap modul RAMUNI berangkat dari pekerjaan nyata: membaca transaksi, mengecek stok, memahami kas, atau menyiapkan bahan rapat. Buka yang paling Anda perlukan sekarang.</p>
           <div class="button-row">
             <a class="button button--primary" href="/tour-produk-gratis/">Lihat contoh alur gratis</a>
             <a class="button button--secondary" href="#product-catalog">Lihat semua modul</a>
@@ -54,8 +54,8 @@ const productFaq = [
       <div class="container">
         <p class="section-kicker">Sistem yang terhubung</p>
         <div class="product-system__heading">
-          <h2 id="product-system-title">Tahu angka mana yang perlu dicek sebelum mengambil keputusan.</h2>
-          <p>RAMUNI tidak berhenti pada grafik. Setiap sorotan tetap membawa periode dan sumber agar Anda tahu alasan sebelum bertindak.</p>
+          <h2 id="product-system-title">Lihat angka yang berubah. Tahu apa yang perlu dicek.</h2>
+          <p>RAMUNI tidak berhenti pada grafik. Setiap sorotan membawa periode dan sumber, sehingga tim bisa membahas alasan yang sama sebelum bertindak.</p>
         </div>
         <div id="product-direction-model" class="product-direction-model reveal">
           <DecisionFlow3D />
@@ -67,8 +67,8 @@ const productFaq = [
       <div class="container product-catalog__layout">
         <header class="product-catalog__intro">
           <p class="section-kicker">Keluarga produk</p>
-          <h2 id="product-catalog-title">Pilih dari pertanyaan bisnis Anda.</h2>
-          <p>Halaman tiap modul menjelaskan manfaat, contoh tampilan, dan alur kerja yang membantu pekerjaan sehari-hari.</p>
+          <h2 id="product-catalog-title">Pilih pekerjaan yang ingin dibuat lebih ringan.</h2>
+          <p>Buka modul dari pertanyaan yang sering muncul di meja Anda. Tiap halaman menjelaskan contoh tampilan, batas penggunaan, dan alur kerja yang bisa ditelusuri.</p>
         </header>
         <div class="product-families">
           <section class="product-family" aria-labelledby="family-intelligence">
@@ -123,7 +123,7 @@ const productFaq = [
 
     <section class="section product-capabilities" aria-labelledby="capabilities-title">
       <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Prinsip yang menjaga setiap modul tetap dapat diperiksa.</h2><p>Tampilan produk memperlihatkan akses, jejak perubahan, dan sumber angka dalam satu alur yang mudah ditelusuri.</p></header>
+        <header><h2 id="capabilities-title">Setiap modul memberi jalan pulang ke angka asalnya.</h2><p>Akses, jejak perubahan, dan sumber angka tetap terlihat saat tim berpindah dari ringkasan ke detail.</p></header>
         <div class="capability-folds">
           {sharedCapabilities.map((item, index) => (
             <article class="capability-fold reveal" style={`--i:${index}`}>
@@ -147,7 +147,7 @@ const productFaq = [
 
     <section class="section role-paths" aria-labelledby="role-paths-title">
       <div class="container role-paths__layout">
-        <header><h2 id="role-paths-title">Lihat dari tanggung jawab tim.</h2><p>Akses dan prioritas berubah sesuai pekerjaan, bukan sekadar jabatan.</p></header>
+        <header><h2 id="role-paths-title">Tampilan mengikuti pekerjaan tiap orang.</h2><p>Akses dan prioritas berubah sesuai tanggung jawab, bukan sekadar jabatan di kartu nama.</p></header>
         <nav class="role-paths__nav" aria-label="Produk berdasarkan peran">
           {roles.map((role) => <a href={`/untuk/${role.slug}/`}><strong>{role.title}</strong><span>{role.summary}</span></a>)}
         </nav>
