@@ -5,6 +5,7 @@ import ClarityTracking from '../components/ClarityTracking.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 import LeadCapturePopup from '../components/LeadCapturePopup.astro';
 import ParallaxMotion from '../components/ParallaxMotion.astro';
+import GlobalScrollMotion from '../components/GlobalScrollMotion.astro';
 import { releaseGates } from '../config/release';
 import '../styles/global.css';
 import '../styles/mascot-motion.css';
@@ -51,6 +52,9 @@ const absoluteNextPage = nextPage ? new URL(nextPage, Astro.site || Astro.url.or
 const fullTitle = title.includes('RAMUNI') ? title : `${title} | RAMUNI`;
 const keywordContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 const pathname = new URL(absoluteCanonical).pathname;
+// The browser-only generator already ships its own editor bundle; keep the
+// marketing motion pass off that tool route to preserve its tight JS budget.
+const globalScrollMotionEnabled = !pathname.startsWith('/generator/');
 const isBlogContext = pathname === '/blog/' || pathname.startsWith('/blog/');
 const popupContext = isBlogContext ? 'blog' : 'site';
 const inferredPageType = pageType
@@ -178,5 +182,6 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>
     <script is:inline src="/scripts/mascot-motion.js"></script>
+    {globalScrollMotionEnabled && <GlobalScrollMotion />}
   </body>
 </html>

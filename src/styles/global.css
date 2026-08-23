@@ -46,6 +46,7 @@ body.menu-open .site-header{position:fixed;inset:0 0 auto;width:100%}body.menu-o
 
 /* Motion: content stays visible before intersection so captures, print, slow devices, and interrupted JS never produce blank sections. */
 .reveal{opacity:1;transform:none}
+html[data-gsap-scroll-motion] .js .reveal.is-visible:not(.is-settled){animation:none!important}
 @media(prefers-reduced-motion:no-preference) and (min-width:1201px) and (hover:hover) and (pointer:fine){.js .reveal.is-visible:not(.is-settled){animation:reveal-arrive var(--reveal) var(--ease) both;animation-delay:calc(var(--i,0)*45ms)}@keyframes reveal-arrive{from{translate:0 16px}to{translate:0 0}}}
 
 /* FAQ, close, footer */

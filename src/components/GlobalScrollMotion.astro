@@ -1,0 +1,89 @@
+<!-- One deferred GSAP/ScrollTrigger pass for every marketing section. -->
+<script>
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+  root.dataset.gsapScrollMotion = 'pending';
+  let context: { revert: () => void } | undefined;
+  let loader: IntersectionObserver | undefined;
+  let disposed = false;
+  const all = () => Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
+  const targets = () => all().filter((node) => !node.classList.contains('is-visible') && !node.closest('[data-motion-ignore]'));
+  const showAll = () => all().forEach((node) => node.classList.add('is-visible', 'is-settled'));
+  const reset = () => { loader?.disconnect(); loader = undefined; context?.revert(); context = undefined; };
+
+  const initialise = async () => {
+    const nodes = targets();
+    if (!nodes.length || reduceMotion.matches || saveData) {
+      showAll();
+      delete root.dataset.gsapScrollMotion;
+      return;
+    }
+
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]);
+    if (disposed || reduceMotion.matches || saveData) {
+      showAll();
+      delete root.dataset.gsapScrollMotion;
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+    root.dataset.gsapScrollMotion = 'active';
+    context = gsap.context(() => {
+      gsap.set(nodes, { autoAlpha: 0, y: 18 });
+      ScrollTrigger.batch(nodes, {
+        start: 'top 88%',
+        once: true,
+        onEnter: (elements) => {
+          const targets = elements as HTMLElement[];
+          targets.forEach((node) => node.classList.add('is-visible'));
+          gsap.to(targets, {
+            autoAlpha: 1,
+            y: 0,
+            duration: window.matchMedia('(max-width: 740px)').matches ? 0.52 : 0.64,
+            ease: 'power3.out',
+            stagger: { each: 0.055, from: 'start' },
+            overwrite: 'auto',
+            onComplete: () => targets.forEach((node) => node.classList.add('is-settled')),
+          });
+        },
+      });
+      ScrollTrigger.refresh();
+    }, document.body);
+  };
+
+  const arm = () => {
+    reset();
+    const nodes = targets();
+    if (!nodes.length || reduceMotion.matches || saveData) {
+      showAll();
+      delete root.dataset.gsapScrollMotion;
+      return;
+    }
+    if (!('IntersectionObserver' in window)) {
+      void initialise();
+      return;
+    }
+    loader = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loader?.disconnect();
+      loader = undefined;
+      void initialise();
+    }, { rootMargin: '320px 0px' });
+    loader.observe(nodes[0]);
+  };
+
+  const onPreferenceChange = () => arm();
+  reduceMotion.addEventListener('change', onPreferenceChange);
+  document.addEventListener('astro:page-load', arm);
+  document.addEventListener('astro:before-swap', reset);
+  window.addEventListener('pagehide', () => {
+    disposed = true;
+    reduceMotion.removeEventListener('change', onPreferenceChange);
+    reset();
+  }, { once: true });
+  arm();
+</script>
