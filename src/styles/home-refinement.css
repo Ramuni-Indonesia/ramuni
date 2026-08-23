@@ -517,3 +517,29 @@
 @media(prefers-reduced-motion:reduce){
   .home-hero-guide__mascot{animation:none!important}
 }
+
+/* Mobile type safety: let the value proposition use the full text column.
+   The previous 13ch cap was narrower than the long Indonesian word
+   “menggerakkannya”, which made the final line look clipped on small phones. */
+@media(max-width:740px){
+  .home-hero .hero-copy{width:100%;max-width:100%}
+  .home-hero h1{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(2.25rem,10.5vw,3.05rem);
+    line-height:1.06;
+    letter-spacing:-.045em;
+    text-wrap:pretty;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+}
+
+/* The same long-word guard applies to shared and specialized hero headings
+   without changing their desktop editorial measure. */
+@media(max-width:740px){
+  :where(.page-hero,.catalog-hero,.solution-hub-hero,.resource-hub-hero,.learning-hero,.learning-detail-hero,.glossary-detail-hero,.template-library-hero,.template-detail-hero,.tools-hero,.tool-detail-hero,.generator-hero,.author-directory-hero,.pd-hero,.sd-hero) h1{
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+}
