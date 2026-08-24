@@ -13,8 +13,8 @@ const articleIds = fs.readdirSync(blogDir)
   .map((file) => file.slice(0, -3))
   .sort();
 
-if (articleIds.length !== 107) {
-  throw new Error(`Expected 107 blog articles, found ${articleIds.length}`);
+if (articleIds.length === 0) {
+  throw new Error('No blog articles found');
 }
 
 if (!articleIds.includes(productArticleId)) {

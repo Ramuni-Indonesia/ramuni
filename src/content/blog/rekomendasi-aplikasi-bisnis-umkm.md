@@ -64,8 +64,28 @@ sources:
     url: "https://www.ramuni.id/pricing/"
     accessedAt: 2026-08-24
     note: "Halaman pricing RAMUNI digunakan sebagai rujukan untuk melihat paket, batas akses, dan jalur mencoba. Periksa halaman resmi untuk konfigurasi terbaru."
+  - title: "Harga Mekari"
+    publisher: "Mekari"
+    url: "https://mekari.com/harga/"
+    accessedAt: 2026-08-24
+    note: "Halaman harga resmi yang ditinjau menampilkan Mekari Jurnal mulai dari Rp399.000 per bulan. Detail paket dan bundel perlu dikonfirmasi sebelum berlangganan."
+  - title: "Harga Kledo"
+    publisher: "Kledo"
+    url: "https://kledo.com/harga/"
+    accessedAt: 2026-08-24
+    note: "Harga resmi yang ditinjau menampilkan Free Rp0, Pro Rp159.900, Elite Rp279.900, dan Champion Rp399.900 per bulan bila ditagih tahunan. Harga dapat berubah."
+  - title: "Harga majoo"
+    publisher: "majoo"
+    url: "https://majoo.id/harga"
+    accessedAt: 2026-08-24
+    note: "Halaman harga resmi yang ditinjau menampilkan Starter Rp249.000, Advance Rp499.000, dan Prime Rp999.000 per outlet per bulan, sebelum pajak."
+  - title: "Harga Olsera"
+    publisher: "Olsera"
+    url: "https://www.olsera.com/id/pricing"
+    accessedAt: 2026-08-24
+    note: "Halaman harga resmi yang ditinjau menampilkan harga tahunan promo Basic Rp1.288.000, Premium Rp1.988.000, dan Pro Rp2.688.000, sebelum pajak."
 disclaimer: "Artikel ini bersifat edukatif dan netral, bukan endorsement, audit keamanan, atau perbandingan komersial resmi. Nama dan merek adalah milik pemiliknya. Fitur, harga, integrasi, trial, serta kebijakan vendor dapat berubah; verifikasi langsung sebelum membeli atau memindahkan data. Jangan mengunggah data pelanggan atau informasi sensitif saat uji coba."
-updateSummary: "Artikel baru tentang pemilihan aplikasi bisnis UMKM dengan ringkasan fokus vendor dan checklist uji yang dapat diperiksa."
+updateSummary: "Artikel diperbarui dengan tabel visual, perbandingan kelebihan dan batas, snapshot harga resmi, serta tautan evaluasi untuk RAMUNI dan empat vendor lain."
 related:
   - "cara-memilih-aplikasi-pencatatan-usaha"
   - "perbandingan-catatan-manual-dan-aplikasi-usaha"
@@ -107,6 +127,34 @@ Ringkasan berikut disusun dari halaman produk resmi yang ditinjau pada 24 Agustu
 | **Olsera** | POS, pembukuan, inventori, pelanggan, karyawan, online order, dan integrasi | Apakah alur offline/online, marketplace, pembayaran, laporan, dan dukungan cocok untuk jenis toko Anda? |
 
 Perusahaan dapat memperbarui nama paket, harga, integrasi, dan batas penggunaan kapan saja. Karena itu, jangan menyalin angka dari artikel lama atau menganggap keterangan pada satu halaman berlaku untuk seluruh paket. Buka halaman pricing dan dokumentasi resmi pada saat mengambil keputusan.
+
+## Perbandingan visual, kelebihan, dan batas
+
+Tabel ini membantu melihat perbedaan arah produk tanpa menganggap satu vendor paling baik untuk semua usaha. Visual di bawah adalah ilustrasi konseptual yang dibuat khusus untuk menjelaskan fokus alur, bukan screenshot resmi atau bukti bahwa semua panel tersebut tersedia pada setiap paket.
+
+| Aplikasi | Visual fokus | Kelebihan yang relevan | Batas atau hal yang perlu dibandingkan dengan RAMUNI | Tautan resmi |
+| --- | --- | --- | --- | --- |
+| **RAMUNI** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-ramuni.webp" width="220" height="124" alt="Ilustrasi konseptual workspace RAMUNI yang menghubungkan penjualan, stok, laporan, pengetahuan, dan pertanyaan AI" loading="lazy" decoding="async"> | Menghubungkan angka usaha, pengetahuan, dan pertanyaan lanjutan dalam satu workspace. Cocok bila pemilik perlu konteks sebelum memilih tindakan. | POS, pajak, pembayaran, multi-outlet, integrasi, dan batas paket tetap perlu diuji sesuai konfigurasi yang aktif. | [RAMUNI](/), [fitur](/features/), [harga](/pricing/) |
+| **Mekari Jurnal** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-mekari-jurnal.webp" width="220" height="124" alt="Ilustrasi konseptual aplikasi keuangan dengan jurnal, invoice, arus kas, inventori, dan laporan" loading="lazy" decoding="async"> | Lebih dekat dengan kebutuhan akuntansi, transaksi, invoice, inventori, dan laporan keuangan yang terstruktur. | Bandingkan struktur akun, pajak, gudang, integrasi, hak akses, ekspor, dan paket yang memuat fitur yang Anda perlukan. Jika konteks lintas pengetahuan adalah prioritas, uji alurnya berdampingan dengan RAMUNI. | [Produk Jurnal](https://mekari.com/produk/jurnal/), [harga Mekari](https://mekari.com/harga/) |
+| **Kledo** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-kledo.webp" width="220" height="124" alt="Ilustrasi konseptual aplikasi akuntansi dengan invoice, pembelian, stok, biaya, dan laporan" loading="lazy" decoding="async"> | Fokus pada akuntansi, invoice, purchasing, biaya, inventori, laporan, dan beberapa integrasi usaha. | Periksa batas pengguna, gudang, invoice, laporan, API, marketplace, serta perbedaan paket bulanan dan tahunan. RAMUNI lebih cocok diuji bila pertanyaan lintas operasional dan pengetahuan perlu dirangkai. | [Kledo](https://kledo.com/), [harga Kledo](https://kledo.com/harga/) |
+| **majoo** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-majoo.webp" width="220" height="124" alt="Ilustrasi konseptual sistem kasir dengan katalog produk, inventori, pesanan, karyawan, dan analitik outlet" loading="lazy" decoding="async"> | Relevan untuk alur kasir, outlet, inventori, CRM, karyawan, analitik, dan order online. | Bandingkan biaya per outlet, perangkat, pajak, add-on, sinkronisasi kanal, hak akses, serta proses saat internet atau perangkat bermasalah. RAMUNI lebih kuat untuk review konteks lintas modul, bukan pengganti POS tanpa verifikasi. | [Produk majoo](https://majoo.id/produk), [harga majoo](https://majoo.id/harga) |
+| **Olsera** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-olsera.webp" width="220" height="124" alt="Ilustrasi konseptual POS retail dengan katalog, peringatan stok, pesanan online, pembayaran, dan laporan pemilik" loading="lazy" decoding="async"> | Menonjolkan POS retail, inventori, pelanggan, karyawan, online order, pembayaran, dan laporan. | Periksa harga tahunan atau promo, pajak, perangkat, jumlah outlet, kanal marketplace, ekspor, dan dukungan. RAMUNI layak dibandingkan bila kebutuhan utama adalah menghubungkan angka dengan catatan dan keputusan. | [Olsera POS](https://www.olsera.com/id/software-pos-kasir), [harga Olsera](https://www.olsera.com/id/pricing) |
+
+Kelebihan pada tabel berarti area yang terlihat menonjol dari halaman resmi, bukan penilaian kualitas keseluruhan. Batas berarti hal yang perlu dibuktikan lewat demo atau uji data contoh. Dengan cara ini, perbandingan terhadap RAMUNI tetap adil dan tidak berubah menjadi klaim bahwa salah satu vendor menggantikan semua alat bisnis.
+
+## Snapshot harga yang terlihat saat ditinjau
+
+Angka berikut adalah snapshot halaman harga resmi pada 24 Agustus 2026. Harga, pajak, promo, periode tagihan, batas penggunaan, dan add-on dapat berubah. Gunakan tautan di tabel untuk memeriksa angka terbaru sebelum membeli.
+
+| Aplikasi | Harga yang terlihat | Cara membaca angka | Tautan harga |
+| --- | --- | --- | --- |
+| **RAMUNI** | Free Rp0; Starter Rp149.000 per bulan; Growth Rp349.000 per bulan; Pro Rp749.000 per bulan; Business hubungi sales | Paket tahunan yang tampil di RAMUNI juga perlu dibandingkan dengan batas pengguna, AI, storage, outlet, dan integrasi. | [Lihat harga RAMUNI](/pricing/) |
+| **Mekari Jurnal** | Mulai dari Rp399.000 per bulan | Angka mulai dari halaman Mekari; paket, bundel, pajak, dan detail fitur perlu dikonfirmasi. | [Harga Mekari](https://mekari.com/harga/) |
+| **Kledo** | Free Rp0; Pro Rp159.900; Elite Rp279.900; Champion Rp399.900 per bulan bila ditagih tahunan | Tanyakan batas pengguna, gudang, invoice, dan fitur pada tiap paket. | [Harga Kledo](https://kledo.com/harga/) |
+| **majoo** | Starter Rp249.000; Advance Rp499.000; Prime Rp999.000 per outlet per bulan | Angka yang tampil belum termasuk pajak dan dapat ditambah biaya perangkat atau add-on. | [Harga majoo](https://majoo.id/harga) |
+| **Olsera** | Basic Rp1.288.000; Premium Rp1.988.000; Pro Rp2.688.000 per tahun pada harga promo yang terlihat | Bandingkan dengan harga reguler, pajak, perangkat, dan jumlah outlet; halaman resmi menyatakan harga sebelum pajak. | [Harga Olsera](https://www.olsera.com/id/pricing) |
+
+Harga bukan biaya total. Hitung juga migrasi, pelatihan, perangkat, add-on, kanal pembayaran, pajak, dukungan, dan biaya saat jumlah pengguna atau outlet bertambah. Untuk RAMUNI, mulai dari [pricing](/pricing/) dan [demo produk](/tour-produk-gratis/) agar batas paket dapat dibahas dengan alur yang sesuai.
 
 ## Rekomendasi berdasarkan kebutuhan usaha
 
