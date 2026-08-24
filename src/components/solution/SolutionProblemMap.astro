@@ -58,7 +58,7 @@ const destinations = entries.map((entry) => ({ href: entry.href, label: entry.la
                 width={contexts[index].width}
                 height={contexts[index].height}
                 alt={contexts[index].alt}
-                loading={index === 0 ? 'eager' : 'lazy'}
+                loading="lazy"
                 decoding="async"
               />
             </div>
