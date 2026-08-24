@@ -18,20 +18,10 @@ import LaptopMockup from './LaptopMockup.astro';
     aria-label={label}
     data-animate="false"
   >
-    <video
-      class="animated-dashboard-proof__frame"
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="/website-original/product-screens/ramuni-product-dashboard-overview.webp"
-      aria-hidden="true"
-      tabindex="-1"
-    >
-      <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm" type="video/webm" />
-      <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4" type="video/mp4" />
-    </video>
-    <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-product-dashboard-overview.webp" width="1280" height="618" alt="Tampilan ringkasan dashboard produk RAMUNI" fetchpriority="high" decoding="async" aria-hidden="true" />
+    <picture class="animated-dashboard-proof__picture">
+      <source media="(max-width: 740px)" srcset="/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp" width="720" height="4299" />
+      <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp" width="1440" height="1202" alt="Tampilan ringkasan dashboard produk RAMUNI dengan sidebar, metrik, grafik, aktivitas, dan status sistem" fetchpriority="high" decoding="async" />
+    </picture>
     <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
   </span>
 </LaptopMockup>
@@ -43,19 +33,12 @@ import LaptopMockup from './LaptopMockup.astro';
     document.querySelectorAll<HTMLElement>('.animated-dashboard-proof').forEach((proof) => {
       if (proof.dataset.bound === 'true') return;
       proof.dataset.bound = 'true';
-      const video = proof.querySelector<HTMLVideoElement>('video');
-      if (!video) return;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
       let inView = false;
       const update = () => {
         const canAnimate = inView && !document.hidden && !reducedMotion.matches && !saveData;
         proof.dataset.animate = canAnimate ? 'true' : 'false';
-        if (canAnimate) void video.play().catch(() => undefined);
-        else {
-          video.pause();
-          if (!inView || reducedMotion.matches) video.currentTime = 0;
-        }
       };
       let observer: IntersectionObserver | undefined;
       if (!('IntersectionObserver' in window)) {
@@ -74,7 +57,6 @@ import LaptopMockup from './LaptopMockup.astro';
         observer?.disconnect();
         document.removeEventListener('visibilitychange', update);
         reducedMotion.removeEventListener?.('change', update);
-        video.pause();
         delete proof.dataset.bound;
       });
     });
@@ -92,7 +74,7 @@ import LaptopMockup from './LaptopMockup.astro';
     position:relative;
     display:block;
     width:100%;
-    aspect-ratio:1280/618;
+    aspect-ratio:1440/1202;
     overflow:hidden;
     border:0;
     border-radius:0;
@@ -103,30 +85,23 @@ import LaptopMockup from './LaptopMockup.astro';
     --hero-dashboard-scan-distance:calc(38.6cqw - 2px);
   }
 
-  .animated-dashboard-proof__frame{
+  .animated-dashboard-proof__picture,
+  .animated-dashboard-proof__picture img{
     position:relative;
     z-index:1;
     display:block;
     width:100%;
     height:100%;
-    object-fit:cover;
+  }
+
+  .animated-dashboard-proof__picture img{
+    object-fit:contain;
     object-position:center;
   }
 
   .animated-dashboard-proof__fallback{
-    position:absolute;
-    inset:0;
-    z-index:0;
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
     opacity:1;
-    transition:opacity .35s ease;
   }
-
-  .animated-dashboard-proof[data-animate='true'] .animated-dashboard-proof__fallback{opacity:0}
 
   .animated-dashboard-proof__scanline{
     position:absolute;
@@ -154,12 +129,16 @@ import LaptopMockup from './LaptopMockup.astro';
   }
 
   @media(max-width:740px){
-    .animated-dashboard-proof{aspect-ratio:1280/618;border-radius:0;box-shadow:none}
+    .animated-dashboard-proof{aspect-ratio:1440/1202;border-radius:0;box-shadow:none}
+    .animated-dashboard-proof__picture img{object-fit:contain}
   }
 
   @media(prefers-reduced-motion:reduce){
-    .animated-dashboard-proof__frame{visibility:hidden}
-    .animated-dashboard-proof__fallback{opacity:1}
     .animated-dashboard-proof__scanline{animation:none;transform:none;opacity:0}
+  }
+
+  @media(max-width:620px){
+    .animated-dashboard-proof{aspect-ratio:9/16}
+    .animated-dashboard-proof__picture img{object-fit:cover;object-position:top center}
   }
 </style>

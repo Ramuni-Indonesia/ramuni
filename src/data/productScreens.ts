@@ -34,7 +34,7 @@ export const productScreens = {
     alt: 'Tampilan dashboard RAMUNI dengan indikator penjualan, kas, produk aktif, dan grafik arus kas tujuh hari.',
     eyebrow: 'Performa',
     title: 'Bandingkan arah penjualan dan arus kas.',
-    note: 'Potongan screenshot produk SaaS RAMUNI untuk membaca performa.',
+    note: 'Screenshot produk SaaS RAMUNI untuk membaca performa.',
   },
   operations: {
     src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
@@ -46,7 +46,7 @@ export const productScreens = {
     alt: 'Tampilan aktivitas operasional RAMUNI dengan pembayaran, pembaruan stok, dan pengeluaran usaha.',
     eyebrow: 'Aktivitas operasional',
     title: 'Telusuri transaksi, stok, dan biaya.',
-    note: 'Potongan screenshot produk SaaS RAMUNI untuk membaca aktivitas.',
+    note: 'Screenshot produk SaaS RAMUNI untuk membaca aktivitas.',
   },
 } satisfies Record<string, ProductScreen>;
 
