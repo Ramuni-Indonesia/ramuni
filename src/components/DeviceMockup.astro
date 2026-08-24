@@ -12,9 +12,8 @@ const {
 } = Astro.props;
 ---
 
-<span class:list={['device-mockup', `device-mockup--${mode}`, className]} role="img" aria-label={label} data-device-motion="true">
+  <span class:list={['device-mockup', `device-mockup--${mode}`, className]} role="img" aria-label={label} data-device-motion="true">
   <span class="device-mockup__frame">
-    <span class="device-mockup__camera" aria-hidden="true"></span>
     <span class="device-mockup__screen"><slot /></span>
   </span>
   <span class="device-mockup__hinge" aria-hidden="true"></span>
