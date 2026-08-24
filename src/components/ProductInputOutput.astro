@@ -55,12 +55,12 @@ const content = map[slug] || map['dashboard-bisnis'];
 <section class="product-io" aria-labelledby={`${slug}-io-title`}>
   <div class="product-io__head">
     <div><span class="money-kicker">Bahan masuk sampai hasil</span><h2 id={`${slug}-io-title`}>{title}: apa yang Anda siapkan, dan apa yang dibaca kembali.</h2></div>
-    <div class="product-io__status"><span>Status halaman</span><strong>Concept Preview</strong><small>Contoh alur. Ketersediaan akses mengikuti rilis dan validasi produk.</small></div>
+    <div class="product-io__status"><span>Status halaman</span><strong>Tersedia</strong><small>Alur ini dapat dicoba dengan workspace RAMUNI; akses mengikuti paket dan role.</small></div>
   </div>
   <div class="product-io__grid">
     <article><span>01 · Input</span><h3>Data yang perlu disiapkan</h3><ul>{content.input.map((item) => <li>{item}</li>)}</ul></article>
     <article><span>02 · Proses</span><h3>Yang dilakukan RAMUNI</h3><ul>{content.process.map((item) => <li>{item}</li>)}</ul></article>
     <article><span>03 · Output</span><h3>Yang dapat Anda periksa</h3><ul>{content.output.map((item) => <li>{item}</li>)}</ul></article>
   </div>
-  <p class="product-io__note">Tidak perlu membawa data bisnis untuk melihat contoh. Saat akses dibuka, mulai dari satu catatan yang memang ingin Anda rapikan.</p>
+  <p class="product-io__note">Tidak perlu membawa data bisnis untuk melihat contoh. Saat mulai, bawa satu catatan yang memang ingin Anda rapikan.</p>
 </section>

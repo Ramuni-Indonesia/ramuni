@@ -197,6 +197,7 @@ export const footerNavigation: FooterNavigationGroup[] = [
     links: [
       { label: 'Semua Fitur', href: '/features/' },
       { label: 'Bandingkan Paket', href: '/pricing/' },
+      { label: 'Roadmap Produk', href: '/roadmap/' },
       { label: 'Pertanyaan Umum', href: '/faq/' },
       { label: 'RAMUNI vs cara lama', href: '/compare/' },
     ],

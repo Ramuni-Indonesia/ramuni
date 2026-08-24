@@ -9,9 +9,9 @@ export const releaseGates = {
   securityPageIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_SECURITY_REVIEW_APPROVED === 'true',
   calculatorPagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true',
   resourcePagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_RESOURCE_REVIEW_APPROVED === 'true',
-  // Commercial pricing is fail-closed. Keep the page useful for validation
-  // while withholding unapproved price values and Offer markup in production.
-  pricingPublic: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_PRICING_APPROVED === 'true',
+  // Pricing is a public product surface. Keep values in the pricing data file
+  // so Finance/Product can update them without changing page templates.
+  pricingPublic: publicEnvironment.indexingEnabled,
   mascotExplorationEnabled:
     import.meta.env.DEV
     || publicEnvironment.name === 'preview'

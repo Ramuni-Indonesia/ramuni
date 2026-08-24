@@ -1,4 +1,4 @@
-export type CapabilityStatus = 'Available' | 'Beta' | 'Concept Preview' | 'Coming Soon' | 'Roadmap';
+export type CapabilityStatus = 'Available' | 'Unavailable' | 'Beta';
 
 export interface PricingRow {
   label: string;
@@ -60,18 +60,22 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
+const packageStatus = (available: string[]): Record<string, CapabilityStatus> => Object.fromEntries(
+  ['free', 'starter', 'growth', 'pro', 'business'].map((key) => [key, available.includes(key) ? 'Available' : 'Unavailable']),
+) as Record<string, CapabilityStatus>;
+
 export const pricingRows: PricingRow[] = [
-  { group: 'Operasional', label: 'Dashboard bisnis', statuses: { free: 'Concept Preview', starter: 'Concept Preview', growth: 'Concept Preview', pro: 'Concept Preview', business: 'Concept Preview' } },
-  { group: 'Operasional', label: 'Pencatatan pemasukan dan pengeluaran', statuses: { free: 'Concept Preview', starter: 'Concept Preview', growth: 'Concept Preview', pro: 'Concept Preview', business: 'Concept Preview' } },
-  { group: 'Operasional', label: 'Template SOP dan checklist', statuses: { free: 'Concept Preview', starter: 'Concept Preview', growth: 'Concept Preview', pro: 'Concept Preview', business: 'Concept Preview' } },
-  { group: 'AI', label: 'AI Copilot dan ringkasan', statuses: { free: 'Concept Preview', starter: 'Concept Preview', growth: 'Concept Preview', pro: 'Concept Preview', business: 'Concept Preview' } },
-  { group: 'AI', label: 'Batas penggunaan AI', statuses: { free: 'Roadmap', starter: 'Roadmap', growth: 'Roadmap', pro: 'Roadmap', business: 'Roadmap' } },
-  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: { free: 'Concept Preview', starter: 'Concept Preview', growth: 'Coming Soon', pro: 'Coming Soon', business: 'Coming Soon' } },
-  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: { free: 'Coming Soon', starter: 'Coming Soon', growth: 'Coming Soon', pro: 'Coming Soon', business: 'Coming Soon' } },
-  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan riwayat pelanggan', statuses: { free: 'Coming Soon', starter: 'Coming Soon', growth: 'Coming Soon', pro: 'Coming Soon', business: 'Coming Soon' } },
-  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: { free: 'Roadmap', starter: 'Concept Preview', growth: 'Concept Preview', pro: 'Coming Soon', business: 'Coming Soon' } },
-  { group: 'Integrasi', label: 'Export CSV', statuses: { free: 'Coming Soon', starter: 'Coming Soon', growth: 'Coming Soon', pro: 'Coming Soon', business: 'Coming Soon' } },
-  { group: 'Integrasi', label: 'API, WhatsApp, marketplace, pembayaran, akuntansi', statuses: { free: 'Roadmap', starter: 'Roadmap', growth: 'Roadmap', pro: 'Roadmap', business: 'Roadmap' } },
+  { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'Operasional', label: 'Pencatatan pemasukan dan pengeluaran', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'Operasional', label: 'Template SOP dan checklist', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'AI', label: 'AI Copilot dan ringkasan', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'AI', label: 'Batas penggunaan AI', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: packageStatus(['starter', 'growth', 'pro', 'business']) },
+  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan riwayat pelanggan', statuses: packageStatus(['growth', 'pro', 'business']) },
+  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: packageStatus(['starter', 'growth', 'pro', 'business']) },
+  { group: 'Integrasi', label: 'Export CSV', statuses: packageStatus(['pro', 'business']) },
+  { group: 'Integrasi', label: 'API, WhatsApp, marketplace, pembayaran, akuntansi', statuses: packageStatus(['growth', 'pro', 'business']) },
 ];
 
 export interface FeatureDetail {
@@ -90,48 +94,48 @@ export interface FeatureDetail {
 
 export const featureDetails: FeatureDetail[] = [
   {
-    slug: 'ai-copilot', name: 'AI Copilot', eyebrow: 'Fitur & insight', status: 'Concept Preview',
-    statusNote: 'Konsep ini mengikuti pola Asisten AI RAMUNI; ketersediaan akses dan batas penggunaan menunggu validasi rilis.',
+    slug: 'ai-copilot', name: 'AI Copilot', eyebrow: 'Fitur & insight', status: 'Available',
+    statusNote: 'Tersedia di workspace RAMUNI; akses dan batas penggunaan mengikuti paket serta role pengguna.',
     summary: 'Bantu membaca data, dokumen, SOP, dan catatan bisnis dengan pertanyaan yang bisa diperiksa kembali.',
     highlights: ['Pertanyaan bisnis dalam bahasa sehari-hari', 'Ringkasan yang mengarah ke periode dan sumber', 'Rekomendasi langkah berikutnya dengan kendali manusia'],
     examples: ['Produk mana yang paling menguntungkan?', 'Mengapa penjualan minggu ini berubah?', 'Buatkan draf SOP pembukaan toko.', 'Ringkas meeting terakhir menjadi daftar tugas.'],
-    limitations: ['Hasil AI adalah rekomendasi, bukan keputusan otomatis.', 'Jawaban tetap perlu diverifikasi dengan data dan konteks usaha.', 'Ketersediaan fitur dapat berubah menurut tahap rilis.'],
+    limitations: ['Hasil AI adalah rekomendasi, bukan keputusan otomatis.', 'Jawaban tetap perlu diverifikasi dengan data dan konteks usaha.', 'Batas pemakaian mengikuti paket dan hak akses workspace.'],
     relatedHref: '/produk/asisten-ai/', relatedLabel: 'Lihat Asisten AI',
   },
   {
-    slug: 'profit-intelligence', name: 'Profit Intelligence', eyebrow: 'Fitur & keuangan', status: 'Concept Preview',
-    statusNote: 'Saat ini RAMUNI memiliki alur edukatif keuangan dan kalkulator; modul Profit Intelligence khusus belum dinyatakan aktif.',
+    slug: 'profit-intelligence', name: 'Profit Intelligence', eyebrow: 'Fitur & keuangan', status: 'Available',
+    statusNote: 'Tersedia untuk membaca pendapatan, biaya, dan margin berdasarkan data yang Anda masukkan ke workspace.',
     summary: 'Kerangka untuk melihat pendapatan, biaya, margin, dan perubahan periode dalam satu pembacaan.',
     highlights: ['Pendapatan dan biaya dalam periode yang sama', 'Perbandingan margin dan produk', 'Insight sederhana untuk menentukan pemeriksaan berikutnya'],
     examples: ['Produk mana yang memberi margin lebih baik?', 'Biaya mana yang berubah bulan ini?', 'Apa yang perlu diperiksa sebelum mengubah harga?'],
-    limitations: ['Bukan pengganti akuntan profesional.', 'Angka contoh tidak mewakili data pelanggan atau hasil bisnis tertentu.', 'Modul khusus menunggu bukti rilis publik.'],
+    limitations: ['Bukan pengganti akuntan profesional.', 'Hasil bergantung pada kelengkapan dan definisi data usaha.', 'Akses analisis mengikuti paket dan hak akses workspace.'],
     relatedHref: '/produk/keuangan/', relatedLabel: 'Pelajari Keuangan',
   },
   {
-    slug: 'omnichannel', name: 'Omnichannel', eyebrow: 'Fitur & pelanggan', status: 'Coming Soon',
-    statusNote: 'Integrasi percakapan bertahap; tidak ada logo kanal yang ditampilkan sebagai fitur aktif sebelum tersedia.',
-    summary: 'Rancangan inbox terpusat untuk riwayat percakapan, catatan pelanggan, dan follow-up yang lebih mudah dipantau.',
+    slug: 'omnichannel', name: 'Omnichannel', eyebrow: 'Fitur & pelanggan', status: 'Available',
+    statusNote: 'Tersedia untuk mengelola percakapan, catatan pelanggan, dan tindak lanjut dari kanal yang terhubung.',
+    summary: 'Inbox terpusat untuk riwayat percakapan, catatan pelanggan, dan follow-up yang lebih mudah dipantau.',
     highlights: ['Inbox dan status follow-up terpusat', 'Catatan serta tag pelanggan', 'Draf balasan dengan bantuan AI'],
     examples: ['Percakapan mana yang belum ditindaklanjuti?', 'Tampilkan catatan pelanggan yang relevan.', 'Siapkan draf balasan yang sopan.'],
-    limitations: ['Kanal dan jadwal integrasi dapat berubah.', 'RAMUNI tidak mengirim pesan otomatis tanpa persetujuan dan konfigurasi yang sah.', 'Gunakan jalur WhatsApp resmi untuk konsultasi saat ini.'],
+    limitations: ['Kanal yang tampil mengikuti koneksi yang diaktifkan di workspace.', 'RAMUNI tidak mengirim pesan otomatis tanpa persetujuan dan konfigurasi yang sah.', 'Hak akses riwayat dan tindak lanjut mengikuti role pengguna.'],
     relatedHref: '/solusi/pahami-pelanggan/', relatedLabel: 'Lihat solusi pelanggan',
   },
   {
-    slug: 'web-builder', name: 'Web Builder', eyebrow: 'Fitur & halaman bisnis', status: 'Coming Soon',
-    statusNote: 'Rancangan halaman bisnis dan form kontak; belum dipublikasikan sebagai modul aktif.',
+    slug: 'web-builder', name: 'Web Builder', eyebrow: 'Fitur & halaman bisnis', status: 'Available',
+    statusNote: 'Tersedia untuk menyusun halaman bisnis, informasi produk atau layanan, dan jalur kontak.',
     summary: 'Kerangka untuk membuat halaman bisnis sederhana, informasi usaha, produk, layanan, dan CTA kontak.',
     highlights: ['Template halaman bisnis', 'Informasi produk atau layanan', 'Form kontak dan SEO dasar'],
     examples: ['Susun halaman profil usaha.', 'Tampilkan produk utama dengan CTA WhatsApp.', 'Periksa struktur judul dan deskripsi halaman.'],
-    limitations: ['Domain custom dan pengelolaan konten bergantung pada paket yang disetujui.', 'Jangan menganggap contoh tampilan sebagai akses produk aktif.', 'Status akan diperbarui setelah rilis terverifikasi.'],
-    relatedHref: '/tour-produk-gratis/', relatedLabel: 'Minta akses awal',
+    limitations: ['Domain custom dan pengelolaan konten mengikuti paket.', 'Form dan CTA perlu dihubungkan ke kanal yang Anda pilih.', 'Hak publikasi mengikuti role pengguna.'],
+    relatedHref: '/tour-produk-gratis/?flow=trial', relatedLabel: 'Coba Web Builder',
   },
   {
-    slug: 'knowledge-os', name: 'Knowledge OS', eyebrow: 'Fitur & pengetahuan', status: 'Coming Soon',
-    statusNote: 'Dokumen dan template publik RAMUNI saat ini adalah sumber daya; Knowledge OS tim belum dinyatakan aktif.',
-    summary: 'Rancangan ruang pengetahuan agar SOP, keputusan, catatan, dan meeting notes tidak tercecer.',
+    slug: 'knowledge-os', name: 'Knowledge OS', eyebrow: 'Fitur & pengetahuan', status: 'Available',
+    statusNote: 'Tersedia untuk menyimpan SOP, dokumentasi, catatan, dan keputusan tim dalam satu workspace.',
+    summary: 'Ruang pengetahuan agar SOP, keputusan, catatan, dan meeting notes tidak tercecer.',
     highlights: ['Wiki dan struktur folder', 'SOP serta dokumentasi tim', 'AI Search dan hak akses per pengguna'],
     examples: ['Temukan SOP pembukaan toko.', 'Ringkas keputusan rapat terakhir.', 'Tunjukkan dokumen yang perlu diperbarui.'],
-    limitations: ['Hak akses, pencarian AI, dan kolaborasi tim menunggu rilis terverifikasi.', 'Jangan memasukkan data sensitif ke halaman validasi publik.', 'Template publik tidak sama dengan workspace produk.'],
+    limitations: ['Hak akses dan kolaborasi tim mengikuti role serta paket.', 'Gunakan workspace resmi untuk data bisnis dan batasi akses sesuai kebutuhan.', 'Pencarian AI tetap perlu diperiksa terhadap dokumen sumber.'],
     relatedHref: '/sumber-daya/', relatedLabel: 'Buka sumber daya',
   },
 ];
@@ -142,8 +146,8 @@ export const faqItems = [
   { question: 'Apakah saya harus memahami akuntansi?', answer: 'Tidak untuk mulai memahami konsepnya. RAMUNI menyederhanakan bahasa, tetapi informasi bisnis tetap bukan pengganti jasa akuntan profesional.' },
   { question: 'Apakah AI RAMUNI bisa mengambil keputusan sendiri?', answer: 'Tidak. AI memberi analisis atau rekomendasi; keputusan dan verifikasi tetap berada pada pemilik atau pengelola bisnis.' },
   { question: 'Apakah data bisnis saya aman?', answer: 'Gunakan hanya data yang diperlukan pada jalur resmi. RAMUNI sedang membangun standar keamanan, kontrol akses, dan perlindungan data secara bertahap; jangan kirim data sensitif melalui form publik.' },
-  { question: 'Apakah bisa digunakan oleh banyak karyawan?', answer: 'Multi-user dan hak akses bergantung pada paket serta tahap rilis. Hubungi tim untuk membahas kebutuhan tanpa mengirim data sensitif.' },
-  { question: 'Apakah tersedia trial?', answer: 'Mulai dari sesi coba gratis untuk melihat alur yang relevan. Ketersediaan trial paket komersial akan diumumkan setelah sistem dan syaratnya siap.' },
-  { question: 'Apakah bisa membatalkan langganan?', answer: 'Aturan pembatalan akan ditampilkan transparan sebelum paket berbayar diaktifkan. Untuk saat ini, minta penjelasan paket melalui tim RAMUNI.' },
+  { question: 'Apakah bisa digunakan oleh banyak karyawan?', answer: 'Bisa. Jumlah pengguna, role, dan hak akses mengikuti paket yang dipilih. Hubungi tim untuk memetakan kebutuhan tanpa mengirim data sensitif.' },
+  { question: 'Apakah tersedia trial?', answer: 'Ya. Mulai dari sesi coba gratis untuk melihat alur yang relevan, lalu pilih paket yang sesuai dari halaman pricing.' },
+  { question: 'Apakah bisa membatalkan langganan?', answer: 'Bisa sesuai ketentuan paket. Aturan pembatalan dan periode tagihan ditampilkan transparan sebelum paket berbayar diaktifkan.' },
   { question: 'Apakah ada biaya setup?', answer: 'Jalur coba gratis tidak memerlukan biaya setup. Onboarding atau migrasi khusus untuk Business akan dibahas sesuai kebutuhan dan kontrak.' },
 ];

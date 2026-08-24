@@ -1,6 +1,6 @@
 ---
 import type { ProductScreen } from '../data/productScreens';
-import DeviceMockup from './DeviceMockup.astro';
+import LaptopMockup from './LaptopMockup.astro';
 
 interface Props {
   heading: string;
@@ -34,14 +34,14 @@ const {
       <div class="product-screenshot-rail__track">
         {items.map((item, index) => (
           <figure class="product-screenshot-card" style={`--i:${index}`}>
-            <DeviceMockup label={item.alt}>
+            <LaptopMockup label={item.alt}>
               <div class="product-screenshot-card__media">
                 <picture>
                   {item.mobileSrc && <source media="(max-width: 740px)" srcset={item.mobileSrc} width={item.mobileWidth} height={item.mobileHeight} />}
                   <img src={item.src} width={item.width} height={item.height} alt={item.alt} loading={index === 0 && !compact ? 'eager' : 'lazy'} decoding="async" />
                 </picture>
               </div>
-            </DeviceMockup>
+            </LaptopMockup>
             <figcaption>
               <span>{item.eyebrow}</span>
               <strong>{item.title}</strong>

@@ -19,7 +19,6 @@ import { capabilityIconAttributes, navigationIconAttributes } from '../../data/c
 import { productNarratives } from '../../data/pageNarratives';
 import { pageLastmods } from '../../data/pageLastmods';
 import { listProductRouteModels, type ProductRouteModel } from '../../content-gateway/site-records';
-import { releaseGates } from '../../config/release';
 import '../../styles/product-detail.css';
 
 export async function getStaticPaths() {
@@ -165,7 +164,7 @@ const structuredData = [
   title={seo?.title || `${product.title} RAMUNI`}
   description={seo?.description || detail.heroLead}
   canonical={canonicalPath}
-  noindex={!releaseGates.claimPagesIndexable}
+  noindex={false}
   schema={structuredData}
   pageType="WebPage"
 >
@@ -184,7 +183,7 @@ const structuredData = [
             <a class="button button--primary" href={tourHref}>{productCtaLabel}</a>
             <a class="button button--secondary" href="#product-workflow">Lihat cara kerja</a>
           </div>
-          <p class="pd-hero__availability">Bawa satu kebutuhan. Periksa contoh data, alur kerja, dan batasnya sebelum membahas akses.</p>
+          <p class="pd-hero__availability">Bawa satu kebutuhan. Periksa contoh data, alur kerja, dan batasnya langsung.</p>
         </div>
         <div class="pd-hero__canvas reveal is-visible">
           <ProductHeroCanvas slug={product.slug} title={product.title} question={detail.question} />
@@ -193,7 +192,7 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih jalur sesuai kesiapan" title={`Mulai dari ${product.title}, lalu periksa batasnya.`} body="Lihat demo dengan skenario aman, mulai mencoba saat akses tersedia, atau periksa pricing sebelum memilih jalur." />
+      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih jalur sesuai kebutuhan" title={`Mulai dari ${product.title}, lalu periksa batasnya.`} body="Lihat demo dengan skenario aman, coba alur yang relevan sekarang, atau periksa pricing sebelum memilih jalur." />
       <ProductInputOutput slug={product.slug} title={product.title} />
     </div>
 

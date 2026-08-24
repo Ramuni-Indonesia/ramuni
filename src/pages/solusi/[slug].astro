@@ -17,7 +17,6 @@ import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { solutionNarratives } from '../../data/pageNarratives';
 import { pageLastmods } from '../../data/pageLastmods';
-import { releaseGates } from '../../config/release';
 import '../../styles/solution-detail.css';
 
 export async function getStaticPaths() {
@@ -74,7 +73,7 @@ const structuredData = [
   faqSchema,
 ];
 ---
-<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
+<BaseLayout title={`${solution.title} | RAMUNI`} description={solution.metaDescription} noindex={false} schema={structuredData}>
   <article class={`sd-page sd-page--${solution.layout} sd-page--${solution.visual.kind}`} data-solution={solution.slug} data-cms-snapshot={cmsSnapshotId}>
     <section class="sd-hero" aria-labelledby="solution-title">
       <div class="container sd-hero__layout">
@@ -97,14 +96,14 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang dibuka sebelum memilih tindakan." body="Demo memperlihatkan konteks dan batasnya. Pricing membantu Anda memahami jalur akses yang sedang disiapkan." />
+      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang dibuka sebelum memilih tindakan." body="Demo memperlihatkan konteks dan batasnya. Pricing membantu Anda memahami paket dan akses yang tersedia." />
     </div>
 
     <ProductScreenshotRail
       id={`solution-${solution.slug}-screens`}
       eyebrow="Screen yang berkaitan"
       heading={`Lihat konteks produk untuk ${solution.title}.`}
-      body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; bukan pengganti status fitur atau jaminan hasil usaha."
+      body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; hasil tetap bergantung pada data dan keputusan usaha."
       items={screenSet}
       compact
     />
