@@ -20,7 +20,7 @@ const { class: className = '', label = 'Tampilan produk RAMUNI dalam mockup lapt
   /* Front-facing product showcase: the real dashboard stays fully readable. */
   .ramuni-laptop-mockup{position:relative;display:block;width:100%;min-width:0;padding:0 2% clamp(15px,2vw,28px);perspective:1800px;isolation:isolate}
   .ramuni-laptop-mockup::after{content:"";position:absolute;z-index:0;left:13%;right:13%;bottom:0;height:18%;border-radius:50%;background:rgb(11 48 69/.18);filter:blur(18px);opacity:.46;pointer-events:none}
-  .ramuni-laptop-frame{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1600/977;overflow:hidden;border:1px solid rgb(11 48 69/.18);border-radius:clamp(12px,1.25vw,20px);background:#070b0e;box-shadow:0 22px 46px rgb(11 48 69/.16);transform:rotateY(-2deg) rotateX(.6deg);transform-style:preserve-3d;backface-visibility:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .ramuni-laptop-frame{position:relative;z-index:1;display:block;width:100%;aspect-ratio:1600/977;overflow:hidden;border:0;border-radius:clamp(12px,1.25vw,20px);background:transparent;box-shadow:0 22px 46px rgb(11 48 69/.16);transform:rotateY(-2deg) rotateX(.6deg);transform-style:preserve-3d;backface-visibility:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
   .ramuni-laptop-frame::before{content:"";position:absolute;inset:0;border-radius:inherit;border-top:1px solid rgb(255 255 255/.95);pointer-events:none}
   .ramuni-laptop-frame::after{content:"";position:absolute;left:7%;right:7%;bottom:3px;height:1px;background:rgb(11 48 69/.16);pointer-events:none}
   .ramuni-laptop-shell-image{position:absolute;z-index:0;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
