@@ -43,22 +43,22 @@ sources:
     publisher: "Mekari"
     url: "https://mekari.com/produk/jurnal/"
     accessedAt: 2026-08-24
-    note: "Halaman resmi yang ditinjau menonjolkan pengelolaan keuangan, akuntansi, inventori, penjualan, pembelian, dan laporan. Ketersediaan serta batas setiap fitur dapat berubah menurut paket."
+    note: "Halaman resmi yang ditinjau menonjolkan pengelolaan keuangan, akuntansi, inventori, penjualan, pembelian, dan laporan. Visual produk pada artikel diambil dari halaman resmi ini lalu disimpan lokal sebagai WebP; ketersediaan serta batas setiap fitur dapat berubah menurut paket."
   - title: "Kledo"
     publisher: "Kledo"
     url: "https://kledo.com/"
     accessedAt: 2026-08-24
-    note: "Halaman resmi yang ditinjau menonjolkan invoicing, purchasing, laporan keuangan, inventori, dan integrasi. Artikel ini tidak menilai kualitas atau hasil penggunaan Kledo."
+    note: "Halaman resmi yang ditinjau menonjolkan invoicing, purchasing, laporan keuangan, inventori, dan integrasi. Visual produk pada artikel diambil dari halaman resmi ini lalu disimpan lokal sebagai WebP; artikel ini tidak menilai kualitas atau hasil penggunaan Kledo."
   - title: "Produk dan fitur majoo"
     publisher: "majoo"
     url: "https://majoo.id/produk"
     accessedAt: 2026-08-24
-    note: "Halaman resmi yang ditinjau menampilkan kasir online, akuntansi, inventori, CRM, karyawan, analisa bisnis, dan order online. Detail paket perlu dikonfirmasi pada saat evaluasi."
+    note: "Halaman resmi yang ditinjau menampilkan kasir online, akuntansi, inventori, CRM, karyawan, analisa bisnis, dan order online. Visual produk pada artikel diambil dari halaman resmi ini lalu disimpan lokal sebagai WebP; detail paket perlu dikonfirmasi pada saat evaluasi."
   - title: "Olsera POS"
     publisher: "Olsera"
     url: "https://www.olsera.com/id/software-pos-kasir"
     accessedAt: 2026-08-24
-    note: "Halaman resmi yang ditinjau menampilkan POS, pembukuan, inventori, pelanggan, karyawan, online order, dan akses laporan. Fitur dan harga dapat berbeda menurut paket."
+    note: "Halaman resmi yang ditinjau menampilkan POS, pembukuan, inventori, pelanggan, karyawan, online order, dan akses laporan. Visual produk pada artikel diambil dari halaman resmi ini lalu disimpan lokal sebagai WebP; fitur dan harga dapat berbeda menurut paket."
   - title: "Harga RAMUNI"
     publisher: "RAMUNI"
     url: "https://www.ramuni.id/pricing/"
@@ -85,7 +85,7 @@ sources:
     accessedAt: 2026-08-24
     note: "Halaman harga resmi yang ditinjau menampilkan harga tahunan promo Basic Rp1.288.000, Premium Rp1.988.000, dan Pro Rp2.688.000, sebelum pajak."
 disclaimer: "Artikel ini bersifat edukatif dan netral, bukan endorsement, audit keamanan, atau perbandingan komersial resmi. Nama dan merek adalah milik pemiliknya. Fitur, harga, integrasi, trial, serta kebijakan vendor dapat berubah; verifikasi langsung sebelum membeli atau memindahkan data. Jangan mengunggah data pelanggan atau informasi sensitif saat uji coba."
-updateSummary: "Artikel diperbarui dengan tabel visual, perbandingan kelebihan dan batas, snapshot harga resmi, serta tautan evaluasi untuk RAMUNI dan empat vendor lain."
+updateSummary: "Artikel diperbarui dengan visual produk resmi yang disimpan lokal sebagai WebP, daftar bernomor untuk lima aplikasi, perbandingan kelebihan dan batas, snapshot harga resmi, serta tautan evaluasi."
 related:
   - "cara-memilih-aplikasi-pencatatan-usaha"
   - "perbandingan-catatan-manual-dan-aplikasi-usaha"
@@ -128,19 +128,82 @@ Ringkasan berikut disusun dari halaman produk resmi yang ditinjau pada 24 Agustu
 
 Perusahaan dapat memperbarui nama paket, harga, integrasi, dan batas penggunaan kapan saja. Karena itu, jangan menyalin angka dari artikel lama atau menganggap keterangan pada satu halaman berlaku untuk seluruh paket. Buka halaman pricing dan dokumentasi resmi pada saat mengambil keputusan.
 
-## Perbandingan visual, kelebihan, dan batas
+## 1. RAMUNI
 
-Tabel ini membantu melihat perbedaan arah produk tanpa menganggap satu vendor paling baik untuk semua usaha. Visual di bawah adalah ilustrasi konseptual yang dibuat khusus untuk menjelaskan fokus alur, bukan screenshot resmi atau bukti bahwa semua panel tersebut tersedia pada setiap paket.
+<figure class="article-body-figure article-competitor-figure">
+  <img src="/website-original/blog/generated/official-competitor-visuals/rekomendasi-ramuni-official.webp" width="960" height="600" alt="Dashboard resmi RAMUNI yang menghubungkan penjualan, kas, produk, pelanggan, aktivitas, dan wawasan bisnis" loading="lazy" decoding="async">
+  <figcaption>Visual produk resmi RAMUNI. Lihat <a href="/produk/dashboard-bisnis/">dashboard bisnis</a> dan <a href="/pricing/">harga RAMUNI</a> untuk konfigurasi terbaru.</figcaption>
+</figure>
 
-| Aplikasi | Visual fokus | Kelebihan yang relevan | Batas atau hal yang perlu dibandingkan dengan RAMUNI | Tautan resmi |
-| --- | --- | --- | --- | --- |
-| **RAMUNI** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-ramuni.webp" width="220" height="124" alt="Ilustrasi konseptual workspace RAMUNI yang menghubungkan penjualan, stok, laporan, pengetahuan, dan pertanyaan AI" loading="lazy" decoding="async"> | Menghubungkan angka usaha, pengetahuan, dan pertanyaan lanjutan dalam satu workspace. Cocok bila pemilik perlu konteks sebelum memilih tindakan. | POS, pajak, pembayaran, multi-outlet, integrasi, dan batas paket tetap perlu diuji sesuai konfigurasi yang aktif. | [RAMUNI](/), [fitur](/features/), [harga](/pricing/) |
-| **Mekari Jurnal** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-mekari-jurnal.webp" width="220" height="124" alt="Ilustrasi konseptual aplikasi keuangan dengan jurnal, invoice, arus kas, inventori, dan laporan" loading="lazy" decoding="async"> | Lebih dekat dengan kebutuhan akuntansi, transaksi, invoice, inventori, dan laporan keuangan yang terstruktur. | Bandingkan struktur akun, pajak, gudang, integrasi, hak akses, ekspor, dan paket yang memuat fitur yang Anda perlukan. Jika konteks lintas pengetahuan adalah prioritas, uji alurnya berdampingan dengan RAMUNI. | [Produk Jurnal](https://mekari.com/produk/jurnal/), [harga Mekari](https://mekari.com/harga/) |
-| **Kledo** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-kledo.webp" width="220" height="124" alt="Ilustrasi konseptual aplikasi akuntansi dengan invoice, pembelian, stok, biaya, dan laporan" loading="lazy" decoding="async"> | Fokus pada akuntansi, invoice, purchasing, biaya, inventori, laporan, dan beberapa integrasi usaha. | Periksa batas pengguna, gudang, invoice, laporan, API, marketplace, serta perbedaan paket bulanan dan tahunan. RAMUNI lebih cocok diuji bila pertanyaan lintas operasional dan pengetahuan perlu dirangkai. | [Kledo](https://kledo.com/), [harga Kledo](https://kledo.com/harga/) |
-| **majoo** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-majoo.webp" width="220" height="124" alt="Ilustrasi konseptual sistem kasir dengan katalog produk, inventori, pesanan, karyawan, dan analitik outlet" loading="lazy" decoding="async"> | Relevan untuk alur kasir, outlet, inventori, CRM, karyawan, analitik, dan order online. | Bandingkan biaya per outlet, perangkat, pajak, add-on, sinkronisasi kanal, hak akses, serta proses saat internet atau perangkat bermasalah. RAMUNI lebih kuat untuk review konteks lintas modul, bukan pengganti POS tanpa verifikasi. | [Produk majoo](https://majoo.id/produk), [harga majoo](https://majoo.id/harga) |
-| **Olsera** | <img src="/website-original/blog/generated/competitor-visuals/rekomendasi-olsera.webp" width="220" height="124" alt="Ilustrasi konseptual POS retail dengan katalog, peringatan stok, pesanan online, pembayaran, dan laporan pemilik" loading="lazy" decoding="async"> | Menonjolkan POS retail, inventori, pelanggan, karyawan, online order, pembayaran, dan laporan. | Periksa harga tahunan atau promo, pajak, perangkat, jumlah outlet, kanal marketplace, ekspor, dan dukungan. RAMUNI layak dibandingkan bila kebutuhan utama adalah menghubungkan angka dengan catatan dan keputusan. | [Olsera POS](https://www.olsera.com/id/software-pos-kasir), [harga Olsera](https://www.olsera.com/id/pricing) |
+**Fokus:** RAMUNI menghubungkan angka usaha, pengetahuan, dan pertanyaan lanjutan dalam satu workspace. Ini relevan bila pemilik perlu memahami konteks sebelum memilih tindakan.
 
-Kelebihan pada tabel berarti area yang terlihat menonjol dari halaman resmi, bukan penilaian kualitas keseluruhan. Batas berarti hal yang perlu dibuktikan lewat demo atau uji data contoh. Dengan cara ini, perbandingan terhadap RAMUNI tetap adil dan tidak berubah menjadi klaim bahwa salah satu vendor menggantikan semua alat bisnis.
+**Kelebihan yang relevan:** Ringkasan dapat mengarah ke sumber data, pemeriksaan berikutnya, dan catatan keputusan sehingga pembahasan tidak berhenti pada satu angka.
+
+**Batas yang perlu diuji:** POS, pajak, pembayaran, multi-outlet, ekspor, integrasi, serta batas paket harus diuji sesuai konfigurasi yang aktif. RAMUNI membantu menyatukan proses penting, bukan klaim menggantikan seluruh software bisnis.
+
+**Tautan:** [RAMUNI](/), [fitur](/features/), [harga](/pricing/), dan [demo produk](/tour-produk-gratis/).
+
+## 2. Mekari Jurnal
+
+<figure class="article-body-figure article-competitor-figure">
+  <img src="/website-original/blog/generated/official-competitor-visuals/rekomendasi-mekari-jurnal-official.webp" width="960" height="600" alt="Antarmuka resmi Mekari Jurnal untuk laporan arus kas dan laporan keuangan" loading="lazy" decoding="async">
+  <figcaption>Visual produk resmi dari <a href="https://mekari.com/produk/jurnal/" rel="noreferrer">halaman Mekari Jurnal</a>. Hak cipta visual milik Mekari.</figcaption>
+</figure>
+
+**Fokus:** Mekari Jurnal lebih dekat dengan kebutuhan akuntansi, transaksi, invoice, inventori, dan laporan keuangan yang terstruktur.
+
+**Kelebihan yang relevan:** Pengguna yang membutuhkan pembukuan, laporan, dan alur keuangan terhubung dapat memulai evaluasi dari struktur akun, transaksi, serta laporan yang ditampilkan.
+
+**Batas yang perlu dibandingkan dengan RAMUNI:** Bandingkan struktur akun, pajak, gudang, integrasi, hak akses, ekspor, dan paket yang memuat fitur yang diperlukan. Jika konteks lintas pengetahuan menjadi prioritas, uji pertanyaan dan catatan keputusan berdampingan dengan RAMUNI.
+
+**Tautan:** [Produk Jurnal](https://mekari.com/produk/jurnal/), [harga Mekari](https://mekari.com/harga/).
+
+## 3. Kledo
+
+<figure class="article-body-figure article-competitor-figure">
+  <img src="/website-original/blog/generated/official-competitor-visuals/rekomendasi-kledo-official.webp" width="960" height="600" alt="Dashboard resmi Kledo dengan menu penjualan, pembelian, biaya, inventori, dan laporan" loading="lazy" decoding="async">
+  <figcaption>Visual produk resmi dari <a href="https://kledo.com/" rel="noreferrer">situs Kledo</a>. Hak cipta visual milik Kledo.</figcaption>
+</figure>
+
+**Fokus:** Kledo menonjolkan akuntansi, invoice, purchasing, biaya, inventori, laporan, dan integrasi usaha.
+
+**Kelebihan yang relevan:** Kandidat yang membutuhkan pencatatan transaksi, pembelian, biaya, stok, dan laporan dapat menguji alur inti tanpa langsung memindahkan seluruh data usaha.
+
+**Batas yang perlu dibandingkan dengan RAMUNI:** Periksa batas pengguna, gudang, invoice, laporan, API, marketplace, serta perbedaan paket bulanan dan tahunan. RAMUNI lebih cocok diuji bila pertanyaan lintas operasional dan pengetahuan perlu dirangkai.
+
+**Tautan:** [Kledo](https://kledo.com/), [harga Kledo](https://kledo.com/harga/).
+
+## 4. majoo
+
+<figure class="article-body-figure article-competitor-figure">
+  <img src="/website-original/blog/generated/official-competitor-visuals/rekomendasi-majoo-official.webp" width="960" height="600" alt="Antarmuka resmi majoo pada laptop dengan invoice, inventori, outlet, laporan, dan data pelanggan" loading="lazy" decoding="async">
+  <figcaption>Visual produk resmi dari <a href="https://majoo.id/produk" rel="noreferrer">halaman produk majoo</a>. Hak cipta visual milik majoo.</figcaption>
+</figure>
+
+**Fokus:** majoo relevan untuk alur kasir, outlet, inventori, CRM, karyawan, analitik, dan order online.
+
+**Kelebihan yang relevan:** Usaha dengan titik kerja kasir dan outlet dapat menguji katalog, invoice, produk, laporan, serta pembagian akses dalam satu alur operasional.
+
+**Batas yang perlu dibandingkan dengan RAMUNI:** Bandingkan biaya per outlet, perangkat, pajak, add-on, sinkronisasi kanal, hak akses, serta proses saat internet atau perangkat bermasalah. RAMUNI lebih kuat untuk review konteks lintas modul, bukan pengganti POS tanpa verifikasi.
+
+**Tautan:** [Produk majoo](https://majoo.id/produk), [harga majoo](https://majoo.id/harga).
+
+## 5. Olsera
+
+<figure class="article-body-figure article-competitor-figure">
+  <img src="/website-original/blog/generated/official-competitor-visuals/rekomendasi-olsera-official.webp" width="960" height="600" alt="Perangkat POS resmi Olsera dengan katalog menu dan alur pesanan" loading="lazy" decoding="async">
+  <figcaption>Visual produk resmi dari <a href="https://www.olsera.com/id/software-pos-kasir" rel="noreferrer">halaman Olsera POS</a>. Hak cipta visual milik Olsera.</figcaption>
+</figure>
+
+**Fokus:** Olsera menonjolkan POS retail, inventori, pelanggan, karyawan, online order, pembayaran, dan laporan.
+
+**Kelebihan yang relevan:** Kandidat retail atau F&amp;B dapat memeriksa alur katalog, pesanan, pembayaran, dan laporan dari sudut kerja kasir.
+
+**Batas yang perlu dibandingkan dengan RAMUNI:** Periksa harga tahunan atau promo, pajak, perangkat, jumlah outlet, kanal marketplace, ekspor, dan dukungan. RAMUNI layak dibandingkan bila kebutuhan utama adalah menghubungkan angka dengan catatan dan keputusan.
+
+**Tautan:** [Olsera POS](https://www.olsera.com/id/software-pos-kasir), [harga Olsera](https://www.olsera.com/id/pricing).
+
+Kelebihan pada setiap bagian berarti area yang terlihat menonjol dari halaman resmi, bukan penilaian kualitas keseluruhan. Batas berarti hal yang perlu dibuktikan lewat demo atau uji data contoh. Visual brand lain di atas diambil dari halaman resmi vendor, disimpan lokal sebagai WebP untuk performa dan stabilitas, serta tidak dimaksudkan sebagai endorsement.
 
 ## Snapshot harga yang terlihat saat ditinjau
 
