@@ -1,6 +1,6 @@
 # RAMUNI Codex Handoff for MeetsIn Server Continuation
 
-Snapshot date: 2026-08-23 Europe/Berlin
+Snapshot date: 2026-08-25 Europe/Berlin
 
 Repository: `https://github.com/Ramuni-Indonesia/ramuni.git`
 
@@ -11,6 +11,15 @@ Canonical branch: `main`
 This is the current operational handoff for the RAMUNI Astro marketing and blog site. It must never contain plaintext PATs, API tokens, passwords, secret environment values, real lead PII, or tenant data.
 
 ## Current release
+
+### Active production batch — `20260825T084225Z-6064e50c97cf`
+
+- Production release `20260825T084225Z-6064e50c97cf` is active at `https://www.ramuni.id/`; artifact SHA-256: `ad421fb90e98095a23ae86ebba7f3800056ddf804fbfde28d2dd6d8d123c219b`. Health was verified at `2026-08-25T08:47:25Z`.
+- Commit `6064e50c97cfda2fc963ec9c064ce65cdffa4a49` contains the money-site commercial refresh, product proof rails, 210 authenticated SaaS screenshots across desktop/tablet/mobile, 12 evidence dashboard assets, feature/product/solution card catalogs, and the live SEO loop.
+- The production publisher completed Node 22 check/build for 276 pages, R2 sync (334 assets, 4 new product evidence WebP uploads), post-CDN rewrite, static SEO/accessibility/schema/internal-link/sitemap/noindex/robots audit, and `npm audit --audit-level=high` with zero vulnerabilities. The raw CSS route ceiling was adjusted to 170 kB while the stricter 32 kB compressed route budget remains enforced; the final audit passed.
+- Live audit command: `SEO_AUDIT_ORIGIN=https://www.ramuni.id PUBLIC_ASSET_BASE_URL=https://assets-staging.ramuni.id npm run audit:live`. The 2026-08-25 pass fetched all 147 sitemap URLs, checked 237 unique referenced images, and reported zero failures and zero warnings for status, canonical, robots/noindex, title, description, H1, alt attributes, JSON-LD, sitemap lastmod, robots sitemap coverage, and asset responses. Report files are written to the ignored `outputs/seo/` directory.
+- Production indexability remains fail-closed. Industry and role claim pages that are not approved are served `200` with `noindex,follow` and are absent from the sitemap; approved product, solution, feature, pricing, FAQ, comparison, homepage, and reviewed article routes are indexable and self-canonical.
+- Browser screenshot QA and PageSpeed Insights were not run in this pass because the marketing-site checkout has no Playwright/Chromium runner. Static and live HTTP/HTML/asset contracts passed; run the same live audit after every content or design loop and add browser QA when the dedicated runner is available.
 
 ### Active production batch — `10b4f0b4c3f3`
 
