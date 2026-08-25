@@ -1,0 +1,1056 @@
+{
+  "generatedAt": "2026-08-25T09:16:41.379Z",
+  "count": 210,
+  "assets": [
+    {
+      "viewport": "desktop",
+      "name": "ai--desktop.webp",
+      "bytes": 74270
+    },
+    {
+      "viewport": "desktop",
+      "name": "approvals--desktop.webp",
+      "bytes": 33972
+    },
+    {
+      "viewport": "desktop",
+      "name": "customers--desktop.webp",
+      "bytes": 30292
+    },
+    {
+      "viewport": "desktop",
+      "name": "customers-campaign-audiences--desktop.webp",
+      "bytes": 23242
+    },
+    {
+      "viewport": "desktop",
+      "name": "customers-privacy-requests--desktop.webp",
+      "bytes": 22560
+    },
+    {
+      "viewport": "desktop",
+      "name": "customers-segments--desktop.webp",
+      "bytes": 30672
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-accounts--desktop.webp",
+      "bytes": 37830
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-bank-reconciliation--desktop.webp",
+      "bytes": 55722
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-budgets--desktop.webp",
+      "bytes": 47652
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-expenses--desktop.webp",
+      "bytes": 49564
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-journals--desktop.webp",
+      "bytes": 41578
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-periods--desktop.webp",
+      "bytes": 39122
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-receivables--desktop.webp",
+      "bytes": 41540
+    },
+    {
+      "viewport": "desktop",
+      "name": "finance-statements--desktop.webp",
+      "bytes": 39248
+    },
+    {
+      "viewport": "desktop",
+      "name": "help--desktop.webp",
+      "bytes": 92126
+    },
+    {
+      "viewport": "desktop",
+      "name": "home--desktop.webp",
+      "bytes": 62452
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-alerts--desktop.webp",
+      "bytes": 35876
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-lots--desktop.webp",
+      "bytes": 50000
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-movements--desktop.webp",
+      "bytes": 43344
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-reservations--desktop.webp",
+      "bytes": 38820
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-stocktakes--desktop.webp",
+      "bytes": 35412
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-transfers--desktop.webp",
+      "bytes": 35184
+    },
+    {
+      "viewport": "desktop",
+      "name": "inventory-valuation--desktop.webp",
+      "bytes": 35344
+    },
+    {
+      "viewport": "desktop",
+      "name": "loyalty--desktop.webp",
+      "bytes": 20548
+    },
+    {
+      "viewport": "desktop",
+      "name": "notifications--desktop.webp",
+      "bytes": 50574
+    },
+    {
+      "viewport": "desktop",
+      "name": "notifications-deliveries--desktop.webp",
+      "bytes": 10970
+    },
+    {
+      "viewport": "desktop",
+      "name": "onboarding-business--desktop.webp",
+      "bytes": 47644
+    },
+    {
+      "viewport": "desktop",
+      "name": "onboarding-import--desktop.webp",
+      "bytes": 57634
+    },
+    {
+      "viewport": "desktop",
+      "name": "payments--desktop.webp",
+      "bytes": 36474
+    },
+    {
+      "viewport": "desktop",
+      "name": "payments-settlements--desktop.webp",
+      "bytes": 50264
+    },
+    {
+      "viewport": "desktop",
+      "name": "platform-ops--desktop.webp",
+      "bytes": 21518
+    },
+    {
+      "viewport": "desktop",
+      "name": "products--desktop.webp",
+      "bytes": 33214
+    },
+    {
+      "viewport": "desktop",
+      "name": "products-compositions--desktop.webp",
+      "bytes": 53798
+    },
+    {
+      "viewport": "desktop",
+      "name": "products-conversions--desktop.webp",
+      "bytes": 24434
+    },
+    {
+      "viewport": "desktop",
+      "name": "products-import--desktop.webp",
+      "bytes": 55298
+    },
+    {
+      "viewport": "desktop",
+      "name": "products-masters--desktop.webp",
+      "bytes": 38206
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-invoices--desktop.webp",
+      "bytes": 35150
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-landed-costs--desktop.webp",
+      "bytes": 35468
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-orders--desktop.webp",
+      "bytes": 35222
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-reorder--desktop.webp",
+      "bytes": 36792
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-returns--desktop.webp",
+      "bytes": 36356
+    },
+    {
+      "viewport": "desktop",
+      "name": "purchasing-suppliers--desktop.webp",
+      "bytes": 35596
+    },
+    {
+      "viewport": "desktop",
+      "name": "reports--desktop.webp",
+      "bytes": 37414
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales--desktop.webp",
+      "bytes": 53294
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-documents--desktop.webp",
+      "bytes": 49948
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-fulfillment--desktop.webp",
+      "bytes": 37930
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-offline-pos--desktop.webp",
+      "bytes": 61986
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-omnichannel-orders--desktop.webp",
+      "bytes": 57456
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-omnichannel-updates--desktop.webp",
+      "bytes": 24642
+    },
+    {
+      "viewport": "desktop",
+      "name": "sales-promotions--desktop.webp",
+      "bytes": 37196
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-audit--desktop.webp",
+      "bytes": 48800
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-billing--desktop.webp",
+      "bytes": 54598
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-business--desktop.webp",
+      "bytes": 49678
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-channels--desktop.webp",
+      "bytes": 29558
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-integration-framework--desktop.webp",
+      "bytes": 22784
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-integrations--desktop.webp",
+      "bytes": 21756
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-locations--desktop.webp",
+      "bytes": 32110
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-notification-channels--desktop.webp",
+      "bytes": 22274
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-notification-templates--desktop.webp",
+      "bytes": 22340
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-offline-cache--desktop.webp",
+      "bytes": 46106
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-offline-devices--desktop.webp",
+      "bytes": 39842
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-offline-reconciliation--desktop.webp",
+      "bytes": 10574
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-offline-runtime--desktop.webp",
+      "bytes": 54930
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-privacy--desktop.webp",
+      "bytes": 72576
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-privacy-vendors--desktop.webp",
+      "bytes": 22140
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-roles--desktop.webp",
+      "bytes": 47852
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-security--desktop.webp",
+      "bytes": 82980
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-status--desktop.webp",
+      "bytes": 21900
+    },
+    {
+      "viewport": "desktop",
+      "name": "settings-team--desktop.webp",
+      "bytes": 62306
+    },
+    {
+      "viewport": "desktop",
+      "name": "support--desktop.webp",
+      "bytes": 22030
+    },
+    {
+      "viewport": "tablet",
+      "name": "ai--tablet.webp",
+      "bytes": 69490
+    },
+    {
+      "viewport": "tablet",
+      "name": "approvals--tablet.webp",
+      "bytes": 19822
+    },
+    {
+      "viewport": "tablet",
+      "name": "customers--tablet.webp",
+      "bytes": 15648
+    },
+    {
+      "viewport": "tablet",
+      "name": "customers-campaign-audiences--tablet.webp",
+      "bytes": 8214
+    },
+    {
+      "viewport": "tablet",
+      "name": "customers-privacy-requests--tablet.webp",
+      "bytes": 8420
+    },
+    {
+      "viewport": "tablet",
+      "name": "customers-segments--tablet.webp",
+      "bytes": 15498
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-accounts--tablet.webp",
+      "bytes": 21546
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-bank-reconciliation--tablet.webp",
+      "bytes": 39980
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-budgets--tablet.webp",
+      "bytes": 31096
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-expenses--tablet.webp",
+      "bytes": 33956
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-journals--tablet.webp",
+      "bytes": 25528
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-periods--tablet.webp",
+      "bytes": 22620
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-receivables--tablet.webp",
+      "bytes": 24592
+    },
+    {
+      "viewport": "tablet",
+      "name": "finance-statements--tablet.webp",
+      "bytes": 22910
+    },
+    {
+      "viewport": "tablet",
+      "name": "help--tablet.webp",
+      "bytes": 96084
+    },
+    {
+      "viewport": "tablet",
+      "name": "home--tablet.webp",
+      "bytes": 50726
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-alerts--tablet.webp",
+      "bytes": 20814
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-lots--tablet.webp",
+      "bytes": 33478
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-movements--tablet.webp",
+      "bytes": 27674
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-reservations--tablet.webp",
+      "bytes": 23140
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-stocktakes--tablet.webp",
+      "bytes": 19698
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-transfers--tablet.webp",
+      "bytes": 19822
+    },
+    {
+      "viewport": "tablet",
+      "name": "inventory-valuation--tablet.webp",
+      "bytes": 20220
+    },
+    {
+      "viewport": "tablet",
+      "name": "loyalty--tablet.webp",
+      "bytes": 20424
+    },
+    {
+      "viewport": "tablet",
+      "name": "notifications--tablet.webp",
+      "bytes": 36192
+    },
+    {
+      "viewport": "tablet",
+      "name": "notifications-deliveries--tablet.webp",
+      "bytes": 17496
+    },
+    {
+      "viewport": "tablet",
+      "name": "onboarding-business--tablet.webp",
+      "bytes": 40416
+    },
+    {
+      "viewport": "tablet",
+      "name": "onboarding-import--tablet.webp",
+      "bytes": 42744
+    },
+    {
+      "viewport": "tablet",
+      "name": "payments--tablet.webp",
+      "bytes": 20192
+    },
+    {
+      "viewport": "tablet",
+      "name": "payments-settlements--tablet.webp",
+      "bytes": 34322
+    },
+    {
+      "viewport": "tablet",
+      "name": "platform-ops--tablet.webp",
+      "bytes": 7552
+    },
+    {
+      "viewport": "tablet",
+      "name": "products--tablet.webp",
+      "bytes": 18264
+    },
+    {
+      "viewport": "tablet",
+      "name": "products-compositions--tablet.webp",
+      "bytes": 36424
+    },
+    {
+      "viewport": "tablet",
+      "name": "products-conversions--tablet.webp",
+      "bytes": 33694
+    },
+    {
+      "viewport": "tablet",
+      "name": "products-import--tablet.webp",
+      "bytes": 39946
+    },
+    {
+      "viewport": "tablet",
+      "name": "products-masters--tablet.webp",
+      "bytes": 23214
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-invoices--tablet.webp",
+      "bytes": 20006
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-landed-costs--tablet.webp",
+      "bytes": 20102
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-orders--tablet.webp",
+      "bytes": 19760
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-reorder--tablet.webp",
+      "bytes": 21220
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-returns--tablet.webp",
+      "bytes": 21062
+    },
+    {
+      "viewport": "tablet",
+      "name": "purchasing-suppliers--tablet.webp",
+      "bytes": 19824
+    },
+    {
+      "viewport": "tablet",
+      "name": "reports--tablet.webp",
+      "bytes": 22874
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales--tablet.webp",
+      "bytes": 50754
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-documents--tablet.webp",
+      "bytes": 32612
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-fulfillment--tablet.webp",
+      "bytes": 22322
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-offline-pos--tablet.webp",
+      "bytes": 46280
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-omnichannel-orders--tablet.webp",
+      "bytes": 40800
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-omnichannel-updates--tablet.webp",
+      "bytes": 9600
+    },
+    {
+      "viewport": "tablet",
+      "name": "sales-promotions--tablet.webp",
+      "bytes": 20442
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-audit--tablet.webp",
+      "bytes": 35120
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-billing--tablet.webp",
+      "bytes": 28364
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-business--tablet.webp",
+      "bytes": 35512
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-channels--tablet.webp",
+      "bytes": 14480
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-integration-framework--tablet.webp",
+      "bytes": 8396
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-integrations--tablet.webp",
+      "bytes": 7476
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-locations--tablet.webp",
+      "bytes": 16660
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-notification-channels--tablet.webp",
+      "bytes": 7856
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-notification-templates--tablet.webp",
+      "bytes": 8112
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-offline-cache--tablet.webp",
+      "bytes": 33056
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-offline-devices--tablet.webp",
+      "bytes": 25380
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-offline-reconciliation--tablet.webp",
+      "bytes": 40948
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-offline-runtime--tablet.webp",
+      "bytes": 40154
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-privacy--tablet.webp",
+      "bytes": 59234
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-privacy-vendors--tablet.webp",
+      "bytes": 8248
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-roles--tablet.webp",
+      "bytes": 31256
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-security--tablet.webp",
+      "bytes": 68962
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-status--tablet.webp",
+      "bytes": 7536
+    },
+    {
+      "viewport": "tablet",
+      "name": "settings-team--tablet.webp",
+      "bytes": 47678
+    },
+    {
+      "viewport": "tablet",
+      "name": "support--tablet.webp",
+      "bytes": 7572
+    },
+    {
+      "viewport": "mobile",
+      "name": "ai--mobile.webp",
+      "bytes": 150056
+    },
+    {
+      "viewport": "mobile",
+      "name": "approvals--mobile.webp",
+      "bytes": 41550
+    },
+    {
+      "viewport": "mobile",
+      "name": "customers--mobile.webp",
+      "bytes": 33780
+    },
+    {
+      "viewport": "mobile",
+      "name": "customers-campaign-audiences--mobile.webp",
+      "bytes": 16084
+    },
+    {
+      "viewport": "mobile",
+      "name": "customers-privacy-requests--mobile.webp",
+      "bytes": 15146
+    },
+    {
+      "viewport": "mobile",
+      "name": "customers-segments--mobile.webp",
+      "bytes": 32058
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-accounts--mobile.webp",
+      "bytes": 43638
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-bank-reconciliation--mobile.webp",
+      "bytes": 84098
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-budgets--mobile.webp",
+      "bytes": 66920
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-expenses--mobile.webp",
+      "bytes": 68116
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-journals--mobile.webp",
+      "bytes": 56032
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-periods--mobile.webp",
+      "bytes": 44690
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-receivables--mobile.webp",
+      "bytes": 50334
+    },
+    {
+      "viewport": "mobile",
+      "name": "finance-statements--mobile.webp",
+      "bytes": 47114
+    },
+    {
+      "viewport": "mobile",
+      "name": "help--mobile.webp",
+      "bytes": 185318
+    },
+    {
+      "viewport": "mobile",
+      "name": "home--mobile.webp",
+      "bytes": 162982
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-alerts--mobile.webp",
+      "bytes": 40622
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-lots--mobile.webp",
+      "bytes": 71796
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-movements--mobile.webp",
+      "bytes": 56994
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-reservations--mobile.webp",
+      "bytes": 47590
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-stocktakes--mobile.webp",
+      "bytes": 43196
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-transfers--mobile.webp",
+      "bytes": 42994
+    },
+    {
+      "viewport": "mobile",
+      "name": "inventory-valuation--mobile.webp",
+      "bytes": 44058
+    },
+    {
+      "viewport": "mobile",
+      "name": "loyalty--mobile.webp",
+      "bytes": 40876
+    },
+    {
+      "viewport": "mobile",
+      "name": "notifications--mobile.webp",
+      "bytes": 77230
+    },
+    {
+      "viewport": "mobile",
+      "name": "notifications-deliveries--mobile.webp",
+      "bytes": 37514
+    },
+    {
+      "viewport": "mobile",
+      "name": "onboarding-business--mobile.webp",
+      "bytes": 52630
+    },
+    {
+      "viewport": "mobile",
+      "name": "onboarding-import--mobile.webp",
+      "bytes": 97936
+    },
+    {
+      "viewport": "mobile",
+      "name": "payments--mobile.webp",
+      "bytes": 40498
+    },
+    {
+      "viewport": "mobile",
+      "name": "payments-settlements--mobile.webp",
+      "bytes": 72628
+    },
+    {
+      "viewport": "mobile",
+      "name": "platform-ops--mobile.webp",
+      "bytes": 14124
+    },
+    {
+      "viewport": "mobile",
+      "name": "products--mobile.webp",
+      "bytes": 38894
+    },
+    {
+      "viewport": "mobile",
+      "name": "products-compositions--mobile.webp",
+      "bytes": 77944
+    },
+    {
+      "viewport": "mobile",
+      "name": "products-conversions--mobile.webp",
+      "bytes": 70896
+    },
+    {
+      "viewport": "mobile",
+      "name": "products-import--mobile.webp",
+      "bytes": 90020
+    },
+    {
+      "viewport": "mobile",
+      "name": "products-masters--mobile.webp",
+      "bytes": 48378
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-invoices--mobile.webp",
+      "bytes": 42836
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-landed-costs--mobile.webp",
+      "bytes": 44224
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-orders--mobile.webp",
+      "bytes": 43220
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-reorder--mobile.webp",
+      "bytes": 45964
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-returns--mobile.webp",
+      "bytes": 45996
+    },
+    {
+      "viewport": "mobile",
+      "name": "purchasing-suppliers--mobile.webp",
+      "bytes": 43998
+    },
+    {
+      "viewport": "mobile",
+      "name": "reports--mobile.webp",
+      "bytes": 44714
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales--mobile.webp",
+      "bytes": 110022
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-documents--mobile.webp",
+      "bytes": 71568
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-fulfillment--mobile.webp",
+      "bytes": 42548
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-offline-pos--mobile.webp",
+      "bytes": 101436
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-omnichannel-orders--mobile.webp",
+      "bytes": 90000
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-omnichannel-updates--mobile.webp",
+      "bytes": 16240
+    },
+    {
+      "viewport": "mobile",
+      "name": "sales-promotions--mobile.webp",
+      "bytes": 38394
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-audit--mobile.webp",
+      "bytes": 75516
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-billing--mobile.webp",
+      "bytes": 85870
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-business--mobile.webp",
+      "bytes": 79818
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-channels--mobile.webp",
+      "bytes": 31228
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-integration-framework--mobile.webp",
+      "bytes": 15006
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-integrations--mobile.webp",
+      "bytes": 13348
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-locations--mobile.webp",
+      "bytes": 34420
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-notification-channels--mobile.webp",
+      "bytes": 14008
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-notification-templates--mobile.webp",
+      "bytes": 14446
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-offline-cache--mobile.webp",
+      "bytes": 69702
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-offline-devices--mobile.webp",
+      "bytes": 56828
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-offline-reconciliation--mobile.webp",
+      "bytes": 59042
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-offline-runtime--mobile.webp",
+      "bytes": 92118
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-privacy--mobile.webp",
+      "bytes": 137582
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-privacy-vendors--mobile.webp",
+      "bytes": 14734
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-roles--mobile.webp",
+      "bytes": 62374
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-security--mobile.webp",
+      "bytes": 137836
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-status--mobile.webp",
+      "bytes": 14822
+    },
+    {
+      "viewport": "mobile",
+      "name": "settings-team--mobile.webp",
+      "bytes": 107652
+    },
+    {
+      "viewport": "mobile",
+      "name": "support--mobile.webp",
+      "bytes": 13998
+    }
+  ]
+}

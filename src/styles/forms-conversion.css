@@ -87,6 +87,70 @@
   padding-top: 2px;
 }
 
+.lead-form .lead-form__choice-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 52px;
+  width: 100%;
+  gap: 9px;
+  padding: 13px 14px;
+  border-radius: 14px;
+  font-size: .82rem;
+  line-height: 1.15;
+  white-space: normal;
+  text-align: center;
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button span {
+  min-width: 0;
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button svg {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button--consultation {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: var(--white);
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button--consultation:hover,
+.lead-form .lead-form__choice-actions .lead-form__choice-button--consultation:focus-visible {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button--trial {
+  border: 1px solid var(--ink-20);
+  background: var(--rice);
+  color: var(--ink);
+}
+
+.lead-form .lead-form__choice-actions .lead-form__choice-button--trial:hover,
+.lead-form .lead-form__choice-actions .lead-form__choice-button--trial:focus-visible {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
+.lead-form .lead-form__choice-actions .form-status {
+  grid-column: 1 / -1;
+}
+
 .lead-form .form-actions .button {
   min-height: 48px;
   width: 100%;
@@ -238,6 +302,11 @@
 @media (max-width: 640px) {
   .lead-form--progressive .form-actions { grid-template-columns: 1fr; }
   .lead-form--progressive .form-actions .form-status { grid-column: auto; }
+}
+
+@media (max-width: 560px) {
+  .lead-form .lead-form__choice-actions { grid-template-columns: 1fr; }
+  .lead-form .lead-form__choice-actions .form-status { grid-column: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

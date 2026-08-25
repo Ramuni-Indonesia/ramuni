@@ -4,9 +4,11 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
 import MarketingFeatureCardGrid from '../../components/MarketingFeatureCardGrid.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
+import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import { featureDetails } from '../../data/commercial';
 import { marketingFeatureCards } from '../../data/marketingFeatureCards';
 import { productScreenSets } from '../../data/productScreens';
+import { selectSaasEvidenceByFamily } from '../../data/saasScreenshotSelectors';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
@@ -50,6 +52,11 @@ const featureFlow: Record<string, Array<{ label: string; title: string; text: st
 };
 const flow = featureFlow[feature.slug] || featureFlow['ai-copilot'];
 const featureCard = marketingFeatureCards.filter((card) => card.slug === feature.slug);
+const featureScreenshotFamily: Record<string, string> = {
+  'ai-copilot': 'ai', 'profit-intelligence': 'finance', omnichannel: 'customers',
+  'web-builder': 'workspace', 'knowledge-os': 'workspace',
+};
+const featureEvidence = selectSaasEvidenceByFamily(featureScreenshotFamily[feature.slug] || 'workspace', 2);
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: `${feature.name} | Fitur RAMUNI`, description: feature.summary, dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: origin + '/' }, { '@type': 'ListItem', position: 2, name: 'Fitur', item: origin + '/features/' }, { '@type': 'ListItem', position: 3, name: feature.name, item: canonical }] },
@@ -65,6 +72,13 @@ const schema = [
       body="Lihat area kerja yang relevan untuk fitur ini, lalu coba alurnya dengan data usaha Anda."
       items={screenSet}
       compact
+    />
+    <SaaSEvidenceCardRail
+      id={`feature-${feature.slug}-evidence`}
+      eyebrow="Tampilan aktual"
+      heading={`Lihat area kerja yang mendukung ${feature.name}.`}
+      body="Tampilan ini menunjukkan konteks produk agar manfaat fitur tidak berhenti pada copy."
+      entries={featureEvidence}
     />
     <section class="feature-detail-flow commercial-section commercial-section--white" aria-labelledby="feature-flow-title">
       <div class="container">

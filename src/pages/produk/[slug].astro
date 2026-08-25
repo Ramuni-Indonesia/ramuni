@@ -11,10 +11,12 @@ import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
+import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
 import { productScreenSets } from '../../data/productScreens';
+import { selectSaasEvidenceByFamily } from '../../data/saasScreenshotSelectors';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
 import { pageLastmods } from '../../data/pageLastmods';
@@ -85,6 +87,16 @@ const screenSet = ['katalog-produk', 'inventori', 'integrasi'].includes(product.
   : ['penjualan', 'keuangan', 'pelanggan'].includes(product.slug)
     ? productScreenSets.performance
     : productScreenSets.overview;
+const screenshotFamilyByProduct: Record<string, string> = {
+  'asisten-ai': 'ai', 'dashboard-bisnis': 'workspace', 'katalog-produk': 'products',
+  penjualan: 'sales', inventori: 'inventory', keuangan: 'finance', pelanggan: 'customers',
+  'laporan-insight': 'reports', integrasi: 'settings',
+};
+// Integrasi already has a three-screen data rail; skip the duplicate evidence
+// card there so the route stays under the image-transfer budget.
+const saasEvidence = product.slug === 'integrasi'
+  ? []
+  : selectSaasEvidenceByFamily(screenshotFamilyByProduct[product.slug] || 'workspace', 1);
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
@@ -231,6 +243,14 @@ const structuredData = [
       body="Screen ini menunjukkan area kerja, periode, dan data pendukung yang dapat dibuka saat demo."
       items={screenSet}
       compact
+    />
+
+    <SaaSEvidenceCardRail
+      id={`product-${product.slug}-evidence`}
+      eyebrow="Tampilan produk"
+      heading={`Lihat pekerjaan ${product.title} dalam workspace yang sama.`}
+      body="Buka area kerja yang relevan sebelum mencoba. Tampilan desktop, tablet, dan mobile memilih gambar yang sesuai."
+      entries={saasEvidence}
     />
 
     <section id="product-benefits" class="pd-benefits" data-section-id="product-benefits" data-analytics-id="product_benefit_decisions" aria-labelledby="product-benefits-title">

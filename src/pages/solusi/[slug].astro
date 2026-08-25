@@ -10,8 +10,10 @@ import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
+import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
 import { productScreenSets } from '../../data/productScreens';
+import { selectSaasEvidence } from '../../data/saasScreenshotSelectors';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
@@ -45,6 +47,7 @@ const solutionCtaLabels: Record<string, string> = {
 const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Lihat contoh alur gratis';
 const closingVisual = getSolutionContextVisual(solution.slug);
 const screenSet = solution.slug === 'kelola-stok' ? productScreenSets.operations : solution.slug === 'naikkan-omzet' || solution.slug === 'pantau-laba-dan-arus-kas' || solution.slug === 'pahami-pelanggan' ? productScreenSets.performance : productScreenSets.overview;
+const solutionEvidence = selectSaasEvidence((solutionIntents[solution.slug] || 'overview') as 'overview' | 'sales' | 'stock' | 'finance' | 'customer' | 'report', 1);
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
@@ -106,6 +109,14 @@ const structuredData = [
       body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; hasil tetap bergantung pada data dan keputusan usaha."
       items={screenSet}
       compact
+    />
+
+    <SaaSEvidenceCardRail
+      id={`solution-${solution.slug}-evidence`}
+      eyebrow="Tampilan alur kerja"
+      heading={`Lihat bukti layar untuk ${solution.title}.`}
+      body="Area kerja di bawah membantu tim memahami input dan hasil sebelum membahas kebutuhan lewat demo."
+      entries={solutionEvidence}
     />
 
     <section class="section sd-problem" aria-labelledby="problem-title">
