@@ -156,7 +156,11 @@ async function auditLinkedStylesheets() {
   // loading. It allows the current six-file product bundle (165,145 B) a
   // small deterministic rounding margin while the stricter 32 kB gzip limit
   // remains the delivery-performance gate.
-  const routeLimit = 166_000;
+  // The marketing proof rails add a small amount of component-scoped CSS to
+  // the homepage and blog search shell. Keep the raw ceiling below the
+  // per-file 110 kB guard while relying on the stricter 32 kB compressed
+  // route budget as the delivery-performance gate.
+  const routeLimit = 170_000;
   const compressedRouteLimit = 32_000;
   for (const [route, page] of pages) {
     const hrefs = [...page.html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
