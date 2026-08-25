@@ -33,7 +33,7 @@ export const SITEMAP_URLSET_FILES = Object.freeze([
 // reviewed visitor-facing revision date here instead of falling back to the
 // build clock, so every canonical sitemap URL has a truthful lastmod value.
 const STATIC_ROUTE_LASTMODS = new Map([
-  ['/', '2026-08-23'],
+  ['/', '2026-08-25'],
   ['/blog/', '2026-08-20'],
   ['/blog/kebijakan-editorial/', '2026-07-26'],
   ['/blog/kebijakan-pembaruan/', '2026-07-26'],
@@ -43,20 +43,20 @@ const STATIC_ROUTE_LASTMODS = new Map([
   ['/keamanan/', '2026-08-20'],
   ['/blog/penulis/', '2026-08-20'],
   ['/kontak/', '2026-08-20'],
-  ['/tentang/', '2026-08-10'],
+  ['/tentang/', '2026-08-25'],
   ['/tour-produk-gratis/', '2026-08-20'],
-  ['/pricing/', '2026-08-23'],
-  ['/features/', '2026-08-23'],
-  ['/compare/', '2026-08-23'],
-  ['/faq/', '2026-08-23'],
+  ['/pricing/', '2026-08-25'],
+  ['/features/', '2026-08-25'],
+  ['/compare/', '2026-08-25'],
+  ['/faq/', '2026-08-25'],
   ['/untuk/', '2026-08-20'],
 ]);
 
 const STATIC_ROUTE_LASTMOD_PREFIXES = Object.freeze([
-  ['/produk/', '2026-08-23'],
-  ['/solusi/', '2026-08-23'],
-  ['/industri/', '2026-08-20'],
-  ['/untuk/', '2026-08-20'],
+  ['/produk/', '2026-08-25'],
+  ['/solusi/', '2026-08-25'],
+  ['/industri/', '2026-08-25'],
+  ['/untuk/', '2026-08-25'],
   ['/sumber-daya/', '2026-08-10'],
   ['/generator/', '2026-08-10'],
   ['/kamus-bisnis/', '2026-08-10'],

@@ -3,8 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, roles } from '../../data/site';
+import { productScreenSets } from '../../data/productScreens';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
 
@@ -26,7 +28,7 @@ const roleContext: Record<string, {
     permissions: [{ action: 'Lihat data', status: 'Lintas modul sesuai akun' }, { action: 'Buat dan edit', status: 'Sesuai kebijakan' }, { action: 'Setujui', status: 'Sesuai izin akun' }, { action: 'Ekspor', status: 'Sesuai izin akun' }, { action: 'Tagihan', status: 'Kelola' }],
     alerts: ['Perubahan omzet atau kas', 'Stok yang perlu pemeriksaan', 'Masalah operasional yang belum selesai'],
     questions: ['Apa yang perlu saya perhatikan hari ini?', 'Mengapa kas berubah dibanding periode lalu?', 'Masalah mana yang belum ditindaklanjuti?'],
-    collaboration: ['Mengatur akses tim', 'Menerima konteks dari supervisor', 'Menetapkan keputusan dan penanggung jawab'],
+    collaboration: ['Mengatur akses tim', 'Menerima ringkasan dari supervisor', 'Menetapkan keputusan dan penanggung jawab'],
     collaborationNotes: ['Pastikan setiap peran hanya melihat data yang dibutuhkan.', 'Baca masalah bersama bukti yang sudah dikumpulkan.', 'Tentukan siapa yang menindaklanjuti.'],
     success: ['Ringkasan tiba tepat waktu', 'Definisi angka konsisten', 'Tindak lanjut memiliki pemilik'],
     aiBoundary: ['AI merangkum, bukan menyetujui keputusan.', 'Perubahan akses dan tagihan tetap dilakukan pemilik.', 'Setiap saran perlu ditelusuri ke angka pendukung.'],
@@ -42,7 +44,7 @@ const roleContext: Record<string, {
     permissions: [{ action: 'Lihat data', status: 'Operasional sesuai cakupan' }, { action: 'Buat dan edit', status: 'Sesuai akses' }, { action: 'Setujui', status: 'Mengikuti pemilik' }, { action: 'Ekspor', status: 'Jika diizinkan' }, { action: 'Tagihan', status: 'Dikelola pemilik' }],
     alerts: ['Data wajib belum lengkap', 'Impor atau sinkronisasi perlu perhatian', 'Koreksi menunggu persetujuan'],
     questions: ['Data apa yang belum lengkap?', 'Transaksi mana yang perlu diperiksa ulang?', 'Produk mana yang tidak punya unit konsisten?'],
-    collaboration: ['Menjaga data operasional', 'Meminta persetujuan saat diperlukan', 'Memberi konteks kepada supervisor dan pemilik'],
+    collaboration: ['Menjaga data operasional', 'Meminta persetujuan saat diperlukan', 'Memberi dasar kepada supervisor dan pemilik'],
     collaborationNotes: ['Rapikan data yang paling sering dipakai tim.', 'Kirim koreksi beserta catatannya.', 'Jelaskan masalah tanpa menghilangkan riwayat perubahan.'],
     success: ['Duplikasi berkurang', 'Koreksi memiliki jejak', 'Tugas data selesai tepat waktu'],
     aiBoundary: ['AI menunjukkan data yang perlu dicek ulang.', 'Koreksi tetap mengikuti izin dan jejak perubahan.', 'Masalah akses diteruskan ke pemilik atau supervisor.'],
@@ -58,7 +60,7 @@ const roleContext: Record<string, {
     permissions: [{ action: 'Lihat data', status: 'Transaksi yang relevan' }, { action: 'Buat dan edit', status: 'Transaksi aktif sesuai izin' }, { action: 'Setujui', status: 'Diteruskan ke atasan' }, { action: 'Ekspor', status: 'Diteruskan ke admin' }, { action: 'Tagihan', status: 'Dikelola pemilik' }],
     alerts: ['Pembayaran belum jelas', 'Transaksi gagal disimpan', 'Perlu bantuan admin atau supervisor'],
     questions: ['Apa langkah pemulihan transaksi ini?', 'Apakah pembayaran sudah tercatat?', 'Siapa yang perlu membantu koreksi?'],
-    collaboration: ['Mencatat transaksi', 'Meneruskan masalah dengan konteks', 'Mengikuti koreksi dari admin atau supervisor'],
+    collaboration: ['Mencatat transaksi', 'Meneruskan masalah dengan detail', 'Mengikuti koreksi dari admin atau supervisor'],
     collaborationNotes: ['Pastikan item dan pembayaran tercatat dengan jelas.', 'Teruskan transaksi gagal tanpa mengulang input.', 'Ikuti koreksi yang sudah disetujui.'],
     success: ['Transaksi selesai tanpa duplikasi', 'Status pembayaran jelas', 'Masalah cepat diteruskan'],
     aiBoundary: ['AI tidak mengubah pembayaran atau transaksi.', 'Transaksi gagal tidak boleh dikirim ulang tanpa pemeriksaan.', 'Koreksi diteruskan ke admin atau supervisor.'],
@@ -70,10 +72,10 @@ const roleContext: Record<string, {
     headings: { responsibility: 'Transaksi selesai tanpa input ulang.', priorities: 'Layar kasir fokus pada transaksi yang sedang dikerjakan.', workflow: 'Selesaikan transaksi. Jika gagal, teruskan tanpa mengulang dari awal.', permissions: 'Kasir melihat yang dibutuhkan untuk melayani pembeli.', collaboration: 'Masalah sampai ke admin bersama detail transaksi.', success: 'Kasir berhasil ketika pembayaran jelas dan antrean tetap bergerak.', related: 'Lihat modul yang mendukung alur transaksi harian.', closing: 'Lihat contoh transaksi dan jalur pemulihannya.' },
   },
   supervisor: {
-    workflow: ['Baca daftar pengecualian', 'Bandingkan periode dan aktivitas tim', 'Tinjau konteks masalah', 'Teruskan keputusan yang memerlukan pemilik'],
+    workflow: ['Baca daftar pengecualian', 'Bandingkan periode dan aktivitas tim', 'Tinjau alasan masalah', 'Teruskan keputusan yang memerlukan pemilik'],
     permissions: [{ action: 'Lihat data', status: 'Operasional lintas tim' }, { action: 'Buat dan edit', status: 'Sesuai kebijakan' }, { action: 'Setujui', status: 'Sesuai akses' }, { action: 'Ekspor', status: 'Jika diizinkan' }, { action: 'Tagihan', status: 'Dikelola pemilik' }],
     alerts: ['Masalah operasional', 'Laporan periode belum selesai', 'Tindak lanjut tim melewati waktu'],
-    questions: ['Masalah mana yang berulang?', 'Tim mana yang perlu konteks tambahan?', 'Apa yang harus dibawa ke pemilik?'],
+    questions: ['Masalah mana yang berulang?', 'Tim mana yang perlu data tambahan?', 'Apa yang harus dibawa ke pemilik?'],
     collaboration: ['Meninjau pekerjaan tim', 'Menghubungkan masalah dengan bukti', 'Meneruskan keputusan kepada pemilik'],
     collaborationNotes: ['Periksa pekerjaan yang belum selesai.', 'Bawa masalah dan bukti ke pemilik.', 'Catat keputusan agar tim menerima arah yang sama.'],
     success: ['Pengecualian terlihat lebih cepat', 'Tindak lanjut tidak hilang', 'Laporan memakai definisi yang sama'],
@@ -104,6 +106,11 @@ const seo = roleSeo[role.slug] || { title: `RAMUNI untuk ${role.title}`, descrip
 const canonicalPath = `/untuk/${role.slug}/`;
 const relevantProducts = products.filter((product) => product.roles.includes(role.title)).slice(0, 4);
 const relatedIndustries = industries.filter((industry) => context.industrySlugs.includes(industry.slug));
+const roleScreens = ['admin-toko', 'kasir'].includes(role.slug)
+  ? productScreenSets.operations
+  : role.slug === 'supervisor'
+    ? productScreenSets.performance
+    : productScreenSets.overview;
 const roleHelpLinks: Record<string, { label: string; href: string }[]> = {
   'pemilik-usaha': [
     { label: 'Atur akses tim', href: '/keamanan/' },
@@ -161,6 +168,15 @@ const structuredData = {
     </div>
   </section>
 
+  <ProductScreenshotRail
+    id={`role-${role.slug}-screens`}
+    eyebrow="Bukti layar RAMUNI"
+    heading={`Layar yang mengikuti pekerjaan ${role.title}.`}
+    body="Lihat contoh dashboard sebelum meminta demo. Capture berasal dari workspace E2E RAMUNI dan memakai data demo terkontrol."
+    items={roleScreens}
+    compact
+  />
+
   <section class="section dark-surface" id="alur-utama" aria-labelledby="workflow-title">
     <div class="container audience-day">
       <div class="audience-section-heading reveal"><h2 id="workflow-title">{context.headings.workflow}</h2></div>
@@ -180,14 +196,14 @@ const structuredData = {
       <AudienceContextBoard
         id="alerts"
         eyebrow={'Ruang kerja ' + role.title}
-        title="Pilih konteks sebelum menentukan tindak lanjut."
+        title="Pilih sudut pandang sebelum menentukan tindak lanjut."
         description="Buka satu sudut pandang pada satu waktu agar peringatan, pertanyaan, dan hal yang perlu diperiksa tidak tercampur."
         panes={[
           { label: 'Peringatan', title: 'Mulai dari perubahan yang perlu diperiksa.', items: context.alerts },
           { label: 'Pertanyaan', title: 'Gunakan pertanyaan untuk menelusuri alasan.', items: context.questions },
           { label: 'Peran AI', title: 'Keputusan dan tindakan tetap berada pada manusia.', items: context.aiBoundary },
         ]}
-        note={'Contoh ini membantu ' + role.title + ' membaca konteks. RAMUNI tidak menyetujui keputusan atau mengubah data secara otomatis.'}
+        note={'Contoh ini membantu ' + role.title + ' membaca data. RAMUNI tidak menyetujui keputusan atau mengubah data secara otomatis.'}
         mascot="guide3d"
         variant="role"
       />

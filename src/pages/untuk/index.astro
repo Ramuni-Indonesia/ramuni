@@ -24,7 +24,7 @@ const collaborationFlow = [
   { label: 'Pantau', text: 'Status terlihat lagi oleh tim yang perlu tahu.' },
 ];
 ---
-<BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat bagaimana pemilik usaha, admin toko, kasir, dan supervisor memakai satu sumber pemahaman dengan akses yang berbeda.">
+<BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat cara pemilik usaha, admin toko, kasir, dan supervisor memakai RAMUNI dengan akses dan prioritas yang berbeda.">
   <PageHero eyebrow="Untuk Tim" title="Satu sumber pemahaman untuk setiap peran." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Coba gratis" secondaryHref="/tour-produk-gratis/" visual="guide" visualScene="role-hub" visualLabel="Peta peran" visualTitle="Masalah diarahkan kepada orang yang punya wewenang." />
   <section class="section dark-surface role-hub__selector" id="daftar-peran" aria-labelledby="role-selector-title">
     <div class="container role-hub__selector-layout">
@@ -56,13 +56,13 @@ const collaborationFlow = [
 
   <section class="section role-hub__flow" id="kolaborasi" aria-labelledby="collaboration-title">
     <div class="container">
-      <div class="role-hub__intro reveal"><p class="eyebrow">Alur kolaborasi</p><h2 id="collaboration-title">Masalah bergerak ke orang yang tepat.</h2><p class="lede">Bukan forward chat tanpa konteks. Setiap perpindahan membawa status, alasan, dan bukti yang bisa diperiksa.</p></div>
+      <div class="role-hub__intro reveal"><p class="eyebrow">Alur kolaborasi</p><h2 id="collaboration-title">Masalah sampai ke orang yang tepat.</h2><p class="lede">Bukan forward chat tanpa alasan. Setiap perpindahan membawa status, sumber, dan bukti yang bisa diperiksa.</p></div>
       <ol class="role-hub__timeline reveal">{collaborationFlow.map((step, index) => <li style={`--i:${index}`}><span>{step.label}</span><p>{step.text}</p></li>)}</ol>
     </div>
   </section>
   <section class="section surface" id="izin" aria-labelledby="permission-title">
     <div class="container role-hub__permission-layout">
-      <div class="role-hub__heading reveal"><p class="eyebrow">Akses & izin</p><h2 id="permission-title">Konteks dibagi. Kendali tetap berlapis.</h2><p>Setiap peran melihat informasi dan tindakan yang sesuai dengan tanggung jawabnya.</p></div>
+      <div class="role-hub__heading reveal"><p class="eyebrow">Akses & izin</p><h2 id="permission-title">Informasi dibagi. Kendali tetap berlapis.</h2><p>Setiap peran melihat informasi dan tindakan yang sesuai dengan tanggung jawabnya.</p></div>
       <div class="role-hub__table reveal" role="region" aria-label="Perbandingan visibilitas peran" tabindex="0">
         <table><thead><tr><th scope="col">Area</th><th scope="col">Pemilik</th><th scope="col">Admin</th><th scope="col">Kasir</th><th scope="col">Supervisor</th></tr></thead><tbody>{visibility.map((row) => <tr><th scope="row">{row.area}</th><td>{row.owner}</td><td>{row.admin}</td><td>{row.cashier}</td><td>{row.supervisor}</td></tr>)}</tbody></table>
       </div>
@@ -70,7 +70,7 @@ const collaborationFlow = [
   </section>
   <section class="section dark-surface" id="peran-ai" aria-labelledby="ai-boundary-title">
     <div class="container role-hub__ai-layout">
-      <div class="role-hub__sticky reveal"><p class="eyebrow">Peran AI</p><h2 id="ai-boundary-title">AI membantu membaca. Manusia menentukan tindakan.</h2><p>AI menjelaskan data, menunjukkan konteks, dan membantu menyiapkan pertanyaan lanjutan untuk tim.</p></div>
+      <div class="role-hub__sticky reveal"><p class="eyebrow">Peran AI</p><h2 id="ai-boundary-title">AI membantu membaca. Manusia menentukan tindakan.</h2><p>AI menjelaskan data, menunjukkan sumber, dan membantu menyiapkan pertanyaan lanjutan untuk tim.</p></div>
       <div class="role-hub__ai-list">
         {roles.map((role, index) => <article class="role-hub__ai-card reveal" style={`--i:${index}`}><span>{role.title}</span><p>{roleViews[role.slug].ai}</p><small>{roleViews[role.slug].proof}</small></article>)}
       </div>

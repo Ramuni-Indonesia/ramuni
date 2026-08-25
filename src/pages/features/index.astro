@@ -2,33 +2,59 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
+import MarketingFeatureCardGrid from '../../components/MarketingFeatureCardGrid.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import { featureDetails } from '../../data/commercial';
+import { marketingFeatureCards, marketingProductCards, marketingSolutionCards, marketingIndustryLinks, marketingRoleLinks } from '../../data/marketingFeatureCards';
 import { productScreenSets } from '../../data/productScreens';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
 const origin = new URL('/', Astro.site || Astro.url.origin).origin;
 const canonical = new URL('/features/', origin).toString();
+const catalogCards = [...marketingFeatureCards, ...marketingProductCards, ...marketingSolutionCards];
+const catalogFilters = [
+  { label: 'Fitur utama', value: 'feature' },
+  { label: 'Produk', value: 'product' },
+  { label: 'Solusi', value: 'solution' },
+  { label: 'Semua', value: 'all' },
+] as const;
 const schema = [
-  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Fitur RAMUNI: AI Copilot, Profit Intelligence, dan Knowledge OS', description: 'Kenali fitur RAMUNI untuk membantu UMKM bekerja lebih rapi, memahami keuntungan, dan mengambil keputusan bisnis dengan lebih cepat.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Fitur RAMUNI untuk Operasional, AI & Knowledge OS', description: 'Bandingkan fitur dan produk RAMUNI untuk penjualan, stok, keuangan, pelanggan, laporan, dan pengetahuan bisnis.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': `${canonical}#collection`, url: canonical, name: 'Katalog fitur RAMUNI', description: 'Katalog fitur RAMUNI dengan status ketersediaan yang transparan.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: origin + '/' }, { '@type': 'ListItem', position: 2, name: 'Fitur', item: canonical }] },
 ];
 ---
-<BaseLayout title="Fitur RAMUNI: AI Copilot, Profit Intelligence, dan Knowledge OS" description="Kenali fitur RAMUNI untuk membantu UMKM bekerja lebih rapi, memahami keuntungan, dan mengambil keputusan bisnis dengan lebih cepat." canonical="/features/" schema={schema} pageType="WebPage">
+<BaseLayout title="Fitur RAMUNI untuk Operasional, AI & Knowledge OS" description="Bandingkan fitur RAMUNI untuk penjualan, stok, keuangan, pelanggan, laporan, dan pengetahuan bisnis. Lihat input, hasil, dan batas tiap fitur." canonical="/features/" schema={schema} pageType="WebPage">
   <div class="commercial-page" data-commercial-page="features">
-    <section class="commercial-hero"><div class="container commercial-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Fitur' }]} /><p class="section-kicker">Fitur RAMUNI</p><h1>Semua hal penting tentang bisnis, tersusun dalam satu ruang kerja.</h1></div><div class="commercial-hero__aside"><p>RAMUNI membantu Anda mencatat, memahami, dan menjalankan bisnis tanpa berpindah-pindah banyak aplikasi.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location="features_hero" data-destination="tour">Coba gratis</a><a class="button button--secondary" href="/pricing/">Bandingkan paket</a></div><p class="commercial-hero__note">Setiap fitur menjelaskan scope, batas, dan akses paketnya.</p></div></div></section>
-    <section class="commercial-section commercial-section--white" aria-labelledby="feature-list-title"><div class="container"><div class="commercial-section__head"><div><p class="section-kicker">Peta fitur</p><h2 id="feature-list-title">Mulai dari kemampuan yang ingin Anda pahami.</h2></div><p>Halaman detail menjelaskan contoh penggunaan, batasan, serta jalur publik yang sudah tersedia saat ini.</p></div><div class="feature-index">{featureDetails.map((feature) => <a class="feature-card" href={`/features/${feature.slug}/`} data-analytics-event="feature_view" data-analytics-location="features_index" data-feature={feature.slug}><span class="feature-card__status">{feature.status}</span><h3>{feature.name}</h3><p>{feature.summary}</p><b>Lihat detail →</b></a>)}</div></div></section>
+    <section class="commercial-hero"><div class="container commercial-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Fitur' }]} /><p class="section-kicker">Fitur RAMUNI</p><h1>Temukan fitur yang menyelesaikan pekerjaan harian.</h1></div><div class="commercial-hero__aside"><p>Mulai dari kebutuhan yang ingin selesai. Setiap halaman menjelaskan input, hasil, status, dan batas penggunaan dengan bahasa yang mudah dipahami.</p><div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location="features_hero" data-destination="tour">Lihat demo gratis</a><a class="button button--secondary" href="/pricing/">Bandingkan paket</a></div><p class="commercial-hero__note">Preview menggunakan data simulasi terkontrol; status fitur mengikuti workspace dan paket.</p></div></div></section>
+    <MarketingFeatureCardGrid
+      id="feature-card-library"
+      eyebrow="Peta kemampuan"
+      heading="Mulai dari pekerjaan, bukan dari daftar fitur."
+      body="Pilih fitur utama, produk, atau solusi. Setiap kartu menghubungkan kebutuhan ke contoh hasil dan halaman detailnya."
+      cards={catalogCards}
+      filters={catalogFilters}
+    />
     <ProductScreenshotRail
       id="features-product-screens"
       eyebrow="Bukti visual produk"
-      heading="Mulai dari screen yang sudah tersedia, lalu pahami status fiturnya."
-      body="Screen produk di bawah menunjukkan workspace RAMUNI yang sudah tersedia dan area kerja yang dapat langsung dicoba."
+      heading="Lihat screen produk, lalu pilih fitur yang ingin dicoba."
+      body="Screen di bawah menunjukkan workspace RAMUNI dan area kerja yang dapat langsung dibahas lewat demo."
       items={productScreenSets.overview}
       compact
     />
-    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Kendali manusia</p><h2>Fitur membantu membaca. Keputusan tetap berada pada pemilik usaha.</h2><p>Gunakan data dan rekomendasi sebagai bahan kerja; keputusan tetap berada pada pemilik usaha dan timnya.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="features_final" data-destination="tour">Lihat demo</a><a class="button button--secondary" href="/roadmap/">Lihat roadmap</a></div></div></div></section>
+    <section class="commercial-section commercial-section--white feature-context-directory" aria-labelledby="feature-context-title"><div class="container"><div class="commercial-section__head"><div><p class="section-kicker">Cari jalur yang cocok</p><h2 id="feature-context-title">Pilih menurut industri atau peran.</h2></div><p>Gunakan jalur ini saat pekerjaan Anda lebih spesifik daripada nama modul.</p></div><div class="feature-context-directory__grid"><div><h3>Industri</h3><nav aria-label="Fitur berdasarkan industri">{marketingIndustryLinks.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</nav></div><div><h3>Peran</h3><nav aria-label="Fitur berdasarkan peran">{marketingRoleLinks.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</nav></div></div></div></section>
+    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Coba dengan contoh alur</p><h2>Lihat fitur yang paling dekat dengan pekerjaan Anda.</h2><p>Periksa sumber, periode, dan batas penggunaan sebelum tim menentukan tindakan.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="features_final" data-destination="tour">Lihat demo</a><a class="button button--secondary" href="/roadmap/">Lihat roadmap</a></div></div></div></section>
   </div>
   <CommercialAnalytics />
 </BaseLayout>
+
+<style is:inline>
+  .feature-context-directory__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,5vw,64px)}
+  .feature-context-directory__grid h3{margin-bottom:16px;font-size:1.15rem}
+  .feature-context-directory__grid nav{display:grid;border-top:1px solid var(--ink-10)}
+  .feature-context-directory__grid nav a{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--ink-10);text-decoration:none;transition:padding .25s ease,background .25s ease}
+  .feature-context-directory__grid nav a:hover,.feature-context-directory__grid nav a:focus-visible{padding-inline:12px;background:var(--rice)}
+  .feature-context-directory__grid nav strong{font-size:.9rem}.feature-context-directory__grid nav span{color:var(--ink-72);font-size:.78rem;line-height:1.45}
+  @media(max-width:700px){.feature-context-directory__grid{grid-template-columns:1fr}.feature-context-directory__grid nav a:hover,.feature-context-directory__grid nav a:focus-visible{padding-inline:8px}}
+</style>

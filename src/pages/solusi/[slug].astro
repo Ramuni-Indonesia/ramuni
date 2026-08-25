@@ -96,13 +96,13 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang dibuka sebelum memilih tindakan." body="Demo memperlihatkan konteks dan batasnya. Pricing membantu Anda memahami paket dan akses yang tersedia." />
+      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang perlu dibuka sebelum bertindak." body="Demo memperlihatkan input, hasil, dan batasnya. Pricing membantu Anda memahami paket dan akses yang tersedia." />
     </div>
 
     <ProductScreenshotRail
       id={`solution-${solution.slug}-screens`}
       eyebrow="Screen yang berkaitan"
-      heading={`Lihat konteks produk untuk ${solution.title}.`}
+      heading={`Lihat workspace untuk ${solution.title}.`}
       body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; hasil tetap bergantung pada data dan keputusan usaha."
       items={screenSet}
       compact
@@ -173,10 +173,10 @@ const structuredData = [
             ))}
           </div>
           <aside class="sd-context-rail" aria-labelledby="context-title">
-            <div><span>Konteks usaha</span><h3 id="context-title">{narrative?.industryHeading || 'Jenis usaha menentukan catatan mana yang perlu diperiksa lebih dulu.'}</h3></div>
+            <div><span>Menurut jenis usaha</span><h3 id="context-title">{narrative?.industryHeading || 'Jenis usaha menentukan catatan mana yang perlu diperiksa lebih dulu.'}</h3></div>
             <nav class="sd-industry-list sd-industry-list--compact" aria-label="Contoh berdasarkan industri">
               {solution.industries.map((industry, index) => (
-                <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat konteks</b></a>
+                <a class="reveal" style={`--i:${index}`} href={industry.href}><span>{String(index + 1).padStart(2, '0')}</span><strong>{industry.title}</strong><p>{industry.example}</p><b>Lihat contoh</b></a>
               ))}
             </nav>
           </aside>
@@ -204,7 +204,7 @@ const structuredData = [
 
     <section class="section sd-faq-close" aria-labelledby="faq-title">
       <div class="container sd-faq__layout">
-        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pastikan titik awalnya masuk akal.</h2></header>
+        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pertanyaan sebelum memilih jalur.</h2></header>
         <div class="sd-faq-list">
           {solution.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>
@@ -220,8 +220,8 @@ const structuredData = [
           secondaryHref="/solusi/"
           theme="ink"
           visual={closingVisual}
-          visualBadge="Ilustrasi konteks solusi"
-          points={['Mulai dari gejala utama', 'Lihat modul yang berkaitan', 'Tentukan pemeriksaan berikutnya']}
+          visualBadge="Workspace solusi"
+          points={['Mulai dari gejala utama', 'Lihat input dan modul terkait', 'Tentukan pemeriksaan berikutnya']}
         />
       </div>
     </section>

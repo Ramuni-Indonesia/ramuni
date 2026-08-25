@@ -192,7 +192,7 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih jalur sesuai kebutuhan" title={`Mulai dari ${product.title}, lalu periksa batasnya.`} body="Lihat demo dengan skenario aman, coba alur yang relevan sekarang, atau periksa pricing sebelum memilih jalur." />
+      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih titik mulai" title={`Mulai dari ${product.title}.`} body={`Lihat contoh input, hasil, dan batas ${product.title}, lalu pilih demo, trial, atau paket yang sesuai.`} />
       <ProductInputOutput slug={product.slug} title={product.title} />
     </div>
 
@@ -215,7 +215,7 @@ const structuredData = [
         </div>
         <InsightEvidenceFlow
           context="Produk"
-          title="Pilih satu catatan, lalu lihat hubungannya."
+          title="Pilih satu catatan, lalu buka angka pendukungnya."
           prompt={detail.question}
           sources={detail.problems}
           outcome={detail.outcome}
@@ -227,8 +227,8 @@ const structuredData = [
     <ProductScreenshotRail
       id={`product-${product.slug}-screens`}
       eyebrow="Screen terkait"
-      heading={`Lihat bagaimana ${product.title} muncul di workspace RAMUNI.`}
-      body="Screen ini membantu menghubungkan pertanyaan halaman dengan konteks produk yang dapat dibuka dan diperiksa."
+      heading={`Lihat ${product.title} di dalam workspace RAMUNI.`}
+      body="Screen ini menunjukkan area kerja, periode, dan data pendukung yang dapat dibuka saat demo."
       items={screenSet}
       compact
     />
@@ -239,7 +239,7 @@ const structuredData = [
           <div class="pd-example__intro reveal">
             <span>{detail.example.label}</span>
             <h2 id="product-example-title">{detail.example.heading}</h2>
-            <p>Contoh ini menunjukkan hasil dan dasar bacanya dalam satu tampilan.</p>
+            <p>Contoh ini menunjukkan hasil dan angka asalnya dalam satu tampilan.</p>
           </div>
           <div class="pd-example__stage">
             <ProductDomainVisual slug={product.slug} title={product.title} question={detail.question} />
@@ -255,8 +255,8 @@ const structuredData = [
           </div>
         </div>
         <header class="pd-section-heading">
-          <h2 id="product-benefits-title">{narrative?.featureHeading || 'Dari informasi ke keputusan yang lebih jelas.'}</h2>
-          <p>Setiap bagian menjelaskan apa yang dapat diperiksa atau dilakukan setelahnya.</p>
+          <h2 id="product-benefits-title">{narrative?.featureHeading || 'Apa yang bisa Anda kerjakan dengan modul ini?'}</h2>
+          <p>Setiap bagian menjelaskan hasil yang dapat diperiksa dan tindakan yang tetap berada di tangan pengguna.</p>
         </header>
         <div class="pd-benefit-grid">
           {detail.benefits.map((benefit, index) => (
@@ -274,8 +274,8 @@ const structuredData = [
     <section id="product-workflow" class="pd-workflow" data-section-id="product-workflow" data-analytics-id="product_workflow" aria-labelledby="product-workflow-title">
       <div class="container pd-workflow__layout">
         <header>
-          <h2 id="product-workflow-title">{narrative?.workflowHeading || 'Empat langkah dari data ke tindakan.'}</h2>
-          <p>Setiap tahap menunjukkan data yang dipakai dan alasan untuk melangkah berikutnya.</p>
+          <h2 id="product-workflow-title">{narrative?.workflowHeading || 'Dari data masuk ke tindakan yang terukur.'}</h2>
+          <p>Setiap tahap menyebut data yang dipakai dan pemeriksaan yang perlu dilakukan sebelum bertindak.</p>
         </header>
         <ol class="pd-workflow__steps reveal">
           {detail.workflow.map((step, index) => (
@@ -300,7 +300,7 @@ const structuredData = [
       title={product.title}
       roles={detail.roles}
       industries={detail.industries}
-      heading={narrative?.industryHeading || 'Gunakan konteks yang sesuai dengan cara usaha bekerja.'}
+      heading={narrative?.industryHeading || 'Lihat penerapannya di jenis usaha Anda.'}
     />
 
     <SearchIntentPaths path={searchIntentPaths[`product:${product.slug}`]} />
@@ -308,7 +308,7 @@ const structuredData = [
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">
         <div class="pd-related__modules">
-          <h2 id="product-related-title">Lanjutkan dari catatan yang masih berkaitan.</h2>
+          <h2 id="product-related-title">Modul yang biasanya dipakai bersama.</h2>
           <div>
             {relatedProducts.map((related, index) => (
               <a href={`/produk/${related.slug}/`}>
@@ -352,8 +352,8 @@ const structuredData = [
           secondaryLabel="Bandingkan Produk"
           secondaryHref="/produk/"
           visual={closingVisual}
-          visualBadge={`Konteks ${product.title}`}
-          points={[`Buka ${product.title}`, 'Pilih satu kebutuhan', 'Lanjutkan saat siap']}
+          visualBadge={`${product.title} di workspace`}
+          points={[`Buka ${product.title}`, 'Periksa contoh input dan hasil', 'Pilih jalur saat siap']}
         />
       </div>
     </section>

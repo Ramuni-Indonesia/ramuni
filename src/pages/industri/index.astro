@@ -19,7 +19,7 @@ const sharedModules = products.filter((product) => ['Dashboard Bisnis', 'Laporan
 const sharedProblems = [
   { label: 'Data', title: 'Catatan tersebar', text: 'Angka yang sama terlihat berbeda di meja kasir, admin, dan pemilik.' },
   { label: 'Waktu', title: 'Masalah datang terlambat', text: 'Perubahan baru terasa setelah stok, kas, atau layanan ikut terganggu.' },
-  { label: 'Tindak lanjut', title: 'Keputusan kurang konteks', text: 'Tim bergerak sebelum periode dan bukti pendukung diperiksa.' },
+  { label: 'Tindak lanjut', title: 'Keputusan kurang dasar', text: 'Tim bergerak sebelum periode dan bukti pendukung diperiksa.' },
 ];
 const resources = [
   { eyebrow: 'Panduan', title: 'Mulai dari pertanyaan bisnis', text: 'Susun pertanyaan yang perlu dijawab sebelum menyiapkan data.', href: '/panduan/' },
@@ -32,14 +32,14 @@ const industryLens = industries.map((industry) => ({
   ...industryProfiles[industry.slug as keyof typeof industryProfiles],
 }));
 ---
-<BaseLayout title="RAMUNI untuk Berbagai Industri" description="Bandingkan ritme retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil sebelum memilih konteks RAMUNI.">
-  <PageHero eyebrow="Industri" title="Setiap usaha punya hal penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh dan pertanyaannya akan mengikuti konteks tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Coba gratis" secondaryHref="/tour-produk-gratis/" visual="evidence" visualScene="industry-hub" visualLabel="Konteks usaha" visualTitle="Pertanyaan yang sama dibaca berbeda sesuai ritme usaha." />
+<BaseLayout title="RAMUNI untuk Berbagai Industri" description="Lihat cara RAMUNI membantu retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil membaca data yang paling penting.">
+  <PageHero eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Coba gratis" secondaryHref="/tour-produk-gratis/" visual="evidence" visualScene="industry-hub" visualLabel="Data usaha" visualTitle="Pertanyaan yang sama dibaca berbeda sesuai ritme usaha." />
 
   <section class="section industry-lens" aria-labelledby="industry-lens-title">
     <div class="container industry-lens__layout">
       <div class="industry-lens__copy reveal">
         <h2 id="industry-lens-title">Mulai dari cara usaha Anda berjalan.</h2>
-        <p>Retail membaca SKU cepat. F&B membaca jam ramai. Distributor membaca pesanan ulang. Pilih konteks yang paling dekat.</p>
+        <p>Retail membaca SKU cepat. F&B membaca jam ramai. Distributor membaca pesanan ulang. Pilih ritme yang paling dekat.</p>
       </div>
       <div class="industry-lens__cards" aria-label="Kartu konteks industri">
         {industryLens.map((item, index) => (
@@ -59,7 +59,7 @@ const industryLens = industries.map((industry) => ({
   <section class="section dark-surface industry-hub__selector" id="daftar-industri" aria-labelledby="industry-selector-title">
     <div class="container industry-hub__selector-layout">
       <div class="industry-hub__sticky reveal">
-        <p class="eyebrow">Temukan konteks Anda</p>
+        <p class="eyebrow">Temukan ritme usaha Anda</p>
         <h2 id="industry-selector-title">Pertanyaan harian adalah titik mulai terbaik.</h2>
         <p>Setiap halaman memakai ilustrasi alur yang disesuaikan dengan ritme dan pertanyaan harian jenis usaha tersebut.</p>
         <div class="industry-hub__radar" aria-hidden="true"><span></span><i></i><b></b></div>
@@ -78,7 +78,7 @@ const industryLens = industries.map((industry) => ({
 
   <section class="section surface industry-hub__comparison" id="perbandingan" aria-labelledby="comparison-title">
     <div class="container">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Bandingkan cara kerja</p><h2 id="comparison-title">Angka yang sama bisa berarti hal berbeda.</h2><p class="lede">Lihat konteks transaksi, stok, pelanggan, dan keuangan sebelum menyimpulkan.</p></div>
+      <div class="industry-hub__heading reveal"><p class="eyebrow">Bandingkan cara kerja</p><h2 id="comparison-title">Angka yang sama bisa berarti hal berbeda.</h2><p class="lede">Lihat transaksi, stok, pelanggan, dan keuangan dengan sudut yang sesuai sebelum menyimpulkan.</p></div>
       <div class="industry-hub__table reveal" role="region" aria-label="Perbandingan konteks industri" tabindex="0">
         <table>
           <thead><tr><th scope="col">Industri</th><th scope="col">Transaksi</th><th scope="col">Stok</th><th scope="col">Pelanggan</th><th scope="col">Keuangan</th></tr></thead>
@@ -99,7 +99,7 @@ const industryLens = industries.map((industry) => ({
 
   <section class="section surface industry-hub__modules" id="modul-bersama" aria-labelledby="shared-modules-title">
     <div class="container">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Produk yang sama</p><h2 id="shared-modules-title">Konteks berubah, fondasi tidak.</h2><p class="lede">Modulnya tetap. Pertanyaan, contoh, dan urutan pemeriksaan yang mengikuti cara usaha berjalan.</p></div>
+      <div class="industry-hub__heading reveal"><p class="eyebrow">Produk yang sama</p><h2 id="shared-modules-title">Ritme berubah, fondasinya tetap.</h2><p class="lede">Modulnya tetap. Pertanyaan, contoh, dan urutan pemeriksaan mengikuti cara usaha berjalan.</p></div>
       <div class="industry-hub__module-track">
         {sharedModules.map((product, index) => <a class="industry-hub__module reveal" style={`--i:${index}`} href={`/produk/${product.slug}/`}><span>0{index + 1}</span><strong>{product.title}</strong><p>{product.outcome}</p><b aria-hidden="true">Buka</b></a>)}
       </div>
@@ -108,7 +108,7 @@ const industryLens = industries.map((industry) => ({
 
   <section class="section industry-hub__resources" id="panduan-industri" aria-labelledby="industry-resources-title">
     <div class="container industry-hub__resource-layout">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum mencoba</p><h2 id="industry-resources-title">Bawa konteks, bukan data sensitif.</h2></div>
+      <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum mencoba</p><h2 id="industry-resources-title">Bawa pertanyaannya, bukan data sensitif.</h2></div>
       <div class="industry-hub__resource-list">
         {resources.map((resource, index) => <a class="industry-hub__resource reveal" style={`--i:${index}`} href={resource.href}><span>{resource.eyebrow}</span><div><h3>{resource.title}</h3><p>{resource.text}</p></div><b aria-hidden="true">Buka</b></a>)}
       </div>
@@ -127,7 +127,7 @@ const industryLens = industries.map((industry) => ({
     </div>
   </section>
 
-  <div class="container"><CommercialActionBar pageType="industries" location="industries_close" eyebrow="Pilih konteks usaha" title="Lihat demo sesuai ritme bisnis Anda." body="Pilih industri untuk membaca skenario yang relevan, lalu periksa pricing atau bahas kebutuhan tim." /></div>
+  <div class="container"><CommercialActionBar pageType="industries" location="industries_close" eyebrow="Pilih ritme usaha" title="Lihat demo sesuai cara bisnis Anda berjalan." body="Pilih industri untuk membaca skenario yang relevan, lalu periksa pricing atau bahas kebutuhan tim." /></div>
 
   <section class="section industry-hub__closing" id="cta" aria-labelledby="industry-cta-title">
     <div class="container reveal">

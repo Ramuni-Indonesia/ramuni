@@ -1,6 +1,7 @@
 ---
 import '../styles/forms-conversion.css';
 import { phoneCountries } from '../data/phoneCountries';
+import CompactLeadFields from './CompactLeadFields.astro';
 interface Props {
   kind?: 'early-access' | 'demo' | 'contact';
   submitLabel?: string;
@@ -52,6 +53,8 @@ const phoneCountryData = phoneCountries.map(({ iso, value }) => `${iso}:${value}
       </fieldset>
       <p class="form-status" role="status" aria-live="polite"></p>
     </>
+  ) : compact ? (
+    <CompactLeadFields kind={kind} location={location} enabled={enabled} submitChoices={submitChoices} />
   ) : (
     <>
       <fieldset class="lead-form__step" data-form-step="1" data-active={isProgressive ? 'true' : undefined} disabled={enabled ? undefined : true}>
@@ -86,11 +89,11 @@ const phoneCountryData = phoneCountries.map(({ iso, value }) => `${iso}:${value}
     {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
     {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
     {submitChoices ? <>
-      <button class="button lead-form__choice-button lead-form__choice-button--consultation" type="submit" name="leadFlow" value="consultation" data-lead-submit-flow="consultation" hidden={isProgressive ? true : undefined}>
+      <button class="button button--primary lead-form__choice-button lead-form__choice-button--consultation" type="submit" name="leadFlow" value="consultation" data-lead-submit-flow="consultation" hidden={isProgressive ? true : undefined}>
         <span>Mulai konsultasi</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H11l-5 3v-3.5H5v-9.5Zm3.5 4.75h7M8.5 13h4" /></svg>
       </button>
-      <button class="button lead-form__choice-button lead-form__choice-button--trial" type="submit" name="leadFlow" value="trial" data-lead-submit-flow="trial" hidden={isProgressive ? true : undefined}>
+      <button class="button button--light lead-form__choice-button lead-form__choice-button--trial" type="submit" name="leadFlow" value="trial" data-lead-submit-flow="trial" hidden={isProgressive ? true : undefined}>
         <span>Coba gratis</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
       </button>

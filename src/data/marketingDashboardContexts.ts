@@ -7,7 +7,9 @@ export type MarketingDashboardContextKey =
   | 'report'
   | 'ai'
   | 'catalog'
-  | 'integration';
+  | 'integration'
+  | 'web'
+  | 'knowledge';
 
 export interface MarketingDashboardMetric {
   label: string;
@@ -249,6 +251,52 @@ export const marketingDashboardContexts: Record<MarketingDashboardContextKey, Ma
       { label: 'SKU cocok', value: '124 baris', note: 'Siap masuk', tone: 'good' },
     ],
     nextAction: 'Perbaiki baris bermasalah sebelum menjalankan import.',
+  },
+  web: {
+    layout: 'operations',
+    eyebrow: 'Web Builder',
+    title: 'Halaman bisnis tetap jelas sebelum dipublikasikan.',
+    subtitle: 'Profil usaha, produk, layanan, dan CTA diperiksa sebagai satu halaman.',
+    status: '3 bagian siap ditinjau',
+    primaryMetric: 'Kesiapan halaman',
+    metrics: [
+      { label: 'Halaman aktif', value: '1', note: 'Profil usaha', tone: 'good' },
+      { label: 'Konten lengkap', value: '86%', note: '2 bagian perlu dilengkapi', tone: 'watch' },
+      { label: 'CTA kontak', value: '2', note: 'WhatsApp dan form', tone: 'neutral' },
+      { label: 'SEO dasar', value: 'Siap', note: 'Judul dan deskripsi ada', tone: 'good' },
+    ],
+    bars: [30, 46, 54, 68, 72, 82, 88],
+    segments: ['Profil', 'Produk', 'Layanan', 'CTA', 'SEO', 'Mobile', 'Siap'],
+    insight: 'Dua bagian halaman belum lengkap. Lengkapi informasi usaha sebelum membagikan tautan ke calon pelanggan.',
+    rows: [
+      { label: 'Profil Toko Nusa', value: 'Siap', note: 'Alamat dan jam buka terlihat', tone: 'good' },
+      { label: 'Produk unggulan', value: '4 item', note: 'Harga belum ditampilkan', tone: 'watch' },
+      { label: 'Form kontak', value: 'Aktif', note: 'Masuk ke jalur tim', tone: 'neutral' },
+    ],
+    nextAction: 'Periksa konten dan tampilan mobile sebelum publikasi.',
+  },
+  knowledge: {
+    layout: 'operations',
+    eyebrow: 'Knowledge OS',
+    title: 'Cara kerja tim mudah ditemukan saat sumbernya rapi.',
+    subtitle: 'SOP, dokumen, dan keputusan rapat diberi struktur agar tidak berhenti di kepala pemilik.',
+    status: '4 dokumen perlu perhatian',
+    primaryMetric: 'Kesehatan pengetahuan',
+    metrics: [
+      { label: 'Dokumen aktif', value: '42', note: '6 folder tim', tone: 'neutral' },
+      { label: 'SOP diperbarui', value: '8', note: '30 hari terakhir', tone: 'good' },
+      { label: 'Perlu review', value: '4', note: 'Lebih dari 90 hari', tone: 'watch' },
+      { label: 'Meeting notes', value: '12', note: 'Bulan ini', tone: 'good' },
+    ],
+    bars: [38, 51, 47, 64, 74, 69, 84],
+    segments: ['SOP', 'Wiki', 'Rapat', 'Folder', 'Review', 'Akses', 'Siap'],
+    insight: 'Empat dokumen belum ditinjau lebih dari 90 hari. Tunjuk pemilik dokumen sebelum SOP dipakai sebagai rujukan.',
+    rows: [
+      { label: 'SOP buka toko', value: 'Diperbarui', note: 'Pemilik: Admin Toko', tone: 'good' },
+      { label: 'Keputusan rapat 12 Agustus', value: '3 tugas', note: 'Perlu follow-up', tone: 'watch' },
+      { label: 'Folder keuangan', value: 'Terbatas', note: 'Role supervisor', tone: 'neutral' },
+    ],
+    nextAction: 'Pilih satu dokumen untuk ditinjau dan tetapkan pemiliknya.',
   },
 };
 

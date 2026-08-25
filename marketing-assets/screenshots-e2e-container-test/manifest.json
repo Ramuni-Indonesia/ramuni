@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-08-25T03:39:23.207Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "source": "isolated E2E workspace",
+  "credentials": {
+    "email": "catalog-real-owner@example.invalid",
+    "businessName": "Toko Katalog Real",
+    "password": "[redacted]"
+  },
+  "routeDiscovery": {
+    "manifestPath": "/work/apps/web/.next/routes-manifest.json",
+    "discoveredStaticRoutes": 80,
+    "capturedRoutes": 1,
+    "dynamicRoutes": [
+      "/api/v1/[...path]",
+      "/help/[slug]",
+      "/sales/[saleId]"
+    ]
+  },
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 768,
+      "deviceScaleFactor": 1
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2
+    }
+  },
+  "browser": {
+    "executablePath": "/ms-playwright/chromium-1234/chrome-linux64/chrome",
+    "launch": "headless",
+    "status": "launched",
+    "error": null
+  },
+  "authentication": {
+    "desktop": {
+      "authenticated": false,
+      "url": "http://127.0.0.1:3000/login",
+      "workspace": null,
+      "error": "locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByLabel('Email')\n"
+    },
+    "tablet": {
+      "authenticated": false,
+      "url": "http://127.0.0.1:3000/login",
+      "workspace": null,
+      "error": "locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByLabel('Email')\n"
+    },
+    "mobile": {
+      "authenticated": false,
+      "url": "http://127.0.0.1:3000/login",
+      "workspace": null,
+      "error": "locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByLabel('Email')\n"
+    }
+  },
+  "results": [
+    {
+      "route": "/overview-dashboard",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3000/overview-dashboard",
+      "status": "http-error",
+      "screenshot": "desktop/overview-dashboard--desktop.png",
+      "httpStatus": 404,
+      "error": "HTTP 404"
+    },
+    {
+      "route": "/overview-dashboard",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3000/overview-dashboard",
+      "status": "http-error",
+      "screenshot": "tablet/overview-dashboard--tablet.png",
+      "httpStatus": 404,
+      "error": "HTTP 404"
+    },
+    {
+      "route": "/overview-dashboard",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3000/overview-dashboard",
+      "status": "http-error",
+      "screenshot": "mobile/overview-dashboard--mobile.png",
+      "httpStatus": 404,
+      "error": "HTTP 404"
+    }
+  ],
+  "summary": {
+    "captured": 0,
+    "failed": 3,
+    "total": 3
+  }
+}

@@ -17,13 +17,13 @@ import '../styles/home-refinement.css';
 const productDashboard = dashboardVisuals.productOverview;
 
 const faq = [
-  ['Apakah RAMUNI adalah ERP?', 'RAMUNI membantu UMKM membaca kondisi bisnis dan memilih langkah berikutnya. Fokusnya ada pada penjualan, stok, kas, pelanggan, serta bukti di balik perubahan angka.'],
-  ['Apakah AI menjalankan transaksi otomatis?', 'Tidak. AI menjelaskan konteks. Tindakan tetap diputuskan manusia.'],
-  ['Data apa yang dibutuhkan?', 'Mulai dari catatan operasional yang tersedia. Jalur input dijelaskan sebelum proses dimulai.'],
+  ['Apakah RAMUNI adalah ERP?', 'RAMUNI menyatukan penjualan, stok, kas, pelanggan, dan laporan untuk membantu UMKM membaca perubahan usaha. Anda tetap dapat memakai software lain yang sudah dibutuhkan.'],
+  ['Apakah AI menjalankan transaksi otomatis?', 'Tidak. AI membantu membaca data dan menyiapkan rekomendasi. Transaksi, perubahan data, dan keputusan tetap memerlukan persetujuan pengguna.'],
+  ['Data apa yang dibutuhkan?', 'Mulai dari data yang sudah tersedia, seperti transaksi, produk, stok, biaya, atau catatan pelanggan. Setiap alur menjelaskan kolom dan periode yang diperlukan.'],
   ['Apakah saya bisa langsung mencoba?', 'Ya. Ajukan sesi coba gratis, lalu tim kami akan membantu menyiapkan akses yang sesuai.'],
   ['Bagaimana mengetahui paket dan harga?', 'Paket dan harga disesuaikan dengan kebutuhan usaha. Tim kami membantu membahas pilihan yang paling relevan.'],
   ['Apakah RAMUNI cocok untuk semua industri?', 'Kami mencocokkan cara kerja usaha dengan fitur RAMUNI yang relevan. Lihat penerapannya untuk enam jenis usaha.'],
-  ['Bagaimana keamanan data dijaga?', 'Akses mengikuti peran, perubahan penting tercatat, dan keputusan tetap berada pada pengguna.'],
+  ['Bagaimana keamanan data dijaga?', 'Akses mengikuti peran, perubahan penting memiliki jejak, dan form publik tidak meminta password atau data sensitif.'],
 ];
 
 const answerLayers = [
@@ -44,20 +44,20 @@ const organizationId = `${siteOrigin}/#organization`;
 const schema = [
   { '@context': 'https://schema.org', '@type': 'Organization', '@id': organizationId, name: 'RAMUNI', url: siteOrigin, logo: `${siteOrigin}/brand/ramuni-mark-color.webp`, description: 'Aplikasi bisnis untuk membantu UMKM memahami penjualan, stok, keuangan, dan pelanggan.' },
   { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${siteOrigin}/#website`, url: siteOrigin, name: 'RAMUNI', inLanguage: 'id-ID', publisher: { '@id': organizationId } },
-  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${siteOrigin}/#webpage`, url: siteOrigin, name: 'Aplikasi Bisnis UMKM: Penjualan, Stok, dan Keuangan | RAMUNI', dateModified: pageLastmods.homepage, inLanguage: 'id-ID' },
+  { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${siteOrigin}/#webpage`, url: siteOrigin, name: 'Aplikasi Bisnis UMKM untuk Penjualan, Stok, Keuangan | RAMUNI', dateModified: pageLastmods.homepage, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'RAMUNI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: 'Aplikasi bisnis UMKM untuk membaca perubahan penjualan, stok, keuangan, dan pelanggan dengan bukti yang dapat diperiksa.', offers: undefined },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
 ];
 ---
-<BaseLayout title="Aplikasi Bisnis UMKM: Penjualan, Stok, dan Keuangan | RAMUNI" description="RAMUNI membantu UMKM membaca penjualan, stok, kas, dan pelanggan dalam satu alur, lalu membuka bukti sebelum menentukan langkah bisnis berikutnya." schema={schema}>
+<BaseLayout title="Aplikasi Bisnis UMKM untuk Penjualan, Stok, Keuangan | RAMUNI" description="Aplikasi bisnis UMKM untuk membaca penjualan, stok, kas, pelanggan, dan laporan dalam satu workspace. Lihat penyebab perubahan sebelum mengambil keputusan." schema={schema}>
   <section class="home-hero chapter" data-chapter="Pembuka" data-home-motion>
     <div class="container hero-composition">
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
-        <h1>Angka usaha berubah. Cari tahu apa yang menggerakkannya.</h1>
-        <p class="lede">RAMUNI menyatukan penjualan, stok, kas, dan pelanggan, lalu membantu Anda membuka penyebabnya sebelum memilih langkah.</p>
-        <div class="button-row hero-cta-row"><a class="button button--primary" href={launchCta.href}>{launchCta.label}</a><a class="hero-dashboard-link" href="#dashboard-product-proof"><span>Lihat dashboard RAMUNI</span><b aria-hidden="true">↗</b></a></div>
-        <div class="hero-cta-note"><span class="hero-cta-note__index">01</span><p><strong>Pilih satu masalah.</strong> Isi kontak singkat, lalu tim RAMUNI mengirim contoh alurnya lewat WhatsApp, tanpa meminta data bisnis Anda.</p></div>
+        <h1>Lihat penjualan, stok, dan kas sebelum masalah membesar.</h1>
+        <p class="lede">RAMUNI menggabungkan transaksi, stok, biaya, dan pelanggan agar Anda bisa melihat perubahan serta data penyebabnya.</p>
+        <div class="button-row hero-cta-row"><a class="button button--primary" href={launchCta.href}>Lihat demo gratis</a><a class="hero-dashboard-link" href="#dashboard-product-proof"><span>Lihat dashboard RAMUNI</span><b aria-hidden="true">↗</b></a></div>
+        <div class="hero-cta-note"><span class="hero-cta-note__index">01</span><p><strong>Mulai dari kebutuhan.</strong> Tim RAMUNI menunjukkan alurnya lewat WhatsApp.</p></div>
       </div>
       <div class="reveal is-visible"><RamuniHeroVisual /></div>
     </div>
@@ -70,17 +70,17 @@ const schema = [
 
   <section class="section home-input-output" aria-labelledby="home-input-output-title">
     <div class="container">
-      <header><p class="section-kicker">Cara memulai</p><h2 id="home-input-output-title">Tidak perlu merapikan seluruh usaha sekaligus.</h2><p>Mulai dari satu catatan yang sudah ada, lalu lihat bagaimana konteksnya disusun sebelum keputusan dibuat.</p></header>
-      <ol><li><span>01</span><strong>Masukkan</strong><p>Transaksi, stok, biaya, atau catatan yang memang ingin dibaca.</p></li><li><span>02</span><strong>RAMUNI susun</strong><p>Periode, definisi, sumber, dan bagian yang masih perlu dilengkapi.</p></li><li><span>03</span><strong>Anda periksa</strong><p>Ringkasan, bukti pendukung, dan langkah berikutnya yang masuk akal.</p></li></ol>
+      <header><p class="section-kicker">Cara memulai</p><h2 id="home-input-output-title">Mulai dari satu pekerjaan, bukan seluruh usaha.</h2><p>Masukkan satu catatan. RAMUNI menunjukkan kolom, periode, dan data pendukungnya.</p></header>
+      <ol><li><span>01</span><strong>Masukkan data</strong><p>Transaksi, stok, biaya, atau catatan pelanggan yang ingin dibaca.</p></li><li><span>02</span><strong>RAMUNI rapikan</strong><p>Periode, definisi metrik, sumber, dan bagian yang belum lengkap terlihat.</p></li><li><span>03</span><strong>Anda cek</strong><p>Ringkasan membawa Anda ke angka asal.</p></li></ol>
     </div>
   </section>
 
   <section class="section problem-chapter chapter" data-chapter="Masalah">
     <div class="container problem-landscape">
       <header class="problem-landscape__head reveal">
-        <p class="section-kicker">Satu angka tidak pernah bercerita sendirian.</p>
-        <h2>Saat penjualan berubah, buka penyebabnya, bukan sekadar grafik.</h2>
-        <p>Pilih situasi yang paling dekat dengan pekerjaan Anda. Kami tunjukkan catatan mana yang perlu dibaca bersama dan mana yang masih perlu dicek.</p>
+        <p class="section-kicker">Baca penyebabnya</p>
+        <h2>Ketika omzet berubah, temukan bagian yang perlu diperiksa.</h2>
+        <p>Pilih situasi terdekat. RAMUNI menunjukkan periode, angka pembanding, dan data yang perlu dibuka.</p>
       </header>
       <HomepageProblemProof />
     </div>
@@ -88,7 +88,7 @@ const schema = [
 
   <section class="section solutions-stage chapter" data-chapter="Solusi">
     <div class="container solution-field">
-      <div class="solution-field__statement reveal"><p class="section-kicker">Mulai dari masalah</p><h2>Mulai dari hal yang sedang mengganggu pekerjaan.</h2><p>Anda tidak perlu merapikan semuanya sekaligus. Buka satu masalah, lalu lihat data dan modul yang memang berkaitan.</p></div>
+      <div class="solution-field__statement reveal"><p class="section-kicker">Pilih jalur kerja</p><h2>Pilih masalah, buka modulnya.</h2><p>Mulai dari omzet, stok, laba, pelanggan, atau laporan. Anda dapat menguji satu alur tanpa mengubah seluruh cara kerja.</p></div>
       <div class="solution-paths">
         {solutions.map((solution, i) => <a href={`/solusi/${solution.slug}/`} class="solution-path reveal" style={`--i:${i}`}><span>0{i + 1}</span><div><h3>{solution.title}</h3><p>{solution.summary}</p></div><b aria-hidden="true">↗</b></a>)}
       </div>
@@ -100,7 +100,7 @@ const schema = [
       <header class="answer-theatre__question reveal">
         <p class="section-kicker">Contoh jawaban AI</p>
         <span>Pertanyaan pemilik usaha</span>
-        <h2>“Kenapa omzet saya turun minggu ini?”</h2>
+        <h2>“Apa yang membuat omzet saya turun minggu ini?”</h2>
         <p>Angka di bawah hanya contoh untuk memperlihatkan cara membaca jawabannya.</p>
       </header>
       <div class="answer-console reveal">
@@ -115,14 +115,14 @@ const schema = [
 
   <section class="section workflow-stage chapter" data-chapter="Alur">
     <div class="container">
-      <div class="section-intro reveal"><h2>Kumpulkan angka, pahami perubahan, lalu tentukan langkah.</h2><p>Pilih satu tahap untuk melihat apa yang terjadi di dalamnya.</p></div>
+      <div class="section-intro reveal"><h2>Masukkan data. Periksa perubahan. Ambil keputusan.</h2><p>Pilih satu tahap untuk melihat pekerjaan yang dibantu RAMUNI.</p></div>
       <div class="workflow-explorer reveal" data-workflow-explorer>
         <div class="workflow-track" role="group" aria-label="Alur RAMUNI">
           {workflowStages.map((title, i) => <button type="button" class="workflow-node" aria-pressed={i === 0 ? 'true' : 'false'} data-workflow-tab={String(i)}><span>0{i + 1}</span><h3>{title}</h3></button>)}
         </div>
         <div class="workflow-focus" aria-live="polite">
           <div class="workflow-focus__signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          <div><span data-workflow-label>Catatan masuk</span><strong data-workflow-title>Empat sumber dibaca bersama.</strong><p data-workflow-copy>RAMUNI menyatukan konteks tanpa menyembunyikan data yang belum lengkap.</p></div>
+          <div><span data-workflow-label>Catatan masuk</span><strong data-workflow-title>Empat sumber dibaca bersama.</strong><p data-workflow-copy>RAMUNI menyatukan data dan menandai bagian yang belum lengkap.</p></div>
           <div class="workflow-focus__route" aria-hidden="true"><span>Catatan</span><i></i><span>Bukti</span><i></i><span>Arah</span></div>
           <AnimatedMuniWork class="workflow-focus__mascot" label="Muni bergerak mengikuti alur dari catatan menuju bukti dan arah keputusan" />
           <b data-workflow-state>01 / 04</b>
@@ -135,7 +135,7 @@ const schema = [
     <div class="container dashboard-gallery">
       <header class="dashboard-gallery__head reveal">
         <div><p class="section-kicker">Mulai dari pertanyaan usaha</p><h2>Pertanyaan datang dulu.</h2></div>
-        <div><strong>Angka menjelaskan setelahnya.</strong><p>RAMUNI merangkum perubahan dalam bahasa sehari-hari, lalu membuka konteks yang perlu Anda periksa.</p><a class="text-link" href="/produk/dashboard-bisnis/">Pelajari Dashboard Bisnis</a></div>
+        <div><strong>Ringkasan langsung menunjukkan perubahan.</strong><p>RAMUNI menampilkan periode dan angka asal untuk diperiksa.</p><a class="text-link" href="/produk/dashboard-bisnis/">Lihat Dashboard Bisnis</a></div>
       </header>
       <figure class="dashboard-product-shot reveal">
         <DashboardMotion focus="full" label={productDashboard.alt} {...productDashboard} />
@@ -159,7 +159,7 @@ const schema = [
         <div class="signal-spread__notes">
           <figure class="signal-story reveal" style="--i:1">
             <div class="signal-story__frame signal-visual signal-visual--cash" role="img" aria-label="Ilustrasi yang memisahkan omzet, laba, dan arus kas">
-              <div class="signal-visual__head"><span>Konteks kas</span><b>7 hari</b></div>
+              <div class="signal-visual__head"><span>Kas 7 hari</span><b>7 hari</b></div>
               <div class="cash-lines" aria-hidden="true"><span><i style="--value:88%"></i></span><span><i style="--value:62%"></i></span><span><i style="--value:39%"></i></span></div>
               <div class="cash-legend"><span>Omzet</span><span>Laba</span><span>Kas</span></div>
               <strong class="signal-visual__short">Tiga angka, tiga arti.</strong>
@@ -176,7 +176,7 @@ const schema = [
                 <li><span>04</span><strong>Pemeriksaan</strong></li>
               </ol>
             </div>
-            <figcaption><strong>Jawaban menunjukkan dasar bacanya.</strong><span>Setiap kesimpulan tetap punya konteks.</span></figcaption>
+            <figcaption><strong>Jawaban menunjukkan dasar angkanya.</strong><span>Setiap kesimpulan membawa periode dan sumber.</span></figcaption>
           </figure>
         </div>
       </div>
@@ -202,10 +202,10 @@ const schema = [
 
   <section class="section industry-stage chapter" data-chapter="Industri">
     <div class="container industry-room" data-industry-room>
-      <header class="industry-room__head reveal"><p class="section-kicker">Konteks usaha</p><h2>Satu pertanyaan bisa berarti hal berbeda di setiap usaha.</h2></header>
+      <header class="industry-room__head reveal"><p class="section-kicker">Menurut jenis usaha</p><h2>Pertanyaan yang sama perlu data berbeda di tiap usaha.</h2></header>
       <div class="industry-room__stage reveal">
         <div class="industry-room__visual" aria-hidden="true"><div class="industry-room__chart" data-industry-scene data-scene="retail"><span></span><span></span><span></span><span></span></div><em data-industry-code>Retail</em><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="industry-room__question"><span>Pertanyaan contoh</span><h3 data-industry-question>{industries[0].question}</h3><a data-industry-link href={`/industri/${industries[0].slug}/`}>Lihat konteks <b data-industry-name>{industries[0].title}</b></a></div>
+        <div class="industry-room__question"><span>Pertanyaan contoh</span><h3 data-industry-question>{industries[0].question}</h3><a data-industry-link href={`/industri/${industries[0].slug}/`}>Lihat contoh untuk <b data-industry-name>{industries[0].title}</b></a></div>
       </div>
       <div class="industry-switcher" role="group" aria-label="Pilih jenis usaha">
         {industries.map((industry, i) => <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}/`}>{industry.title}</button>)}
@@ -215,12 +215,12 @@ const schema = [
 
   <section class="section start-stage chapter" data-chapter="Mulai">
     <div class="container start-journey">
-      <header class="start-journey__head reveal"><p class="section-kicker">Cara mulai</p><h2>Mulai kecil. Rapikan yang paling mendesak.</h2><p>Empat langkah yang bisa ditelusuri, tanpa melompati validasi data.</p></header>
+      <header class="start-journey__head reveal"><p class="section-kicker">Cara mulai</p><h2>Mulai dari satu kasus yang nyata.</h2><p>Empat langkah untuk melihat data dan membahas tindakan.</p></header>
       <ol class="start-steps start-steps--horizontal">
-        <li class="reveal"><span>01</span><div><h3>Buat ruang kerja</h3><p>Tentukan usaha, peran, dan konteks yang akan dibaca.</p></div></li>
+        <li class="reveal"><span>01</span><div><h3>Buat ruang kerja</h3><p>Tentukan usaha, peran, dan periode yang akan dibaca.</p></div></li>
         <li class="reveal"><span>02</span><div><h3>Tambah atau impor data</h3><p>Gunakan jalur input yang benar-benar tersedia dan sudah diperiksa.</p></div></li>
         <li class="reveal"><span>03</span><div><h3>Validasi insight pertama</h3><p>Pastikan periode, pembaruan, dan data pendukungnya terlihat.</p></div></li>
-        <li class="reveal"><span>04</span><div><h3>Ajukan pertanyaan</h3><p>Baca jawaban lalu buka bukti sebelum menentukan tindakan.</p></div></li>
+        <li class="reveal"><span>04</span><div><h3>Ajukan pertanyaan</h3><p>Baca jawaban, buka bukti, lalu tentukan tindakan.</p></div></li>
       </ol>
     </div>
   </section>
@@ -228,9 +228,9 @@ const schema = [
   <section class="section report-stage chapter" data-chapter="Laporan">
     <div class="container report-layout">
       <div class="report-lead reveal">
-        <p class="section-kicker">Ringkasan untuk menutup hari</p>
-        <h2>Ringkasan harian. Laporan mingguan.</h2>
-        <p>Lihat perubahan utama, sumber data, dan pemeriksaan berikutnya dalam satu ringkasan.</p>
+        <p class="section-kicker">Laporan untuk menutup hari</p>
+        <h2>Tahu apa yang berubah sebelum besok dimulai.</h2>
+        <p>Ringkas penjualan, stok, biaya, dan tindak lanjut dalam periode yang jelas.</p>
         <a href="/produk/laporan-insight/" class="text-link">Lihat Laporan & Insight</a>
       </div>
       <div class="report-signals" aria-label="Contoh ringkasan laporan RAMUNI">
@@ -244,9 +244,9 @@ const schema = [
   <section class="section trust-stage chapter" data-chapter="Keamanan">
     <div class="container trust-manifesto">
       <div class="trust-manifesto__mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="Logo simbol RAMUNI" /><span>Prinsip kerja RAMUNI</span></div>
-      <h2 class="reveal">Jawaban tidak berhenti pada kesimpulan.</h2>
-      <p class="trust-manifesto__lede reveal">Periode, sumber angka, dan konteks data tetap terlihat sebelum Anda menentukan langkah.</p>
-      <div class="trust-principles">{['Akses mengikuti peran yang diberi wewenang', 'AI membantu membaca konteks dan bukti', 'Jawaban menunjukkan periode dan sumber pendukung', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-principle reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
+      <h2 class="reveal">AI membantu membaca. Anda tetap memutuskan.</h2>
+      <p class="trust-manifesto__lede reveal">Periode, sumber angka, dan data yang belum lengkap tetap terlihat sebelum tindakan dipilih.</p>
+      <div class="trust-principles">{['Akses mengikuti peran yang diberi wewenang', 'AI membantu membaca data dan bukti', 'Jawaban menunjukkan periode dan sumber', 'Perubahan penting memerlukan jejak dan persetujuan manusia'].map((item, i) => <div class="trust-principle reveal"><span>0{i + 1}</span><p>{item}</p></div>)}</div>
       <a class="button button--light reveal" href="/keamanan/">Pelajari keamanan</a>
     </div>
   </section>
@@ -256,12 +256,12 @@ const schema = [
       <div class="pricing-word reveal">Coba<br />Gratis</div>
       <div class="pricing-copy reveal">
         <p class="section-kicker">Yang Anda dapat saat memulai</p>
-        <h2>Lihat cara RAMUNI membaca satu masalah usaha Anda.</h2>
-        <p>Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Anda akan melihat data yang perlu diperiksa dan modul yang relevan sebelum memutuskan.</p>
+        <h2>Coba satu alur sebelum memilih paket.</h2>
+        <p>Pilih penjualan, stok, keuangan, pelanggan, atau laporan untuk melihat data dan modul yang relevan.</p>
         <ol class="pricing-steps">
-          <li><span>01</span><strong>Pilih satu masalah yang paling mendesak.</strong></li>
-          <li><span>02</span><strong>Lihat contoh data, bukti, dan alur pemeriksaannya.</strong></li>
-          <li><span>03</span><strong>Bahas modul dan langkah lanjutan lewat WhatsApp.</strong></li>
+          <li><span>01</span><strong>Pilih kebutuhan yang paling mendesak.</strong></li>
+          <li><span>02</span><strong>Lihat contoh data dan hasil yang dibaca.</strong></li>
+          <li><span>03</span><strong>Pilih modul dan tindakan yang ingin dibahas.</strong></li>
         </ol>
         <div class="button-row"><a class="button button--primary" href="/tour-produk-gratis/">Mulai coba gratis</a></div>
         <small>Tanpa perlu menyiapkan data bisnis untuk memulai.</small>
@@ -278,7 +278,7 @@ const schema = [
 
   <section class="section faq-stage chapter" data-chapter="FAQ">
     <div class="container faq-library">
-      <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Pertanyaan yang membantu Anda memulai.</h2><p>Jawaban singkat tentang cara kerja, data, dan langkah yang dapat dilakukan bersama RAMUNI.</p></div>
+      <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Jawaban sebelum Anda mulai.</h2><p>Periksa cara kerja, data yang dibutuhkan, harga, dan batas AI sebelum mengisi form.</p></div>
       <div class="faq-list">{faq.map(([question, answer]) => <details class="reveal"><summary>{question}</summary><p>{answer}</p></details>)}</div>
     </div>
   </section>

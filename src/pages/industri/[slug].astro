@@ -4,8 +4,10 @@ import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
+import { productScreenSets } from '../../data/productScreens';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
 
@@ -218,6 +220,11 @@ const supportingProducts = products.filter((product) => brief.modules.includes(p
 const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug));
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
+const industryScreens = ['fnb', 'manufaktur-kecil'].includes(industry.slug)
+  ? productScreenSets.operations
+  : ['distributor', 'jasa'].includes(industry.slug)
+    ? productScreenSets.performance
+    : productScreenSets.overview;
 const canonicalPath = `/industri/${industry.slug}/`;
 const industryUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
 const structuredData = {
@@ -226,12 +233,12 @@ const structuredData = {
   '@id': industryUrl,
   url: industryUrl,
   name: `RAMUNI untuk ${industry.title}`,
-  description: `RAMUNI untuk konteks ${industry.title}: alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.`,
+  description: `RAMUNI untuk ${industry.title}: alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.`,
   dateModified: pageLastmods.industry,
   inLanguage: 'id-ID',
 };
 ---
-<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk konteks ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
+<BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
   <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat contoh alur gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
 
@@ -259,7 +266,7 @@ const structuredData = {
     <div class="container">
       <AudienceContextBoard
         id="signals"
-        eyebrow={'Papan konteks ' + industry.title}
+        eyebrow={'Papan data ' + industry.title}
         title={headings.signals}
         description="Pilih satu sudut untuk melihat masalah, catatan pendukung, dan pertanyaan lanjutan tanpa mencari semuanya di halaman ini."
         panes={[
@@ -275,7 +282,7 @@ const structuredData = {
   </section>
 
   <section class="section" id="skenario" aria-labelledby="scenario-title">
-    <div class="container audience-scenario reveal"><h2 id="scenario-title">Satu hari dalam konteks {industry.title}.</h2><p>{brief.scenario}</p></div>
+    <div class="container audience-scenario reveal"><h2 id="scenario-title">Satu hari dalam usaha {industry.title}.</h2><p>{brief.scenario}</p></div>
   </section>
 
   <section class="section surface" id="metrik-contoh" aria-labelledby="metrics-title">
@@ -299,6 +306,15 @@ const structuredData = {
     </nav>
   </section>
 
+  <ProductScreenshotRail
+    id={`industry-${industry.slug}-screens`}
+    eyebrow="Bukti layar RAMUNI"
+    heading={`Lihat alur ${industry.title} di layar yang sama.`}
+    body="Capture produk membantu tim melihat bentuk data, ringkasan, dan pemeriksaan sebelum memilih modul. Angka pada layar adalah data demo terkontrol."
+    items={industryScreens}
+    compact
+  />
+
   <section class="section" id="onboarding" aria-labelledby="onboarding-title">
     <div class="container audience-split">
       <div class="audience-section-heading reveal"><h2 id="onboarding-title">Siapkan data yang paling dekat dengan pekerjaan harian.</h2></div>
@@ -316,7 +332,7 @@ const structuredData = {
     </div>
   </section>
 
-  <div class="container"><CommercialActionBar pageType="industry" location={`industry_${industry.slug}`} eyebrow={`Jalur ${industry.title}`} title={`Mulai dari ritme ${industry.title}, bukan dari daftar fitur.`} body="Lihat demo tanpa membawa data sensitif, lalu cocokkan modul dan paket dengan kebutuhan yang benar-benar ada." /></div>
+  <div class="container"><CommercialActionBar pageType="industry" location={`industry_${industry.slug}`} eyebrow={`Jalur ${industry.title}`} title={`Mulai dari pekerjaan ${industry.title}, bukan dari daftar fitur.`} body="Lihat demo tanpa membawa data sensitif, lalu cocokkan modul dan paket dengan kebutuhan yang benar-benar ada." /></div>
 
   <section class="section" id="cta" aria-labelledby="cta-title">
     <div class="container reveal">

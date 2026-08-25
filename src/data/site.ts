@@ -46,8 +46,8 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     label: 'Produk',
     href: '/produk/',
     eyebrow: 'Produk',
-    title: 'Modul untuk angka yang mulai sulit dibaca.',
-    description: 'Mulai dari catatan, laporan, atau pertanyaan yang paling sering muncul di tim.',
+    title: 'Pilih modul dari pekerjaan yang ingin selesai.',
+    description: 'Mulai dari penjualan, stok, kas, pelanggan, atau laporan yang ingin Anda pahami.',
     columns: [
       {
         label: 'AI & Insight',
@@ -76,8 +76,8 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     ],
     featured: {
       eyebrow: 'Mulai di sini',
-      title: 'Belum tahu modul yang dibutuhkan?',
-      text: 'Mulai dari masalah bisnis, lalu pilih modul yang relevan.',
+      title: 'Belum tahu modul yang pas?',
+      text: 'Ceritakan masalahnya. Kami bantu memilih jalur yang relevan.',
       href: '/produk/',
       cta: 'Lihat semua produk',
     },
@@ -86,8 +86,8 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     label: 'Solusi',
     href: '/solusi/',
     eyebrow: 'Solusi',
-    title: 'Cari dari masalah yang terasa hari ini.',
-    description: 'Omzet, stok, kas, pelanggan, dan laporan dibaca dari konteks usaha Anda.',
+    title: 'Mulai dari masalah yang ingin segera selesai.',
+    description: 'Pilih omzet, stok, kas, pelanggan, atau laporan. Lihat data dan modul yang perlu dibuka.',
     columns: [
       {
         label: 'Berdasarkan tujuan',
@@ -123,7 +123,7 @@ export const headerNavigation: Array<MegaNavigationGroup | DirectNavigationLink>
     featured: {
       eyebrow: 'Lihat semua',
       title: 'Semua solusi bisnis',
-      text: 'Bandingkan masalah, modul terkait, dan langkah awal yang aman.',
+      text: 'Bandingkan masalah, modul terkait, dan langkah awal yang jelas.',
       href: '/solusi/',
       cta: 'Buka solusi',
     },

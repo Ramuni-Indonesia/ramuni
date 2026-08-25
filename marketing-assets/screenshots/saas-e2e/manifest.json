@@ -1,0 +1,1972 @@
+{
+  "generatedAt": "2026-08-25T04:24:41.343Z",
+  "baseUrl": "http://127.0.0.1:3200",
+  "source": "isolated E2E workspace",
+  "credentials": {
+    "email": "catalog-real-owner@example.invalid",
+    "businessName": "Toko Katalog Real",
+    "password": "[redacted]"
+  },
+  "routeDiscovery": {
+    "manifestPath": "/work/apps/web/.next/routes-manifest.json",
+    "discoveredStaticRoutes": 80,
+    "capturedRoutes": 70,
+    "dynamicRoutes": [
+      "/api/v1/[...path]",
+      "/help/[slug]",
+      "/sales/[saleId]"
+    ]
+  },
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 768,
+      "deviceScaleFactor": 1
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2
+    }
+  },
+  "browser": {
+    "executablePath": "/ms-playwright/chromium-1234/chrome-linux64/chrome",
+    "launch": "headless",
+    "status": "launched",
+    "error": null
+  },
+  "authentication": {
+    "desktop": {
+      "authenticated": true,
+      "url": "http://127.0.0.1:3200/login",
+      "workspace": {
+        "workspaceStatus": 200,
+        "switchStatus": 200
+      },
+      "error": null,
+      "reusedSession": true
+    },
+    "tablet": {
+      "authenticated": true,
+      "url": "http://127.0.0.1:3200/login",
+      "workspace": {
+        "workspaceStatus": 200,
+        "switchStatus": 200
+      },
+      "error": null,
+      "reusedSession": true
+    },
+    "mobile": {
+      "authenticated": true,
+      "url": "http://127.0.0.1:3200/login",
+      "workspace": {
+        "workspaceStatus": 200,
+        "switchStatus": 200
+      },
+      "error": null,
+      "reusedSession": true
+    }
+  },
+  "results": [
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/",
+      "status": "captured",
+      "screenshot": "desktop/home--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/ai",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/ai",
+      "status": "captured",
+      "screenshot": "desktop/ai--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/approvals",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/approvals",
+      "status": "captured",
+      "screenshot": "desktop/approvals--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/customers",
+      "status": "captured",
+      "screenshot": "desktop/customers--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/campaign-audiences",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/customers/campaign-audiences",
+      "status": "captured",
+      "screenshot": "desktop/customers-campaign-audiences--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/privacy-requests",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/customers/privacy-requests",
+      "status": "captured",
+      "screenshot": "desktop/customers-privacy-requests--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/segments",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/customers/segments",
+      "status": "captured",
+      "screenshot": "desktop/customers-segments--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/accounts",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/accounts",
+      "status": "captured",
+      "screenshot": "desktop/finance-accounts--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/bank-reconciliation",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/bank-reconciliation",
+      "status": "captured",
+      "screenshot": "desktop/finance-bank-reconciliation--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/budgets",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/budgets",
+      "status": "captured",
+      "screenshot": "desktop/finance-budgets--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/expenses",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/expenses",
+      "status": "captured",
+      "screenshot": "desktop/finance-expenses--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/journals",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/journals",
+      "status": "captured",
+      "screenshot": "desktop/finance-journals--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/periods",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/periods",
+      "status": "captured",
+      "screenshot": "desktop/finance-periods--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/receivables",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/receivables",
+      "status": "captured",
+      "screenshot": "desktop/finance-receivables--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/statements",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/finance/statements",
+      "status": "captured",
+      "screenshot": "desktop/finance-statements--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/help",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/help",
+      "status": "captured",
+      "screenshot": "desktop/help--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/alerts",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/alerts",
+      "status": "captured",
+      "screenshot": "desktop/inventory-alerts--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/lots",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/lots",
+      "status": "captured",
+      "screenshot": "desktop/inventory-lots--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/movements",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/movements",
+      "status": "captured",
+      "screenshot": "desktop/inventory-movements--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/reservations",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/reservations",
+      "status": "captured",
+      "screenshot": "desktop/inventory-reservations--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/stocktakes",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/stocktakes",
+      "status": "captured",
+      "screenshot": "desktop/inventory-stocktakes--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/transfers",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/transfers",
+      "status": "captured",
+      "screenshot": "desktop/inventory-transfers--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/valuation",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/inventory/valuation",
+      "status": "captured",
+      "screenshot": "desktop/inventory-valuation--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/loyalty",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/loyalty",
+      "status": "captured",
+      "screenshot": "desktop/loyalty--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/notifications",
+      "status": "captured",
+      "screenshot": "desktop/notifications--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications/deliveries",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/notifications/deliveries",
+      "status": "captured",
+      "screenshot": "desktop/notifications-deliveries--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/business",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/onboarding/business",
+      "status": "captured",
+      "screenshot": "desktop/onboarding-business--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/import",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/onboarding/import",
+      "status": "captured",
+      "screenshot": "desktop/onboarding-import--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/payments",
+      "status": "captured",
+      "screenshot": "desktop/payments--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments/settlements",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/payments/settlements",
+      "status": "captured",
+      "screenshot": "desktop/payments-settlements--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/platform/ops",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/platform/ops",
+      "status": "captured",
+      "screenshot": "desktop/platform-ops--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/products",
+      "status": "captured",
+      "screenshot": "desktop/products--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/compositions",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/products/compositions",
+      "status": "captured",
+      "screenshot": "desktop/products-compositions--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/conversions",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/products/conversions",
+      "status": "captured",
+      "screenshot": "desktop/products-conversions--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/import",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/products/import",
+      "status": "captured",
+      "screenshot": "desktop/products-import--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/masters",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/products/masters",
+      "status": "captured",
+      "screenshot": "desktop/products-masters--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/invoices",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/invoices",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-invoices--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/landed-costs",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/landed-costs",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-landed-costs--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/orders",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/orders",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-orders--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/reorder",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/reorder",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-reorder--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/returns",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/returns",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-returns--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/suppliers",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/purchasing/suppliers",
+      "status": "captured",
+      "screenshot": "desktop/purchasing-suppliers--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/reports",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/reports",
+      "status": "captured",
+      "screenshot": "desktop/reports--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales",
+      "status": "captured",
+      "screenshot": "desktop/sales--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/documents",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/documents",
+      "status": "captured",
+      "screenshot": "desktop/sales-documents--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/fulfillment",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/fulfillment",
+      "status": "captured",
+      "screenshot": "desktop/sales-fulfillment--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/offline-pos",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/offline-pos",
+      "status": "captured",
+      "screenshot": "desktop/sales-offline-pos--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-orders",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-orders",
+      "status": "captured",
+      "screenshot": "desktop/sales-omnichannel-orders--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-updates",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-updates",
+      "status": "captured",
+      "screenshot": "desktop/sales-omnichannel-updates--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/promotions",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/sales/promotions",
+      "status": "captured",
+      "screenshot": "desktop/sales-promotions--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/audit",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/audit",
+      "status": "captured",
+      "screenshot": "desktop/settings-audit--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/billing",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/billing",
+      "status": "captured",
+      "screenshot": "desktop/settings-billing--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/business",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/business",
+      "status": "captured",
+      "screenshot": "desktop/settings-business--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/channels",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/channels",
+      "status": "captured",
+      "screenshot": "desktop/settings-channels--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integration-framework",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/integration-framework",
+      "status": "captured",
+      "screenshot": "desktop/settings-integration-framework--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integrations",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/integrations",
+      "status": "captured",
+      "screenshot": "desktop/settings-integrations--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/locations",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/locations",
+      "status": "captured",
+      "screenshot": "desktop/settings-locations--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-channels",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/notification-channels",
+      "status": "captured",
+      "screenshot": "desktop/settings-notification-channels--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-templates",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/notification-templates",
+      "status": "captured",
+      "screenshot": "desktop/settings-notification-templates--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-cache",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/offline-cache",
+      "status": "captured",
+      "screenshot": "desktop/settings-offline-cache--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-devices",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/offline-devices",
+      "status": "captured",
+      "screenshot": "desktop/settings-offline-devices--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-reconciliation",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/offline-reconciliation",
+      "status": "captured",
+      "screenshot": "desktop/settings-offline-reconciliation--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-runtime",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/offline-runtime",
+      "status": "captured",
+      "screenshot": "desktop/settings-offline-runtime--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/privacy",
+      "status": "captured",
+      "screenshot": "desktop/settings-privacy--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy/vendors",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/privacy/vendors",
+      "status": "captured",
+      "screenshot": "desktop/settings-privacy-vendors--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/roles",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/roles",
+      "status": "captured",
+      "screenshot": "desktop/settings-roles--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/security",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/security",
+      "status": "captured",
+      "screenshot": "desktop/settings-security--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/status",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/status",
+      "status": "captured",
+      "screenshot": "desktop/settings-status--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/team",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/settings/team",
+      "status": "captured",
+      "screenshot": "desktop/settings-team--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/support",
+      "viewport": "desktop",
+      "url": "http://127.0.0.1:3200/support",
+      "status": "captured",
+      "screenshot": "desktop/support--desktop.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/",
+      "status": "captured",
+      "screenshot": "tablet/home--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/ai",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/ai",
+      "status": "captured",
+      "screenshot": "tablet/ai--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/approvals",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/approvals",
+      "status": "captured",
+      "screenshot": "tablet/approvals--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/customers",
+      "status": "captured",
+      "screenshot": "tablet/customers--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/campaign-audiences",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/customers/campaign-audiences",
+      "status": "captured",
+      "screenshot": "tablet/customers-campaign-audiences--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/privacy-requests",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/customers/privacy-requests",
+      "status": "captured",
+      "screenshot": "tablet/customers-privacy-requests--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/segments",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/customers/segments",
+      "status": "captured",
+      "screenshot": "tablet/customers-segments--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/accounts",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/accounts",
+      "status": "captured",
+      "screenshot": "tablet/finance-accounts--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/bank-reconciliation",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/bank-reconciliation",
+      "status": "captured",
+      "screenshot": "tablet/finance-bank-reconciliation--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/budgets",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/budgets",
+      "status": "captured",
+      "screenshot": "tablet/finance-budgets--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/expenses",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/expenses",
+      "status": "captured",
+      "screenshot": "tablet/finance-expenses--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/journals",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/journals",
+      "status": "captured",
+      "screenshot": "tablet/finance-journals--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/periods",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/periods",
+      "status": "captured",
+      "screenshot": "tablet/finance-periods--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/receivables",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/receivables",
+      "status": "captured",
+      "screenshot": "tablet/finance-receivables--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/statements",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/finance/statements",
+      "status": "captured",
+      "screenshot": "tablet/finance-statements--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/help",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/help",
+      "status": "captured",
+      "screenshot": "tablet/help--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/alerts",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/alerts",
+      "status": "captured",
+      "screenshot": "tablet/inventory-alerts--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/lots",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/lots",
+      "status": "captured",
+      "screenshot": "tablet/inventory-lots--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/movements",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/movements",
+      "status": "captured",
+      "screenshot": "tablet/inventory-movements--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/reservations",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/reservations",
+      "status": "captured",
+      "screenshot": "tablet/inventory-reservations--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/stocktakes",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/stocktakes",
+      "status": "captured",
+      "screenshot": "tablet/inventory-stocktakes--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/transfers",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/transfers",
+      "status": "captured",
+      "screenshot": "tablet/inventory-transfers--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/valuation",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/inventory/valuation",
+      "status": "captured",
+      "screenshot": "tablet/inventory-valuation--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/loyalty",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/loyalty",
+      "status": "captured",
+      "screenshot": "tablet/loyalty--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/notifications",
+      "status": "captured",
+      "screenshot": "tablet/notifications--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications/deliveries",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/notifications/deliveries",
+      "status": "captured",
+      "screenshot": "tablet/notifications-deliveries--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/business",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/onboarding/business",
+      "status": "captured",
+      "screenshot": "tablet/onboarding-business--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/import",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/onboarding/import",
+      "status": "captured",
+      "screenshot": "tablet/onboarding-import--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/payments",
+      "status": "captured",
+      "screenshot": "tablet/payments--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments/settlements",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/payments/settlements",
+      "status": "captured",
+      "screenshot": "tablet/payments-settlements--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/platform/ops",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/platform/ops",
+      "status": "captured",
+      "screenshot": "tablet/platform-ops--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/products",
+      "status": "captured",
+      "screenshot": "tablet/products--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/compositions",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/products/compositions",
+      "status": "captured",
+      "screenshot": "tablet/products-compositions--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/conversions",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/products/conversions",
+      "status": "captured",
+      "screenshot": "tablet/products-conversions--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/import",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/products/import",
+      "status": "captured",
+      "screenshot": "tablet/products-import--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/masters",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/products/masters",
+      "status": "captured",
+      "screenshot": "tablet/products-masters--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/invoices",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/invoices",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-invoices--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/landed-costs",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/landed-costs",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-landed-costs--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/orders",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/orders",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-orders--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/reorder",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/reorder",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-reorder--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/returns",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/returns",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-returns--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/suppliers",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/purchasing/suppliers",
+      "status": "captured",
+      "screenshot": "tablet/purchasing-suppliers--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/reports",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/reports",
+      "status": "captured",
+      "screenshot": "tablet/reports--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales",
+      "status": "captured",
+      "screenshot": "tablet/sales--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/documents",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/documents",
+      "status": "captured",
+      "screenshot": "tablet/sales-documents--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/fulfillment",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/fulfillment",
+      "status": "captured",
+      "screenshot": "tablet/sales-fulfillment--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/offline-pos",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/offline-pos",
+      "status": "captured",
+      "screenshot": "tablet/sales-offline-pos--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-orders",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-orders",
+      "status": "captured",
+      "screenshot": "tablet/sales-omnichannel-orders--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-updates",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-updates",
+      "status": "captured",
+      "screenshot": "tablet/sales-omnichannel-updates--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/promotions",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/sales/promotions",
+      "status": "captured",
+      "screenshot": "tablet/sales-promotions--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/audit",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/audit",
+      "status": "captured",
+      "screenshot": "tablet/settings-audit--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/billing",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/billing",
+      "status": "captured",
+      "screenshot": "tablet/settings-billing--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/business",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/business",
+      "status": "captured",
+      "screenshot": "tablet/settings-business--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/channels",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/channels",
+      "status": "captured",
+      "screenshot": "tablet/settings-channels--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integration-framework",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/integration-framework",
+      "status": "captured",
+      "screenshot": "tablet/settings-integration-framework--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integrations",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/integrations",
+      "status": "captured",
+      "screenshot": "tablet/settings-integrations--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/locations",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/locations",
+      "status": "captured",
+      "screenshot": "tablet/settings-locations--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-channels",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/notification-channels",
+      "status": "captured",
+      "screenshot": "tablet/settings-notification-channels--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-templates",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/notification-templates",
+      "status": "captured",
+      "screenshot": "tablet/settings-notification-templates--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-cache",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/offline-cache",
+      "status": "captured",
+      "screenshot": "tablet/settings-offline-cache--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-devices",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/offline-devices",
+      "status": "captured",
+      "screenshot": "tablet/settings-offline-devices--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-reconciliation",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/offline-reconciliation",
+      "status": "captured",
+      "screenshot": "tablet/settings-offline-reconciliation--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-runtime",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/offline-runtime",
+      "status": "captured",
+      "screenshot": "tablet/settings-offline-runtime--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/privacy",
+      "status": "captured",
+      "screenshot": "tablet/settings-privacy--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy/vendors",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/privacy/vendors",
+      "status": "captured",
+      "screenshot": "tablet/settings-privacy-vendors--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/roles",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/roles",
+      "status": "captured",
+      "screenshot": "tablet/settings-roles--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/security",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/security",
+      "status": "captured",
+      "screenshot": "tablet/settings-security--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/status",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/status",
+      "status": "captured",
+      "screenshot": "tablet/settings-status--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/team",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/settings/team",
+      "status": "captured",
+      "screenshot": "tablet/settings-team--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/support",
+      "viewport": "tablet",
+      "url": "http://127.0.0.1:3200/support",
+      "status": "captured",
+      "screenshot": "tablet/support--tablet.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/",
+      "status": "captured",
+      "screenshot": "mobile/home--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/ai",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/ai",
+      "status": "captured",
+      "screenshot": "mobile/ai--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/approvals",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/approvals",
+      "status": "captured",
+      "screenshot": "mobile/approvals--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/customers",
+      "status": "captured",
+      "screenshot": "mobile/customers--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/campaign-audiences",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/customers/campaign-audiences",
+      "status": "captured",
+      "screenshot": "mobile/customers-campaign-audiences--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/privacy-requests",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/customers/privacy-requests",
+      "status": "captured",
+      "screenshot": "mobile/customers-privacy-requests--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/customers/segments",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/customers/segments",
+      "status": "captured",
+      "screenshot": "mobile/customers-segments--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/accounts",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/accounts",
+      "status": "captured",
+      "screenshot": "mobile/finance-accounts--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/bank-reconciliation",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/bank-reconciliation",
+      "status": "captured",
+      "screenshot": "mobile/finance-bank-reconciliation--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/budgets",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/budgets",
+      "status": "captured",
+      "screenshot": "mobile/finance-budgets--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/expenses",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/expenses",
+      "status": "captured",
+      "screenshot": "mobile/finance-expenses--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/journals",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/journals",
+      "status": "captured",
+      "screenshot": "mobile/finance-journals--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/periods",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/periods",
+      "status": "captured",
+      "screenshot": "mobile/finance-periods--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/receivables",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/receivables",
+      "status": "captured",
+      "screenshot": "mobile/finance-receivables--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/finance/statements",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/finance/statements",
+      "status": "captured",
+      "screenshot": "mobile/finance-statements--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/help",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/help",
+      "status": "captured",
+      "screenshot": "mobile/help--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/alerts",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/alerts",
+      "status": "captured",
+      "screenshot": "mobile/inventory-alerts--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/lots",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/lots",
+      "status": "captured",
+      "screenshot": "mobile/inventory-lots--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/movements",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/movements",
+      "status": "captured",
+      "screenshot": "mobile/inventory-movements--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/reservations",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/reservations",
+      "status": "captured",
+      "screenshot": "mobile/inventory-reservations--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/stocktakes",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/stocktakes",
+      "status": "captured",
+      "screenshot": "mobile/inventory-stocktakes--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/transfers",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/transfers",
+      "status": "captured",
+      "screenshot": "mobile/inventory-transfers--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/inventory/valuation",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/inventory/valuation",
+      "status": "captured",
+      "screenshot": "mobile/inventory-valuation--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/loyalty",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/loyalty",
+      "status": "captured",
+      "screenshot": "mobile/loyalty--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/notifications",
+      "status": "captured",
+      "screenshot": "mobile/notifications--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/notifications/deliveries",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/notifications/deliveries",
+      "status": "captured",
+      "screenshot": "mobile/notifications-deliveries--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/business",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/onboarding/business",
+      "status": "captured",
+      "screenshot": "mobile/onboarding-business--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/onboarding/import",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/onboarding/import",
+      "status": "captured",
+      "screenshot": "mobile/onboarding-import--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/payments",
+      "status": "captured",
+      "screenshot": "mobile/payments--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/payments/settlements",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/payments/settlements",
+      "status": "captured",
+      "screenshot": "mobile/payments-settlements--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/platform/ops",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/platform/ops",
+      "status": "captured",
+      "screenshot": "mobile/platform-ops--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/products",
+      "status": "captured",
+      "screenshot": "mobile/products--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/compositions",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/products/compositions",
+      "status": "captured",
+      "screenshot": "mobile/products-compositions--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/conversions",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/products/conversions",
+      "status": "captured",
+      "screenshot": "mobile/products-conversions--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/import",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/products/import",
+      "status": "captured",
+      "screenshot": "mobile/products-import--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/products/masters",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/products/masters",
+      "status": "captured",
+      "screenshot": "mobile/products-masters--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/invoices",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/invoices",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-invoices--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/landed-costs",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/landed-costs",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-landed-costs--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/orders",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/orders",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-orders--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/reorder",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/reorder",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-reorder--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/returns",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/returns",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-returns--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/purchasing/suppliers",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/purchasing/suppliers",
+      "status": "captured",
+      "screenshot": "mobile/purchasing-suppliers--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/reports",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/reports",
+      "status": "captured",
+      "screenshot": "mobile/reports--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales",
+      "status": "captured",
+      "screenshot": "mobile/sales--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/documents",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/documents",
+      "status": "captured",
+      "screenshot": "mobile/sales-documents--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/fulfillment",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/fulfillment",
+      "status": "captured",
+      "screenshot": "mobile/sales-fulfillment--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/offline-pos",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/offline-pos",
+      "status": "captured",
+      "screenshot": "mobile/sales-offline-pos--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-orders",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-orders",
+      "status": "captured",
+      "screenshot": "mobile/sales-omnichannel-orders--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/omnichannel-updates",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/omnichannel-updates",
+      "status": "captured",
+      "screenshot": "mobile/sales-omnichannel-updates--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/sales/promotions",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/sales/promotions",
+      "status": "captured",
+      "screenshot": "mobile/sales-promotions--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/audit",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/audit",
+      "status": "captured",
+      "screenshot": "mobile/settings-audit--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/billing",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/billing",
+      "status": "captured",
+      "screenshot": "mobile/settings-billing--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/business",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/business",
+      "status": "captured",
+      "screenshot": "mobile/settings-business--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/channels",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/channels",
+      "status": "captured",
+      "screenshot": "mobile/settings-channels--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integration-framework",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/integration-framework",
+      "status": "captured",
+      "screenshot": "mobile/settings-integration-framework--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/integrations",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/integrations",
+      "status": "captured",
+      "screenshot": "mobile/settings-integrations--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/locations",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/locations",
+      "status": "captured",
+      "screenshot": "mobile/settings-locations--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-channels",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/notification-channels",
+      "status": "captured",
+      "screenshot": "mobile/settings-notification-channels--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/notification-templates",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/notification-templates",
+      "status": "captured",
+      "screenshot": "mobile/settings-notification-templates--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-cache",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/offline-cache",
+      "status": "captured",
+      "screenshot": "mobile/settings-offline-cache--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-devices",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/offline-devices",
+      "status": "captured",
+      "screenshot": "mobile/settings-offline-devices--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-reconciliation",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/offline-reconciliation",
+      "status": "captured",
+      "screenshot": "mobile/settings-offline-reconciliation--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/offline-runtime",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/offline-runtime",
+      "status": "captured",
+      "screenshot": "mobile/settings-offline-runtime--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/privacy",
+      "status": "captured",
+      "screenshot": "mobile/settings-privacy--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/privacy/vendors",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/privacy/vendors",
+      "status": "captured",
+      "screenshot": "mobile/settings-privacy-vendors--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/roles",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/roles",
+      "status": "captured",
+      "screenshot": "mobile/settings-roles--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/security",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/security",
+      "status": "captured",
+      "screenshot": "mobile/settings-security--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/status",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/status",
+      "status": "captured",
+      "screenshot": "mobile/settings-status--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/settings/team",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/settings/team",
+      "status": "captured",
+      "screenshot": "mobile/settings-team--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    },
+    {
+      "route": "/support",
+      "viewport": "mobile",
+      "url": "http://127.0.0.1:3200/support",
+      "status": "captured",
+      "screenshot": "mobile/support--mobile.png",
+      "httpStatus": 200,
+      "error": null
+    }
+  ],
+  "summary": {
+    "captured": 210,
+    "failed": 0,
+    "total": 210
+  }
+}

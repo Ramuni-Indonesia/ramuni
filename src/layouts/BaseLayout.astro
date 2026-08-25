@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import ClarityTracking from '../components/ClarityTracking.astro';
 import FloatingContact from '../components/FloatingContact.astro';
 import LeadCapturePopup from '../components/LeadCapturePopup.astro';
+import MoneySiteLeadSection from '../components/MoneySiteLeadSection.astro';
 import ParallaxMotion from '../components/ParallaxMotion.astro';
 import GlobalScrollMotion from '../components/GlobalScrollMotion.astro';
 import { releaseGates } from '../config/release';
@@ -57,6 +58,24 @@ const pathname = new URL(absoluteCanonical).pathname;
 const globalScrollMotionEnabled = !pathname.startsWith('/generator/');
 const isBlogContext = pathname === '/blog/' || pathname.startsWith('/blog/');
 const popupContext = isBlogContext ? 'blog' : 'site';
+const moneyLeadAllowed = !isBlogContext && (
+  pathname === '/'
+  || /^\/(produk|solusi|features|pricing|compare|faq|tentang|industri|untuk|roadmap|sumber-daya|panduan|template|kalkulator|kamus-bisnis|bantuan|keamanan)(\/|$)/.test(pathname)
+);
+const moneyLeadExcluded = /^(\/kontak|\/tour-produk-gratis|\/terima-kasih|\/status|\/maintenance|\/404|\/500|\/masuk|\/demo|\/early-access)(\/|$)/.test(pathname);
+const showMoneyLead = chrome && moneyLeadAllowed && !moneyLeadExcluded;
+const moneyLeadLocation = `money-site-${pathname.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'home'}`;
+const moneyLeadCopy = pathname.startsWith('/produk/') || pathname === '/produk/'
+  ? { eyebrow: 'Lihat modul di pekerjaan Anda', title: 'Pilih bagian usaha yang ingin Anda rapikan.', body: 'Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Tim RAMUNI memperlihatkan screen dan cara mulai yang sesuai.' }
+  : pathname.startsWith('/solusi/') || pathname === '/solusi/'
+    ? { eyebrow: 'Mulai dari masalah yang terasa', title: 'Sebutkan satu masalah usaha. Lihat jalurnya.', body: 'Ceritakan apa yang menghambat pekerjaan. Tim menghubungkan gejala, data yang perlu dibuka, dan modul yang relevan.' }
+    : pathname.startsWith('/features/')
+      ? { eyebrow: 'Lihat fitur di pekerjaan Anda', title: 'Coba fitur yang paling dekat dengan kebutuhan Anda.', body: 'Pilih satu kebutuhan dan lihat input, hasil, serta batas penggunaan sebelum memilih paket.' }
+      : pathname.startsWith('/pricing')
+        ? { eyebrow: 'Pilih paket dengan tenang', title: 'Belum yakin paket mana yang pas?', body: 'Isi kontak singkat. Tim RAMUNI membantu mencocokkan jumlah pengguna, alur kerja, dan batas paket dengan kebutuhan Anda.' }
+        : pathname.startsWith('/tentang')
+          ? { eyebrow: 'Kenali cara kerja kami', title: 'Lihat cara RAMUNI membantu tim mengambil keputusan.', body: 'Mulai dari contoh yang aman. Kami menjelaskan cara kerja produk sebelum Anda menyiapkan data atau memilih paket.' }
+          : { eyebrow: 'Mulai dari pekerjaan nyata', title: 'Lihat apa yang ingin Anda pahami minggu ini.', body: 'Pilih satu kebutuhan. Tim RAMUNI memperlihatkan contoh data, modul, dan cara mulai tanpa meminta data bisnis sensitif.' };
 const inferredPageType = pageType
   || (/^\/tentang\/?$/.test(pathname) ? 'AboutPage' : undefined)
   || (/^\/kontak\/?$/.test(pathname) ? 'ContactPage' : undefined)
@@ -175,6 +194,7 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <a class="skip-link" href="#main">Lewati ke konten</a>
     {chrome && <Header />}
     <main id="main"><slot /></main>
+    {showMoneyLead && <MoneySiteLeadSection location={moneyLeadLocation} pageType="money-site-footer-lead" {...moneyLeadCopy} />}
     {chrome && <Footer />}
     {chrome && <FloatingContact />}
     {chrome && <LeadCapturePopup context={popupContext} />}

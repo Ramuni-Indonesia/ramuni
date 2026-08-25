@@ -17,7 +17,9 @@
   border-radius:0;
   background:var(--rice);
   box-shadow:none;
-  contain:paint;
+  /* Avoid paint containment here: Chromium can leave a lazy-loaded WebP
+     blank inside a nested device shell until the next repaint. The screen
+     already clips its contents, so containment is unnecessary. */
   container-type:inline-size;
 }
 

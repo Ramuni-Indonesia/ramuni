@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import CommercialActionBar from '../components/CommercialActionBar.astro';
+import CommercialProofShowcase from '../components/CommercialProofShowcase.astro';
 import { releaseGates } from '../config/release';
 import '../styles/section-variance.css';
 import '../styles/other-pages-refinement.css';
@@ -23,15 +24,37 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
   ? '/website-original/ramuni-mascot-muni-manyar.webp'
   : '/website-original/ramuni-mascot-problem-section.webp';
 ---
-<BaseLayout title="Tentang RAMUNI: Prinsip Pendampingan Bisnis UMKM" description="Misi, sudut pandang, prinsip produk, cara kerja, dan peran manusia dalam mengambil keputusan bersama RAMUNI.">
-  <PageHero eyebrow="Tentang RAMUNI" title="Bantu pemilik usaha memahami angka sebelum mengambil keputusan." description="Nama RAMUNI berasal dari Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membuat data usaha lebih mudah dibaca tanpa meminta Anda menjadi analis." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Pelajari Produk" secondaryHref="/produk/" />
+<BaseLayout
+  title="Tentang RAMUNI | AI Business Companion untuk UMKM"
+  description="Kenali alasan RAMUNI dibangun, cara kami menyusun produk, dan bagaimana AI membantu pemilik UMKM membaca angka sebelum mengambil keputusan."
+  pageType="AboutPage"
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://ramuni.id/#organization',
+    name: 'RAMUNI',
+    url: 'https://ramuni.id/',
+    logo: 'https://ramuni.id/brand/ramuni-lockup-horizontal-color-tight.webp',
+    description: 'AI Business Companion untuk membantu UMKM memahami bisnis dan menentukan perhatian berikutnya.',
+  }}
+>
+  <PageHero eyebrow="Tentang RAMUNI" title="Kami membuat angka usaha lebih mudah dipahami." description="RAMUNI berarti Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membantu pemilik usaha membaca penjualan, stok, kas, dan pelanggan dengan bahasa yang dekat dengan pekerjaan sehari-hari." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Lihat Produk" secondaryHref="/produk/" />
+
+  <CommercialProofShowcase
+    id="about-product-proof"
+    eyebrow="Bukti di balik prinsip"
+    heading="Prinsipnya terlihat dari cara workspace membaca perubahan."
+    body="Kami tidak ingin halaman Tentang berhenti pada filosofi. Lihat bentuk produk yang menjadi dasar cara kerja RAMUNI."
+    focus="overview"
+    location="about_product_proof"
+  />
 
   <section class="section company-story" id="masalah" aria-labelledby="story-title">
     <div class="container company-story__layout">
       <div class="company-story__copy reveal">
         <p class="eyebrow">Berangkat dari keseharian usaha</p>
         <h2 id="story-title">Banyak catatan belum tentu memberi arah.</h2>
-        <p>Penjualan, stok, biaya, dan pelanggan sering berada di tempat berbeda. RAMUNI berangkat dari kebutuhan untuk menyatukan konteks itu sebelum pemilik dan tim menentukan langkah.</p>
+        <p>Penjualan, stok, biaya, dan pelanggan sering berada di tempat berbeda. RAMUNI menyatukan catatan itu agar pemilik dan tim dapat melihat perubahan dari sumber yang sama.</p>
         <strong>Bukan menambah dashboard. Membantu orang memahami apa yang perlu diperiksa.</strong>
       </div>
       <figure class="company-story__scene reveal">
@@ -50,11 +73,23 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
     </div>
   </section>
 
+  <section class="section company-focus" id="fokus-kami" aria-labelledby="focus-title">
+    <div class="container company-focus__layout">
+      <div class="company-page__heading reveal"><p class="eyebrow">Yang kami bangun</p><h2 id="focus-title">Satu ruang untuk pekerjaan yang berulang setiap hari.</h2><p>RAMUNI dimulai dari pekerjaan yang paling sering menyita waktu pemilik dan tim operasional.</p></div>
+      <div class="company-focus__grid">
+        <article class="reveal"><span>01</span><h3>Penjualan</h3><p>Lihat produk, waktu, kanal, dan transaksi yang mengubah omzet.</p><a href="/produk/penjualan/">Buka penjualan <b aria-hidden="true">↗</b></a></article>
+        <article class="reveal"><span>02</span><h3>Stok</h3><p>Temukan SKU yang perlu dicek berdasarkan saldo dan laju keluar.</p><a href="/produk/inventori/">Buka inventori <b aria-hidden="true">↗</b></a></article>
+        <article class="reveal"><span>03</span><h3>Keuangan</h3><p>Pisahkan omzet, biaya, laba, dan kas sebelum menilai kondisi usaha.</p><a href="/produk/keuangan/">Buka keuangan <b aria-hidden="true">↗</b></a></article>
+        <article class="reveal"><span>04</span><h3>Pelanggan</h3><p>Baca riwayat dan pembelian berulang tanpa mengabaikan izin tindak lanjut.</p><a href="/produk/pelanggan/">Buka pelanggan <b aria-hidden="true">↗</b></a></article>
+      </div>
+    </div>
+  </section>
+
   <section class="section dark-surface company-page__view" id="sudut-pandang" aria-labelledby="view-title">
     <div class="container company-page__view-layout">
       <div class="company-page__heading reveal"><p class="eyebrow">Sudut pandang</p><h2 id="view-title">Membantu, bukan mengambil alih.</h2><p>Teknologi harus membantu orang bertanya lebih baik, memeriksa bukti, dan memilih langkah yang masuk akal.</p></div>
-      <div class="company-page__decision-map" aria-label="Cara RAMUNI mendukung keputusan"><article><span>Catatan</span><strong>Kumpulkan konteks yang tersebar.</strong></article><article><span>Pemeriksaan</span><strong>Buka angka di balik ringkasan.</strong></article><article><span>Keputusan</span><strong>Anda memilih langkah akhirnya.</strong></article></div>
-      <blockquote class="company-page__quote reveal">“Pahami bisnis Anda. Tahu langkah berikutnya.”<cite>Pesan utama RAMUNI</cite></blockquote>
+      <div class="company-page__decision-map" aria-label="Cara RAMUNI mendukung keputusan"><article><span>Catatan</span><strong>Satukan data yang tersebar.</strong></article><article><span>Pemeriksaan</span><strong>Buka angka di balik ringkasan.</strong></article><article><span>Keputusan</span><strong>Anda memilih tindakan akhirnya.</strong></article></div>
+      <blockquote class="company-page__quote reveal">“Pahami bisnis Anda. Ambil langkah dengan data.”<cite>Pesan utama RAMUNI</cite></blockquote>
     </div>
   </section>
 
@@ -67,7 +102,7 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
 
   <section class="section surface company-page__validation" id="cara-bekerja" aria-labelledby="validation-title">
     <div class="container company-method">
-      <div class="company-page__heading reveal"><p class="eyebrow">Cara kami bekerja</p><h2 id="validation-title">Kami memeriksa sebelum mempublikasikan.</h2><p>Setiap informasi kami susun, tinjau, dan perbarui agar tetap mudah dipahami.</p></div>
+      <div class="company-page__heading reveal"><p class="eyebrow">Cara kami bekerja</p><h2 id="validation-title">Kami uji alurnya sebelum menyebutnya siap.</h2><p>Setiap informasi kami susun, tinjau, dan perbarui agar pemilik usaha bisa langsung memahami langkahnya.</p></div>
       <div class="company-method__body">
         <ol class="company-page__timeline">
           <li class="reveal"><span>01</span><div><strong>Dengar</strong><p>Pahami pekerjaan, keputusan, dan kualitas data yang digunakan.</p></div></li>
@@ -78,7 +113,7 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
         <aside class="company-method__boundary reveal" aria-label="Peran RAMUNI dan pengguna">
           <span>Peran Anda</span>
           <h3>Keputusan tetap di tangan Anda.</h3>
-          <p>RAMUNI membantu menyatukan konteks, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</p>
+          <p>RAMUNI membantu menyatukan data, membaca perubahan, dan menyiapkan pertanyaan tindak lanjut.</p>
           <p>Anda melihat alasan dan sumbernya, lalu menentukan tindakan yang paling sesuai untuk usaha.</p>
         </aside>
       </div>
@@ -92,7 +127,7 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
     </div>
   </section>
 
-  <div class="container"><CommercialActionBar pageType="about" location="about_close" eyebrow="Kenali cara kerja kami" title="Lihat demo, pricing, atau bahas kebutuhan usaha Anda." body="Kami akan menunjukkan alur yang relevan tanpa meminta data bisnis sensitif sebelum langkah berikutnya." /></div>
+  <div class="container"><CommercialActionBar pageType="about" location="about_close" eyebrow="Kenali cara kerja kami" title="Lihat demo, pricing, atau bahas kebutuhan usaha Anda." body="Kami menunjukkan alur yang relevan tanpa meminta data bisnis sensitif sebelum Anda memilih cara mulai." /></div>
 </BaseLayout>
 
 <style>
@@ -160,6 +195,8 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
     .company-method__boundary>span,.company-method__boundary h3,.company-method__boundary p{grid-column:auto}
   }
   .company-page__status{background:var(--white)}.company-status-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(38px,8vw,110px);align-items:start}.company-status-grid>div:first-child p:last-child{max-width:48ch;margin-top:18px;color:var(--ink-72)}.company-status-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.company-status-columns>div{padding:22px;border:1px solid var(--ink-20);background:var(--rice)}.company-status-columns span{display:block;color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.company-status-columns ul{display:grid;gap:10px;margin:18px 0 0;padding:0;list-style:none}.company-status-columns li{padding-left:15px;position:relative;color:var(--ink-72);font-size:.82rem;line-height:1.5}.company-status-columns li::before{content:'·';position:absolute;left:0;color:var(--teal);font-weight:800}.company-page__status .money-action-bar{margin-bottom:0}
-  @media(max-width:760px){.company-status-grid,.company-status-columns{grid-template-columns:1fr}}
+  .company-focus{background:var(--white)}.company-focus__layout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(38px,8vw,108px);align-items:start}.company-focus__layout>.company-page__heading{position:sticky;top:110px}.company-focus__layout>.company-page__heading>p:last-child{max-width:42ch;margin-top:18px;color:var(--ink-72)}.company-focus__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--ink-10)}.company-focus__grid article{display:grid;align-content:start;min-height:230px;padding:24px;background:var(--rice)}.company-focus__grid article>span{color:var(--teal);font-size:.68rem;font-weight:800}.company-focus__grid h3{margin-top:38px;font-size:1.2rem}.company-focus__grid p{margin-top:10px;color:var(--ink-72);font-size:.82rem;line-height:1.5}.company-focus__grid a{margin-top:auto;padding-top:20px;color:var(--teal);font-size:.76rem;font-weight:800;text-decoration:none}.company-focus__grid a b{margin-left:4px}
+  @media(max-width:1080px){.company-focus__layout{grid-template-columns:1fr}.company-focus__layout>.company-page__heading{position:static}}
+  @media(max-width:760px){.company-status-grid,.company-status-columns,.company-focus__grid{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){.company-story__scene img{animation:none}}
 </style>

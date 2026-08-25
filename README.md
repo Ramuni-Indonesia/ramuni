@@ -65,6 +65,8 @@ npm audit --audit-level=high
 
 `npm run audit` inspects the generated `dist/` output. It validates route-level SEO metadata, JSON-LD/schema contracts, sitemap and noindex alignment, internal links, robots policy, static accessibility invariants, content markers, documentation encoding, and production asset budgets.
 
+After a production promotion, run `SEO_AUDIT_ORIGIN=https://www.ramuni.id npm run audit:live`. The live audit follows the nested sitemap index and checks HTTP status, canonical URLs, robots/noindex alignment, title and description lengths, one H1 per indexable page, image `alt` attributes, valid JSON-LD, `lastmod`, robots sitemap coverage, and referenced image responses. Reports are written to the ignored `outputs/seo/` directory so the same pass can be repeated after each content or design loop.
+
 The GitHub Actions workflow runs these checks on every pull request and every branch push. It first rejects common committed credential patterns, then installs the lockfile, checks Astro and TypeScript, builds with production indexability policy, runs the custom SEO/accessibility audit, and rejects high-severity dependency vulnerabilities. Every successful run retains the generated static site as a seven-day workflow artifact for review.
 
 Astro 7 requires Node.js `>=22.12`. The staging deployment script automatically re-executes itself with an ephemeral Node 22 toolchain when the host system Node is older. Local contributors should use Node 22 directly before running the quality commands.
@@ -100,6 +102,7 @@ Lead forms also fail closed. Keep `PUBLIC_LEAD_ENDPOINT` empty until an approved
 | `public` | Deployable fonts, favicons, Open Graph, brand, and editorial assets |
 | `brand/RAMUNI` | Approved brand source and reference exports |
 | `scripts/site-audit.mjs` | Built-output SEO, accessibility, content, and performance audit |
+| `scripts/live-seo-audit.mjs` | Production HTTP/HTML SEO loop for sitemap, indexation, metadata, schema, alt text, and assets |
 | `scripts/deploy-staging.sh` | Verified, atomic deployment to `staging.ramuni.id` |
 | `ops/nginx` | Versioned staging TLS, cache, security-header, and noindex policy |
 | `.github` | Branch/PR quality workflow, Dependabot policy, and review checklist |

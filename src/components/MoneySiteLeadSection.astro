@@ -1,0 +1,47 @@
+---
+import LeadForm from './LeadForm.astro';
+
+interface Props {
+  location: string;
+  pageType?: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+}
+
+const {
+  location,
+  pageType = 'money-site',
+  eyebrow = 'Lihat RAMUNI di usaha Anda',
+  title = 'Lihat alur yang paling dekat dengan pekerjaan Anda.',
+  body = 'Pilih satu kebutuhan. Tim RAMUNI akan memperlihatkan input, hasil, dan modul yang relevan tanpa meminta data bisnis sensitif.',
+} = Astro.props;
+
+const titleId = `${location}-lead-title`;
+---
+
+<section class="money-lead-section" data-commercial-page={pageType} data-lead-section aria-labelledby={titleId}>
+  <div class="container">
+    <div class="money-lead-section__card">
+      <div class="money-lead-section__copy">
+        <p class="section-kicker">{eyebrow}</p>
+        <h2 id={titleId}>{title}</h2>
+        <p class="money-lead-section__body">{body}</p>
+        <ol class="money-lead-section__steps">
+          <li><span>01</span><div><strong>Pilih kebutuhan</strong><small>Penjualan, stok, keuangan, pelanggan, atau laporan.</small></div></li>
+          <li><span>02</span><div><strong>Lihat contoh yang relevan</strong><small>Tim menjelaskan input, hasil, dan batas aksesnya.</small></div></li>
+          <li><span>03</span><div><strong>Pilih cara mulai</strong><small>Mulai gratis atau bahas kebutuhan tim Anda.</small></div></li>
+        </ol>
+        <p class="money-lead-section__privacy">Tidak perlu menyiapkan data sensitif.</p>
+      </div>
+      <div class="money-lead-section__form-wrap">
+        <div class="money-lead-section__form-head">
+          <span>Mulai dari sini</span>
+          <strong>Isi kontak singkat</strong>
+          <p>Tim menerima detail Anda sebelum WhatsApp dibuka.</p>
+        </div>
+        <LeadForm kind="demo" handoff="whatsapp" location={location} compact submitChoices />
+      </div>
+    </div>
+  </div>
+</section>

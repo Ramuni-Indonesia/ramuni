@@ -32,16 +32,16 @@ const productFaq = [
   { question: 'Bagaimana memilih modul pertama?', answer: 'Pilih masalah yang paling sering menghambat pekerjaan, kemudian ikuti rekomendasi modul dan alur yang terkait.' },
 ];
 ---
-<BaseLayout title="Aplikasi Bisnis UMKM | Produk RAMUNI" description="Jelajahi modul RAMUNI untuk memahami penjualan, stok, keuangan, pelanggan, dan kondisi bisnis dalam satu alur.">
+<BaseLayout title="Produk RAMUNI: Penjualan, Stok, Keuangan & AI untuk UMKM" description="Pilih modul RAMUNI untuk membaca penjualan, stok, keuangan, pelanggan, laporan, dan data usaha dalam satu workspace. Lihat input dan hasil tiap modul.">
   <div class="product-hub">
     <section class="catalog-hero">
       <div class="container catalog-hero__layout">
         <div class="reveal is-visible">
           <p class="section-kicker">Produk RAMUNI</p>
-          <h1>Jangan mulai dari menu. Mulai dari pertanyaan yang harus dijawab.</h1>
+          <h1>Pilih modul berdasarkan pekerjaan yang ingin selesai.</h1>
         </div>
         <div class="catalog-hero__aside reveal is-visible">
-          <p>Setiap modul RAMUNI berangkat dari pekerjaan nyata: membaca transaksi, mengecek stok, memahami kas, atau menyiapkan bahan rapat. Buka yang paling Anda perlukan sekarang.</p>
+          <p>Mulai dari transaksi, stok, kas, pelanggan, atau laporan. Setiap modul menjelaskan data yang masuk, hasil yang keluar, dan batas aksesnya.</p>
           <div class="button-row">
             <a class="button button--primary" href="/tour-produk-gratis/">Lihat contoh alur gratis</a>
             <a class="button button--secondary" href="#product-catalog">Lihat semua modul</a>
@@ -54,15 +54,15 @@ const productFaq = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="products" location="products_hero" eyebrow="Cari tahu sebelum memilih" title="Lihat apa yang masuk, diproses, dan keluar dari tiap modul." body="Mulai dari demo, cek paket dan batasnya, lalu pilih modul yang paling dekat dengan pekerjaan Anda." />
+      <CommercialActionBar pageType="products" location="products_hero" eyebrow="Pilih modul dengan yakin" title="Lihat apa yang masuk dan apa yang Anda dapat." body="Buka demo untuk melihat alur produk, lalu bandingkan paket, pengguna, dan batas akses sebelum mulai." />
     </div>
 
     <section id="product-system-connected" class="section surface product-system" aria-labelledby="product-system-title">
       <div class="container">
         <p class="section-kicker">Sistem yang terhubung</p>
         <div class="product-system__heading">
-          <h2 id="product-system-title">Lihat angka yang berubah. Tahu apa yang perlu dicek.</h2>
-          <p>RAMUNI tidak berhenti pada grafik. Setiap sorotan membawa periode dan sumber, sehingga tim bisa membahas alasan yang sama sebelum bertindak.</p>
+          <h2 id="product-system-title">Satu workspace untuk angka yang saling berkaitan.</h2>
+          <p>Penjualan memengaruhi stok. Biaya memengaruhi kas. RAMUNI menampilkan hubungan itu supaya tim bekerja dari angka dan periode yang sama.</p>
         </div>
         <div id="product-direction-model" class="product-direction-model reveal">
           <DecisionFlow3D />
@@ -73,8 +73,8 @@ const productFaq = [
     <ProductScreenshotRail
       id="product-workspace-screens"
       eyebrow="Screen workspace"
-      heading="Lihat modul dari layar yang benar-benar dipakai."
-      body="Mulai dari screenshot penuh workspace yang benar-benar dipakai. Ringkasan, arus kas, aktivitas, dan status data terlihat tanpa crop zoom."
+      heading="Lihat workspace sebelum memilih modul."
+      body="Screenshot penuh memperlihatkan ringkasan, arus kas, aktivitas, dan status data dalam satu layar yang bisa dibuka kembali."
       items={productScreenSets.overview}
       compact
     />
@@ -83,8 +83,8 @@ const productFaq = [
       <div class="container product-catalog__layout">
         <header class="product-catalog__intro">
           <p class="section-kicker">Keluarga produk</p>
-          <h2 id="product-catalog-title">Pilih pekerjaan yang ingin dibuat lebih ringan.</h2>
-          <p>Buka modul dari pertanyaan yang sering muncul di meja Anda. Tiap halaman menjelaskan contoh tampilan, batas penggunaan, dan alur kerja yang bisa ditelusuri.</p>
+          <h2 id="product-catalog-title">Mulai dari pertanyaan yang muncul setiap hari.</h2>
+          <p>Setiap halaman produk menjelaskan input, hasil, contoh pekerjaan, dan kapan modul itu paling berguna.</p>
         </header>
         <div class="product-families">
           <section class="product-family" aria-labelledby="family-intelligence">
@@ -139,7 +139,7 @@ const productFaq = [
 
     <section class="section product-capabilities" aria-labelledby="capabilities-title">
       <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Setiap modul memberi jalan pulang ke angka asalnya.</h2><p>Akses, jejak perubahan, dan sumber angka tetap terlihat saat tim berpindah dari ringkasan ke detail.</p></header>
+        <header><h2 id="capabilities-title">Dapatkan jawaban tanpa kehilangan angka asal.</h2><p>RAMUNI menjaga sumber angka, waktu pembaruan, dan jejak perubahan tetap mudah dicari saat tim berpindah dari ringkasan ke detail.</p></header>
         <div class="capability-folds">
           {sharedCapabilities.map((item, index) => (
             <article class="capability-fold reveal" style={`--i:${index}`}>
@@ -154,7 +154,7 @@ const productFaq = [
 
     <section class="section surface outcome-index" aria-labelledby="outcome-index-title">
       <div class="container outcome-index__layout">
-        <div><p class="section-kicker">Mulai dari masalah</p><h2 id="outcome-index-title">Belum tahu modulnya?</h2></div>
+        <div><p class="section-kicker">Mulai dari hasil</p><h2 id="outcome-index-title">Belum tahu modul yang tepat?</h2></div>
         <div class="outcome-index__list">
           {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}/`}><i class="outcome-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><span>{solution.title}</span><small>{solution.summary}</small></a>)}
         </div>
@@ -163,7 +163,7 @@ const productFaq = [
 
     <section class="section role-paths" aria-labelledby="role-paths-title">
       <div class="container role-paths__layout">
-        <header><h2 id="role-paths-title">Tampilan mengikuti pekerjaan tiap orang.</h2><p>Akses dan prioritas berubah sesuai tanggung jawab, bukan sekadar jabatan di kartu nama.</p></header>
+        <header><h2 id="role-paths-title">Setiap peran melihat pekerjaan yang berbeda.</h2><p>Pemilik, admin, kasir, dan supervisor membutuhkan prioritas yang berbeda. Pilih jalur yang paling dekat dengan tanggung jawab Anda.</p></header>
         <nav class="role-paths__nav" aria-label="Produk berdasarkan peran">
           {roles.map((role) => <a href={`/untuk/${role.slug}/`}><strong>{role.title}</strong><span>{role.summary}</span></a>)}
         </nav>
@@ -172,8 +172,8 @@ const productFaq = [
 
     <section class="section product-trust" aria-labelledby="product-trust-title">
       <div class="container product-trust__layout">
-        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">RAMUNI membantu membaca. Keputusan tetap di tangan Anda.</h2></div>
-        <div class="product-trust__copy"><p>Akses mengikuti peran, jawaban membawa sumber, dan tindakan penting tetap membutuhkan keputusan manusia.</p><a href="/keamanan/">Pelajari keamanan RAMUNI</a></div>
+        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">Bahan keputusan yang bisa diperiksa.</h2></div>
+        <div class="product-trust__copy"><p>Akses mengikuti peran, jawaban membawa sumber, dan tindakan penting tetap membutuhkan persetujuan orang yang bertanggung jawab.</p><a href="/keamanan/">Baca prinsip keamanan</a></div>
       </div>
     </section>
 
@@ -188,11 +188,11 @@ const productFaq = [
       <div class="container">
         <TourEvidenceCTA
           eyebrow="Mulai dari satu alur"
-          title="Mulai dari alur yang paling penting."
-          body="Lihat modul yang paling dekat dengan kebutuhan usaha Anda, lalu bahas fitur dan langkah berikutnya sebelum akses."
+          title="Mulai dari satu pekerjaan yang paling penting."
+          body="Lihat modul yang paling dekat dengan kebutuhan usaha Anda, lalu bahas akses dan cara mulai dengan tim RAMUNI."
           visual={productCloseVisual}
           visualBadge="Ilustrasi alur produk"
-          points={['Pilih satu pertanyaan usaha', 'Lihat modul yang terkait', 'Tentukan langkah berikutnya']}
+          points={['Pilih satu pertanyaan usaha', 'Lihat modul yang terkait', 'Pilih cara mulai']}
         />
       </div>
     </section>
