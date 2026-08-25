@@ -3,6 +3,10 @@
   max-width: 680px;
   display: grid;
   gap: 18px;
+  border-top: 1px solid var(--ink);
+  padding-top: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
 }
 
 .lead-form .form-grid {
@@ -14,7 +18,10 @@
 .lead-form .field {
   display: grid;
   gap: 8px;
+  margin-bottom: 18px;
 }
+
+.lead-form .field--context { grid-column: 1 / -1; }
 
 .lead-form .field label {
   color: var(--ink);

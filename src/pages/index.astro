@@ -50,7 +50,7 @@ const schema = [
 ];
 ---
 <BaseLayout title="Aplikasi Bisnis UMKM untuk Penjualan, Stok, Keuangan | RAMUNI" description="Aplikasi bisnis UMKM untuk membaca penjualan, stok, kas, pelanggan, dan laporan dalam satu workspace. Lihat penyebab perubahan sebelum mengambil keputusan." schema={schema}>
-  <section class="home-hero chapter" data-chapter="Pembuka" data-home-motion>
+  <section class="home-hero chapter" data-home-motion>
     <div class="container hero-composition">
       <div class="hero-copy reveal is-visible">
         <p class="eyebrow">AI Business Companion untuk UMKM Indonesia</p>
@@ -75,7 +75,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section problem-chapter chapter" data-chapter="Masalah">
+  <section class="section problem-chapter chapter">
     <div class="container problem-landscape">
       <header class="problem-landscape__head reveal">
         <p class="section-kicker">Baca penyebabnya</p>
@@ -86,7 +86,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section solutions-stage chapter" data-chapter="Solusi">
+  <section class="section solutions-stage chapter">
     <div class="container solution-field">
       <div class="solution-field__statement reveal"><p class="section-kicker">Pilih jalur kerja</p><h2>Pilih masalah, buka modulnya.</h2><p>Mulai dari omzet, stok, laba, pelanggan, atau laporan. Anda dapat menguji satu alur tanpa mengubah seluruh cara kerja.</p></div>
       <div class="solution-paths">
@@ -95,7 +95,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section answer-stage chapter" data-chapter="Insight">
+  <section class="section answer-stage chapter">
     <div class="container answer-theatre">
       <header class="answer-theatre__question reveal">
         <p class="section-kicker">Contoh jawaban AI</p>
@@ -113,7 +113,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section workflow-stage chapter" data-chapter="Alur">
+  <section class="section workflow-stage chapter">
     <div class="container">
       <div class="section-intro reveal"><h2>Masukkan data. Periksa perubahan. Ambil keputusan.</h2><p>Pilih satu tahap untuk melihat pekerjaan yang dibantu RAMUNI.</p></div>
       <div class="workflow-explorer reveal" data-workflow-explorer>
@@ -131,7 +131,7 @@ const schema = [
     </div>
   </section>
 
-  <section id="dashboard-product-proof" class="section dashboard-stage dashboard-stage--editorial chapter" data-chapter="Dashboard">
+  <section id="dashboard-product-proof" class="section dashboard-stage dashboard-stage--editorial chapter">
     <div class="container dashboard-gallery">
       <header class="dashboard-gallery__head reveal">
         <div><p class="section-kicker">Mulai dari pertanyaan usaha</p><h2>Pertanyaan datang dulu.</h2></div>
@@ -190,7 +190,7 @@ const schema = [
     body="Screenshot penuh workspace RAMUNI memperlihatkan ringkasan, arus kas, aktivitas, dan status data dalam satu layar."
     items={productScreenSets.overview}
   />
-  <section class="section modules-stage chapter" data-chapter="Produk">
+  <section class="section modules-stage chapter">
     <div class="container module-atlas">
       <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Buka angka yang paling sering Anda cari.</h2><p>Mulai dari pertanyaan yang muncul di pekerjaan hari ini, lalu telusuri modul yang bisa menjawabnya.</p></header>
       <div class="module-map">
@@ -199,7 +199,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section industry-stage chapter" data-chapter="Industri">
+  <section class="section industry-stage chapter">
     <div class="container industry-room" data-industry-room>
       <header class="industry-room__head reveal"><p class="section-kicker">Menurut jenis usaha</p><h2>Pertanyaan yang sama perlu data berbeda di tiap usaha.</h2></header>
       <div class="industry-room__stage reveal">
@@ -212,7 +212,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section start-stage chapter" data-chapter="Mulai">
+  <section class="section start-stage chapter">
     <div class="container start-journey">
       <header class="start-journey__head reveal"><p class="section-kicker">Cara mulai</p><h2>Mulai dari satu kasus yang nyata.</h2><p>Empat langkah untuk melihat data dan membahas tindakan.</p></header>
       <ol class="start-steps start-steps--horizontal">
@@ -224,7 +224,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section report-stage chapter" data-chapter="Laporan">
+  <section class="section report-stage chapter">
     <div class="container report-layout">
       <div class="report-lead reveal">
         <p class="section-kicker">Laporan untuk menutup hari</p>
@@ -240,7 +240,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section trust-stage chapter" data-chapter="Keamanan">
+  <section class="section trust-stage chapter">
     <div class="container trust-manifesto">
       <div class="trust-manifesto__mark reveal"><img src="/brand/ramuni-mark-white.webp" width="160" height="160" alt="Logo simbol RAMUNI" /><span>Prinsip kerja RAMUNI</span></div>
       <h2 class="reveal">AI membantu membaca. Anda tetap memutuskan.</h2>
@@ -250,7 +250,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section pricing-stage chapter" data-chapter="Coba gratis">
+  <section class="section pricing-stage chapter">
     <div class="container pricing-composition">
       <div class="pricing-word reveal">Coba<br />Gratis</div>
       <div class="pricing-copy reveal">
@@ -275,14 +275,14 @@ const schema = [
     </div>
   </section>
 
-  <section class="section faq-stage chapter" data-chapter="FAQ">
+  <section class="section faq-stage chapter">
     <div class="container faq-library">
       <div class="faq-library__head reveal"><p class="section-kicker">Sebelum mencoba</p><h2>Jawaban sebelum Anda mulai.</h2><p>Periksa cara kerja, data yang dibutuhkan, harga, dan batas AI sebelum mengisi form.</p></div>
       <div class="faq-list">{faq.map(([question, answer]) => <details class="reveal"><summary>{question}</summary><p>{answer}</p></details>)}</div>
     </div>
   </section>
 
-  <section class="section closing-stage chapter" data-chapter="Penutup">
+  <section class="section closing-stage chapter">
     <div class="container closing-composition reveal">
       <p>Meramu insight. Memberi arah.</p>
       <h2>Siap melihat masalah usaha dengan lebih jelas?</h2>
