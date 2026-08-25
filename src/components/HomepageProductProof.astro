@@ -1,0 +1,90 @@
+---
+import type { HomepageScreenshotVisual } from '../data/homepageVisuals';
+
+interface Props {
+  items: readonly HomepageScreenshotVisual[];
+}
+
+const { items } = Astro.props;
+const [featured, ...supporting] = items;
+const renderCard = (item: HomepageScreenshotVisual, index: number) => ({ item, index });
+---
+
+<section class="home-product-proof" id="home-product-proof" aria-labelledby="home-product-proof-title">
+  <div class="container">
+    <header class="home-product-proof__head reveal">
+      <p class="home-v2-kicker">Produk yang bisa dilihat</p>
+      <h2 id="home-product-proof-title">Bukan ilustrasi. Ini layar kerja RAMUNI.</h2>
+      <p>Gunakan screenshot SaaS aktual untuk melihat bagaimana setiap modul menyusun pekerjaan yang berbeda.</p>
+    </header>
+
+    {featured && <article class="home-product-proof__featured reveal">
+      <div class="home-proof-screen home-proof-screen--featured">
+        <div class="home-proof-screen__chrome"><span>Workspace RAMUNI</span><b>Data demo terkontrol</b></div>
+        <picture>
+          <source media="(max-width: 620px)" srcset={featured.mobile} />
+          <source media="(max-width: 1024px)" srcset={featured.tablet} />
+          <img src={featured.desktop} width={featured.width} height={featured.height} alt={featured.alt} loading="eager" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>
+      <div class="home-product-proof__featured-copy">
+        <span>{featured.label}</span>
+        <h3>{featured.title}</h3>
+        <p>{featured.text}</p>
+        <a class="home-proof-link" href={featured.href}>Buka Dashboard Bisnis <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>}
+
+    <div class="home-product-proof__grid">
+      {supporting.slice(0, 4).map(renderCard).map(({ item, index }) => <article class:list={['home-proof-card', 'reveal', { 'home-proof-card--wide': index === 3 }]} style={`--i:${index}`}>
+        <div class="home-proof-card__media">
+          <picture>
+            <source media="(max-width: 620px)" srcset={item.mobile} />
+            <source media="(max-width: 1024px)" srcset={item.tablet} />
+            <img src={item.desktop} width={item.width} height={item.height} alt={item.alt} loading="lazy" decoding="async" />
+          </picture>
+        </div>
+        <div class="home-proof-card__copy">
+          <span>{item.label}</span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+          <a class="home-proof-link" href={item.href}>Lihat modul <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>)}
+    </div>
+  </div>
+</section>
+
+<style is:inline>
+  .home-product-proof{padding:clamp(72px,9vw,132px) 0;background:#f7f9f6;overflow:hidden}
+  .home-product-proof__head{max-width:720px;margin-bottom:clamp(32px,5vw,64px)}
+  .home-product-proof__head h2{max-width:15ch;margin-top:10px;font-size:clamp(2.25rem,5vw,5.1rem);line-height:.98;letter-spacing:-.06em;text-wrap:balance}
+  .home-product-proof__head>p:last-child{max-width:52ch;margin-top:18px;color:var(--ink-72);font-size:1rem;line-height:1.65}
+  .home-product-proof__featured{display:grid;grid-template-columns:minmax(0,1.52fr) minmax(250px,.48fr);gap:clamp(22px,4vw,56px);align-items:end;padding-bottom:clamp(34px,5vw,64px);border-bottom:1px solid var(--ink-20)}
+  .home-proof-screen{position:relative;min-width:0;overflow:hidden;border:1px solid var(--ink-20);border-radius:18px;background:var(--white);box-shadow:14px 14px 0 var(--yellow)}
+  .home-proof-screen__chrome{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:44px;padding:0 15px;border-bottom:1px solid var(--ink-10);background:var(--white);color:var(--ink-72);font-size:.64rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+  .home-proof-screen__chrome b{color:var(--teal);font-size:.56rem;font-weight:900;white-space:nowrap}
+  .home-proof-screen picture,.home-proof-screen img{display:block;width:100%;height:auto}
+  .home-proof-screen img{max-height:clamp(430px,42vw,720px);object-fit:contain;object-position:top center;background:#edf2ef}
+  .home-product-proof__featured-copy{max-width:320px;padding-bottom:8px}
+  .home-product-proof__featured-copy>span,.home-proof-card__copy>span{color:var(--teal);font-size:.64rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+  .home-product-proof__featured-copy h3{margin-top:12px;font-size:clamp(1.8rem,3.2vw,3.2rem);line-height:1.02;letter-spacing:-.045em}
+  .home-product-proof__featured-copy p{margin-top:16px;color:var(--ink-72);line-height:1.6}
+  .home-proof-link{display:inline-flex;gap:5px;align-items:center;margin-top:22px;color:var(--teal);font-size:.78rem;font-weight:900;text-underline-offset:4px}
+  .home-proof-link:hover,.home-proof-link:focus-visible{color:var(--ink);text-decoration:underline}
+  .home-proof-card__media{aspect-ratio:16/9;overflow:hidden;background:var(--white)}
+  .home-proof-card__media picture,.home-proof-card__media img{display:block;width:100%;height:100%}
+  .home-proof-card__media img{object-fit:contain;object-position:top center;background:#edf2ef;transition:transform 520ms var(--ease)}
+  .home-proof-card:hover .home-proof-card__media img{transform:scale(1.025)}
+  .home-product-proof__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin-top:22px}
+  .home-proof-card{display:flex;grid-column:span 4;min-width:0;flex-direction:column;border:1px solid var(--ink-20);border-radius:16px;overflow:hidden;background:var(--white);transition:transform var(--base) var(--ease),box-shadow var(--base),border-color var(--fast)}
+  .home-proof-card--wide{grid-column:span 6}
+  .home-proof-card:hover,.home-proof-card:focus-within{border-color:var(--teal);box-shadow:8px 8px 0 var(--ink);transform:translateY(-4px)}
+  .home-proof-card__copy{display:grid;gap:7px;padding:17px 18px 19px}
+  .home-proof-card__copy h3{font-size:clamp(1.05rem,1.7vw,1.45rem);line-height:1.12}
+  .home-proof-card__copy p{color:var(--ink-72);font-size:.78rem;line-height:1.5}
+  .home-proof-card__copy .home-proof-link{margin-top:6px}
+  @media(max-width:900px){.home-product-proof__featured{grid-template-columns:1fr;gap:26px}.home-product-proof__featured-copy{max-width:560px}.home-proof-card,.home-proof-card--wide{grid-column:span 6}.home-proof-screen img{max-height:620px}}
+  @media(max-width:620px){.home-product-proof{padding-block:58px}.home-product-proof__head h2{max-width:16ch;font-size:clamp(2rem,10vw,3rem)}.home-product-proof__head>p:last-child{font-size:.9rem}.home-proof-screen{border-radius:14px;box-shadow:7px 7px 0 var(--yellow)}.home-proof-screen__chrome{min-height:38px;padding-inline:11px;font-size:.56rem}.home-proof-screen__chrome b{font-size:.5rem}.home-proof-screen img{max-height:590px}.home-product-proof__grid{grid-template-columns:1fr;gap:12px;margin-top:16px}.home-proof-card,.home-proof-card--wide{grid-column:auto}.home-proof-card__media{aspect-ratio:16/10}.home-proof-card:hover,.home-proof-card:focus-within{transform:none;box-shadow:none}}
+  @media(prefers-reduced-motion:reduce){.home-proof-card,.home-proof-card__media img{transition:none}.home-proof-card:hover .home-proof-card__media img{transform:none}.home-proof-card:hover,.home-proof-card:focus-within{transform:none;box-shadow:none}}
+</style>
