@@ -560,6 +560,15 @@ The current batch materially increases real product evidence and motion, but sev
 - R2 synchronization was intentionally skipped after the configured endpoint returned HTTP 403 during pre-activation checks. The release contains no newly generated raster assets; the deploy serves the checked-in public assets from `www.ramuni.id`, and every previously missing screenshot/industry path was verified HTTP 200 on that origin. Restore R2 credentials/permissions before switching the asset base back to the R2 custom domain.
 - No raster generation or image editing was required. PSI/browser visual capture was not rerun in this batch; static, asset, and live SEO contracts were verified instead.
 
+## Production money-site visual restoration release, 2026-08-28
+
+- Published source commit: `543d6580249109a10be8ddd9b9ca05c865dbdb7f` (`redesign money-site product proof`). The active atomic production release is `20260828T130704Z-543d65802491`; artifact SHA-256 `97eee649ca4196117da55977e4d4a2c30a9c3100821c22d64cf91d62b48a11e3`; deployed at `2026-08-28T13:17:40Z`.
+- Restored the homepage's editorial progression (problem, proof, workflow, industries, pricing, FAQ, and closing conversion paths) instead of the uniform home-v2 composition. Existing palette, typography, direct Free-workspace CTA, CRM consultation form, and SEO contracts were preserved.
+- Replaced the heavy/awkward device artwork with a lightweight CSS MacBook/iPhone shell. The screen is front-facing, fills the device viewport, has a restrained bezel and camera notch, and switches to a compact phone treatment on smaller screens. No external or HashMicro mockup asset is used.
+- Product and solution pages now use route-specific full SaaS captures: AI, overview, sales, inventory, finance, customers, and reports. The supporting proof rail is an editorial evidence board rather than repeated identical laptop cards, and the old repeated “Ringkasan/Bukti/Arah” overlays were removed so real dashboard UI remains legible.
+- Verification passed: Node 22 Astro check (168 files, 0 errors/warnings/hints), production build (276 pages), full static audit, `git diff --check`, and `npm audit --audit-level=high` (0 vulnerabilities). The live SEO audit fetched 147 sitemap URLs and 243 unique images with 0 failures and 0 warnings; homepage, representative product/solution pages, pricing, sitemap, robots, and health returned HTTP 200 with the expected indexability/canonical contracts.
+- Browser/Chromium visual capture was not rerun because this host has no Chromium/Playwright binary. Static responsive CSS and generated HTML contracts were validated. R2 synchronization was skipped after the configured endpoint returned HTTP 403; checked-in assets are served from `https://www.ramuni.id` and the audited image paths all returned successfully. Restore R2 permissions before switching the asset origin back.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
