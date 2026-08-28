@@ -32,6 +32,75 @@ export const dashboardVisuals = {
     alt: 'Contoh tampilan produk RAMUNI yang memperlihatkan aktivitas pembayaran, perubahan stok, dan pengeluaran operasional.',
     badge: 'Tampilan RAMUNI',
   },
+  // Route-specific evidence keeps product and solution pages from showing
+  // one generic dashboard for every job. These files are the verified full
+  // captures from the isolated SaaS workspace.
+  productAI: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/ai--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/ai--mobile.webp',
+    width: 1100,
+    height: 875,
+    mobileWidth: 600,
+    mobileHeight: 3146,
+    alt: 'Capture Asisten AI RAMUNI dengan pertanyaan, jawaban, dan sumber yang dapat diperiksa.',
+    badge: 'Capture Asisten AI',
+  },
+  productSales: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/sales-omnichannel-orders--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/sales-omnichannel-orders--mobile.webp',
+    width: 1440,
+    height: 1004,
+    mobileWidth: 600,
+    mobileHeight: 2382,
+    alt: 'Capture area penjualan RAMUNI dengan pesanan dan status pembayaran yang dapat ditelusuri.',
+    badge: 'Capture Penjualan',
+  },
+  productInventory: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/inventory-alerts--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/inventory-alerts--mobile.webp',
+    width: 1100,
+    height: 688,
+    mobileWidth: 600,
+    mobileHeight: 1298,
+    alt: 'Capture alert inventori RAMUNI dengan SKU dan stok yang perlu diperiksa.',
+    badge: 'Capture Inventori',
+  },
+  productFinance: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/finance-statements--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/finance-statements--mobile.webp',
+    width: 1100,
+    height: 688,
+    mobileWidth: 600,
+    mobileHeight: 1551,
+    alt: 'Capture laporan keuangan RAMUNI dengan periode dan ringkasan yang dapat diperiksa.',
+    badge: 'Capture Keuangan',
+  },
+  productCustomers: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/customers--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/customers--mobile.webp',
+    width: 1100,
+    height: 688,
+    mobileWidth: 600,
+    mobileHeight: 1298,
+    alt: 'Capture area pelanggan RAMUNI dengan riwayat dan segmen yang tersedia.',
+    badge: 'Capture Pelanggan',
+  },
+  productReports: {
+    type: 'product-screenshot',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/reports--desktop.webp',
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/reports--mobile.webp',
+    width: 1440,
+    height: 900,
+    mobileWidth: 600,
+    mobileHeight: 1298,
+    alt: 'Capture laporan RAMUNI dengan ringkasan periode dan tindak lanjut yang terlihat.',
+    badge: 'Capture Laporan',
+  },
 } as const;
 
 export type DashboardVisualKey = keyof typeof dashboardVisuals;
@@ -67,15 +136,15 @@ export type HeroContextVisualKey = keyof typeof heroContextVisuals;
 
 const productDashboardMap: Record<string, DashboardVisualKey> = {
   hub: 'productOverview',
-  'asisten-ai': 'productOverview',
+  'asisten-ai': 'productAI',
   'dashboard-bisnis': 'productOverview',
-  'katalog-produk': 'productOperations',
-  penjualan: 'productPerformance',
-  inventori: 'productOperations',
-  keuangan: 'productPerformance',
-  pelanggan: 'productPerformance',
-  'laporan-insight': 'productOverview',
-  integrasi: 'productOperations',
+  'katalog-produk': 'productInventory',
+  penjualan: 'productSales',
+  inventori: 'productInventory',
+  keuangan: 'productFinance',
+  pelanggan: 'productCustomers',
+  'laporan-insight': 'productReports',
+  integrasi: 'productOverview',
 };
 
 const productContextMap: Record<string, HeroContextVisualKey> = {
@@ -92,11 +161,11 @@ const productContextMap: Record<string, HeroContextVisualKey> = {
 };
 
 const solutionDashboardMap: Record<string, DashboardVisualKey> = {
-  'naikkan-omzet': 'productPerformance',
-  'kelola-stok': 'productOperations',
-  'pantau-laba-dan-arus-kas': 'productPerformance',
-  'pahami-pelanggan': 'productPerformance',
-  'laporan-bisnis-otomatis': 'productOverview',
+  'naikkan-omzet': 'productSales',
+  'kelola-stok': 'productInventory',
+  'pantau-laba-dan-arus-kas': 'productFinance',
+  'pahami-pelanggan': 'productCustomers',
+  'laporan-bisnis-otomatis': 'productReports',
 };
 
 const solutionContextMap: Record<string, HeroContextVisualKey> = {

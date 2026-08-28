@@ -1,6 +1,7 @@
 ---
 import MarketingDashboardCanvas from './MarketingDashboardCanvas.astro';
 import type { MarketingFeatureCard } from '../data/marketingFeatureCards';
+import { capabilityStatusLabel } from '../data/commercial';
 
 interface Props {
   cards: readonly MarketingFeatureCard[];
@@ -36,7 +37,7 @@ const { cards, id, eyebrow, heading, body, compact = true, filters = [] } = Astr
         >
           <header class="marketing-feature-card__head">
             <span class="marketing-feature-card__eyebrow">{card.eyebrow}</span>
-            <span class="marketing-feature-card__status">Tersedia</span>
+            <span class="marketing-feature-card__status" data-status={card.status || 'module'}>{card.status ? capabilityStatusLabel(card.status) : 'Modul RAMUNI'}</span>
           </header>
           <div class="marketing-feature-card__copy">
             <h3>{card.title}</h3>

@@ -240,7 +240,7 @@ const structuredData = {
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Lihat contoh alur gratis" primaryHref="/tour-produk-gratis/" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
+  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Konsultasi" primaryHref="/tour-produk-gratis/?flow=consultation" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
@@ -341,8 +341,8 @@ const structuredData = {
         eyebrow={'Simulasi untuk ' + industry.title}
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
         body="Bawa satu pertanyaan usaha. Kami tunjukkan data yang biasa diperiksa, contoh alurnya, dan fitur yang dapat dibahas lebih lanjut."
-        primaryLabel="Lihat contoh alur gratis"
-        primaryHref="/tour-produk-gratis/"
+        primaryLabel="Konsultasi"
+        primaryHref="/tour-produk-gratis/?flow=consultation"
         secondaryLabel="Lihat Solusi"
         secondaryHref="/solusi/"
         theme="teal"

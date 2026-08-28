@@ -27,6 +27,7 @@ const proofScreen = focus === 'performance'
       mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
       mobileWidth: 720,
       mobileHeight: 4299,
+      disclosure: 'Ilustrasi alur produk · data simulasi terkontrol · buka konsultasi untuk memeriksa akses.'
     }
   : focus === 'operations'
     ? {
@@ -35,7 +36,8 @@ const proofScreen = focus === 'performance'
         height: 854,
         mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
         mobileWidth: 720,
-        mobileHeight: 4299,
+      mobileHeight: 4299,
+      disclosure: 'Ilustrasi alur produk · data simulasi terkontrol · buka konsultasi untuk memeriksa akses.'
       }
     : {
         src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
@@ -43,7 +45,8 @@ const proofScreen = focus === 'performance'
         height: 1202,
         mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
         mobileWidth: 720,
-        mobileHeight: 4299,
+      mobileHeight: 4299,
+      disclosure: 'Capture dashboard workspace · data demo terkontrol · buka konsultasi untuk memeriksa alurnya.'
       };
 ---
 
@@ -66,13 +69,13 @@ const proofScreen = focus === 'performance'
           mobileWidth={proofScreen.mobileWidth}
           mobileHeight={proofScreen.mobileHeight}
         />
-        <p class="commercial-proof-showcase__caption">Tampilan produk RAMUNI · data demo terkontrol · buka demo untuk melihat alurnya.</p>
+        <p class="commercial-proof-showcase__caption">{proofScreen.disclosure}</p>
       </div>
       <div class="commercial-proof-showcase__notes">
         <article><span>01 · Masuk</span><strong>Catatan usaha</strong><p>Transaksi, stok, biaya, dan dokumen ditempatkan pada periode yang jelas.</p></article>
         <article><span>02 · Terbaca</span><strong>Perubahan utama</strong><p>Ringkasan menyorot pergeseran yang layak dibuka lebih dulu, bukan sekadar angka besar.</p></article>
         <article><span>03 · Lanjut</span><strong>Pemeriksaan berikutnya</strong><p>Tim kembali ke sumber dan memilih tindakan sendiri dengan konteks yang sama.</p></article>
-        <a class="text-link" href="/tour-produk-gratis/?flow=demo" data-analytics-event="demo_request" data-analytics-location={location} data-destination="tour">Lihat alur di demo →</a>
+        <a class="text-link" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location={location} data-destination="consultation">Lihat alur di konsultasi →</a>
       </div>
     </div>
   </div>

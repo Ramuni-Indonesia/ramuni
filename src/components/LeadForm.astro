@@ -1,6 +1,7 @@
 ---
 import '../styles/forms-conversion.css';
 import { phoneCountries } from '../data/phoneCountries';
+import { appCta } from '../data/site';
 import CompactLeadFields from './CompactLeadFields.astro';
 interface Props {
   kind?: 'early-access' | 'demo' | 'contact';
@@ -14,7 +15,7 @@ interface Props {
   submitChoices?: boolean;
 }
 const { kind = 'early-access', submitLabel, mode = 'standard', handoff = 'thank-you', location = 'inline', compact = false, variant = 'standard', flow, submitChoices = false } = Astro.props;
-const labels = { 'early-access': 'Ajukan akses', demo: 'Coba gratis', contact: 'Kirim permintaan konsultasi' };
+const labels = { 'early-access': 'Ajukan akses', demo: 'Kirim permintaan konsultasi', contact: 'Kirim permintaan konsultasi' };
 const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT;
 const enabled = Boolean(endpoint);
 const isProgressive = mode === 'progressive';
@@ -85,20 +86,20 @@ const phoneCountryData = phoneCountries.map(({ iso, value }) => `${iso}:${value}
       </fieldset>
     </>
   )}
-  {enabled && !isChat ? <div class:list={['form-actions', { 'lead-form__choice-actions': submitChoices }] }>
-    {isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
-    {isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
+  {!isChat ? <div class:list={['form-actions', { 'lead-form__choice-actions': submitChoices }] }>
+    {enabled && isProgressive && <button class="button button--secondary" type="button" data-progress-back hidden>Kembali</button>}
+    {enabled && isProgressive && <button class="button button--primary" type="button" data-progress-next>Lanjut</button>}
     {submitChoices ? <>
-      <button class="button button--primary lead-form__choice-button lead-form__choice-button--consultation" type="submit" name="leadFlow" value="consultation" data-lead-submit-flow="consultation" hidden={isProgressive ? true : undefined}>
-        <span>Mulai konsultasi</span>
+      {enabled && <button class="button button--primary lead-form__choice-button lead-form__choice-button--consultation" type="submit" name="leadFlow" value="consultation" data-lead-submit-flow="consultation" hidden={isProgressive ? true : undefined}>
+        <span>Konsultasi</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H11l-5 3v-3.5H5v-9.5Zm3.5 4.75h7M8.5 13h4" /></svg>
-      </button>
-      <button class="button button--light lead-form__choice-button lead-form__choice-button--trial" type="submit" name="leadFlow" value="trial" data-lead-submit-flow="trial" hidden={isProgressive ? true : undefined}>
-        <span>Coba gratis</span>
+      </button>}
+      <a class="button button--light lead-form__choice-button lead-form__choice-button--trial" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location={location} data-destination="app" hidden={isProgressive ? true : undefined}>
+        <span>{appCta.label}</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
-      </button>
-    </> : <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>}
-    <p class="form-status" role="status" aria-live="polite"></p>
+      </a>
+    </> : enabled && <button class="button button--primary" type="submit" hidden={isProgressive ? true : undefined}>{submitLabel || labels[kind]}</button>}
+    {enabled && <p class="form-status" role="status" aria-live="polite"></p>}
   </div> : null}
 </form>
 <script is:inline type="module" src="/scripts/lead-form.js"></script>

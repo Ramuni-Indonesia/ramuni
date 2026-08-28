@@ -195,7 +195,7 @@ const schema = [
     <section class="article-reading-stage">
       <div class="container article-reading-grid">
         <div class="article-main">
-          <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol><a class="article-short-answer__next" href={articleJourney.tourHref}>Coba alur {articleJourney.label.toLocaleLowerCase('id-ID')} gratis <i aria-hidden="true">&rarr;</i></a></section>
+          <section class="article-short-answer" aria-labelledby="short-answer"><span>Ringkasan / 30 detik</span><h2 id="short-answer">Yang perlu diingat</h2><ol>{post.data.takeaways.map((item, index) => <li><b>0{index + 1}</b><p>{item}</p></li>)}</ol><a class="article-short-answer__next" href={articleJourney.tourHref}>Konsultasikan alur {articleJourney.label.toLocaleLowerCase('id-ID')} <i aria-hidden="true">&rarr;</i></a></section>
 
           {toc.length > 0 && <details class="article-toc-mobile" data-article-toc>
             <summary><span>Lihat isi artikel</span><i aria-hidden="true">+</i></summary>

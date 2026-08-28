@@ -154,6 +154,18 @@
   color: #9b2c2c;
 }
 
+.tour-form-direct-trial {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--teal);
+  font-size: .78rem;
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+.tour-form-direct-trial span { font-size: 1rem; }
+
 @media (max-width: 640px) {
   .tour-form-page { padding: 0; background: var(--rice); }
   .tour-form-shell { min-height: 100dvh; border: 0; }

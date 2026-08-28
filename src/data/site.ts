@@ -1,7 +1,19 @@
-export const launchCta = {
-  label: 'Mulai coba gratis',
-  href: '/tour-produk-gratis/',
-};
+/**
+ * Conversion destinations are kept in one place so a copy change cannot
+ * accidentally send a trial visitor to the lead form. A trial starts in the
+ * product workspace; the public form is reserved for a human consultation.
+ */
+export const appCta = {
+  label: 'Coba gratis',
+  href: 'https://app.ramuni.id/',
+} as const;
+
+export const consultationCta = {
+  label: 'Konsultasi',
+  href: '/tour-produk-gratis/?flow=consultation',
+} as const;
+
+export const launchCta = appCta;
 
 export interface NavigationLink {
   label: string;
@@ -240,7 +252,7 @@ export const footerNavigation: FooterNavigationGroup[] = [
     label: 'Akun',
     links: [
       { label: 'Masuk', href: '/masuk/' },
-      { label: 'Coba gratis', href: '/tour-produk-gratis/' },
+      { label: appCta.label, href: appCta.href },
     ],
   },
   {
@@ -455,10 +467,10 @@ export interface RolePage {
 }
 
 export const roles: RolePage[] = [
-  { slug: 'pemilik-usaha', title: 'Pemilik Usaha', summary: 'Lihat penjualan, stok, kas, dan tindak lanjut tim dari satu ringkasan.', responsibilities: ['Menentukan prioritas usaha', 'Memantau kesehatan penjualan dan kas', 'Menjaga akses serta langganan'], friction: ['Ringkasan datang terlambat', 'Data berbeda antar tim', 'Penyebab perubahan sulit ditelusuri'], priorities: ['Insight lintas modul', 'Perbandingan periode', 'Peringatan yang perlu tindakan'], permissions: 'Menjadi rujukan utama untuk arah usaha, pengaturan akses, dan keputusan yang perlu persetujuan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
-  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Berfokus pada data operasional yang menjadi bahan ringkasan sesuai akses yang diberikan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'pemilik-usaha', title: 'Pemilik Usaha', summary: 'Lihat penjualan, stok, kas, dan tindak lanjut tim dari satu ringkasan.', responsibilities: ['Menentukan prioritas usaha', 'Memantau kesehatan penjualan dan kas', 'Menjaga akses serta langganan'], friction: ['Ringkasan datang terlambat', 'Data berbeda antar tim', 'Penyebab perubahan sulit ditelusuri'], priorities: ['Insight lintas modul', 'Perbandingan periode', 'Peringatan yang perlu tindakan'], permissions: 'Menjadi rujukan utama untuk arah usaha, pengaturan akses, dan keputusan yang perlu persetujuan.', ctaLabel: appCta.label, ctaHref: appCta.href },
+  { slug: 'admin-toko', title: 'Admin Toko', summary: 'Jaga data produk, pelanggan, transaksi, dan pengeluaran tetap akurat untuk tim.', responsibilities: ['Memelihara data utama', 'Mencatat transaksi dan biaya', 'Membantu koreksi dengan jejak yang jelas'], friction: ['Entri ganda', 'Data produk tidak konsisten', 'Koreksi sulit dilacak'], priorities: ['Tugas data yang belum lengkap', 'Kesalahan data', 'Status sinkronisasi dan impor'], permissions: 'Berfokus pada data operasional yang menjadi bahan ringkasan sesuai akses yang diberikan.', ctaLabel: appCta.label, ctaHref: appCta.href },
   { slug: 'kasir', title: 'Kasir', summary: 'Selesaikan alur penjualan yang diizinkan dengan cepat dan panduan pemulihan yang jelas.', responsibilities: ['Mencatat transaksi', 'Memeriksa pembayaran', 'Meminta bantuan saat alur gagal'], friction: ['Langkah transaksi terlalu panjang', 'Status pembayaran membingungkan', 'Panduan pemulihan sulit ditemukan'], priorities: ['Transaksi aktif', 'Status pembayaran', 'Bantuan sesuai situasi'], permissions: 'Membantu pekerjaan transaksi harian tanpa membuka area yang tidak diperlukan.', ctaLabel: 'Buka Panduan Kasir', ctaHref: '/bantuan/' },
-  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Membantu membaca kegiatan operasional dan tindak lanjut tim sesuai akses yang diberikan.', ctaLabel: 'Coba gratis', ctaHref: '/tour-produk-gratis/' },
+  { slug: 'supervisor', title: 'Supervisor', summary: 'Pantau masalah operasional dan laporan tanpa membuka akses tagihan.', responsibilities: ['Memantau tim dan masalah yang perlu ditindaklanjuti', 'Meninjau laporan periode', 'Meneruskan masalah untuk persetujuan'], friction: ['Masalah terlihat terlambat', 'Masalah bercampur dengan aktivitas normal', 'Laporan tidak memakai definisi yang sama'], priorities: ['Daftar masalah', 'Insight per periode', 'Status tindak lanjut tim'], permissions: 'Membantu membaca kegiatan operasional dan tindak lanjut tim sesuai akses yang diberikan.', ctaLabel: appCta.label, ctaHref: appCta.href },
 ];
 
 export const industries = [

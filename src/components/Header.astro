@@ -52,7 +52,7 @@ const groupActive = (item: MegaNavigationGroup) => {
 };
 ---
 <header class="site-header">
-  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Pilih satu masalah usaha dan lihat alur RAMUNI tanpa menyiapkan data bisnis.</span><span class="announcement-short">Mulai dari satu masalah usaha.</span><a href="/tour-produk-gratis/">Mulai coba gratis</a></div></div>}
+  {isHome && <div class="announcement"><div class="container"><span class="announcement-long">Pilih satu masalah usaha dan lihat alur RAMUNI tanpa menyiapkan data bisnis.</span><span class="announcement-short">Mulai dari satu masalah usaha.</span><a href={launchCta.href} data-analytics-event="free_trial_click" data-analytics-location="announcement" data-destination="app">{launchCta.label}</a></div></div>}
   <div class="container nav-shell">
     <a class="brand-link" href="/" aria-label="RAMUNI, kembali ke beranda"><img src="/brand/ramuni-lockup-horizontal-color-tight.webp" width="1187" height="355" alt="RAMUNI" /></a>
     <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -81,7 +81,7 @@ const groupActive = (item: MegaNavigationGroup) => {
           </details>
         ) : <a href={publicHref(item.href)} aria-current={current(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
-      <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
+      <a class="button button--primary" href={launchCta.href} data-analytics-event="free_trial_click" data-analytics-location="header" data-destination="app">{launchCta.label}</a>
     </nav>
     <details class="mobile-menu" data-mobile-menu>
       <summary aria-controls="mobile-navigation-panel" aria-expanded="false"><span class="mobile-menu__icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="mobile-menu__label">Menu</span></summary>
@@ -106,7 +106,7 @@ const groupActive = (item: MegaNavigationGroup) => {
           ))}
           <a href="/kontak/">Hubungi RAMUNI</a>
         </nav>
-        <a class="button button--primary" href={launchCta.href}>{launchCta.label}</a>
+        <a class="button button--primary" href={launchCta.href} data-analytics-event="free_trial_click" data-analytics-location="mobile_header" data-destination="app">{launchCta.label}</a>
       </div>
     </details>
   </div>

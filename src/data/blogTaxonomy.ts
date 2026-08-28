@@ -123,7 +123,7 @@ export const blogCategories: BlogCategoryMeta[] = [
     topics: ['Memulai', 'Membaca dashboard', 'Cara kerja fitur'],
     start: 'Mulai dari tujuan usaha, pilih skenario yang relevan, lalu ikuti cara kerja setiap alur.',
     steps: ['Pilih tujuan', 'Pilih skenario', 'Ikuti cara kerja'],
-    cta: { title: 'Mulai dari alur produk yang paling dekat dengan kebutuhan Anda.', label: 'Coba gratis', href: '/tour-produk-gratis/' },
+    cta: { title: 'Mulai dari alur produk yang paling dekat dengan kebutuhan Anda.', label: 'Konsultasi', href: '/tour-produk-gratis/?flow=consultation' },
   },
 ];
 

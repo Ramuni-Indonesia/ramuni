@@ -1,5 +1,6 @@
 ---
 import CommercialAnalytics from './CommercialAnalytics.astro';
+import { appCta, consultationCta } from '../data/site';
 
 interface Props {
   pageType?: string;
@@ -15,7 +16,7 @@ const {
   location = 'money_site_cta',
   eyebrow = 'Langkah berikutnya',
   title = 'Lihat RAMUNI di pekerjaan Anda.',
-  body = 'Pilih satu kebutuhan, lihat input dan hasilnya, lalu tentukan apakah demo, trial, pricing, atau percakapan dengan sales yang paling tepat.',
+  body = 'Pilih satu kebutuhan, lihat input dan hasilnya, lalu tentukan apakah Anda ingin langsung mencoba workspace atau berbicara dengan tim RAMUNI.',
   showSales = true,
 } = Astro.props;
 ---
@@ -27,10 +28,10 @@ const {
     <p>{body}</p>
   </div>
   <nav class="money-action-bar__actions" aria-label="Pilihan langkah berikutnya">
-    <a class="button button--primary" href="/tour-produk-gratis/?flow=demo" data-analytics-event="demo_request" data-analytics-location={location} data-destination="demo">Lihat demo gratis</a>
-    <a class="button button--secondary" href="/tour-produk-gratis/?flow=trial" data-analytics-event="free_trial_click" data-analytics-location={location} data-destination="trial">Coba gratis</a>
+    <a class="button button--primary" href={consultationCta.href} data-analytics-event="demo_request" data-analytics-location={location} data-destination="consultation">Konsultasi</a>
+    <a class="button button--secondary" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location={location} data-destination="app">{appCta.label}</a>
     <a class="money-action-link" href="/pricing/" data-analytics-event="pricing_plan_click" data-analytics-location={location} data-destination="pricing">Lihat harga <span aria-hidden="true">↗</span></a>
-    {showSales && <a class="money-action-link" href="/tour-produk-gratis/?flow=consultation&plan=business" data-analytics-event="contact_sales" data-analytics-location={location} data-destination="sales">Hubungi Sales <span aria-hidden="true">↗</span></a>}
+    {showSales && <a class="money-action-link" href={`${consultationCta.href}&plan=business`} data-analytics-event="contact_sales" data-analytics-location={location} data-destination="sales">Hubungi Sales <span aria-hidden="true">↗</span></a>}
   </nav>
 </section>
 <CommercialAnalytics />

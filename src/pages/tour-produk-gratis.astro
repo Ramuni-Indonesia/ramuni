@@ -1,25 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadForm from '../components/LeadForm.astro';
+import { appCta } from '../data/site';
 import { pageLastmods } from '../data/pageLastmods';
 import '../styles/product-tour.css';
 
 const siteOrigin = new URL('/', Astro.site || Astro.url.origin).origin;
-const requestedFlow = Astro.url.searchParams.get('flow') === 'consultation' ? 'consultation' : 'trial';
+// This route is the human handoff. A trial never needs this form and starts
+// directly in the product workspace via appCta.
+const requestedFlow = 'consultation';
 const requestedPlan = Astro.url.searchParams.get('plan')?.replace(/[^a-z-]/gi, '').slice(0, 24) || '';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Coba alur RAMUNI gratis sesuai kebutuhan usaha Anda',
+  name: 'Konsultasi RAMUNI sesuai kebutuhan usaha Anda',
   url: new URL('/tour-produk-gratis/', siteOrigin).toString(),
-  description: 'Pilih satu masalah bisnis untuk mendapatkan contoh alur RAMUNI yang relevan tanpa menyiapkan data bisnis.',
+  description: 'Kirim konteks singkat agar tim RAMUNI dapat menunjukkan alur yang relevan tanpa meminta data bisnis sensitif.',
   dateModified: pageLastmods.tour,
   inLanguage: 'id-ID',
 };
 ---
 <BaseLayout
-  title="Coba Alur RAMUNI Gratis untuk Usaha Anda"
-  description="Pilih satu masalah penjualan, stok, keuangan, pelanggan, atau laporan untuk melihat contoh alur RAMUNI tanpa menyiapkan data bisnis Anda."
+  title="Konsultasi RAMUNI untuk Usaha Anda"
+  description="Kirim konteks singkat tentang penjualan, stok, keuangan, pelanggan, atau laporan. Tim RAMUNI akan membantu memilih alur yang relevan tanpa meminta data sensitif."
   schema={schema}
   chrome={false}
 >
@@ -34,19 +37,20 @@ const schema = {
         <figure class="tour-form-visual">
           <div class="tour-form-visual__image" role="img" aria-label="Pemilik usaha mengikuti demo RAMUNI bersama pemandu" style="--tour-visual-image: url('/website-original/context/ramuni-lead-free-demo.webp')"></div>
           <figcaption>
-            <span>Demo yang relevan</span>
-            <strong>Lihat alur RAMUNI sebelum memilih langkah.</strong>
+            <span>Konsultasi yang relevan</span>
+            <strong>Bahas alur RAMUNI sebelum memilih langkah.</strong>
             <small>Mulai dari pertanyaan usaha Anda. Tim akan mengarahkan contoh yang paling dekat, tanpa meminta data sensitif.</small>
           </figcaption>
         </figure>
         <div class="tour-form-card reveal is-visible" aria-labelledby="tour-form-title">
           <div class="tour-form-card__head">
-            <span>Mulai coba gratis</span>
-            <h1 id="tour-form-title">Mulai dari satu masalah usaha. Lihat alur RAMUNI yang relevan.</h1>
+            <span>Konsultasi RAMUNI</span>
+            <h1 id="tour-form-title">Mulai dari satu masalah usaha. Bahas alur yang relevan.</h1>
             <p>Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Isi kontak singkat, lalu lanjutkan bersama tim RAMUNI lewat WhatsApp. Anda tidak perlu menyiapkan data bisnis untuk memulai.</p>
             {requestedPlan && <p class="tour-form-card__context">Konteks pilihan: <strong>{requestedPlan}</strong>. Tim akan memeriksa kecocokannya bersama Anda.</p>}
           </div>
-          <LeadForm kind="demo" handoff="whatsapp" submitLabel={requestedFlow === 'consultation' ? 'Mulai konsultasi' : 'Mulai coba gratis'} flow={requestedFlow} location="tour-pricing" />
+          <LeadForm kind="demo" handoff="whatsapp" submitLabel="Mulai konsultasi" flow={requestedFlow} location="tour-pricing" />
+          <a class="tour-form-direct-trial" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location="tour_direct" data-destination="app">{appCta.label} langsung di workspace <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>

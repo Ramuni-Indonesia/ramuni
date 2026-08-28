@@ -45,6 +45,7 @@ const destinations = entries.map((entry) => ({ href: entry.href, label: entry.la
                   focus={solutionSlugs[index] === 'kelola-stok' ? 'operations' : solutionSlugs[index] === 'laporan-bisnis-otomatis' ? 'overview' : 'performance'}
                   label={visuals[index].alt}
                   priority={index === 0}
+                  defer={index !== 0}
                   {...visuals[index]}
                 />
               </div>

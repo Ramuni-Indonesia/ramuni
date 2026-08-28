@@ -68,7 +68,7 @@ const tourIntentByProduct: Record<string, string> = {
   'laporan-insight': 'report',
   integrasi: 'overview',
 };
-const tourHref = `/tour-produk-gratis/?intent=${tourIntentByProduct[product.slug] || 'overview'}`;
+const tourHref = `/tour-produk-gratis/?flow=consultation&intent=${tourIntentByProduct[product.slug] || 'overview'}`;
 const productCtaLabels: Record<string, string> = {
   'asisten-ai': 'Tanya dengan contoh',
   'dashboard-bisnis': 'Lihat ringkasan gratis',
@@ -80,7 +80,7 @@ const productCtaLabels: Record<string, string> = {
   'laporan-insight': 'Buka contoh laporan',
   integrasi: 'Lihat jalur data',
 };
-const productCtaLabel = productCtaLabels[product.slug] || 'Lihat contoh alur gratis';
+const productCtaLabel = productCtaLabels[product.slug] || 'Konsultasi';
 const closingVisual = getProductContextVisual(product.slug);
 const screenSet = ['katalog-produk', 'inventori', 'integrasi'].includes(product.slug)
   ? productScreenSets.operations
@@ -364,7 +364,7 @@ const structuredData = [
       <div class="container">
         <TourEvidenceCTA
           headingId="product-next-step-title"
-          eyebrow="Contoh alur gratis"
+          eyebrow="Konsultasi sesuai modul"
           title={detail.closing}
           body={`${detail.outcome} Lihat cara kerja ${product.title} pada contoh aman, lalu bahas fitur yang sesuai dengan masalah yang Anda bawa.`}
           primaryLabel={productCtaLabel}

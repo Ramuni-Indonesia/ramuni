@@ -13,6 +13,8 @@ interface Props {
   mobileSrc?: string;
   mobileWidth?: number;
   mobileHeight?: number;
+  /** Defer hidden tab-panel imagery until its panel is activated. */
+  defer?: boolean;
 }
 
 const {
@@ -26,6 +28,7 @@ const {
   mobileSrc,
   mobileWidth,
   mobileHeight,
+  defer = false,
 } = Astro.props;
 
 const aspectRatio = `${width}/${height}`;
@@ -48,7 +51,8 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
         {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
         <img
           class="dashboard-motion__image"
-          src={src}
+          src={defer ? undefined : src}
+          data-src={defer ? src : undefined}
           width={width}
           height={height}
           alt={label}

@@ -132,7 +132,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah promosi selalu menjadi langkah berikutnya?', answer: 'Tidak. Periksa perubahan produk, waktu, stok, dan data yang hilang sebelum memilih promosi.' },
     ],
     closingTitle: 'Bawa satu perubahan omzet yang ingin Anda jelaskan.',
-    closingText: 'Sesi coba gratis memakai skenario yang sudah disiapkan agar alur analisis dapat dibahas tanpa membawa data usaha.',
+    closingText: 'Sesi konsultasi memakai skenario yang sudah disiapkan agar alur analisis dapat dibahas tanpa membawa data usaha.',
   },
   {
     slug: 'kelola-stok',
@@ -213,7 +213,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah RAMUNI membuat pesanan ke pemasok?', answer: 'Tidak pada alur ini. Tim memeriksa rekomendasi dan menentukan jumlah serta waktu pemesanan.' },
     ],
     closingTitle: 'Mulai dari barang yang paling sering keluar.',
-    closingText: 'Lihat contoh lima sampai sepuluh SKU saat sesi coba gratis untuk memahami bagaimana prioritas dibentuk.',
+    closingText: 'Lihat contoh lima sampai sepuluh SKU saat sesi konsultasi untuk memahami bagaimana prioritas dibentuk.',
   },
   {
     slug: 'pantau-laba-dan-arus-kas',
@@ -294,7 +294,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Apakah ringkasan ini menggantikan akuntan?', answer: 'Tidak. RAMUNI membantu membaca catatan operasional dan bukan pengganti nasihat pajak atau akuntansi profesional.' },
     ],
     closingTitle: 'Lihat angka mana yang benar-benar mengubah kas.',
-    closingText: 'Sesi coba gratis memperlihatkan perbedaan omzet, laba, dan pembayaran masuk lewat contoh yang mudah diikuti.',
+    closingText: 'Sesi konsultasi memperlihatkan perbedaan omzet, laba, dan pembayaran masuk lewat contoh yang mudah diikuti.',
   },
   {
     slug: 'pahami-pelanggan',
@@ -456,7 +456,7 @@ export const solutionDetails: SolutionDetail[] = [
       { question: 'Bagaimana jika angka antar tim berbeda?', answer: 'Periksa definisi metrik, batas periode, dan waktu pembaruan sebelum membahas hasil.' },
     ],
     closingTitle: 'Bawa satu laporan yang paling sering terlambat.',
-    closingText: 'Sesi coba gratis menunjukkan bagaimana aturan, bukti, dan persetujuan manusia membentuk ringkasan mingguan.',
+    closingText: 'Sesi konsultasi menunjukkan bagaimana aturan, bukti, dan persetujuan manusia membentuk ringkasan mingguan.',
   },
 ];
 

@@ -1,5 +1,5 @@
 ---
-import { footerNavigation } from '../data/site';
+import { appCta, footerNavigation } from '../data/site';
 const year = new Date().getFullYear();
 const routePath = (href: string) => href === '/' ? '/' : href.replace(/\/+$/, '');
 const matchesRoute = (href: string, route: string) => routePath(href) === route;
@@ -12,7 +12,7 @@ const publicHref = (href: string) => matchesRoute(href, '/demo') ? '/tour-produk
       {footerNavigation.map((group) => (
         <nav class="footer-col" aria-label={group.label}>
           <h2>{group.label}</h2>
-          {group.links.filter((link) => !matchesRoute(link.href, '/harga') && !matchesRoute(link.href, '/status')).map((link) => <a href={publicHref(link.href)}>{matchesRoute(link.href, '/demo') ? 'Coba gratis' : link.label}</a>)}
+          {group.links.filter((link) => !matchesRoute(link.href, '/harga') && !matchesRoute(link.href, '/status')).map((link) => <a href={publicHref(link.href)} data-destination={link.href === appCta.href ? 'app' : undefined}>{matchesRoute(link.href, '/demo') ? appCta.label : link.label}</a>)}
         </nav>
       ))}
     </div>

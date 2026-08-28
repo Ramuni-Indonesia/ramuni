@@ -36,7 +36,7 @@ const solutionIntents: Record<string, string> = {
   'pahami-pelanggan': 'customer',
   'laporan-bisnis-otomatis': 'report',
 };
-const tourHref = `/tour-produk-gratis/?intent=${solutionIntents[solution.slug] || 'overview'}`;
+const tourHref = `/tour-produk-gratis/?flow=consultation&intent=${solutionIntents[solution.slug] || 'overview'}`;
 const solutionCtaLabels: Record<string, string> = {
   'naikkan-omzet': 'Baca contoh omzet',
   'kelola-stok': 'Cek prioritas stok',
@@ -44,7 +44,7 @@ const solutionCtaLabels: Record<string, string> = {
   'pahami-pelanggan': 'Lihat pola pelanggan',
   'laporan-bisnis-otomatis': 'Lihat contoh laporan',
 };
-const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Lihat contoh alur gratis';
+const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Konsultasi';
 const closingVisual = getSolutionContextVisual(solution.slug);
 const screenSet = solution.slug === 'kelola-stok' ? productScreenSets.operations : solution.slug === 'naikkan-omzet' || solution.slug === 'pantau-laba-dan-arus-kas' || solution.slug === 'pahami-pelanggan' ? productScreenSets.performance : productScreenSets.overview;
 const solutionEvidence = selectSaasEvidence((solutionIntents[solution.slug] || 'overview') as 'overview' | 'sales' | 'stock' | 'finance' | 'customer' | 'report', 1);
@@ -222,7 +222,7 @@ const structuredData = [
       </div>
       <div class="container sd-close-visual reveal">
         <TourEvidenceCTA
-          eyebrow="Contoh alur gratis"
+          eyebrow="Konsultasi sesuai masalah"
           title={narrative?.closing || solution.closingTitle}
           body={solution.closingText}
           primaryLabel={solutionCtaLabel}

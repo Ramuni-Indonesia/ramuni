@@ -81,10 +81,10 @@ const selected = entries.slice(0, Math.max(1, limit));
   .saas-evidence-card__mockup{padding:18px 18px 0;background:linear-gradient(145deg,#edf5f1,#f8f5ed)}
   .saas-evidence-card__screen{display:block;width:100%;height:100%;overflow:hidden;background:#f4f7f5}
   .saas-evidence-card__screen .saas-evidence-card__picture,.saas-evidence-card__screen img{display:block;width:100%;height:100%}
-  .saas-evidence-card__screen img{object-fit:cover;object-position:top center}
+  .saas-evidence-card__screen img{object-fit:contain;object-position:top center}
   .saas-evidence-card__media{aspect-ratio:16/10;min-height:0;overflow:hidden;background:#e8efec}
   .saas-evidence-card__picture,.saas-evidence-card__media img{display:block;width:100%;height:100%}
-  .saas-evidence-card__media img{object-fit:cover;object-position:top center;transition:transform .6s var(--ease)}
+  .saas-evidence-card__media img{object-fit:contain;object-position:top center;transition:transform .6s var(--ease)}
   .saas-evidence-card:hover .saas-evidence-card__media img{transform:scale(1.025)}
   .saas-evidence-card__copy{display:grid;gap:7px;padding:17px 19px 20px}
   .saas-evidence-card__copy>span{color:var(--teal);font-size:.64rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
