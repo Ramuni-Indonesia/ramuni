@@ -1,6 +1,5 @@
 ---
 import type { SaaSScreenshotEntry } from '../data/saasScreenshotGallery';
-import LaptopMockup from './LaptopMockup.astro';
 
 interface Props {
   entries: readonly SaaSScreenshotEntry[];
@@ -35,27 +34,14 @@ const selected = entries.slice(0, Math.max(1, limit));
     <div class:list={['saas-evidence-rail__grid', { 'saas-evidence-rail__grid--single': selected.length === 1 }]}>
       {selected.map((entry, index) => (
         <article class:list={['saas-evidence-card', { 'saas-evidence-card--featured': index === 0 }]}>
-          {index === 0 ? (
-            <div class="saas-evidence-card__mockup">
-              <LaptopMockup label={`Tampilan ${entry.title} di RAMUNI`}>
-                <div class="saas-evidence-card__screen">
-                  <picture class="saas-evidence-card__picture">
-                    <source media="(max-width: 620px)" srcset={entry.mobile} />
-                    <source media="(max-width: 1024px)" srcset={entry.tablet} />
-                    <img src={entry.desktop} width="1440" height="1146" alt={`${entry.title} di workspace RAMUNI`} loading="lazy" decoding="async" />
-                  </picture>
-                </div>
-              </LaptopMockup>
-            </div>
-          ) : (
-            <div class="saas-evidence-card__media">
-              <picture class="saas-evidence-card__picture">
-                <source media="(max-width: 620px)" srcset={entry.mobile} />
-                <source media="(max-width: 1024px)" srcset={entry.tablet} />
-                <img src={entry.desktop} width="1440" height="1146" alt={`${entry.title} di workspace RAMUNI`} loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          )}
+          <div class:list={['saas-evidence-card__media', { 'saas-evidence-card__media--featured': index === 0 }]}>
+            <picture class="saas-evidence-card__picture">
+              <source media="(max-width: 620px)" srcset={entry.mobile} />
+              <source media="(max-width: 1024px)" srcset={entry.tablet} />
+              <img src={entry.desktop} width="1440" height="1146" alt={`${entry.title} di workspace RAMUNI`} loading="lazy" decoding="async" />
+            </picture>
+            <span class="saas-evidence-card__index">0{index + 1}</span>
+          </div>
           <div class="saas-evidence-card__copy">
             <span>{entry.family === 'workspace' ? 'Workspace' : entry.family}</span>
             <h3>{entry.title}</h3>
@@ -68,29 +54,34 @@ const selected = entries.slice(0, Math.max(1, limit));
 </section>}
 
 <style is:inline>
+  /* Supporting proof is intentionally a flat editorial board. The dominant
+     laptop lives in ProductScreenshotRail; this rail gives the next screens
+     a different rhythm so product pages do not repeat the same mockup three
+     times in a row. */
   .saas-evidence-rail{padding:clamp(58px,8vw,112px) 0;background:var(--white);overflow:hidden}
   .saas-evidence-rail__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:clamp(28px,7vw,112px);align-items:end;margin-bottom:32px}
   .saas-evidence-rail__head h2{max-width:18ch;margin-top:10px}
   .saas-evidence-rail__head>p{max-width:48ch;margin:0;color:var(--ink-72);line-height:1.65}
-  .saas-evidence-rail__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;align-items:stretch}
-  .saas-evidence-rail__grid--single .saas-evidence-card--featured{grid-column:1/-1;max-width:1100px;width:100%;margin-inline:auto}
-  .saas-evidence-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--ink-10);border-radius:22px;background:var(--rice);transition:transform var(--base) var(--ease),border-color var(--fast),box-shadow var(--fast)}
-  .saas-evidence-card--featured{grid-column:span 7}
+  .saas-evidence-rail__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;align-items:stretch}
+  .saas-evidence-rail__grid--single .saas-evidence-card--featured{grid-column:1/-1;max-width:980px;width:100%;margin-inline:auto}
+  .saas-evidence-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--ink-10);border-radius:18px;background:var(--rice);transition:transform .28s var(--ease),border-color .2s,box-shadow .28s var(--ease)}
+  .saas-evidence-card--featured{grid-column:span 7;background:var(--ink);color:var(--white)}
   .saas-evidence-card:not(.saas-evidence-card--featured){grid-column:span 5}
-  .saas-evidence-card:hover{border-color:var(--teal);box-shadow:8px 8px 0 var(--yellow);transform:translateY(-4px)}
-  .saas-evidence-card__mockup{padding:18px 18px 0;background:linear-gradient(145deg,#edf5f1,#f8f5ed)}
-  .saas-evidence-card__screen{display:block;width:100%;height:100%;overflow:hidden;background:#f4f7f5}
-  .saas-evidence-card__screen .saas-evidence-card__picture,.saas-evidence-card__screen img{display:block;width:100%;height:100%}
-  .saas-evidence-card__screen img{object-fit:contain;object-position:top center}
-  .saas-evidence-card__media{aspect-ratio:16/10;min-height:0;overflow:hidden;background:#e8efec}
+  .saas-evidence-card:hover{border-color:var(--teal);box-shadow:6px 6px 0 var(--yellow);transform:translateY(-3px)}
+  .saas-evidence-card__media{position:relative;aspect-ratio:16/9;min-height:0;overflow:hidden;background:#e8efec}
+  .saas-evidence-card--featured .saas-evidence-card__media{aspect-ratio:16/8.5;background:#132c35}
   .saas-evidence-card__picture,.saas-evidence-card__media img{display:block;width:100%;height:100%}
-  .saas-evidence-card__media img{object-fit:contain;object-position:top center;transition:transform .6s var(--ease)}
-  .saas-evidence-card:hover .saas-evidence-card__media img{transform:scale(1.025)}
+  .saas-evidence-card__media img{object-fit:cover;object-position:top center;transition:transform .55s var(--ease)}
+  .saas-evidence-card--featured .saas-evidence-card__media img{object-position:center top}
+  .saas-evidence-card:hover .saas-evidence-card__media img{transform:scale(1.018)}
+  .saas-evidence-card__index{position:absolute;top:12px;left:12px;display:grid;place-items:center;width:30px;height:30px;border:1px solid rgb(255 255 255/.42);border-radius:50%;background:rgb(11 48 69/.78);color:var(--yellow);font-size:.6rem;font-weight:900;letter-spacing:.04em}
   .saas-evidence-card__copy{display:grid;gap:7px;padding:17px 19px 20px}
   .saas-evidence-card__copy>span{color:var(--teal);font-size:.64rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+  .saas-evidence-card--featured .saas-evidence-card__copy>span{color:var(--yellow)}
   .saas-evidence-card__copy h3{font-size:clamp(1.05rem,1.6vw,1.4rem);line-height:1.15}
   .saas-evidence-card__copy p{color:var(--ink-72);font-size:.75rem;line-height:1.5}
+  .saas-evidence-card--featured .saas-evidence-card__copy p{color:rgb(255 255 255/.68)}
   @media(max-width:900px){.saas-evidence-rail__head{grid-template-columns:1fr;gap:14px}.saas-evidence-rail__head>p{margin-top:-14px}.saas-evidence-card--featured,.saas-evidence-card:not(.saas-evidence-card--featured){grid-column:span 6}}
-  @media(max-width:620px){.saas-evidence-rail{padding-block:54px}.saas-evidence-rail__head{gap:14px;margin-bottom:22px}.saas-evidence-rail__head h2{max-width:22ch}.saas-evidence-rail__grid{grid-template-columns:1fr;gap:12px}.saas-evidence-card--featured,.saas-evidence-card:not(.saas-evidence-card--featured){grid-column:auto}.saas-evidence-card__mockup{padding:12px 12px 0}.saas-evidence-card__media{aspect-ratio:16/10}.saas-evidence-card__copy{padding:14px 15px 16px}.saas-evidence-card:hover{transform:none;box-shadow:none}}
+  @media(max-width:620px){.saas-evidence-rail{padding-block:54px}.saas-evidence-rail__head{gap:14px;margin-bottom:22px}.saas-evidence-rail__head h2{max-width:22ch}.saas-evidence-rail__grid{grid-template-columns:1fr;gap:12px}.saas-evidence-card--featured,.saas-evidence-card:not(.saas-evidence-card--featured){grid-column:auto}.saas-evidence-card__media,.saas-evidence-card--featured .saas-evidence-card__media{aspect-ratio:16/9}.saas-evidence-card__copy{padding:14px 15px 16px}.saas-evidence-card:hover{transform:none;box-shadow:none}}
   @media(prefers-reduced-motion:reduce){.saas-evidence-card,.saas-evidence-card__media img{transition:none}.saas-evidence-card:hover .saas-evidence-card__media img{transform:none}.saas-evidence-card:hover{transform:none}}
 </style>

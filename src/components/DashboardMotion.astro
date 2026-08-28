@@ -49,7 +49,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
     <span class="dashboard-motion__screen">
       <picture>
         {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
-        <img
+      <img
           class="dashboard-motion__image"
           src={defer ? undefined : src}
           data-src={defer ? src : undefined}
@@ -62,20 +62,8 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
         />
       </picture>
       <span class="dashboard-motion__scanline"></span>
-      <span class="dashboard-motion__callouts">
-        <span>Ringkasan</span>
-        <span>Bukti</span>
-        <span>Arah</span>
-      </span>
-      <span class="dashboard-motion__insight">
-        <b>Insight bergerak</b>
-        <span>Perubahan ditandai, lalu konteksnya dibuka.</span>
-      </span>
     </span>
   </LaptopMockup>
-  <span class="dashboard-motion__timeline" aria-hidden="true">
-    <i></i><i></i><i></i>
-  </span>
 </span>
 
 <script>
