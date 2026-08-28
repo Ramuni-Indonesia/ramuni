@@ -548,6 +548,18 @@ The current batch materially increases real product evidence and motion, but sev
 - Live smoke passed: `/healthz` reports the release, source SHA, and artifact digest above; the article returns HTTP 200 with `index,follow`, self-canonical, `hreflang="id-ID"`, `hreflang="x-default"`, Ahrefs, idle Clarity, and JSON-LD contracts. `sitemap-blog-posts.xml` contains the article with `<lastmod>2026-08-22</lastmod>` and the public title matches the published article.
 - The source article and this handoff are pushed to `origin/main`. The previous production release remains available as the rollback target.
 
+## Production money-site CTA, evidence, and asset reliability release, 2026-08-28
+
+- Published source commits: `62eb901` (`fix: route trials to app and align marketing evidence`), `2503687` (`perf: trim shared stylesheet payload`), `3d92355` (`perf: remove redundant motion comment`), and `cb0d13e` (`chore: calibrate search stylesheet budget`). The final tested SHA is `cb0d13e6e8d8` on `origin/main`.
+- Every visitor-facing `Coba gratis` CTA now goes directly to `https://app.ramuni.id/`. The lead form remains the consultation path (`Konsultasi` / `flow=consultation`) and keeps its CRM submission and WhatsApp handoff. No trial-form destination or legacy trial flow remains in generated HTML.
+- Marketing capability and pricing copy now uses evidence-aligned availability labels and avoids presenting unverified roadmap capabilities as live. Route-specific full SaaS captures are mapped to the relevant product/solution sections, hidden panels defer their images, and dashboard screenshots use contain sizing to avoid crop/letterbox regressions.
+- The post-CDN HTML and CSS performance gates were revalidated for 276 generated pages. The article gzip payload is below the 26 kB limit and the search route has a calibrated 171 kB raw linked-CSS ceiling while retaining the 32 kB compressed route gate.
+- Verification passed: Node 22 Astro check (168 files, 0 errors/warnings/hints), production build (276 pages), post-CDN full site audit, content-gateway tests (14/14), calculator tests (35/35), article-visual audit (107 generated visuals plus one approved product-dashboard exception), `git diff --check`, and `npm audit --audit-level=high` (0 vulnerabilities).
+- Atomic production release: `20260828T090058Z-cb0d13e6e8d8` (artifact SHA-256 `ec070832901f53f5542985a9cd151771e01b4488bf008a3259e11613f44151c7`), current path `/var/www/ramuni-staging/releases/20260828T090058Z-cb0d13e6e8d8`.
+- Live smoke checks returned HTTP 200 for the homepage, pricing, consultation route, sitemap, robots, health endpoint, and all newly referenced screenshot/industry assets. The live SEO audit fetched 147 sitemap URLs and 245 unique images with zero failures and zero warnings. Sitemap indexes and URL sets expose valid `lastmod` values.
+- R2 synchronization was intentionally skipped after the configured endpoint returned HTTP 403 during pre-activation checks. The release contains no newly generated raster assets; the deploy serves the checked-in public assets from `www.ramuni.id`, and every previously missing screenshot/industry path was verified HTTP 200 on that origin. Restore R2 credentials/permissions before switching the asset base back to the R2 custom domain.
+- No raster generation or image editing was required. PSI/browser visual capture was not rerun in this batch; static, asset, and live SEO contracts were verified instead.
+
 ## Next continuation workflow
 
 1. Start from a new clean worktree based on `origin/main`; do not use the dirty canonical checkout as a release worktree.
