@@ -34,29 +34,29 @@ export const pricingPlans: PricingPlan[] = [
   {
     key: 'free', name: 'Free', monthly: 0, annual: 0,
     fit: 'Bisnis yang ingin mencoba cara kerja RAMUNI.',
-    limits: ['Satu workspace', 'Maksimal satu pengguna', 'Kuota AI dan storage mengikuti akun', 'Fitur lanjutan perlu paket atau rilis terkait'],
-    features: ['Workspace operasional dasar', 'Katalog dan catatan transaksi sesuai rilis', 'Dashboard dasar', 'AI read-only terbatas'],
+    limits: ['1 pengguna', '1 outlet', '25 pertanyaan AI atau 200.000 token per bulan', 'Semua fitur aktif dalam batas Free'],
+    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dan ekspor dasar', 'AI read-only dengan budget bulanan'],
     cta: 'Mulai gratis', flow: 'trial',
   },
   {
     key: 'starter', name: 'Starter', monthly: 149000, annual: 1490000,
     fit: 'UMKM kecil yang mulai membangun sistem kerja digital.',
-    limits: ['Jumlah pengguna dan kuota mengikuti konfigurasi', 'Dukungan email atau chat', 'Fitur lanjutan perlu verifikasi saat konsultasi'],
-    features: ['Semua dasar Free', 'Penjualan dan inventori sesuai rilis', 'Pencatatan biaya dasar', 'Laporan operasional', 'AI read-only dengan konteks workspace'],
+    limits: ['3 pengguna', '1 outlet', '100 pertanyaan AI atau 800.000 token per bulan', 'Dukungan email atau chat'],
+    features: ['Semua fitur Free', 'Pencatatan biaya dan laporan', 'Workspace tim kecil', 'AI Copilot read-only dengan konteks workspace'],
     cta: 'Bahas Starter', flow: 'consultation',
   },
   {
     key: 'growth', name: 'Growth', eyebrow: 'Paling populer', monthly: 349000, annual: 3490000,
     fit: 'UMKM aktif yang membutuhkan satu sistem untuk operasional dan keputusan bisnis.',
-    limits: ['Jumlah pengguna dan modul mengikuti verifikasi rilis', 'Insight keuangan bukan accounting lengkap', 'Prioritas support sesuai kesepakatan'],
-    features: ['Semua dasar Starter', 'Dashboard lintas modul', 'AI Copilot read-only', 'Insight margin terbatas', 'Ringkasan periode dan pemeriksaan berikutnya'],
+    limits: ['10 pengguna', '3 outlet', '500 pertanyaan AI atau 4.000.000 token per bulan', 'Prioritas support'],
+    features: ['Semua fitur Starter', 'Dashboard lintas modul', 'AI Copilot read-only', 'Profit Intelligence', 'Knowledge OS dan omnichannel'],
     cta: 'Bahas Growth', flow: 'consultation',
   },
   {
     key: 'pro', name: 'Pro', monthly: 749000, annual: 7490000,
     fit: 'Bisnis berkembang dengan banyak pengguna, proses, atau outlet.',
-    limits: ['Multi-user, multi-outlet, dan API dibahas saat verifikasi', 'AI usage mengikuti batas paket', 'Fitur roadmap tidak otomatis aktif'],
-    features: ['Semua dasar Growth', 'Ruang kerja tim sesuai konfigurasi', 'Batas penggunaan lebih besar sesuai kontrak', 'Pemetaan kebutuhan integrasi bersama tim'],
+    limits: ['25 pengguna', '10 outlet', '2.000 pertanyaan AI atau 16.000.000 token per bulan', 'Ekspor tanpa batas'],
+    features: ['Semua fitur Growth', 'Role dan permission lanjutan', 'Multi-outlet dan workflow', 'API dan integrasi tambahan'],
     cta: 'Bahas Pro', flow: 'consultation',
   },
   {
@@ -68,20 +68,20 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
-const packageStatus = (available: string[] = [], limited: string[] = []): Record<string, CapabilityStatus> => Object.fromEntries(
-  ['free', 'starter', 'growth', 'pro', 'business'].map((key) => [key, available.includes(key) ? 'Available' : limited.includes(key) ? 'Limited' : 'Unavailable']),
+const packageStatus = (): Record<string, CapabilityStatus> => Object.fromEntries(
+  ['free', 'starter', 'growth', 'pro', 'business'].map((key) => [key, 'Available']),
 ) as Record<string, CapabilityStatus>;
 
 export const pricingRows: PricingRow[] = [
-  { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus(['free', 'starter', 'growth', 'pro', 'business']) },
-  { group: 'Operasional', label: 'Penjualan, katalog, dan stok dasar', statuses: packageStatus([], ['free', 'starter', 'growth', 'pro', 'business']) },
-  { group: 'Operasional', label: 'Pencatatan biaya dan laporan dasar', statuses: packageStatus([], ['free', 'starter', 'growth', 'pro', 'business']) },
-  { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: packageStatus([], ['free', 'starter', 'growth', 'pro', 'business']) },
-  { group: 'AI', label: 'Kuota penggunaan AI', statuses: packageStatus([], ['free', 'starter', 'growth', 'pro', 'business']) },
+  { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus() },
+  { group: 'Operasional', label: 'Penjualan, katalog, dan stok dasar', statuses: packageStatus() },
+  { group: 'Operasional', label: 'Pencatatan biaya dan laporan dasar', statuses: packageStatus() },
+  { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: packageStatus() },
+  { group: 'AI', label: 'Kuota penggunaan AI sesuai paket', statuses: packageStatus() },
   { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: packageStatus() },
   { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: packageStatus() },
   { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan', statuses: packageStatus() },
-  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: packageStatus([], ['starter', 'growth', 'pro', 'business']) },
+  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: packageStatus() },
   { group: 'Integrasi', label: 'Export CSV dan API', statuses: packageStatus() },
   { group: 'Integrasi', label: 'WhatsApp, marketplace, pembayaran, dan akuntansi', statuses: packageStatus() },
 ];
@@ -102,8 +102,8 @@ export interface FeatureDetail {
 
 export const featureDetails: FeatureDetail[] = [
   {
-    slug: 'ai-copilot', name: 'AI Copilot', eyebrow: 'Fitur & insight', status: 'Limited',
-    statusNote: 'Tersedia terbatas sebagai pembacaan read-only; cakupan sumber, provider, dan kuota mengikuti workspace serta paket.',
+    slug: 'ai-copilot', name: 'AI Copilot', eyebrow: 'Fitur & insight', status: 'Available',
+    statusNote: 'Tersedia sebagai pembacaan read-only; cakupan sumber dan kuota mengikuti workspace serta paket.',
     summary: 'Bantu membaca data, dokumen, SOP, dan catatan bisnis dengan pertanyaan yang bisa diperiksa kembali.',
     highlights: ['Pertanyaan bisnis dalam bahasa sehari-hari', 'Ringkasan yang mengarah ke periode dan sumber', 'Rekomendasi langkah berikutnya dengan kendali manusia'],
     examples: ['Produk mana yang paling menguntungkan?', 'Mengapa penjualan minggu ini berubah?', 'Buatkan draf SOP pembukaan toko.', 'Ringkas meeting terakhir menjadi daftar tugas.'],
@@ -111,8 +111,8 @@ export const featureDetails: FeatureDetail[] = [
     relatedHref: '/produk/asisten-ai/', relatedLabel: 'Lihat Asisten AI',
   },
   {
-    slug: 'profit-intelligence', name: 'Profit Intelligence', eyebrow: 'Fitur & keuangan', status: 'Limited',
-    statusNote: 'Insight pendapatan, biaya, dan margin tersedia pada cakupan metrik yang sudah dirilis; ini bukan accounting lengkap.',
+    slug: 'profit-intelligence', name: 'Profit Intelligence', eyebrow: 'Fitur & keuangan', status: 'Available',
+    statusNote: 'Insight pendapatan, biaya, dan margin tersedia pada cakupan metrik yang dirilis; ini bukan accounting lengkap.',
     summary: 'Kerangka untuk melihat pendapatan, biaya, margin, dan perubahan periode dalam satu pembacaan.',
     highlights: ['Pendapatan dan biaya dalam periode yang sama', 'Perbandingan margin dan produk', 'Insight sederhana untuk menentukan pemeriksaan berikutnya'],
     examples: ['Produk mana yang memberi margin lebih baik?', 'Biaya mana yang berubah bulan ini?', 'Apa yang perlu diperiksa sebelum mengubah harga?'],
@@ -120,8 +120,8 @@ export const featureDetails: FeatureDetail[] = [
     relatedHref: '/produk/keuangan/', relatedLabel: 'Pelajari Keuangan',
   },
   {
-    slug: 'omnichannel', name: 'Omnichannel', eyebrow: 'Fitur & pelanggan', status: 'Coming soon',
-    statusNote: 'Sedang disiapkan. Cakupan kanal, riwayat pelanggan, dan tindak lanjut akan diumumkan setelah alurnya siap diuji.',
+    slug: 'omnichannel', name: 'Omnichannel', eyebrow: 'Fitur & pelanggan', status: 'Available',
+    statusNote: 'Tersedia bertahap sesuai koneksi kanal dan hak akses workspace.',
     summary: 'Inbox terpusat untuk riwayat percakapan, catatan pelanggan, dan follow-up yang lebih mudah dipantau.',
     highlights: ['Inbox dan status follow-up terpusat', 'Catatan serta tag pelanggan', 'Draf balasan dengan bantuan AI'],
     examples: ['Percakapan mana yang belum ditindaklanjuti?', 'Tampilkan catatan pelanggan yang relevan.', 'Siapkan draf balasan yang sopan.'],
@@ -129,8 +129,8 @@ export const featureDetails: FeatureDetail[] = [
     relatedHref: '/solusi/pahami-pelanggan/', relatedLabel: 'Lihat solusi pelanggan',
   },
   {
-    slug: 'web-builder', name: 'Web Builder', eyebrow: 'Fitur & halaman bisnis', status: 'Coming soon',
-    statusNote: 'Sedang disiapkan. Detail template, publikasi, domain, dan form akan dikonfirmasi saat rilis siap dipakai.',
+    slug: 'web-builder', name: 'Web Builder', eyebrow: 'Fitur & halaman bisnis', status: 'Available',
+    statusNote: 'Tersedia sesuai paket; domain, publikasi, dan form mengikuti konfigurasi workspace.',
     summary: 'Kerangka untuk membuat halaman bisnis sederhana, informasi usaha, produk, layanan, dan CTA kontak.',
     highlights: ['Template halaman bisnis', 'Informasi produk atau layanan', 'Form kontak dan SEO dasar'],
     examples: ['Susun halaman profil usaha.', 'Tampilkan produk utama dengan CTA WhatsApp.', 'Periksa struktur judul dan deskripsi halaman.'],
@@ -138,8 +138,8 @@ export const featureDetails: FeatureDetail[] = [
     relatedHref: '/tour-produk-gratis/?flow=consultation', relatedLabel: 'Bahas Web Builder',
   },
   {
-    slug: 'knowledge-os', name: 'Knowledge OS', eyebrow: 'Fitur & pengetahuan', status: 'Coming soon',
-    statusNote: 'Sedang disiapkan. Struktur dokumen, hak akses tim, dan pencarian AI akan diumumkan setelah siap diuji.',
+    slug: 'knowledge-os', name: 'Knowledge OS', eyebrow: 'Fitur & pengetahuan', status: 'Available',
+    statusNote: 'Tersedia untuk wiki, SOP, dokumen, catatan, dan pencarian sesuai hak akses workspace.',
     summary: 'Ruang pengetahuan agar SOP, keputusan, catatan, dan meeting notes tidak tercecer.',
     highlights: ['Wiki dan struktur folder', 'SOP serta dokumentasi tim', 'AI Search dan hak akses per pengguna'],
     examples: ['Temukan SOP pembukaan toko.', 'Ringkas keputusan rapat terakhir.', 'Tunjukkan dokumen yang perlu diperbarui.'],
