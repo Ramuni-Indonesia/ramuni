@@ -53,8 +53,8 @@ const STATIC_ROUTE_LASTMODS = new Map([
 ]);
 
 const STATIC_ROUTE_LASTMOD_PREFIXES = Object.freeze([
-  ['/produk/', '2026-08-25'],
-  ['/solusi/', '2026-08-25'],
+  ['/produk/', '2026-08-29'],
+  ['/solusi/', '2026-08-29'],
   ['/industri/', '2026-08-25'],
   ['/untuk/', '2026-08-25'],
   ['/sumber-daya/', '2026-08-10'],
