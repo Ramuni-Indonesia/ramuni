@@ -1,5 +1,9 @@
 export type ProductScreen = {
   src: string;
+  /** Optional Drive-provided laptop composite. When present, it is shown as-is. */
+  driveSrc?: string;
+  driveWidth?: number;
+  driveHeight?: number;
   mobileSrc?: string;
   width: number;
   height: number;
@@ -19,6 +23,9 @@ export type ProductScreen = {
 export const productScreens = {
   overview: {
     src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
+    driveSrc: '/website-original/marketing/drive/207shots_so.webp',
+    driveWidth: 900,
+    driveHeight: 506,
     width: 1440,
     height: 1202,
     mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
@@ -31,6 +38,9 @@ export const productScreens = {
   },
   sales: {
     src: '/website-original/product-screens/saas-e2e/full/desktop/sales-omnichannel-orders--desktop.webp',
+    driveSrc: '/website-original/marketing/drive/35shots_so.webp',
+    driveWidth: 900,
+    driveHeight: 506,
     width: 1440,
     height: 1004,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/sales-omnichannel-orders--mobile.webp',
@@ -55,6 +65,9 @@ export const productScreens = {
   },
   inventory: {
     src: '/website-original/product-screens/saas-e2e/full/desktop/inventory-alerts--desktop.webp',
+    driveSrc: '/website-original/marketing/drive/217shots_so.webp',
+    driveWidth: 900,
+    driveHeight: 506,
     width: 1100,
     height: 688,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/inventory-alerts--mobile.webp',

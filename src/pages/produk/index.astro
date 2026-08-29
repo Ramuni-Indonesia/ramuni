@@ -5,6 +5,7 @@ import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro'
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
+import DriveCardCatalog from '../../components/DriveCardCatalog.astro';
 import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { products, roles, solutions } from '../../data/site';
@@ -80,6 +81,7 @@ const productFaq = [
       items={productScreenSets.overview}
       compact
     />
+    <DriveCardCatalog id="produk-component-catalog" limit={2} eyebrow="Bukti modul" heading="Lihat keluaran tiap modul sebelum memilih." body="Card workspace menunjukkan bentuk ringkasan dan tindak lanjut yang akan Anda temui saat mencoba RAMUNI." />
 
     <SaaSEvidenceCardRail
       id="product-workspace-evidence"

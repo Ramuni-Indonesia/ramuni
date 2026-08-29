@@ -6,6 +6,7 @@ import HomeScrollMotion from '../components/HomeScrollMotion.astro';
 import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
 import ProductScreenshotRail from '../components/ProductScreenshotRail.astro';
+import DriveCardCatalog from '../components/DriveCardCatalog.astro';
 import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
@@ -188,6 +189,7 @@ const schema = [
     body="Screenshot penuh workspace RAMUNI memperlihatkan ringkasan, arus kas, aktivitas, dan status data dalam satu layar."
     items={productScreenSets.overview}
   />
+  <DriveCardCatalog id="homepage-component-catalog" limit={3} heading="Komponen yang langsung menjawab pekerjaan harian." body="Card ini diambil dari workspace RAMUNI: stok, AI, profit, penjualan, laporan, integrasi, knowledge, dan pelanggan." />
   <section class="section modules-stage chapter">
     <div class="container module-atlas">
       <header class="module-atlas__head reveal"><p class="section-kicker">Satu usaha, beberapa sudut pandang</p><h2>Buka angka yang paling sering Anda cari.</h2><p>Mulai dari pertanyaan yang muncul di pekerjaan hari ini, lalu telusuri modul yang bisa menjawabnya.</p></header>

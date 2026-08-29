@@ -34,14 +34,18 @@ const {
       <div class="product-screenshot-rail__track">
         {items.map((item, index) => (
           <figure class:list={['product-screenshot-card', { 'product-screenshot-card--featured': index === 0 }]} style={`--i:${index}`}>
-            <LaptopMockup label={item.alt} style={`--ramuni-device-aspect:${item.width}/${item.height}`}>
+            {item.driveSrc ? <div class="product-screenshot-card__drive" aria-label={item.alt}>
+              <picture>
+                <img src={item.driveSrc} width={item.driveWidth || item.width} height={item.driveHeight || item.height} alt={item.alt} loading={index === 0 && !compact ? 'eager' : 'lazy'} decoding="async" />
+              </picture>
+            </div> : <LaptopMockup label={item.alt} style={`--ramuni-device-aspect:${item.width}/${item.height}`}>
               <div class="product-screenshot-card__media">
                 <picture>
                   {item.mobileSrc && <source media="(max-width: 740px)" srcset={item.mobileSrc} width={item.mobileWidth} height={item.mobileHeight} />}
                   <img src={item.src} width={item.width} height={item.height} alt={item.alt} loading={index === 0 && !compact ? 'eager' : 'lazy'} decoding="async" />
                 </picture>
               </div>
-            </LaptopMockup>
+            </LaptopMockup>}
             <figcaption>
               <span>{item.eyebrow}</span>
               <strong>{item.title}</strong>
@@ -60,11 +64,12 @@ const {
   .product-screenshot-rail__viewport{min-width:0;outline:none}.product-screenshot-rail__viewport:focus-visible{outline:2px solid var(--teal);outline-offset:8px}.product-screenshot-rail__track{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;align-items:start}
   .product-screenshot-rail--single .product-screenshot-rail__track{grid-template-columns:minmax(0,1fr)}.product-screenshot-rail--single .product-screenshot-card{width:100%;max-width:min(1080px,100%);margin-inline:auto}
   .product-screenshot-card{min-width:0;margin:0;border:1px solid var(--ink-10);background:var(--white);box-shadow:0 6px 18px rgb(11 48 69/.05);animation:product-screen-enter .6s var(--ease) both;animation-delay:calc(var(--i,0)*70ms)}.product-screenshot-card--featured{grid-column:span 7}.product-screenshot-card:not(.product-screenshot-card--featured){grid-column:span 5;margin-top:clamp(22px,5vw,70px)}.product-screenshot-card>.ramuni-laptop-mockup{padding:12px 12px 0;background:var(--rice)}.product-screenshot-card--featured>.ramuni-laptop-mockup{padding:16px 16px 0;background:var(--ink)}.product-screenshot-card__media{display:grid;place-items:center;aspect-ratio:16/10;overflow:hidden;background:#eef1ee}.product-screenshot-card__media picture,.product-screenshot-card__media img{display:block;width:100%;height:100%}.product-screenshot-card__media img{object-fit:cover;padding:0}.product-screenshot-card figcaption{display:grid;gap:7px;padding:16px 18px 18px}.product-screenshot-card figcaption span{color:var(--teal);font-size:.64rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.product-screenshot-card figcaption strong{font-size:clamp(.98rem,1.4vw,1.14rem);line-height:1.3}.product-screenshot-card figcaption small{color:var(--ink-56);font-size:.68rem;line-height:1.45}
+  .product-screenshot-card__drive{display:block;overflow:hidden;background:transparent;line-height:0}.product-screenshot-card__drive picture,.product-screenshot-card__drive img{display:block;width:100%;height:auto}.product-screenshot-card__drive img{object-fit:contain;animation:product-drive-enter .55s var(--ease) both}
   .product-screenshot-rail--compact .product-screenshot-card__media{aspect-ratio:16/9}
-  @keyframes product-screen-enter{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes product-screen-enter{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:none}} @keyframes product-drive-enter{from{opacity:.45;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media(max-width:900px){.product-screenshot-rail__head{grid-template-columns:1fr}.product-screenshot-rail__head>p{margin-top:-14px}.product-screenshot-rail__track{grid-template-columns:repeat(2,minmax(0,1fr))}.product-screenshot-card--featured,.product-screenshot-card:not(.product-screenshot-card--featured){grid-column:span 1;margin-top:0}}
   @media(max-width:620px){.product-screenshot-rail{padding-block:52px}.product-screenshot-rail__head{gap:14px;margin-bottom:22px}.product-screenshot-rail__head h2{max-width:22ch}.product-screenshot-rail__track{grid-template-columns:1fr;gap:12px}.product-screenshot-card--featured,.product-screenshot-card:not(.product-screenshot-card--featured){grid-column:auto;margin-top:0}.product-screenshot-card__media{aspect-ratio:16/10}.product-screenshot-card figcaption{padding:13px 14px 15px}}
-  @media(prefers-reduced-motion:reduce){.product-screenshot-card{animation:none!important}}
+  @media(prefers-reduced-motion:reduce){.product-screenshot-card,.product-screenshot-card__drive img{animation:none!important}}
   @media(max-width:900px) and (min-width:621px){.product-screenshot-card>.ramuni-laptop-mockup,.product-screenshot-card--featured>.ramuni-laptop-mockup{padding-inline:10px}.product-screenshot-card__media{aspect-ratio:4/3}}
   @media(max-width:620px){.product-screenshot-card>.ramuni-laptop-mockup,.product-screenshot-card--featured>.ramuni-laptop-mockup{padding:10px 10px 0}.product-screenshot-card__media{aspect-ratio:16/10!important;background:#f4f7f5}}
 </style>
