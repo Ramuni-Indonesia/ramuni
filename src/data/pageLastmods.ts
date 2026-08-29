@@ -3,9 +3,9 @@
  * Update the matching family only when its visitor-facing content changes.
  */
 export const pageLastmods = {
-  homepage: '2026-08-28',
-  product: '2026-08-28',
-  solution: '2026-08-28',
+  homepage: '2026-08-29',
+  product: '2026-08-29',
+  solution: '2026-08-29',
   industry: '2026-08-28',
   role: '2026-08-28',
   tour: '2026-08-28',
