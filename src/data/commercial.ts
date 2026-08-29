@@ -5,7 +5,7 @@ export const capabilityStatusLabel = (status: CapabilityStatus): string => ({
   Limited: 'Terbatas',
   Beta: 'Beta',
   'Coming soon': 'Segera hadir',
-  Unavailable: 'Belum tersedia',
+  Unavailable: 'Tidak termasuk paket ini',
 }[status]);
 
 export interface PricingRow {
