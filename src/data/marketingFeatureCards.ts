@@ -29,31 +29,31 @@ export const marketingFeatureCards: readonly MarketingFeatureCard[] = [
     slug: 'ai-copilot', family: 'feature', eyebrow: 'AI & Insight', title: 'AI Copilot',
     summary: 'Tanya kondisi usaha dengan bahasa sehari-hari. Lihat sumber yang dipakai sebelum memilih langkah.',
     href: '/features/ai-copilot/', context: 'ai', action: 'Lihat contoh jawaban', signal: '3 sumber', signalLabel: 'terlihat sebelum jawaban', size: 'lead',
-    status: 'Limited',
+    status: 'Available',
   },
   {
     slug: 'profit-intelligence', family: 'feature', eyebrow: 'AI & Insight', title: 'Profit Intelligence',
     summary: 'Pisahkan omzet, HPP, biaya, margin, dan kas sebelum menilai produk atau periode.',
     href: '/features/profit-intelligence/', context: 'finance', action: 'Periksa margin', signal: '35%', signalLabel: 'margin kotor contoh', size: 'wide',
-    status: 'Limited',
+    status: 'Available',
   },
   {
     slug: 'omnichannel', family: 'feature', eyebrow: 'Pelanggan', title: 'Omnichannel',
     summary: 'Satukan percakapan, catatan, dan status follow-up dari kanal yang memang terhubung.',
     href: '/features/omnichannel/', context: 'customer', action: 'Atur follow-up', signal: '9', signalLabel: 'izin perlu dicek', size: 'standard',
-    status: 'Coming soon',
+    status: 'Available',
   },
   {
     slug: 'web-builder', family: 'feature', eyebrow: 'Halaman bisnis', title: 'Web Builder',
     summary: 'Susun profil usaha, produk, layanan, dan CTA kontak dalam satu halaman bisnis.',
     href: '/features/web-builder/', context: 'web', action: 'Susun halaman bisnis', signal: '1 ruang', signalLabel: 'untuk profil usaha', size: 'standard',
-    status: 'Coming soon',
+    status: 'Available',
   },
   {
     slug: 'knowledge-os', family: 'feature', eyebrow: 'Pengetahuan tim', title: 'Knowledge OS',
     summary: 'Simpan SOP, keputusan, catatan, dan meeting notes agar tim menemukan rujukan yang sama.',
     href: '/features/knowledge-os/', context: 'knowledge', action: 'Rapikan pengetahuan', signal: '4 sumber', signalLabel: 'siap ditelusuri', size: 'wide',
-    status: 'Coming soon',
+    status: 'Available',
   },
 ];
 
