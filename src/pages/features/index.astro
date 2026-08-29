@@ -4,7 +4,6 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
 import MarketingFeatureCardGrid from '../../components/MarketingFeatureCardGrid.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import DriveCardCatalog from '../../components/DriveCardCatalog.astro';
 import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import { marketingFeatureCards, marketingProductCards, marketingSolutionCards, marketingIndustryLinks, marketingRoleLinks } from '../../data/marketingFeatureCards';
 import { appCta, consultationCta } from '../../data/site';
@@ -47,7 +46,6 @@ const schema = [
       items={productScreenSets.overview}
       compact
     />
-    <DriveCardCatalog id="features-component-catalog" limit={2} eyebrow="Bukti komponen" heading="Setiap fitur punya bentuk kerja yang bisa dilihat." body="Gunakan card ini untuk melihat bagaimana modul RAMUNI menampilkan pekerjaan sebelum membuka detail fitur." />
     <SaaSEvidenceCardRail
       id="features-product-evidence"
       eyebrow="Bukti kerja produk"
