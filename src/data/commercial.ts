@@ -34,22 +34,22 @@ export const pricingPlans: PricingPlan[] = [
   {
     key: 'free', name: 'Free', monthly: 0, annual: 0,
     fit: 'Bisnis yang ingin mencoba cara kerja RAMUNI.',
-    limits: ['1 pengguna', '1 outlet', '25 pertanyaan AI atau 200.000 token per bulan', 'Semua fitur aktif dalam batas Free'],
-    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dan ekspor dasar', 'AI read-only dengan budget bulanan'],
+    limits: ['1 pengguna', '1 outlet', '10 pertanyaan AI atau 100.000 token per bulan', 'Knowledge OS, Web Builder, omnichannel, API, dan workflow kustom belum termasuk'],
+    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dasar', 'AI read-only dengan budget bulanan'],
     cta: 'Mulai gratis', flow: 'trial',
   },
   {
     key: 'starter', name: 'Starter', monthly: 149000, annual: 1490000,
     fit: 'UMKM kecil yang mulai membangun sistem kerja digital.',
-    limits: ['3 pengguna', '1 outlet', '100 pertanyaan AI atau 800.000 token per bulan', 'Dukungan email atau chat'],
-    features: ['Semua fitur Free', 'Pencatatan biaya dan laporan', 'Workspace tim kecil', 'AI Copilot read-only dengan konteks workspace'],
+    limits: ['3 pengguna', '1 outlet', '75 pertanyaan AI atau 600.000 token per bulan', 'Omnichannel, multi-outlet, API, dan workflow kustom belum termasuk'],
+    features: ['Semua fitur Free', 'Knowledge OS dan Web Builder', 'Pencatatan biaya dan laporan', 'Workspace tim kecil'],
     cta: 'Bahas Starter', flow: 'consultation',
   },
   {
     key: 'growth', name: 'Growth', eyebrow: 'Paling populer', monthly: 349000, annual: 3490000,
     fit: 'UMKM aktif yang membutuhkan satu sistem untuk operasional dan keputusan bisnis.',
-    limits: ['10 pengguna', '3 outlet', '500 pertanyaan AI atau 4.000.000 token per bulan', 'Prioritas support'],
-    features: ['Semua fitur Starter', 'Dashboard lintas modul', 'AI Copilot read-only', 'Profit Intelligence', 'Knowledge OS dan omnichannel'],
+    limits: ['10 pengguna', '3 outlet', '400 pertanyaan AI atau 3.000.000 token per bulan', 'API dan workflow kustom belum termasuk', 'Prioritas support'],
+    features: ['Semua fitur Starter', 'Dashboard lintas modul', 'AI Copilot read-only', 'Profit Intelligence dan omnichannel'],
     cta: 'Bahas Growth', flow: 'consultation',
   },
   {
@@ -68,22 +68,27 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
-const packageStatus = (): Record<string, CapabilityStatus> => Object.fromEntries(
-  ['free', 'starter', 'growth', 'pro', 'business'].map((key) => [key, 'Available']),
-) as Record<string, CapabilityStatus>;
+const statusByPlan = (availableFrom: 'free' | 'starter' | 'growth' | 'pro'): Record<string, CapabilityStatus> => {
+  const order = ['free', 'starter', 'growth', 'pro', 'business'];
+  const start = order.indexOf(availableFrom);
+  return Object.fromEntries(order.map((key, index) => [key, index >= start ? 'Available' : 'Unavailable'])) as Record<string, CapabilityStatus>;
+};
+const packageStatus = statusByPlan('free');
 
 export const pricingRows: PricingRow[] = [
-  { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus() },
-  { group: 'Operasional', label: 'Penjualan, katalog, dan stok dasar', statuses: packageStatus() },
-  { group: 'Operasional', label: 'Pencatatan biaya dan laporan dasar', statuses: packageStatus() },
-  { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: packageStatus() },
-  { group: 'AI', label: 'Kuota penggunaan AI sesuai paket', statuses: packageStatus() },
-  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: packageStatus() },
-  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: packageStatus() },
-  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan', statuses: packageStatus() },
-  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: packageStatus() },
-  { group: 'Integrasi', label: 'Export CSV dan API', statuses: packageStatus() },
-  { group: 'Integrasi', label: 'WhatsApp, marketplace, pembayaran, dan akuntansi', statuses: packageStatus() },
+  { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus },
+  { group: 'Operasional', label: 'Penjualan, katalog, dan stok dasar', statuses: packageStatus },
+  { group: 'Operasional', label: 'Pencatatan biaya dan laporan dasar', statuses: packageStatus },
+  { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: packageStatus },
+  { group: 'AI', label: 'Kuota penggunaan AI sesuai paket', statuses: packageStatus },
+  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: statusByPlan('starter') },
+  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: statusByPlan('starter') },
+  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan', statuses: statusByPlan('growth') },
+  { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: statusByPlan('starter') },
+  { group: 'Integrasi', label: 'Export CSV', statuses: packageStatus },
+  { group: 'Integrasi', label: 'API dan integrasi tambahan', statuses: statusByPlan('pro') },
+  { group: 'Integrasi', label: 'WhatsApp, marketplace, pembayaran, dan akuntansi', statuses: statusByPlan('growth') },
+  { group: 'Automasi', label: 'Workflow kustom', statuses: statusByPlan('pro') },
 ];
 
 export interface FeatureDetail {
