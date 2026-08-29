@@ -2,9 +2,6 @@ export const dashboardVisuals = {
   productOverview: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-    driveSrc: '/website-original/marketing/drive/207shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
     width: 1440,
     height: 1202,
@@ -16,9 +13,6 @@ export const dashboardVisuals = {
   productPerformance: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-    driveSrc: '/website-original/marketing/drive/35shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
     width: 1440,
     height: 1202,
@@ -30,9 +24,6 @@ export const dashboardVisuals = {
   productOperations: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-    driveSrc: '/website-original/marketing/drive/217shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
     width: 1440,
     height: 1202,
@@ -47,9 +38,6 @@ export const dashboardVisuals = {
   productAI: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/ai--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/207shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/ai--mobile.webp',
     width: 1100,
     height: 875,
@@ -61,9 +49,6 @@ export const dashboardVisuals = {
   productSales: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/sales-omnichannel-orders--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/35shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/sales-omnichannel-orders--mobile.webp',
     width: 1440,
     height: 1004,
@@ -75,9 +60,6 @@ export const dashboardVisuals = {
   productInventory: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/inventory-alerts--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/217shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/inventory-alerts--mobile.webp',
     width: 1100,
     height: 688,
@@ -89,9 +71,6 @@ export const dashboardVisuals = {
   productFinance: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/finance-statements--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/990shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/finance-statements--mobile.webp',
     width: 1100,
     height: 688,
@@ -103,9 +82,6 @@ export const dashboardVisuals = {
   productCustomers: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/customers--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/35shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/customers--mobile.webp',
     width: 1100,
     height: 688,
@@ -117,9 +93,6 @@ export const dashboardVisuals = {
   productReports: {
     type: 'product-screenshot',
     src: '/website-original/product-screens/saas-e2e/full/desktop/reports--desktop.webp',
-    driveSrc: '/website-original/marketing/drive/207shots_so.webp',
-    driveWidth: 900,
-    driveHeight: 506,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/reports--mobile.webp',
     width: 1440,
     height: 900,
