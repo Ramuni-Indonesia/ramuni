@@ -34,8 +34,8 @@ export const pricingPlans: PricingPlan[] = [
   {
     key: 'free', name: 'Free', monthly: 0, annual: 0,
     fit: 'Bisnis yang ingin mencoba cara kerja RAMUNI.',
-    limits: ['1 pengguna', '1 outlet', '10 pertanyaan AI atau 100.000 token per bulan', 'Knowledge OS, Web Builder, omnichannel, API, dan workflow kustom belum termasuk'],
-    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dasar', 'AI read-only dengan budget bulanan'],
+    limits: ['1 pengguna', '1 outlet', '10 pertanyaan AI atau 100.000 token per bulan', 'Web Builder memakai subdomain RAMUNI; domain custom belum termasuk'],
+    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dasar', 'AI read-only dengan budget bulanan', 'Web Builder halaman bisnis sederhana'],
     cta: 'Mulai gratis', flow: 'trial',
   },
   {
@@ -82,7 +82,7 @@ export const pricingRows: PricingRow[] = [
   { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: packageStatus },
   { group: 'AI', label: 'Kuota penggunaan AI sesuai paket', statuses: packageStatus },
   { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: statusByPlan('starter') },
-  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: statusByPlan('starter') },
+  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak (subdomain RAMUNI di Free)', statuses: statusByPlan('free') },
   { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan', statuses: statusByPlan('growth') },
   { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: statusByPlan('starter') },
   { group: 'Integrasi', label: 'Export CSV', statuses: packageStatus },
@@ -139,7 +139,7 @@ export const featureDetails: FeatureDetail[] = [
     summary: 'Kerangka untuk membuat halaman bisnis sederhana, informasi usaha, produk, layanan, dan CTA kontak.',
     highlights: ['Template halaman bisnis', 'Informasi produk atau layanan', 'Form kontak dan SEO dasar'],
     examples: ['Susun halaman profil usaha.', 'Tampilkan produk utama dengan CTA WhatsApp.', 'Periksa struktur judul dan deskripsi halaman.'],
-    limitations: ['Domain custom dan pengelolaan konten mengikuti paket.', 'Form dan CTA perlu dihubungkan ke kanal yang Anda pilih.', 'Hak publikasi mengikuti role pengguna.'],
+    limitations: ['Free memakai subdomain RAMUNI; domain custom dan pengelolaan lanjutan mengikuti paket.', 'Form dan CTA perlu dihubungkan ke kanal yang Anda pilih.', 'Hak publikasi mengikuti role pengguna.'],
     relatedHref: '/tour-produk-gratis/?flow=consultation', relatedLabel: 'Bahas Web Builder',
   },
   {
