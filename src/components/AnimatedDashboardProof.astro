@@ -2,16 +2,23 @@
 interface Props {
   class?: string;
   label?: string;
+  driveSrc?: string;
 }
 
 const {
   class: className = '',
   label = 'Dashboard RAMUNI bergerak menampilkan ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
+  driveSrc = '/website-original/marketing/drive/207shots_so.webp',
 } = Astro.props;
 import LaptopMockup from './LaptopMockup.astro';
 ---
 
-<LaptopMockup label={label}>
+{driveSrc ? <span class="animated-dashboard-proof__drive" role="img" aria-label={label}>
+  <span class:list={['animated-dashboard-proof', className]} data-animate="false">
+    <img class="animated-dashboard-proof__drive-image" src={driveSrc} width="900" height="506" alt={label} fetchpriority="high" decoding="async" />
+    <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
+  </span>
+</span> : <LaptopMockup label={label}>
   <span
     class:list={['animated-dashboard-proof', className]}
     role="img"
@@ -24,7 +31,7 @@ import LaptopMockup from './LaptopMockup.astro';
     </picture>
     <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
   </span>
-</LaptopMockup>
+</LaptopMockup>}
 
 <script>
   const animatedDashboardCleanups = new Map<HTMLElement, () => void>();
@@ -84,6 +91,7 @@ import LaptopMockup from './LaptopMockup.astro';
     container-type:inline-size;
     --hero-dashboard-scan-distance:calc(38.6cqw - 2px);
   }
+  .animated-dashboard-proof__drive{display:block;width:100%;line-height:0;background:transparent}.animated-dashboard-proof__drive .animated-dashboard-proof{aspect-ratio:900/506;background:transparent}.animated-dashboard-proof__drive-image{display:block;width:100%;height:auto;object-fit:contain}
 
   .animated-dashboard-proof__picture,
   .animated-dashboard-proof__picture img{
