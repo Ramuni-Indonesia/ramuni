@@ -110,35 +110,81 @@ export const homepageScreenshotVisuals: readonly HomepageScreenshotVisual[] = [
   },
 ];
 
-export const homepageIndustryVisuals = [
-  {
-    slug: 'fnb',
-    title: 'F&B',
-    question: 'Menu apa yang turun minggu ini?',
-    text: 'Hubungkan menu, bahan, jam ramai, dan biaya sebelum mengubah keputusan.',
-    href: '/industri/fnb/',
-    image: '/website-original/industries/fnb-counter.webp',
-    alt: 'Foto nyata meja kasir dan area layanan kedai kopi di Indonesia.',
-    credit: 'Foto Unsplash · Syahril Fadillah',
-  },
+export interface HomepageIndustryVisual {
+  slug: string;
+  title: string;
+  question: string;
+  text: string;
+  href: string;
+  image: string;
+  alt: string;
+  credit: string;
+}
+
+/**
+ * Realistic, context-specific visuals generated for this section. Keeping the
+ * visual map in data (rather than a single generic stock image) lets the
+ * industry switcher update both the question and the supporting image.
+ */
+export const homepageIndustryVisuals: readonly HomepageIndustryVisual[] = [
   {
     slug: 'retail',
     title: 'Retail',
     question: 'Produk mana yang hampir habis tetapi tetap laris?',
     text: 'Baca SKU, ritme transaksi, dan saldo stok dalam konteks toko.',
     href: '/industri/retail/',
-    image: '/website-original/industries/retail-shelves.webp',
-    alt: 'Foto nyata rak barang di toko kecil dengan stok yang siap diperiksa.',
-    credit: 'Foto Unsplash · Bernd Dittrich',
+    image: '/website-original/industries/retail-real.webp',
+    alt: 'Pemilik toko kelontong Indonesia memeriksa rak dan stok barang.',
+    credit: 'Visual RAMUNI · Codex imagegen',
   },
   {
-    slug: 'community',
-    title: 'Usaha lokal',
-    question: 'Pelanggan mana yang biasanya kembali?',
-    text: 'Lihat riwayat pembelian tanpa menebak kebutuhan pribadi pelanggan.',
-    href: '/solusi/pahami-pelanggan/',
-    image: '/website-original/industries/community-shop.webp',
-    alt: 'Foto nyata pemilik dan pelanggan berbincang di depan toko kecil.',
-    credit: 'Foto Unsplash · David Kristianto',
+    slug: 'fnb',
+    title: 'F&B',
+    question: 'Menu apa yang turun minggu ini?',
+    text: 'Hubungkan menu, bahan, jam ramai, dan biaya sebelum mengubah keputusan.',
+    href: '/industri/fnb/',
+    image: '/website-original/industries/fnb-real.webp',
+    alt: 'Barista Indonesia menata minuman dan pastry di meja kedai kopi.',
+    credit: 'Visual RAMUNI · Codex imagegen',
+  },
+  {
+    slug: 'distributor',
+    title: 'Distributor',
+    question: 'Pesanan besar mana yang perlu ditindaklanjuti?',
+    text: 'Satukan stok gudang, pesanan, dan piutang sebelum menjadwalkan pengiriman.',
+    href: '/industri/distributor/',
+    image: '/website-original/industries/distributor-real.webp',
+    alt: 'Pemilik distributor Indonesia mengecek stok kardus di gudang.',
+    credit: 'Visual RAMUNI · Codex imagegen',
+  },
+  {
+    slug: 'reseller-online',
+    title: 'Reseller Online',
+    question: 'Kanal mana yang memberi margin paling sehat?',
+    text: 'Bandingkan pesanan, biaya kanal, dan stok yang bergerak sebelum menambah iklan.',
+    href: '/industri/reseller-online/',
+    image: '/website-original/industries/reseller-online-real.webp',
+    alt: 'Reseller online Indonesia menyiapkan paket pesanan di ruang kerja rumah.',
+    credit: 'Visual RAMUNI · Codex imagegen',
+  },
+  {
+    slug: 'jasa',
+    title: 'Jasa',
+    question: 'Layanan mana yang paling sering kembali dipesan?',
+    text: 'Lihat riwayat layanan, biaya, dan periode kerja dalam satu konteks.',
+    href: '/industri/jasa/',
+    image: '/website-original/industries/jasa-real.webp',
+    alt: 'Pemilik usaha jasa Indonesia menjelaskan pekerjaan kepada pelanggan.',
+    credit: 'Visual RAMUNI · Codex imagegen',
+  },
+  {
+    slug: 'manufaktur-kecil',
+    title: 'Manufaktur Kecil',
+    question: 'Bahan dan barang jadi mana yang menghambat produksi?',
+    text: 'Periksa bahan, hasil produksi, dan biaya sebelum mengubah jadwal kerja.',
+    href: '/industri/manufaktur-kecil/',
+    image: '/website-original/industries/manufaktur-kecil-real.webp',
+    alt: 'Tim manufaktur kecil Indonesia memeriksa bahan dan barang jadi.',
+    credit: 'Visual RAMUNI · Codex imagegen',
   },
 ] as const;

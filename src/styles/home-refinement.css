@@ -284,7 +284,7 @@
 .dashboard-gallery__head h2{max-width:11ch}
 .dashboard-gallery__head>div:last-child>strong{display:block;font-size:clamp(1.65rem,3vw,3.1rem);line-height:1.05;letter-spacing:-.045em}
 .dashboard-gallery__head>div:last-child p{margin:20px 0;color:var(--ink-72)}
-.dashboard-product-shot{position:relative;margin:0 0 clamp(36px,6vw,76px);background:transparent;overflow:visible}.dashboard-product-shot figcaption{display:flex;gap:20px;align-items:center;margin-top:18px;padding:16px 0;border-top:1px solid var(--ink-10)}.dashboard-product-shot figcaption>div{display:grid;gap:6px;min-width:0}.dashboard-product-shot figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.dashboard-product-shot figcaption strong{font-size:.92rem}.dashboard-product-shot figcaption small{color:var(--ink-56);font-size:.72rem}
+.dashboard-product-shot{position:relative;margin:0 0 clamp(36px,6vw,76px);background:transparent;overflow:visible}.dashboard-product-loop{display:flex;align-items:center;gap:12px;width:min(420px,100%);margin:16px 0 0 auto;padding:8px 10px;border:1px solid var(--ink-10);border-radius:12px;background:var(--white);color:var(--ink-56);font-size:.68rem;font-weight:700}.dashboard-product-loop video{display:block;width:112px;aspect-ratio:16/9;object-fit:cover;border-radius:7px;background:var(--ink)}.dashboard-product-shot figcaption{display:flex;gap:20px;align-items:center;margin-top:18px;padding:16px 0;border-top:1px solid var(--ink-10)}.dashboard-product-shot figcaption>div{display:grid;gap:6px;min-width:0}.dashboard-product-shot figcaption span{color:var(--teal);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.dashboard-product-shot figcaption strong{font-size:.92rem}.dashboard-product-shot figcaption small{color:var(--ink-56);font-size:.72rem}
 .dashboard-gallery .signal-spread{grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);width:100%}
 .dashboard-gallery .signal-spread__notes{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:clamp(40px,6vw,88px)}
 .dashboard-gallery .signal-story--lead .signal-visual{aspect-ratio:16/10}
@@ -311,8 +311,11 @@
 .industry-room__head{display:flex;justify-content:space-between;gap:48px;align-items:end;margin-bottom:clamp(44px,6vw,76px)}
 .industry-room__head h2{max-width:16ch}.industry-room__head .section-kicker{color:var(--yellow)}
 .industry-room__stage{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);min-height:440px;border:1px solid rgb(255 255 255/.28)}
-.industry-room__visual{position:relative;display:grid;place-items:center;overflow:hidden;background:var(--yellow);color:var(--ink);border-right:1px solid rgb(255 255 255/.28)}
-.industry-room__visual>em{position:absolute;z-index:3;left:22px;top:20px;font-size:.72rem;font-style:normal;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.industry-room__visual{position:relative;display:block;min-height:440px;overflow:hidden;background:var(--ink);color:var(--white);border-right:1px solid rgb(255 255 255/.28)}
+.industry-room__visual img{display:block;width:100%;height:100%;min-height:440px;object-fit:cover;object-position:center;transition:transform 700ms var(--ease),opacity 360ms var(--ease)}
+.industry-room__visual-shade{position:absolute;z-index:1;inset:0;background:linear-gradient(180deg,rgb(7 28 40/.12) 10%,rgb(7 28 40/.72) 100%);pointer-events:none}
+.industry-room__visual>em{position:absolute;z-index:3;left:22px;top:20px;font-size:.72rem;font-style:normal;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+.industry-room__visual>small{position:absolute;z-index:3;left:22px;bottom:18px;font-size:.62rem;letter-spacing:.02em;color:rgb(255 255 255/.72)}
 .industry-room__chart{position:relative;z-index:2;width:min(260px,70%);height:190px;border-left:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;align-items:end;gap:10px;padding:0 18px 18px}
 .industry-room__chart::before{content:"";position:absolute;left:22px;right:0;top:22px;height:1px;background:var(--ink-20);box-shadow:0 48px 0 var(--ink-20),0 96px 0 var(--ink-20)}
 .industry-room__chart span{position:relative;z-index:1;flex:1;height:var(--level,54%);background:var(--ink)}.industry-room__chart span:nth-child(1){--level:42%;background:var(--teal)}.industry-room__chart span:nth-child(2){--level:72%}.industry-room__chart span:nth-child(3){--level:58%;background:var(--white)}.industry-room__chart span:nth-child(4){--level:86%;background:var(--yellow);border:1px solid var(--ink)}
@@ -344,11 +347,12 @@
   .problem-canvas__core{animation:problem-breathe 5.4s ease-in-out infinite}
   .answer-tile{transition:transform var(--base) var(--ease)}.answer-tile:hover{z-index:2;transform:translateY(-5px)}
   .industry-room[data-changing='true'] .industry-room__question h3{animation:industry-copy-in 380ms var(--ease) both}
-  .industry-room[data-changing='true'] .industry-room__chart span{animation:industry-code-in 440ms var(--ease) both}
+  .industry-room[data-changing='true'] .industry-room__visual img{animation:industry-image-in 520ms var(--ease) both}
   .industry-room[data-changing='true'] .industry-room__visual>em{animation:industry-copy-in 380ms var(--ease) both}
   @keyframes problem-breathe{0%,100%{box-shadow:0 0 0 18px rgb(242 177 52/.13),0 0 0 19px var(--ink-20),0 28px 70px rgb(11 48 69/.16)}50%{box-shadow:0 0 0 26px rgb(242 177 52/.1),0 0 0 27px var(--ink-20),0 34px 82px rgb(11 48 69/.2)}}
   @keyframes industry-copy-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   @keyframes industry-code-in{from{opacity:.2;transform:scale(.84) rotate(-4deg)}to{opacity:1;transform:none}}
+  @keyframes industry-image-in{from{opacity:.38;transform:scale(1.035)}to{opacity:1;transform:scale(1)}}
 }
 
 @media(max-width:1200px){
@@ -435,6 +439,12 @@
 }
 
 @media(max-width:420px){.dashboard-product-shot figcaption{display:grid;grid-template-columns:112px minmax(0,1fr)}.dashboard-product-shot figcaption>div{align-self:center}}
+
+/* Industry imagery stays compact on small screens instead of inheriting the
+   desktop canvas height. */
+@media(max-width:960px){
+  .industry-room__visual img{min-height:230px;height:230px}
+}
 
 /* Large tablets in landscape keep the desktop hero composition. */
 @media(min-width:961px) and (max-width:1200px){

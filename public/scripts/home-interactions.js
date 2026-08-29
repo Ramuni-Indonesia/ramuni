@@ -44,6 +44,8 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
   const question = room.querySelector('[data-industry-question]');
   const link = room.querySelector('[data-industry-link]');
   const name = room.querySelector('[data-industry-name]');
+  const image = room.querySelector('[data-industry-image]');
+  const credit = room.querySelector('[data-industry-credit]');
   const activate = (tab) => {
     tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
     if (code) code.textContent = tab.dataset.code || '';
@@ -51,6 +53,11 @@ document.querySelectorAll('[data-industry-room]').forEach((room) => {
     if (question) question.textContent = tab.dataset.question || '';
     if (link) link.href = tab.dataset.href || '/industri';
     if (name) name.textContent = tab.dataset.name || '';
+    if (image && tab.dataset.image) {
+      image.src = tab.dataset.image;
+      image.alt = tab.dataset.imageAlt || '';
+    }
+    if (credit) credit.textContent = tab.dataset.imageCredit || '';
     room.dataset.changing = 'false';
     void room.offsetWidth;
     room.dataset.changing = 'true';

@@ -11,11 +11,13 @@ import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, launchCta, products, solutions } from '../data/site';
 import { dashboardVisuals } from '../data/dashboardVisuals';
 import { productScreenSets } from '../data/productScreens';
+import { homepageIndustryVisuals } from '../data/homepageVisuals';
 import { pageLastmods } from '../data/pageLastmods';
 import '../styles/home-base.css';
 import '../styles/home-refinement.css';
 
 const productDashboard = dashboardVisuals.productOverview;
+const firstIndustryVisual = homepageIndustryVisuals.find((visual) => visual.slug === industries[0].slug) || homepageIndustryVisuals[0];
 
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI menyatukan penjualan, stok, kas, pelanggan, dan laporan untuk membantu UMKM membaca perubahan usaha. Anda tetap dapat memakai software lain yang sudah dibutuhkan.'],
@@ -138,6 +140,13 @@ const schema = [
       </header>
       <figure class="dashboard-product-shot reveal">
         <DashboardMotion focus="full" label={productDashboard.alt} {...productDashboard} />
+        <div class="dashboard-product-loop" aria-label="Video alur dashboard RAMUNI">
+          <video muted autoplay loop playsinline preload="metadata" poster={productDashboard.src} aria-label="Ringkasan dashboard RAMUNI bergerak mengikuti perubahan data">
+            <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.webm" type="video/webm" />
+            <source src="/website-original/product-screens/ramuni-product-dashboard-overview-loop.mp4" type="video/mp4" />
+          </video>
+          <span>Alur dashboard bergerak</span>
+        </div>
         <figcaption>
           <AnimatedMuniWork />
           <div><span>Contoh tampilan</span><strong>Satu ringkasan untuk penjualan, kas, stok, pelanggan, aktivitas, dan wawasan.</strong><small>Angka pada tampilan digunakan untuk menjelaskan alur.</small></div>
@@ -203,11 +212,19 @@ const schema = [
     <div class="container industry-room" data-industry-room>
       <header class="industry-room__head reveal"><p class="section-kicker">Menurut jenis usaha</p><h2>Pertanyaan yang sama perlu data berbeda di tiap usaha.</h2></header>
       <div class="industry-room__stage reveal">
-        <div class="industry-room__visual" aria-hidden="true"><div class="industry-room__chart" data-industry-scene data-scene="retail"><span></span><span></span><span></span><span></span></div><em data-industry-code>Retail</em><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="industry-room__visual">
+          <img data-industry-image src={firstIndustryVisual.image} width="1200" height="800" alt={firstIndustryVisual.alt} loading="lazy" decoding="async" />
+          <span class="industry-room__visual-shade" aria-hidden="true"></span>
+          <em data-industry-code>{firstIndustryVisual.title}</em>
+          <small data-industry-credit>{firstIndustryVisual.credit}</small>
+        </div>
         <div class="industry-room__question"><span>Pertanyaan contoh</span><h3 data-industry-question>{industries[0].question}</h3><a data-industry-link href={`/industri/${industries[0].slug}/`}>Lihat contoh untuk <b data-industry-name>{industries[0].title}</b></a></div>
       </div>
       <div class="industry-switcher" role="group" aria-label="Pilih jenis usaha">
-        {industries.map((industry, i) => <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}/`}>{industry.title}</button>)}
+        {industries.map((industry, i) => {
+          const visual = homepageIndustryVisuals.find((item) => item.slug === industry.slug) || homepageIndustryVisuals[0];
+          return <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} data-industry-tab data-name={industry.title} data-scene={industry.slug} data-code={industry.title} data-question={industry.question} data-href={`/industri/${industry.slug}/`} data-image={visual.image} data-image-alt={visual.alt} data-image-credit={visual.credit}>{industry.title}</button>;
+        })}
       </div>
     </div>
   </section>
