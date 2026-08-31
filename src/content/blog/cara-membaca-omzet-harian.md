@@ -266,7 +266,7 @@ Jangan menghapus hari buruk dari rata-rata hanya karena membuat grafik turun. Le
 
 Analisis yang rapi tetap akan salah bila sumber datanya belum siap. Sebelum membahas strategi penjualan, gunakan pemeriksaan singkat terhadap kualitas data. Pertama, pastikan tidak ada transaksi ganda dari kasir, marketplace, atau pencatatan manual. Kedua, periksa apakah diskon dan retur mendapat tanda yang benar. Ketiga, lihat apakah pesanan yang belum selesai tercampur dengan transaksi selesai. Keempat, pastikan perubahan harga atau katalog tercatat agar nilai rata-rata transaksi tidak dibandingkan tanpa konteks.
 
-Bila data belum lengkap, laporan masih boleh dipakai dengan label sementara. Contoh: “omzet sementara sampai pukul 20.00, menunggu rekonsiliasi tiga pesanan online.” Label seperti ini lebih aman daripada memaksa angka final. Setelah data lengkap, perbarui angka dan tulis koreksi secara singkat. Kebiasaan ini membangun kepercayaan karena semua orang dapat melihat perubahan angka serta alasannya.
+Bila data belum lengkap, laporan masih boleh dipakai dengan label sementara. Contoh: “omzet sementara sampai pukul 20.00, menunggu rekonsiliasi tiga pesanan online.” Label seperti ini lebih aman daripada memaksa angka final. Setelah data lengkap, perbarui angka dan tulis koreksi secara singkat.
 
 Untuk usaha yang memiliki lebih dari satu sumber penjualan, simpan tiga informasi di setiap ekspor: nama sumber, waktu ditarik, dan filter status transaksi. Ketiga informasi tersebut cukup untuk menelusuri sebagian besar perbedaan tanpa menyalin data pelanggan yang tidak diperlukan. Prinsipnya adalah memakai data secukupnya untuk keputusan operasi sambil menjaga akses data tetap terbatas sesuai kebutuhan kerja.
 
