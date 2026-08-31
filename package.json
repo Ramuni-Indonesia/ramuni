@@ -40,7 +40,7 @@
     "@bruits/satteri-wasm32-wasi": "^0.9.5",
     "cross-env": "^10.1.0",
     "esbuild": "^0.28.1",
-    "sharp": "^0.35.3",
-    "typescript": "^5.9.2"
+    "sharp": "^0.35.4",
+    "typescript": "^7.0.2"
   }
 }
