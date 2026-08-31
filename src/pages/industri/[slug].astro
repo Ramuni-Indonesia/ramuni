@@ -3,9 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
 import { productScreenSets } from '../../data/productScreens';
 import { releaseGates } from '../../config/release';
@@ -205,7 +203,6 @@ export function getStaticPaths() {
 }
 
 const { industry } = Astro.props;
-const industryVisualScene = industry.slug as HeroContextScene;
 const brief = industryBriefs[industry.slug];
 const industryHeadings: Record<string, { hero: string; fit: string; workflow: string; signals: string; modules: string }> = {
   retail: { hero: 'Jangan tunggu rak kosong untuk mengecek stok.', fit: 'Toko ramai butuh catatan produk yang tetap rapi.', workflow: 'Mulai pagi dari stok kritis dan produk yang sedang laris.', signals: 'Bedakan produk laris, stok lambat, dan selisih catatan.', modules: 'Penjualan dan inventori dibaca dalam satu alur.' },
@@ -216,6 +213,16 @@ const industryHeadings: Record<string, { hero: string; fit: string; workflow: st
   'manufaktur-kecil': { hero: 'Pisahkan bahan menipis dari barang jadi yang laku.', fit: 'Bahan, barang jadi, penjualan, dan biaya perlu satu urutan.', workflow: 'Cek bahan utama sebelum menentukan produksi berikutnya.', signals: 'Baca stok bahan, barang jadi, biaya, dan penjualan bersama.', modules: 'Inventori dan penjualan memberi dasar sebelum produksi.' },
 };
 const headings = industryHeadings[industry.slug];
+const industryIntentBySlug: Record<string, string> = {
+  retail: 'stock',
+  fnb: 'finance',
+  distributor: 'customer',
+  'reseller-online': 'sales',
+  jasa: 'finance',
+  'manufaktur-kecil': 'stock',
+};
+const industryTourHref = `/tour-produk-gratis/?flow=consultation&intent=${industryIntentBySlug[industry.slug] || 'overview'}`;
+const industryTourLabel = `Bahas alur ${industry.title}`;
 const supportingProducts = products.filter((product) => brief.modules.includes(product.title));
 const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug));
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
@@ -240,7 +247,7 @@ const structuredData = {
 ---
 <BaseLayout title={'RAMUNI untuk ' + industry.title} description={'RAMUNI untuk ' + industry.title + ': alur harian, data yang dibutuhkan, fitur terkait, dan pertanyaan operasional.'} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
-  <PageHero eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel="Konsultasi" primaryHref="/tour-produk-gratis/?flow=consultation" secondaryLabel="Semua Industri" secondaryHref="/industri/" visual="evidence" visualScene={industryVisualScene} visualLabel={industry.title} visualTitle="Contoh alur pemeriksaan yang mengikuti ritme usaha ini." />
+  <PageHero compact eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel={industryTourLabel} primaryHref={industryTourHref} secondaryLabel="Semua Industri" secondaryHref="/industri/" />
 
   <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
     <div class="container audience-split">
@@ -332,8 +339,6 @@ const structuredData = {
     </div>
   </section>
 
-  <div class="container"><CommercialActionBar pageType="industry" location={`industry_${industry.slug}`} eyebrow={`Jalur ${industry.title}`} title={`Mulai dari pekerjaan ${industry.title}, bukan dari daftar fitur.`} body="Lihat demo tanpa membawa data sensitif, lalu cocokkan modul dan paket dengan kebutuhan yang benar-benar ada." /></div>
-
   <section class="section" id="cta" aria-labelledby="cta-title">
     <div class="container reveal">
       <MascotDecisionCTA
@@ -341,8 +346,8 @@ const structuredData = {
         eyebrow={'Simulasi untuk ' + industry.title}
         title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
         body="Bawa satu pertanyaan usaha. Kami tunjukkan data yang biasa diperiksa, contoh alurnya, dan fitur yang dapat dibahas lebih lanjut."
-        primaryLabel="Konsultasi"
-        primaryHref="/tour-produk-gratis/?flow=consultation"
+        primaryLabel={industryTourLabel}
+        primaryHref={industryTourHref}
         secondaryLabel="Lihat Solusi"
         secondaryHref="/solusi/"
         theme="teal"

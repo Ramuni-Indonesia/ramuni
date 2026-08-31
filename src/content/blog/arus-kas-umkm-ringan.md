@@ -7,7 +7,7 @@ coverAlt: "Pemilik UMKM memeriksa aliran uang masuk dan keluar dari catatan usah
 coverWidth: 768
 coverHeight: 432
 publishedAt: 2026-07-25
-updatedAt: 2026-07-25
+updatedAt: 2026-08-28
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 deliveryPriority: "P0"

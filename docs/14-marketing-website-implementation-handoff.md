@@ -99,7 +99,7 @@ Evidence files:
 2. Approve final privacy, terms, cookie, and data-processing copy.
 3. Approve the consent wording and map the first-party consent events to the chosen Consent Mode implementation before loading any non-essential tag.
 4. Provide approved GTM, GA4, Meta, and other measurement IDs only after consent and PII tests pass.
-5. Confirm the production origin and set `PUBLIC_SITE_URL` if it is not `https://ramuni.id`.
+5. Confirm the production origin and set `PUBLIC_SITE_URL` to the canonical host (`https://www.ramuni.id` while the apex redirects there).
 6. Configure hosting redirects, HTTPS, cache headers, compression, CSP/security headers, custom 404/500 behavior, and maintenance switching.
 7. Supply verified status data or a status provider before indexing `/status`.
 8. Approve the product auth origin for `/masuk`.

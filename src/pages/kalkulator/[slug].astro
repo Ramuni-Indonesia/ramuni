@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import CalculatorWidget from '../../components/CalculatorWidget.astro';
 import '../../styles/calculator-widget.css';
@@ -54,7 +53,7 @@ const schema = [
   keywords={[calculator.keyword, 'kalkulator bisnis UMKM', 'alat hitung bisnis gratis', 'RAMUNI']}
 >
   <article class="tools-page tool-detail-page">
-    <header class="tool-detail-hero">
+    <header class="tool-detail-hero tool-detail-hero--utility utility-masthead">
       <div class="container tool-detail-hero__grid">
         <div class="tool-detail-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kalkulator/">Kalkulator</a><span>/</span><span aria-current="page">{calculator.title}</span></nav>
@@ -63,11 +62,6 @@ const schema = [
           <p class="lede">{calculator.decision}</p>
           <p class="tool-detail-hero__intent">{calculator.intent}</p>
           <a class="button button--primary" href="#hitung">Mulai Menghitung</a>
-        </div>
-        <div class="tool-detail-hero__visual reveal is-visible" aria-label={`Gambaran cara kerja ${calculator.title}`}>
-          <div class="tool-detail-hero__screen"><span>Input</span>{calculator.fields.map((field, index) => <i style={`--w:${78 - index * 13}%`}>{field.label}</i>)}</div>
-          <div class="tool-detail-hero__operator" aria-hidden="true">=</div>
-          <div class="tool-detail-hero__result"><span>{calculator.resultLabel}</span><strong>?</strong><small>Rumus terbuka</small></div>
         </div>
       </div>
     </header>
@@ -101,6 +95,5 @@ const schema = [
         <div>{commonFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
       </div>
     </section>
-    <div class="container"><CommercialActionBar pageType="calculator-detail" location={`calculator_${slug}`} eyebrow="Langkah setelah menghitung" title="Hubungkan hasil contoh dengan pertanyaan bisnis yang tepat." body="Pelajari demo dan pricing bila Anda ingin melihat cara data operasional dibahas dalam satu alur." /></div>
   </article>
 </BaseLayout>

@@ -5,7 +5,7 @@
 ## Verification
 
 - [ ] `npm run check`
-- [ ] `PUBLIC_DEPLOY_ENV=production PUBLIC_INDEXING_ENABLED=true PUBLIC_SITE_URL=https://ramuni.id npm run build`
+- [ ] `PUBLIC_DEPLOY_ENV=production PUBLIC_INDEXING_ENABLED=true PUBLIC_SITE_URL=https://www.ramuni.id npm run build`
 - [ ] `npm run audit`
 - [ ] `npm audit --audit-level=high`
 

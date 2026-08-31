@@ -6,7 +6,7 @@ interface Props { title: string; description: string; eyebrow?: string; items: I
 const { title, description, eyebrow, items, ctaLabel = 'Konsultasi', ctaHref = '/tour-produk-gratis/?flow=consultation', noindex = false } = Astro.props;
 ---
 <BaseLayout title={title} description={description} noindex={noindex}>
-  <section class="policy-hero"><div class="container"><p class="eyebrow">{eyebrow || 'Dokumen RAMUNI'}</p><h1>{title}</h1><p class="lede">{description}</p></div></section>
+  <section class="policy-hero utility-masthead"><div class="container"><p class="eyebrow">{eyebrow || 'Dokumen RAMUNI'}</p><h1>{title}</h1><p class="lede">{description}</p></div></section>
   <section class="section surface"><div class="container policy-layout"><aside class="policy-index"><span>Isi dokumen</span><ol>{items.map((item, i) => <li><a href={`#bagian-${i + 1}`}>{String(i + 1).padStart(2, '0')} {item.title}</a></li>)}</ol></aside><div class="policy-content">{items.map((item, i) => <section id={`bagian-${i + 1}`} class="policy-section reveal"><span>{String(i + 1).padStart(2, '0')}</span><div><h2>{item.title}</h2><p>{item.text}</p>{item.href && <a class="text-link" href={item.href}>Pelajari lebih lanjut</a>}</div></section>)}</div></div></section>
   <section class="policy-close"><div class="container"><div class="policy-close__copy"><p>Masih ada pertanyaan?</p><h2>Hubungi tim RAMUNI tanpa mengirim data sensitif.</h2><a class="button button--primary" href={ctaHref}>{ctaLabel}</a></div><div class="policy-close__flow" aria-label="Alur aman untuk menghubungi RAMUNI"><span>Tulis pertanyaan</span><i aria-hidden="true"></i><span>Hindari data sensitif</span><i aria-hidden="true"></i><span>Terima arahan</span></div></div></section>
 </BaseLayout>

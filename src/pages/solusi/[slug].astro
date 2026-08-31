@@ -6,7 +6,6 @@ import SolutionManualGap from '../../components/solution/SolutionManualGap.astro
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
@@ -101,10 +100,6 @@ const structuredData = [
         </div>
       </div>
     </section>
-
-    <div class="container">
-      <CommercialActionBar pageType="solution" location={`solution_${solution.slug}`} eyebrow="Dari masalah ke jalur kerja" title="Lihat data yang perlu dibuka sebelum bertindak." body="Demo memperlihatkan input, hasil, dan batasnya. Pricing membantu Anda memahami paket dan akses yang tersedia." />
-    </div>
 
     <ProductScreenshotRail
       id={`solution-${solution.slug}-screens`}

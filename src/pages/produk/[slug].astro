@@ -8,7 +8,6 @@ import ProductReadinessBoard from '../../components/product/ProductReadinessBoar
 import ProductAudienceExplorer from '../../components/product/ProductAudienceExplorer.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
@@ -116,10 +115,12 @@ const visitorHiddenCapabilityIds = new Set([
   'INT-DISABLED-001',
 ]);
 const capabilityRows = detail.capabilities
+  .filter((capability) => capability.publicApproved || Boolean(capability.approvedStatus))
   .filter((capability) => !visitorHiddenCapabilityIds.has(capability.capabilityId))
   .map((capability) => ({
     label: capability.label,
     description: capability.description,
+    status: capability.approvedStatus,
   }));
 
 const canonicalPath = `/produk/${product.slug}/`;
@@ -199,7 +200,6 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <CommercialActionBar pageType="product" location={`product_${product.slug}`} eyebrow="Pilih titik mulai" title={`Mulai dari ${product.title}.`} body={`Lihat contoh input, hasil, dan batas ${product.title}, lalu pilih demo, trial, atau paket yang sesuai.`} />
       <ProductInputOutput slug={product.slug} title={product.title} />
     </div>
 

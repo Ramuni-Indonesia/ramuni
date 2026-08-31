@@ -10,6 +10,7 @@
 .search-page-form .search-line{display:flex;align-items:center;gap:14px;padding-bottom:10px;border-bottom:1px solid var(--ink)}
 .search-page-form input{min-width:0;flex:1;padding:10px 0;border:0;background:transparent;color:var(--ink)}
 .search-page-form input:focus{outline:0}
+.search-page-form input:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:2px}
 .search-page-form button{min-height:44px;padding:10px 20px;border:0;background:var(--teal);color:var(--white);font-weight:800;transition:background var(--fast),transform var(--fast) var(--ease)}
 .search-page-form button:hover,.search-page-form button:focus-visible{background:var(--ink);transform:translateY(-2px)}
 .search-page-form small{display:block;margin-top:12px;color:var(--ink-72);font-size:.76rem}

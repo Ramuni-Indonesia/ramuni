@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import { calculatorEntries } from '../../data/calculators';
 import { navigationIconAttributes } from '../../data/capabilityIcons';
@@ -44,7 +43,7 @@ const schema = [
   keywords={calculatorEntries.map(([, calculator]) => calculator.keyword)}
 >
   <div class="tools-page tools-page--calculator">
-    <header class="tools-hero">
+    <header class="tools-hero tools-hero--utility utility-masthead">
       <div class="container tools-hero__grid">
         <div class="tools-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Kalkulator</span></nav>
@@ -53,16 +52,6 @@ const schema = [
           <p class="lede">{calculatorEntries.length} alat hitung gratis untuk laba, stok, kas, harga, dan penjualan. Rumus terlihat, contoh tersedia, dan data tidak dikirim ke server.</p>
           <div class="button-row"><a class="button button--primary" href="#daftar-kalkulator">Pilih Kalkulator</a><a class="button button--secondary" href="/panduan/">Baca Panduan</a></div>
         </div>
-        <figure class="tools-hero__lab reveal is-visible">
-          <img class="tools-hero__art tools-hero__art--context" src="/website-original/ramuni-catatan-bukti-arah.webp" width="1280" height="720" alt="Rangkaian catatan, bukti, dan penanda visual untuk membantu pemeriksaan angka bisnis" decoding="async" fetchpriority="high" />
-          <figcaption class="tools-hero__lab-top"><span>Ruang hitung</span><small>Contoh edukatif</small></figcaption>
-          <div class="tools-hero__equation" aria-hidden="true"><span>catatan</span><b>+</b><span>rumus</span><b>=</b><span>arah cek</span></div>
-          <div class="tools-hero__signals">
-            <article><small>Laba</small><strong>Omzet belum tentu laba</strong><i style="--v:72%"></i></article>
-            <article><small>Stok</small><strong>Kapan perlu pesan ulang?</strong><i style="--v:46%"></i></article>
-            <article><small>Kas</small><strong>Uang masuk dan keluar</strong><i style="--v:61%"></i></article>
-          </div>
-        </figure>
       </div>
     </header>
 
@@ -119,6 +108,5 @@ const schema = [
         />
       </div>
     </section>
-    <div class="container"><CommercialActionBar pageType="calculator" location="calculator_index" eyebrow="Dari angka ke alur kerja" title="Sudah punya angka? Lihat bagaimana konteksnya dibahas." body="Kalkulator tetap edukatif. Gunakan demo untuk memahami jalur produk tanpa menganggap contoh sebagai hasil usaha Anda." /></div>
   </div>
 </BaseLayout>

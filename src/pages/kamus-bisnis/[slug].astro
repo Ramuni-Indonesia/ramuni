@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import { glossaryTerms } from '../../data/glossaryTerms';
 import '../../styles/learning-resource-pages.css';
@@ -44,7 +43,7 @@ const schema = [
   keywords={[`arti ${term.title}`, `${term.title} adalah`, `${term.title} UMKM`, 'kamus bisnis', 'RAMUNI']}
 >
   <article class:list={['learning-page', 'glossary-detail', `glossary-detail--${term.slug}`]}>
-    <header class="glossary-detail-hero">
+    <header class="glossary-detail-hero utility-masthead">
       <div class="container glossary-detail-hero__grid">
         <div class="glossary-detail-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/kamus-bisnis/">Kamus Bisnis</a><span>/</span><span aria-current="page">{term.title}</span></nav>
@@ -52,14 +51,6 @@ const schema = [
           <h1>{term.title}</h1>
           <p class="glossary-detail-hero__definition">{term.definition}</p>
           <div class="button-row"><a class="button button--primary" href="#contoh">Lihat contoh</a><a class="button button--secondary" href="#terkait">Istilah dan alat terkait</a></div>
-        </div>
-        <div class="term-visual reveal is-visible" aria-label={`Ilustrasi hubungan ${term.title}`}>
-          <header><span>Hubungan sederhana</span><strong>{term.short}</strong></header>
-          <div class="term-visual__stage">
-            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt={`Muni menunjukkan tiga bagian yang membantu memahami ${term.title}`} decoding="async" />
-            <ol>{term.visual.map((item, index) => <li><span>0{index + 1}</span><i aria-hidden="true"></i><strong>{item}</strong></li>)}</ol>
-          </div>
-          <footer><small>Definisi edukatif</small><strong>Baca bersama konteks catatan</strong></footer>
         </div>
       </div>
     </header>
@@ -99,6 +90,5 @@ const schema = [
         <div><p class="section-kicker">Cari istilah lain</p><h2>Samakan bahasa sebelum menyamakan keputusan.</h2><p>Kembali ke kamus untuk mencari istilah lain, atau buka panduan jika Anda sudah memiliki pertanyaan usaha yang ingin diperiksa.</p><div class="button-row"><a class="button button--primary" href="/kamus-bisnis/">Buka kamus</a><a class="button button--secondary" href="/panduan/">Pilih panduan</a></div></div>
       </div>
     </section>
-    <div class="container"><CommercialActionBar pageType="glossary-detail" location={`glossary_${term.slug}`} eyebrow="Lanjutkan dari definisi" title={`Gunakan ${term.title} dalam konteks usaha.`} body="Buka demo untuk melihat bagaimana istilah dibaca bersama catatan dan periode, tanpa membawa data bisnis." /></div>
   </article>
 </BaseLayout>

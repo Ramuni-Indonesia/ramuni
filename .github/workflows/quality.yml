@@ -18,7 +18,7 @@ env:
   ASTRO_TELEMETRY_DISABLED: '1'
   PUBLIC_DEPLOY_ENV: production
   PUBLIC_INDEXING_ENABLED: 'true'
-  PUBLIC_SITE_URL: https://ramuni.id
+  PUBLIC_SITE_URL: https://www.ramuni.id
 
 jobs:
   repository-guard:

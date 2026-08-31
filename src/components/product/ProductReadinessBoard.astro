@@ -2,6 +2,7 @@
 interface CapabilityRow {
   label: string;
   description: string;
+  status?: 'Available' | 'Private Beta' | 'Coming Soon';
 }
 
 interface SafetyContent {
@@ -18,6 +19,11 @@ interface Props {
 }
 
 const { slug, title, capabilities, safety } = Astro.props;
+const statusLabels: Record<NonNullable<CapabilityRow['status']>, string> = {
+  Available: 'Tersedia',
+  'Private Beta': 'Beta privat',
+  'Coming Soon': 'Segera hadir',
+};
 const headings: Record<string, string> = {
   'asisten-ai': 'Lihat apa yang dibaca sebelum mengikuti jawaban.',
   'dashboard-bisnis': 'Buka alasan di balik setiap prioritas.',
@@ -31,7 +37,7 @@ const headings: Record<string, string> = {
 };
 ---
 
-<section id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
+{capabilities.length > 0 && <section id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
   <div class="container pd-readiness__layout">
     <header class="pd-readiness__intro reveal">
       <h2 id="product-capabilities-title">{headings[slug] || `Lihat cara kerja ${title} sebelum mengandalkannya.`}</h2>
@@ -44,7 +50,7 @@ const headings: Record<string, string> = {
           <li style={`--i:${index}`}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <div>
-              <strong>{capability.label}</strong>
+              <strong>{capability.label}{capability.status && <small class="pd-readiness__status" data-status={capability.status}>{statusLabels[capability.status]}</small>}</strong>
               <p>{capability.description}</p>
             </div>
           </li>
@@ -64,4 +70,8 @@ const headings: Record<string, string> = {
       </aside>
     </div>
   </div>
-</section>
+</section>}
+
+<style is:inline>
+  .pd-readiness__status{display:inline-block;margin-left:8px;color:var(--teal);font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
+</style>

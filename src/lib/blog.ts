@@ -12,7 +12,8 @@ export type ArticleBodyBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'list'; ordered: boolean; items: string[] }
   | { type: 'quote'; text: string; attribution?: string }
-  | { type: 'image' | 'figure'; src: string; alt: string; width: number; height: number; caption?: string };
+  | { type: 'image' | 'figure'; src: string; alt: string; width: number; height: number; caption?: string }
+  | { type: 'html'; html: string };
 
 export type BlogPost = {
   id: string;
@@ -107,6 +108,16 @@ function parseBodyBlocks(value: unknown): ArticleBodyBlock[] {
       return { type, depth, text, slug };
     }
     if (type === 'paragraph') return { type, text: requiredText(block.text, `bodyBlocks[${index}].text`) };
+    if (type === 'html') {
+      const html = requiredText(block.html, `bodyBlocks[${index}].html`);
+      if (/<\s*(script|iframe|object|embed|form|input|textarea|button|style|link|meta|base)\b/i.test(html)) {
+        throw new Error(`CMS article bodyBlocks[${index}].html contains a blocked element`);
+      }
+      if (/\son[a-z]+\s*=|javascript\s*:|data\s*:/i.test(html)) {
+        throw new Error(`CMS article bodyBlocks[${index}].html contains unsafe attributes or URLs`);
+      }
+      return { type, html };
+    }
     if (type === 'list') return { type, ordered: block.ordered === true, items: textArray(block.items, `bodyBlocks[${index}].items`, 1) };
     if (type === 'quote') return { type, text: requiredText(block.text, `bodyBlocks[${index}].text`), attribution: optionalText(block.attribution) };
     if (type === 'image' || type === 'figure') return {

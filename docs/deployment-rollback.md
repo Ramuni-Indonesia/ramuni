@@ -23,7 +23,7 @@ npm run audit
 npm audit --audit-level=high
 ```
 
-For a production candidate, set the two production indexing variables explicitly in the deployment environment. Also set `PUBLIC_SITE_URL` to the approved final HTTPS origin and leave `PUBLIC_LEAD_ENDPOINT` empty until its service passes E2E and security review.
+For a production candidate, set the two production indexing variables explicitly in the deployment environment. Also set `PUBLIC_SITE_URL` to the approved final HTTPS origin (currently `https://www.ramuni.id`, the canonical host) and leave `PUBLIC_LEAD_ENDPOINT` empty until its service passes E2E and security review.
 
 Before promotion, record the Git SHA, dependency lockfile, environment name, page-level release flags, artifact digest, test output, responsive QA, Lighthouse result, and approvers. The current Git branch or a local successful build is not production deployment evidence.
 

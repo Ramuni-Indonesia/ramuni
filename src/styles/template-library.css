@@ -42,3 +42,18 @@
 @media(min-width:961px) and (max-width:1200px){.template-library-hero__grid{grid-template-columns:minmax(260px,1.16fr) minmax(340px,.84fr);gap:clamp(24px,3vw,40px)}.template-detail-hero__grid{grid-template-columns:minmax(260px,1.12fr) minmax(340px,.88fr);gap:clamp(24px,3vw,40px)}.template-library-hero__signal{width:100%;justify-self:stretch}}
 @media(max-width:1200px), (hover:none), (pointer:coarse){.template-catalog__card:hover .template-catalog__visual i,.template-catalog__card:focus-visible .template-catalog__visual i,.template-catalog__copy b span,.template-related__grid a:hover,.template-related__grid a:focus-visible{transform:none}.template-catalog__card:hover .template-catalog__visual i,.template-catalog__card:focus-visible .template-catalog__visual i{width:calc(88% - var(--line)*8%)}}
 @media(max-width:740px){.template-catalog__copy{min-height:0}}
+
+/* Templates are a file library, so the first screen should expose the
+   catalog rather than a decorative progress signal. */
+.template-library-hero.utility-masthead{padding-block:clamp(34px,5vw,64px)}
+.template-library-hero.utility-masthead .template-library-hero__grid{grid-template-columns:1fr;gap:0;align-items:start}
+.template-library-hero.utility-masthead> .container>div:first-child{max-width:72ch}
+.template-library-hero.utility-masthead h1{max-width:18ch;margin-top:14px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1}
+.template-library-hero.utility-masthead .lede{max-width:60ch;margin-top:18px;font-size:1rem;line-height:1.58}
+.template-detail-hero.utility-masthead{padding-block:clamp(34px,5vw,64px)}
+.template-detail-hero.utility-masthead .template-detail-hero__grid{gap:clamp(30px,6vw,74px);align-items:start}
+.template-detail-hero.utility-masthead .template-detail-hero__copy h1{max-width:18ch;margin-top:14px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1}
+.template-detail-hero.utility-masthead .template-detail-hero__copy .lede{max-width:60ch;margin-top:18px;font-size:1rem;line-height:1.58}
+.template-detail-hero.utility-masthead .template-detail-hero__copy .button-row{margin-top:22px}
+.template-detail-hero.utility-masthead .template-detail-hero__brief{margin-top:30px}
+@media(max-width:740px){.template-library-hero.utility-masthead,.template-detail-hero.utility-masthead{padding-block:34px 52px}.template-library-hero.utility-masthead h1,.template-detail-hero.utility-masthead .template-detail-hero__copy h1{font-size:clamp(2.15rem,10vw,3.1rem)}.template-detail-hero.utility-masthead .template-detail-hero__brief{margin-top:22px}}

@@ -62,8 +62,23 @@ const moneyLeadAllowed = !isBlogContext && (
   pathname === '/'
   || /^\/(produk|solusi|features|pricing|compare|faq|tentang|industri|untuk|roadmap|sumber-daya|panduan|template|kalkulator|kamus-bisnis|bantuan|keamanan)(\/|$)/.test(pathname)
 );
+// Resource and support pages already carry task-specific next steps (download,
+// calculate, read, or contact support). Keep the shared footer conversion
+// surface and timed lead popup off those routes so they do not compete with
+// the page's primary job.
+const isResourceSupportRoute = /^\/(sumber-daya|panduan|template|kalkulator|kamus-bisnis|bantuan|status)(\/|$)/.test(pathname);
 const moneyLeadExcluded = /^(\/kontak|\/tour-produk-gratis|\/terima-kasih|\/status|\/maintenance|\/404|\/500|\/masuk|\/demo|\/early-access)(\/|$)/.test(pathname);
-const showMoneyLead = chrome && moneyLeadAllowed && !moneyLeadExcluded;
+const utilityRoute = /^\/(faq|compare|roadmap|keamanan|tentang|privasi|syarat-penggunaan|pemrosesan-data)(\/|$)/.test(pathname);
+// Primary commercial templates already render their own closing action. A
+// second shared lead section after the footer repeats the same pitch and made
+// long pages especially noisy on mobile.
+const dedicatedCtaRoute = /^(\/|\/(produk|solusi|features|pricing|industri|untuk)(\/|$))/.test(pathname);
+const showMoneyLead = chrome && moneyLeadAllowed && !moneyLeadExcluded && !isResourceSupportRoute && !utilityRoute && !dedicatedCtaRoute;
+const showLeadPopup = chrome && !isResourceSupportRoute && !moneyLeadExcluded && !utilityRoute;
+// Keep the support chat available where escalation is the job of the page;
+// resource readers should not see a second floating conversion prompt beside
+// the tool, download, or glossary actions already in the content.
+const showFloatingContact = chrome && (!isResourceSupportRoute || /^(\/bantuan|\/status)(\/|$)/.test(pathname));
 const moneyLeadLocation = `money-site-${pathname.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'home'}`;
 const moneyLeadCopy = pathname.startsWith('/produk/') || pathname === '/produk/'
   ? { eyebrow: 'Lihat modul di pekerjaan Anda', title: 'Pilih bagian usaha yang ingin Anda rapikan.', body: 'Pilih penjualan, stok, keuangan, pelanggan, atau laporan. Tim RAMUNI memperlihatkan screen dan cara mulai yang sesuai.' }
@@ -186,22 +201,37 @@ const structuredDataDocument = structuredData.length > 0 ? {
     <meta name="twitter:image:alt" content={imageAlt} />
     <title>{fullTitle}</title>
     {releaseGates.environment === 'production' && <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="PsIaaBxnCUIP7WSPj21MOg" async></script>}
-    {pathname !== '/' && <style is:inline>.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px)!important}.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:clamp(42px,5vw,72px) 0 clamp(58px,7vw,96px)!important}@media(max-width:740px){.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero,.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:38px 0 56px!important}}</style>}
+    {pathname !== '/' && <style is:inline>.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero{padding:clamp(42px,5vw,72px) 0 clamp(62px,7vw,104px)!important}.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:clamp(42px,5vw,72px) 0 clamp(58px,7vw,96px)!important}.page-hero--compact,.utility-masthead{padding-block:clamp(34px,5vw,64px)!important}@media(max-width:740px){.page-hero,.article-hero,.category-hero,.author-hero,.search-page-hero,.price-hero,.demo-hero,.catalog-hero,.solution-hub-hero,.resource-hero,.calculator-hero,.guide-header,.glossary-header{padding:38px 0 56px!important}.page-hero--compact,.utility-masthead{padding-block:34px 52px!important}}</style>}
     <script is:inline>document.documentElement.classList.add('js');</script>
     {structuredDataDocument && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataDocument)} />}
   </head>
-  <body data-lead-popup-auto-open={chrome ? 'true' : 'false'} data-whatsapp-auto-open={chrome ? 'true' : 'false'} data-popup-context={popupContext}>
+  <body data-lead-popup-auto-open={showLeadPopup ? 'true' : 'false'} data-whatsapp-auto-open={showFloatingContact ? 'true' : 'false'} data-popup-context={popupContext}>
     <a class="skip-link" href="#main">Lewati ke konten</a>
     {chrome && <Header />}
     <main id="main"><slot /></main>
     {showMoneyLead && <MoneySiteLeadSection location={moneyLeadLocation} pageType="money-site-footer-lead" {...moneyLeadCopy} />}
     {chrome && <Footer />}
-    {chrome && <FloatingContact />}
-    {chrome && <LeadCapturePopup context={popupContext} />}
+    {showFloatingContact && <FloatingContact />}
+    {showLeadPopup && <LeadCapturePopup context={popupContext} />}
     <ClarityTracking />
     <ParallaxMotion />
     <script is:inline src="/scripts/reveal.js"></script>
     <script is:inline src="/scripts/mascot-motion.js"></script>
     {globalScrollMotionEnabled && <GlobalScrollMotion />}
+    <script is:inline>
+      (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const syncMotionPreference = () => {
+          document.querySelectorAll('video[autoplay]').forEach((video) => {
+            if (reduceMotion.matches) {
+              video.pause();
+              video.removeAttribute('autoplay');
+            }
+          });
+        };
+        syncMotionPreference();
+        reduceMotion.addEventListener?.('change', syncMotionPreference);
+      })();
+    </script>
   </body>
 </html>

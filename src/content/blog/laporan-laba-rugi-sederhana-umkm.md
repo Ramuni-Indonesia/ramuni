@@ -7,7 +7,7 @@ coverAlt: "Visual penjelas laporan laba rugi sederhana dengan pendapatan, biaya,
 coverWidth: 1200
 coverHeight: 675
 publishedAt: 2026-07-30
-updatedAt: 2026-08-10
+updatedAt: 2026-08-28
 category: "Keuangan UMKM"
 categorySlug: "keuangan-umkm"
 deliveryPriority: "P0"

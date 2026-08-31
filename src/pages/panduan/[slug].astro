@@ -108,7 +108,7 @@ const schema = [
   keywords={[guide.title, guide.query, 'panduan bisnis UMKM', 'RAMUNI']}
 >
   <article class:list={['learning-page', 'learning-detail', `learning-detail--${guide.visual}`]}>
-    <header class="learning-detail-hero">
+    <header class="learning-detail-hero utility-masthead">
       <div class="container learning-detail-hero__grid">
         <div class="learning-detail-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/panduan/">Panduan</a><span>/</span><span aria-current="page">{guide.title}</span></nav>
@@ -117,17 +117,6 @@ const schema = [
           <p class="learning-detail-hero__question">{guide.query}</p>
           <p class="lede">{guide.outcome} Mulai dari catatan yang sudah tersedia, lalu hentikan pemeriksaan jika konteksnya belum cukup.</p>
           <div class="button-row"><a class="button button--primary" href="#langkah">Mulai dari langkah pertama</a><a class="button button--secondary" href="#alat-terkait">Siapkan alat bantu</a></div>
-        </div>
-        <div class="learning-detail-visual reveal is-visible" aria-label={`Ilustrasi alur ${guide.title}`}>
-          <header><span>Mode pemeriksaan</span><strong>{guide.visual === 'stock' ? 'Stok harian' : guide.visual === 'cash' ? 'Arus kas' : 'Insight AI'}</strong></header>
-          <div class="learning-detail-visual__stage">
-            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="Muni menunjukkan alur dari catatan menuju langkah berikutnya" decoding="async" />
-            <div class="learning-detail-visual__board">
-              <small>Pertanyaan hari ini</small><strong>{guide.query}</strong>
-              <ol>{guide.steps.slice(0, 3).map((step, index) => <li><span>0{index + 1}</span><i aria-hidden="true"></i><b>{step.cue}</b></li>)}</ol>
-            </div>
-          </div>
-          <footer><span>Contoh edukatif</span><strong>Keputusan tetap diperiksa manusia</strong></footer>
         </div>
       </div>
     </header>

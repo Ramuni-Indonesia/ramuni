@@ -4,7 +4,6 @@ import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import type { HeroContextScene } from '../../components/HeroContextVisual.astro';
 import { industries, products, roles } from '../../data/site';
 import { productScreenSets } from '../../data/productScreens';
 import { releaseGates } from '../../config/release';
@@ -94,7 +93,6 @@ export function getStaticPaths() {
 }
 
 const { role } = Astro.props;
-const roleVisualScene = role.slug as HeroContextScene;
 const context = roleContext[role.slug];
 const roleSeo: Record<string, { title: string; description: string }> = {
   'pemilik-usaha': { title: 'Dashboard untuk Pemilik Usaha | RAMUNI', description: 'Bantu pemilik UMKM membaca perubahan penjualan, stok, kas, dan pekerjaan tim sebelum menentukan prioritas serta penanggung jawab.' },
@@ -104,6 +102,13 @@ const roleSeo: Record<string, { title: string; description: string }> = {
 };
 const seo = roleSeo[role.slug] || { title: `RAMUNI untuk ${role.title}`, description: role.summary };
 const canonicalPath = `/untuk/${role.slug}/`;
+const roleIntentBySlug: Record<string, string> = {
+  'pemilik-usaha': 'overview',
+  'admin-toko': 'catalog',
+  kasir: 'sales',
+  supervisor: 'report',
+};
+const roleConsultationHref = `/tour-produk-gratis/?flow=consultation&intent=${roleIntentBySlug[role.slug] || 'overview'}`;
 const relevantProducts = products.filter((product) => product.roles.includes(role.title)).slice(0, 4);
 const relatedIndustries = industries.filter((industry) => context.industrySlugs.includes(industry.slug));
 const roleScreens = ['admin-toko', 'kasir'].includes(role.slug)
@@ -134,7 +139,10 @@ const closingLinks = role.slug === 'kasir'
       { label: 'Buka Pusat Bantuan', href: '/bantuan/', className: 'button button--primary' },
       { label: 'Lihat Peran Pemilik', href: '/untuk/pemilik-usaha/', className: 'button button--secondary' },
     ]
-  : [{ label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' }];
+  : [
+      { label: role.ctaLabel, href: role.ctaHref, className: 'button button--primary' },
+      { label: 'Bahas kebutuhan', href: roleConsultationHref, className: 'button button--secondary' },
+    ];
 const roleUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
 const structuredData = {
   '@context': 'https://schema.org',
@@ -149,7 +157,7 @@ const structuredData = {
 ---
 <BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
-  <PageHero eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" visual="guide" visualScene={roleVisualScene} visualLabel={role.title} visualTitle="Tampilan mengikuti pekerjaan, izin, dan tindak lanjut peran." />
+  <PageHero compact eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" />
 
   <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
     <div class="container audience-split">

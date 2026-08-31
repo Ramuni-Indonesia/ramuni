@@ -5,14 +5,10 @@ import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro'
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import DriveCardCatalog from '../../components/DriveCardCatalog.astro';
-import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { products, roles, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { heroContextVisuals } from '../../data/dashboardVisuals';
 import { productScreenSets } from '../../data/productScreens';
-import { selectSaasEvidence } from '../../data/saasScreenshotSelectors';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
@@ -56,10 +52,6 @@ const productFaq = [
       </div>
     </section>
 
-    <div class="container">
-      <CommercialActionBar pageType="products" location="products_hero" eyebrow="Pilih modul dengan yakin" title="Lihat apa yang masuk dan apa yang Anda dapat." body="Buka demo untuk melihat alur produk, lalu bandingkan paket, pengguna, dan batas akses sebelum mulai." />
-    </div>
-
     <section id="product-system-connected" class="section surface product-system" aria-labelledby="product-system-title">
       <div class="container">
         <p class="section-kicker">Sistem yang terhubung</p>
@@ -80,15 +72,6 @@ const productFaq = [
       body="Screenshot penuh memperlihatkan ringkasan, arus kas, aktivitas, dan status data dalam satu layar yang bisa dibuka kembali."
       items={productScreenSets.overview}
       compact
-    />
-    <DriveCardCatalog id="produk-component-catalog" limit={2} eyebrow="Bukti modul" heading="Lihat keluaran tiap modul sebelum memilih." body="Card workspace menunjukkan bentuk ringkasan dan tindak lanjut yang akan Anda temui saat mencoba RAMUNI." />
-
-    <SaaSEvidenceCardRail
-      id="product-workspace-evidence"
-      eyebrow="Tampilan aktual workspace"
-      heading="Lihat area kerja sebelum memilih modul."
-      body="Buka ringkasan, penjualan, dan stok dalam tampilan yang sama agar keputusan paket tidak terasa abstrak."
-      entries={selectSaasEvidence('overview', 2)}
     />
 
     <section id="product-catalog" class="section product-catalog" aria-labelledby="product-catalog-title">

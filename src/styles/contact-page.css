@@ -33,3 +33,13 @@
 @media(max-width:1080px){.contact-conversion-page__layout{grid-template-columns:1fr}.contact-conversion-page__intro{position:static}}
 @media(max-width:640px){.contact-conversion-page__panel{padding:22px}.contact-conversion-page{padding-block:38px}.contact-conversion-links{display:grid}.contact-intent-board{grid-template-columns:1fr}.contact-intent-card{min-height:166px}.contact-safe-steps li{grid-template-columns:1fr;gap:6px}}
 @media(prefers-reduced-motion:reduce){.contact-conversion-links a,.contact-intent-card{transition:none}}
+
+/* Contact is a working form, so keep the opening context close to the first
+   field instead of making the form wait behind a full viewport hero. */
+.contact-conversion-page--utility{min-height:auto;align-items:start;padding-block:clamp(40px,6vw,78px)}
+.contact-conversion-page--utility .contact-conversion-page__layout{gap:clamp(34px,6vw,82px)}
+.contact-conversion-page--utility .contact-conversion-page__intro h1{max-width:20ch}
+.contact-conversion-page--utility .contact-conversion-page__intro .lede{margin-top:16px}
+.contact-conversion-page--utility .contact-conversion-page__safe{margin-top:22px}
+.contact-conversion-page--utility .contact-intent-board{margin-top:24px}
+@media(max-width:640px){.contact-conversion-page--utility{padding-block:38px}.contact-conversion-page--utility .contact-intent-board{margin-top:22px}}

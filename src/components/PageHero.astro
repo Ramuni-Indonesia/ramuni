@@ -14,6 +14,7 @@ interface Props {
   visualScene?: HeroContextScene;
   visualLabel?: string;
   visualTitle?: string;
+  compact?: boolean;
 }
 
 const {
@@ -28,10 +29,11 @@ const {
   visualScene,
   visualLabel = 'Contoh alur',
   visualTitle = 'Catatan dibaca bersama sebelum menentukan arah.',
+  compact = false,
 } = Astro.props;
 const resolvedScene = visualScene ?? (visual === 'evidence' ? 'industry-hub' : 'role-hub');
 ---
-<section class:list={['page-hero', { 'page-hero--visual': visual }]}>
+<section class:list={['page-hero', { 'page-hero--visual': visual, 'page-hero--compact': compact }]}>
   <div class:list={['container', 'reveal', 'is-visible', { 'page-hero__layout': visual }]}>
     <div class="page-hero__copy">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
@@ -56,6 +58,21 @@ const resolvedScene = visualScene ?? (visual === 'evidence' ? 'industry-hub' : '
   .page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:100%;min-width:0}
   .page-hero--visual h1{font-size:var(--type-h1);line-height:1.04;max-width:16ch;text-wrap:balance}
   .page-hero--visual .lede{max-width:48ch}
-  @media(max-width:1080px){.page-hero__layout{grid-template-columns:1fr}.page-hero--visual h1{max-width:15ch}.page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:min(720px,100%);justify-self:center}}
-  @media(min-width:961px) and (max-width:1200px){.page-hero__layout{grid-template-columns:minmax(260px,.82fr) minmax(430px,1.18fr);gap:30px}.page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:100%;min-height:410px;justify-self:stretch}}
+  .page-hero--visual.page-hero--compact h1{max-width:18ch;font-size:clamp(2.35rem,4.8vw,4.25rem)}
+  .page-hero--visual.page-hero--compact :global(.hero-context),.page-hero--visual.page-hero--compact :global(.support-hero){min-height:440px}
+  /* Keep tablet in one predictable layout range. The former 961-1080px
+     stack followed by a second two-column override squeezed hero copy into
+     the remaining space on large tablets. */
+  @media(min-width:960px) and (max-width:1199px){
+    .page-hero__layout{grid-template-columns:minmax(0,.94fr) minmax(320px,1.06fr);gap:32px}
+    .page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:100%;min-height:360px;justify-self:stretch}
+    .page-hero--visual h1{max-width:13ch}
+  }
+  @media(max-width:959px){
+    .page-hero__layout{grid-template-columns:1fr;gap:34px}
+    .page-hero--visual h1{max-width:15ch}
+    .page-hero__layout>:global(.hero-context),.page-hero__layout>:global(.support-hero){width:min(720px,100%);justify-self:center}
+    .page-hero--visual.page-hero--compact :global(.hero-context),.page-hero--visual.page-hero--compact :global(.support-hero){min-height:400px}
+  }
+  @media(max-width:620px){.page-hero--visual.page-hero--compact :global(.hero-context),.page-hero--visual.page-hero--compact :global(.support-hero){min-height:380px}}
 </style>

@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { industries, products } from '../../data/site';
 import '../../styles/other-pages-refinement.css';
 
@@ -33,7 +32,7 @@ const industryLens = industries.map((industry) => ({
 }));
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Lihat cara RAMUNI membantu retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil membaca data yang paling penting.">
-  <PageHero eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation" visual="evidence" visualScene="industry-hub" visualLabel="Data usaha" visualTitle="Pertanyaan yang sama dibaca berbeda sesuai ritme usaha." />
+  <PageHero compact eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />
 
   <section class="section industry-lens" aria-labelledby="industry-lens-title">
     <div class="container industry-lens__layout">
@@ -126,8 +125,6 @@ const industryLens = industries.map((industry) => ({
       </div>
     </div>
   </section>
-
-  <div class="container"><CommercialActionBar pageType="industries" location="industries_close" eyebrow="Pilih ritme usaha" title="Lihat demo sesuai cara bisnis Anda berjalan." body="Pilih industri untuk membaca skenario yang relevan, lalu periksa pricing atau bahas kebutuhan tim." /></div>
 
   <section class="section industry-hub__closing" id="cta" aria-labelledby="industry-cta-title">
     <div class="container reveal">

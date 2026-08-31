@@ -71,7 +71,7 @@ const schema = [
   keywords={['panduan bisnis UMKM', 'cara membaca stok', 'cara membaca arus kas', 'menilai insight AI', 'RAMUNI']}
 >
   <div class="learning-page learning-page--guide">
-    <header class="learning-hero">
+    <header class="learning-hero utility-masthead">
       <div class="container learning-hero__grid">
         <div class="learning-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Panduan</span></nav>
@@ -79,23 +79,6 @@ const schema = [
           <h1>Mulai dari pertanyaan yang mengganggu pekerjaan hari ini.</h1>
           <p class="lede">Pilih satu masalah, lihat angka yang perlu diperiksa, lalu tentukan langkah kecil berikutnya. Tidak perlu membaca semuanya sekaligus.</p>
           <div class="learning-hero__pills" aria-label="Topik panduan"><a href="#panduan-stok">Stok</a><a href="#panduan-kas">Arus kas</a><a href="#panduan-ai">Insight AI</a></div>
-        </div>
-
-        <div class="learning-guide-map reveal is-visible" data-guide-map>
-          <header><span>Peta pemeriksaan</span><small>Gunakan catatan yang tersedia</small></header>
-          <div class="learning-guide-map__tabs" role="tablist" aria-label="Contoh alur panduan">
-            {guides.map((guide, index) => <button type="button" role="tab" id={`guide-map-tab-${guide.visual}`} aria-controls={`guide-map-panel-${guide.visual}`} aria-selected={index === 0 ? 'true' : 'false'} data-guide-map-tab={guide.visual}>{guide.visual === 'stock' ? 'Stok' : guide.visual === 'cash' ? 'Kas' : 'Insight AI'}</button>)}
-          </div>
-          <div class="learning-guide-map__stage">
-            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="Muni membantu menunjukkan urutan pemeriksaan bisnis" decoding="async" />
-            {guides.map((guide, index) => <section role="tabpanel" id={`guide-map-panel-${guide.visual}`} aria-labelledby={`guide-map-tab-${guide.visual}`} data-guide-map-panel={guide.visual} hidden={index !== 0}>
-              <small>{guide.question}</small>
-              <h2>{guide.title}</h2>
-              <ol>{guide.signals.map((signal, signalIndex) => <li><span>0{signalIndex + 1}</span><strong>{signal}</strong></li>)}</ol>
-              <a href={`/panduan/${guide.slug}/`}>Buka alur lengkap <span aria-hidden="true">→</span></a>
-            </section>)}
-          </div>
-          <footer><span>Catatan</span><strong>→</strong><span>Bukti</span><strong>→</strong><span>Langkah</span></footer>
         </div>
       </div>
     </header>
@@ -135,24 +118,4 @@ const schema = [
     </section>
   </div>
 
-  <script>
-    document.querySelectorAll<HTMLElement>('[data-guide-map]').forEach((map) => {
-      const tabs = Array.from(map.querySelectorAll<HTMLButtonElement>('[data-guide-map-tab]'));
-      const panels = Array.from(map.querySelectorAll<HTMLElement>('[data-guide-map-panel]'));
-      const activate = (id: string) => {
-        tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.guideMapTab === id)));
-        panels.forEach((panel) => { panel.hidden = panel.dataset.guideMapPanel !== id; });
-      };
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activate(tab.dataset.guideMapTab || 'stock'));
-        tab.addEventListener('keydown', (event) => {
-          if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
-          event.preventDefault();
-          const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
-          tabs[nextIndex]?.focus();
-          activate(tabs[nextIndex]?.dataset.guideMapTab || 'stock');
-        });
-      });
-    });
-  </script>
 </BaseLayout>

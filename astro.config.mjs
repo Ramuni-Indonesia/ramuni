@@ -5,7 +5,10 @@ import { ramuniSitemapArchitecture } from './scripts/sitemap-architecture.mjs';
 
 const mode = process.env.NODE_ENV || 'production';
 const env = loadEnv(mode, process.cwd(), '');
-const site = env.PUBLIC_SITE_URL || 'https://ramuni.id';
+// www is the canonical production host (the apex redirects there at the edge).
+// Keeping the build default aligned prevents canonical/sitemap drift when the
+// deployment environment does not inject PUBLIC_SITE_URL.
+const site = env.PUBLIC_SITE_URL || 'https://www.ramuni.id';
 const publicEnvironment = resolvePublicEnvironment(env);
 
 export default defineConfig({

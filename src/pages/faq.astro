@@ -2,14 +2,49 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../components/CommercialAnalytics.astro';
-import CommercialProofShowcase from '../components/CommercialProofShowcase.astro';
 import { faqItems } from '../data/commercial';
 import { pageLastmods } from '../data/pageLastmods';
 import '../styles/commercial-pages.css';
 const origin = new URL('/', Astro.site || Astro.url.origin).origin;
 const canonical = new URL('/faq/', origin).toString();
+const faqCategories = [
+  { label: 'Harga & trial', query: 'harga trial paket biaya' },
+  { label: 'Data & keamanan', query: 'data aman sensitif AI keputusan' },
+  { label: 'Tim & akses', query: 'karyawan pengguna role akses' },
+  { label: 'Mulai memakai', query: 'mulai setup konsultasi bisnis' },
+];
 const schema = [{ '@context': 'https://schema.org', '@type': 'FAQPage', '@id': canonical, url: canonical, mainEntity: faqItems.map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })), dateModified: pageLastmods.commercial, inLanguage: 'id-ID' }, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: origin + '/' }, { '@type': 'ListItem', position: 2, name: 'FAQ', item: canonical }] }];
 ---
 <BaseLayout title="FAQ RAMUNI: Harga, Trial, Data, dan AI" description="Temukan jawaban tentang harga, trial, batas paket, data, AI, dan penggunaan RAMUNI untuk UMKM." canonical="/faq/" schema={schema}>
-  <div class="commercial-page" data-commercial-page="faq"><section class="commercial-hero"><div class="container commercial-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'FAQ' }]} /><p class="section-kicker">Pertanyaan sebelum mulai</p><h1>Harga, trial, data, dan AI. Jawabannya ada di sini.</h1></div><div class="commercial-hero__aside"><p>Periksa cara kerja, batas paket, penggunaan AI, dan langkah mulai sebelum mengisi form.</p><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="faq_hero" data-destination="consultation">Konsultasi</a></div></div></section><CommercialProofShowcase id="faq-product-proof" eyebrow="Lihat bentuknya" heading="Lihat workspace sebelum membaca batasnya." body="Tampilan dasar membantu Anda memahami pekerjaan yang dibahas. FAQ menjelaskan paket, trial, data, dan cara memulainya." focus="overview" location="faq_product_proof" /><section class="commercial-section commercial-section--white"><div class="container faq-layout"><header><p class="section-kicker">FAQ RAMUNI</p><h2>Butuh jawaban untuk kondisi usaha Anda?</h2><p style="margin-top:18px;color:var(--ink-72)">Jika pertanyaan Anda belum ada di sini, isi kontak singkat. Jangan kirim data pelanggan, password, token, atau informasi sensitif.</p></header><div class="faq-list">{faqItems.map((item, index) => <details data-faq-question={`faq-${index + 1}`}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section><section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Masih ragu?</p><h2>Lihat jalur yang paling dekat dengan usaha Anda.</h2><p>Tim RAMUNI membantu mencocokkan masalah, modul, dan paket tanpa meminta data sensitif.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href="https://app.ramuni.id/" data-analytics-event="free_trial_click" data-analytics-location="faq_final" data-destination="app">Coba gratis</a><a class="button button--secondary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="faq_final" data-destination="consultation">Konsultasi</a></div></div></div></section></div><CommercialAnalytics />
+  <div class="commercial-page" data-commercial-page="faq">
+    <section class="commercial-hero commercial-hero--utility utility-masthead"><div class="container commercial-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'FAQ' }]} /><p class="section-kicker">Pertanyaan sebelum mulai</p><h1>Harga, trial, data, dan AI. Jawabannya ada di sini.</h1></div><div class="commercial-hero__aside"><p>Periksa cara kerja, batas paket, penggunaan AI, dan langkah mulai sebelum mengisi form.</p><a class="button button--primary" href="#faq-search" data-analytics-event="faq_scan" data-analytics-location="faq_hero">Cari jawaban</a></div></div></section>
+    <section class="commercial-section commercial-section--white" aria-labelledby="faq-title"><div class="container faq-layout faq-layout--search" data-faq-search-root><header><p class="section-kicker">FAQ RAMUNI</p><h2 id="faq-title">Cari jawaban tanpa membaca semua accordion.</h2><p>Jika pertanyaan Anda belum ada, isi kontak singkat. Jangan kirim data pelanggan, password, token, atau informasi sensitif.</p><label class="faq-search-box" for="faq-search"><span>Cari pertanyaan</span><input id="faq-search" type="search" placeholder="Contoh: harga, AI, data, karyawan" data-faq-search /></label><div class="faq-chip-row" aria-label="Topik FAQ">{faqCategories.map((category) => <button type="button" data-faq-chip={category.query}>{category.label}</button>)}</div></header><div><div class="faq-list">{faqItems.map((item, index) => <details data-faq-question={`faq-${index + 1}`} data-faq-text={`${item.question} ${item.answer}`} open={index === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div><p class="faq-empty" data-faq-empty hidden>Tidak ada jawaban yang cocok. Coba kata lain atau hubungi tim RAMUNI.</p></div></div></section>
+    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Masih ragu?</p><h2>Lihat jalur yang paling dekat dengan usaha Anda.</h2><p>Tim RAMUNI membantu mencocokkan masalah, modul, dan paket tanpa meminta data sensitif.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="faq_final" data-destination="consultation">Konsultasi</a><a class="text-link" href="/pricing/">Bandingkan paket</a></div></div></div></section>
+  </div><CommercialAnalytics />
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-faq-search-root]');
+      if (!root) return;
+      const input = root.querySelector('[data-faq-search]');
+      const items = [...root.querySelectorAll('[data-faq-question]')];
+      const empty = root.querySelector('[data-faq-empty]');
+      const apply = () => {
+        const query = String(input?.value || '').trim().toLowerCase();
+        let visible = 0;
+        items.forEach((item) => {
+          const match = !query || String(item.dataset.faqText || '').toLowerCase().includes(query);
+          item.hidden = !match;
+          if (match) visible += 1;
+        });
+        if (empty) empty.hidden = visible > 0;
+      };
+      root.querySelectorAll('[data-faq-chip]').forEach((button) => button.addEventListener('click', () => {
+        if (input) input.value = button.dataset.faqChip || '';
+        apply();
+        input?.focus();
+      }));
+      input?.addEventListener('input', apply);
+      apply();
+    })();
+  </script>
 </BaseLayout>

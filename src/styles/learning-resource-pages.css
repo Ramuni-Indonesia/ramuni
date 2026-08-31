@@ -61,3 +61,40 @@
 .glossary-search-panel__input button,.glossary-search-panel__filters button{min-height:44px}
 @media(min-width:961px) and (max-width:1200px){.learning-hero__grid,.learning-detail-hero__grid,.glossary-detail-hero__grid{grid-template-columns:minmax(260px,.93fr) minmax(430px,1.07fr);gap:clamp(24px,3vw,42px)}.learning-guide-map,.glossary-map,.learning-detail-visual,.term-visual{width:100%;justify-self:stretch}}
 @media(max-width:1200px), (hover:none), (pointer:coarse){.learning-hero__pills a:hover,.learning-hero__pills a:focus-visible,.learning-guide-card:hover,.learning-guide-card:focus-visible,.learning-related-card:hover,.learning-related-card:focus-visible,.learning-close__cards a:hover,.learning-close__cards a:focus-visible,.glossary-map__node:hover,.glossary-map__node:focus-visible,.term-related__rail a:hover,.term-related__rail a:focus-visible{transform:none}}
+
+/* Give each learning route a distinct closing beat while keeping the shared
+   CTA structure and the five approved RAMUNI colours intact. */
+.learning-page{--learning-close-stage:var(--yellow);--learning-close-surface:var(--rice)}
+.learning-page--guide{--learning-close-stage:var(--teal);--learning-close-surface:var(--white)}
+.learning-page--glossary{--learning-close-stage:var(--ink);--learning-close-surface:var(--yellow)}
+.learning-detail--stock{--learning-close-stage:var(--yellow)}
+.learning-detail--cash{--learning-close-stage:var(--teal)}
+.learning-detail--ai{--learning-close-stage:var(--ink)}
+.learning-close-stage{background:var(--learning-close-stage)}
+.learning-close{background:var(--learning-close-surface)}
+.learning-page--glossary .learning-close .section-kicker{color:var(--teal)}
+
+/* The glossary is a lookup surface. Keep its opening copy compact so the
+   search ledger appears immediately below the promise. */
+.learning-glossary-hero.utility-masthead{padding-block:clamp(34px,5vw,64px)}
+.learning-glossary-hero.utility-masthead .learning-hero__grid,.glossary-detail-hero.utility-masthead .glossary-detail-hero__grid{grid-template-columns:1fr;gap:0;align-items:start}
+.learning-glossary-hero.utility-masthead .learning-hero__copy,.glossary-detail-hero.utility-masthead .glossary-detail-hero__copy{max-width:72ch}
+.learning-glossary-hero.utility-masthead .learning-hero__copy h1,.glossary-detail-hero.utility-masthead .glossary-detail-hero__copy h1{max-width:18ch;margin-top:14px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1}
+.learning-glossary-hero.utility-masthead .learning-hero__copy .lede,.glossary-detail-hero.utility-masthead .glossary-detail-hero__definition{max-width:60ch;margin-top:18px;font-size:1rem;line-height:1.58}
+.learning-glossary-hero.utility-masthead .learning-hero__copy>.button,.glossary-detail-hero.utility-masthead .button-row{margin-top:22px}
+@media(max-width:680px){.learning-glossary-hero.utility-masthead .learning-hero__copy h1,.glossary-detail-hero.utility-masthead .glossary-detail-hero__copy h1{font-size:clamp(2.15rem,10vw,3.1rem)}}
+
+.learning-hero.utility-masthead .learning-hero__grid,
+.learning-detail-hero.utility-masthead .learning-detail-hero__grid{grid-template-columns:1fr;gap:0;align-items:start}
+.learning-hero.utility-masthead .learning-hero__copy,
+.learning-detail-hero.utility-masthead .learning-detail-hero__copy{max-width:72ch}
+.learning-hero.utility-masthead .learning-hero__copy h1,
+.learning-detail-hero.utility-masthead .learning-detail-hero__copy h1{max-width:18ch;margin-top:14px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1}
+.learning-hero.utility-masthead .learning-hero__copy .lede,
+.learning-detail-hero.utility-masthead .learning-detail-hero__copy .lede{max-width:60ch;margin-top:18px;font-size:1rem;line-height:1.58}
+.learning-hero.utility-masthead .learning-hero__pills,
+.learning-detail-hero.utility-masthead .button-row{margin-top:22px}
+@media(max-width:680px){
+  .learning-hero.utility-masthead .learning-hero__copy h1,
+  .learning-detail-hero.utility-masthead .learning-detail-hero__copy h1{font-size:clamp(2.15rem,10vw,3.1rem)}
+}

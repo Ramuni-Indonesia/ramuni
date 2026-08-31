@@ -7,7 +7,7 @@ coverAlt: "Dua pekerja toko menghitung persediaan di rak sambil mengisi daftar p
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-10
+updatedAt: 2026-08-28
 category: "Stok & Inventori"
 categorySlug: "stok-inventori"
 deliveryPriority: "P2"

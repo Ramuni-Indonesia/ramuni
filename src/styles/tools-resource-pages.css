@@ -35,3 +35,14 @@
 @media(max-width:620px){.tools-hero__copy h1,.tool-detail-hero__copy h1{font-size:clamp(2.35rem,10.5vw,3.2rem)}}
 @media(min-width:961px) and (max-width:1200px){.tools-hero__grid,.tool-detail-hero__grid{grid-template-columns:minmax(260px,.8fr) minmax(430px,1.2fr);gap:clamp(24px,3vw,42px)}.tools-hero__copy,.tool-detail-hero__copy{max-width:none}.tools-hero__lab,.tool-detail-hero__visual{width:100%;justify-self:stretch}}
 @media(max-width:1200px), (hover:none), (pointer:coarse){.tool-card:hover,.tool-card:focus-visible,.tool-card:hover>b i,.tools-crosslink__grid a:hover,.tools-crosslink__grid a:focus-visible,.tool-related__grid a:hover,.tool-related__grid a:focus-visible{transform:none}}
+
+/* Resource entry points are utility headers: put the question and the tool
+   first, then let the catalog/workspace carry the visual weight. */
+.tools-hero--utility,.tool-detail-hero--utility{padding-block:clamp(34px,5vw,64px)}
+.tools-hero--utility .tools-hero__grid,.tool-detail-hero--utility .tool-detail-hero__grid{grid-template-columns:1fr;gap:0;align-items:start}
+.tools-hero--utility .tools-hero__copy,.tool-detail-hero--utility .tool-detail-hero__copy{max-width:72ch}
+.tools-hero--utility .tools-hero__copy h1,.tool-detail-hero--utility .tool-detail-hero__copy h1{max-width:18ch;margin-top:14px;font-size:clamp(2.2rem,5vw,4.1rem);line-height:1}
+.tools-hero--utility .tools-hero__copy .lede,.tool-detail-hero--utility .tool-detail-hero__copy .lede{max-width:60ch;margin-top:18px;font-size:1rem;line-height:1.58}
+.tools-hero--utility .tools-hero__copy .button-row,.tool-detail-hero--utility .tool-detail-hero__copy>.button{margin-top:22px}
+.tool-detail-hero--utility .tool-detail-hero__intent{margin-top:16px}
+@media(max-width:620px){.tools-hero--utility .tools-hero__copy h1,.tool-detail-hero--utility .tool-detail-hero__copy h1{font-size:clamp(2.15rem,10vw,3.1rem)}.tools-hero--utility .tools-hero__copy .button-row,.tools-hero--utility .tools-hero__copy .button,.tool-detail-hero--utility .tool-detail-hero__copy>.button{width:100%}}

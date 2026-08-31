@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../components/CommercialAnalytics.astro';
-import CommercialProofShowcase from '../components/CommercialProofShowcase.astro';
 import { capabilityStatusLabel, pricingPlans, pricingRows } from '../data/commercial';
 import { appCta, consultationCta } from '../data/site';
 import { pageLastmods } from '../data/pageLastmods';
@@ -33,18 +32,9 @@ const limitRows = [
     <section class="commercial-hero">
       <div class="container commercial-hero__grid">
         <div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Harga' }]} /><p class="section-kicker">Paket RAMUNI</p><h1>Pilih paket berdasarkan cara tim Anda bekerja.</h1></div>
-        <div class="commercial-hero__aside"><p>Bandingkan harga, pengguna, fitur, dan batasnya sebelum mulai. RAMUNI membantu Anda memilih ruang kerja yang sesuai dengan tahap usaha.</p><div class="button-row"><a class="button button--primary" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location="pricing_hero" data-destination="app">{appCta.label}</a><a class="button button--secondary" href={consultationCta.href} data-analytics-event="demo_request" data-analytics-location="pricing_hero" data-destination="consultation">Lihat demo</a></div><p class="commercial-hero__note">Tidak perlu kartu kredit untuk membuka workspace. Harga dan batas paket mengikuti konfigurasi komersial RAMUNI.</p></div>
+        <div class="commercial-hero__aside"><p>Bandingkan harga, pengguna, fitur, dan batasnya sebelum mulai. RAMUNI membantu Anda memilih ruang kerja yang sesuai dengan tahap usaha.</p><div class="button-row"><a class="button button--primary" href="#plans-title" data-analytics-event="pricing_scan" data-analytics-location="pricing_hero">Lihat paket</a><a class="text-link" href={consultationCta.href} data-analytics-event="demo_request" data-analytics-location="pricing_hero" data-destination="consultation">Butuh bantuan memilih?</a></div><p class="commercial-hero__note">Tidak perlu kartu kredit untuk membuka workspace. Harga dan batas paket mengikuti konfigurasi komersial RAMUNI.</p></div>
       </div>
     </section>
-
-    <CommercialProofShowcase
-      id="pricing-product-proof"
-      eyebrow="Bukti sebelum paket"
-      heading="Lihat pekerjaan yang Anda dapat sebelum membandingkan harga."
-      body="Harga menjawab akses. Tampilan di bawah memperlihatkan bentuk pekerjaan yang dapat dibaca bersama tim Anda."
-      focus="overview"
-      location="pricing_product_proof"
-    />
 
     <section class="commercial-section commercial-section--white" aria-labelledby="plans-title">
       <div class="container">

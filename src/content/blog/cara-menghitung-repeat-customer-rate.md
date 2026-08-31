@@ -7,7 +7,7 @@ coverAlt: "Pemilik toko menyambut pelanggan yang kembali sambil meninjau catatan
 coverWidth: 640
 coverHeight: 360
 publishedAt: 2026-08-09
-updatedAt: 2026-08-22
+updatedAt: 2026-08-28
 category: "Pelanggan & CRM"
 categorySlug: "pelanggan-crm"
 deliveryPriority: "P1"

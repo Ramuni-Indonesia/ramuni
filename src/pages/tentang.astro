@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import CommercialActionBar from '../components/CommercialActionBar.astro';
-import CommercialProofShowcase from '../components/CommercialProofShowcase.astro';
 import { releaseGates } from '../config/release';
 import '../styles/section-variance.css';
 import '../styles/other-pages-refinement.css';
@@ -31,23 +29,14 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
   schema={{
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': 'https://ramuni.id/#organization',
+    '@id': 'https://www.ramuni.id/#organization',
     name: 'RAMUNI',
-    url: 'https://ramuni.id/',
-    logo: 'https://ramuni.id/brand/ramuni-lockup-horizontal-color-tight.webp',
+    url: 'https://www.ramuni.id/',
+    logo: 'https://www.ramuni.id/brand/ramuni-lockup-horizontal-color-tight.webp',
     description: 'AI Business Companion untuk membantu UMKM memahami bisnis dan menentukan perhatian berikutnya.',
   }}
 >
-  <PageHero eyebrow="Tentang RAMUNI" title="Kami membuat angka usaha lebih mudah dipahami." description="RAMUNI berarti Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membantu pemilik usaha membaca penjualan, stok, kas, dan pelanggan dengan bahasa yang dekat dengan pekerjaan sehari-hari." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Lihat Produk" secondaryHref="/produk/" />
-
-  <CommercialProofShowcase
-    id="about-product-proof"
-    eyebrow="Bukti di balik prinsip"
-    heading="Prinsipnya terlihat dari cara workspace membaca perubahan."
-    body="Kami tidak ingin halaman Tentang berhenti pada filosofi. Lihat bentuk produk yang menjadi dasar cara kerja RAMUNI."
-    focus="overview"
-    location="about_product_proof"
-  />
+  <PageHero compact eyebrow="Tentang RAMUNI" title="Kami membuat angka usaha lebih mudah dipahami." description="RAMUNI berarti Meramu Insight untuk Menavigasi Bisnis Indonesia. Kami membantu pemilik usaha membaca penjualan, stok, kas, dan pelanggan dengan bahasa yang dekat dengan pekerjaan sehari-hari." primaryLabel="Lihat Cara Kami Bekerja" primaryHref="#cara-bekerja" secondaryLabel="Lihat Produk" secondaryHref="/produk/" />
 
   <section class="section company-story" id="masalah" aria-labelledby="story-title">
     <div class="container company-story__layout">
@@ -123,11 +112,10 @@ const mascotSrc = releaseGates.mascotExplorationEnabled
   <section class="section company-page__status" id="status-produk" aria-labelledby="status-title">
     <div class="container company-status-grid">
       <div><p class="eyebrow">Transparansi produk</p><h2 id="status-title">Yang sudah tersedia, dan yang kami sempurnakan berikutnya.</h2><p>Setiap fitur yang ditampilkan memiliki alur, akses, dan batas penggunaan yang dapat diperiksa.</p></div>
-      <div class="company-status-columns"><div><span>Dapat diperiksa sekarang</span><ul><li>Workspace penjualan, stok, kas, dashboard dasar, dan Web Builder subdomain pada cakupan rilis saat ini.</li><li>AI read-only terbatas dengan periode dan sumber yang perlu diverifikasi.</li><li>Jalur konsultasi dan workspace aplikasi berjalan terpisah sesuai kebutuhan.</li></ul></div><div><span>Dalam penyempurnaan</span><ul><li>Domain custom, Knowledge OS, Omnichannel, dan automasi pelanggan dibuka bertahap sesuai paket.</li><li>Kolaborasi tim, integrasi, laporan lanjutan, dan billing terus divalidasi.</li><li>Urutan pengerjaan dapat dilihat di halaman roadmap publik.</li></ul></div></div>
+      <div class="company-status-columns"><div><span>Dapat diperiksa sekarang</span><ul><li>Workspace penjualan, stok, kas, dan dashboard dasar pada cakupan rilis saat ini.</li><li>AI read-only terbatas dengan periode dan sumber yang perlu diverifikasi.</li><li>Jalur konsultasi dan workspace aplikasi berjalan terpisah sesuai kebutuhan.</li></ul></div><div><span>Dalam penyempurnaan</span><ul><li>Knowledge OS, Web Builder, domain custom, Omnichannel, dan automasi pelanggan dibuka bertahap sesuai approval rilis.</li><li>Kolaborasi tim, integrasi, laporan lanjutan, dan billing terus divalidasi.</li><li>Urutan pengerjaan dapat dilihat di halaman roadmap publik.</li></ul></div></div>
     </div>
   </section>
 
-  <div class="container"><CommercialActionBar pageType="about" location="about_close" eyebrow="Kenali cara kerja kami" title="Lihat demo, pricing, atau bahas kebutuhan usaha Anda." body="Kami menunjukkan alur yang relevan tanpa meminta data bisnis sensitif sebelum Anda memilih cara mulai." /></div>
 </BaseLayout>
 
 <style>

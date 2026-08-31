@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CommercialActionBar from '../../components/CommercialActionBar.astro';
 import { releaseGates } from '../../config/release';
 import { glossaryTerms } from '../../data/glossaryTerms';
 import '../../styles/learning-resource-pages.css';
@@ -42,7 +41,7 @@ const schema = [
   keywords={['kamus bisnis UMKM', 'arti omzet', 'arti laba', 'arti HPP', 'biaya tetap dan variabel', 'margin kontribusi', 'arti SKU', 'lead time stok', 'RAMUNI']}
 >
   <div class="learning-page learning-page--glossary">
-    <header class="learning-hero learning-glossary-hero">
+    <header class="learning-hero learning-glossary-hero utility-masthead">
       <div class="container learning-hero__grid">
         <div class="learning-hero__copy reveal is-visible">
           <nav class="breadcrumbs" aria-label="Jejak navigasi"><a href="/">Beranda</a><span>/</span><a href="/sumber-daya/">Sumber Daya</a><span>/</span><span aria-current="page">Kamus Bisnis</span></nav>
@@ -52,18 +51,6 @@ const schema = [
           <a class="button button--primary" href="#cari-istilah">Cari istilah</a>
         </div>
 
-        <div class="glossary-map reveal is-visible" aria-label="Peta hubungan istilah bisnis">
-          <header><span>Peta istilah</span><small>Angka saling terhubung</small></header>
-          <div class="glossary-map__stage">
-            <div class="glossary-map__orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-            <a href="/kamus-bisnis/omzet/" class="glossary-map__node glossary-map__node--revenue"><small>Penjualan</small><strong>Omzet</strong></a>
-            <a href="/kamus-bisnis/hpp/" class="glossary-map__node glossary-map__node--cost"><small>Biaya barang</small><strong>HPP</strong></a>
-            <a href="/kamus-bisnis/arus-kas/" class="glossary-map__node glossary-map__node--cash"><small>Waktu uang</small><strong>Arus kas</strong></a>
-            <a href="/kamus-bisnis/stok-pengaman/" class="glossary-map__node glossary-map__node--stock"><small>Cadangan</small><strong>Stok pengaman</strong></a>
-            <img src="/website-original/ramuni-mascot-muni-manyar.webp" width="720" height="720" alt="Muni membantu menghubungkan istilah bisnis" decoding="async" />
-          </div>
-          <footer><span>Definisi</span><strong>→</strong><span>Contoh</span><strong>→</strong><span>Penggunaan</span></footer>
-        </div>
       </div>
     </header>
 
@@ -102,7 +89,6 @@ const schema = [
         <div><p class="section-kicker">Sudah paham istilahnya?</p><h2>Coba istilah itu dengan angka contoh.</h2><p>Buka kalkulator untuk melihat rumusnya atau panduan untuk mengikuti urutan pemeriksaan.</p><div class="button-row"><a class="button button--primary" href="/kalkulator/">Buka kalkulator</a><a class="button button--secondary" href="/panduan/">Baca panduan</a></div></div>
       </div>
     </section>
-    <div class="container"><CommercialActionBar pageType="glossary" location="glossary_index" eyebrow="Samakan bahasa bisnis" title="Dari istilah ke cara kerja yang bisa diuji." body="Kamus membantu memahami definisi. Lihat demo untuk memeriksa bagaimana konteks, sumber, dan langkah berikutnya disusun." /></div>
   </div>
 
   <script>

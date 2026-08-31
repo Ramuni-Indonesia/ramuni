@@ -2,14 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
-import MarketingFeatureCardGrid from '../../components/MarketingFeatureCardGrid.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import SaaSEvidenceCardRail from '../../components/SaaSEvidenceCardRail.astro';
 import { capabilityStatusLabel, featureDetails } from '../../data/commercial';
 import { appCta, consultationCta } from '../../data/site';
-import { marketingFeatureCards } from '../../data/marketingFeatureCards';
 import { productScreenSets } from '../../data/productScreens';
-import { selectSaasEvidenceByFamily } from '../../data/saasScreenshotSelectors';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
@@ -17,6 +13,19 @@ export function getStaticPaths() {
   return featureDetails.map((feature) => ({ params: { slug: feature.slug }, props: { feature } }));
 }
 const { feature } = Astro.props;
+const featureIsComingSoon = feature.status === 'Coming soon';
+const featureIntentBySlug: Record<string, string> = {
+  'ai-copilot': 'overview',
+  'profit-intelligence': 'finance',
+  omnichannel: 'customer',
+  'web-builder': 'overview',
+  'knowledge-os': 'report',
+};
+const featureConsultationHref = `${consultationCta.href}&intent=${featureIntentBySlug[feature.slug] || 'overview'}&feature=${feature.slug}`;
+const featurePrimaryCta = featureIsComingSoon ? { ...consultationCta, href: featureConsultationHref } : appCta;
+const featurePrimaryLabel = featureIsComingSoon ? 'Konsultasikan kebutuhan' : appCta.label;
+const featurePrimaryEvent = featureIsComingSoon ? 'demo_request' : 'free_trial_click';
+const featurePrimaryDestination = featureIsComingSoon ? 'consultation' : 'app';
 const origin = new URL('/', Astro.site || Astro.url.origin).origin;
 const canonical = new URL(`/features/${feature.slug}/`, origin).toString();
 const screenSet = feature.slug === 'profit-intelligence'
@@ -52,12 +61,6 @@ const featureFlow: Record<string, Array<{ label: string; title: string; text: st
   ],
 };
 const flow = featureFlow[feature.slug] || featureFlow['ai-copilot'];
-const featureCard = marketingFeatureCards.filter((card) => card.slug === feature.slug);
-const featureScreenshotFamily: Record<string, string> = {
-  'ai-copilot': 'ai', 'profit-intelligence': 'finance', omnichannel: 'customers',
-  'web-builder': 'workspace', 'knowledge-os': 'workspace',
-};
-const featureEvidence = selectSaasEvidenceByFamily(featureScreenshotFamily[feature.slug] || 'workspace', 2);
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: `${feature.name} | Fitur RAMUNI`, description: feature.summary, dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: origin + '/' }, { '@type': 'ListItem', position: 2, name: 'Fitur', item: origin + '/features/' }, { '@type': 'ListItem', position: 3, name: feature.name, item: canonical }] },
@@ -65,7 +68,7 @@ const schema = [
 ---
 <BaseLayout title={`${feature.name} | Fitur RAMUNI`} description={feature.summary} canonical={`/features/${feature.slug}/`} schema={schema} pageType="WebPage">
   <div class="commercial-page" data-commercial-page="feature" data-feature-slug={feature.slug}>
-    <section class="feature-detail-hero"><div class="container feature-detail-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Fitur', href: '/features/' }, { label: feature.name }]} /><p class="section-kicker">{feature.eyebrow}</p><h1>{feature.name}</h1></div><div class="feature-detail-hero__aside"><span class="status-chip" data-status={feature.status}>{capabilityStatusLabel(feature.status)}</span><p>{feature.statusNote}</p><div class="button-row"><a class="button button--primary" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location="feature_hero" data-feature={feature.slug} data-destination="app">{appCta.label}</a><a class="button button--secondary" href={feature.relatedHref}>{feature.relatedLabel}</a></div></div></div></section>
+    <section class="feature-detail-hero"><div class="container feature-detail-hero__grid"><div><Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Fitur', href: '/features/' }, { label: feature.name }]} /><p class="section-kicker">{feature.eyebrow}</p><h1>{feature.name}</h1></div><div class="feature-detail-hero__aside"><span class="status-chip" data-status={feature.status}>{capabilityStatusLabel(feature.status)}</span><p>{feature.statusNote}</p><div class="button-row"><a class="button button--primary" href={featurePrimaryCta.href} data-analytics-event={featurePrimaryEvent} data-analytics-location="feature_hero" data-feature={feature.slug} data-destination={featurePrimaryDestination}>{featurePrimaryLabel}</a><a class="button button--secondary" href={feature.relatedHref}>{feature.relatedLabel}</a></div></div></div></section>
     <ProductScreenshotRail
       id={`feature-${feature.slug}-screens`}
       eyebrow="Screen pembanding"
@@ -73,13 +76,6 @@ const schema = [
       body="Lihat area kerja yang relevan untuk fitur ini, lalu coba alurnya dengan data usaha Anda."
       items={screenSet}
       compact
-    />
-    <SaaSEvidenceCardRail
-      id={`feature-${feature.slug}-evidence`}
-      eyebrow="Tampilan aktual"
-      heading={`Lihat area kerja yang mendukung ${feature.name}.`}
-      body="Tampilan ini menunjukkan konteks produk agar manfaat fitur tidak berhenti pada copy."
-      entries={featureEvidence}
     />
     <section class="feature-detail-flow commercial-section commercial-section--white" aria-labelledby="feature-flow-title">
       <div class="container">
@@ -89,15 +85,8 @@ const schema = [
         </div>
       </div>
     </section>
-    <MarketingFeatureCardGrid
-      id={`feature-${feature.slug}-component-preview`}
-      eyebrow="Komponen marketing"
-      heading={`Contoh visual ${feature.name} untuk materi marketing.`}
-      body="Kartu ini memakai bahasa visual dashboard RAMUNI dan data simulasi yang diberi label. Gunakan sebagai pola komunikasi, lalu sesuaikan dengan status rilis yang berlaku."
-      cards={featureCard}
-    />
-    <section class="commercial-section commercial-section--white"><div class="container feature-detail-layout"><aside><p class="section-kicker">Ringkasan</p><h2>{feature.summary}</h2><p>{feature.status === 'Coming soon' ? 'Fitur ini belum dibuka sebagai kemampuan aktif. Tim dapat menjelaskan kesiapan dan jalur akses saat konsultasi.' : 'Cakupan fitur masih mengikuti rilis, paket, dan role pengguna. Periksa konteks sebelum menjadikannya dasar keputusan.'}</p></aside><div class="feature-detail-content"><section aria-labelledby="highlights-title"><p class="section-kicker">Yang tersedia</p><h2 id="highlights-title">Baca cara kerjanya, lalu pilih langkah.</h2><ul>{feature.highlights.map((item) => <li>{item}</li>)}</ul></section><section aria-labelledby="examples-title"><p class="section-kicker">Contoh pertanyaan</p><h2 id="examples-title">Pertanyaan yang bisa membantu tim mulai memeriksa.</h2><div class="feature-example-grid">{feature.examples.map((item) => <p>{item}</p>)}</div></section><section aria-labelledby="limits-title"><p class="section-kicker">Batas penggunaan</p><h2 id="limits-title">Transparansi lebih penting daripada daftar panjang.</h2><ul>{feature.limitations.map((item) => <li>{item}</li>)}</ul></section><div class="feature-related"><span>Jalur terkait: <strong>{feature.relatedLabel}</strong></span><a class="text-link" href={feature.relatedHref}>Buka halaman terkait →</a></div></div></div></section>
-    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Langkah berikutnya</p><h2>Pastikan alurnya cocok untuk tim Anda.</h2><p>Jika ingin langsung melihat workspace, buka aplikasi. Untuk fitur dan batas yang perlu dipetakan, kirim permintaan konsultasi.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location="feature_final" data-feature={feature.slug} data-destination="app">{appCta.label}</a><a class="button button--secondary" href={`${consultationCta.href}&feature=${feature.slug}`} data-analytics-event="demo_request" data-analytics-location="feature_final" data-feature={feature.slug} data-destination="consultation">Konsultasi</a><a class="money-action-link" href="/features/">Semua fitur</a></div></div></div></section>
+    <section class="commercial-section commercial-section--white"><div class="container feature-detail-layout"><aside><p class="section-kicker">Ringkasan</p><h2>{feature.summary}</h2><p>{featureIsComingSoon ? 'Fitur ini belum dibuka sebagai kemampuan aktif. Tim dapat menjelaskan kesiapan dan jalur akses saat konsultasi.' : 'Cakupan fitur masih mengikuti rilis, paket, dan role pengguna. Periksa konteks sebelum menjadikannya dasar keputusan.'}</p></aside><div class="feature-detail-content"><section aria-labelledby="highlights-title"><p class="section-kicker">{featureIsComingSoon ? 'Rancangan kemampuan' : 'Yang tersedia'}</p><h2 id="highlights-title">Baca cara kerjanya, lalu pilih langkah.</h2><ul>{feature.highlights.map((item) => <li>{item}</li>)}</ul></section><section aria-labelledby="examples-title"><p class="section-kicker">Contoh pertanyaan</p><h2 id="examples-title">Pertanyaan yang bisa membantu tim mulai memeriksa.</h2><div class="feature-example-grid">{feature.examples.map((item) => <p>{item}</p>)}</div></section><section aria-labelledby="limits-title"><p class="section-kicker">Batas penggunaan</p><h2 id="limits-title">Transparansi lebih penting daripada daftar panjang.</h2><ul>{feature.limitations.map((item) => <li>{item}</li>)}</ul></section><div class="feature-related"><span>Jalur terkait: <strong>{feature.relatedLabel}</strong></span><a class="text-link" href={feature.relatedHref}>Buka halaman terkait →</a></div></div></div></section>
+    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Langkah berikutnya</p><h2>Pastikan alurnya cocok untuk tim Anda.</h2><p>{featureIsComingSoon ? 'Fitur ini belum tersedia sebagai kemampuan aktif. Kirim permintaan konsultasi untuk membahas kesiapan dan batasnya.' : 'Jika ingin langsung melihat workspace, buka aplikasi. Untuk fitur dan batas yang perlu dipetakan, kirim permintaan konsultasi.'}</p></div><div class="commercial-cta__actions"><a class="button button--primary" href={featurePrimaryCta.href} data-analytics-event={featurePrimaryEvent} data-analytics-location="feature_final" data-feature={feature.slug} data-destination={featurePrimaryDestination}>{featurePrimaryLabel}</a>{!featureIsComingSoon && <a class="button button--secondary" href={featureConsultationHref} data-analytics-event="demo_request" data-analytics-location="feature_final" data-feature={feature.slug} data-destination="consultation">Konsultasi</a>}<a class="money-action-link" href="/features/">Semua fitur</a></div></div></div></section>
   </div>
   <CommercialAnalytics />
 </BaseLayout>

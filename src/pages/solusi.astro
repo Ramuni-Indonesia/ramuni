@@ -3,13 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
 import DashboardMotion from '../components/DashboardMotion.astro';
-import ProductScreenshotRail from '../components/ProductScreenshotRail.astro';
-import DriveCardCatalog from '../components/DriveCardCatalog.astro';
-import CommercialActionBar from '../components/CommercialActionBar.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
 import { dashboardVisuals, heroContextVisuals } from '../data/dashboardVisuals';
-import { productScreenSets } from '../data/productScreens';
 import '../styles/other-pages-refinement.css';
 
 const solutionPreview = dashboardVisuals.productPerformance;
@@ -42,15 +38,11 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
           <p class="section-kicker">Solusi bisnis</p>
           <h1>Temukan cara membaca masalah omzet, stok, laba, dan pelanggan.</h1>
           <p class="lede">Mulai dari gejala yang paling terasa. RAMUNI menghubungkan masalah ke data, modul, dan contoh pemeriksaan yang bisa Anda bahas.</p>
-          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location="solutions_hero" data-destination="consultation">Konsultasi sesuai masalah</a></div>
+          <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation&intent=overview" data-analytics-event="demo_request" data-analytics-location="solutions_hero" data-destination="consultation">Konsultasi sesuai masalah</a></div>
         </div>
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
       </div>
     </section>
-
-    <div class="container">
-      <CommercialActionBar pageType="solutions" location="solutions_hero" eyebrow="Pilih jalur masalah" title="Sebutkan masalahnya. Lihat data yang perlu dibuka." body="Lihat satu skenario, bandingkan paket, atau bahas kebutuhan tim yang lebih kompleks dengan RAMUNI." />
-    </div>
 
     <section id="solution-directory" class="section surface solution-directory" aria-labelledby="solution-directory-title">
       <div class="container solution-directory__layout">
@@ -74,17 +66,6 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         </div>
       </div>
     </section>
-
-    <ProductScreenshotRail
-      id="solution-product-screens"
-      eyebrow="Screenshot workspace"
-      heading="Lihat tampilan yang dipakai untuk memeriksa masalah."
-      body="Dashboard penuh memperlihatkan hubungan antarangka tanpa potongan yang ter-zoom atau klaim hasil yang belum terbukti."
-      items={productScreenSets.performance.slice(0, 2)}
-      compact
-    />
-    <DriveCardCatalog id="solusi-component-catalog" eyebrow="Bukti alur" heading="Masalah usaha terlihat lebih jelas lewat contoh yang nyata." body="Pilih card yang paling dekat dengan pekerjaan Anda, lalu buka modul dan solusi yang sesuai." limit={0} />
-
 
     <section class="section solution-combinations" aria-labelledby="solution-combinations-title">
       <div class="container solution-combinations__layout">

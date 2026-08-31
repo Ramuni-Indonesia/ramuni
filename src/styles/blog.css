@@ -509,7 +509,7 @@
 .blog-search--archive{padding:clamp(22px,3vw,30px);border:1px solid var(--ink-10);background:var(--white)}
 .blog-search--archive .search-line{align-items:center;margin-top:2px;padding:0;border:1px solid var(--ink-20);background:var(--rice)}
 .blog-search--archive .search-line:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-12)}
-.blog-search--archive input{min-height:52px;padding:0 16px;outline:0}
+.blog-search--archive input{min-height:52px;padding:0 16px;outline:0}.blog-search--archive input:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:2px}
 .blog-search--archive button{min-height:42px;margin-right:5px;border-radius:0;padding-inline:20px;font-weight:800}
 .blog-category-strip{display:flex;gap:8px;overflow-x:auto;padding-block:18px;scrollbar-width:thin;overscroll-behavior-inline:contain}
 .blog-category-strip a{display:inline-flex;flex:0 0 auto;align-items:center;gap:8px;min-height:40px;padding:8px 13px;border:1px solid var(--ink-10);background:var(--white);color:var(--ink);font-size:.8rem;font-weight:800;text-decoration:none}
