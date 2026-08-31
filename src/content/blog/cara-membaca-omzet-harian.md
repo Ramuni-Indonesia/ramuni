@@ -292,4 +292,4 @@ Gunakan format berikut jika tim membutuhkan catatan yang singkat tetapi dapat di
 
 Template tersebut menjauhkan laporan dari klaim seperti “pelanggan tidak minat” yang belum didukung data. Ia juga membuat tindakan lebih kecil dan bisa ditinjau. Pada hari berikutnya, tim dapat memeriksa apakah Produk C kembali tersedia, apakah transaksi pulih, dan apakah tindakan perlu dipertahankan atau diubah.
 
-Pada akhirnya, nilai omzet harian bukan pada angka yang terlihat paling tinggi di layar. Nilainya ada pada kemampuan usaha menjaga definisi, memeriksa bukti, memisahkan fakta dari dugaan, dan mengambil langkah yang proporsional. Mulailah dengan pencatatan yang konsisten, gunakan kalkulator capaian sebagai penunjuk posisi, lalu biarkan pola beberapa periode memandu keputusan yang lebih besar.
+Nilai omzet harian ada pada definisi yang konsisten, bukti yang dapat ditelusuri, dan tindak lanjut yang proporsional. Gunakan kalkulator capaian sebagai penunjuk posisi, lalu biarkan pola beberapa periode memandu keputusan.
