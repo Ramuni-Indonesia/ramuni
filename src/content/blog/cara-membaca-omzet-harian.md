@@ -21,7 +21,7 @@ reviewerName: "Tim Peninjau RAMUNI"
 reviewerSlug: "tim-peninjau-ramuni"
 reviewedAt: 2026-08-09
 reviewStatus: "reviewed"
-editorialStatus: "Ditinjau untuk kejelasan definisi omzet, pembanding, tindakan operasional, metadata, tautan internal, dan cover."
+editorialStatus: "Ditinjau untuk definisi omzet, pembanding, tindakan, metadata, tautan, dan cover."
 readingTime: "18 menit"
 takeaways:
   - "Omzet adalah nilai penjualan pada periode tertentu, bukan laba atau kas tersedia."
@@ -250,7 +250,7 @@ Dengan definisi yang konsisten, pembanding yang adil, dan catatan tindak lanjut,
 
 ## Susun pembanding yang tidak menghapus konteks usaha
 
-Pembanding paling mudah adalah hari yang sama pada minggu sebelumnya. Namun, pembanding itu tetap perlu diberi konteks. Sebuah toko yang biasanya tutup pukul 20.00 tetapi menutup pukul 17.00 tidak punya kapasitas transaksi yang sama. Usaha yang menjalankan promosi bundel atau menerima pengiriman barang terlambat juga tidak berada pada kondisi normal. Catatan konteks tidak boleh dipakai untuk mengubah angka penjualan, tetapi perlu disimpan bersama laporan agar pembaca memahami batas perbandingannya.
+Pembanding paling mudah adalah hari yang sama pada minggu sebelumnya. Namun, pembanding itu tetap perlu diberi konteks. Sebuah toko yang biasanya tutup pukul 20.00 tetapi menutup pukul 17.00 tidak punya kapasitas transaksi yang sama. Promosi bundel atau pengiriman terlambat juga membuat kondisi tidak normal. Simpan konteks ini bersama laporan agar batas perbandingannya jelas.
 
 Gunakan tiga tingkatan pembanding. Tingkat pertama adalah hari yang sama minggu lalu. Tingkat kedua adalah rata-rata beberapa hari sejenis, misalnya empat Selasa terakhir yang memiliki jam buka lengkap. Tingkat ketiga adalah target internal yang dibuat dari kapasitas dan rencana usaha. Ketiganya menjawab pertanyaan yang berbeda. Perbandingan mingguan melihat perubahan baru, rata-rata memperhalus kejadian satu kali, sedangkan target memberi arah yang sudah disepakati tim.
 

@@ -577,7 +577,6 @@
 
 .home-hero { min-height: min(760px, calc(100dvh - 113px)); }
 .home-hero .hero-composition { gap: clamp(34px, 5vw, 76px); }
-.home-hero .hero-copy { max-width: 40rem; }
 .home-hero h1 { max-width: 15ch; }
 .home-hero .lede { max-width: 44ch; }
 
