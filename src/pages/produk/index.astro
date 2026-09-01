@@ -5,7 +5,7 @@ import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro'
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
-import { products, roles, solutions } from '../../data/site';
+import { products, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { heroContextVisuals } from '../../data/dashboardVisuals';
 import { getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
@@ -25,13 +25,6 @@ const productWorkspaceScreens = (productWorkspaceDrive.supporting.length > 0
   ? productWorkspaceDrive.supporting
   : [productWorkspaceDrive.primary]
 ).map(toProductScreen);
-const sharedCapabilities = [
-  { title: 'Akses per peran', text: 'Ruang kerja pemilik, supervisor, admin, dan kasir mengikuti tanggung jawab masing-masing.' },
-  { title: 'Jejak perubahan', text: 'Waktu, alasan, dan pelaku koreksi dapat diperiksa kembali.' },
-  { title: 'Bukti di balik insight', text: 'Ringkasan membawa pengguna kembali ke metrik, periode, dan catatan sumber.' },
-  { title: 'Impor dan ekspor', text: 'Jalur data ditampilkan bersama hasil validasi dan riwayat prosesnya.' },
-];
-
 const productFaq = [
   { question: 'Haruskah memakai semua modul sekaligus?', answer: 'Tidak. Mulai dari catatan yang paling penting, lalu tambah modul saat alurnya sudah rapi.' },
   { question: 'Bagaimana AI membantu pekerjaan?', answer: 'AI membaca konteks dan bukti, lalu membantu menyiapkan pertanyaan dan perhatian berikutnya. Tindakan tetap diputuskan pengguna.' },
@@ -139,43 +132,12 @@ const productFaq = [
       </div>
     </section>
 
-    <section class="section product-capabilities" aria-labelledby="capabilities-title">
-      <div class="container product-capabilities__layout">
-        <header><h2 id="capabilities-title">Dapatkan jawaban tanpa kehilangan angka asal.</h2><p>RAMUNI menjaga sumber angka, waktu pembaruan, dan jejak perubahan tetap mudah dicari saat tim berpindah dari ringkasan ke detail.</p></header>
-        <div class="capability-folds">
-          {sharedCapabilities.map((item, index) => (
-            <article class="capability-fold reveal" style={`--i:${index}`}>
-              <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section class="section surface outcome-index" aria-labelledby="outcome-index-title">
       <div class="container outcome-index__layout">
         <div><p class="section-kicker">Mulai dari hasil</p><h2 id="outcome-index-title">Belum tahu modul yang tepat?</h2></div>
         <div class="outcome-index__list">
           {solutions.map((solution) => <a data-solution-card={solution.slug} href={`/solusi/${solution.slug}/`}><i class="outcome-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><span>{solution.title}</span><small>{solution.summary}</small></a>)}
         </div>
-      </div>
-    </section>
-
-    <section class="section role-paths" aria-labelledby="role-paths-title">
-      <div class="container role-paths__layout">
-        <header><h2 id="role-paths-title">Setiap peran melihat pekerjaan yang berbeda.</h2><p>Pemilik, admin, kasir, dan supervisor membutuhkan prioritas yang berbeda. Pilih jalur yang paling dekat dengan tanggung jawab Anda.</p></header>
-        <nav class="role-paths__nav" aria-label="Produk berdasarkan peran">
-          {roles.map((role) => <a href={`/untuk/${role.slug}/`}><strong>{role.title}</strong><span>{role.summary}</span></a>)}
-        </nav>
-      </div>
-    </section>
-
-    <section class="section product-trust" aria-labelledby="product-trust-title">
-      <div class="container product-trust__layout">
-        <div><p class="section-kicker">Kendali manusia</p><h2 id="product-trust-title">Bahan keputusan yang bisa diperiksa.</h2></div>
-        <div class="product-trust__copy"><p>Akses mengikuti peran, jawaban membawa sumber, dan tindakan penting tetap membutuhkan persetujuan orang yang bertanggung jawab.</p><a href="/keamanan/">Baca prinsip keamanan</a></div>
       </div>
     </section>
 

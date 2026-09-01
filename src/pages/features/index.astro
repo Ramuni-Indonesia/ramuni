@@ -12,10 +12,10 @@ const origin = new URL('/', Astro.site || Astro.url.origin).origin;
 const canonical = new URL('/features/', origin).toString();
 const catalogCards = [...marketingFeatureCards, ...marketingProductCards, ...marketingSolutionCards];
 const catalogFilters = [
+  { label: 'Semua', value: 'all' },
   { label: 'Fitur utama', value: 'feature' },
   { label: 'Produk', value: 'product' },
   { label: 'Solusi', value: 'solution' },
-  { label: 'Semua', value: 'all' },
 ] as const;
 const statusSummary = [
   { label: 'Live / terbatas', value: catalogCards.filter((card) => card.status === 'Available' || card.status === 'Limited' || card.family !== 'feature').length },
@@ -25,7 +25,7 @@ const statusSummary = [
 const jobHighlights = [
   { label: 'Baca kondisi usaha', href: '/features/ai-copilot/', text: 'Tanya data dan dokumen dengan jawaban yang tetap bisa ditelusuri.' },
   { label: 'Pisahkan laba dan kas', href: '/features/profit-intelligence/', text: 'Lihat pendapatan, biaya, margin, dan periode sebelum mengambil keputusan.' },
-  { label: 'Rapikan kanal pelanggan', href: '/features/omnichannel/', text: 'Tandai percakapan dan follow-up yang perlu diurus saat kanal dibuka.' },
+  { label: 'Lihat prioritas harian', href: '/produk/dashboard-bisnis/', text: 'Buka perubahan penjualan, stok, kas, dan pelanggan dari satu ringkasan.' },
 ];
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Fitur RAMUNI untuk Operasional, AI & Knowledge OS', description: 'Bandingkan fitur dan produk RAMUNI untuk penjualan, stok, keuangan, pelanggan, laporan, dan pengetahuan bisnis.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
@@ -40,10 +40,10 @@ const schema = [
         <div>
           <Breadcrumbs items={[{ label: 'Beranda', href: '/' }, { label: 'Fitur' }]} />
           <p class="section-kicker">Fitur RAMUNI</p>
-          <h1>Temukan pekerjaan yang ingin diselesaikan.</h1>
+          <h1>Pilih pekerjaan yang ingin dibereskan.</h1>
         </div>
         <div class="commercial-hero__aside">
-          <p>Halaman ini dibuat sebagai indeks kerja: pilih kebutuhan, lihat statusnya, lalu buka detail yang menjelaskan input, hasil, dan batas penggunaan.</p>
+          <p>Mulai dari tugas yang paling dekat, lihat statusnya, lalu buka detail input, hasil, dan batas penggunaan.</p>
           <div class="button-row"><a class="button button--primary" href="#feature-card-library" data-analytics-event="feature_index_scan" data-analytics-location="features_hero">Lihat indeks</a><a class="text-link" href="/roadmap/">Cek roadmap</a></div>
           <p class="commercial-hero__note">Status fitur mengikuti workspace dan paket. Fitur “segera hadir” tidak ditawarkan sebagai kemampuan live.</p>
         </div>
@@ -82,7 +82,7 @@ const schema = [
     </section>
     <section class="commercial-section feature-jobs" aria-labelledby="feature-jobs-title">
       <div class="container">
-        <div class="commercial-section__head"><div><p class="section-kicker">Prioritas kerja</p><h2 id="feature-jobs-title">Tiga pintu masuk yang paling sering dibutuhkan.</h2></div><p>Ini mengganti rail visual panjang: bukti dan screenshot besar dibuka di halaman detail yang relevan.</p></div>
+        <div class="commercial-section__head"><div><p class="section-kicker">Prioritas kerja</p><h2 id="feature-jobs-title">Tiga pintu masuk untuk mulai cepat.</h2></div><p>Setiap jalur membuka satu pekerjaan utama dan bukti yang relevan di halaman detailnya.</p></div>
         <div class="feature-jobs__grid">{jobHighlights.map((item) => <a href={item.href}><span>{item.label}</span><strong>{item.text}</strong><b>Lihat detail →</b></a>)}</div>
       </div>
     </section>

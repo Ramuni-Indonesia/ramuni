@@ -38,3 +38,8 @@ Counts are structural signals from the captured HTML, not a claim that every ima
 - Do not copy HashMicro visual assets, copy, logos, or claims into RAMUNI. Use the benchmark only for information architecture and proof density.
 - RAMUNI should show a real or clearly labelled demo screen, a concrete input → output explanation, package boundaries, and a direct CTA on each money page.
 
+## Design refresh scan — 2026-09-01
+
+The current homepage, ERP page, and retail page were sampled again for section and media direction. The useful pattern remains explicit AI/industry differentiation and early product demonstration. The fetched ERP and retail HTML exposed 45–46 video tags, reinforcing the existing guardrail: RAMUNI should use one focal motion surface instead of copying HashMicro's media density.
+
+Updated raw notes: [`raw/hashmicro/2026-09-01/scrapes/design-scan.md`](raw/hashmicro/2026-09-01/scrapes/design-scan.md).

@@ -10,8 +10,10 @@ export const releaseGates = {
   calculatorPagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_CALCULATOR_REVIEW_APPROVED === 'true',
   resourcePagesIndexable: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_RESOURCE_REVIEW_APPROVED === 'true',
   // Pricing is a public product surface. Keep values in the pricing data file
-  // so Finance/Product can update them without changing page templates.
-  pricingPublic: publicEnvironment.indexingEnabled,
+  // so Finance/Product can update them without changing page templates. A
+  // production build must also carry an explicit approval flag; indexability
+  // alone is not commercial approval.
+  pricingPublic: publicEnvironment.indexingEnabled && import.meta.env.PUBLIC_PRICING_APPROVED === 'true',
   mascotExplorationEnabled:
     import.meta.env.DEV
     || publicEnvironment.name === 'preview'

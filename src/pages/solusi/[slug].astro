@@ -7,11 +7,9 @@ import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
-import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
 import { getSolutionDriveVisuals, toProductScreen } from '../../data/driveVisuals';
-import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
 import { solutionNarratives } from '../../data/pageNarratives';
@@ -100,15 +98,6 @@ const structuredData = [
       </div>
     </section>
 
-    <ProductScreenshotRail
-      id={`solution-${solution.slug}-screens`}
-      eyebrow="Screen yang berkaitan"
-      heading={`Lihat workspace untuk ${solution.title}.`}
-      body="Screen ini menunjukkan area kerja yang relevan dengan masalahnya; hasil tetap bergantung pada data dan keputusan usaha."
-      items={screenSet}
-      compact
-    />
-
     <section class="section sd-problem" aria-labelledby="problem-title">
       <div class="container sd-problem__grid">
         <div class="sd-problem__overview">
@@ -151,6 +140,15 @@ const structuredData = [
     <section class="section sd-scenario-section" aria-labelledby="scenario-title">
       <div class="container"><SolutionScenario scenario={solution.scenario} /></div>
     </section>
+
+    <ProductScreenshotRail
+      id={`solution-${solution.slug}-screens`}
+      eyebrow="Bukti setelah gejala"
+      heading={`Buka workspace yang terkait dengan ${solution.title}.`}
+      body="Lihat satu contoh layar setelah memahami masalahnya; angka pada tampilan adalah data demo dan hasil tetap bergantung pada konteks usaha."
+      items={screenSet}
+      compact
+    />
 
     <section class="section sd-capabilities" aria-labelledby="capabilities-title">
       <div class="container sd-capabilities__layout">
@@ -200,8 +198,6 @@ const structuredData = [
         </aside>
       </div>
     </section>
-
-    <SearchIntentPaths path={searchIntentPaths[`solution:${solution.slug}`]} />
 
     <section class="section sd-faq-close" aria-labelledby="faq-title">
       <div class="container sd-faq__layout">

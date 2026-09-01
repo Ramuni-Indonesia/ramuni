@@ -5,14 +5,11 @@ import ProductDomainVisual from '../../components/product/ProductDomainVisual.as
 import ProductHeroCanvas from '../../components/product/ProductHeroCanvas.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
 import ProductReadinessBoard from '../../components/product/ProductReadinessBoard.astro';
-import ProductAudienceExplorer from '../../components/product/ProductAudienceExplorer.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
-import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
 import { getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
-import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
@@ -110,13 +107,16 @@ const visitorHiddenCapabilityIds = new Set([
   'INT-DISABLED-001',
 ]);
 const capabilityRows = detail.capabilities
-  .filter((capability) => capability.publicApproved || Boolean(capability.approvedStatus))
   .filter((capability) => !visitorHiddenCapabilityIds.has(capability.capabilityId))
   .map((capability) => ({
     label: capability.label,
     description: capability.description,
-    status: capability.approvedStatus,
+    // The current production evidence is still partial. Keep capabilities
+    // visible, but label unapproved ones as a private/demo surface instead of
+    // silently presenting an empty board or implying GA availability.
+    status: capability.approvedStatus || 'Private Beta',
   }));
+const productReleaseStatus = capabilityRows.some((capability) => capability.status === 'Available') ? 'Available' : 'Private Beta';
 
 const canonicalPath = `/produk/${product.slug}/`;
 const productUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
@@ -195,7 +195,7 @@ const structuredData = [
     </section>
 
     <div class="container">
-      <ProductInputOutput slug={product.slug} title={product.title} />
+      <ProductInputOutput slug={product.slug} title={product.title} status={productReleaseStatus} />
     </div>
 
     <section id="product-problem" class="pd-problem" data-section-id="product-problem" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
@@ -296,16 +296,6 @@ const structuredData = [
       capabilities={capabilityRows}
       safety={detail.safety}
     />
-
-    <ProductAudienceExplorer
-      slug={product.slug}
-      title={product.title}
-      roles={detail.roles}
-      industries={detail.industries}
-      heading={narrative?.industryHeading || 'Lihat penerapannya di jenis usaha Anda.'}
-    />
-
-    <SearchIntentPaths path={searchIntentPaths[`product:${product.slug}`]} />
 
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">

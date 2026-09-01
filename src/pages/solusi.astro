@@ -67,15 +67,6 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
       </div>
     </section>
 
-    <section class="section solution-combinations" aria-labelledby="solution-combinations-title">
-      <div class="container solution-combinations__layout">
-        <header><p class="section-kicker">Modul yang saling terkait</p><h2 id="solution-combinations-title">Hubungkan modul yang membaca masalah yang sama.</h2></header>
-        <div class="combination-lines">
-          {solutions.map((solution) => <a href={`/solusi/${solution.slug}/`}><i class="combination-glyph" aria-hidden="true" {...capabilityIconAttributes('solution', solution.slug)}><b></b><b></b><b></b></i><strong>{solution.title}</strong><span>{solution.modules.join(' + ')}</span></a>)}
-        </div>
-      </div>
-    </section>
-
     <section class="section synthetic-decisions" aria-labelledby="synthetic-title">
       <div class="container synthetic-decisions__layout">
         <div><p class="section-kicker">Contoh pembacaan</p><h2 id="synthetic-title">Dapatkan pertanyaan yang bisa dijawab tim.</h2><p>Lihat bagaimana perubahan angka mengarahkan pemeriksaan yang lebih spesifik.</p></div>

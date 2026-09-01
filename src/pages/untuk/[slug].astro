@@ -101,6 +101,12 @@ const roleSeo: Record<string, { title: string; description: string }> = {
   supervisor: { title: 'Dashboard Supervisor Operasional | RAMUNI', description: 'Bantu supervisor UMKM melihat masalah berulang, meninjau laporan, dan meneruskan keputusan kepada pemilik bersama bukti pendukung.' },
 };
 const seo = roleSeo[role.slug] || { title: `RAMUNI untuk ${role.title}`, description: role.summary };
+const roleHeroTitles: Record<string, string> = {
+  'pemilik-usaha': 'Pegang arah usaha tanpa membuka semua laporan.',
+  'admin-toko': 'Rapikan data sebelum tim memakainya.',
+  kasir: 'Selesaikan transaksi dengan alur yang jelas.',
+  supervisor: 'Tangkap pengecualian sebelum menumpuk.',
+};
 const canonicalPath = `/untuk/${role.slug}/`;
 const roleIntentBySlug: Record<string, string> = {
   'pemilik-usaha': 'overview',
@@ -154,7 +160,7 @@ const structuredData = {
 ---
 <BaseLayout title={seo.title} description={seo.description} canonical={canonicalPath} noindex={!releaseGates.claimPagesIndexable} schema={structuredData}>
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
-  <PageHero compact eyebrow="Untuk Tim" title={'RAMUNI untuk ' + role.title} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" />
+  <PageHero compact eyebrow={`Untuk ${role.title}`} title={roleHeroTitles[role.slug] || role.summary} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" />
 
   <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
     <div class="container audience-split">
@@ -220,10 +226,6 @@ const structuredData = {
       <div class="audience-section-heading reveal"><h2 id="collaboration-title">{context.headings.collaboration}</h2></div>
       <ol class="audience-ledger">{context.collaboration.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{context.collaborationNotes[index]}</p></div></li>)}</ol>
     </div>
-  </section>
-
-  <section class="section" id="indikator" aria-labelledby="success-title">
-    <div class="container audience-scenario reveal"><h2 id="success-title">{context.headings.success}</h2><ul>{context.success.map((item) => <li>{item}</li>)}</ul></div>
   </section>
 
   <section class="section surface" id="terkait" aria-labelledby="related-title">
