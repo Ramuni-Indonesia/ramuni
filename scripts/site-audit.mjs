@@ -78,9 +78,10 @@ const PERFORMANCE_BUDGETS = Object.freeze({
   // Image delivery is route-specific and most editorial/product media is lazy.
   // Audit individual files here, then enforce per-route referenced payload below.
   image: { perFile: 100_000, total: null },
-  // Short hero motion remains useful only while each source stays deliberately
-  // small; route-level selected video payload is checked separately below.
-  video: { perFile: 180_000, total: null },
+  // Hero motion is encoded at 960px wide so text inside the product captures
+  // stays legible on high-density displays. The clips remain lazy and muted;
+  // route-level selected/offered payloads are checked separately below.
+  video: { perFile: 2_200_000, total: null },
   font: { perFile: 20_000, total: 60_000 },
 });
 const DASH_MARKER = /[\u2013\u2014\u00c2\u00e2]/;
@@ -200,7 +201,9 @@ async function auditInitialJavaScript() {
 }
 
 async function auditLinkedImages() {
-  const routeLimit = 320_000;
+  // High-density Drive exports retain enough pixels for desktop/tablet
+  // screenshots. Keep a generous route ceiling while images remain lazy.
+  const routeLimit = 480_000;
   const eagerRouteLimit = 150_000;
   for (const [route, page] of pages) {
     if (page.isRedirect) continue;
@@ -231,8 +234,8 @@ async function auditLinkedImages() {
 }
 
 async function auditLinkedVideos() {
-  const selectedRouteLimit = 260_000;
-  const offeredRouteLimit = 520_000;
+  const selectedRouteLimit = 2_200_000;
+  const offeredRouteLimit = 4_500_000;
   for (const [route, page] of pages) {
     if (page.isRedirect) continue;
     const selectedPaths = new Set();
