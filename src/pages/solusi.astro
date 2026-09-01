@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
-import DashboardMotion from '../components/DashboardMotion.astro';
+import DriveVideo from '../components/DriveVideo.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
-import { dashboardVisuals, heroContextVisuals } from '../data/dashboardVisuals';
+import { heroContextVisuals } from '../data/dashboardVisuals';
+import { driveVideos } from '../data/driveVideos';
 import '../styles/other-pages-refinement.css';
 
-const solutionPreview = dashboardVisuals.productPerformance;
 const solutionCloseVisual = heroContextVisuals.cashReport;
 
 const painClusters = [
@@ -50,9 +50,9 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
         <div class="solution-directory__content">
           <figure class="solution-directory__preview">
             <div class="solution-directory__preview-media">
-              <DashboardMotion focus="performance" label="Contoh tampilan dashboard RAMUNI." {...solutionPreview} />
+              <DriveVideo class="solution-hub-network-video" {...driveVideos.decisionNetwork} />
             </div>
-            <figcaption><strong>Setiap solusi menghubungkan gejala, data, dan pemeriksaan yang bisa dilakukan.</strong></figcaption>
+            <figcaption><strong>Setiap solusi menghubungkan gejala, data, dan pemeriksaan yang bisa dilakukan.</strong><small>Visual hubungan metrik · bukan capture laporan.</small></figcaption>
           </figure>
           <div class="solution-stories">
             {solutions.map((solution, index) => (
@@ -120,7 +120,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
 
 <style>
   .solution-hub-hero{padding:clamp(48px,6vw,88px) 0 clamp(64px,8vw,112px);background:var(--rice);overflow:hidden}.solution-hub-hero__layout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(560px,1.28fr);gap:clamp(42px,6vw,88px);align-items:center}.solution-hub-hero__copy{min-width:0}.solution-hub .solution-hub-hero h1{max-width:14ch;font-size:clamp(2.55rem,3.8vw,4.1rem);overflow-wrap:normal}.solution-hub-hero__copy .lede{max-width:40ch;margin-top:22px}.solution-hub-hero__action{display:grid;gap:14px;justify-items:start;margin-top:30px}.solution-hub .solution-hub-hero__layout>.solution-hub-hero__visual{display:block;min-width:0;width:100%;justify-items:stretch}
-  .solution-directory__layout{display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(44px,7vw,104px);align-items:start}.solution-directory__layout>header{position:sticky;top:104px}.solution-directory__content{display:grid;gap:clamp(26px,4vw,44px);min-width:0}.solution-directory__preview{margin:0;background:transparent;overflow:visible}.solution-directory__preview-media{display:block}.solution-directory__preview figcaption{display:flex;justify-content:flex-end;margin-top:14px;padding:12px 0;border-top:1px solid var(--ink-10);font-size:.72rem}.solution-directory__preview figcaption strong{max-width:48ch;text-align:right}
+  .solution-directory__layout{display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(44px,7vw,104px);align-items:start}.solution-directory__layout>header{position:sticky;top:104px}.solution-directory__content{display:grid;gap:clamp(26px,4vw,44px);min-width:0}.solution-directory__preview{margin:0;background:transparent;overflow:visible}.solution-directory__preview-media{display:block;border:1px solid var(--ink);background:var(--ink);box-shadow:10px 10px 0 var(--yellow)}.solution-directory__preview-media :global(.drive-video){border:0}.solution-directory__preview figcaption{display:grid;justify-content:end;gap:5px;margin-top:14px;padding:12px 0;border-top:1px solid var(--ink-10);font-size:.72rem}.solution-directory__preview figcaption strong,.solution-directory__preview figcaption small{max-width:48ch;text-align:right}.solution-directory__preview figcaption small{color:var(--ink-56);font-size:.64rem}
   .solution-stories{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
   .solution-story{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:18px;align-items:start;min-width:0;min-height:300px;margin:0;padding:26px;border:1px solid var(--ink-10);background:var(--white);text-decoration:none;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
   .solution-story:nth-child(1),.solution-story:nth-child(4){grid-column:span 7}.solution-story:nth-child(2),.solution-story:nth-child(3){grid-column:span 5;background:var(--rice)}.solution-story:nth-child(5){grid-column:1/-1;min-height:220px;grid-template-columns:52px .8fr 1.2fr auto;grid-template-rows:auto}.solution-story:hover,.solution-story:focus-visible{transform:translateY(-5px);border-color:var(--teal);box-shadow:-7px 7px 0 var(--yellow)}

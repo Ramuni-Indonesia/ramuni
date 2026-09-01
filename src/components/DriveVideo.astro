@@ -1,0 +1,256 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  label: string;
+  fallback?: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const {
+  src,
+  poster,
+  label,
+  fallback = 'Video tidak dapat diputar. Gunakan gambar poster sebagai gambaran visual RAMUNI.',
+  class: className = '',
+  width = 1280,
+  height = 720,
+} = Astro.props;
+---
+
+<span
+  class:list={['drive-video', className]}
+  data-drive-video
+  data-drive-video-src={src}
+  data-drive-video-poster={poster}
+  style={`--drive-video-aspect:${width}/${height}`}
+>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={poster}
+    width={width}
+    height={height}
+    aria-label={label}
+    data-drive-video-media
+  >
+    <source data-drive-video-source type="video/mp4" />
+    <img src={poster} width={width} height={height} alt={label} loading="lazy" decoding="async" />
+    <p>{fallback}</p>
+  </video>
+  <button
+    type="button"
+    class="drive-video__toggle"
+    data-drive-video-toggle
+    aria-pressed="false"
+    aria-label="Putar video"
+  >
+    <span data-drive-video-toggle-label>Putar video</span>
+  </button>
+</span>
+
+<script>
+  type DriveConnection = { saveData?: boolean; addEventListener?: (type: string, listener: () => void) => void; removeEventListener?: (type: string, listener: () => void) => void };
+
+  const driveVideoCleanups = new Map<HTMLElement, () => void>();
+
+  const bindDriveVideos = () => {
+    document.querySelectorAll<HTMLElement>('[data-drive-video]').forEach((root) => {
+      if (root.dataset.bound === 'true') return;
+      const video = root.querySelector<HTMLVideoElement>('[data-drive-video-media]');
+      const source = root.querySelector<HTMLElement>('[data-drive-video-source]');
+      const toggle = root.querySelector<HTMLButtonElement>('[data-drive-video-toggle]');
+      const toggleLabel = root.querySelector<HTMLElement>('[data-drive-video-toggle-label]');
+      if (!video || !source || !toggle || !toggleLabel) return;
+
+      root.dataset.bound = 'true';
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const connection = (navigator as Navigator & { connection?: DriveConnection }).connection;
+      let inView = false;
+      let sourceAttached = false;
+      let userPaused = false;
+      let manualOverride = false;
+
+      const hasSaveData = () => Boolean(connection?.saveData);
+      const updateToggle = () => {
+        const isPlaying = !video.paused && sourceAttached && root.dataset.state === 'playing';
+        toggle.setAttribute('aria-pressed', String(isPlaying));
+        toggle.setAttribute('aria-label', isPlaying ? 'Jeda video' : 'Putar video');
+        toggleLabel.textContent = isPlaying ? 'Jeda video' : 'Putar video';
+        toggle.disabled = reduceMotion.matches;
+      };
+      const detachSource = () => {
+        if (!sourceAttached) return;
+        video.pause();
+        source.removeAttribute('src');
+        sourceAttached = false;
+        video.load();
+      };
+      const attachSource = () => {
+        if (sourceAttached || !root.dataset.driveVideoSrc) return;
+        source.setAttribute('src', root.dataset.driveVideoSrc);
+        sourceAttached = true;
+        video.load();
+      };
+      const playIfAllowed = () => {
+        const canPlay = inView && !document.hidden && !reduceMotion.matches && !userPaused && (manualOverride || !hasSaveData());
+        root.dataset.state = canPlay ? 'playing' : userPaused ? 'paused' : 'poster';
+        if (!canPlay) {
+          video.pause();
+          video.removeAttribute('autoplay');
+          if (reduceMotion.matches || hasSaveData()) detachSource();
+          updateToggle();
+          return;
+        }
+        video.setAttribute('autoplay', '');
+        attachSource();
+        void video.play().catch(() => {
+          root.dataset.state = 'poster';
+          updateToggle();
+        });
+        updateToggle();
+      };
+
+      toggle.addEventListener('click', () => {
+        if (video.paused) {
+          userPaused = false;
+          manualOverride = true;
+          inView = true;
+          attachSource();
+          video.setAttribute('autoplay', '');
+          root.dataset.state = 'playing';
+          void video.play().catch(() => { root.dataset.state = 'poster'; }).finally(updateToggle);
+        } else {
+          userPaused = true;
+          video.pause();
+          video.removeAttribute('autoplay');
+          root.dataset.state = 'paused';
+          updateToggle();
+        }
+      });
+
+      let observer: IntersectionObserver | undefined;
+      if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(([entry]) => {
+          inView = entry?.isIntersecting ?? false;
+          playIfAllowed();
+        }, { rootMargin: '100px 0px', threshold: 0.08 });
+        observer.observe(root);
+      } else {
+        inView = true;
+      }
+
+      const onVisibilityChange = () => playIfAllowed();
+      const onMotionChange = () => {
+        if (reduceMotion.matches) {
+          userPaused = false;
+          manualOverride = false;
+        }
+        playIfAllowed();
+      };
+      const onConnectionChange = () => playIfAllowed();
+      document.addEventListener('visibilitychange', onVisibilityChange);
+      reduceMotion.addEventListener?.('change', onMotionChange);
+      connection?.addEventListener?.('change', onConnectionChange);
+      playIfAllowed();
+
+      driveVideoCleanups.set(root, () => {
+        observer?.disconnect();
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        reduceMotion.removeEventListener?.('change', onMotionChange);
+        connection?.removeEventListener?.('change', onConnectionChange);
+        video.pause();
+        delete root.dataset.bound;
+      });
+      updateToggle();
+    });
+  };
+
+  bindDriveVideos();
+  document.addEventListener('astro:page-load', bindDriveVideos);
+  document.addEventListener('astro:before-swap', () => {
+    driveVideoCleanups.forEach((cleanup) => cleanup());
+    driveVideoCleanups.clear();
+  });
+</script>
+
+<style>
+  .drive-video {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--drive-video-aspect, 16 / 9);
+    overflow: hidden;
+    background: var(--ink);
+    contain: paint;
+  }
+
+  .drive-video video,
+  .drive-video video img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drive-video video {
+    object-fit: cover;
+    background: var(--ink);
+  }
+
+  .drive-video video img {
+    object-fit: cover;
+  }
+
+  .drive-video video p {
+    position: absolute;
+    inset: auto 16px 16px;
+    margin: 0;
+    color: var(--white);
+    font-size: .75rem;
+  }
+
+  .drive-video__toggle {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 3;
+    min-height: 36px;
+    padding: 8px 11px;
+    border: 1px solid rgb(255 255 255 / .55);
+    border-radius: 999px;
+    background: rgb(11 48 69 / .88);
+    color: var(--white);
+    font: inherit;
+    font-size: .68rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+
+  .drive-video__toggle:hover,
+  .drive-video__toggle:focus-visible {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .drive-video__toggle:focus-visible {
+    outline: 2px solid var(--yellow);
+    outline-offset: 3px;
+  }
+
+  .drive-video__toggle:disabled {
+    cursor: default;
+    opacity: .72;
+  }
+
+  @media(prefers-reduced-motion:reduce) {
+    .drive-video video { object-fit: cover; }
+    .drive-video__toggle { display: none; }
+  }
+</style>

@@ -1,27 +1,29 @@
 ---
 import AnimatedMuniWork from './AnimatedMuniWork.astro';
-import AnimatedDashboardProof from './AnimatedDashboardProof.astro';
+import DriveVideo from './DriveVideo.astro';
+import { driveVideos } from '../data/driveVideos';
 ---
 
 <div class="ramuni-hero-visual home-decision-demo">
   <figure class="home-hero-product">
     <div class="home-hero-product__viewport">
-      <div class="home-hero-product__dashboard">
-        <AnimatedDashboardProof label="Tampilan ringkasan dashboard RAMUNI dengan penjualan, kas, stok, pelanggan, aktivitas, dan wawasan." />
+      <div class="home-hero-product__video">
+        <DriveVideo class="home-hero-lifestyle-video" {...driveVideos.lifestyle} />
+        <span class="home-hero-product__video-note" aria-hidden="true">Ritme kerja yang lebih jelas</span>
       </div>
       <aside class="home-hero-guide" aria-label="Muni membantu membaca dashboard">
         <AnimatedMuniWork class="home-hero-guide__mascot" static label="Muni membantu membaca dashboard RAMUNI" />
       </aside>
     </div>
     <figcaption>
-      <strong>Dashboard RAMUNI</strong>
-      <span>Perubahan penting bergerak ke urutan teratas, lalu angka pendukung tetap bisa dibuka.</span>
+      <strong>Teman kerja sehari-hari</strong>
+      <span>RAMUNI membantu Anda mengubah catatan usaha menjadi urutan pemeriksaan yang jelas.</span>
     </figcaption>
   </figure>
 </div>
 
 <style>
-  .home-hero-product{position:relative}.home-hero-product__viewport{position:relative}.home-hero-product__dashboard{min-width:0}.home-hero-product__dashboard :global(.animated-dashboard-proof){border:0;border-radius:0;box-shadow:none}.home-hero-guide{position:absolute;right:-18px;bottom:-48px;z-index:3;display:grid;place-items:center;width:118px;height:118px;border:1px solid var(--ink-10);border-radius:22px;background:var(--white);box-shadow:0 16px 34px rgb(11 48 69/.13);transform:rotate(3deg)}.home-hero-guide__mascot{--animated-muni-size:112px;filter:none}.home-hero-product figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline;padding:18px 130px 0 2px;color:var(--ink-72)}.home-hero-product figcaption strong{color:var(--ink);font-size:.76rem}.home-hero-product figcaption span{font-size:.68rem}.home-hero-product figcaption::after{content:'Contoh tampilan produk';grid-column:2;color:var(--ink-56);font-size:.62rem}
-  @media(max-width:740px){.home-hero-product__dashboard :global(.animated-dashboard-proof){border-radius:16px;box-shadow:none}.home-hero-guide{right:-2px;bottom:-42px;width:90px;height:90px;border-radius:16px}.home-hero-guide__mascot{--animated-muni-size:84px}.home-hero-product figcaption{grid-template-columns:1fr;gap:4px;padding:14px 84px 0 2px}.home-hero-product figcaption::after{grid-column:auto}}
+  .home-hero-product{position:relative}.home-hero-product__viewport{position:relative}.home-hero-product__video{position:relative;min-width:0;border:1px solid var(--ink);border-radius:var(--radius);background:var(--ink);box-shadow:14px 14px 0 var(--teal);overflow:hidden}.home-hero-product__video :global(.drive-video),.home-hero-product__video :global(video){display:block;width:100%;height:auto}.home-hero-product__video-note{position:absolute;left:18px;bottom:16px;z-index:2;padding:7px 10px;border:1px solid rgb(255 255 255/.44);background:rgb(11 48 69/.78);color:var(--white);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.home-hero-guide{position:absolute;right:-18px;bottom:-48px;z-index:3;display:grid;place-items:center;width:118px;height:118px;border:1px solid var(--ink-10);border-radius:22px;background:var(--white);box-shadow:0 16px 34px rgb(11 48 69/.13);transform:rotate(3deg)}.home-hero-guide__mascot{--animated-muni-size:112px;filter:none}.home-hero-product figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline;padding:18px 130px 0 2px;color:var(--ink-72)}.home-hero-product figcaption strong{color:var(--ink);font-size:.76rem}.home-hero-product figcaption span{font-size:.68rem}.home-hero-product figcaption::after{content:'Video lifestyle RAMUNI';grid-column:2;color:var(--ink-56);font-size:.62rem}
+  @media(max-width:740px){.home-hero-product__video{border-radius:16px;box-shadow:8px 8px 0 var(--teal)}.home-hero-product__video-note{left:11px;bottom:10px;max-width:calc(100% - 22px);font-size:.53rem}.home-hero-guide{right:-2px;bottom:-42px;width:90px;height:90px;border-radius:16px}.home-hero-guide__mascot{--animated-muni-size:84px}.home-hero-product figcaption{grid-template-columns:1fr;gap:4px;padding:14px 84px 0 2px}.home-hero-product figcaption::after{grid-column:auto}}
   @media(prefers-reduced-motion:reduce){.home-hero-guide{transform:none}}
 </style>

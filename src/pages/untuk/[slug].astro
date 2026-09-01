@@ -5,7 +5,7 @@ import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { industries, products, roles } from '../../data/site';
-import { productScreenSets } from '../../data/productScreens';
+import { getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
 
@@ -111,11 +111,8 @@ const roleIntentBySlug: Record<string, string> = {
 const roleConsultationHref = `/tour-produk-gratis/?flow=consultation&intent=${roleIntentBySlug[role.slug] || 'overview'}`;
 const relevantProducts = products.filter((product) => product.roles.includes(role.title)).slice(0, 4);
 const relatedIndustries = industries.filter((industry) => context.industrySlugs.includes(industry.slug));
-const roleScreens = ['admin-toko', 'kasir'].includes(role.slug)
-  ? productScreenSets.operations
-  : role.slug === 'supervisor'
-    ? productScreenSets.performance
-    : productScreenSets.overview;
+const roleDriveSet = getRoleDriveVisuals(role.slug);
+const roleScreens = [roleDriveSet.primary, ...roleDriveSet.supporting.slice(0, 1)].map(toProductScreen);
 const roleHelpLinks: Record<string, { label: string; href: string }[]> = {
   'pemilik-usaha': [
     { label: 'Atur akses tim', href: '/keamanan/' },

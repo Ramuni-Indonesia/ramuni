@@ -1,28 +1,27 @@
 ---
+import { driveCardVisuals } from '../data/driveVisuals';
+
 const stories = [
   {
     label: 'Penjualan',
     question: 'Omzet berubah. Bagian mana yang perlu dibuka dulu?',
     answer: 'Bandingkan hari, jumlah transaksi, dan produk yang berubah.',
     href: '/solusi/naikkan-omzet/',
-    mascot: '/website-original/mascot/phase-1/muni-manyar-friendly-v2.webp',
-    mascotAlt: 'Muni Manyar membantu membaca perubahan penjualan',
+    visual: driveCardVisuals.operationsContext,
   },
   {
     label: 'Stok',
     question: 'Barang apa yang berisiko habis saat permintaan naik?',
     answer: 'Lihat sisa stok bersama laju penjualan dan aktivitas terbaru.',
     href: '/solusi/kelola-stok/',
-    mascot: '/website-original/mascot/phase-1/kancil-cermat-friendly-v2.webp',
-    mascotAlt: 'Kancil Cermat memegang catatan untuk memeriksa stok',
+    visual: driveCardVisuals.stockContext,
   },
   {
     label: 'Kas',
     question: 'Usaha ramai, tetapi mengapa kas terasa seret?',
     answer: 'Pisahkan omzet, biaya, laba, dan pergerakan kas pada periode yang sama.',
     href: '/solusi/pantau-laba-dan-arus-kas/',
-    mascot: '/website-original/mascot/phase-1/si-ramu-friendly-v2.webp',
-    mascotAlt: 'Si Ramu membantu menghubungkan catatan omzet, biaya, laba, dan kas',
+    visual: driveCardVisuals.cashContext,
   },
 ];
 ---
@@ -33,10 +32,10 @@ const stories = [
       {stories.map((story, index) => (
         <img
           class:list={['problem-selector__mascot', { 'is-active': index === 0 }]}
-          src={story.mascot}
-          width="1024"
-          height="1024"
-          alt={story.mascotAlt}
+          src={story.visual.src}
+          width={story.visual.width}
+          height={story.visual.height}
+          alt={story.visual.alt}
           loading="lazy"
           decoding="async"
           data-problem-mascot={String(index)}
@@ -157,7 +156,7 @@ const stories = [
   .problem-selector__orbit{position:absolute;width:min(340px,72%);aspect-ratio:1;border:1px solid rgb(11 48 69/.15);border-radius:50%;box-shadow:0 0 0 42px rgb(22 140 140/.05),0 0 0 84px rgb(242 177 52/.05)}
   .problem-selector__orbit::before,.problem-selector__orbit::after{content:'';position:absolute;width:18px;aspect-ratio:1;border-radius:50%;background:var(--teal);box-shadow:0 0 0 7px rgb(22 140 140/.12)}
   .problem-selector__orbit::before{left:12%;top:8%}.problem-selector__orbit::after{right:5%;bottom:18%;background:var(--yellow);box-shadow:0 0 0 7px rgb(242 177 52/.15)}
-  .problem-selector__mascot{position:absolute;z-index:2;display:block;width:min(360px,76%);height:auto;opacity:0;filter:drop-shadow(0 26px 34px rgb(11 48 69/.18));mix-blend-mode:multiply;transform:translate3d(32px,16px,0) scale(.92);transform-origin:50% 88%;transition:opacity .45s cubic-bezier(.22,1,.36,1),transform .65s var(--ease);will-change:transform}
+  .problem-selector__mascot{position:absolute;z-index:2;display:block;width:min(430px,84%);height:auto;opacity:0;filter:drop-shadow(0 24px 28px rgb(11 48 69/.16));object-fit:contain;transform:translate3d(32px,16px,0) scale(.92);transform-origin:50% 88%;transition:opacity .45s cubic-bezier(.22,1,.36,1),transform .65s var(--ease);will-change:transform}
   .problem-selector__mascot.is-active{opacity:1;transform:none}
   .problem-selector__stage figcaption{position:relative;z-index:3;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;padding:20px;border-top:1px solid var(--ink);background:var(--white)}
   .problem-selector__stage figcaption span{color:var(--teal);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.problem-selector__stage figcaption strong{font-size:.84rem;line-height:1.45}.problem-selector__stage figcaption a{grid-column:2;width:max-content;max-width:100%;color:var(--teal);font-size:.72rem;font-weight:800;text-underline-offset:4px}
@@ -178,6 +177,6 @@ const stories = [
     @keyframes problem-orbit-pulse{0%,100%{transform:scale(.78);opacity:.48}50%{transform:scale(1.12);opacity:1}}
   }
   @media(max-width:960px){.problem-selector{grid-template-columns:1fr}.problem-selector__stage{min-height:500px}.problem-selector__questions{grid-template-columns:repeat(3,minmax(0,1fr));border-left:1px solid var(--ink)}.problem-selector__questions button{min-height:150px;border-right:1px solid var(--ink-10)}.problem-selector__questions button:last-child{border-right:0}.problem-selector__questions button[aria-selected='true']{padding-left:22px}}
-  @media(max-width:620px){.problem-selector{gap:22px}.problem-selector__stage{min-height:430px;box-shadow:8px 8px 0 var(--ink)}.problem-selector__art{min-height:310px}.problem-selector__mascot{width:min(285px,78%)}.problem-selector__stage figcaption{grid-template-columns:1fr;padding:16px}.problem-selector__stage figcaption a{grid-column:auto}.problem-selector__questions{grid-template-columns:1fr;border-left:0}.problem-selector__questions button{min-height:0;padding:17px 4px 17px 0;border-right:0}.problem-selector__questions button[aria-selected='true']{padding-left:16px}}
+  @media(max-width:620px){.problem-selector{gap:22px}.problem-selector__stage{min-height:430px;box-shadow:8px 8px 0 var(--ink)}.problem-selector__art{min-height:310px}.problem-selector__mascot{width:min(320px,88%)}.problem-selector__stage figcaption{grid-template-columns:1fr;padding:16px}.problem-selector__stage figcaption a{grid-column:auto}.problem-selector__questions{grid-template-columns:1fr;border-left:0}.problem-selector__questions button{min-height:0;padding:17px 4px 17px 0;border-right:0}.problem-selector__questions button[aria-selected='true']{padding-left:16px}}
   @media(prefers-reduced-motion:reduce){.problem-selector__mascot,.problem-selector__orbit{animation:none!important;transition:none!important;will-change:auto}.problem-selector__mascot.is-active{transform:none}}
 </style>

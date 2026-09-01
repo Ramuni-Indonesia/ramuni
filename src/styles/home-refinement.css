@@ -646,6 +646,12 @@
 .dashboard-gallery__head > div:last-child > strong { display: none; }
 .dashboard-gallery__head > div:last-child p { max-width: 37ch; margin: 0 0 14px; }
 .dashboard-product-shot { margin-bottom: clamp(28px, 4vw, 48px); }
+.dashboard-product-shot .homepage-product-proof-video {
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 14px 14px 0 var(--yellow);
+}
+.dashboard-product-shot .homepage-product-proof-video video { object-fit: cover; }
 .dashboard-product-shot figcaption { margin-top: 12px; padding-block: 12px; }
 .dashboard-proof-notes {
   display: grid;
@@ -756,4 +762,5 @@
   .closing-composition h2 { margin-inline: 0; }
   .closing-composition__lede { margin-inline: 0; }
   .closing-composition .button-row { justify-content: flex-start; }
+  .dashboard-product-shot .homepage-product-proof-video { border-radius: 14px; box-shadow: 7px 7px 0 var(--yellow); }
 }

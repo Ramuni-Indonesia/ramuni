@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products, roles } from '../../data/site';
+import { driveCardVisuals } from '../../data/driveVisuals';
 import '../../styles/role-hub.css';
 
 const roleViews: Record<string, { lens: string; primary: string; handoff: string; proof: string; ai: string; industries: string[]; products: string[] }> = {
@@ -23,6 +24,7 @@ const collaborationFlow = [
   { label: 'Putuskan', text: 'Orang yang berwenang memilih tindak lanjut.' },
   { label: 'Pantau', text: 'Status terlihat lagi oleh tim yang perlu tahu.' },
 ];
+const roleCloseVisual = driveCardVisuals.teamHandoff;
 ---
 <BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat cara pemilik usaha, admin toko, kasir, dan supervisor memakai RAMUNI dengan akses dan prioritas yang berbeda.">
   <PageHero compact eyebrow="Untuk Tim" title="Satu sumber pemahaman untuk setiap peran." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />
@@ -94,7 +96,7 @@ const collaborationFlow = [
         body="Mulai dari satu peran yang paling penting, lalu cocokkan akses, data, dan tindak lanjutnya."
         secondaryLabel="Baca Panduan"
         secondaryHref="/panduan/"
-        visual={{ src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp', width: 1440, height: 1202, alt: 'Tampilan dashboard SaaS RAMUNI dengan sidebar, metrik, aktivitas, dan status sistem untuk memantau pekerjaan tim' }}
+        visual={roleCloseVisual}
         visualBadge="Tampilan produk · data demo"
         points={['Pilih peran utama', 'Cocokkan akses data', 'Sepakati tindak lanjut']}
       />

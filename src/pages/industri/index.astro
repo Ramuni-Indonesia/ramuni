@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products } from '../../data/site';
+import { driveLaptopVisuals } from '../../data/driveVisuals';
 import '../../styles/other-pages-refinement.css';
 
 const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string; signal: string }> = {
@@ -30,6 +31,7 @@ const industryLens = industries.map((industry) => ({
   ...industry,
   ...industryProfiles[industry.slug as keyof typeof industryProfiles],
 }));
+const industryCloseVisual = driveLaptopVisuals.overview;
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Lihat cara RAMUNI membantu retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil membaca data yang paling penting.">
   <PageHero compact eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />
@@ -134,7 +136,7 @@ const industryLens = industries.map((industry) => ({
         title="Cocokkan kebutuhan sebelum memilih fitur."
         body="Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan langkah yang paling relevan."
         theme="ink"
-        visual={{ src: '/website-original/context/ramuni-context-umkm-signal-workspace.webp', width: 1200, height: 675, alt: 'Ilustrasi ruang kerja UMKM yang menghubungkan catatan usaha, bukti, dan arah tindak lanjut' }}
+        visual={industryCloseVisual}
         visualBadge="Ilustrasi konteks usaha"
         points={['Bawa satu pertanyaan', 'Cocokkan ritme usaha', 'Pilih alur fiturnya']}
       />

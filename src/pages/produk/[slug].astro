@@ -11,9 +11,9 @@ import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
+import { getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { products } from '../../data/site';
-import { productScreens, type ProductScreen } from '../../data/productScreens';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
 import { pageLastmods } from '../../data/pageLastmods';
@@ -79,18 +79,13 @@ const productCtaLabels: Record<string, string> = {
 };
 const productCtaLabel = productCtaLabels[product.slug] || 'Konsultasi';
 const closingVisual = getProductContextVisual(product.slug);
-const screenSetByProduct: Record<string, readonly ProductScreen[]> = {
-  'asisten-ai': [productScreens.ai, productScreens.overview],
-  'dashboard-bisnis': [productScreens.overview, productScreens.reports],
-  'katalog-produk': [productScreens.inventory, productScreens.operations],
-  penjualan: [productScreens.sales, productScreens.customers],
-  inventori: [productScreens.inventory, productScreens.sales],
-  keuangan: [productScreens.finance, productScreens.reports],
-  pelanggan: [productScreens.customers, productScreens.sales],
-  'laporan-insight': [productScreens.reports, productScreens.finance],
-  integrasi: [productScreens.overview, productScreens.operations],
-};
-const screenSet = screenSetByProduct[product.slug] || [productScreens.overview, productScreens.operations];
+const productDriveSet = getProductDriveVisuals(product.slug);
+// The hero owns the primary Drive visual. The rail gets supporting visuals so
+// a page never repeats the same asset as both its opener and its proof chapter.
+const screenSet = (productDriveSet.supporting.length > 0
+  ? productDriveSet.supporting
+  : [productDriveSet.primary]
+).map(toProductScreen);
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,

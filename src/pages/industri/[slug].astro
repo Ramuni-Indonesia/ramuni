@@ -5,7 +5,7 @@ import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { industries, products, resources, roles, solutions } from '../../data/site';
-import { productScreenSets } from '../../data/productScreens';
+import { getIndustryDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
 
@@ -227,11 +227,8 @@ const supportingProducts = products.filter((product) => brief.modules.includes(p
 const relevantRoles = roles.filter((role) => brief.roleSlugs.includes(role.slug));
 const relatedSolutions = solutions.filter((solution) => brief.solutionSlugs.includes(solution.slug));
 const relatedResources = resources.filter((resource) => brief.resourceHrefs.includes(resource.href));
-const industryScreens = ['fnb', 'manufaktur-kecil'].includes(industry.slug)
-  ? productScreenSets.operations
-  : ['distributor', 'jasa'].includes(industry.slug)
-    ? productScreenSets.performance
-    : productScreenSets.overview;
+const industryDriveSet = getIndustryDriveVisuals(industry.slug);
+const industryScreens = [industryDriveSet.primary, ...industryDriveSet.supporting.slice(0, 1)].map(toProductScreen);
 const canonicalPath = `/industri/${industry.slug}/`;
 const industryUrl = new URL(canonicalPath, Astro.site || Astro.url.origin).toString();
 const structuredData = {

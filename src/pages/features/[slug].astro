@@ -5,7 +5,7 @@ import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { capabilityStatusLabel, featureDetails } from '../../data/commercial';
 import { appCta, consultationCta } from '../../data/site';
-import { productScreenSets } from '../../data/productScreens';
+import { getFeatureDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
@@ -28,11 +28,8 @@ const featurePrimaryEvent = featureIsComingSoon ? 'demo_request' : 'free_trial_c
 const featurePrimaryDestination = featureIsComingSoon ? 'consultation' : 'app';
 const origin = new URL('/', Astro.site || Astro.url.origin).origin;
 const canonical = new URL(`/features/${feature.slug}/`, origin).toString();
-const screenSet = feature.slug === 'profit-intelligence'
-  ? productScreenSets.performance
-  : feature.slug === 'omnichannel'
-    ? productScreenSets.operations
-    : productScreenSets.overview;
+const featureDriveSet = getFeatureDriveVisuals(feature.slug);
+const screenSet = [featureDriveSet.primary, ...featureDriveSet.supporting.slice(0, 1)].map(toProductScreen);
 const featureFlow: Record<string, Array<{ label: string; title: string; text: string }>> = {
   'ai-copilot': [
     { label: '01 · Input', title: 'Pertanyaan dan periode', text: 'Tulis kebutuhan dengan bahasa sehari-hari dan pilih rentang data yang ingin dibaca.' },

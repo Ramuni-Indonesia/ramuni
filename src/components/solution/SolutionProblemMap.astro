@@ -7,6 +7,7 @@ interface ProblemEntry {
 }
 
 import { getSolutionContextVisual, getSolutionDashboardVisual } from '../../data/dashboardVisuals';
+import { getSolutionDriveVisuals } from '../../data/driveVisuals';
 import DashboardMotion from '../DashboardMotion.astro';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 const { entries } = Astro.props;
 const solutionSlugs = entries.map((entry) => entry.href.split('/').filter(Boolean).at(-1) || '');
 const visuals = solutionSlugs.map((slug) => getSolutionDashboardVisual(slug));
+const driveVisuals = solutionSlugs.map((slug) => getSolutionDriveVisuals(slug).primary);
 const contexts = solutionSlugs.map((slug) => getSolutionContextVisual(slug));
 const destinations = entries.map((entry) => ({ href: entry.href, label: entry.label.toLowerCase() }));
 ---
@@ -43,9 +45,12 @@ const destinations = entries.map((entry) => ({ href: entry.href, label: entry.la
               <div class="solution-map__dashboard">
                 <DashboardMotion
                   focus={solutionSlugs[index] === 'kelola-stok' ? 'operations' : solutionSlugs[index] === 'laporan-bisnis-otomatis' ? 'overview' : 'performance'}
-                  label={visuals[index].alt}
+                  label={driveVisuals[index].alt}
                   priority={index === 0}
                   defer={index !== 0}
+                  driveSrc={driveVisuals[index].src}
+                  driveWidth={driveVisuals[index].width}
+                  driveHeight={driveVisuals[index].height}
                   {...visuals[index]}
                 />
               </div>

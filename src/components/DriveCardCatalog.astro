@@ -1,9 +1,8 @@
 ---
+import { driveCardVisuals } from '../data/driveVisuals';
+
 interface DriveCard {
-  src: string;
-  alt: string;
-  eyebrow: string;
-  title: string;
+  visual: (typeof driveCardVisuals)[keyof typeof driveCardVisuals];
   href: string;
 }
 
@@ -24,14 +23,14 @@ const {
 } = Astro.props;
 
 const cards: DriveCard[] = [
-  { src: '/website-original/marketing/drive/card-1787972978518.webp', alt: 'Card manajemen stok RAMUNI dengan peringatan SKU dan kecepatan jual.', eyebrow: 'Inventori', title: 'Prioritas stok terlihat sebelum rak kosong.', href: '/produk/inventori/' },
-  { src: '/website-original/marketing/drive/card-1787991556793.webp', alt: 'Card Asisten AI RAMUNI dengan pertanyaan dan sumber jawaban.', eyebrow: 'Asisten AI', title: 'Tanya kondisi usaha dengan sumber yang jelas.', href: '/produk/asisten-ai/' },
-  { src: '/website-original/marketing/drive/card-1787991594833.webp', alt: 'Card Profit Intelligence RAMUNI dengan pendapatan, margin, dan biaya.', eyebrow: 'Profit Intelligence', title: 'Pisahkan omzet, biaya, margin, dan laba.', href: '/produk/laporan-insight/' },
-  { src: '/website-original/marketing/drive/card-1787991741271.webp', alt: 'Card ringkasan penjualan RAMUNI dengan transaksi dan status pembayaran.', eyebrow: 'Penjualan', title: 'Perubahan transaksi dapat ditelusuri.', href: '/produk/penjualan/' },
-  { src: '/website-original/marketing/drive/card-1787991838265.webp', alt: 'Card laporan mingguan RAMUNI dengan ringkasan dan tindak lanjut.', eyebrow: 'Laporan', title: 'Ringkasan mingguan siap dibahas bersama tim.', href: '/produk/laporan-insight/' },
-  { src: '/website-original/marketing/drive/card-1787991862762.webp', alt: 'Card integrasi data RAMUNI dengan status validasi file dan SKU.', eyebrow: 'Integrasi', title: 'Jalur data dan hasil validasi tetap terlihat.', href: '/produk/integrasi/' },
-  { src: '/website-original/marketing/drive/card-1787991972418.webp', alt: 'Card Knowledge OS RAMUNI dengan dokumen dan SOP.', eyebrow: 'Knowledge OS', title: 'SOP dan keputusan tidak tercecer.', href: '/features/knowledge-os/' },
-  { src: '/website-original/marketing/drive/card-1787991977808.webp', alt: 'Card Inbox dan Pelanggan RAMUNI dengan riwayat dan follow-up.', eyebrow: 'Pelanggan', title: 'Follow-up berangkat dari riwayat yang tersedia.', href: '/produk/pelanggan/' },
+  { visual: driveCardVisuals.inventoryAlert, href: '/produk/inventori/' },
+  { visual: driveCardVisuals.aiAssistant, href: '/produk/asisten-ai/' },
+  { visual: driveCardVisuals.profitIntelligence, href: '/produk/laporan-insight/' },
+  { visual: driveCardVisuals.salesSummary, href: '/produk/penjualan/' },
+  { visual: driveCardVisuals.weeklyReport, href: '/produk/laporan-insight/' },
+  { visual: driveCardVisuals.dataImport, href: '/produk/integrasi/' },
+  { visual: driveCardVisuals.knowledgeOs, href: '/features/knowledge-os/' },
+  { visual: driveCardVisuals.customerInbox, href: '/produk/pelanggan/' },
 ].slice(0, Math.max(0, limit));
 ---
 
@@ -43,8 +42,8 @@ const cards: DriveCard[] = [
     </header>
     <div class="drive-card-catalog__grid">
       {cards.map((card, index) => <a class="drive-card-catalog__card" href={card.href} style={`--i:${index}`}>
-        <div class="drive-card-catalog__media"><img src={card.src} width="1408" height="768" alt={card.alt} loading={index < 3 ? 'lazy' : 'lazy'} decoding="async" /></div>
-        <div class="drive-card-catalog__copy"><span>{card.eyebrow}</span><strong>{card.title}</strong><b aria-hidden="true">↗</b></div>
+        <div class="drive-card-catalog__media"><img src={card.visual.src} width={card.visual.width} height={card.visual.height} alt={card.visual.alt} loading="lazy" decoding="async" /></div>
+        <div class="drive-card-catalog__copy"><span>{card.visual.eyebrow}</span><strong>{card.visual.title}</strong><b aria-hidden="true">↗</b></div>
       </a>)}
     </div>
   </div>

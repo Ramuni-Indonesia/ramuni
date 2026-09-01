@@ -1,6 +1,7 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
 import { getProductDashboardVisual } from '../../data/dashboardVisuals';
+import { getProductDriveVisuals } from '../../data/driveVisuals';
 
 interface Props {
   slug?: string;
@@ -15,11 +16,20 @@ const {
 } = Astro.props;
 
 const dashboard = getProductDashboardVisual(slug);
+const driveVisual = getProductDriveVisuals(slug).primary;
 const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview';
 ---
 
 <div class:list={['product-canvas', { 'product-canvas--hub-proof': slug === 'hub', 'product-canvas--detail-proof': slug !== 'hub' }]} aria-label={`Contoh tampilan ruang kerja ${title}: ${question}`}>
-  <DashboardMotion focus={focus} priority label={`${dashboard.alt} Digunakan sebagai contoh cara membaca ${title}.`} {...dashboard} />
+  <DashboardMotion
+    focus={focus}
+    priority
+    label={`${driveVisual.alt} Digunakan sebagai contoh cara membaca ${title}.`}
+    driveSrc={driveVisual.src}
+    driveWidth={driveVisual.width}
+    driveHeight={driveVisual.height}
+    {...dashboard}
+  />
 </div>
 
 <style>

@@ -10,7 +10,7 @@ import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import SearchIntentPaths from '../../components/SearchIntentPaths.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
-import { productScreens, type ProductScreen } from '../../data/productScreens';
+import { getSolutionDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { searchIntentPaths } from '../../data/searchIntentPaths';
 import { listSolutionRouteModels, type SolutionRouteModel } from '../../content-gateway/site-records';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
@@ -43,14 +43,13 @@ const solutionCtaLabels: Record<string, string> = {
 };
 const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Konsultasi';
 const closingVisual = getSolutionContextVisual(solution.slug);
-const screenSetBySolution: Record<string, readonly ProductScreen[]> = {
-  'naikkan-omzet': [productScreens.sales, productScreens.customers],
-  'kelola-stok': [productScreens.inventory, productScreens.operations],
-  'pantau-laba-dan-arus-kas': [productScreens.finance, productScreens.reports],
-  'pahami-pelanggan': [productScreens.customers, productScreens.sales],
-  'laporan-bisnis-otomatis': [productScreens.reports, productScreens.finance],
-};
-const screenSet = screenSetBySolution[solution.slug] || [productScreens.overview, productScreens.operations];
+const solutionDriveSet = getSolutionDriveVisuals(solution.slug);
+// The hero already owns the primary visual; keep the rail focused on a
+// different supporting capture so the same artwork is not repeated twice.
+const screenSet = (solutionDriveSet.supporting.length > 0
+  ? solutionDriveSet.supporting.slice(0, 2)
+  : [solutionDriveSet.primary]
+).map(toProductScreen);
 const capabilityIconForHref = (href?: string) => {
   const slug = href?.startsWith('/produk/') ? href.replace(/\/+$/, '').split('/').pop() : undefined;
   return slug ? capabilityIconAttributes('product', slug) : {};
