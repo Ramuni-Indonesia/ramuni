@@ -25,7 +25,7 @@ const limitRows = [
   { label: 'Outlet aktif', values: pricingPlans.map((plan) => plan.limits[1]) },
   { label: 'Budget AI bulanan', values: pricingPlans.map((plan) => plan.limits[2]) },
 ];
-const statusSymbol = (status: string) => status === 'Unavailable' ? '×' : '✓';
+const statusSymbol = (status: string) => ['Unavailable', 'Coming soon'].includes(status) ? '×' : '✓';
 ---
 <BaseLayout title="Harga RAMUNI: Platform Bisnis dan AI untuk UMKM" description="Pilih paket RAMUNI untuk mengelola operasional, pengetahuan, website, pelanggan, dan analisis bisnis UMKM dalam satu platform." canonical="/pricing/" schema={schema} pageType="WebPage">
   <div class="commercial-page" data-commercial-page="pricing" data-pricing-public={String(releaseGates.pricingPublic)}>
