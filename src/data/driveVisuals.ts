@@ -25,7 +25,7 @@ const drivePath = (filename: string) => `/website-original/marketing/drive/${fil
 export const driveLaptopVisuals = {
   overview: {
     kind: 'laptop',
-    src: drivePath('207shots_so.webp'),
+    src: drivePath('207shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan ringkasan kondisi usaha, metrik utama, dan prioritas berikutnya.',
@@ -35,7 +35,7 @@ export const driveLaptopVisuals = {
   },
   salesCustomers: {
     kind: 'laptop',
-    src: drivePath('35shots_so.webp'),
+    src: drivePath('35shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan alur penjualan dan riwayat pelanggan yang dapat ditelusuri.',
@@ -45,7 +45,7 @@ export const driveLaptopVisuals = {
   },
   inventory: {
     kind: 'laptop',
-    src: drivePath('217shots_so.webp'),
+    src: drivePath('217shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan prioritas stok dan pergerakan barang yang perlu diperiksa.',
@@ -55,7 +55,7 @@ export const driveLaptopVisuals = {
   },
   posCashier: {
     kind: 'laptop',
-    src: drivePath('289shots_so.webp'),
+    src: drivePath('289shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan alur POS dan pekerjaan kasir untuk usaha makanan atau toko.',
@@ -65,7 +65,7 @@ export const driveLaptopVisuals = {
   },
   posPayment: {
     kind: 'laptop',
-    src: drivePath('356shots_so.webp'),
+    src: drivePath('356shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan alur pembayaran dan pemeriksaan status transaksi.',
@@ -75,7 +75,7 @@ export const driveLaptopVisuals = {
   },
   stockTransfer: {
     kind: 'laptop',
-    src: drivePath('801shots_so.webp'),
+    src: drivePath('801shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan alur transfer stok dan catatan perpindahan barang.',
@@ -85,7 +85,7 @@ export const driveLaptopVisuals = {
   },
   promotion: {
     kind: 'laptop',
-    src: drivePath('909shots_so.webp'),
+    src: drivePath('909shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan alur pengaturan diskon dan pemeriksaan dampak promosi.',
@@ -95,7 +95,7 @@ export const driveLaptopVisuals = {
   },
   finance: {
     kind: 'laptop',
-    src: drivePath('990shots_so.webp'),
+    src: drivePath('990shots_so-hd.webp'),
     width: 1600,
     height: 900,
     alt: 'Laptop RAMUNI dengan ringkasan keuangan, biaya, dan arus kas pada satu periode.',
@@ -110,7 +110,7 @@ export type DriveLaptopKey = keyof typeof driveLaptopVisuals;
 export const driveCardVisuals = {
   inventoryAlert: {
     kind: 'card',
-    src: drivePath('card-1787972978518.webp'),
+    src: drivePath('card-1787972978518-hd.webp'),
     width: 1280,
     height: 714,
     alt: 'Card RAMUNI untuk manajemen stok dan inventori dengan SKU yang perlu diperhatikan.',
@@ -120,7 +120,7 @@ export const driveCardVisuals = {
   },
   aiAssistant: {
     kind: 'card',
-    src: drivePath('card-1787991556793.webp'),
+    src: drivePath('card-1787991556793-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card Asisten AI RAMUNI dengan pertanyaan bisnis dan sumber jawaban.',
@@ -130,7 +130,7 @@ export const driveCardVisuals = {
   },
   profitIntelligence: {
     kind: 'card',
-    src: drivePath('card-1787991594833.webp'),
+    src: drivePath('card-1787991594833-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card Profit Intelligence RAMUNI dengan pendapatan, margin, dan biaya.',
@@ -140,7 +140,7 @@ export const driveCardVisuals = {
   },
   stockPriority: {
     kind: 'card',
-    src: drivePath('card-1787991626445.webp'),
+    src: drivePath('card-1787991626445-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card RAMUNI dengan daftar produk dan prioritas penyesuaian stok.',
@@ -150,7 +150,7 @@ export const driveCardVisuals = {
   },
   salesSummary: {
     kind: 'card',
-    src: drivePath('card-1787991741271.webp'),
+    src: drivePath('card-1787991741271-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card ringkasan penjualan RAMUNI dengan transaksi dan status pembayaran.',
@@ -160,7 +160,7 @@ export const driveCardVisuals = {
   },
   weeklyReport: {
     kind: 'card',
-    src: drivePath('card-1787991838265.webp'),
+    src: drivePath('card-1787991838265-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card laporan mingguan RAMUNI dengan ringkasan dan tindak lanjut.',
@@ -170,7 +170,7 @@ export const driveCardVisuals = {
   },
   dataImport: {
     kind: 'card',
-    src: drivePath('card-1787991862762.webp'),
+    src: drivePath('card-1787991862762-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card integrasi data RAMUNI dengan status validasi file dan SKU.',
@@ -180,7 +180,7 @@ export const driveCardVisuals = {
   },
   knowledgeOs: {
     kind: 'card',
-    src: drivePath('card-1787991972418.webp'),
+    src: drivePath('card-1787991972418-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card Knowledge OS RAMUNI dengan dokumen dan SOP.',
@@ -190,7 +190,7 @@ export const driveCardVisuals = {
   },
   customerInbox: {
     kind: 'card',
-    src: drivePath('card-1787991977808.webp'),
+    src: drivePath('card-1787991977808-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card Inbox dan Pelanggan RAMUNI dengan riwayat dan follow-up.',
@@ -200,7 +200,7 @@ export const driveCardVisuals = {
   },
   businessPage: {
     kind: 'card',
-    src: drivePath('card-1787991984146.webp'),
+    src: drivePath('card-1787991984146-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Card halaman bisnis RAMUNI dengan profil usaha dan jalur kontak.',
@@ -210,7 +210,7 @@ export const driveCardVisuals = {
   },
   stockContext: {
     kind: 'card',
-    src: drivePath('card-1787992292419.webp'),
+    src: drivePath('card-1787992292419-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang rak stok dan pergerakan barang.',
@@ -220,7 +220,7 @@ export const driveCardVisuals = {
   },
   cashContext: {
     kind: 'card',
-    src: drivePath('card-1787992320620.webp'),
+    src: drivePath('card-1787992320620-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang arus kas, biaya, dan ringkasan keuangan.',
@@ -230,7 +230,7 @@ export const driveCardVisuals = {
   },
   operationsContext: {
     kind: 'card',
-    src: drivePath('card-1787992350805.webp'),
+    src: drivePath('card-1787992350805-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang perangkat kerja operasional usaha.',
@@ -240,7 +240,7 @@ export const driveCardVisuals = {
   },
   posContext: {
     kind: 'card',
-    src: drivePath('card-1787992404704.webp'),
+    src: drivePath('card-1787992404704-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang perangkat POS dan pembayaran.',
@@ -250,7 +250,7 @@ export const driveCardVisuals = {
   },
   teamHandoff: {
     kind: 'card',
-    src: drivePath('card-1787992433522.webp'),
+    src: drivePath('card-1787992433522-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang pembagian peran dan handoff tim.',
@@ -260,7 +260,7 @@ export const driveCardVisuals = {
   },
   insightContext: {
     kind: 'card',
-    src: drivePath('card-1787992464612.webp'),
+    src: drivePath('card-1787992464612-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Ilustrasi card RAMUNI tentang insight dan pemeriksaan data.',
@@ -270,7 +270,7 @@ export const driveCardVisuals = {
   },
   workspaceProof: {
     kind: 'card',
-    src: drivePath('card-1787992497376.webp'),
+    src: drivePath('card-1787992497376-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Tampilan card workspace RAMUNI dengan ringkasan kondisi bisnis.',
@@ -280,7 +280,7 @@ export const driveCardVisuals = {
   },
   multiOutlet: {
     kind: 'card',
-    src: drivePath('card-1787993211609.webp'),
+    src: drivePath('card-1787993211609-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Tampilan card RAMUNI untuk analisis multi-outlet dan tren penjualan.',
@@ -290,7 +290,7 @@ export const driveCardVisuals = {
   },
   auditInventory: {
     kind: 'card',
-    src: drivePath('card-1787993287729.webp'),
+    src: drivePath('card-1787993287729-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Tampilan card RAMUNI untuk kontrol operasional kasir dan audit persediaan.',
@@ -300,7 +300,7 @@ export const driveCardVisuals = {
   },
   workspaceOverview: {
     kind: 'card',
-    src: drivePath('card-1787993342612.webp'),
+    src: drivePath('card-1787993342612-hd.webp'),
     width: 1280,
     height: 698,
     alt: 'Tampilan card workspace RAMUNI dengan ringkasan aktivitas usaha.',
@@ -310,7 +310,7 @@ export const driveCardVisuals = {
   },
   decisionWorkspace: {
     kind: 'card',
-    src: drivePath('card-1787993464198.webp'),
+    src: drivePath('card-1787993464198-hd.webp'),
     width: 1280,
     height: 800,
     alt: 'Tampilan card RAMUNI dengan ruang kerja untuk meninjau kondisi bisnis.',
@@ -320,7 +320,7 @@ export const driveCardVisuals = {
   },
   pointOfSale: {
     kind: 'card',
-    src: drivePath('card-1787993522566.webp'),
+    src: drivePath('card-1787993522566-hd.webp'),
     width: 1280,
     height: 714,
     alt: 'Tampilan card RAMUNI untuk alur POS dan kasir.',
@@ -330,7 +330,7 @@ export const driveCardVisuals = {
   },
   paymentReview: {
     kind: 'card',
-    src: drivePath('card-1787993546813.webp'),
+    src: drivePath('card-1787993546813-hd.webp'),
     width: 1280,
     height: 714,
     alt: 'Tampilan card RAMUNI dengan pemeriksaan pembayaran dan ringkasan transaksi.',
