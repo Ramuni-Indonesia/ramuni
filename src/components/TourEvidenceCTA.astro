@@ -4,6 +4,7 @@ type Visual = {
   width: number;
   height: number;
   alt: string;
+  kind?: 'laptop' | 'card';
 };
 
 interface Props {
@@ -51,11 +52,12 @@ const {
   </div>
 
   <figure class="tour-evidence-cta__visual">
-    <LaptopMockup label={visual.alt}>
+    {visual.kind === 'card' && <div class="tour-evidence-cta__card-frame"><img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" /></div>}
+    {visual.kind !== 'card' && <LaptopMockup label={visual.alt}>
       <div class="tour-evidence-cta__image-frame">
         <img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" />
       </div>
-    </LaptopMockup>
+    </LaptopMockup>}
     <figcaption aria-label={visualBadge}>
       <span class="sr-only">{visualBadge}</span>
       <ol>
@@ -128,6 +130,7 @@ const {
   .tour-evidence-cta__visual{position:relative;min-width:0;margin:0;overflow:visible;border:1px solid var(--ink-10);background:var(--white);box-shadow:none}
   .tour-evidence-cta--ink .tour-evidence-cta__visual,.tour-evidence-cta--teal .tour-evidence-cta__visual{border-color:rgb(255 255 255/.18);box-shadow:none}
   .tour-evidence-cta__image-frame{display:grid;place-items:center;overflow:hidden;background:var(--rice);aspect-ratio:1.55;padding:0}
+  .tour-evidence-cta__card-frame{display:grid;place-items:center;overflow:hidden;background:var(--rice);aspect-ratio:1.55;padding:0}
   .tour-evidence-cta__visual img{display:block;width:100%;height:100%;object-fit:contain;transform:translate3d(0,0,0)}
   .tour-evidence-cta__visual figcaption{display:block;background:var(--white);color:var(--ink);border-top:1px solid var(--ink-10)}
   .tour-evidence-cta__visual ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none;background:var(--white)}

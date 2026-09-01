@@ -7,8 +7,7 @@ import DecisionFlow3D from '../../components/product/DecisionFlow3D.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { products, solutions } from '../../data/site';
 import { capabilityIconAttributes } from '../../data/capabilityIcons';
-import { heroContextVisuals } from '../../data/dashboardVisuals';
-import { getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
+import { driveCardVisuals, getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 
 const intelligence = products.filter((product) => ['asisten-ai', 'dashboard-bisnis', 'laporan-insight'].includes(product.slug));
 const operations = products.filter((product) => ['katalog-produk', 'penjualan', 'inventori', 'keuangan', 'pelanggan'].includes(product.slug));
@@ -17,7 +16,7 @@ const productFamilyBoards = {
   intelligence: { label: 'Jawaban berbasis bukti', value: '3 sumber', note: '1 hal perlu dicek', bars: [42, 68, 54, 86], rows: ['Periode terlihat', 'Catatan asal dapat dibuka'] },
   operations: { label: 'Prioritas operasional', value: '2 SKU', note: 'Stok perlu perhatian', bars: [82, 66, 48, 32], rows: ['Mutasi keluar terbaca', 'Cek fisik sebelum restock'] },
 } as const;
-const productCloseVisual = heroContextVisuals.aiImport;
+const productCloseVisual = driveCardVisuals.aiAssistant;
 const productWorkspaceDrive = getProductDriveVisuals('hub');
 // The hero already shows the primary overview; the rail introduces distinct
 // sales/inventory evidence instead of repeating that same frame.

@@ -43,3 +43,15 @@
 .commercial-cta{padding:22px 24px}
 @media(max-width:900px){.commercial-hero__grid{gap:24px}.commercial-section__head{margin-bottom:26px}}
 @media(max-width:600px){.commercial-hero{padding-block:38px 48px}.commercial-section{padding-block:54px}.plan-card{padding:22px 20px}.commercial-cta{padding:20px}.commercial-cta__actions .text-link{padding:10px 0}}
+
+/* Pricing uses one warm, human visual so the decision surface does not read
+   like another row of laptop mockups. */
+.pricing-hero__visual{display:grid;grid-template-columns:minmax(108px,.42fr) 1fr;gap:18px;align-items:center;margin:6px 0 0;padding:14px 16px 14px 10px;border:1px solid var(--ink-20);background:var(--white);box-shadow:8px 8px 0 var(--yellow-18)}
+.pricing-hero__visual img{display:block;width:100%;max-width:150px;aspect-ratio:1;object-fit:cover;border-radius:50%;background:var(--rice)}
+.pricing-hero__visual figcaption{display:grid;gap:8px}.pricing-hero__visual figcaption span{color:var(--teal);font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.pricing-hero__visual figcaption strong{font-size:clamp(1rem,1.8vw,1.35rem);line-height:1.18}
+.plan-card--featured{background:rgb(242 248 246/.92);box-shadow:8px 8px 0 var(--yellow-18);transform:translateY(-6px)}
+.plan-card--featured .plan-card__price strong{color:var(--teal);font-size:1.52rem}.plan-card--featured .plan-card__list li::before{content:'✓'}
+.matrix-legend{gap:8px;margin-block:18px 14px}.matrix-legend__item{display:inline-flex;align-items:center;min-height:30px;padding:7px 10px;border:1px solid var(--ink-20);border-radius:999px;color:var(--ink-72);font-size:.68rem;font-weight:800}.matrix-legend__item.is-available{border-color:var(--teal);color:var(--teal)}.matrix-legend__item.is-limited,.matrix-legend__item.is-beta{border-color:var(--yellow);background:var(--yellow-18);color:var(--ink)}.matrix-legend__item.is-coming-soon{border-style:dashed;color:var(--ink-56)}.matrix-legend__item.is-unavailable{color:var(--ink-56)}
+.matrix-status{padding:6px 9px}.matrix-status b{font-size:.66rem}.matrix-status[data-status='Unavailable']{border-color:var(--ink-20);background:var(--rice);color:var(--ink-56)}.matrix-status[data-status='Unavailable'] b{font-weight:800}.matrix-status[data-status='Coming soon']{border-style:dashed}.matrix-plan-note{display:block;margin-top:4px;color:var(--yellow);font-size:.6rem;font-weight:700;letter-spacing:.02em}
+@media(max-width:900px){.plan-card--featured{transform:none;box-shadow:5px 5px 0 var(--yellow-18)}}
+@media(max-width:600px){.pricing-hero__visual{grid-template-columns:96px 1fr;padding:10px;gap:12px}.pricing-hero__visual img{max-width:96px}.pricing-hero__visual figcaption strong{font-size:1rem}.matrix-legend{display:grid;grid-template-columns:1fr 1fr}.matrix-legend__item{justify-content:center;text-align:center}.plan-card--featured{box-shadow:4px 4px 0 var(--yellow-18)}}

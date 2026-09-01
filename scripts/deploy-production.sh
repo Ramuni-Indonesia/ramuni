@@ -14,7 +14,9 @@ ramuni_claim_pages_approved=${RAMUNI_PUBLIC_CLAIM_PAGES_APPROVED:-false}
 ramuni_resource_review_approved=${RAMUNI_PUBLIC_RESOURCE_REVIEW_APPROVED:-false}
 ramuni_calculator_review_approved=${RAMUNI_PUBLIC_CALCULATOR_REVIEW_APPROVED:-false}
 ramuni_security_review_approved=${RAMUNI_PUBLIC_SECURITY_REVIEW_APPROVED:-false}
-ramuni_pricing_approved=${RAMUNI_PUBLIC_PRICING_APPROVED:-false}
+# Public prices are approved for the production catalog. Set this to false
+# only when Finance/Product intentionally pauses the commercial surface.
+ramuni_pricing_approved=${RAMUNI_PUBLIC_PRICING_APPROVED:-true}
 ramuni_release_id="$(date -u +%Y%m%dT%H%M%SZ)-$(git -C "$ramuni_repo_dir" rev-parse --short=12 HEAD)"
 ramuni_release_dir="$ramuni_deploy_root/releases/$ramuni_release_id"
 ramuni_current_link="$ramuni_deploy_root/current"

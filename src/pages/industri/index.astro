@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products } from '../../data/site';
-import { driveLaptopVisuals } from '../../data/driveVisuals';
+import { driveCardVisuals } from '../../data/driveVisuals';
 import '../../styles/other-pages-refinement.css';
 
 const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string; signal: string }> = {
@@ -31,7 +31,7 @@ const industryLens = industries.map((industry) => ({
   ...industry,
   ...industryProfiles[industry.slug as keyof typeof industryProfiles],
 }));
-const industryCloseVisual = driveLaptopVisuals.overview;
+const industryCloseVisual = driveCardVisuals.operationsContext;
 ---
 <BaseLayout title="RAMUNI untuk Berbagai Industri" description="Lihat cara RAMUNI membantu retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil membaca data yang paling penting.">
   <PageHero compact eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />

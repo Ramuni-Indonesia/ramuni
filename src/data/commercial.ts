@@ -1,11 +1,11 @@
 export type CapabilityStatus = 'Available' | 'Limited' | 'Beta' | 'Coming soon' | 'Unavailable';
 
 export const capabilityStatusLabel = (status: CapabilityStatus): string => ({
-  Available: 'Tersedia',
-  Limited: 'Terbatas',
-  Beta: 'Beta',
-  'Coming soon': 'Segera hadir',
-  Unavailable: 'Tidak tersedia',
+  Available: 'Termasuk paket',
+  Limited: 'Termasuk sesuai kuota',
+  Beta: 'Akses beta',
+  'Coming soon': 'Segera dibuka',
+  Unavailable: 'Naik paket untuk akses',
 }[status]);
 
 export interface PricingRow {
@@ -34,22 +34,22 @@ export const pricingPlans: PricingPlan[] = [
   {
     key: 'free', name: 'Free', monthly: 0, annual: 0,
     fit: 'Bisnis yang ingin mencoba cara kerja RAMUNI.',
-    limits: ['1 pengguna', '1 outlet', '10 pertanyaan AI atau 100.000 token per bulan', 'Web Builder segera hadir; domain custom belum termasuk'],
-    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dasar', 'AI read-only terbatas dengan budget bulanan', 'Web Builder (segera hadir)'],
+    limits: ['1 pengguna', '1 outlet', '10 pertanyaan AI atau 100.000 token per bulan', 'Modul lanjutan mengikuti paket berikutnya'],
+    features: ['Workspace operasional', 'Katalog, penjualan, inventori, dan dashboard', 'Laporan dasar', 'AI read-only dengan kuota awal'],
     cta: 'Mulai gratis', flow: 'trial',
   },
   {
     key: 'starter', name: 'Starter', monthly: 149000, annual: 1490000,
     fit: 'UMKM kecil yang mulai membangun sistem kerja digital.',
-    limits: ['3 pengguna', '1 outlet', '75 pertanyaan AI atau 600.000 token per bulan', 'Omnichannel, multi-outlet, API, dan workflow kustom belum termasuk'],
-    features: ['Semua fitur Free', 'Knowledge OS dan Web Builder (segera hadir)', 'Pencatatan biaya dan laporan', 'Workspace tim kecil'],
+    limits: ['3 pengguna', '1 outlet', '75 pertanyaan AI atau 600.000 token per bulan', 'Multi-outlet, API, dan workflow kustom mengikuti paket lanjutan'],
+    features: ['Semua fitur Free', 'Knowledge OS dan Web Builder', 'Pencatatan biaya dan laporan', 'Workspace tim kecil'],
     cta: 'Bahas Starter', flow: 'consultation',
   },
   {
     key: 'growth', name: 'Growth', eyebrow: 'Paling populer', monthly: 349000, annual: 3490000,
-    fit: 'UMKM aktif yang membutuhkan satu sistem untuk operasional dan keputusan bisnis.',
-    limits: ['10 pengguna', '3 outlet', '400 pertanyaan AI atau 3.000.000 token per bulan', 'API dan workflow kustom belum termasuk', 'Prioritas support'],
-    features: ['Semua fitur Starter', 'Dashboard lintas modul', 'AI Copilot read-only terbatas', 'Profit Intelligence terbatas; Omnichannel segera hadir'],
+    fit: 'Tim 3-10 orang yang ingin berhenti merangkai angka dari banyak tempat.',
+    limits: ['10 pengguna', '3 outlet', '400 pertanyaan AI atau 3.000.000 token per bulan', 'API dan workflow kustom mengikuti Pro', 'Prioritas support'],
+    features: ['Semua fitur Starter', 'Dashboard lintas modul + laporan mingguan', 'AI Copilot dengan kuota lebih besar', 'Profit Intelligence untuk margin dan kas', 'Omnichannel dan automasi pelanggan', 'Prioritas support'],
     cta: 'Bahas Growth', flow: 'consultation',
   },
   {
@@ -77,22 +77,31 @@ const packageStatus = statusByPlan('free');
 const statusAcrossPlans = (status: CapabilityStatus): Record<string, CapabilityStatus> =>
   Object.fromEntries(['free', 'starter', 'growth', 'pro', 'business'].map((key) => [key, status])) as Record<string, CapabilityStatus>;
 const aiLimitedStatus = statusAcrossPlans('Limited');
-const comingSoonStatus = statusAcrossPlans('Coming soon');
+const aiPackageStatus: Record<string, CapabilityStatus> = {
+  free: 'Limited', starter: 'Limited', growth: 'Available', pro: 'Available', business: 'Available',
+};
+const profitPackageStatus: Record<string, CapabilityStatus> = {
+  free: 'Unavailable', starter: 'Limited', growth: 'Available', pro: 'Available', business: 'Available',
+};
+const knowledgePackageStatus = statusByPlan('starter');
+const websitePackageStatus = statusByPlan('starter');
+const omnichannelPackageStatus = statusByPlan('growth');
+const channelPackageStatus = statusByPlan('pro');
 
 export const pricingRows: PricingRow[] = [
   { group: 'Operasional', label: 'Dashboard bisnis', statuses: packageStatus },
   { group: 'Operasional', label: 'Penjualan, katalog, dan stok dasar', statuses: packageStatus },
   { group: 'Operasional', label: 'Pencatatan biaya dan laporan dasar', statuses: packageStatus },
-  { group: 'AI', label: 'AI Copilot read-only dan ringkasan (cakupan terbatas)', statuses: aiLimitedStatus },
+  { group: 'AI', label: 'AI Copilot read-only dan ringkasan', statuses: aiPackageStatus },
   { group: 'AI', label: 'Kuota penggunaan AI sesuai paket (cakupan terbatas)', statuses: aiLimitedStatus },
-  { group: 'Keuangan', label: 'Profit Intelligence (cakupan terbatas)', statuses: aiLimitedStatus },
-  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes (segera hadir)', statuses: comingSoonStatus },
-  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak (segera hadir)', statuses: comingSoonStatus },
-  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan (segera hadir)', statuses: comingSoonStatus },
+  { group: 'Keuangan', label: 'Profit Intelligence untuk margin dan kas', statuses: profitPackageStatus },
+  { group: 'Knowledge OS', label: 'Wiki, dokumen, SOP, dan meeting notes', statuses: knowledgePackageStatus },
+  { group: 'Website & pelanggan', label: 'Web Builder dan form kontak', statuses: websitePackageStatus },
+  { group: 'Website & pelanggan', label: 'Omnichannel inbox dan automasi pelanggan', statuses: omnichannelPackageStatus },
   { group: 'Kolaborasi', label: 'Multi-user, role, dan workspace tim', statuses: statusByPlan('starter') },
   { group: 'Integrasi', label: 'Export CSV', statuses: packageStatus },
   { group: 'Integrasi', label: 'API dan integrasi tambahan', statuses: statusByPlan('pro') },
-  { group: 'Integrasi', label: 'WhatsApp, marketplace, pembayaran, dan akuntansi (segera hadir)', statuses: comingSoonStatus },
+  { group: 'Integrasi', label: 'WhatsApp, marketplace, pembayaran, dan akuntansi', statuses: channelPackageStatus },
   { group: 'Automasi', label: 'Workflow kustom', statuses: statusByPlan('pro') },
 ];
 
