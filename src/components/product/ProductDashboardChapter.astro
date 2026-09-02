@@ -1,6 +1,8 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
+import VisualVariety from '../VisualVariety.astro';
 import { dashboardVisuals } from '../../data/dashboardVisuals';
+import { heroContextVisuals } from '../../data/dashboardVisuals';
 
 interface Props {
   slug: string;
@@ -76,6 +78,16 @@ const chapters = {
 } as const;
 
 const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-bisnis'];
+const conceptAsset = slug === 'asisten-ai' ? 'aiEvidenceBoard' : slug === 'keuangan' ? 'cashFlowBoard' : undefined;
+const contextAsset = slug === 'pelanggan' ? heroContextVisuals.salesCustomer : undefined;
+const workflowSteps = chapter.reads.map(([verb, object]) => `${verb} · ${object}`);
+const metricData = slug === 'laporan-insight'
+  ? [
+      { label: 'Periode', value: '7 hari', tone: 'teal' as const },
+      { label: 'Sumber', value: '4', tone: 'yellow' as const },
+      { label: 'Pemilik', value: '1', tone: 'ink' as const },
+    ]
+  : undefined;
 ---
 
 <section class="pd-dashboard-chapter" aria-labelledby={`product-dashboard-${slug}`}>
@@ -91,11 +103,19 @@ const chapter = chapters[slug as keyof typeof chapters] || chapters['dashboard-b
         <strong>{chapter.visual.badge}</strong>
       </div>
       <div class="pd-dashboard-chapter__motion">
-        <DashboardMotion
-          focus={['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview'}
-          label={`${chapter.visual.alt} Digunakan sebagai contoh cara membaca ${title}.`}
-          {...chapter.visual}
-        />
+        {conceptAsset ? (
+          <VisualVariety kind="concept" asset={conceptAsset} title={slug === 'keuangan' ? 'Omzet → biaya → kas.' : 'Pertanyaan → sumber → pemeriksaan.'} note="Visual konsep berbasis alur RAMUNI; bukan capture workspace live." priority />
+        ) : contextAsset ? (
+          <VisualVariety kind="context" src={contextAsset.src} width={contextAsset.width} height={contextAsset.height} alt={contextAsset.alt} label="Ilustrasi konteks · pelanggan" title="Riwayat pembelian memberi konteks sebelum tindak lanjut." note="Ilustrasi konteks; bukan data usaha tertentu." priority />
+        ) : metricData ? (
+          <VisualVariety kind="metric" title="Perubahan → sumber → tindak lanjut." metrics={metricData} steps={workflowSteps} note="Komponen visual untuk menjelaskan urutan laporan; angka hanya contoh." accent="yellow" />
+        ) : (
+          <DashboardMotion
+            focus={['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview'}
+            label={`${chapter.visual.alt} Digunakan sebagai contoh cara membaca ${title}.`}
+            {...chapter.visual}
+          />
+        )}
       </div>
       <figcaption>
         {chapter.reads.map(([verb, object], index) => (

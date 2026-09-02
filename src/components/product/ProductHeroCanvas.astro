@@ -1,6 +1,7 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
-import { getProductDashboardVisual } from '../../data/dashboardVisuals';
+import VisualVariety from '../VisualVariety.astro';
+import { getProductDashboardVisual, heroContextVisuals } from '../../data/dashboardVisuals';
 
 interface Props {
   slug?: string;
@@ -16,20 +17,59 @@ const {
 
 const dashboard = getProductDashboardVisual(slug);
 const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview';
+const conceptAsset = slug === 'asisten-ai' ? 'aiEvidenceBoard' : slug === 'katalog-produk' ? 'stockOperationsBoard' : slug === 'keuangan' ? 'cashFlowBoard' : slug === 'integrasi' ? 'aiEvidenceBoard' : undefined;
+const contextAsset = slug === 'pelanggan' ? heroContextVisuals.salesCustomer : undefined;
+const metricVisual = slug === 'laporan-insight'
+  ? {
+      title: 'Perubahan → sumber → tindak lanjut.',
+      metrics: [
+        { label: 'Periode', value: '7 hari', tone: 'teal' as const },
+        { label: 'Sumber', value: '4', tone: 'yellow' as const },
+        { label: 'Pemilik', value: '1', tone: 'ink' as const },
+      ],
+    }
+  : undefined;
 ---
 
 <div class:list={['product-canvas', { 'product-canvas--hub-proof': slug === 'hub', 'product-canvas--detail-proof': slug !== 'hub' }]} aria-label={`Contoh tampilan ruang kerja ${title}: ${question}`}>
-  <DashboardMotion
-    focus={focus}
-    priority
-    label={`${dashboard.alt} Digunakan sebagai contoh cara membaca ${title}.`}
-    {...dashboard}
-  />
+  {conceptAsset ? (
+    <VisualVariety
+      kind="concept"
+      asset={conceptAsset}
+      title={slug === 'asisten-ai' ? 'Pertanyaan → sumber → pemeriksaan.' : slug === 'keuangan' ? 'Omzet → biaya → kas.' : slug === 'integrasi' ? 'Impor → validasi → siap dipakai.' : 'SKU → saldo → prioritas.'}
+      note="Visual konsep berbasis alur RAMUNI; gunakan capture produk di bagian bukti untuk melihat layar aktual."
+      accent={slug === 'asisten-ai' || slug === 'integrasi' ? 'teal' : 'yellow'}
+      priority
+    />
+  ) : contextAsset ? (
+    <VisualVariety
+      kind="context"
+      src={contextAsset.src}
+      width={contextAsset.width}
+      height={contextAsset.height}
+      alt={contextAsset.alt}
+      label="Ilustrasi konteks · pelanggan"
+      title="Riwayat pembelian memberi konteks sebelum tindak lanjut."
+      note="Ilustrasi konteks untuk menjelaskan alur kerja; bukan data usaha tertentu."
+      accent="teal"
+      priority
+    />
+  ) : metricVisual ? (
+    <VisualVariety kind="metric" title={metricVisual.title} metrics={metricVisual.metrics} note="Komponen visual untuk menjelaskan urutan laporan; angka hanya contoh." accent="yellow" />
+  ) : (
+    <DashboardMotion
+      focus={focus}
+      priority
+      label={`${dashboard.alt} Digunakan sebagai contoh cara membaca ${title}.`}
+      {...dashboard}
+    />
+  )}
 </div>
 
 <style>
   .product-canvas{position:relative;min-width:0;margin:0;padding:clamp(10px,1.6vw,18px);overflow:hidden;border:1px solid var(--ink);border-radius:clamp(14px,2vw,24px);background:var(--rice);box-shadow:14px 14px 0 var(--yellow)}
   .product-canvas :global(.dashboard-motion__frame){box-shadow:none;border-color:var(--ink-20);border-radius:clamp(8px,1.2vw,16px)}
+  .product-canvas :global(.visual-variety){border:0;box-shadow:none;border-radius:clamp(8px,1.2vw,16px)}
   .product-canvas--detail-proof{background:linear-gradient(145deg,var(--rice),var(--white))}
   @media(max-width:740px){.product-canvas{padding:8px;border-radius:16px;box-shadow:7px 7px 0 var(--yellow)} }
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}}

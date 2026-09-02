@@ -34,8 +34,12 @@ const mascotAsset = releaseGates.mascotExplorationEnabled ? mascots.working2d : 
 const mascotStateKeys: MascotKey[] = ['working2d', 'workLoop2d', 'welcome2d'];
 const mascotStateAssets = mascotStateKeys.map((key) => releaseGates.mascotExplorationEnabled ? mascots[key] : mascots.decisionVisual);
 const mascotAlt = releaseGates.mascotExplorationEnabled
-  ? 'Muni si Manyar memandu alur kerja pada papan contoh'
-  : 'Sculpture abstrak Catatan, Bukti, dan Arah pada papan contoh';
+  ? variant === 'industry'
+    ? 'Muni si Manyar memandu pembacaan ritme usaha pada papan contoh'
+    : 'Muni si Manyar memandu alur kerja tim pada papan contoh'
+  : variant === 'industry'
+    ? 'Sculpture abstrak membantu membaca ritme usaha pada papan contoh'
+    : 'Sculpture abstrak Catatan, Bukti, dan Arah pada papan contoh';
 ---
 
 <article class:list={['audience-context', 'audience-context--' + variant]} data-audience-context-board data-active-index="0" aria-labelledby={safeId + '-title'}>
@@ -44,7 +48,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
     <h2 id={safeId + '-title'}>{title}</h2>
     <p>{description}</p>
     <div class="audience-context__mascot" role="img" aria-label={mascotAlt}>
-      <img data-audience-mascot data-mascot-motion="observe" src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="Maskot RAMUNI untuk konteks peran pengguna" loading="lazy" decoding="async" />
+      <img data-audience-mascot data-mascot-motion="observe" src={mascotAsset.src} width={mascotAsset.width} height={mascotAsset.height} alt="" loading="lazy" decoding="async" />
       <span>Contoh pembacaan · keputusan tetap di tangan pengguna</span>
     </div>
   </div>
@@ -71,7 +75,7 @@ const mascotAlt = releaseGates.mascotExplorationEnabled
     </div>
 
     <div class="audience-context__screen">
-      <header>
+      <header aria-live="polite">
         <span data-audience-active-label>{visiblePanes[0]?.label}</span>
         <strong data-audience-active-title>{visiblePanes[0]?.title}</strong>
       </header>

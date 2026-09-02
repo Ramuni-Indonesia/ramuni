@@ -69,6 +69,8 @@
 .role-hub-handoff__ai-roles span { color: var(--yellow); font-size: .73rem; font-weight: 800; }
 .role-hub-handoff__ai-roles p { margin-top: 8px; color: rgb(255 255 255 / .72); font-size: .78rem; line-height: 1.5; }
 .role-hub-cta { padding-top: 0; background: var(--rice); }
+.role-hub-context { padding-block: clamp(72px, 9vw, 126px); background: var(--rice); }
+.role-hub-context .audience-context { max-width: 1240px; margin-inline: auto; }
 
 @media (max-width: 960px) {
   .role-hub-hero__chooser-head,

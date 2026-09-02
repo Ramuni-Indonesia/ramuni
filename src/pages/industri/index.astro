@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products } from '../../data/site';
 import { heroContextVisuals } from '../../data/dashboardVisuals';
+import { editorialIndustryPhotos } from '../../data/editorialVisuals';
 import '../../styles/industry-pages.css';
 
 type IndustryProfile = {
@@ -25,15 +27,45 @@ const industryProfiles: Record<string, IndustryProfile> = {
 };
 
 const sharedModules = products.filter((product) => ['Dashboard Bisnis', 'Laporan & Insight', 'Asisten AI'].includes(product.title));
-const industryCloseVisual = {
+const industryCloseVisual = editorialIndustryPhotos.retail;
+const industryCtaVisual = {
   ...heroContextVisuals.salesCustomer,
-  note: 'Ilustrasi konteks usaha retail dan pelanggan; bukan data bisnis tertentu.',
+  alt: 'Ilustrasi hubungan transaksi dan pelanggan untuk konteks usaha.',
 };
 const exampleFlow = [
   { label: 'Buka toko', text: 'Cek stok kritis sebelum pelanggan datang.' },
   { label: 'Jaga shift', text: 'Catat transaksi dan koreksi dengan status yang jelas.' },
   { label: 'Periksa sinyal', text: 'Bandingkan produk laris dengan saldo yang tersisa.' },
   { label: 'Tutup hari', text: 'Tentukan siapa yang memeriksa selisih atau restock.' },
+];
+const industryContextPanes = [
+  {
+    label: 'Ritme',
+    title: 'Urutan kerja mengikuti jenis usaha.',
+    items: [
+      'Retail: buka toko, transaksi, stok, lalu tutup shift.',
+      'F&B: siapkan bahan, lewati jam ramai, lalu baca food cost.',
+      'Distributor: pesanan, alokasi, pengiriman, lalu invoice.',
+    ],
+  },
+  {
+    label: 'Sinyal',
+    title: 'Cari kejadian yang perlu perhatian lebih dulu.',
+    items: [
+      'Produk cepat laku tetapi saldo stok menipis.',
+      'Menu ramai sementara biaya bahan ikut naik.',
+      'Pesanan ulang ada, tetapi kas belum ikut masuk.',
+    ],
+  },
+  {
+    label: 'Keputusan',
+    title: 'Tutup loop dengan pemeriksaan yang sederhana.',
+    items: [
+      'Buka sumber dan periode data yang mendukung.',
+      'Tentukan orang yang memeriksa kejadian tersebut.',
+      'Simpan tindak lanjut yang disepakati bersama.',
+    ],
+  },
 ];
 ---
 
@@ -71,6 +103,20 @@ const exampleFlow = [
     </div>
   </section>
 
+  <section class="section industry-hub-context" id="peta-konteks" aria-labelledby="industry-hub-context-title">
+    <div class="container">
+      <AudienceContextBoard
+        id="industry-hub-context"
+        eyebrow="Peta konteks usaha"
+        title="Ritme boleh berbeda. Cara memeriksa tetap bisa dibaca."
+        description="Gunakan tiga sudut ini untuk memilih halaman industri yang paling dekat dengan pekerjaan Anda, lalu lanjutkan ke contoh alurnya."
+        panes={industryContextPanes}
+        note="Contoh ini membantu menyusun pertanyaan. Angka usaha tetap perlu diperiksa dari sumber yang sesuai."
+        variant="industry"
+      />
+    </div>
+  </section>
+
   <section class="section surface industry-hub-comparison" id="perbandingan" aria-labelledby="comparison-title">
     <div class="container">
       <div class="industry-hub-section-head reveal">
@@ -102,7 +148,7 @@ const exampleFlow = [
       </div>
       <figure class="industry-hub-usecase__visual reveal">
         <img src={industryCloseVisual.src} width={industryCloseVisual.width} height={industryCloseVisual.height} alt={industryCloseVisual.alt} loading="lazy" decoding="async" />
-        <figcaption><strong>Contoh ruang kerja operasional</strong><span>{industryCloseVisual.note}</span></figcaption>
+        <figcaption><strong>Contoh ruang kerja retail</strong><span>Foto konteks industri · bukan data usaha tertentu.</span></figcaption>
       </figure>
     </div>
     <div class="container industry-hub-usecase__modules reveal">
@@ -123,7 +169,7 @@ const exampleFlow = [
         secondaryLabel="Baca Panduan"
         secondaryHref="/panduan/"
         theme="ink"
-        visual={industryCloseVisual}
+        visual={industryCtaVisual}
         visualBadge="Ilustrasi ruang kerja operasional"
         points={['Pilih konteks usaha', 'Cocokkan masalah utama', 'Bahas langkah pemeriksaannya']}
       />

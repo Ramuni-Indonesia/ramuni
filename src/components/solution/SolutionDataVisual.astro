@@ -1,7 +1,8 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
+import VisualVariety from '../VisualVariety.astro';
 import type { SolutionDetail } from '../../data/solutionDetails';
-import { getSolutionDashboardVisual } from '../../data/dashboardVisuals';
+import { getSolutionDashboardVisual, getSolutionContextVisual } from '../../data/dashboardVisuals';
 
 interface Props {
   visual: SolutionDetail['visual'];
@@ -11,15 +12,23 @@ interface Props {
 const { visual, slug = '' } = Astro.props;
 const dashboard = getSolutionDashboardVisual(slug);
 const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 'pantau-laba-dan-arus-kas', 'pahami-pelanggan'].includes(slug) ? 'performance' : 'overview';
+const context = getSolutionContextVisual(slug);
+const conceptAsset = slug === 'pantau-laba-dan-arus-kas' ? 'cashFlowBoard' : slug === 'kelola-stok' ? 'stockOperationsBoard' : undefined;
 ---
 
 <div class={`solution-proof solution-proof--${visual.kind}`} aria-label={`Contoh visual untuk ${visual.title}`}>
-  <DashboardMotion
-    focus={focus}
-    priority
-    label={`${dashboard.alt} Digunakan sebagai contoh untuk ${visual.title}.`}
-    {...dashboard}
-  />
+  {conceptAsset ? (
+    <VisualVariety kind="concept" asset={conceptAsset} title={visual.title} note="Visual konsep berbasis alur RAMUNI; bukan capture workspace live." priority />
+  ) : slug === 'pahami-pelanggan' ? (
+    <VisualVariety kind="context" src={context.src} width={context.width} height={context.height} alt={context.alt} label="Ilustrasi konteks · pelanggan" title={visual.title} note="Ilustrasi konteks; bukan data usaha tertentu." priority />
+  ) : (
+    <DashboardMotion
+      focus={focus}
+      priority
+      label={`${dashboard.alt} Digunakan sebagai contoh untuk ${visual.title}.`}
+      {...dashboard}
+    />
+  )}
 </div>
 
 <style>

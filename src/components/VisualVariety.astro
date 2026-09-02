@@ -1,0 +1,110 @@
+---
+import { visualRefresh, type VisualRefreshKey } from '../data/visualRefresh';
+
+type VisualKind = 'concept' | 'context' | 'workflow' | 'metric';
+
+interface Props {
+  kind?: VisualKind;
+  asset?: VisualRefreshKey;
+  src?: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+  label?: string;
+  title: string;
+  note?: string;
+  steps?: readonly string[];
+  metrics?: readonly { label: string; value: string; tone?: 'teal' | 'yellow' | 'ink' }[];
+  accent?: 'teal' | 'yellow' | 'ink';
+  priority?: boolean;
+  class?: string;
+}
+
+const {
+  kind = 'workflow',
+  asset,
+  src,
+  width,
+  height,
+  alt,
+  label,
+  title,
+  note,
+  steps = ['Catat', 'Periksa', 'Tentukan arah'],
+  metrics = [],
+  accent = 'teal',
+  priority = false,
+  class: className = '',
+} = Astro.props;
+
+const resolvedAsset = asset ? visualRefresh[asset] : undefined;
+const imageSrc = src || resolvedAsset?.src;
+const imageWidth = width || resolvedAsset?.width || 1200;
+const imageHeight = height || resolvedAsset?.height || 800;
+const imageAlt = alt || resolvedAsset?.alt || title;
+const imageLabel = label || resolvedAsset?.label || 'Visual RAMUNI';
+const imageNote = note || resolvedAsset?.note;
+const safeSteps = steps.slice(0, 4);
+const safeMetrics = metrics.slice(0, 3);
+---
+
+<figure class:list={['visual-variety', `visual-variety--${kind}`, `visual-variety--${accent}`, className]}>
+  {imageSrc ? (
+    <div class="visual-variety__media">
+      <img src={imageSrc} width={imageWidth} height={imageHeight} alt={imageAlt} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" />
+      <span class="visual-variety__badge">{imageLabel}</span>
+    </div>
+  ) : kind === 'metric' ? (
+    <div class="visual-variety__metric-stage" aria-label={title}>
+      <span class="visual-variety__metric-orbit" aria-hidden="true"></span>
+      <div class="visual-variety__metric-list">
+        {safeMetrics.map((metric, index) => (
+          <div class:list={['visual-variety__metric', `is-${metric.tone || (index === 1 ? 'yellow' : 'teal')}`]}>
+            <small>{metric.label}</small>
+            <strong>{metric.value}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div class="visual-variety__workflow" aria-label={title}>
+      <div class="visual-variety__workflow-line" aria-hidden="true"></div>
+      {safeSteps.map((step, index) => (
+        <div class="visual-variety__step">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{step}</strong>
+        </div>
+      ))}
+    </div>
+  )}
+  <figcaption>
+    <span>{kind === 'concept' ? imageLabel : kind === 'context' ? 'Konteks pekerjaan' : 'Alur RAMUNI'}</span>
+    <strong>{title}</strong>
+    {imageNote && <small>{imageNote}</small>}
+    {!imageNote && note && <small>{note}</small>}
+  </figcaption>
+</figure>
+
+<style>
+  .visual-variety{--vv-accent:var(--teal);position:relative;display:grid;min-width:0;margin:0;overflow:hidden;border:1px solid var(--ink);background:var(--rice);color:var(--ink);box-shadow:10px 10px 0 var(--vv-accent);isolation:isolate}
+  .visual-variety--yellow{--vv-accent:var(--yellow)}.visual-variety--ink{--vv-accent:var(--ink)}
+  .visual-variety__media{position:relative;min-width:0;overflow:hidden;background:var(--white);aspect-ratio:16/9}
+  .visual-variety__media::after{position:absolute;inset:0;background:linear-gradient(180deg,transparent 56%,rgb(11 48 69/.18));content:"";pointer-events:none}
+  .visual-variety__media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .55s var(--ease)}
+  .visual-variety:hover .visual-variety__media img{transform:scale(1.025)}
+  .visual-variety__badge{position:absolute;z-index:1;left:14px;bottom:12px;padding:7px 9px;background:rgb(11 48 69/.88);color:var(--white);font-size:.59rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+  .visual-variety__workflow,.visual-variety__metric-stage{position:relative;display:grid;align-content:center;gap:22px;min-height:260px;padding:clamp(24px,4vw,48px);overflow:hidden;background:linear-gradient(135deg,var(--white),var(--rice))}
+  .visual-variety__workflow::before,.visual-variety__metric-stage::before{position:absolute;inset:-34% -10%;z-index:-1;background:radial-gradient(circle at 16% 20%,rgb(22 140 140/.16),transparent 34%),radial-gradient(circle at 82% 84%,rgb(242 177 52/.25),transparent 35%);content:""}
+  .visual-variety__workflow-line{position:absolute;top:50%;right:clamp(32px,7vw,86px);left:clamp(32px,7vw,86px);height:2px;background:linear-gradient(90deg,var(--teal),var(--yellow),var(--ink));transform:translateY(-50%);opacity:.7}
+  .visual-variety__step{position:relative;z-index:1;display:grid;justify-items:center;gap:10px;text-align:center}
+  .visual-variety__step span{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--ink);border-radius:50%;background:var(--white);color:var(--teal);font-size:.67rem;font-weight:900;box-shadow:4px 4px 0 var(--yellow)}
+  .visual-variety__step strong{max-width:16ch;font-size:.78rem;line-height:1.25}
+  .visual-variety__metric-stage{min-height:260px}
+  .visual-variety__metric-orbit{position:absolute;left:clamp(26px,8vw,96px);width:min(190px,38%);aspect-ratio:1;border:1px solid rgb(11 48 69/.18);border-radius:50%;box-shadow:0 0 0 24px rgb(22 140 140/.06),0 0 0 48px rgb(242 177 52/.08)}
+  .visual-variety__metric-orbit::before,.visual-variety__metric-orbit::after{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--teal);content:""}.visual-variety__metric-orbit::before{top:13%;right:8%}.visual-variety__metric-orbit::after{bottom:8%;left:16%;background:var(--yellow)}
+  .visual-variety__metric-list{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-left:auto;width:min(70%,360px)}
+  .visual-variety__metric{display:grid;gap:9px;min-width:0;padding:12px;border:1px solid var(--ink-10);background:rgb(255 255 255/.86)}.visual-variety__metric small{color:var(--ink-72);font-size:.6rem;font-weight:900}.visual-variety__metric strong{font-size:clamp(1.1rem,2.5vw,1.7rem);line-height:1}.visual-variety__metric.is-teal strong{color:var(--teal)}.visual-variety__metric.is-yellow strong{color:#9a6400}.visual-variety__metric.is-ink strong{color:var(--ink)}
+  .visual-variety figcaption{display:grid;gap:5px;padding:14px 16px 16px;border-top:1px solid var(--ink-10);background:var(--white)}.visual-variety figcaption span{color:var(--teal);font-size:.61rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.visual-variety figcaption strong{font-size:.86rem;line-height:1.35}.visual-variety figcaption small{color:var(--ink-56);font-size:.65rem;line-height:1.45}
+  @media(max-width:620px){.visual-variety{box-shadow:7px 7px 0 var(--vv-accent)}.visual-variety__workflow,.visual-variety__metric-stage{min-height:220px;padding:24px 18px}.visual-variety__workflow-line{right:24px;left:24px}.visual-variety__step span{width:42px;height:42px}.visual-variety__step strong{font-size:.68rem}.visual-variety__metric-list{width:72%;grid-template-columns:1fr}.visual-variety__metric-orbit{left:20px;width:37%}.visual-variety figcaption{padding:12px 13px 14px}}
+  @media(prefers-reduced-motion:reduce){.visual-variety__media img{transition:none}.visual-variety:hover .visual-variety__media img{transform:none}}
+</style>

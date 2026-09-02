@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { roles } from '../../data/site';
 import { getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
-import { heroContextVisuals } from '../../data/dashboardVisuals';
+import { editorialLeadPhotos } from '../../data/editorialVisuals';
 import '../../styles/role-hub.css';
 
 const roleViews: Record<string, { lens: string; primary: string; handoff: string; proof: string; ai: string; industries: string[]; products: string[] }> = {
@@ -31,7 +32,37 @@ const collaborationFlow = [
   { label: 'Putuskan', text: 'Orang yang berwenang memilih tindak lanjut.' },
   { label: 'Pantau', text: 'Status terlihat lagi oleh tim yang perlu tahu.' },
 ];
-const roleCloseVisual = heroContextVisuals.salesCustomer;
+const roleContextPanes = [
+  {
+    label: 'Lihat',
+    title: 'Ringkasan berubah mengikuti tanggung jawab.',
+    items: [
+      'Pemilik melihat lintas modul dan prioritas usaha.',
+      'Admin melihat data yang perlu dirapikan.',
+      'Kasir melihat transaksi dan status pembayaran.',
+      'Supervisor melihat pengecualian dan tindak lanjut.',
+    ],
+  },
+  {
+    label: 'Tindak',
+    title: 'Aksi dibuka secukupnya, sesuai pekerjaan.',
+    items: [
+      'Buat dan edit mengikuti cakupan akses akun.',
+      'Persetujuan serta ekspor mengikuti kebijakan.',
+      'Tagihan tetap berada di tangan pemilik.',
+    ],
+  },
+  {
+    label: 'Handoff',
+    title: 'Masalah berpindah bersama bukti yang dibutuhkan.',
+    items: [
+      'Catat kejadian dan status terakhirnya.',
+      'Tinjau periode serta sumber data yang relevan.',
+      'Teruskan kepada orang yang berwenang memutuskan.',
+    ],
+  },
+];
+const roleCloseVisual = editorialLeadPhotos.freeDemo;
 const roleHubScreens = (() => {
   const set = getRoleDriveVisuals('pemilik-usaha');
   return [set.primary, set.supporting[0]].filter(Boolean).map(toProductScreen);
@@ -71,6 +102,20 @@ const roleHubScreens = (() => {
       <div class="role-hub-table reveal" role="region" aria-label="Perbandingan visibilitas peran" tabindex="0">
         <table><thead><tr><th scope="col">Area</th><th scope="col">Pemilik</th><th scope="col">Admin</th><th scope="col">Kasir</th><th scope="col">Supervisor</th></tr></thead><tbody>{visibility.map((row) => <tr><th scope="row">{row.area}</th><td>{row.owner}</td><td>{row.admin}</td><td>{row.cashier}</td><td>{row.supervisor}</td></tr>)}</tbody></table>
       </div>
+    </div>
+  </section>
+
+  <section class="section surface role-hub-context" id="peta-peran" aria-labelledby="role-hub-context-title">
+    <div class="container">
+      <AudienceContextBoard
+        id="role-hub-context"
+        eyebrow="Peta kerja tim"
+        title="Satu masalah. Sudut pandang dan tindakan bisa berbeda."
+        description="Telusuri bagaimana RAMUNI memisahkan pekerjaan melihat, menindak, dan meneruskan tanpa membuat tim kehilangan konteks."
+        panes={roleContextPanes}
+        note="Matriks dan contoh ini adalah dasar pembicaraan. Akses akhir tetap mengikuti kebijakan akun Anda."
+        variant="role"
+      />
     </div>
   </section>
 

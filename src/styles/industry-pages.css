@@ -129,6 +129,8 @@
 .industry-hub-usecase__modules a:hover,
 .industry-hub-usecase__modules a:focus-visible { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 .industry-hub-cta { padding-top: 0; background: var(--rice); }
+.industry-hub-context { padding-block: clamp(72px, 9vw, 126px); background: var(--white); }
+.industry-hub-context .audience-context { max-width: 1240px; margin-inline: auto; }
 
 /* Detail pages use a day-in-the-life scene, then join modules and exceptions. */
 .industry-detail-day { background: var(--rice); }
