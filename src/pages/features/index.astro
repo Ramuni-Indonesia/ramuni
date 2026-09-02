@@ -5,6 +5,7 @@ import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
 import { marketingFeatureCards, marketingProductCards, marketingSolutionCards, marketingIndustryLinks, marketingRoleLinks } from '../../data/marketingFeatureCards';
 import { appCta, consultationCta } from '../../data/site';
 import { capabilityStatusLabel } from '../../data/commercial';
+import { driveCardVisuals } from '../../data/driveVisuals';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
@@ -27,6 +28,7 @@ const jobHighlights = [
   { label: 'Pisahkan laba dan kas', href: '/features/profit-intelligence/', text: 'Lihat pendapatan, biaya, margin, dan periode sebelum mengambil keputusan.' },
   { label: 'Lihat prioritas harian', href: '/produk/dashboard-bisnis/', text: 'Buka perubahan penjualan, stok, kas, dan pelanggan dari satu ringkasan.' },
 ];
+const featureProof = driveCardVisuals.insightContext;
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Fitur RAMUNI untuk Operasional, AI & Knowledge OS', description: 'Bandingkan fitur dan produk RAMUNI untuk penjualan, stok, keuangan, pelanggan, laporan, dan pengetahuan bisnis.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': `${canonical}#collection`, url: canonical, name: 'Katalog fitur RAMUNI', description: 'Katalog fitur RAMUNI dengan status ketersediaan yang transparan.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
@@ -86,6 +88,19 @@ const schema = [
         <div class="feature-jobs__grid">{jobHighlights.map((item) => <a href={item.href}><span>{item.label}</span><strong>{item.text}</strong><b>Lihat detail →</b></a>)}</div>
       </div>
     </section>
+    <section class="commercial-section commercial-section--ink feature-proof" aria-labelledby="feature-proof-title">
+      <div class="container feature-proof__layout">
+        <figure class="feature-proof__figure">
+          <img src={featureProof.src} width={featureProof.width} height={featureProof.height} alt={featureProof.alt} loading="lazy" decoding="async" />
+          <figcaption><span>Contoh workspace · data demo</span><strong>Sumber dan hasil tetap berada dalam satu alur.</strong><small>{featureProof.note}</small></figcaption>
+        </figure>
+        <div class="feature-proof__copy">
+          <h2 id="feature-proof-title">Setiap kemampuan punya jejak yang bisa dibuka.</h2>
+          <p>Pilih fitur bukan karena namanya terdengar besar. Lihat bahan yang dibutuhkan, hasil yang diberikan, dan batas yang berlaku untuk pekerjaan Anda.</p>
+          <ul><li><strong>Input</strong><span>Data, dokumen, atau catatan yang perlu disiapkan.</span></li><li><strong>Hasil</strong><span>Ringkasan, daftar, atau jawaban yang dapat ditelusuri.</span></li><li><strong>Batas</strong><span>Status akses dan keputusan yang tetap memerlukan manusia.</span></li></ul>
+        </div>
+      </div>
+    </section>
     <section class="commercial-section commercial-section--white feature-context-directory" aria-labelledby="feature-context-title"><div class="container"><div class="commercial-section__head"><div><p class="section-kicker">Cari jalur yang cocok</p><h2 id="feature-context-title">Pilih menurut industri atau peran.</h2></div><p>Gunakan jalur ini saat pekerjaan Anda lebih spesifik daripada nama modul.</p></div><div class="feature-context-directory__grid"><div><h3>Industri</h3><nav aria-label="Fitur berdasarkan industri">{marketingIndustryLinks.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</nav></div><div><h3>Peran</h3><nav aria-label="Fitur berdasarkan peran">{marketingRoleLinks.map((item) => <a href={item.href}><strong>{item.title}</strong><span>{item.text}</span></a>)}</nav></div></div></div></section>
     <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Coba dengan contoh alur</p><h2>Lihat fitur yang paling dekat dengan pekerjaan Anda.</h2><p>Periksa sumber, periode, dan batas penggunaan sebelum tim menentukan tindakan.</p></div><div class="commercial-cta__actions"><a class="button button--primary" href={consultationCta.href} data-analytics-event="demo_request" data-analytics-location="features_final" data-destination="consultation">Konsultasi</a><a class="text-link" href={appCta.href} data-analytics-event="free_trial_click" data-analytics-location="features_final" data-destination="app">{appCta.label}</a></div></div></div></section>
   </div>
@@ -98,7 +113,7 @@ const schema = [
       const buttons = [...root.querySelectorAll('[data-feature-filter]')];
       const cards = [...root.querySelectorAll('[data-feature-card]')];
       const empty = root.querySelector('[data-feature-empty]');
-      let activeFilter = buttons.find((button) => button.getAttribute('aria-selected') === 'true')?.dataset.featureFilter || 'feature';
+      let activeFilter = buttons.find((button) => button.getAttribute('aria-selected') === 'true')?.dataset.featureFilter || 'all';
       const apply = () => {
         const query = String(input?.value || '').trim().toLowerCase();
         let visibleCount = 0;
@@ -143,7 +158,21 @@ const schema = [
   .feature-context-directory__grid nav a{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--ink-10);text-decoration:none;transition:padding .25s ease,background .25s ease}
   .feature-context-directory__grid nav a:hover,.feature-context-directory__grid nav a:focus-visible{padding-inline:12px;background:var(--rice)}
   .feature-context-directory__grid nav strong{font-size:.9rem}.feature-context-directory__grid nav span{color:var(--ink-72);font-size:.78rem;line-height:1.45}
-  @media(max-width:960px){.feature-command__layout{grid-template-columns:1fr}.feature-command__panel{position:static}.feature-jobs__grid{grid-template-columns:1fr}.feature-jobs__grid a:nth-child(2){margin-top:0}.feature-command__row:hover,.feature-command__row:focus-visible{padding-inline:8px}}
-  @media(max-width:700px){.feature-context-directory__grid{grid-template-columns:1fr}.feature-context-directory__grid nav a:hover,.feature-context-directory__grid nav a:focus-visible{padding-inline:8px}.feature-command__stats{grid-template-columns:1fr 1fr}.feature-command__row{grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.feature-command__row small{grid-column:2;justify-self:start}.feature-search input{min-height:50px}}
+  .feature-proof{background:var(--ink);color:var(--white)}
+  .feature-proof__layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:clamp(28px,7vw,100px);align-items:center}
+  .feature-proof__figure{margin:0;min-width:0}
+  .feature-proof__figure img{display:block;width:100%;height:auto;border:1px solid rgb(255 255 255/.25);background:var(--white)}
+  .feature-proof__figure figcaption{display:grid;gap:6px;padding-top:14px}
+  .feature-proof__figure figcaption span{color:var(--yellow);font-size:.64rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+  .feature-proof__figure figcaption strong{font-size:clamp(1rem,1.7vw,1.35rem);line-height:1.25}
+  .feature-proof__figure figcaption small{color:rgb(255 255 255/.62);font-size:.7rem;line-height:1.45}
+  .feature-proof__copy h2{max-width:14ch;font-size:clamp(2rem,4vw,4rem);line-height:1;letter-spacing:-.05em}
+  .feature-proof__copy>p{max-width:42ch;margin-top:18px;color:rgb(255 255 255/.72);line-height:1.62}
+  .feature-proof__copy ul{display:grid;gap:0;margin:28px 0 0;padding:0;border-top:1px solid rgb(255 255 255/.25);list-style:none}
+  .feature-proof__copy li{display:grid;grid-template-columns:74px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid rgb(255 255 255/.2)}
+  .feature-proof__copy li strong{color:var(--yellow);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
+  .feature-proof__copy li span{color:rgb(255 255 255/.72);font-size:.82rem;line-height:1.45}
+  @media(max-width:960px){.feature-command__layout{grid-template-columns:1fr}.feature-command__panel{position:static}.feature-jobs__grid{grid-template-columns:1fr}.feature-jobs__grid a:nth-child(2){margin-top:0}.feature-command__row:hover,.feature-command__row:focus-visible{padding-inline:8px}.feature-proof__layout{grid-template-columns:1fr}.feature-proof__figure{max-width:760px}}
+  @media(max-width:700px){.feature-context-directory__grid{grid-template-columns:1fr}.feature-context-directory__grid nav a:hover,.feature-context-directory__grid nav a:focus-visible{padding-inline:8px}.feature-command__stats{grid-template-columns:1fr 1fr}.feature-command__row{grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.feature-command__row small{grid-column:2;justify-self:start}.feature-search input{min-height:50px}.feature-proof__copy h2{max-width:16ch}.feature-proof__copy li{grid-template-columns:62px minmax(0,1fr);gap:10px}}
   @media(prefers-reduced-motion:reduce){.feature-command__row,.feature-context-directory__grid nav a{transition:none}}
 </style>

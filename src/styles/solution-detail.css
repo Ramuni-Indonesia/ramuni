@@ -134,3 +134,51 @@
   .sd-hero__visual{width:calc(100% - 24px);margin-inline:auto}
   .sd-page h1{max-width:100%;font-size:clamp(2.2rem,9vw,3.25rem);line-height:1.06;overflow-wrap:break-word}
 }
+
+/* Solutions open on the user's symptom. The product workspace arrives only
+ * after the before/after explanation, keeping this family distinct from
+ * product detail pages. */
+.sd-hero__symptoms{min-width:0;border-block:1px solid var(--ink);background:var(--white);color:var(--ink)}
+.sd-hero__symptoms>header{padding:clamp(20px,3vw,32px);border-bottom:1px solid var(--ink-10)}
+.sd-hero__symptoms>header>span,.sd-hero__symptoms>footer>span,.sd-hero__impacts-label{display:block;color:var(--teal);font-size:.64rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.sd-hero__symptoms>header>strong{display:block;max-width:20ch;margin-top:10px;font-size:clamp(1.35rem,2.4vw,2rem);line-height:1.12}
+.sd-hero__symptoms>header>p{max-width:44ch;margin-top:12px;color:var(--ink-72);font-size:.82rem;line-height:1.5}
+.sd-hero__symptoms>ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;padding:0;list-style:none;border-bottom:1px solid var(--ink-10)}
+.sd-hero__symptoms>ol li{display:grid;align-content:start;gap:18px;min-width:0;min-height:154px;padding:18px;border-right:1px solid var(--ink-10)}
+.sd-hero__symptoms>ol li:last-child{border-right:0}
+.sd-hero__symptoms>ol li>span{color:var(--teal);font-size:.64rem;font-weight:900}
+.sd-hero__symptoms>ol li>strong{font-size:.82rem;line-height:1.42}
+.sd-hero__impacts{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:1px;padding:18px;background:var(--rice);border-bottom:1px solid var(--ink-10)}
+.sd-hero__impacts-label{align-self:start;padding:8px 12px 0 0;max-width:12ch}
+.sd-hero__impacts p{min-width:0;margin:0;padding:8px 12px;border-left:1px solid var(--ink-10);font-size:.72rem;line-height:1.42}
+.sd-hero__impacts p b{display:block;margin-bottom:5px;color:var(--teal);font-size:.64rem}
+.sd-hero__symptoms>footer{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;padding:17px 20px;background:var(--ink);color:var(--white)}
+.sd-hero__symptoms>footer>span{color:var(--yellow)}
+.sd-hero__symptoms>footer>strong{font-size:.76rem;line-height:1.4}
+
+.sd-scenario-shell{margin-top:clamp(42px,6vw,72px);padding:clamp(24px,4vw,46px);background:var(--rice);color:var(--ink)}
+.sd-scenario-shell .sd-scenario{gap:clamp(28px,5vw,54px)}
+.sd-scenario-shell .sd-scenario__intro>p:last-child{color:var(--ink-72)}
+
+.sd-final{padding-block:clamp(72px,9vw,128px);background:var(--white)}
+.sd-final__start{padding:clamp(26px,4vw,54px);background:var(--yellow)}
+.sd-final .sd-faq__layout{margin-top:clamp(64px,9vw,120px)}
+.sd-final .sd-close-visual{margin-top:clamp(56px,8vw,108px)}
+
+@media(max-width:900px){
+  .sd-hero__symptoms>ol{grid-template-columns:1fr}
+  .sd-hero__symptoms>ol li{min-height:0;border-right:0;border-bottom:1px solid var(--ink-10)}
+  .sd-hero__symptoms>ol li:last-child{border-bottom:0}
+  .sd-hero__impacts{grid-template-columns:1fr 1fr}
+  .sd-hero__impacts-label{grid-column:1/-1;max-width:none;padding:0 0 4px}
+  .sd-hero__impacts p{border-left:0;padding:8px 0}
+  .sd-hero__impacts p+ p{border-left:1px solid var(--ink-10);padding-left:14px}
+}
+@media(max-width:767px){
+  .sd-hero__symptoms{margin-inline:0}
+  .sd-hero__impacts{grid-template-columns:1fr}
+  .sd-hero__impacts p+ p{border-left:0;padding-left:0;border-top:1px solid var(--ink-10);padding-top:12px}
+  .sd-hero__symptoms>footer{grid-template-columns:1fr;gap:8px}
+  .sd-scenario-shell{padding:22px 18px}
+  .sd-final__start{padding:22px 18px}
+}

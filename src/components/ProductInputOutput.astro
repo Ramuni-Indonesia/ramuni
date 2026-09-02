@@ -58,7 +58,7 @@ const statusLabels: Record<NonNullable<Props['status']>, string> = {
 };
 ---
 
-<section class="product-io" aria-labelledby={`${slug}-io-title`}>
+<div class="product-io" aria-labelledby={`${slug}-io-title`}>
   <div class="product-io__head">
     <div><span class="money-kicker">Bahan masuk sampai hasil</span><h2 id={`${slug}-io-title`}>{title}: apa yang Anda siapkan, dan apa yang dibaca kembali.</h2></div>
     <div class="product-io__status"><span>Status rilis</span><strong>{statusLabels[status]}</strong><small>Contoh alur dapat dibahas tanpa data sensitif; akses mengikuti paket, role, dan persetujuan workspace.</small></div>
@@ -69,4 +69,4 @@ const statusLabels: Record<NonNullable<Props['status']>, string> = {
     <article><span>03 · Output</span><h3>Yang dapat Anda periksa</h3><ul>{content.output.map((item) => <li>{item}</li>)}</ul></article>
   </div>
   <p class="product-io__note">Tidak perlu membawa data bisnis untuk melihat contoh. Saat mulai, bawa satu catatan yang memang ingin Anda rapikan.</p>
-</section>
+</div>

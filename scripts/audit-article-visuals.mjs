@@ -31,23 +31,22 @@ if (dashboardCovers.length > 0) {
   throw new Error(`Non-product articles still use dashboard covers: ${dashboardCovers.join(', ')}`);
 }
 
-const missing = generatedIds.filter((id) => {
-  const file = path.join(visualDir, `${id}.webp`);
+// Article covers are the reviewed canonical visuals. Generated derivatives
+// are optional and must not be inferred from an article id: doing so caused
+// valid articles to reference 404 files in production. Verify every cover
+// from frontmatter instead; the route passes it to ArticleContextVisual.
+const frontmatter = new Map(articleIds.map((id) => {
+  const source = fs.readFileSync(path.join(blogDir, `${id}.md`), 'utf8');
+  const cover = source.match(/^cover:\s*["']([^"']+)["']/m)?.[1];
+  return [id, cover];
+}));
+const missingCovers = articleIds.filter((id) => {
+  const cover = frontmatter.get(id);
+  if (!cover || !cover.startsWith('/')) return true;
+  const file = path.join(root, 'public', cover.replace(/^\//, ''));
   return !fs.existsSync(file) || fs.statSync(file).size < 1000;
 });
-
-if (missing.length > 0) {
-  throw new Error(`Missing or empty generated article visuals: ${missing.join(', ')}`);
-}
-
-const unexpected = fs.readdirSync(visualDir)
-  .filter((file) => file.endsWith('.webp'))
-  .map((file) => file.slice(0, -5))
-  .filter((id) => !generatedIds.includes(id));
-
-if (unexpected.length > 0) {
-  throw new Error(`Unexpected article visual files: ${unexpected.join(', ')}`);
-}
+if (missingCovers.length > 0) throw new Error(`Missing or empty reviewed article covers: ${missingCovers.join(', ')}`);
 
 const component = fs.readFileSync(componentPath, 'utf8');
 const route = fs.readFileSync(routePath, 'utf8');
@@ -56,12 +55,12 @@ if (!component.includes("articleId === 'ai-business-companion-umkm'")) {
   throw new Error('Product dashboard exception is not explicit in ArticleContextVisual');
 }
 
-if (!component.includes('/website-original/blog/generated/article-visuals/${articleId}.webp')) {
-  throw new Error('Generated visual fallback path is missing from ArticleContextVisual');
+if (!component.includes('articleCover')) {
+  throw new Error('Reviewed article cover fallback is missing from ArticleContextVisual');
 }
 
 if (!route.includes('articleTitle={post.data.title}') || !route.includes('articleDescription={post.data.description}')) {
   throw new Error('Article metadata is not passed to the visual component');
 }
 
-console.log(`Article visual audit passed: ${generatedIds.length} generated visuals + 1 product dashboard exception.`);
+console.log(`Article visual audit passed: ${generatedIds.length} reviewed article covers + 1 product dashboard exception.`);

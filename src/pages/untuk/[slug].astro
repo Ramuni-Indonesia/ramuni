@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
@@ -8,6 +7,7 @@ import { industries, products, roles } from '../../data/site';
 import { getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
+import '../../styles/role-detail.css';
 
 const roleContext: Record<string, {
   workflow: string[];
@@ -102,10 +102,10 @@ const roleSeo: Record<string, { title: string; description: string }> = {
 };
 const seo = roleSeo[role.slug] || { title: `RAMUNI untuk ${role.title}`, description: role.summary };
 const roleHeroTitles: Record<string, string> = {
-  'pemilik-usaha': 'Pegang arah usaha tanpa membuka semua laporan.',
-  'admin-toko': 'Rapikan data sebelum tim memakainya.',
-  kasir: 'Selesaikan transaksi dengan alur yang jelas.',
-  supervisor: 'Tangkap pengecualian sebelum menumpuk.',
+  'pemilik-usaha': 'Tahu mana yang membutuhkan keputusan hari ini.',
+  'admin-toko': 'Rapikan input, koreksi, dan handoff tanpa kehilangan jejak.',
+  kasir: 'Selesaikan transaksi dan pulihkan error tanpa input ulang.',
+  supervisor: 'Lihat pengecualian, approval, dan tindak lanjut per shift.',
 };
 const canonicalPath = `/untuk/${role.slug}/`;
 const roleIntentBySlug: Record<string, string> = {
@@ -162,99 +162,52 @@ const structuredData = {
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/untuk/">Untuk Tim</a><span aria-hidden="true">/</span><span aria-current="page">{role.title}</span></nav></div>
   <PageHero compact eyebrow={`Untuk ${role.title}`} title={roleHeroTitles[role.slug] || role.summary} description={role.summary} primaryLabel={role.ctaLabel} primaryHref={role.ctaHref} secondaryLabel="Semua Peran" secondaryHref="/untuk/" />
 
-  <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal">
-        <p class="eyebrow">Tanggung jawab harian</p>
-        <h2 id="responsibility-title">{context.headings.responsibility}</h2>
-      </div>
-      <ol class="audience-ledger">{role.responsibilities.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{role.friction[index]}</p></div></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section" id="layar-pertama" aria-labelledby="priorities-title">
-    <div class="container audience-dashboard">
-      <div class="audience-section-heading reveal"><h2 id="priorities-title">{context.headings.priorities}</h2><p class="lede">Informasi lain tetap dapat dibuka saat dibutuhkan.</p></div>
-      <div class="audience-priority-board reveal">{role.priorities.map((priority, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><strong>{priority}</strong></div>)}</div>
-    </div>
-  </section>
-
   <ProductScreenshotRail
     id={`role-${role.slug}-screens`}
-    eyebrow="Bukti layar RAMUNI"
-    heading={`Layar yang mengikuti pekerjaan ${role.title}.`}
-    body="Lihat contoh dashboard sebelum meminta demo. Capture berasal dari workspace E2E RAMUNI dan memakai data demo terkontrol."
+    eyebrow="Tampilan produk"
+    heading={`Layar untuk pekerjaan ${role.title}.`}
+    body="Capture workspace RAMUNI memakai data demo terkontrol. Lihat bukti visual sebelum membahas akses dan alur kerja."
     items={roleScreens}
     compact
   />
 
-  <section class="section dark-surface" id="alur-utama" aria-labelledby="workflow-title">
-    <div class="container audience-day">
-      <div class="audience-section-heading reveal"><h2 id="workflow-title">{context.headings.workflow}</h2></div>
-      <ol class="audience-timeline audience-timeline--inverse role-timeline">{context.workflow.map((step, index) => <li class="reveal" data-observe-active><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section surface" id="izin" aria-labelledby="permission-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="permission-title">{context.headings.permissions}</h2><p class="lede">Contoh pembagian akses: {role.permissions}</p></div>
-      <dl class="audience-permission-ledger reveal">{context.permissions.map((item) => <div><dt>{item.action}</dt><dd>{item.status}</dd></div>)}</dl>
-    </div>
-  </section>
-
-  <section class="section" id="alert-dan-ai" aria-labelledby="alerts-title">
+  <section class="section surface role-detail-permission" id="izin" aria-labelledby="permission-title">
     <div class="container">
-      <AudienceContextBoard
-        id="alerts"
-        eyebrow={'Ruang kerja ' + role.title}
-        title="Pilih sudut pandang sebelum menentukan tindak lanjut."
-        description="Buka satu sudut pandang pada satu waktu agar peringatan, pertanyaan, dan hal yang perlu diperiksa tidak tercampur."
-        panes={[
-          { label: 'Peringatan', title: 'Mulai dari perubahan yang perlu diperiksa.', items: context.alerts },
-          { label: 'Pertanyaan', title: 'Gunakan pertanyaan untuk menelusuri alasan.', items: context.questions },
-          { label: 'Peran AI', title: 'Keputusan dan tindakan tetap berada pada manusia.', items: context.aiBoundary },
-        ]}
-        note={'Contoh ini membantu ' + role.title + ' membaca data. RAMUNI tidak menyetujui keputusan atau mengubah data secara otomatis.'}
-        mascot="guide3d"
-        variant="role"
-      />
-    </div>
-  </section>
-
-  <section class="section surface" id="kolaborasi" aria-labelledby="collaboration-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="collaboration-title">{context.headings.collaboration}</h2></div>
-      <ol class="audience-ledger">{context.collaboration.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item}</strong><p>{context.collaborationNotes[index]}</p></div></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section surface" id="terkait" aria-labelledby="related-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="related-title">{context.headings.related}</h2></div>
-      <div>
-        <div class="audience-module-list">{relevantProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug + '/'}><strong>{product.title}</strong><span>{product.outcome}</span></a>)}</div>
-        <div class="audience-related reveal"><strong>Konteks industri</strong><div>{relatedIndustries.map((industry) => <a href={'/industri/' + industry.slug + '/'}>{industry.title}</a>)}</div></div>
-        <div class="audience-related reveal"><strong>Panduan untuk {role.title}</strong><div>{roleHelpLinks[role.slug].map((link) => <a href={link.href}>{link.label}</a>)}</div></div>
+      <div class="role-detail-section-head reveal"><div><p class="eyebrow">Akses dan tindakan</p><h2 id="permission-title">{context.headings.permissions}</h2></div><p class="lede">{role.permissions}</p></div>
+      <div class="role-detail-permission__layout">
+        <dl class="role-detail-permission__table reveal">{context.permissions.map((item) => <div><dt>{item.action}</dt><dd>{item.status}</dd></div>)}</dl>
+        <aside class="role-detail-priorities reveal"><strong>Yang muncul lebih dulu</strong><ul>{role.priorities.map((priority) => <li>{priority}</li>)}</ul><p>Informasi lain tetap dapat dibuka saat dibutuhkan.</p></aside>
       </div>
     </div>
   </section>
 
-  <section class="section" id="faq" aria-labelledby="faq-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><p class="eyebrow">FAQ</p><h2 id="faq-title">Pertanyaan tentang akses {role.title}.</h2></div>
-      <div class="faq-list reveal">
-        {context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+  <section class="section dark-surface role-detail-exception" id="pengecualian" aria-labelledby="exception-title">
+    <div class="container">
+      <div class="role-detail-section-head reveal"><div><p class="eyebrow">Pengecualian dan handoff</p><h2 id="exception-title">{context.headings.workflow}</h2></div><p class="lede">{context.headings.success}</p></div>
+      <ol class="role-detail-flow reveal">{context.workflow.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}</ol>
+      <div class="role-detail-signals">
+        <article class="reveal"><span>Peringatan</span><ul>{context.alerts.map((item) => <li>{item}</li>)}</ul></article>
+        <article class="reveal"><span>Pertanyaan</span><ul>{context.questions.map((item) => <li>{item}</li>)}</ul></article>
+        <article class="reveal"><span>Handoff</span><ul>{context.collaboration.map((item, index) => <li>{item}<small>{context.collaborationNotes[index]}</small></li>)}</ul></article>
+      </div>
+      <div class="role-detail-ai reveal"><strong>Peran AI</strong><p>{context.aiBoundary.join(' ')}</p></div>
+      <div class="role-detail-links reveal">
+        <div><strong>Modul yang relevan</strong>{relevantProducts.map((product) => <a href={'/produk/' + product.slug + '/'}>{product.title}</a>)}</div>
+        <div><strong>Industri terkait</strong>{relatedIndustries.map((industry) => <a href={'/industri/' + industry.slug + '/'}>{industry.title}</a>)}</div>
+        <div><strong>Panduan</strong>{roleHelpLinks[role.slug].map((link) => <a href={link.href}>{link.label}</a>)}</div>
       </div>
     </div>
   </section>
 
-  <section class="section surface" id="cta" aria-labelledby="role-cta-title">
-    <div class="container reveal">
+  <section class="section surface role-detail-close" id="faq" aria-labelledby="faq-title">
+    <div class="container role-detail-close__layout">
+      <div class="role-detail-faq reveal"><p class="eyebrow">Pertanyaan umum</p><h2 id="faq-title">Pertanyaan tentang akses {role.title}.</h2><div class="faq-list">{context.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div>
+      <div class="role-detail-close__cta reveal">
       <MascotDecisionCTA
         headingId="role-cta-title"
         eyebrow={'Langkah berikutnya untuk ' + role.title}
         title={context.headings.closing}
-        body="Lihat contoh pekerjaan untuk peran ini, periksa catatan pendukungnya, lalu bahas langkah yang dapat diterapkan di usaha Anda."
+        body="Lihat contoh pekerjaan untuk peran ini, periksa sumbernya, lalu bahas langkah yang dapat diterapkan di usaha Anda."
         primaryLabel={closingLinks[0]?.label}
         primaryHref={closingLinks[0]?.href}
         secondaryLabel={closingLinks[1]?.label}
@@ -262,6 +215,7 @@ const structuredData = {
         theme="yellow"
         mascot="guide3d"
       />
+      </div>
     </div>
   </section>
 </BaseLayout>

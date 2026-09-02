@@ -37,7 +37,7 @@ const headings: Record<string, string> = {
 };
 ---
 
-{capabilities.length > 0 && <section id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
+{capabilities.length > 0 && <div id="product-capabilities" class="pd-readiness" data-section-id="product-capabilities" data-analytics-id="product_capability_status" aria-labelledby="product-capabilities-title">
   <div class="container pd-readiness__layout">
     <header class="pd-readiness__intro reveal">
       <h2 id="product-capabilities-title">{headings[slug] || `Lihat cara kerja ${title} sebelum mengandalkannya.`}</h2>
@@ -70,7 +70,7 @@ const headings: Record<string, string> = {
       </aside>
     </div>
   </div>
-</section>}
+</div>}
 
 <style is:inline>
   .pd-readiness__status{display:inline-block;margin-left:8px;color:var(--teal);font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}

@@ -2,11 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
-import DriveVideo from '../components/DriveVideo.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
 import { driveCardVisuals } from '../data/driveVisuals';
-import { driveVideos } from '../data/driveVideos';
 import '../styles/other-pages-refinement.css';
 
 const solutionCloseVisual = driveCardVisuals.cashContext;
@@ -36,8 +34,8 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
       <div class="container solution-hub-hero__layout">
         <div class="solution-hub-hero__copy">
           <p class="section-kicker">Solusi bisnis</p>
-          <h1>Temukan cara membaca masalah omzet, stok, laba, dan pelanggan.</h1>
-          <p class="lede">Mulai dari gejala yang paling terasa. RAMUNI menghubungkan masalah ke data, modul, dan contoh pemeriksaan yang bisa Anda bahas.</p>
+          <h1>Mulai dari gejala yang paling mengganggu minggu ini.</h1>
+          <p class="lede">Pilih yang terlihat di usaha Anda. RAMUNI membantu memecahnya menjadi data, modul, dan pemeriksaan yang bisa dibahas.</p>
           <div class="solution-hub-hero__action"><a class="button button--primary" href="/tour-produk-gratis/?flow=consultation&intent=overview" data-analytics-event="demo_request" data-analytics-location="solutions_hero" data-destination="consultation">Konsultasi sesuai masalah</a></div>
         </div>
         <div class="solution-hub-hero__visual"><SolutionProblemMap entries={problemMapEntries} /></div>
@@ -46,14 +44,8 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
 
     <section id="solution-directory" class="section surface solution-directory" aria-labelledby="solution-directory-title">
       <div class="container solution-directory__layout">
-        <header><p class="section-kicker">Lima jalur kerja</p><h2 id="solution-directory-title">Pilih masalah yang ingin Anda pecahkan minggu ini.</h2></header>
+        <header><p class="section-kicker">Lima jalur dari gejala</p><h2 id="solution-directory-title">Pilih masalah yang ingin Anda pecahkan minggu ini.</h2></header>
         <div class="solution-directory__content">
-          <figure class="solution-directory__preview">
-            <div class="solution-directory__preview-media">
-              <DriveVideo class="solution-hub-network-video" {...driveVideos.decisionNetwork} />
-            </div>
-            <figcaption><strong>Setiap solusi menghubungkan gejala, data, dan pemeriksaan yang bisa dilakukan.</strong><small>Visual hubungan metrik · bukan capture laporan.</small></figcaption>
-          </figure>
           <div class="solution-stories">
             {solutions.map((solution, index) => (
               <a class="solution-story reveal" style={`--i:${index}`} href={`/solusi/${solution.slug}/`}>
@@ -71,7 +63,7 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
       <div class="container synthetic-decisions__layout">
         <div><p class="section-kicker">Contoh pembacaan</p><h2 id="synthetic-title">Dapatkan pertanyaan yang bisa dijawab tim.</h2><p>Lihat bagaimana perubahan angka mengarahkan pemeriksaan yang lebih spesifik.</p></div>
         <div class="decision-notes">
-          {solutions.slice(0,3).map((solution) => <article><span>{solution.comparison}</span><strong>{solution.nextAction}</strong><small>Sumber yang diperiksa: {solution.modules.slice(0,2).join(' dan ')}</small></article>)}
+          {solutions.slice(0,1).map((solution) => <article><span>{solution.comparison}</span><strong>{solution.nextAction}</strong><small>Sumber yang diperiksa: {solution.modules.slice(0,2).join(' dan ')}</small></article>)}
         </div>
       </div>
     </section>
@@ -83,15 +75,12 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
       </div>
     </section>
 
-    <section class="section solution-faq" aria-labelledby="solution-faq-title">
+    <section class="section solution-faq-close" aria-labelledby="solution-faq-title">
       <div class="container solution-faq__layout">
         <h2 id="solution-faq-title">Pertanyaan sebelum memilih jalur.</h2>
         <div>{solutionFaq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
       </div>
-    </section>
-
-    <section class="section surface solution-hub-close" aria-labelledby="solution-hub-close-title">
-      <div class="container">
+      <div class="container solution-hub-close" aria-labelledby="solution-hub-close-title">
         <TourEvidenceCTA
           headingId="solution-hub-close-title"
           eyebrow="Petakan sebelum memilih"
@@ -133,4 +122,18 @@ const problemMapEntries = painClusters.map((cluster, index) => ({
   @media(max-width:960px){.solution-directory__layout,.solution-combinations__layout,.synthetic-decisions__layout,.industry-crosslinks__layout,.solution-faq__layout{grid-template-columns:1fr}.solution-directory__layout>header{position:static}.solution-story,.solution-story:nth-child(5){grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto 1fr}.solution-story:nth-child(1),.solution-story:nth-child(2),.solution-story:nth-child(3),.solution-story:nth-child(4){grid-column:span 6}.solution-story:nth-child(5){grid-column:1/-1}.solution-story>strong,.solution-story:nth-child(5)>strong{grid-column:1/-1}.solution-story:nth-child(5)>div{grid-column:2}}
   @media(max-width:740px){.solution-hub .solution-hub-hero h1{max-width:none;font-size:clamp(2.65rem,11vw,3.35rem);line-height:1.02;text-wrap:wrap}.solution-hub-hero__copy{display:block}.solution-hub-hero__copy .lede{margin-top:20px}.solution-hub-hero__action{margin-top:26px}.solution-hub-hero__action .button{width:100%}.solution-stories,.industry-crosslinks nav{grid-template-columns:1fr}.solution-directory__preview figcaption{display:grid;gap:7px}.solution-directory__preview figcaption strong{text-align:left}.solution-story,.solution-story:nth-child(1),.solution-story:nth-child(2),.solution-story:nth-child(3),.solution-story:nth-child(4),.solution-story:nth-child(5){grid-column:auto;grid-template-columns:50px minmax(0,1fr);min-height:0;padding:18px}.solution-story__mark{width:40px;height:40px}.combination-lines a{grid-template-columns:38px minmax(0,1fr);gap:8px 14px}.combination-lines a>span{grid-column:2}.industry-crosslinks nav a{min-height:135px}}
   @media(prefers-reduced-motion:reduce){.solution-story,.solution-story__mark,.solution-story::after,.combination-lines a,.industry-crosslinks nav a{animation:none!important;transition:none!important;transform:none!important}}
+  /* One symptom chooser owns the visual attention; routes remain a readable
+     index and the example below carries the only second proof surface. */
+  .solution-hub .solution-directory{background:var(--white)}
+  .solution-hub .solution-directory__content{gap:0}
+  .solution-hub .solution-stories{border-top:1px solid var(--ink)}
+  .solution-hub .solution-story{min-height:220px;border-color:var(--ink-10);box-shadow:none}
+  .solution-hub .solution-story:nth-child(5){min-height:190px}
+  .solution-hub .solution-story:hover,.solution-hub .solution-story:focus-visible{box-shadow:-5px 5px 0 var(--yellow)}
+  .solution-hub .synthetic-decisions{background:var(--ink)}
+  .solution-hub .decision-notes article{min-height:180px;display:flex;flex-direction:column;justify-content:center;background:var(--ink)}
+  .solution-hub .solution-faq-close{background:var(--white)}
+  .solution-hub .solution-faq-close .solution-hub-close{margin-top:clamp(54px,8vw,96px);padding-top:clamp(54px,7vw,86px);border-top:1px solid var(--ink)}
+  @media(max-width:1200px){.solution-hub .solution-story{min-height:200px}}
+  @media(max-width:740px){.solution-hub .solution-story,.solution-hub .solution-story:nth-child(5){min-height:0}.solution-hub .solution-faq-close .solution-hub-close{margin-top:48px;padding-top:48px}}
 </style>

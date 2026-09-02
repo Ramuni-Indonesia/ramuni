@@ -204,7 +204,7 @@ const schema = [
 
           <div class="article-content" data-visual-placement={visualPlacement.mode} data-visual-anchor={visualPlacement.anchor}>
             {Content ? <Content /> : <ArticleBodyBlocks blocks={post.bodyBlocks || []} />}
-            <ArticleContextVisual articleId={post.id} articleTitle={post.data.title} articleDescription={post.data.description} />
+            <ArticleContextVisual articleId={post.id} articleTitle={post.data.title} articleDescription={post.data.description} articleCover={post.data.cover} articleCoverAlt={post.data.coverAlt} articleCoverWidth={coverWidth} articleCoverHeight={coverHeight} />
           </div>
 
           {embeddedCalculator && CalculatorWidget && <CalculatorWidget kind={embeddedCalculator} embedded />}

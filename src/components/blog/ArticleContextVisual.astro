@@ -6,9 +6,21 @@ interface Props {
   articleId: string;
   articleTitle?: string;
   articleDescription?: string;
+  articleCover?: string;
+  articleCoverAlt?: string;
+  articleCoverWidth?: number;
+  articleCoverHeight?: number;
 }
 
-const { articleId, articleTitle = 'Memahami konsep utama artikel', articleDescription = 'Visual ringkas membantu menghubungkan penjelasan dengan contoh yang mudah dibaca.' } = Astro.props;
+const {
+  articleId,
+  articleTitle = 'Memahami konsep utama artikel',
+  articleDescription = 'Visual ringkas membantu menghubungkan penjelasan dengan contoh yang mudah dibaca.',
+  articleCover,
+  articleCoverAlt,
+  articleCoverWidth = 1600,
+  articleCoverHeight = 900,
+} = Astro.props;
 
 const variants = {
   'ai-business-companion-umkm': {
@@ -121,7 +133,11 @@ const variants = {
 // dashboard. Other articles receive a topical explanatory illustration.
 const visual = articleId === 'ai-business-companion-umkm' ? variants[articleId] : undefined;
 const dashboard = visual ? dashboardVisuals[visual.dashboard as DashboardVisualKey] : null;
-const generatedSrc = `/website-original/blog/generated/article-visuals/${articleId}.webp`;
+// The editorial cover is the canonical, reviewed asset for every article. A
+// previous implementation inferred a second generated filename from the
+// article id, which allowed a valid article to ship with a 404 visual when
+// the optional derivative was not published. Use the reviewed cover here.
+const generatedSrc = articleCover || '/website-original/blog/generated/article-visuals/produk-terlaris-belum-tentu-paling-untung.webp';
 ---
 
 {visual && dashboard ? (
@@ -138,7 +154,7 @@ const generatedSrc = `/website-original/blog/generated/article-visuals/${article
 ) : (
   <figure class="article-context-visual article-context-visual--generated">
     <div class="article-context-visual__stage article-context-visual__stage--generated">
-      <img src={generatedSrc} width="1600" height="900" alt={`Visual penjelas untuk ${articleTitle}`} loading="lazy" decoding="async" />
+      <img src={generatedSrc} width={articleCoverWidth} height={articleCoverHeight} alt={articleCoverAlt || `Visual penjelas untuk ${articleTitle}`} loading="lazy" decoding="async" />
     </div>
     <figcaption>
       <span>Visual penjelas</span>

@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
-import SolutionDataVisual from '../../components/solution/SolutionDataVisual.astro';
 import SolutionManualGap from '../../components/solution/SolutionManualGap.astro';
 import SolutionScenario from '../../components/solution/SolutionScenario.astro';
 import SolutionWorkflow from '../../components/solution/SolutionWorkflow.astro';
 import ProductScrollMotion from '../../components/product/ProductScrollMotion.astro';
-import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getSolutionContextVisual } from '../../data/dashboardVisuals';
 import { getSolutionDriveVisuals, toProductScreen } from '../../data/driveVisuals';
@@ -42,10 +40,10 @@ const solutionCtaLabels: Record<string, string> = {
 const solutionCtaLabel = solutionCtaLabels[solution.slug] || 'Konsultasi';
 const closingVisual = getSolutionContextVisual(solution.slug);
 const solutionDriveSet = getSolutionDriveVisuals(solution.slug);
-// The hero already owns the primary visual; keep the rail focused on a
-// different supporting capture so the same artwork is not repeated twice.
+// Solutions lead with the symptom; reserve one supporting capture for the
+// product-proof chapter so this route does not read like a second product page.
 const screenSet = (solutionDriveSet.supporting.length > 0
-  ? solutionDriveSet.supporting.slice(0, 2)
+  ? solutionDriveSet.supporting.slice(0, 1)
   : [solutionDriveSet.primary]
 ).map(toProductScreen);
 const capabilityIconForHref = (href?: string) => {
@@ -92,39 +90,34 @@ const structuredData = [
             <a class="button button--secondary" href="#workflow-title">Lihat cara kerja</a>
           </div>
         </div>
-        <div class="sd-hero__visual reveal is-visible">
-          <SolutionDataVisual visual={solution.visual} slug={solution.slug} />
-        </div>
-      </div>
-    </section>
-
-    <section class="section sd-problem" aria-labelledby="problem-title">
-      <div class="container sd-problem__grid">
-        <div class="sd-problem__overview">
-          <header class="sd-problem__heading reveal">
-            <p class="section-kicker">Kenali masalahnya</p>
-            <h2 id="problem-title">{narrative?.symptomHeading || 'Apakah ini terjadi di usaha Anda?'}</h2>
-            <p>Mulai dari tiga tanda yang paling mudah dikenali. Cocokkan dengan catatan yang tersedia sebelum menyimpulkan penyebabnya.</p>
+        <div class="sd-hero__symptoms reveal is-visible" aria-label={`Gejala dan dampak untuk ${solution.title}`}>
+          <header>
+            <span>Yang terlihat di usaha</span>
+            <strong>{solution.scenario.title}</strong>
+            <p>{solution.scenario.context}</p>
           </header>
-          <ol class="sd-symptoms">
-            {solution.symptoms.map((symptom, index) => <li class="reveal" style={`--i:${index}`}><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
+          <ol>
+            {solution.symptoms.map((symptom, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{symptom}</strong></li>)}
           </ol>
+          <div class="sd-hero__impacts">
+            <span class="sd-hero__impacts-label">Yang perlu dibedakan</span>
+            {impactItems.map((impact) => <p><b>{impact.title}</b>{impact.text}</p>)}
+          </div>
+          <footer><span>Tujuan pemeriksaan</span><strong>{solution.heroOutcome}</strong></footer>
         </div>
-        <div class="sd-impact" aria-label="Dampak bisnis">
-          {impactItems.map((impact, index) => <article class="reveal" style={`--i:${index}`}><span>Sudut {String(index + 1).padStart(2, '0')}</span><h3>{impact.title}</h3><p>{impact.text}</p></article>)}
-        </div>
-        <InsightEvidenceFlow
-          context="Solusi"
-          title="Uji satu gejala sebelum menarik kesimpulan."
-          prompt={solution.heroOutcome}
-          sources={solution.symptoms}
-          outcome={solution.scenario.decision}
-          variant={solution.slug}
-        />
       </div>
     </section>
 
     <SolutionManualGap solution={solution} />
+
+    <ProductScreenshotRail
+      id={`solution-${solution.slug}-screens`}
+      eyebrow="Bukti setelah gejala"
+      heading={`Buka workspace yang menjawab ${solution.title.toLowerCase()}.`}
+      body="Ini contoh screen dengan data demo. Periksa periode dan sumbernya sebelum membahas keputusan."
+      items={screenSet}
+      compact
+    />
 
     <section class="section sd-workflow-section" aria-labelledby="workflow-title">
       <div class="container">
@@ -134,21 +127,9 @@ const structuredData = [
           <p>Di setiap tahap, periode dan angka yang dipakai tetap terlihat sebelum tim memilih tindakan.</p>
         </header>
         <SolutionWorkflow steps={solution.workflow} />
+        <div class="sd-scenario-shell"><SolutionScenario scenario={solution.scenario} /></div>
       </div>
     </section>
-
-    <section class="section sd-scenario-section" aria-labelledby="scenario-title">
-      <div class="container"><SolutionScenario scenario={solution.scenario} /></div>
-    </section>
-
-    <ProductScreenshotRail
-      id={`solution-${solution.slug}-screens`}
-      eyebrow="Bukti setelah gejala"
-      heading={`Buka workspace yang terkait dengan ${solution.title}.`}
-      body="Lihat satu contoh layar setelah memahami masalahnya; angka pada tampilan adalah data demo dan hasil tetap bergantung pada konteks usaha."
-      items={screenSet}
-      compact
-    />
 
     <section class="section sd-capabilities" aria-labelledby="capabilities-title">
       <div class="container sd-capabilities__layout">
@@ -183,25 +164,25 @@ const structuredData = [
       </div>
     </section>
 
-    <section class="section sd-start" aria-labelledby="start-title">
-      <div class="container sd-start__layout">
-        <div class="sd-start__steps reveal">
-          <p class="section-kicker">Mulai tanpa proyek besar</p>
-          <h2 id="start-title">{narrative?.onboardingHeading || 'Siapkan satu kasus yang memang perlu dijelaskan.'}</h2>
-          <ol>{onboardingItems.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+    <section class="section sd-final" aria-labelledby="start-title">
+      <div class="container sd-final__start">
+        <div class="sd-start__layout">
+          <div class="sd-start__steps reveal">
+            <p class="section-kicker">Mulai tanpa proyek besar</p>
+            <h2 id="start-title">{narrative?.onboardingHeading || 'Siapkan satu kasus yang memang perlu dijelaskan.'}</h2>
+            <ol>{onboardingItems.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+          </div>
+          <aside class="sd-resource reveal" aria-labelledby="resource-title">
+            <span>{solution.resource.type}</span>
+            <h3 id="resource-title">{solution.resource.title}</h3>
+            <p>{solution.resource.text}</p>
+            <a class="text-link" href={solution.resource.href}>{solution.resource.cta}</a>
+          </aside>
         </div>
-        <aside class="sd-resource reveal" aria-labelledby="resource-title">
-          <span>{solution.resource.type}</span>
-          <h3 id="resource-title">{solution.resource.title}</h3>
-          <p>{solution.resource.text}</p>
-          <a class="text-link" href={solution.resource.href}>{solution.resource.cta}</a>
-        </aside>
       </div>
-    </section>
 
-    <section class="section sd-faq-close" aria-labelledby="faq-title">
       <div class="container sd-faq__layout">
-        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pertanyaan sebelum memilih jalur.</h2></header>
+        <header class="reveal"><p class="section-kicker">Sebelum memulai</p><h2 id="faq-title">Pertanyaan tentang {solution.title.toLowerCase()}.</h2></header>
         <div class="sd-faq-list">
           {solution.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>

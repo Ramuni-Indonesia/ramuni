@@ -5,7 +5,7 @@ import DriveVideo from '../components/DriveVideo.astro';
 import HomeScrollMotion from '../components/HomeScrollMotion.astro';
 import HomepageProblemProof from '../components/HomepageProblemProof.astro';
 import RamuniHeroVisual from '../components/RamuniHeroVisual.astro';
-import { industries, launchCta, products, solutions } from '../data/site';
+import { industries, launchCta, solutions } from '../data/site';
 import { homepageIndustryVisuals } from '../data/homepageVisuals';
 import { pageLastmods } from '../data/pageLastmods';
 import { driveVideos } from '../data/driveVideos';
@@ -14,8 +14,30 @@ import '../styles/home-refinement.css';
 
 const firstIndustryVisual = homepageIndustryVisuals.find((visual) => visual.slug === industries[0].slug) || homepageIndustryVisuals[0];
 const prioritySolutions = solutions.slice(0, 4);
-const priorityProducts = products.slice(0, 6);
 const priorityIndustries = industries.slice(0, 4);
+const homepageModulePaths = [
+  {
+    label: 'Operasional',
+    title: 'Catat penjualan, cek stok.',
+    text: 'Mulai dari transaksi dan saldo barang yang paling sering berubah di hari kerja.',
+    href: '/produk/penjualan/',
+    action: 'Buka alur operasional',
+  },
+  {
+    label: 'Kesehatan uang',
+    title: 'Pisahkan omzet, biaya, dan kas.',
+    text: 'Gunakan periode yang sama agar ramainya penjualan tidak disalahartikan sebagai kas longgar.',
+    href: '/produk/keuangan/',
+    action: 'Baca alur keuangan',
+  },
+  {
+    label: 'Tim & laporan',
+    title: 'Tutup minggu dengan sumber yang sama.',
+    text: 'Ringkas perubahan dan buka angka pendukungnya sebelum rapat dimulai.',
+    href: '/produk/laporan-insight/',
+    action: 'Lihat cara laporan bekerja',
+  },
+] as const;
 
 const faq = [
   ['Apakah RAMUNI adalah ERP?', 'RAMUNI menyatukan penjualan, stok, kas, pelanggan, dan laporan untuk membantu UMKM membaca perubahan usaha. Anda tetap dapat memakai software lain yang sudah dibutuhkan.'],
@@ -61,6 +83,14 @@ const schema = [
     </div>
     <div class="hero-rule" aria-hidden="true"><span></span></div>
   </section>
+
+  <aside class="home-status-strip" aria-label="Batas dan status contoh workspace">
+    <div class="container home-status-strip__inner">
+      <span><i aria-hidden="true">01</i><strong>Workspace contoh</strong><small>Angka pada tampilan adalah data demo.</small></span>
+      <span><i aria-hidden="true">02</i><strong>AI read-only</strong><small>Jawaban menunjukkan konteks dan sumber.</small></span>
+      <span><i aria-hidden="true">03</i><strong>Anda tetap memutuskan</strong><small>Tindakan penting memerlukan persetujuan manusia.</small></span>
+    </div>
+  </aside>
 
   <!-- H02 · Workflow: input, context, evidence, decision in one compact explorer. -->
   <section id="homepage-workflow" class="section workflow-stage chapter">
@@ -115,12 +145,12 @@ const schema = [
     </div>
   </section>
 
-  <!-- H05 · Product chooser: six priority modules, with the full catalogue one click away. -->
+  <!-- H05 · Product chooser: three priority work paths, with the full catalogue one click away. -->
   <section class="section modules-stage chapter">
     <div class="container module-atlas">
       <header class="module-atlas__head reveal"><h2>Buka modul sesuai pekerjaan hari ini.</h2><p>Mulai dari pertanyaan yang paling sering muncul, lalu telusuri alur yang menjawabnya.</p></header>
       <div class="module-map">
-        {priorityProducts.map((product, i) => <a class="module-cell reveal" href={`/produk/${product.slug}/`} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')}</span><h3>{product.title}</h3><p>{product.question}</p><small>Lihat modul ↗</small></a>)}
+        {homepageModulePaths.map((path, i) => <a class:list={['module-cell', 'reveal', { 'module-cell--path-featured': i === 0 }]} href={path.href} style={`--i:${i}`}><span>{String(i + 1).padStart(2, '0')} · {path.label}</span><h3>{path.title}</h3><p>{path.text}</p><small>{path.action} ↗</small></a>)}
       </div>
       <a class="text-link home-section-link" href="/produk/">Lihat semua produk</a>
     </div>

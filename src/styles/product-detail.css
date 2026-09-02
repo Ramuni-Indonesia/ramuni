@@ -51,6 +51,30 @@
   --pd-accent-soft: rgb(242 177 52 / 0.2);
 }
 
+/* Product detail is organised around the product decision, not a gallery of
+ * interchangeable chapters: context first, then proof, then action. */
+.pd-overview {
+  padding-block: clamp(72px, 9vw, 128px);
+  background: var(--white);
+}
+
+.pd-overview .product-io {
+  margin-block: 0;
+}
+
+.pd-overview .pd-problem__layout {
+  margin-top: clamp(58px, 8vw, 108px);
+}
+
+.pd-final {
+  padding-block: clamp(72px, 9vw, 128px);
+  background: var(--white);
+}
+
+.pd-final__cta {
+  margin-top: clamp(58px, 8vw, 108px);
+}
+
 .pd-page :where(h1, h2, h3, p) {
   margin-top: 0;
 }
@@ -2169,6 +2193,7 @@
   }
 
   .pd-hero,
+  .pd-overview,
   .pd-problem,
   .pd-example,
   .pd-benefits,
@@ -2177,12 +2202,17 @@
   .pd-audience,
   .pd-related,
   .pd-faq,
-  .pd-close {
+  .pd-close,
+  .pd-final {
     padding-block: 64px;
   }
 
   .pd-hero {
     padding-top: 36px;
+  }
+
+  .pd-overview {
+    padding-top: 64px;
   }
 
   .pd-hero h1 {

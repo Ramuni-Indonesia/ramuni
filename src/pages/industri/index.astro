@@ -1,165 +1,129 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products } from '../../data/site';
 import { driveCardVisuals } from '../../data/driveVisuals';
-import '../../styles/other-pages-refinement.css';
+import '../../styles/industry-pages.css';
 
-const industryProfiles: Record<string, { rhythm: string; stock: string; customer: string; finance: string; signal: string }> = {
-  retail: { rhythm: 'Cepat, sepanjang hari', stock: 'Banyak SKU; laju berbeda', customer: 'Datang langsung dan kembali', finance: 'Omzet, margin, kas harian', signal: 'SKU cepat laku' },
-  fnb: { rhythm: 'Mengikuti jam makan', stock: 'Bahan bergerak dan terbuang', customer: 'Kembali karena menu', finance: 'Penjualan, bahan, sisa terbuang', signal: 'Jam ramai' },
-  distributor: { rhythm: 'Pesanan besar dan bertahap', stock: 'Volume tinggi', customer: 'Repeat order dan tempo', finance: 'Kas dan piutang', signal: 'Pesanan ulang' },
-  'reseller-online': { rhythm: 'Datang dari beberapa kanal', stock: 'Cepat mengikuti tren', customer: 'Riwayat tersebar', finance: 'Margin produk dan kanal', signal: 'Margin per kanal' },
-  jasa: { rhythm: 'Mengikuti layanan dan periode', stock: 'Bukan fokus utama', customer: 'Butuh layanan berulang', finance: 'Pendapatan dan biaya layanan', signal: 'Layanan konsisten' },
-  'manufaktur-kecil': { rhythm: 'Produksi bertemu penjualan', stock: 'Bahan dan barang jadi', customer: 'Pesanan mengikuti kapasitas', finance: 'Biaya produksi dan kas', signal: 'Bahan vs barang jadi' },
+type IndustryProfile = {
+  rhythm: string;
+  stock: string;
+  customer: string;
+  finance: string;
+  signal: string;
+  problem: string;
+  module: string;
+};
+
+const industryProfiles: Record<string, IndustryProfile> = {
+  retail: { rhythm: 'Cepat, sepanjang hari', stock: 'Banyak SKU; laju berbeda', customer: 'Datang langsung dan kembali', finance: 'Omzet, margin, kas harian', signal: 'SKU cepat laku', problem: 'Stok kritis dan selisih shift', module: 'Penjualan + Inventori' },
+  fnb: { rhythm: 'Mengikuti jam makan', stock: 'Bahan bergerak dan terbuang', customer: 'Kembali karena menu', finance: 'Penjualan, bahan, sisa terbuang', signal: 'Jam ramai', problem: 'Menu habis dan waste bahan', module: 'Penjualan + Keuangan' },
+  distributor: { rhythm: 'Pesanan besar dan bertahap', stock: 'Volume tinggi', customer: 'Repeat order dan tempo', finance: 'Kas dan piutang', signal: 'Pesanan ulang', problem: 'Alokasi stok dan invoice tertunda', module: 'Penjualan + Pelanggan' },
+  'reseller-online': { rhythm: 'Datang dari beberapa kanal', stock: 'Cepat mengikuti tren', customer: 'Riwayat tersebar', finance: 'Margin produk dan kanal', signal: 'Margin per kanal', problem: 'Fee kanal mengubah margin', module: 'Katalog + Penjualan' },
+  jasa: { rhythm: 'Mengikuti layanan dan periode', stock: 'Bukan fokus utama', customer: 'Butuh layanan berulang', finance: 'Pendapatan dan biaya layanan', signal: 'Layanan konsisten', problem: 'Biaya pengerjaan belum terlihat', module: 'Keuangan + Pelanggan' },
+  'manufaktur-kecil': { rhythm: 'Produksi bertemu penjualan', stock: 'Bahan dan barang jadi', customer: 'Pesanan mengikuti kapasitas', finance: 'Biaya produksi dan kas', signal: 'Bahan vs barang jadi', problem: 'Bahan rusak dan reorder terlambat', module: 'Inventori + Keuangan' },
 };
 
 const sharedModules = products.filter((product) => ['Dashboard Bisnis', 'Laporan & Insight', 'Asisten AI'].includes(product.title));
-const sharedProblems = [
-  { label: 'Data', title: 'Catatan tersebar', text: 'Angka yang sama terlihat berbeda di meja kasir, admin, dan pemilik.' },
-  { label: 'Waktu', title: 'Masalah datang terlambat', text: 'Perubahan baru terasa setelah stok, kas, atau layanan ikut terganggu.' },
-  { label: 'Tindak lanjut', title: 'Keputusan kurang dasar', text: 'Tim bergerak sebelum periode dan bukti pendukung diperiksa.' },
-];
-const resources = [
-  { eyebrow: 'Panduan', title: 'Mulai dari pertanyaan bisnis', text: 'Susun pertanyaan yang perlu dijawab sebelum menyiapkan data.', href: '/panduan/' },
-  { eyebrow: 'Template', title: 'Rapikan catatan awal', text: 'Lihat format contoh tanpa perlu membagikan data sensitif.', href: '/template/' },
-  { eyebrow: 'Artikel', title: 'Belajar sesuai ritme usaha', text: 'Baca pembahasan praktis untuk stok, penjualan, kas, dan pelanggan.', href: '/blog/' },
-];
-
-const industryLens = industries.map((industry) => ({
-  ...industry,
-  ...industryProfiles[industry.slug as keyof typeof industryProfiles],
-}));
 const industryCloseVisual = driveCardVisuals.operationsContext;
+const exampleFlow = [
+  { label: 'Buka toko', text: 'Cek stok kritis sebelum pelanggan datang.' },
+  { label: 'Jaga shift', text: 'Catat transaksi dan koreksi dengan status yang jelas.' },
+  { label: 'Periksa sinyal', text: 'Bandingkan produk laris dengan saldo yang tersisa.' },
+  { label: 'Tutup hari', text: 'Tentukan siapa yang memeriksa selisih atau restock.' },
+];
 ---
-<BaseLayout title="RAMUNI untuk Berbagai Industri" description="Lihat cara RAMUNI membantu retail, F&B, distributor, reseller online, jasa, dan manufaktur kecil membaca data yang paling penting.">
-  <PageHero compact eyebrow="Industri" title="Setiap usaha punya angka penting yang perlu diperiksa." description="Pilih jenis usaha yang paling dekat dengan kegiatan harian Anda. Contoh, pertanyaan, dan modulnya mengikuti ritme kerja tersebut." primaryLabel="Pilih Industri" primaryHref="#daftar-industri" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />
 
-  <section class="section industry-lens" aria-labelledby="industry-lens-title">
-    <div class="container industry-lens__layout">
-      <div class="industry-lens__copy reveal">
-        <h2 id="industry-lens-title">Mulai dari cara usaha Anda berjalan.</h2>
-        <p>Retail membaca SKU cepat. F&B membaca jam ramai. Distributor membaca pesanan ulang. Pilih ritme yang paling dekat.</p>
-      </div>
-      <div class="industry-lens__cards" aria-label="Kartu konteks industri">
-        {industryLens.map((item, index) => (
-          <a class="industry-lens-card reveal" style={`--i:${index}`} href={`/industri/${item.slug}/`}>
-            <span>{item.signal}</span>
-            <strong>{item.title}</strong>
-            <small>{item.rhythm}</small>
-            <div class="industry-lens-card__pulse" aria-hidden="true">
-              <i></i><i></i><i></i><i></i>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+<BaseLayout title="RAMUNI untuk Berbagai Industri" description="Pilih konteks usaha dan lihat masalah operasional, data, serta modul RAMUNI yang paling relevan.">
+  <div class="container audience-breadcrumb industry-hub-breadcrumb">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><span aria-current="page">Industri</span></nav>
+  </div>
 
-  <section class="section dark-surface industry-hub__selector" id="daftar-industri" aria-labelledby="industry-selector-title">
-    <div class="container industry-hub__selector-layout">
-      <div class="industry-hub__sticky reveal">
-        <p class="eyebrow">Temukan ritme usaha Anda</p>
-        <h2 id="industry-selector-title">Pertanyaan harian adalah titik mulai terbaik.</h2>
-        <p>Setiap halaman memakai ilustrasi alur yang disesuaikan dengan ritme dan pertanyaan harian jenis usaha tersebut.</p>
-        <div class="industry-hub__radar" aria-hidden="true"><span></span><i></i><b></b></div>
-      </div>
-      <nav class="industry-hub__signals" aria-label="Daftar industri">
-        {industries.map((industry, index) => (
-          <a class="industry-hub__signal reveal" style={`--i:${index}`} href={`/industri/${industry.slug}/`}>
-            <span>{industryProfiles[industry.slug].signal}</span>
-            <div><strong>{industry.title}</strong><p>"{industry.question}"</p></div>
-            <b aria-hidden="true">Lihat</b>
-          </a>
-        ))}
-      </nav>
-    </div>
-  </section>
-
-  <section class="section surface industry-hub__comparison" id="perbandingan" aria-labelledby="comparison-title">
+  <section class="section industry-hub-hero" aria-labelledby="industry-hub-title">
     <div class="container">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Bandingkan cara kerja</p><h2 id="comparison-title">Angka yang sama bisa berarti hal berbeda.</h2><p class="lede">Lihat transaksi, stok, pelanggan, dan keuangan dengan sudut yang sesuai sebelum menyimpulkan.</p></div>
-      <div class="industry-hub__table reveal" role="region" aria-label="Perbandingan konteks industri" tabindex="0">
+      <div class="industry-hub-hero__intro reveal">
+        <p class="eyebrow">Industri</p>
+        <h1 id="industry-hub-title">Mulai dari masalah operasional yang paling sering muncul.</h1>
+        <p class="lede">Pilih jenis usaha Anda. Contoh alur, pertanyaan, dan modul di dalamnya mengikuti pekerjaan yang benar-benar perlu diperiksa.</p>
+        <div class="button-row"><a class="button button--primary" href="#daftar-industri">Pilih industri</a></div>
+      </div>
+      <div class="industry-hub-hero__chooser" id="daftar-industri">
+        <div class="industry-hub-hero__chooser-head">
+          <h2>Masalahnya spesifik. Dasar datanya tetap jelas.</h2>
+          <p>Setiap halaman dimulai dari pertanyaan yang biasa muncul di lapangan, bukan dari daftar fitur.</p>
+        </div>
+        <nav class="industry-hub-hero__cards" aria-label="Pilih industri">
+          {industries.map((industry, index) => {
+            const profile = industryProfiles[industry.slug];
+            return <a class="industry-hub-hero__card reveal" style={`--i:${index}`} href={`/industri/${industry.slug}/`}>
+              <span>{profile.signal}</span>
+              <strong>{industry.title}</strong>
+              <p>{profile.problem}</p>
+              <small>{profile.module}</small>
+              <b aria-hidden="true">Lihat contoh</b>
+            </a>;
+          })}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface industry-hub-comparison" id="perbandingan" aria-labelledby="comparison-title">
+    <div class="container">
+      <div class="industry-hub-section-head reveal">
+        <h2 id="comparison-title">Satu angka dibaca dengan konteks berbeda.</h2>
+        <p class="lede">Bandingkan pola transaksi, stok, pelanggan, dan keuangan sebelum memilih halaman yang paling dekat dengan usaha Anda.</p>
+      </div>
+      <div class="industry-hub-table reveal" role="region" aria-label="Perbandingan kebutuhan industri" tabindex="0">
         <table>
-          <thead><tr><th scope="col">Industri</th><th scope="col">Transaksi</th><th scope="col">Stok</th><th scope="col">Pelanggan</th><th scope="col">Keuangan</th></tr></thead>
-          <tbody>{industries.map((industry) => { const profile = industryProfiles[industry.slug]; return <tr><th scope="row"><a href={`/industri/${industry.slug}/`}>{industry.title}<span> buka</span></a></th><td>{profile.rhythm}</td><td>{profile.stock}</td><td>{profile.customer}</td><td>{profile.finance}</td></tr>; })}</tbody>
+          <thead><tr><th scope="col">Industri</th><th scope="col">Masalah utama</th><th scope="col">Transaksi</th><th scope="col">Stok</th><th scope="col">Pelanggan</th><th scope="col">Keuangan</th></tr></thead>
+          <tbody>
+            {industries.map((industry) => {
+              const profile = industryProfiles[industry.slug];
+              return <tr><th scope="row"><a href={`/industri/${industry.slug}/`}>{industry.title}</a></th><td>{profile.problem}</td><td>{profile.rhythm}</td><td>{profile.stock}</td><td>{profile.customer}</td><td>{profile.finance}</td></tr>;
+            })}
+          </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <section class="section industry-hub__problems" id="masalah-bersama" aria-labelledby="shared-problems-title">
-    <div class="container industry-hub__split">
-      <div class="industry-hub__sticky reveal"><p class="eyebrow">Fondasi bersama</p><h2 id="shared-problems-title">Ritme berbeda. Tiga pekerjaan tetap sama.</h2><p>Catatan perlu konsisten, perubahan perlu terlihat, dan keputusan perlu dasar.</p></div>
-      <div class="industry-hub__problem-list">
-        {sharedProblems.map((problem, index) => <article class="industry-hub__problem reveal" style={`--i:${index}`}><span>{problem.label}</span><h3>{problem.title}</h3><p>{problem.text}</p></article>)}
+  <section class="section industry-hub-usecase" id="contoh-alur" aria-labelledby="usecase-title">
+    <div class="container industry-hub-usecase__layout">
+      <div class="industry-hub-usecase__copy reveal">
+        <h2 id="usecase-title">Satu hari kerja, satu urutan pemeriksaan.</h2>
+        <p>Contoh retail ini menunjukkan bagaimana RAMUNI menyusun pertanyaan dari buka toko sampai tutup shift. Industri lain memakai urutan yang berbeda, tetapi keputusan tetap berangkat dari data yang dapat diperiksa.</p>
+        <ol>
+          {exampleFlow.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{step.label}</strong><p>{step.text}</p></div></li>)}
+        </ol>
       </div>
+      <figure class="industry-hub-usecase__visual reveal">
+        <img src={industryCloseVisual.src} width={industryCloseVisual.width} height={industryCloseVisual.height} alt={industryCloseVisual.alt} loading="lazy" decoding="async" />
+        <figcaption><strong>Contoh ruang kerja operasional</strong><span>{industryCloseVisual.note}</span></figcaption>
+      </figure>
+    </div>
+    <div class="container industry-hub-usecase__modules reveal">
+      <strong>Fondasi lintas industri</strong>
+      <div>{sharedModules.map((product) => <a href={`/produk/${product.slug}/`}>{product.title}</a>)}</div>
     </div>
   </section>
 
-  <section class="section surface industry-hub__modules" id="modul-bersama" aria-labelledby="shared-modules-title">
-    <div class="container">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Produk yang sama</p><h2 id="shared-modules-title">Ritme berubah, fondasinya tetap.</h2><p class="lede">Modulnya tetap. Pertanyaan, contoh, dan urutan pemeriksaan mengikuti cara usaha berjalan.</p></div>
-      <div class="industry-hub__module-track">
-        {sharedModules.map((product, index) => <a class="industry-hub__module reveal" style={`--i:${index}`} href={`/produk/${product.slug}/`}><span>0{index + 1}</span><strong>{product.title}</strong><p>{product.outcome}</p><b aria-hidden="true">Buka</b></a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section industry-hub__resources" id="panduan-industri" aria-labelledby="industry-resources-title">
-    <div class="container industry-hub__resource-layout">
-      <div class="industry-hub__heading reveal"><p class="eyebrow">Sebelum mencoba</p><h2 id="industry-resources-title">Bawa pertanyaannya, bukan data sensitif.</h2></div>
-      <div class="industry-hub__resource-list">
-        {resources.map((resource, index) => <a class="industry-hub__resource reveal" style={`--i:${index}`} href={resource.href}><span>{resource.eyebrow}</span><div><h3>{resource.title}</h3><p>{resource.text}</p></div><b aria-hidden="true">Buka</b></a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section surface industry-hub__faq" id="kecocokan" aria-labelledby="fit-title">
-    <div class="container industry-hub__faq-layout">
-      <div class="industry-hub__sticky reveal"><p class="eyebrow">Kecocokan</p><h2 id="fit-title">Pilih sesuai kebutuhan usaha.</h2><p>Gunakan halaman industri untuk menyiapkan pertanyaan sebelum mencoba.</p></div>
-      <div class="industry-hub__faq-list reveal">
-        <details><summary>Apakah RAMUNI berbeda untuk setiap industri?</summary><p>Tidak. Produk intinya sama. Contoh, istilah, dan urutan pemeriksaan disesuaikan dengan ritme usaha.</p></details>
-        <details><summary>Bagaimana memilih fitur untuk industri saya?</summary><p>Mulai dari alur harian dan data yang paling sering dipakai, lalu pilih modul yang menghubungkan pekerjaan tersebut.</p></details>
-        <details><summary>Perlukah membawa data usaha saat mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya tanpa membawa data bisnis.</p></details>
-        <details><summary>Jika model usaha saya campuran, mulai dari mana?</summary><p>Pilih ritme yang paling banyak menyita waktu tim, lalu bahas alur lainnya saat konsultasi.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section industry-hub__closing" id="cta" aria-labelledby="industry-cta-title">
+  <section class="section industry-hub-cta" id="cta" aria-labelledby="industry-cta-title">
     <div class="container reveal">
       <TourEvidenceCTA
         headingId="industry-cta-title"
         eyebrow="Langkah berikutnya"
-        title="Cocokkan kebutuhan sebelum memilih fitur."
-        body="Bawa satu pertanyaan bisnis yang paling sering muncul. Kami bantu petakan data, alur, dan langkah yang paling relevan."
+        title="Bawa satu masalah yang ingin Anda periksa."
+        body="Kami bantu memetakan data, urutan kerja, dan modul yang relevan tanpa meminta data usaha sensitif."
+        primaryLabel="Konsultasi"
+        primaryHref="/tour-produk-gratis/?flow=consultation&intent=overview"
+        secondaryLabel="Baca Panduan"
+        secondaryHref="/panduan/"
         theme="ink"
         visual={industryCloseVisual}
-        visualBadge="Ilustrasi konteks usaha"
-        points={['Bawa satu pertanyaan', 'Cocokkan ritme usaha', 'Pilih alur fiturnya']}
+        visualBadge="Ilustrasi ruang kerja operasional"
+        points={['Pilih konteks usaha', 'Cocokkan masalah utama', 'Bahas langkah pemeriksaannya']}
       />
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .industry-hub__heading{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px 64px;align-items:end;margin-bottom:clamp(42px,7vw,78px)}
-  .industry-hub__heading .eyebrow{grid-column:1/-1}.industry-hub__heading .lede{align-self:end}.industry-hub__selector{overflow:hidden}
-  .industry-hub__selector-layout,.industry-hub__split,.industry-hub__faq-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(44px,9vw,130px)}
-  .industry-hub__sticky{position:sticky;top:104px;align-self:start}.industry-hub__sticky .eyebrow{color:var(--yellow);margin-bottom:18px}.industry-hub__sticky>p:last-of-type{margin-top:24px;color:rgb(255 255 255/.66)}
-  .industry-hub__signals{border-top:1px solid rgb(255 255 255/.28)}.industry-hub__signal{display:grid;grid-template-columns:130px 1fr auto;gap:24px;align-items:center;min-height:122px;border-bottom:1px solid rgb(255 255 255/.18);text-decoration:none;transition:padding 280ms var(--ease),background 280ms var(--ease)}
-  .industry-hub__signal>span{color:var(--yellow);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.industry-hub__signal strong{font-size:clamp(1.2rem,2vw,1.7rem)}.industry-hub__signal p{margin-top:7px;color:rgb(255 255 255/.64)}.industry-hub__signal>b{font-size:1.3rem;color:var(--yellow)}
-  .industry-hub__signal:hover,.industry-hub__signal:focus-visible{padding-inline:18px;background:rgb(255 255 255/.06)}
-  .industry-hub__radar{position:relative;width:150px;aspect-ratio:1;margin-top:48px;border:1px solid rgb(255 255 255/.2);border-radius:50%}.industry-hub__radar:before,.industry-hub__radar:after{content:'';position:absolute;inset:25%;border:1px solid rgb(255 255 255/.2);border-radius:50%}.industry-hub__radar:after{inset:49%;background:var(--yellow);border:0}.industry-hub__radar span{position:absolute;left:50%;top:50%;width:50%;height:1px;background:linear-gradient(90deg,var(--yellow),transparent);transform-origin:left}.industry-hub__radar i,.industry-hub__radar b{position:absolute;width:8px;height:8px;background:var(--teal);border-radius:50%}.industry-hub__radar i{left:70%;top:24%}.industry-hub__radar b{left:22%;top:66%;background:var(--yellow)}
-  .industry-hub__table{overflow:auto;border-block:1px solid var(--ink)}.industry-hub__table table{width:100%;min-width:930px;border-collapse:collapse}.industry-hub__table th,.industry-hub__table td{text-align:left;padding:21px 18px;border-bottom:1px solid var(--ink-10);vertical-align:top;font-size:.86rem}.industry-hub__table thead th{color:var(--teal);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}.industry-hub__table tbody th{font-size:1rem}.industry-hub__table a{text-decoration:none}.industry-hub__table a span{display:block;margin-top:5px;color:var(--teal);font-size:.68rem}.industry-hub__table tr:last-child>*{border-bottom:0}.industry-hub__table tbody tr{transition:background 220ms}.industry-hub__table tbody tr:hover{background:var(--yellow-18)}
-  .industry-hub__problems .industry-hub__sticky .eyebrow{color:var(--teal)}.industry-hub__problems .industry-hub__sticky>p:last-of-type{color:var(--ink-72)}.industry-hub__problem-list{border-top:1px solid var(--ink)}.industry-hub__problem{display:grid;grid-template-columns:110px 1fr;gap:8px 28px;padding:34px 0;border-bottom:1px solid var(--ink-10)}.industry-hub__problem>span{grid-row:1/3;color:var(--teal);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.industry-hub__problem h3{font-size:clamp(1.35rem,2.5vw,2.25rem)}.industry-hub__problem p{color:var(--ink-72)}
-  .industry-hub__module-track{border-top:1px solid var(--ink)}.industry-hub__module{display:grid;grid-template-columns:54px .65fr 1fr auto;gap:24px;align-items:center;min-height:118px;border-bottom:1px solid var(--ink-10);text-decoration:none;transition:padding 260ms var(--ease),background 260ms var(--ease)}.industry-hub__module>span{color:var(--teal);font-size:.72rem;font-weight:800}.industry-hub__module strong{font-size:1.12rem}.industry-hub__module p{color:var(--ink-72);font-size:.88rem}.industry-hub__module>b{font-size:1.35rem;font-weight:400}.industry-hub__module:hover,.industry-hub__module:focus-visible{padding-inline:18px;background:var(--yellow-18)}
-  .industry-hub__resource-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(44px,9vw,130px)}.industry-hub__resource-layout>.industry-hub__heading{display:block;margin:0}.industry-hub__resource-layout>.industry-hub__heading .eyebrow{margin-bottom:18px}.industry-hub__resource-list{border-top:1px solid var(--ink)}.industry-hub__resource{display:grid;grid-template-columns:86px 1fr auto;gap:24px;padding:28px 0;border-bottom:1px solid var(--ink-10);text-decoration:none}.industry-hub__resource>span{color:var(--teal);font-size:.7rem;font-weight:800;text-transform:uppercase}.industry-hub__resource p{margin-top:9px;color:var(--ink-72);font-size:.9rem}.industry-hub__resource>b{transition:transform 220ms}.industry-hub__resource:hover b{transform:translate(4px,-4px)}
-  .industry-hub__faq .industry-hub__sticky .eyebrow{color:var(--teal)}.industry-hub__faq .industry-hub__sticky>p:last-of-type{color:var(--ink-72)}.industry-hub__faq-list{border-top:1px solid var(--ink)}.industry-hub__faq-list details{padding:24px 0;border-bottom:1px solid var(--ink-10)}.industry-hub__faq-list summary{position:relative;padding-right:42px;font-weight:800;cursor:pointer;list-style:none}.industry-hub__faq-list summary::-webkit-details-marker{display:none}.industry-hub__faq-list summary:after{content:'+';position:absolute;right:4px;font-size:1.45rem;font-weight:400}.industry-hub__faq-list details[open] summary:after{transform:rotate(45deg)}.industry-hub__faq-list p{margin-top:14px;color:var(--ink-72)}
-  .industry-hub__closing{background:var(--rice)}
-  @media(prefers-reduced-motion:no-preference){.industry-hub__radar span{animation:industry-radar 5s linear infinite}.industry-hub__radar i,.industry-hub__radar b{animation:industry-pulse 2.2s ease-in-out infinite}.industry-hub__radar b{animation-delay:-1.1s}.industry-hub__signal.reveal.is-visible,.industry-hub__problem.reveal.is-visible,.industry-hub__module.reveal.is-visible,.industry-hub__resource.reveal.is-visible{animation:industry-arrive 580ms var(--ease) both;animation-delay:calc(var(--i)*70ms)}@keyframes industry-radar{to{transform:rotate(360deg)}}@keyframes industry-pulse{50%{transform:scale(1.7);box-shadow:0 0 0 8px rgb(242 177 52/.08)}}@keyframes industry-arrive{from{transform:translateX(18px)}to{transform:none}}}
-  @media(max-width:1200px){.industry-hub__selector-layout,.industry-hub__split,.industry-hub__faq-layout,.industry-hub__resource-layout{grid-template-columns:1fr}.industry-hub__sticky{position:static}.industry-hub__radar{display:none}.industry-hub__heading{grid-template-columns:1fr}.industry-hub__heading .eyebrow{grid-column:auto}.industry-hub__signal{grid-template-columns:110px 1fr auto}}
-  @media(max-width:640px){.industry-hub__signal{grid-template-columns:1fr auto;gap:8px 16px;padding:22px 0}.industry-hub__signal>span{grid-column:1/-1}.industry-hub__signal>b{grid-column:2;grid-row:2}.industry-hub__problem{grid-template-columns:1fr}.industry-hub__problem>span{grid-row:auto}.industry-hub__module{grid-template-columns:38px 1fr auto;gap:12px}.industry-hub__module p{grid-column:2/-1}.industry-hub__resource{grid-template-columns:1fr auto}.industry-hub__resource>span{grid-column:1/-1}}
-</style>

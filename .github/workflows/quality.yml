@@ -19,6 +19,7 @@ env:
   PUBLIC_DEPLOY_ENV: production
   PUBLIC_INDEXING_ENABLED: 'true'
   PUBLIC_SITE_URL: https://www.ramuni.id
+  PUBLIC_PRICING_APPROVED: 'true'
 
 jobs:
   repository-guard:

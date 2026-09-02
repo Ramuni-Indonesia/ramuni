@@ -7,9 +7,7 @@ import ProductScrollMotion from '../../components/product/ProductScrollMotion.as
 import ProductReadinessBoard from '../../components/product/ProductReadinessBoard.astro';
 import InsightEvidenceFlow from '../../components/InsightEvidenceFlow.astro';
 import ProductInputOutput from '../../components/ProductInputOutput.astro';
-import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import { getProductContextVisual } from '../../data/dashboardVisuals';
-import { getProductDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { products } from '../../data/site';
 import { capabilityIconAttributes, navigationIconAttributes } from '../../data/capabilityIcons';
 import { productNarratives } from '../../data/pageNarratives';
@@ -76,13 +74,6 @@ const productCtaLabels: Record<string, string> = {
 };
 const productCtaLabel = productCtaLabels[product.slug] || 'Konsultasi';
 const closingVisual = getProductContextVisual(product.slug);
-const productDriveSet = getProductDriveVisuals(product.slug);
-// The hero owns the primary Drive visual. The rail gets supporting visuals so
-// a page never repeats the same asset as both its opener and its proof chapter.
-const screenSet = (productDriveSet.supporting.length > 0
-  ? productDriveSet.supporting
-  : [productDriveSet.primary]
-).map(toProductScreen);
 const narrative = productNarratives[product.slug];
 const seo = {
   title: cmsSeo?.title || defaultSeo.title,
@@ -115,7 +106,8 @@ const capabilityRows = detail.capabilities
     // visible, but label unapproved ones as a private/demo surface instead of
     // silently presenting an empty board or implying GA availability.
     status: capability.approvedStatus || 'Private Beta',
-  }));
+  }))
+  .slice(0, 3);
 const productReleaseStatus = capabilityRows.some((capability) => capability.status === 'Available') ? 'Available' : 'Private Beta';
 
 const canonicalPath = `/produk/${product.slug}/`;
@@ -194,46 +186,36 @@ const structuredData = [
       </div>
     </section>
 
-    <div class="container">
-      <ProductInputOutput slug={product.slug} title={product.title} status={productReleaseStatus} />
-    </div>
-
-    <section id="product-problem" class="pd-problem" data-section-id="product-problem" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
-      <div class="container pd-problem__layout">
-        <div class="pd-problem__overview">
-          <header>
-            <span>Situasi awal</span>
-            <h2 id="product-problem-title">{narrative?.problemHeading || 'Masalahnya terlihat sederhana. Jejaknya sering tersebar.'}</h2>
-            <p>Tiga situasi ini dapat muncul bersamaan. Periksa satu per satu agar tim tidak memakai satu dugaan untuk semua penyebab.</p>
-          </header>
-          <ol>
-            {detail.problems.map((problem, index) => (
-              <li class="reveal" style={`--i:${index}`}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>{problem}</p>
-              </li>
-            ))}
-          </ol>
+    <section id="product-overview" class="section pd-overview" data-section-id="product-overview" data-analytics-id="product_problem_context" aria-labelledby="product-problem-title">
+      <div class="container">
+        <ProductInputOutput slug={product.slug} title={product.title} status={productReleaseStatus} />
+        <div class="pd-problem__layout">
+          <div class="pd-problem__overview">
+            <header>
+              <span>Situasi awal</span>
+              <h2 id="product-problem-title">{narrative?.problemHeading || 'Masalahnya terlihat sederhana. Jejaknya sering tersebar.'}</h2>
+              <p>Tiga situasi ini dapat muncul bersamaan. Periksa satu per satu agar tim tidak memakai satu dugaan untuk semua penyebab.</p>
+            </header>
+            <ol>
+              {detail.problems.map((problem, index) => (
+                <li class="reveal" style={`--i:${index}`}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <p>{problem}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <InsightEvidenceFlow
+            context="Produk"
+            title="Pilih satu catatan, lalu buka angka pendukungnya."
+            prompt={detail.question}
+            sources={detail.problems}
+            outcome={detail.outcome}
+            variant={product.slug}
+          />
         </div>
-        <InsightEvidenceFlow
-          context="Produk"
-          title="Pilih satu catatan, lalu buka angka pendukungnya."
-          prompt={detail.question}
-          sources={detail.problems}
-          outcome={detail.outcome}
-          variant={product.slug}
-        />
       </div>
     </section>
-
-    <ProductScreenshotRail
-      id={`product-${product.slug}-screens`}
-      eyebrow="Screen terkait"
-      heading={`Lihat ${product.title} di dalam workspace RAMUNI.`}
-      body="Screen ini menunjukkan area kerja, periode, dan data pendukung yang dapat dibuka saat demo."
-      items={screenSet}
-      compact
-    />
 
     <section id="product-benefits" class="pd-benefits" data-section-id="product-benefits" data-analytics-id="product_benefit_decisions" aria-labelledby="product-benefits-title">
       <div class="container">
@@ -288,19 +270,18 @@ const structuredData = [
           ))}
         </ol>
       </div>
+      <ProductReadinessBoard
+        slug={product.slug}
+        title={product.title}
+        capabilities={capabilityRows}
+        safety={detail.safety}
+      />
     </section>
-
-    <ProductReadinessBoard
-      slug={product.slug}
-      title={product.title}
-      capabilities={capabilityRows}
-      safety={detail.safety}
-    />
 
     <section id="product-related" class="pd-related" data-section-id="product-related" data-analytics-id="product_related_paths" aria-labelledby="product-related-title">
       <div class="container pd-related__layout">
         <div class="pd-related__modules">
-          <h2 id="product-related-title">Modul yang biasanya dipakai bersama.</h2>
+          <h2 id="product-related-title">Lanjutkan dari {product.title} ke data yang berkaitan.</h2>
           <div>
             {relatedProducts.map((related, index) => (
               <a href={`/produk/${related.slug}/`}>
@@ -323,17 +304,14 @@ const structuredData = [
       </div>
     </section>
 
-    <section id="product-faq" class="pd-faq" data-section-id="product-faq" data-analytics-id="product_faq" aria-labelledby="product-faq-title">
+    <section id="product-final" class="pd-final" data-section-id="product-final" data-analytics-id="product_faq" aria-labelledby="product-faq-title">
       <div class="container pd-faq__layout">
         <div><span>FAQ</span><h2 id="product-faq-title">Pertanyaan tentang {product.title}.</h2></div>
         <div class="faq-list">
           {detail.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>
       </div>
-    </section>
-
-    <section id="product-next-step" class="pd-close" data-section-id="product-next-step" data-analytics-id="product_final_cta" aria-labelledby="product-next-step-title">
-      <div class="container">
+      <div class="container pd-final__cta" data-section-id="product-next-step" data-analytics-id="product_final_cta">
         <TourEvidenceCTA
           headingId="product-next-step-title"
           eyebrow="Konsultasi sesuai modul"

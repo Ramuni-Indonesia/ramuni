@@ -764,3 +764,49 @@
   .closing-composition .button-row { justify-content: flex-start; }
   .dashboard-product-shot .homepage-product-proof-video { border-radius: 14px; box-shadow: 7px 7px 0 var(--yellow); }
 }
+
+/* The first decision after the hero is a boundary check. Keep it as a slim
+   status rail so the product proof gets context without adding another card
+   wall or a second sales pitch. */
+.home-status-strip { background: var(--white); }
+.home-status-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.home-status-strip__inner > span {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 3px 11px;
+  align-content: center;
+  min-height: 86px;
+  padding: 14px 22px;
+  border-right: 1px solid var(--ink-10);
+}
+.home-status-strip__inner > span:last-child { border-right: 0; }
+.home-status-strip__inner i {
+  grid-row: span 2;
+  color: var(--teal);
+  font-weight: 900;
+}
+
+/* Three paths orient a first visit without another equal card wall. */
+.module-map { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1px; }
+.module-cell.module-cell--path-featured { grid-column: span 5; min-height: 300px; }
+.module-cell:nth-child(2) { grid-column: span 4; background: var(--yellow); }
+.module-cell:nth-child(3) { grid-column: span 3; background: var(--ink); color: var(--white); }
+.module-cell:nth-child(3) p { color: rgb(255 255 255 / .72); }
+
+@media(max-width:960px) {
+  .home-status-strip__inner { grid-template-columns: 1fr; }
+  .home-status-strip__inner > span { min-height: 68px; padding: 12px 0; border-right: 0; border-bottom: 1px solid var(--ink-10); }
+  .home-status-strip__inner > span:last-child { border-bottom: 0; }
+  .module-cell.module-cell--path-featured,
+  .module-cell:nth-child(2),
+  .module-cell:nth-child(3) { grid-column: span 6; }
+}
+
+@media(max-width:680px) {
+  .module-cell.module-cell--path-featured,
+  .module-cell:nth-child(2),
+  .module-cell:nth-child(3) { grid-column: auto; }
+}

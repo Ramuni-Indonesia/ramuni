@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
+import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
-import { industries, products, roles } from '../../data/site';
-import { driveCardVisuals } from '../../data/driveVisuals';
+import { roles } from '../../data/site';
+import { driveCardVisuals, getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import '../../styles/role-hub.css';
 
 const roleViews: Record<string, { lens: string; primary: string; handoff: string; proof: string; ai: string; industries: string[]; products: string[] }> = {
@@ -11,6 +11,12 @@ const roleViews: Record<string, { lens: string; primary: string; handoff: string
   'admin-toko': { lens: 'Kerapian data', primary: 'Menjaga produk, pelanggan, transaksi, dan biaya tetap rapi.', handoff: 'Mengirim koreksi yang sudah punya jejak dan alasan.', proof: 'Baris gagal, perubahan data, dan status sinkronisasi.', ai: 'AI menjelaskan anomali data sesuai akses admin, bukan menyetujui perubahan.', industries: ['retail', 'fnb', 'reseller-online'], products: ['katalog-produk', 'penjualan', 'integrasi'] },
   kasir: { lens: 'Transaksi berjalan', primary: 'Menyelesaikan penjualan yang diizinkan tanpa membuka area sensitif.', handoff: 'Minta bantuan dengan detail transaksi yang jelas.', proof: 'Status pembayaran, waktu transaksi, dan catatan pemulihan.', ai: 'AI membantu membaca instruksi dan pengecualian, bukan menjalankan refund otomatis.', industries: ['retail', 'fnb', 'reseller-online'], products: ['penjualan', 'katalog-produk', 'dashboard-bisnis'] },
   supervisor: { lens: 'Pengecualian operasi', primary: 'Melihat masalah harian sebelum menumpuk di akhir periode.', handoff: 'Meneruskan masalah ke pemilik dengan konteks lengkap.', proof: 'Daftar pengecualian, periode laporan, dan status tindak lanjut.', ai: 'AI menyusun ringkasan masalah sesuai izin, tanpa membuka tagihan.', industries: ['retail', 'distributor', 'manufaktur-kecil'], products: ['dashboard-bisnis', 'inventori', 'laporan-insight'] },
+};
+const roleHubCtas: Record<string, string> = {
+  'pemilik-usaha': 'Lihat kontrol usaha',
+  'admin-toko': 'Lihat alur input dan koreksi',
+  kasir: 'Lihat mode kerja kasir',
+  supervisor: 'Lihat laporan dan approval',
 };
 const visibility = [
   { area: 'Ringkasan bisnis', owner: 'Penuh', admin: 'Operasional', cashier: 'Transaksi sendiri', supervisor: 'Operasional' },
@@ -25,80 +31,80 @@ const collaborationFlow = [
   { label: 'Pantau', text: 'Status terlihat lagi oleh tim yang perlu tahu.' },
 ];
 const roleCloseVisual = driveCardVisuals.teamHandoff;
+const roleHubScreens = (() => {
+  const set = getRoleDriveVisuals('pemilik-usaha');
+  return [set.primary, set.supporting[0]].filter(Boolean).map(toProductScreen);
+})();
 ---
-<BaseLayout title="RAMUNI untuk Tim Usaha" description="Lihat cara pemilik usaha, admin toko, kasir, dan supervisor memakai RAMUNI dengan akses dan prioritas yang berbeda.">
-  <PageHero compact eyebrow="Untuk Tim" title="Satu sumber pemahaman untuk setiap peran." description="RAMUNI membantu tim membaca bisnis dari sudut kerja masing-masing: pemilik melihat arah, admin merapikan data, kasir menyelesaikan transaksi, supervisor menjaga ritme operasi." primaryLabel="Pilih Peran" primaryHref="#daftar-peran" secondaryLabel="Konsultasi" secondaryHref="/tour-produk-gratis/?flow=consultation&intent=overview" />
-  <section class="section dark-surface role-hub__selector" id="daftar-peran" aria-labelledby="role-selector-title">
-    <div class="container role-hub__selector-layout">
-      <div class="role-hub__sticky reveal">
-        <p class="eyebrow">Pilih peran</p>
-        <h2 id="role-selector-title">Mulai dari pekerjaan yang paling sering tertahan.</h2>
-        <p>Akses laporan, AI, dan tindak lanjut mengikuti tanggung jawab. Bukan semua orang melihat semua hal.</p>
-        <div class="role-hub__control-panel" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+
+<BaseLayout title="RAMUNI untuk Tim Usaha" description="Pilih peran tim dan lihat pekerjaan, akses, serta handoff yang perlu dijaga bersama.">
+  <div class="container audience-breadcrumb role-hub-breadcrumb">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><span aria-current="page">Untuk Tim</span></nav>
+  </div>
+
+  <section class="section role-hub-hero" aria-labelledby="role-hub-title">
+    <div class="container">
+      <div class="role-hub-hero__intro reveal">
+        <p class="eyebrow">Untuk tim usaha</p>
+        <h1 id="role-hub-title">Setiap peran melihat keputusan yang berbeda.</h1>
+        <p class="lede">RAMUNI menyatukan pemahaman bisnis, lalu membatasi tampilan dan tindakan sesuai pekerjaan setiap orang.</p>
+        <div class="button-row"><a class="button button--primary" href="#daftar-peran">Pilih peran</a></div>
       </div>
-      <nav class="role-hub__roles" aria-label="Daftar peran tim">
-        {roles.map((role, index) => (
-          <a class="role-hub__role reveal" style={`--i:${index}`} href={`/untuk/${role.slug}/`}>
+      <div class="role-hub-hero__chooser" id="daftar-peran">
+        <div class="role-hub-hero__chooser-head"><h2>Mulai dari pekerjaan yang paling sering tertahan.</h2><p>Jelaskan tanggung jawabnya dulu. Modul dan akses mengikuti kebutuhan itu.</p></div>
+        <nav class="role-hub-hero__cards" aria-label="Pilih peran tim">
+          {roles.map((role, index) => <a class="role-hub-hero__card reveal" style={`--i:${index}`} href={`/untuk/${role.slug}/`}>
             <span>{roleViews[role.slug].lens}</span>
-            <div><strong>{role.title}</strong><p>{role.summary}</p></div>
-            <b aria-hidden="true">↗</b>
-          </a>
-        ))}
-      </nav>
-    </div>
-  </section>
-  <section class="section surface" id="tanggung-jawab" aria-labelledby="responsibility-title">
-    <div class="container role-hub__split">
-      <div class="role-hub__heading reveal"><p class="eyebrow">Tanggung jawab</p><h2 id="responsibility-title">Fitur muncul karena tugas, bukan karena jabatan.</h2><p>Setiap tampilan membantu orang menyelesaikan pekerjaannya tanpa melepas kendali yang bukan miliknya.</p></div>
-      <div class="role-hub__map">
-        {roles.map((role, index) => <article class="role-hub__map-row reveal" style={`--i:${index}`}><span>{roleViews[role.slug].lens}</span><div><h3>{role.title}</h3><p>{roleViews[role.slug].primary}</p></div><ul>{role.responsibilities.map((item) => <li>{item}</li>)}</ul></article>)}
+            <strong>{role.title}</strong>
+            <p>{roleViews[role.slug].primary}</p>
+            <small>{roleHubCtas[role.slug]}</small>
+          </a>)}
+        </nav>
       </div>
     </div>
   </section>
 
-  <section class="section role-hub__flow" id="kolaborasi" aria-labelledby="collaboration-title">
+  <section class="section surface role-hub-permission" id="izin" aria-labelledby="permission-title">
     <div class="container">
-      <div class="role-hub__intro reveal"><p class="eyebrow">Alur kolaborasi</p><h2 id="collaboration-title">Masalah sampai ke orang yang tepat.</h2><p class="lede">Bukan forward chat tanpa alasan. Setiap perpindahan membawa status, sumber, dan bukti yang bisa diperiksa.</p></div>
-      <ol class="role-hub__timeline reveal">{collaborationFlow.map((step, index) => <li style={`--i:${index}`}><span>{step.label}</span><p>{step.text}</p></li>)}</ol>
-    </div>
-  </section>
-  <section class="section surface" id="izin" aria-labelledby="permission-title">
-    <div class="container role-hub__permission-layout">
-      <div class="role-hub__heading reveal"><p class="eyebrow">Akses & izin</p><h2 id="permission-title">Informasi dibagi. Kendali tetap berlapis.</h2><p>Setiap peran melihat informasi dan tindakan yang sesuai dengan tanggung jawabnya.</p></div>
-      <div class="role-hub__table reveal" role="region" aria-label="Perbandingan visibilitas peran" tabindex="0">
+      <div class="role-hub-section-head reveal"><h2 id="permission-title">Aksi dibuka sesuai tanggung jawab.</h2><p class="lede">Contoh matriks ini membantu tim menyepakati siapa yang dapat melihat, mengubah, menyetujui, dan mengelola tagihan.</p></div>
+      <div class="role-hub-table reveal" role="region" aria-label="Perbandingan visibilitas peran" tabindex="0">
         <table><thead><tr><th scope="col">Area</th><th scope="col">Pemilik</th><th scope="col">Admin</th><th scope="col">Kasir</th><th scope="col">Supervisor</th></tr></thead><tbody>{visibility.map((row) => <tr><th scope="row">{row.area}</th><td>{row.owner}</td><td>{row.admin}</td><td>{row.cashier}</td><td>{row.supervisor}</td></tr>)}</tbody></table>
       </div>
     </div>
   </section>
-  <section class="section dark-surface" id="peran-ai" aria-labelledby="ai-boundary-title">
-    <div class="container role-hub__ai-layout">
-      <div class="role-hub__sticky reveal"><p class="eyebrow">Peran AI</p><h2 id="ai-boundary-title">AI membantu membaca. Manusia menentukan tindakan.</h2><p>AI menjelaskan data, menunjukkan sumber, dan membantu menyiapkan pertanyaan lanjutan untuk tim.</p></div>
-      <div class="role-hub__ai-list">
-        {roles.map((role, index) => <article class="role-hub__ai-card reveal" style={`--i:${index}`}><span>{role.title}</span><p>{roleViews[role.slug].ai}</p><small>{roleViews[role.slug].proof}</small></article>)}
-      </div>
-    </div>
-  </section>
-  <section class="section surface" id="tautan-terkait" aria-labelledby="related-title">
+
+  <section class="section role-hub-handoff" id="kolaborasi" aria-labelledby="collaboration-title">
     <div class="container">
-      <div class="role-hub__intro reveal"><p class="eyebrow">Tautan terkait</p><h2 id="related-title">Lanjutkan dari peran ke alur nyata.</h2><p class="lede">Pilih produk atau industri yang paling dekat dengan tugas tim hari ini.</p></div>
-      <div class="role-hub__related-grid">
-        {roles.map((role, index) => { const view = roleViews[role.slug]; const relatedProducts = products.filter((product) => view.products.includes(product.slug)); const relatedIndustries = industries.filter((industry) => view.industries.includes(industry.slug)); return <article class="role-hub__related-card reveal" style={`--i:${index}`}><h3>{role.title}</h3><p>{view.handoff}</p><div><strong>Produk</strong>{relatedProducts.map((product) => <a href={`/produk/${product.slug}/`}>{product.title}</a>)}</div><div><strong>Industri</strong>{relatedIndustries.map((industry) => <a href={`/industri/${industry.slug}/`}>{industry.title}</a>)}</div></article>; })}
-      </div>
+      <div class="role-hub-section-head reveal"><h2 id="collaboration-title">Satu handoff, empat langkah yang dapat diperiksa.</h2><p class="lede">Masalah tidak berhenti di chat. Status, sumber, dan pemilik tindak lanjut ikut berpindah.</p></div>
+      <ol class="role-hub-handoff__flow reveal">{collaborationFlow.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{step.label}</strong><p>{step.text}</p></li>)}</ol>
+      <div class="role-hub-handoff__ai reveal"><div><strong>AI mengikuti izin yang sama</strong><p>AI membantu membaca pola dan menyiapkan pertanyaan. Perubahan, persetujuan, dan tindakan berisiko tetap memerlukan manusia.</p></div><div class="role-hub-handoff__ai-roles">{roles.map((role) => <article><span>{role.title}</span><p>{roleViews[role.slug].ai}</p></article>)}</div></div>
     </div>
   </section>
 
-  <section class="section role-hub__closing" id="cta" aria-labelledby="role-cta-title">
+  <ProductScreenshotRail
+    id="role-hub-screens"
+    eyebrow="Tampilan produk"
+    heading="Satu layar, fokus yang berbeda untuk tiap peran."
+    body="Capture workspace RAMUNI memakai data demo terkontrol. Lihat contoh ringkasan sebelum menentukan akses tim."
+    items={roleHubScreens}
+    compact
+  />
+
+  <section class="section role-hub-cta" id="cta" aria-labelledby="role-cta-title">
     <div class="container reveal">
       <TourEvidenceCTA
         headingId="role-cta-title"
-        eyebrow="Siapkan tim"
-        title="Lihat RAMUNI dari tanggung jawab tim Anda."
-        body="Mulai dari satu peran yang paling penting, lalu cocokkan akses, data, dan tindak lanjutnya."
+        eyebrow="Langkah berikutnya"
+        title="Cocokkan akses dengan pekerjaan tim Anda."
+        body="Mulai dari satu peran yang paling penting, lalu bahas data dan tindak lanjut yang perlu terlihat bersama."
+        primaryLabel="Konsultasi"
+        primaryHref="/tour-produk-gratis/?flow=consultation&intent=overview"
         secondaryLabel="Baca Panduan"
         secondaryHref="/panduan/"
         visual={roleCloseVisual}
-        visualBadge="Tampilan produk · data demo"
+        visualBadge="Ilustrasi handoff antarperan"
         points={['Pilih peran utama', 'Cocokkan akses data', 'Sepakati tindak lanjut']}
+        theme="ink"
       />
     </div>
   </section>

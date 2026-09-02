@@ -58,6 +58,46 @@ const featureFlow: Record<string, Array<{ label: string; title: string; text: st
   ],
 };
 const flow = featureFlow[feature.slug] || featureFlow['ai-copilot'];
+const featureSectionCopy: Record<string, { flow: string; capabilities: string; examples: string; limits: string }> = {
+  'ai-copilot': {
+    flow: 'Pertanyaan berubah menjadi jawaban yang bisa diperiksa.',
+    capabilities: 'Yang dibantu AI saat membaca usaha.',
+    examples: 'Mulai dengan pertanyaan yang punya konteks.',
+    limits: 'Batas AI yang perlu Anda tahu.',
+  },
+  'profit-intelligence': {
+    flow: 'Definisi metrik datang sebelum tafsir laba.',
+    capabilities: 'Cara angka keuangan disusun.',
+    examples: 'Uji pertanyaan margin dengan periode yang sama.',
+    limits: 'Batas pembacaan profit dan kas.',
+  },
+  omnichannel: {
+    flow: 'Inbox, pemilik tugas, izin, lalu status follow-up.',
+    capabilities: 'Bagian yang membantu tim menindaklanjuti.',
+    examples: 'Pertanyaan untuk menemukan percakapan yang tertinggal.',
+    limits: 'Batas kanal dan persetujuan pesan.',
+  },
+  'web-builder': {
+    flow: 'Susun halaman, preview hasilnya, cek batas publikasi.',
+    capabilities: 'Bagian dasar sebuah halaman bisnis.',
+    examples: 'Contoh brief sebelum halaman disusun.',
+    limits: 'Batas domain, form, dan publikasi.',
+  },
+  'knowledge-os': {
+    flow: 'Tangkap SOP, atur izin, lalu temukan rujukan lagi.',
+    capabilities: 'Cara pengetahuan tim tetap mudah ditemukan.',
+    examples: 'Pertanyaan untuk mencari keputusan dan SOP.',
+    limits: 'Batas sumber, izin, dan status rilis.',
+  },
+};
+const sectionCopy = featureSectionCopy[feature.slug] || featureSectionCopy['ai-copilot'];
+const closingCopy: Record<string, string> = {
+  'ai-copilot': 'Tanyakan satu kondisi usaha, lalu periksa jawabannya.',
+  'profit-intelligence': 'Mulai dari definisi angka yang ingin Anda bandingkan.',
+  omnichannel: 'Siapkan alur inbox dan izin sebelum kanal dibuka.',
+  'web-builder': 'Susun halaman yang sesuai dengan batas publikasi Anda.',
+  'knowledge-os': 'Bawa satu SOP yang ingin mudah ditemukan tim.',
+};
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: `${feature.name} | Fitur RAMUNI`, description: feature.summary, dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Beranda', item: origin + '/' }, { '@type': 'ListItem', position: 2, name: 'Fitur', item: origin + '/features/' }, { '@type': 'ListItem', position: 3, name: feature.name, item: canonical }] },
@@ -76,14 +116,14 @@ const schema = [
     />
     <section class="feature-detail-flow commercial-section commercial-section--white" aria-labelledby="feature-flow-title">
       <div class="container">
-        <div class="commercial-section__head"><div><p class="section-kicker">Input sampai hasil</p><h2 id="feature-flow-title">Lihat apa yang masuk dan apa yang keluar.</h2></div><p>Setiap fitur dimulai dari bahan yang jelas, proses yang dapat diterangkan, lalu hasil yang membantu tim menentukan pemeriksaan.</p></div>
+        <div class="commercial-section__head"><div><p class="section-kicker">Input sampai hasil</p><h2 id="feature-flow-title">{sectionCopy.flow}</h2></div><p>Setiap fitur dimulai dari bahan yang jelas, proses yang dapat diterangkan, lalu hasil yang membantu tim menentukan pemeriksaan.</p></div>
         <div class="feature-detail-flow__grid">
           {flow.map((item, index) => <article class="feature-detail-flow__item" style={`--flow-index:${index}`}><span>{item.label}</span><h3>{item.title}</h3><p>{item.text}</p><i aria-hidden="true">{index === flow.length - 1 ? '✓' : '→'}</i></article>)}
         </div>
       </div>
     </section>
-    <section class="commercial-section commercial-section--white"><div class="container feature-detail-layout"><aside><p class="section-kicker">Ringkasan</p><h2>{feature.summary}</h2><p>{featureIsComingSoon ? 'Fitur ini belum dibuka sebagai kemampuan aktif. Tim dapat menjelaskan kesiapan dan jalur akses saat konsultasi.' : 'Cakupan fitur masih mengikuti rilis, paket, dan role pengguna. Periksa konteks sebelum menjadikannya dasar keputusan.'}</p></aside><div class="feature-detail-content"><section aria-labelledby="highlights-title"><p class="section-kicker">{featureIsComingSoon ? 'Rancangan kemampuan' : 'Yang tersedia'}</p><h2 id="highlights-title">Baca cara kerjanya, lalu pilih langkah.</h2><ul>{feature.highlights.map((item) => <li>{item}</li>)}</ul></section><section aria-labelledby="examples-title"><p class="section-kicker">Contoh pertanyaan</p><h2 id="examples-title">Pertanyaan yang bisa membantu tim mulai memeriksa.</h2><div class="feature-example-grid">{feature.examples.map((item) => <p>{item}</p>)}</div></section><section aria-labelledby="limits-title"><p class="section-kicker">Batas penggunaan</p><h2 id="limits-title">Transparansi lebih penting daripada daftar panjang.</h2><ul>{feature.limitations.map((item) => <li>{item}</li>)}</ul></section><div class="feature-related"><span>Jalur terkait: <strong>{feature.relatedLabel}</strong></span><a class="text-link" href={feature.relatedHref}>Buka halaman terkait →</a></div></div></div></section>
-    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Langkah berikutnya</p><h2>Pastikan alurnya cocok untuk tim Anda.</h2><p>{featureIsComingSoon ? 'Fitur ini belum tersedia sebagai kemampuan aktif. Kirim permintaan konsultasi untuk membahas kesiapan dan batasnya.' : 'Jika ingin langsung melihat workspace, buka aplikasi. Untuk fitur dan batas yang perlu dipetakan, kirim permintaan konsultasi.'}</p></div><div class="commercial-cta__actions"><a class="button button--primary" href={featurePrimaryCta.href} data-analytics-event={featurePrimaryEvent} data-analytics-location="feature_final" data-feature={feature.slug} data-destination={featurePrimaryDestination}>{featurePrimaryLabel}</a>{!featureIsComingSoon && <a class="button button--secondary" href={featureConsultationHref} data-analytics-event="demo_request" data-analytics-location="feature_final" data-feature={feature.slug} data-destination="consultation">Konsultasi</a>}<a class="money-action-link" href="/features/">Semua fitur</a></div></div></div></section>
+    <section class="commercial-section commercial-section--white"><div class="container feature-detail-layout"><aside><p class="section-kicker">Ringkasan</p><h2>{feature.summary}</h2><p>{featureIsComingSoon ? 'Fitur ini belum dibuka sebagai kemampuan aktif. Tim dapat menjelaskan kesiapan dan jalur akses saat konsultasi.' : 'Cakupan fitur masih mengikuti rilis, paket, dan role pengguna. Periksa konteks sebelum menjadikannya dasar keputusan.'}</p></aside><div class="feature-detail-content"><section aria-labelledby="highlights-title"><p class="section-kicker">{featureIsComingSoon ? 'Rancangan kemampuan' : 'Yang tersedia'}</p><h2 id="highlights-title">{sectionCopy.capabilities}</h2><ul>{feature.highlights.map((item) => <li>{item}</li>)}</ul></section><section aria-labelledby="examples-title"><p class="section-kicker">Contoh pertanyaan</p><h2 id="examples-title">{sectionCopy.examples}</h2><div class="feature-example-grid">{feature.examples.map((item) => <p>{item}</p>)}</div></section><section aria-labelledby="limits-title"><p class="section-kicker">Batas penggunaan</p><h2 id="limits-title">{sectionCopy.limits}</h2><ul>{feature.limitations.map((item) => <li>{item}</li>)}</ul></section><div class="feature-related"><span>Jalur terkait: <strong>{feature.relatedLabel}</strong></span><a class="text-link" href={feature.relatedHref}>Buka halaman terkait →</a></div></div></div></section>
+    <section class="commercial-section"><div class="container"><div class="commercial-cta"><div><p class="section-kicker">Langkah berikutnya</p><h2>{closingCopy[feature.slug] || 'Mulai dari pekerjaan yang paling dekat dengan tim Anda.'}</h2><p>{featureIsComingSoon ? 'Fitur ini belum tersedia sebagai kemampuan aktif. Kirim permintaan konsultasi untuk membahas kesiapan dan batasnya.' : 'Jika ingin langsung melihat workspace, buka aplikasi. Untuk fitur dan batas yang perlu dipetakan, kirim permintaan konsultasi.'}</p></div><div class="commercial-cta__actions"><a class="button button--primary" href={featurePrimaryCta.href} data-analytics-event={featurePrimaryEvent} data-analytics-location="feature_final" data-feature={feature.slug} data-destination={featurePrimaryDestination}>{featurePrimaryLabel}</a>{!featureIsComingSoon && <a class="button button--secondary" href={featureConsultationHref} data-analytics-event="demo_request" data-analytics-location="feature_final" data-feature={feature.slug} data-destination="consultation">Konsultasi</a>}<a class="money-action-link" href="/features/">Semua fitur</a></div></div></div></section>
   </div>
   <CommercialAnalytics />
 </BaseLayout>

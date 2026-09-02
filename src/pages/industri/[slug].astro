@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import AudienceContextBoard from '../../components/AudienceContextBoard.astro';
 import MascotDecisionCTA from '../../components/MascotDecisionCTA.astro';
 import PageHero from '../../components/PageHero.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
@@ -8,6 +7,7 @@ import { industries, products, resources, roles, solutions } from '../../data/si
 import { getIndustryDriveVisuals, toProductScreen } from '../../data/driveVisuals';
 import { releaseGates } from '../../config/release';
 import { pageLastmods } from '../../data/pageLastmods';
+import '../../styles/industry-pages.css';
 
 type IndustryBrief = {
   fit: string[];
@@ -213,6 +213,14 @@ const industryHeadings: Record<string, { hero: string; fit: string; workflow: st
   'manufaktur-kecil': { hero: 'Pisahkan bahan menipis dari barang jadi yang laku.', fit: 'Bahan, barang jadi, penjualan, dan biaya perlu satu urutan.', workflow: 'Cek bahan utama sebelum menentukan produksi berikutnya.', signals: 'Baca stok bahan, barang jadi, biaya, dan penjualan bersama.', modules: 'Inventori dan penjualan memberi dasar sebelum produksi.' },
 };
 const headings = industryHeadings[industry.slug];
+const industryDayScenes: Record<string, string> = {
+  retail: 'Buka toko → stok kritis → transaksi → tutup shift',
+  fnb: 'Persiapan bahan → jam ramai → menu habis → food cost',
+  distributor: 'Pesanan → alokasi stok → pengiriman → invoice tertunda',
+  'reseller-online': 'Kanal → order → fee kanal → margin → stok',
+  jasa: 'Booking → pengerjaan → biaya → pembayaran → repeat',
+  'manufaktur-kecil': 'Bahan → produksi → barang jadi → biaya → reorder',
+};
 const industryIntentBySlug: Record<string, string> = {
   retail: 'stock',
   fnb: 'finance',
@@ -246,92 +254,67 @@ const structuredData = {
   <div class="container audience-breadcrumb"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/industri/">Industri</a><span aria-hidden="true">/</span><span aria-current="page">{industry.title}</span></nav></div>
   <PageHero compact eyebrow={`RAMUNI untuk ${industry.title}`} title={headings.hero} description={industry.question} primaryLabel={industryTourLabel} primaryHref={industryTourHref} secondaryLabel="Semua Industri" secondaryHref="/industri/" />
 
-  <section class="section surface" id="kecocokan" aria-labelledby="fit-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal">
-        <h2 id="fit-title">{headings.fit}</h2>
-        <p class="lede">Gunakan halaman ini untuk melihat apakah alurnya sesuai dengan kegiatan usaha Anda.</p>
-      </div>
-      <div class="audience-boundary-ledger reveal">
-        <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
-        <div><strong>Cara kerja</strong><ul>{brief.boundaries.map((item) => <li>{item}</li>)}</ul></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="alur-harian" aria-labelledby="daily-title">
-    <div class="container audience-day">
-      <div class="audience-section-heading reveal"><h2 id="daily-title">{headings.workflow}</h2></div>
-      <ol class="audience-timeline industry-timeline">{brief.workflow.map((step, index) => <li class="reveal" data-observe-active><span>{String(index + 1).padStart(2, '0')}</span><p>{step}</p></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section surface" id="sinyal" aria-labelledby="signals-title">
-    <div class="container">
-      <AudienceContextBoard
-        id="signals"
-        eyebrow={'Papan data ' + industry.title}
-        title={headings.signals}
-        description="Pilih satu sudut untuk melihat masalah, catatan pendukung, dan pertanyaan lanjutan tanpa mencari semuanya di halaman ini."
-        panes={[
-          { label: 'Masalah', title: 'Kenali kejadian yang perlu perhatian lebih dulu.', items: brief.pains },
-          { label: 'Catatan', title: 'Periksa sumber data yang menjelaskan kejadian.', items: brief.dataNeeds },
-          { label: 'Pertanyaan', title: 'Gunakan pertanyaan untuk menelusuri pola.', items: brief.questions },
-        ]}
-        note={'Label dan angka di halaman ' + industry.title + ' digunakan untuk membantu menjelaskan alur.'}
-        mascot="evidence3d"
-        variant="industry"
-      />
-    </div>
-  </section>
-
-  <section class="section" id="modul-peran" aria-labelledby="modules-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="modules-title">{headings.modules}</h2><p class="lede">Mulai dari catatan yang paling sering dipakai tim.</p></div>
-      <div class="audience-module-list">{supportingProducts.map((product) => <a class="audience-module-row reveal" href={'/produk/' + product.slug + '/'}><strong>{product.title}</strong><span>{product.safety}</span></a>)}</div>
-    </div>
-    <div class="container audience-related reveal"><strong>Peran yang biasanya terlibat</strong><div>{relevantRoles.map((role) => <a href={'/untuk/' + role.slug + '/'}>{role.title}</a>)}</div></div>
-    <nav class="container audience-related reveal" aria-label={`Tautan lanjutan untuk ${industry.title}`}>
-      <strong>Lanjutkan dari kebutuhan usaha</strong>
-      <div>{relatedSolutions.map((solution) => <a href={'/solusi/' + solution.slug + '/'}>{solution.title}</a>)}</div>
-      <strong>Sumber daya terkait</strong>
-      <div>{relatedResources.map((resource) => <a href={resource.href}>{resource.title}</a>)}</div>
-    </nav>
-  </section>
-
   <ProductScreenshotRail
     id={`industry-${industry.slug}-screens`}
-    eyebrow="Bukti layar RAMUNI"
-    heading={`Lihat alur ${industry.title} di layar yang sama.`}
-    body="Capture produk membantu tim melihat bentuk data, ringkasan, dan pemeriksaan sebelum memilih modul. Angka pada layar adalah data demo terkontrol."
+    eyebrow="Tampilan produk"
+    heading={`Satu layar untuk memeriksa ${industry.title.toLowerCase()}.`}
+    body="Capture workspace RAMUNI memakai data demo terkontrol. Gunakan ini untuk melihat bentuk pemeriksaan sebelum membahas modul."
     items={industryScreens}
     compact
   />
 
-  <section class="section" id="onboarding" aria-labelledby="onboarding-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><h2 id="onboarding-title">Siapkan data yang paling dekat dengan pekerjaan harian.</h2></div>
-      <ol class="audience-ledger">{brief.onboarding.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
-    </div>
-  </section>
-
-  <section class="section surface" id="privasi-faq" aria-labelledby="privacy-title">
-    <div class="container audience-split">
-      <div class="audience-section-heading reveal"><p class="eyebrow">Privasi</p><h2 id="privacy-title">Data tetap dijaga sesuai izin.</h2><p class="lede">{brief.privacy}</p></div>
-      <div class="faq-list reveal">
-        {brief.faq.map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-        <details><summary>Apakah saya perlu mengirim data bisnis untuk mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details>
+  <section class="section industry-detail-day" id="alur-harian" aria-labelledby="daily-title">
+    <div class="container">
+      <div class="industry-detail-section-head reveal"><div><p class="eyebrow">Satu hari kerja</p><h2 id="daily-title">{headings.workflow}</h2></div><p class="lede">{industryDayScenes[industry.slug]}</p></div>
+      <div class="industry-detail-day__layout">
+        <ol class="industry-detail-day__steps">{brief.workflow.map((step, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{step}</strong><p>{brief.questions[index % brief.questions.length]}</p></div></li>)}</ol>
+        <aside class="industry-detail-fit reveal">
+          <div><strong>Cocok untuk</strong><ul>{brief.fit.map((item) => <li>{item}</li>)}</ul></div>
+          <div><strong>Batas saat ini</strong><ul>{brief.boundaries.map((item) => <li>{item}</li>)}</ul></div>
+        </aside>
       </div>
     </div>
   </section>
 
-  <section class="section" id="cta" aria-labelledby="cta-title">
-    <div class="container reveal">
+  <section class="section surface industry-detail-modules" id="modul-peran" aria-labelledby="modules-title">
+    <div class="container">
+      <div class="industry-detail-section-head reveal"><div><h2 id="modules-title">{headings.modules}</h2></div><p class="lede">Pilih modul dari kejadian yang perlu diperiksa, bukan dari daftar fitur yang panjang.</p></div>
+      <div class="industry-detail-modules__layout">
+        <div class="industry-detail-module-list">{supportingProducts.map((product) => <a class="industry-detail-module reveal" href={'/produk/' + product.slug + '/'}><strong>{product.title}</strong><span>{product.safety}</span><b aria-hidden="true">Buka</b></a>)}</div>
+        <aside class="industry-detail-exceptions reveal">
+          <strong>Pengecualian yang perlu dibuka</strong>
+          <ul>{brief.pains.map((pain) => <li>{pain}</li>)}</ul>
+          <p>Contoh pertanyaan</p>
+          <blockquote>“{brief.questions[0]}”</blockquote>
+        </aside>
+      </div>
+      <div class="industry-detail-metrics reveal" aria-label="Contoh metrik usaha">
+        {brief.exampleMetrics.map((metric) => <div><span>{metric.label}</span><strong>{metric.value}</strong><small>{metric.note}</small></div>)}
+      </div>
+      <nav class="industry-detail-links reveal" aria-label={`Tautan lanjutan untuk ${industry.title}`}>
+        <div><strong>Peran yang biasanya terlibat</strong>{relevantRoles.map((role) => <a href={'/untuk/' + role.slug + '/'}>{role.title}</a>)}</div>
+        <div><strong>Lanjutkan membaca</strong>{relatedSolutions.map((solution) => <a href={'/solusi/' + solution.slug + '/'}>{solution.title}</a>)}{relatedResources.map((resource) => <a href={resource.href}>{resource.title}</a>)}</div>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section industry-detail-setup" id="siapkan" aria-labelledby="setup-title">
+    <div class="container industry-detail-setup__layout">
+      <div class="industry-detail-section-head reveal"><div><p class="eyebrow">Siapkan data</p><h2 id="setup-title">Mulai dari data yang paling dekat dengan pekerjaan harian.</h2></div><p class="lede">{brief.privacy}</p></div>
+      <ol class="industry-detail-setup__steps">{brief.onboarding.map((item, index) => <li class="reveal"><span>{String(index + 1).padStart(2, '0')}</span><div><strong>{item.title}</strong><p>{item.text}</p></div></li>)}</ol>
+      <aside class="industry-detail-data-note reveal"><strong>Data yang perlu disiapkan</strong><ul>{brief.dataNeeds.map((item) => <li>{item}</li>)}</ul><p>Gunakan skenario demo bila Anda belum siap membagikan data usaha.</p></aside>
+    </div>
+  </section>
+
+  <section class="section surface industry-detail-close" id="faq" aria-labelledby="faq-title">
+    <div class="container industry-detail-close__layout">
+      <div class="industry-detail-faq reveal"><p class="eyebrow">Pertanyaan umum</p><h2 id="faq-title">Sebelum membahas alurnya.</h2><div class="faq-list">{brief.faq.slice(0, 2).map((item) => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}<details><summary>Apakah saya perlu mengirim data bisnis untuk mencoba?</summary><p>Tidak. Kami menyiapkan skenario awal agar Anda dapat memahami alurnya dengan aman.</p></details></div></div>
+      <div class="industry-detail-close__cta reveal">
       <MascotDecisionCTA
         headingId="cta-title"
-        eyebrow={'Simulasi untuk ' + industry.title}
-        title={'Cocokkan kebutuhan usaha ' + industry.title + ' dengan alur RAMUNI.'}
-        body="Bawa satu pertanyaan usaha. Kami tunjukkan data yang biasa diperiksa, contoh alurnya, dan fitur yang dapat dibahas lebih lanjut."
+        eyebrow={'Langkah berikutnya untuk ' + industry.title}
+        title="Bawa satu pertanyaan, lalu periksa alurnya bersama."
+        body="Lihat contoh data dan batas fitur sebelum menentukan langkah yang sesuai dengan usaha Anda."
         primaryLabel={industryTourLabel}
         primaryHref={industryTourHref}
         secondaryLabel="Lihat Solusi"
@@ -339,6 +322,7 @@ const structuredData = {
         theme="teal"
         mascot="evidence3d"
       />
+      </div>
     </div>
   </section>
 </BaseLayout>
