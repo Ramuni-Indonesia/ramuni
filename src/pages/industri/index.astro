@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { industries, products } from '../../data/site';
-import { driveCardVisuals } from '../../data/driveVisuals';
+import { heroContextVisuals } from '../../data/dashboardVisuals';
 import '../../styles/industry-pages.css';
 
 type IndustryProfile = {
@@ -25,7 +25,10 @@ const industryProfiles: Record<string, IndustryProfile> = {
 };
 
 const sharedModules = products.filter((product) => ['Dashboard Bisnis', 'Laporan & Insight', 'Asisten AI'].includes(product.title));
-const industryCloseVisual = driveCardVisuals.operationsContext;
+const industryCloseVisual = {
+  ...heroContextVisuals.salesCustomer,
+  note: 'Ilustrasi konteks usaha retail dan pelanggan; bukan data bisnis tertentu.',
+};
 const exampleFlow = [
   { label: 'Buka toko', text: 'Cek stok kritis sebelum pelanggan datang.' },
   { label: 'Jaga shift', text: 'Catat transaksi dan koreksi dengan status yang jelas.' },

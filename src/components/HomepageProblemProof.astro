@@ -1,5 +1,5 @@
 ---
-import { driveCardVisuals } from '../data/driveVisuals';
+import { heroContextVisuals } from '../data/dashboardVisuals';
 
 const stories = [
   {
@@ -7,21 +7,21 @@ const stories = [
     question: 'Omzet berubah. Bagian mana yang perlu dibuka dulu?',
     answer: 'Bandingkan hari, jumlah transaksi, dan produk yang berubah.',
     href: '/solusi/naikkan-omzet/',
-    visual: driveCardVisuals.operationsContext,
+    visual: heroContextVisuals.salesCustomer,
   },
   {
     label: 'Stok',
     question: 'Barang apa yang berisiko habis saat permintaan naik?',
     answer: 'Lihat sisa stok bersama laju penjualan dan aktivitas terbaru.',
     href: '/solusi/kelola-stok/',
-    visual: driveCardVisuals.stockContext,
+    visual: heroContextVisuals.stockOperations,
   },
   {
     label: 'Kas',
     question: 'Usaha ramai, tetapi mengapa kas terasa seret?',
     answer: 'Pisahkan omzet, biaya, laba, dan pergerakan kas pada periode yang sama.',
     href: '/solusi/pantau-laba-dan-arus-kas/',
-    visual: driveCardVisuals.cashContext,
+    visual: heroContextVisuals.cashReport,
   },
 ];
 ---

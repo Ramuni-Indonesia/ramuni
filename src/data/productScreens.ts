@@ -1,9 +1,5 @@
 export type ProductScreen = {
   src: string;
-  /** Optional Drive-provided laptop composite. When present, it is shown as-is. */
-  driveSrc?: string;
-  driveWidth?: number;
-  driveHeight?: number;
   mobileSrc?: string;
   width: number;
   height: number;

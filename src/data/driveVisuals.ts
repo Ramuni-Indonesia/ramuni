@@ -7,6 +7,8 @@
  * marketing templates.
  */
 
+import { productScreens, type ProductScreen } from './productScreens';
+
 export type DriveVisualKind = 'laptop' | 'card';
 
 export interface DriveVisual {
@@ -425,19 +427,33 @@ export const getIndustryDriveVisuals = (slug: string): DrivePageVisualSet => ind
 export const getRoleDriveVisuals = (slug: string): DrivePageVisualSet => roleDriveVisuals[slug as RoleDriveVisualKey] || set(driveLaptopVisuals.overview);
 export const getFeatureDriveVisuals = (slug: string): DrivePageVisualSet => featureDriveVisuals[slug as FeatureDriveVisualKey] || set(driveCardVisuals.workspaceOverview);
 
-/** Adapt a Drive visual to the existing screenshot rail contract. */
-export const toProductScreen = (visual: DriveVisual) => ({
-  src: visual.src,
-  driveSrc: visual.src,
-  driveWidth: visual.width,
-  driveHeight: visual.height,
-  width: visual.width,
-  height: visual.height,
-  alt: visual.alt,
-  eyebrow: visual.eyebrow,
-  title: visual.title,
-  note: visual.note,
-});
+/**
+ * Adapt a catalog visual to the screenshot rail without re-introducing
+ * laptop/tablet composites. Drive contains useful art direction references,
+ * but the money site should show the verified product captures directly.
+ */
+const productScreenForVisual = (visual: DriveVisual): ProductScreen => {
+  const haystack = `${visual.eyebrow} ${visual.title} ${visual.alt}`.toLowerCase();
+  if (/ai|asisten|knowledge|sop/.test(haystack)) return productScreens.ai;
+  if (/stok|inventori|sku|persediaan|gudang/.test(haystack)) return productScreens.inventory;
+  if (/pelanggan|customer|inbox|follow/.test(haystack)) return productScreens.customers;
+  if (/laporan|report|insight|mingguan/.test(haystack)) return productScreens.reports;
+  if (/keuangan|kas|laba|margin|biaya|profit/.test(haystack)) return productScreens.finance;
+  if (/penjualan|transaksi|pembayaran|pos|order/.test(haystack)) return productScreens.sales;
+  if (/katalog|produk|integrasi|import|data/.test(haystack)) return productScreens.operations;
+  return productScreens.overview;
+};
+
+/** Adapt a catalog visual to the existing screenshot rail contract. */
+export const toProductScreen = (visual: DriveVisual): ProductScreen => {
+  const screen = productScreenForVisual(visual);
+  return {
+    ...screen,
+    eyebrow: visual.eyebrow,
+    title: visual.title,
+    note: `${screen.note} ${visual.note}`,
+  };
+};
 
 export type DriveProductScreen = ReturnType<typeof toProductScreen>;
 

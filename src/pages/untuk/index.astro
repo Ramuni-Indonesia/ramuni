@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductScreenshotRail from '../../components/ProductScreenshotRail.astro';
 import TourEvidenceCTA from '../../components/TourEvidenceCTA.astro';
 import { roles } from '../../data/site';
-import { driveCardVisuals, getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
+import { getRoleDriveVisuals, toProductScreen } from '../../data/driveVisuals';
+import { heroContextVisuals } from '../../data/dashboardVisuals';
 import '../../styles/role-hub.css';
 
 const roleViews: Record<string, { lens: string; primary: string; handoff: string; proof: string; ai: string; industries: string[]; products: string[] }> = {
@@ -30,7 +31,7 @@ const collaborationFlow = [
   { label: 'Putuskan', text: 'Orang yang berwenang memilih tindak lanjut.' },
   { label: 'Pantau', text: 'Status terlihat lagi oleh tim yang perlu tahu.' },
 ];
-const roleCloseVisual = driveCardVisuals.teamHandoff;
+const roleCloseVisual = heroContextVisuals.salesCustomer;
 const roleHubScreens = (() => {
   const set = getRoleDriveVisuals('pemilik-usaha');
   return [set.primary, set.supporting[0]].filter(Boolean).map(toProductScreen);

@@ -5,7 +5,7 @@ import CommercialAnalytics from '../../components/CommercialAnalytics.astro';
 import { marketingFeatureCards, marketingProductCards, marketingSolutionCards, marketingIndustryLinks, marketingRoleLinks } from '../../data/marketingFeatureCards';
 import { appCta, consultationCta } from '../../data/site';
 import { capabilityStatusLabel } from '../../data/commercial';
-import { driveCardVisuals } from '../../data/driveVisuals';
+import { productScreens } from '../../data/productScreens';
 import { pageLastmods } from '../../data/pageLastmods';
 import '../../styles/commercial-pages.css';
 
@@ -28,7 +28,7 @@ const jobHighlights = [
   { label: 'Pisahkan laba dan kas', href: '/features/profit-intelligence/', text: 'Lihat pendapatan, biaya, margin, dan periode sebelum mengambil keputusan.' },
   { label: 'Lihat prioritas harian', href: '/produk/dashboard-bisnis/', text: 'Buka perubahan penjualan, stok, kas, dan pelanggan dari satu ringkasan.' },
 ];
-const featureProof = driveCardVisuals.insightContext;
+const featureProof = productScreens.reports;
 const schema = [
   { '@context': 'https://schema.org', '@type': 'WebPage', '@id': canonical, url: canonical, name: 'Fitur RAMUNI untuk Operasional, AI & Knowledge OS', description: 'Bandingkan fitur dan produk RAMUNI untuk penjualan, stok, keuangan, pelanggan, laporan, dan pengetahuan bisnis.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },
   { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': `${canonical}#collection`, url: canonical, name: 'Katalog fitur RAMUNI', description: 'Katalog fitur RAMUNI dengan status ketersediaan yang transparan.', dateModified: pageLastmods.commercial, inLanguage: 'id-ID' },

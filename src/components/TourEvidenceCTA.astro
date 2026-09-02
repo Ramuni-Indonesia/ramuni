@@ -4,7 +4,6 @@ type Visual = {
   width: number;
   height: number;
   alt: string;
-  kind?: 'laptop' | 'card';
 };
 
 interface Props {
@@ -22,7 +21,6 @@ interface Props {
   theme?: 'rice' | 'ink' | 'teal';
 }
 
-import LaptopMockup from './LaptopMockup.astro';
 
 const {
   eyebrow = 'Langkah berikutnya',
@@ -52,12 +50,9 @@ const {
   </div>
 
   <figure class="tour-evidence-cta__visual">
-    {visual.kind === 'card' && <div class="tour-evidence-cta__card-frame"><img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" /></div>}
-    {visual.kind !== 'card' && <LaptopMockup label={visual.alt}>
-      <div class="tour-evidence-cta__image-frame">
-        <img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" />
-      </div>
-    </LaptopMockup>}
+    <div class="tour-evidence-cta__image-frame">
+      <img src={visual.src} width={visual.width} height={visual.height} alt={visual.alt} loading="lazy" decoding="async" />
+    </div>
     <figcaption aria-label={visualBadge}>
       <span class="sr-only">{visualBadge}</span>
       <ol>

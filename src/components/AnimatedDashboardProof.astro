@@ -2,36 +2,26 @@
 interface Props {
   class?: string;
   label?: string;
-  driveSrc?: string;
 }
 
 const {
   class: className = '',
   label = 'Dashboard RAMUNI bergerak menampilkan ringkasan penjualan, kas, stok, pelanggan, dan aktivitas usaha',
-  driveSrc = '',
 } = Astro.props;
-import LaptopMockup from './LaptopMockup.astro';
 ---
 
-{driveSrc ? <span class="animated-dashboard-proof__drive" role="img" aria-label={label}>
-  <span class:list={['animated-dashboard-proof', className]} data-animate="false">
-    <img class="animated-dashboard-proof__drive-image" src={driveSrc} width="900" height="506" alt={label} fetchpriority="high" decoding="async" />
-    <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
-  </span>
-</span> : <LaptopMockup label={label}>
+<span class="animated-dashboard-proof__frame">
   <span
     class:list={['animated-dashboard-proof', className]}
-    role="img"
-    aria-label={label}
     data-animate="false"
   >
     <picture class="animated-dashboard-proof__picture">
       <source media="(max-width: 740px)" srcset="/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp" width="720" height="4299" />
-      <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp" width="1440" height="1202" alt="Tampilan ringkasan dashboard produk RAMUNI dengan sidebar, metrik, grafik, aktivitas, dan status sistem" fetchpriority="high" decoding="async" />
+      <img class="animated-dashboard-proof__fallback" src="/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp" width="1440" height="1202" alt={label} fetchpriority="high" decoding="async" />
     </picture>
     <span class="animated-dashboard-proof__scanline" aria-hidden="true"></span>
   </span>
-</LaptopMockup>}
+</span>
 
 <script>
   const animatedDashboardCleanups = new Map<HTMLElement, () => void>();
@@ -91,8 +81,8 @@ import LaptopMockup from './LaptopMockup.astro';
     container-type:inline-size;
     --hero-dashboard-scan-distance:calc(38.6cqw - 2px);
   }
-  .animated-dashboard-proof__drive{display:block;width:100%;line-height:0;background:transparent}.animated-dashboard-proof__drive .animated-dashboard-proof{aspect-ratio:900/506;background:transparent}.animated-dashboard-proof__drive-image{display:block;width:100%;height:auto;object-fit:contain}
-
+  .animated-dashboard-proof__frame{display:block;min-width:0;overflow:hidden;border:1px solid var(--ink-20);border-radius:clamp(12px,1.5vw,20px);background:var(--white);box-shadow:10px 10px 0 var(--teal-12)}
+  .animated-dashboard-proof__frame > .animated-dashboard-proof{border:0;border-radius:0;box-shadow:none}
   .animated-dashboard-proof__picture,
   .animated-dashboard-proof__picture img{
     position:relative;
@@ -133,6 +123,7 @@ import LaptopMockup from './LaptopMockup.astro';
   }
 
   @media(max-width:740px){
+    .animated-dashboard-proof__frame{border-radius:14px;box-shadow:6px 6px 0 var(--teal-12)}
     .animated-dashboard-proof{aspect-ratio:1440/1202;border-radius:0;box-shadow:none}
     .animated-dashboard-proof__picture img{object-fit:contain}
   }

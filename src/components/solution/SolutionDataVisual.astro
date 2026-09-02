@@ -2,7 +2,6 @@
 import DashboardMotion from '../DashboardMotion.astro';
 import type { SolutionDetail } from '../../data/solutionDetails';
 import { getSolutionDashboardVisual } from '../../data/dashboardVisuals';
-import { getSolutionDriveVisuals } from '../../data/driveVisuals';
 
 interface Props {
   visual: SolutionDetail['visual'];
@@ -11,7 +10,6 @@ interface Props {
 
 const { visual, slug = '' } = Astro.props;
 const dashboard = getSolutionDashboardVisual(slug);
-const driveVisual = getSolutionDriveVisuals(slug).primary;
 const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 'pantau-laba-dan-arus-kas', 'pahami-pelanggan'].includes(slug) ? 'performance' : 'overview';
 ---
 
@@ -19,10 +17,7 @@ const focus = ['kelola-stok'].includes(slug) ? 'operations' : ['naikkan-omzet', 
   <DashboardMotion
     focus={focus}
     priority
-    label={`${driveVisual.alt} Digunakan sebagai contoh untuk ${visual.title}.`}
-    driveSrc={driveVisual.src}
-    driveWidth={driveVisual.width}
-    driveHeight={driveVisual.height}
+    label={`${dashboard.alt} Digunakan sebagai contoh untuk ${visual.title}.`}
     {...dashboard}
   />
 </div>

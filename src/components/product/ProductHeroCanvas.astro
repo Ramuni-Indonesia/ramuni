@@ -1,7 +1,6 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
 import { getProductDashboardVisual } from '../../data/dashboardVisuals';
-import { getProductDriveVisuals } from '../../data/driveVisuals';
 
 interface Props {
   slug?: string;
@@ -16,7 +15,6 @@ const {
 } = Astro.props;
 
 const dashboard = getProductDashboardVisual(slug);
-const driveVisual = getProductDriveVisuals(slug).primary;
 const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'operations' : ['penjualan', 'keuangan', 'pelanggan'].includes(slug) ? 'performance' : 'overview';
 ---
 
@@ -24,17 +22,15 @@ const focus = ['katalog-produk', 'inventori', 'integrasi'].includes(slug) ? 'ope
   <DashboardMotion
     focus={focus}
     priority
-    label={`${driveVisual.alt} Digunakan sebagai contoh cara membaca ${title}.`}
-    driveSrc={driveVisual.src}
-    driveWidth={driveVisual.width}
-    driveHeight={driveVisual.height}
+    label={`${dashboard.alt} Digunakan sebagai contoh cara membaca ${title}.`}
     {...dashboard}
   />
 </div>
 
 <style>
-  .product-canvas{position:relative;min-width:0;margin:0;overflow:hidden}.product-canvas :global(.dashboard-motion){border-radius:0;box-shadow:none}
-  .product-canvas--detail-proof :global(.dashboard-motion){box-shadow:none}
-  @media(max-width:740px){.product-canvas{border-radius:16px}}
+  .product-canvas{position:relative;min-width:0;margin:0;padding:clamp(10px,1.6vw,18px);overflow:hidden;border:1px solid var(--ink);border-radius:clamp(14px,2vw,24px);background:var(--rice);box-shadow:14px 14px 0 var(--yellow)}
+  .product-canvas :global(.dashboard-motion__frame){box-shadow:none;border-color:var(--ink-20);border-radius:clamp(8px,1.2vw,16px)}
+  .product-canvas--detail-proof{background:linear-gradient(145deg,var(--rice),var(--white))}
+  @media(max-width:740px){.product-canvas{padding:8px;border-radius:16px;box-shadow:7px 7px 0 var(--yellow)} }
   @media(prefers-reduced-motion:reduce){.product-canvas *{animation:none!important;transition:none!important}}
 </style>

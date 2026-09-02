@@ -1,6 +1,5 @@
 ---
 import dashboardMotionStyles from '../styles/dashboard-motion.css?inline';
-import LaptopMockup from './LaptopMockup.astro';
 
 interface Props {
   class?: string;
@@ -8,9 +7,6 @@ interface Props {
   focus?: 'overview' | 'performance' | 'operations' | 'full' | string;
   priority?: boolean;
   src?: string;
-  driveSrc?: string;
-  driveWidth?: number;
-  driveHeight?: number;
   width?: number;
   height?: number;
   mobileSrc?: string;
@@ -28,9 +24,6 @@ const {
   src = '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
   width = 1440,
   height = 1202,
-  driveSrc,
-  driveWidth = width,
-  driveHeight = height,
   mobileSrc,
   mobileWidth,
   mobileHeight,
@@ -51,11 +44,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
   data-dashboard-motion
   data-active="false"
 >
-  {driveSrc ? <span class="dashboard-motion__drive-frame" aria-label={label}>
-    <picture>
-      <img class="dashboard-motion__drive-image" src={driveSrc} width={driveWidth} height={driveHeight} alt={label} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" />
-    </picture>
-  </span> : <LaptopMockup label={label}>
+  <span class="dashboard-motion__frame">
     <span class="dashboard-motion__screen">
       <picture>
         {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
@@ -73,7 +62,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
       </picture>
       <span class="dashboard-motion__scanline"></span>
     </span>
-  </LaptopMockup>}
+  </span>
 </span>
 
 <script>

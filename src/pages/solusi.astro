@@ -4,10 +4,10 @@ import TourEvidenceCTA from '../components/TourEvidenceCTA.astro';
 import SolutionProblemMap from '../components/solution/SolutionProblemMap.astro';
 import { industries, solutions } from '../data/site';
 import { capabilityIconAttributes } from '../data/capabilityIcons';
-import { driveCardVisuals } from '../data/driveVisuals';
+import { heroContextVisuals } from '../data/dashboardVisuals';
 import '../styles/other-pages-refinement.css';
 
-const solutionCloseVisual = driveCardVisuals.cashContext;
+const solutionCloseVisual = heroContextVisuals.cashReport;
 
 const painClusters = [
   { label: 'Penjualan', text: 'Omzet berubah, tetapi pemicunya belum jelas.', prompt: 'Bandingkan produk dan waktu sebelum mengubah promosi.', bars: [42, 66, 51, 82, 57] },
