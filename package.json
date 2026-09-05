@@ -40,7 +40,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/compiler-binding-wasm32-wasi": "^0.3.1",
-    "@bruits/satteri-wasm32-wasi": "^0.9.5",
+    "@bruits/satteri-wasm32-wasi": "^0.10.5",
     "cross-env": "^10.1.0",
     "esbuild": "^0.28.1",
     "sharp": "^0.35.3",
