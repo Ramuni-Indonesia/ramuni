@@ -79,7 +79,7 @@ jobs:
             echo '- Checks: Astro check, production build, custom SEO/accessibility audit, npm high vulnerability audit'
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload reviewed static output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ramuni-static-${{ github.sha }}
           path: dist
