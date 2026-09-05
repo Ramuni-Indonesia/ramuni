@@ -1,10 +1,13 @@
 export type ProductScreen = {
   src: string;
+  tabletSrc?: string;
   mobileSrc?: string;
   width: number;
   height: number;
   mobileWidth?: number;
   mobileHeight?: number;
+  tabletWidth?: number;
+  tabletHeight?: number;
   alt: string;
   eyebrow: string;
   title: string;
@@ -18,13 +21,16 @@ export type ProductScreen = {
  */
 export const productScreens = {
   overview: {
-    src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-    width: 1440,
-    height: 1202,
-    mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
-    mobileWidth: 720,
-    mobileHeight: 4299,
-    alt: 'Tampilan ringkasan dashboard RAMUNI dengan penjualan, kas, produk aktif, pelanggan, arus kas, aktivitas, dan wawasan.',
+    src: '/website-original/product-screens/saas-e2e/full/desktop/home--desktop.webp',
+    width: 846,
+    height: 1400,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/home--tablet.webp',
+    tabletWidth: 571,
+    tabletHeight: 1800,
+    mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/home--mobile.webp',
+    mobileWidth: 560,
+    mobileHeight: 3177,
+    alt: 'Capture dashboard RAMUNI terbaru dengan aktivasi workspace, metrik keuangan, kesehatan data, aktivitas, dan prioritas operasional.',
     eyebrow: 'Ringkasan usaha',
     title: 'Ringkasan usaha yang benar-benar dipakai.',
     note: 'Capture dashboard penuh dari workspace E2E RAMUNI; angka pada layar adalah data demo terkontrol.',
@@ -33,6 +39,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/sales-omnichannel-orders--desktop.webp',
     width: 1440,
     height: 1004,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/sales-omnichannel-orders--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 877,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/sales-omnichannel-orders--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 2382,
@@ -45,6 +54,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/finance-statements--desktop.webp',
     width: 1100,
     height: 688,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/finance-statements--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 675,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/finance-statements--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 1551,
@@ -57,6 +69,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/inventory-alerts--desktop.webp',
     width: 1100,
     height: 688,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/inventory-alerts--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 675,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/inventory-alerts--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 1298,
@@ -69,6 +84,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/ai--desktop.webp',
     width: 1100,
     height: 875,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/ai--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 1505,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/ai--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 3146,
@@ -81,6 +99,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/customers--desktop.webp',
     width: 1100,
     height: 688,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/customers--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 675,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/customers--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 1298,
@@ -93,6 +114,9 @@ export const productScreens = {
     src: '/website-original/product-screens/saas-e2e/full/desktop/reports--desktop.webp',
     width: 1440,
     height: 900,
+    tabletSrc: '/website-original/product-screens/saas-e2e/full/tablet/reports--tablet.webp',
+    tabletWidth: 900,
+    tabletHeight: 675,
     mobileSrc: '/website-original/product-screens/saas-e2e/full/mobile/reports--mobile.webp',
     mobileWidth: 600,
     mobileHeight: 1298,
@@ -101,28 +125,4 @@ export const productScreens = {
     title: 'Ringkasan yang siap dibuka ulang.',
     note: 'Capture route laporan dari workspace E2E RAMUNI; angka pada layar adalah data demo terkontrol.',
   },
-  operations: {
-    src: '/website-original/product-screens/ramuni-product-dashboard-operations.webp',
-    width: 1280,
-    height: 854,
-    alt: 'Tampilan RAMUNI yang merangkum aktivitas transaksi, pembaruan stok, dan pengeluaran usaha.',
-    eyebrow: 'Aktivitas operasional',
-    title: 'Telusuri transaksi, stok, dan biaya dari satu alur.',
-    note: 'Visual evidence produk RAMUNI untuk konteks operasional.',
-  },
-  performance: {
-    src: '/website-original/product-screens/ramuni-product-dashboard-performance.webp',
-    width: 1280,
-    height: 854,
-    alt: 'Tampilan dashboard RAMUNI dengan indikator penjualan, kas, produk aktif, dan grafik arus kas tujuh hari.',
-    eyebrow: 'Performa',
-    title: 'Bandingkan arah penjualan dan arus kas.',
-    note: 'Visual evidence produk RAMUNI untuk membaca performa.',
-  },
 } satisfies Record<string, ProductScreen>;
-
-export const productScreenSets = {
-  overview: [productScreens.overview, productScreens.sales],
-  operations: [productScreens.operations, productScreens.inventory, productScreens.sales],
-  performance: [productScreens.performance, productScreens.finance, productScreens.ai],
-} as const;

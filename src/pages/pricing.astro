@@ -27,6 +27,8 @@ const limitRows = [
   { label: 'Budget AI bulanan', values: pricingPlans.map((plan) => plan.limits[2]) },
 ];
 const statusSymbol = (status: string) => ['Unavailable', 'Coming soon'].includes(status) ? '×' : '✓';
+// The matrix intentionally has only two visual states. Quotas and beta notes
+// belong in the plan copy above, not repeated inside every cell.
 const statusLabel = (status: string) => ['Unavailable', 'Coming soon'].includes(status) ? 'Naik paket untuk akses' : 'Termasuk paket';
 const mobilePlanGuidance: Record<string, string> = {
   free: 'Mulai sendiri dengan 1 pengguna dan 1 outlet.',

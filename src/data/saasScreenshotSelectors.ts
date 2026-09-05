@@ -17,12 +17,12 @@ const useFullCapture = (entry: SaaSScreenshotEntry): SaaSScreenshotEntry => {
   if (entry.slug === 'home') {
     return {
       ...entry,
-      // The authenticated home capture is a tall mobile-style export. The
-      // verified dashboard master is the correct wide representation for a
-      // marketing card and prevents the hero from rendering a narrow strip.
-      desktop: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-      tablet: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-      mobile: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
+      // Keep the current authenticated capture across breakpoints. The
+      // previous master export was from the pre-activation workspace and
+      // omitted AI Companion, saved reports, and data-health states.
+      desktop: '/website-original/product-screens/saas-e2e/full/desktop/home--desktop.webp',
+      tablet: '/website-original/product-screens/saas-e2e/full/tablet/home--tablet.webp',
+      mobile: '/website-original/product-screens/saas-e2e/full/mobile/home--mobile.webp',
     };
   }
   if (!fullCaptureSlugs.has(entry.slug)) return entry;

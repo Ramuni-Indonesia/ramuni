@@ -1,29 +1,26 @@
 ---
 import AnimatedMuniWork from './AnimatedMuniWork.astro';
-import { dashboardVisuals } from '../data/dashboardVisuals';
-
-const heroVisual = dashboardVisuals.productOverview;
+import MarketingDashboardCanvas from './MarketingDashboardCanvas.astro';
 ---
 
 <div class="ramuni-hero-visual home-decision-demo">
   <figure class="home-hero-product">
     <div class="home-hero-product__viewport">
       <div class="home-hero-product__screen">
-        <div class="home-hero-product__screen-bar" aria-hidden="true"><span><i></i> RAMUNI / Ringkasan usaha</span><b>Data demo · diperbarui 09.42</b></div>
-        <img class="home-hero-product__image" src={heroVisual.src} width={heroVisual.width} height={heroVisual.height} alt={heroVisual.alt} loading="eager" decoding="async" fetchpriority="high" />
+        <MarketingDashboardCanvas context="overview" priority />
         <span class="home-hero-product__screen-rule" aria-hidden="true"></span>
       </div>
       <aside class="home-hero-guide" aria-label="Muni membantu membaca dashboard"><AnimatedMuniWork class="home-hero-guide__mascot" static label="Muni membantu membaca dashboard RAMUNI" /><div><span>Mulai dari</span><strong>prioritas yang berubah</strong></div></aside>
     </div>
     <figcaption>
-      <strong>Workspace nyata, bukan ilustrasi perangkat.</strong>
-      <span>Periode, metrik, dan sumber tetap terbaca sebelum menentukan tindakan.</span>
+      <strong>Visual kerja yang mengikuti alur RAMUNI.</strong>
+      <span>Contoh data menunjukkan cara membaca prioritas sebelum membuka capture workspace aktual.</span>
     </figcaption>
   </figure>
 </div>
 
 <style>
-  .home-hero-product{position:relative}.home-hero-product__viewport{position:relative}.home-hero-product__screen{position:relative;min-width:0;overflow:hidden;border:1px solid var(--ink);border-radius:var(--radius);background:var(--white);box-shadow:14px 14px 0 var(--teal)}.home-hero-product__screen-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:11px 16px;border-bottom:1px solid var(--ink-10);background:var(--ink);color:var(--white);font-size:.62rem;letter-spacing:.03em}.home-hero-product__screen-bar span{display:flex;align-items:center;gap:8px;font-weight:800}.home-hero-product__screen-bar i{display:block;width:7px;height:7px;border-radius:50%;background:var(--yellow)}.home-hero-product__screen-bar b{color:rgb(255 255 255/.65);font-weight:600}.home-hero-product__image{display:block;width:100%;height:auto;aspect-ratio:1440/1202;object-fit:cover;object-position:top center}.home-hero-product__screen-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--yellow);transform-origin:left;animation:hero-screen-rule 1.1s var(--ease) both}.home-hero-guide{position:absolute;right:-26px;bottom:-68px;z-index:3;display:flex;align-items:center;gap:8px;max-width:230px;padding:8px 12px 8px 8px;border:1px solid var(--ink);border-radius:999px;background:var(--white);box-shadow:7px 7px 0 var(--yellow);transform:rotate(2deg)}.home-hero-guide__mascot{--animated-muni-size:72px;flex:0 0 auto;filter:none}.home-hero-guide div{display:grid;gap:2px}.home-hero-guide div span{color:var(--teal);font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.home-hero-guide div strong{font-size:.7rem;line-height:1.2}.home-hero-product figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline;padding:18px 188px 0 2px;color:var(--ink-72)}.home-hero-product figcaption strong{color:var(--ink);font-size:.76rem}.home-hero-product figcaption span{font-size:.68rem}.home-hero-product figcaption::after{content:'Capture dashboard RAMUNI · data demo terkontrol';grid-column:2;color:var(--ink-56);font-size:.62rem}@keyframes hero-screen-rule{from{transform:scaleX(0)}}
+  .home-hero-product{position:relative}.home-hero-product__viewport{position:relative}.home-hero-product__screen{position:relative;min-width:0;overflow:hidden;border:1px solid var(--ink);border-radius:var(--radius);background:var(--white);box-shadow:14px 14px 0 var(--teal)}.home-hero-product__screen :global(.marketing-dashboard){border:0}.home-hero-product__screen-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--yellow);transform-origin:left;animation:hero-screen-rule 1.1s var(--ease) both}.home-hero-guide{position:absolute;right:-26px;bottom:-68px;z-index:3;display:flex;align-items:center;gap:8px;max-width:230px;padding:8px 12px 8px 8px;border:1px solid var(--ink);border-radius:999px;background:var(--white);box-shadow:7px 7px 0 var(--yellow);transform:rotate(2deg)}.home-hero-guide__mascot{--animated-muni-size:72px;flex:0 0 auto;filter:none}.home-hero-guide div{display:grid;gap:2px}.home-hero-guide div span{color:var(--teal);font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.home-hero-guide div strong{font-size:.7rem;line-height:1.2}.home-hero-product figcaption{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline;padding:18px 188px 0 2px;color:var(--ink-72)}.home-hero-product figcaption strong{color:var(--ink);font-size:.76rem}.home-hero-product figcaption span{font-size:.68rem}.home-hero-product figcaption::after{content:'Visual konsep berbasis alur RAMUNI · data contoh terkontrol';grid-column:2;color:var(--ink-56);font-size:.62rem}@keyframes hero-screen-rule{from{transform:scaleX(0)}}
   @media(max-width:740px){.home-hero-product__screen{border-radius:16px;box-shadow:8px 8px 0 var(--teal)}.home-hero-product__screen-bar{padding:9px 11px;font-size:.54rem}.home-hero-product__screen-bar b{display:none}.home-hero-guide{right:0;bottom:-60px;max-width:190px;padding:5px 9px 5px 5px}.home-hero-guide__mascot{--animated-muni-size:58px}.home-hero-product figcaption{grid-template-columns:1fr;gap:4px;padding:14px 96px 0 2px}.home-hero-product figcaption::after{grid-column:auto}}
   @media(prefers-reduced-motion:reduce){.home-hero-guide{transform:none}}
   @media(prefers-reduced-motion:reduce){.home-hero-product__screen-rule{animation:none;transform:none}}

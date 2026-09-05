@@ -1,5 +1,5 @@
 ---
-import DashboardMotion from './DashboardMotion.astro';
+import MarketingDashboardCanvas from './MarketingDashboardCanvas.astro';
 
 interface Props {
   id?: string;
@@ -19,35 +19,24 @@ const {
   location = 'commercial_proof',
 } = Astro.props;
 
-const proofScreen = focus === 'performance'
-  ? {
-      src: '/website-original/product-screens/ramuni-product-dashboard-performance.webp',
-      width: 1280,
-      height: 854,
-      mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
-      mobileWidth: 720,
-      mobileHeight: 4299,
-      disclosure: 'Ilustrasi alur produk · data simulasi terkontrol · buka konsultasi untuk memeriksa akses.'
-    }
+const context = focus === 'performance' ? 'report' : focus === 'operations' ? 'stock' : 'overview';
+const proofNotes = focus === 'performance'
+  ? [
+      ['01 · Periode', 'Ringkasan mingguan', 'Bandingkan periode yang sama sebelum menyimpulkan arah.'],
+      ['02 · Sumber', 'Perubahan utama', 'Buka catatan yang membentuk angka laporan.'],
+      ['03 · Pemilik', 'Tindak lanjut', 'Tetapkan siapa yang memeriksa langkah berikutnya.'],
+    ]
   : focus === 'operations'
-    ? {
-        src: '/website-original/product-screens/ramuni-product-dashboard-operations.webp',
-        width: 1280,
-        height: 854,
-        mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
-        mobileWidth: 720,
-      mobileHeight: 4299,
-      disclosure: 'Ilustrasi alur produk · data simulasi terkontrol · buka konsultasi untuk memeriksa akses.'
-      }
-    : {
-        src: '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-        width: 1440,
-        height: 1202,
-        mobileSrc: '/website-original/product-screens/ramuni-saas-dashboard-real-mobile-pixel7.webp',
-        mobileWidth: 720,
-      mobileHeight: 4299,
-      disclosure: 'Capture dashboard workspace · data demo terkontrol · buka konsultasi untuk memeriksa alurnya.'
-      };
+    ? [
+        ['01 · Saldo', 'SKU prioritas', 'Mulai dari barang yang mendekati batas perhatian.'],
+        ['02 · Gerak', 'Mutasi terakhir', 'Bandingkan saldo dengan barang yang benar-benar keluar.'],
+        ['03 · Cek', 'Stok fisik', 'Pastikan kondisi lapangan sebelum restock.'],
+      ]
+    : [
+        ['01 · Masuk', 'Catatan usaha', 'Transaksi, stok, biaya, dan dokumen ditempatkan pada periode yang jelas.'],
+        ['02 · Terbaca', 'Perubahan utama', 'Ringkasan menyorot pergeseran yang layak dibuka lebih dulu.'],
+        ['03 · Lanjut', 'Pemeriksaan berikutnya', 'Tim kembali ke sumber dan memilih tindakan sendiri.'],
+      ];
 ---
 
 <section id={id} class="commercial-proof-showcase" aria-labelledby={`${id}-title`} data-proof-location={location}>
@@ -58,23 +47,11 @@ const proofScreen = focus === 'performance'
     </div>
     <div class="commercial-proof-showcase__grid">
       <div class="commercial-proof-showcase__screen">
-        <DashboardMotion
-          focus={focus}
-          priority
-          label="Tampilan penuh dashboard RAMUNI dengan sidebar, metrik, grafik, aktivitas, dan insight."
-          src={proofScreen.src}
-          width={proofScreen.width}
-          height={proofScreen.height}
-          mobileSrc={proofScreen.mobileSrc}
-          mobileWidth={proofScreen.mobileWidth}
-          mobileHeight={proofScreen.mobileHeight}
-        />
-        <p class="commercial-proof-showcase__caption">{proofScreen.disclosure}</p>
+        <MarketingDashboardCanvas context={context as 'overview' | 'stock' | 'report'} priority />
+        <p class="commercial-proof-showcase__caption">Visual konsep interaktif berbasis alur RAMUNI · data contoh terkontrol. Capture workspace aktual tersedia di halaman produk terkait.</p>
       </div>
       <div class="commercial-proof-showcase__notes">
-        <article><span>01 · Masuk</span><strong>Catatan usaha</strong><p>Transaksi, stok, biaya, dan dokumen ditempatkan pada periode yang jelas.</p></article>
-        <article><span>02 · Terbaca</span><strong>Perubahan utama</strong><p>Ringkasan menyorot pergeseran yang layak dibuka lebih dulu, bukan sekadar angka besar.</p></article>
-        <article><span>03 · Lanjut</span><strong>Pemeriksaan berikutnya</strong><p>Tim kembali ke sumber dan memilih tindakan sendiri dengan konteks yang sama.</p></article>
+        {proofNotes.map(([eyebrowText, titleText, noteText]) => <article><span>{eyebrowText}</span><strong>{titleText}</strong><p>{noteText}</p></article>)}
         <a class="text-link" href="/tour-produk-gratis/?flow=consultation" data-analytics-event="demo_request" data-analytics-location={location} data-destination="consultation">Lihat alur di konsultasi →</a>
       </div>
     </div>

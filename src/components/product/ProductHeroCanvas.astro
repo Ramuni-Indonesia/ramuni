@@ -1,6 +1,7 @@
 ---
 import DashboardMotion from '../DashboardMotion.astro';
 import VisualVariety from '../VisualVariety.astro';
+import MarketingDashboardCanvas from '../MarketingDashboardCanvas.astro';
 import { getProductDashboardVisual, heroContextVisuals } from '../../data/dashboardVisuals';
 
 interface Props {
@@ -32,7 +33,9 @@ const metricVisual = slug === 'laporan-insight'
 ---
 
 <div class:list={['product-canvas', { 'product-canvas--hub-proof': slug === 'hub', 'product-canvas--detail-proof': slug !== 'hub' }]} aria-label={`Contoh tampilan ruang kerja ${title}: ${question}`}>
-  {conceptAsset ? (
+  {slug === 'hub' || slug === 'dashboard-bisnis' ? (
+    <MarketingDashboardCanvas context="overview" priority />
+  ) : conceptAsset ? (
     <VisualVariety
       kind="concept"
       asset={conceptAsset}

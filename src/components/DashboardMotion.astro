@@ -9,6 +9,9 @@ interface Props {
   src?: string;
   width?: number;
   height?: number;
+  tabletSrc?: string;
+  tabletWidth?: number;
+  tabletHeight?: number;
   mobileSrc?: string;
   mobileWidth?: number;
   mobileHeight?: number;
@@ -21,9 +24,12 @@ const {
   label = 'Tampilan dashboard RAMUNI yang bergerak memperlihatkan ringkasan, arus kas, aktivitas, dan status data.',
   focus = 'overview',
   priority = false,
-  src = '/website-original/product-screens/ramuni-saas-dashboard-desktop-1440.webp',
-  width = 1440,
-  height = 1202,
+  src = '/website-original/product-screens/saas-e2e/full/desktop/home--desktop.webp',
+  width = 846,
+  height = 1400,
+  tabletSrc,
+  tabletWidth,
+  tabletHeight,
   mobileSrc,
   mobileWidth,
   mobileHeight,
@@ -31,6 +37,7 @@ const {
 } = Astro.props;
 
 const aspectRatio = `${width}/${height}`;
+const tabletAspectRatio = tabletWidth && tabletHeight ? `${tabletWidth}/${tabletHeight}` : aspectRatio;
 const mobileAspectRatio = mobileWidth && mobileHeight ? `${mobileWidth}/${mobileHeight}` : aspectRatio;
 const scanDistance = Math.round((height / width) * 8000) / 100;
 const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeight / mobileWidth) * 8000) / 100 : scanDistance;
@@ -40,7 +47,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
 
 <span
   class:list={['dashboard-motion', 'dashboard-motion--' + focus, className]}
-  style={`--dashboard-aspect:${aspectRatio};--dashboard-mobile-aspect:${mobileAspectRatio};--dashboard-scan-distance:calc(${scanDistance}cqw - 2px);--dashboard-mobile-scan-distance:calc(${mobileScanDistance}cqw - 2px)`}
+  style={`--dashboard-aspect:${aspectRatio};--dashboard-tablet-aspect:${tabletAspectRatio};--dashboard-mobile-aspect:${mobileAspectRatio};--dashboard-scan-distance:calc(${scanDistance}cqw - 2px);--dashboard-mobile-scan-distance:calc(${mobileScanDistance}cqw - 2px)`}
   data-dashboard-motion
   data-active="false"
 >
@@ -48,6 +55,7 @@ const mobileScanDistance = mobileWidth && mobileHeight ? Math.round((mobileHeigh
     <span class="dashboard-motion__screen">
       <picture>
         {mobileSrc && <source media="(max-width: 740px)" srcset={mobileSrc} width={mobileWidth} height={mobileHeight} />}
+        {tabletSrc && <source media="(max-width: 1024px)" srcset={tabletSrc} width={tabletWidth} height={tabletHeight} />}
       <img
           class="dashboard-motion__image"
           src={defer ? undefined : src}

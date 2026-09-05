@@ -440,7 +440,9 @@ const productScreenForVisual = (visual: DriveVisual): ProductScreen => {
   if (/laporan|report|insight|mingguan/.test(haystack)) return productScreens.reports;
   if (/keuangan|kas|laba|margin|biaya|profit/.test(haystack)) return productScreens.finance;
   if (/penjualan|transaksi|pembayaran|pos|order/.test(haystack)) return productScreens.sales;
-  if (/katalog|produk|integrasi|import|data/.test(haystack)) return productScreens.operations;
+  // Catalog/import visuals should resolve to the verified inventory route,
+  // not the retired operations crop that duplicated the old dashboard.
+  if (/katalog|produk|integrasi|import|data/.test(haystack)) return productScreens.inventory;
   return productScreens.overview;
 };
 

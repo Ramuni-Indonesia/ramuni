@@ -2,7 +2,7 @@ export type CapabilityStatus = 'Available' | 'Limited' | 'Beta' | 'Coming soon' 
 
 export const capabilityStatusLabel = (status: CapabilityStatus): string => ({
   Available: 'Termasuk paket',
-  Limited: 'Termasuk sesuai kuota',
+  Limited: 'Termasuk paket',
   Beta: 'Akses beta',
   'Coming soon': 'Segera dibuka',
   Unavailable: 'Naik paket untuk akses',

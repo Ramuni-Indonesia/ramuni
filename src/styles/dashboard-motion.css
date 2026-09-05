@@ -60,6 +60,11 @@
   .dashboard-motion__scanline{--dashboard-scan-distance:var(--dashboard-mobile-scan-distance)}
 }
 
+@media(min-width:741px) and (max-width:1024px){
+  .dashboard-motion__screen{aspect-ratio:var(--dashboard-tablet-aspect,var(--dashboard-aspect,4/3))}
+  .dashboard-motion__image{object-fit:contain;object-position:top center}
+}
+
 @media(prefers-reduced-motion:reduce){
   .dashboard-motion__image,.dashboard-motion__scanline{animation:none!important;transform:none!important}
 }
